@@ -1,0 +1,693 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "Unsolved Problems Mega-Atlas",
+  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.2.0",
+  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,855 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars and 28 Superdomains wired into 1 connected 5,597-edge knowledge graph, with 0thernes CSS & Titan Index rankings, per-record epistemic verification flags, Nov 20, 2026 AI proof-claim audit, SQLite FTS5 RAG/MCP server, Karpathy-style AutoResearch harness, and 58 Pure Lean 4.35.0 formal formula/graph invariants.",
+  "version": "2.2.0",
+  "datePublished": "2026-11-21",
+  "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
+  "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.2.0). 0thernes LLC. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "creator": {
+    "@type": "sc:Person",
+    "name": "Alexander Stephen Donahue",
+    "identifier": "https://orcid.org/0009-0006-8168-9648",
+    "affiliation": {
+      "@type": "sc:Organization",
+      "name": "0thernes LLC",
+      "url": "https://0thernes.art"
+    }
+  },
+  "keywords": [
+    "unsolved problems",
+    "open problems",
+    "knowledge graph",
+    "lean 4",
+    "formal verification",
+    "autoresearch",
+    "mcp",
+    "rag",
+    "mathematics",
+    "physics",
+    "computer science",
+    "artificial intelligence",
+    "philosophy"
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "mega-atlas-csv",
+      "name": "MegaAtlas_Unsolved_Problems_V2.csv",
+      "description": "Master tabular CSV (1,855 rows x 40 columns, UTF-8).",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv",
+      "encodingFormat": "text/csv",
+      "sha256": "affcbd826e92bf8a28de03bee4330fc381dcc88f8a393d114baacdcab75c6bf6",
+      "contentSize": "3443119 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "mega-atlas-jsonl",
+      "name": "MegaAtlas_Unsolved_Problems_V2.jsonl",
+      "description": "Streaming newline-delimited JSON (1,855 records) for LLM/RAG/HuggingFace ingestion.",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl",
+      "encodingFormat": "application/x-ndjson",
+      "sha256": "e201232a08f40bab5351318137a5cbc4eaf4648f8d7a54c638ab88c4c409eaa1",
+      "contentSize": "4970279 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "mega-atlas-json",
+      "name": "MegaAtlas_Unsolved_Problems_V2.json",
+      "description": "Complete JSON payload including problems, 5,597 graph edges, Nov 2026 AI audit, registries, benchmarks & matrices.",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json",
+      "encodingFormat": "application/json",
+      "sha256": "c071e8ff237edccf113f82abd854dd5afa90ae7a94a421ba537c9662a0bf60bf",
+      "contentSize": "6003741 B"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "mega-atlas-sqlite",
+      "name": "MegaAtlas_Unsolved_Problems_V2.sqlite",
+      "description": "SQLite 3 normalized relational database with Porter-stemmed FTS5 full-text search index.",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.sqlite",
+      "encodingFormat": "application/vnd.sqlite3",
+      "sha256": "c1c69278e098e1f79b80281a8376bd09a251f12210f3deab64bf6125e40705a1",
+      "contentSize": "10727424 B"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "problems",
+      "name": "problems",
+      "description": "All 1,855 strictly deduplicated unsolved, open, and hard problems.",
+      "key": {
+        "@id": "problems/id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "problems/id",
+          "name": "id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/name",
+          "name": "name",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/macro_pillar",
+          "name": "macro_pillar",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "macro_pillar"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/superdomain",
+          "name": "superdomain",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "superdomain"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/subdomain",
+          "name": "subdomain",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "subdomain"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/problem_type",
+          "name": "problem_type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "problem_type"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/epistemic_class",
+          "name": "epistemic_class",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "epistemic_class"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/year_formulated",
+          "name": "year_formulated",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "year_formulated"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/era",
+          "name": "era",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "era"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/age_years_2026",
+          "name": "age_years_2026",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "age_years_2026"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/originator",
+          "name": "originator",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "originator"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/status_2026",
+          "name": "status_2026",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "status_2026"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/ai_verification_nov2026",
+          "name": "ai_verification_nov2026",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "ai_verification_nov2026"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/registry_source",
+          "name": "registry_source",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "registry_source"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/core_question",
+          "name": "core_question",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "core_question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/formal_expression",
+          "name": "formal_expression",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "formal_expression"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/difficulty_score",
+          "name": "difficulty_score",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "difficulty_score"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/tractability_2050",
+          "name": "tractability_2050",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "tractability_2050"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/civilizational_impact",
+          "name": "civilizational_impact",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "civilizational_impact"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/interdisciplinarity_index",
+          "name": "interdisciplinarity_index",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "interdisciplinarity_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/primary_bottleneck",
+          "name": "primary_bottleneck",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "primary_bottleneck"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/competing_approaches",
+          "name": "competing_approaches",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "competing_approaches"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/closest_progress_2026",
+          "name": "closest_progress_2026",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "closest_progress_2026"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/affected_industries",
+          "name": "affected_industries",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "affected_industries"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/scale_regime",
+          "name": "scale_regime",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "scale_regime"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/prize_or_initiative",
+          "name": "prize_or_initiative",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "prize_or_initiative"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/verification_type",
+          "name": "verification_type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "verification_type"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/contrast_axis",
+          "name": "contrast_axis",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "contrast_axis"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/related_problem_ids",
+          "name": "related_problem_ids",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "related_problem_ids"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/graph_degree",
+          "name": "graph_degree",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "graph_degree"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/cross_superdomain_links",
+          "name": "cross_superdomain_links",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "cross_superdomain_links"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/cross_pillar_links",
+          "name": "cross_pillar_links",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "cross_pillar_links"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/pagerank",
+          "name": "pagerank",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "pagerank"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/betweenness",
+          "name": "betweenness",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "betweenness"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/network_cluster",
+          "name": "network_cluster",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "network_cluster"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/titan_index",
+          "name": "titan_index",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "titan_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/css_score",
+          "name": "css_score",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "css_score"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/verification_flag",
+          "name": "verification_flag",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "verification_flag"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/near_term_leverage_score",
+          "name": "near_term_leverage_score",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "near_term_leverage_score"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/strategic_quadrant",
+          "name": "strategic_quadrant",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "strategic_quadrant"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

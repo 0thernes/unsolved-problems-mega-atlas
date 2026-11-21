@@ -1,0 +1,5 @@
+timestamp_utc	commit	aqs_score	rag_mrr5	rag_top1	provenance	graph_coupling	formal_score	lean_theorems	hard_gates	status	description
+2026-11-21T10:21:48Z	bc34a86	80.26	89.33	21/25	29.63	100.00	80.00	58	PASS	baseline	v2.1.0 baseline: pure-OR FTS5 RAG, 58 Lean thms, pre-FAIR/MCP
+2026-11-21T10:22:50Z	bc34a86	80.26	89.33	21/25	29.63	100.00	80.00	58	PASS	discard	H-001: staged Exact-Phrase -> Strict-AND -> OR BM25 (0.00 lift; pure BM25 lacks graph-authority & unique-token coverage)
+2026-11-21T10:23:54Z	bc34a86	81.93	96.00	23/25	29.63	100.00	80.00	58	PASS	keep	H-001b: hybrid BM25 + unique-token title/body coverage + log-degree graph authority reranker
+2026-11-21T10:31:30Z	bc34a86	95.59	96.00	23/25	82.96	100.00	100.00	58	PASS	keep	H-002 (v2.2.0): FAIR metadata triad + 7-tool MCP stdio server + AGENTS/llms.txt + 58 Lean 4.35.0 thms

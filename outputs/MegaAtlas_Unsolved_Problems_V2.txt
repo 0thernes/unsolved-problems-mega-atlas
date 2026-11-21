@@ -1,12 +1,12 @@
 ====================================================================================================================
-  V2.1.0 MEGA-ATLAS OF HUMANITY'S 1,855 UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 20, 2026)
+  V2.2.0 MEGA-ATLAS OF HUMANITY'S 1,855 UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)
   Author: Alexander Stephen Donahue (0thernes LLC, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / MIT (Code)
-  8 Macro-Pillars | 28 Superdomains | 1,705 Subdomains | 5,597 Edges | 46 Pure Lean 4.35.0 Formula Invariants
+  8 Macro-Pillars | 28 Superdomains | 1,705 Subdomains | 5,597 Edges | 58 Pure Lean 4.35.0 Formal Invariants
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.1.0
+  atlas_version                       : 2.2.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
@@ -97,7 +97,7 @@
 | Wikipedia Lists of Unsolved Problems ( | ~1,200+ distinct entries across 20+ li | ~1,100+ open                           | Broadest public cross-disciplinary map |
 | NAE 14 Grand Challenges & DARPA/DOE Ea | ~100+ flagship technology targets      | ~90+ active engineering frontiers      | Dominates Quadrant 1 (Near-Term Civili |
 | PhilPapers Survey & Metaphysics/Ethics | ~100+ enduring philosophical problems  | ~100% actively contested (up to 2,526  | AI alignment & digital sentience turne |
-| This V2.1 Unified Mega-Atlas (0thernes | 1,855 rigorously deduplicated problems | 100% active open/hard/unverified front | Unified cross-disciplinary dataset com |
+| This V2.2 Unified Mega-Atlas (0thernes | 1,855 rigorously deduplicated problems | 100% active open/hard/unverified front | Unified cross-disciplinary dataset com |
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 
 [4] 8 MACRO-PILLARS COMPARATIVE SCORECARD

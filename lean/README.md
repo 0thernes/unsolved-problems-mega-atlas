@@ -5,9 +5,9 @@
 
 ## Scope & Honest Boundary
 
-This proof library formally certifies **46 exact discrete mathematical invariants** of the Unsolved Problems Mega-Atlas's scoring formulas (`CSS`, antiquity 300-year saturation, `Titan Index`, `Near-Term Leverage`), 4-Quadrant and 6-Era classifiers, 8×28 hierarchical taxonomy surjection, finite undirected graph Handshaking Lemma (`∑ deg = 2|E|`), cross-partition edge hierarchy (`cross_pillar ≤ cross_superdomain ≤ |E|`), and deduplication cardinality bound.
+This proof library formally certifies **58 exact discrete mathematical invariants** (7 files, 817 lines) of the Unsolved Problems Mega-Atlas's scoring formulas (`CSS`, antiquity 300-year saturation, `Titan Index`, `Near-Term Leverage`), 4-Quadrant and 6-Era classifiers, 8×28 hierarchical taxonomy surjection, finite undirected graph Handshaking Lemma (`∑ deg = 2|E|`), cross-partition edge hierarchy (`cross_pillar ≤ cross_superdomain ≤ |E|`), deduplication cardinality bound, **Karpathy-style AutoResearch AQS bounds & anti-gaming keep/discard ratchet**, and pairwise comparison delta antisymmetry.
 
-> **Honest Boundary:** These theorems verify mathematical properties of the *atlas's quantitative framework* only. They do **not** claim to prove any of the 1,855 open problems cataloged in the dataset.
+> **Honest Boundary:** These theorems verify mathematical properties of the *atlas's quantitative and verification framework* only. They do **not** claim to prove any of the 1,855 open problems cataloged in the dataset.
 
 ## Build & Axiom Audit
 
@@ -16,4 +16,4 @@ cd lean
 lake build
 ```
 
-All 46 theorems compile with **zero warnings**, **zero `sorry`**, **zero `admit`**, **zero `native_decide`**, and **`#print axioms` strictly within `[propext, Quot.sound]` or empty** (audited in `MegaAtlasProofs/VerifyAxioms.lean`).
+All 58 theorems compile (`9 jobs`) with **zero warnings**, **zero `sorry`**, **zero `admit`**, **zero `native_decide`**, and **`#print axioms` strictly within `[propext, Quot.sound]` or empty** (audited in `MegaAtlasProofs/VerifyAxioms.lean`).

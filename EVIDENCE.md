@@ -1,6 +1,6 @@
 # Cryptographic Evidence & Provenance Dossier
 
-**Project:** Unsolved Problems Mega-Atlas (`v2.1.0`)  
+**Project:** Unsolved Problems Mega-Atlas (`v2.2.0`)  
 **Author / Curator:** Alexander Stephen Donahue (`0thernes LLC`, Spokane, WA, USA)  
 **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)  
 **Repository:** [https://github.com/0thernes/unsolved-problems-mega-atlas](https://github.com/0thernes/unsolved-problems-mega-atlas)  
@@ -13,9 +13,12 @@
 
 | Evidence Layer | Artifact / Command | Status |
 |---|---|---|
-| **Pure Lean 4.35.0 Invariants** | `cd lean && lake build` (`MegaAtlasProofs/VerifyAxioms.lean`) | **46 theorems verified** · 0 warnings · 0 `sorry` · 0 `native_decide` · `[propext, Quot.sound]` or empty |
+| **Pure Lean 4.35.0 Invariants** | `cd lean && lake build` (`MegaAtlasProofs/VerifyAxioms.lean`) | **58 theorems verified** (7 files, 817 lines) · 0 warnings · 0 `sorry` · 0 `native_decide` · `[propext, Quot.sound]` or empty |
 | **JSON Schema Draft 2020-12** | `schema/problem.schema.json` + `schema/atlas.schema.json` | **1,855 / 1,855 records valid** |
-| **Automated Test Suite** | `pytest -v` (`tests/test_mega_atlas.py`) | **100% PASS** (schema, scoring, graph handshaking, parity, RAG, ORCID, Lean hygiene, SHA-256) |
+| **FAIR Scholarly Metadata** | `.zenodo.json` · `croissant.json` · `ro-crate-metadata.json` · `docs/DATASHEET.md` | MLCommons Croissant 1.0 + W3C RO-Crate 1.1 + Zenodo ORCID + Gebru Datasheet synced byte-exact |
+| **Karpathy AutoResearch Oracle** | `python autoresearch/evaluate.py --verify-gates` (`autoresearch/results.tsv`) | Immutable 5-axis AQS + 25-query Hybrid BM25+Graph RAG benchmark (`96.0% MRR@5`, 23/25 top-1) |
+| **MCP Stdio Research Server** | `mcp_server/server.py` (tested end-to-end via JSON-RPC 2.0 in `pytest`) | 7 grounded tools live over SQLite FTS5 + 5,597-edge graph |
+| **Automated Test Suite** | `pytest -v` (`tests/test_mega_atlas.py`) | **100% PASS** (schema, scoring, comparator, graph handshaking, parity, RAG, MCP stdio, AutoResearch, FAIR, ORCID, Lean hygiene, SHA-256) |
 | **Cryptographic Manifest** | `CHECKSUMS.sha256` (`python scripts/audit_atlas.py --check-lean`) | Byte-exact SHA-256 across all frozen datasets, SQLite FTS5 DB, 24 charts, HTML, PDF, `RANKING.md`, schemas & white paper |
 | **Continuous Integration** | `.github/workflows/ci.yml` (2 jobs: Python Audit + Lean 4.35.0 Build) | Automated on every push & PR to `main` |
 | **Live Web Publication** | `.github/workflows/pages.yml` (GitHub Pages) | Automated deployment of standalone interactive dashboard & charts |

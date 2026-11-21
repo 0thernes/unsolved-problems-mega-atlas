@@ -1,4 +1,4 @@
-name: Deploy Interactive Mega-Atlas to GitHub Pages
+name: Deploy Interactive Mega-Atlas & FAIR Metadata to GitHub Pages
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Stage static GitHub Pages site
+      - name: Stage static GitHub Pages site & FAIR/LLM manifests
         run: |
           mkdir -p _site/charts _site/downloads
           cp outputs/MegaAtlas_Interactive_Dashboard_V2.html _site/index.html
@@ -33,6 +33,7 @@ jobs:
           cp outputs/MegaAtlas_Unsolved_Problems_V2.json _site/downloads/
           cp outputs/MegaAtlas_Unsolved_Problems_V2.jsonl _site/downloads/
           cp CHECKSUMS.sha256 _site/downloads/
+          cp llms.txt croissant.json ro-crate-metadata.json .zenodo.json CITATION.cff CITATION.bib _site/
           touch _site/.nojekyll
 
       - name: Configure Pages

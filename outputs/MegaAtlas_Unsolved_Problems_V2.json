@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Unsolved Problems Mega-Atlas (V2.1.0, November 20, 2026 Edition)",
-    "version": "2.1.0",
+    "title": "Unsolved Problems Mega-Atlas (V2.2.0, November 21, 2026 Edition)",
+    "version": "2.2.0",
     "author": "Alexander Stephen Donahue",
     "orcid": "0009-0006-8168-9648",
     "affiliation": "0thernes LLC, Spokane, WA, USA",
@@ -10,7 +10,7 @@
     "repository": "https://github.com/0thernes/unsolved-problems-mega-atlas",
     "ai_disclosure": "Directed, architected, and audited by solo researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative scores are transparent editorial estimates, not peer-reviewed measurements.",
     "summary_stats": {
-      "atlas_version": "2.1.0",
+      "atlas_version": "2.2.0",
       "reference_year": 2026,
       "author": "Alexander Stephen Donahue",
       "orcid": "0009-0006-8168-9648",
@@ -162,12 +162,12 @@
       "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."
     },
     {
-      "Registry": "This V2.1 Unified Mega-Atlas (0thernes LLC, 2026)",
+      "Registry": "This V2.2 Unified Mega-Atlas (0thernes LLC, 2026)",
       "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge",
       "Total_Tracked": "1,855 rigorously deduplicated problems",
       "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks",
-      "Verification_Standard": "Pure Lean 4.35.0 formula invariants (46 theorems), JSON Schema, pytest, SHA-256 & Nov 20 2026 AI-claim audit",
-      "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG."
+      "Verification_Standard": "Pure Lean 4.35.0 formal invariants (58 theorems), JSON Schema, pytest, SHA-256, Karpathy AutoResearch & Nov 20 2026 AI-claim audit",
+      "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG & MCP server."
     }
   ],
   "ai_verification_audit_nov2026": [

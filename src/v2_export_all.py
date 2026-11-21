@@ -109,7 +109,7 @@ def export_csv_tsv_json(data):
     p_json = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.json")
     payload = {
         "metadata": {
-            "title": "Unsolved Problems Mega-Atlas (V2.1.0, November 20, 2026 Edition)",
+            "title": "Unsolved Problems Mega-Atlas (V2.2.0, November 21, 2026 Edition)",
             "version": data["summary_stats"]["atlas_version"],
             "author": "Alexander Stephen Donahue",
             "orcid": "0009-0006-8168-9648",
@@ -220,7 +220,7 @@ def export_master_ranking_md(data):
     df = data["df"].sort_values(["css_score", "titan_index", "graph_degree", "id"], ascending=[False, False, False, True]).reset_index(drop=True)
     s = data["summary_stats"]
     lines = [
-        "# Master Ranking — Unsolved Problems Mega-Atlas (V2.1.0)",
+        "# Master Ranking — Unsolved Problems Mega-Atlas (V2.2.0)",
         "",
         f"> **Atlas `v{s['atlas_version']}`** · **{s['total_problems']:,} deduplicated problems** across **8 Macro-Pillars × 28 Superdomains** · Ranked hardest + most central + oldest + least tractable by the **0thernes Composite Severity Score (`CSS`, 0–100)**, alongside the **Composite Titan Index (0–10)**.",
         f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Reference Year:** `{s['reference_year']}` (frozen for deterministic reproducibility).",
@@ -361,7 +361,7 @@ def export_excel_files(data):
     # Sheet 1: Executive_Dashboard (live formulas)
     ws_d = wb.create_sheet(title="Executive_Dashboard")
     ws_d.merge_cells("A1:I1")
-    ws_d["A1"] = f"V2.1.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)"
+    ws_d["A1"] = f"V2.2.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)"
     ws_d["A1"].font = Font(name="Calibri", size=15, bold=True, color="FFFFFF")
     ws_d["A1"].fill = PatternFill("solid", fgColor="0F172A")
     ws_d["A1"].alignment = Alignment(horizontal="center", vertical="center")
@@ -535,9 +535,9 @@ def export_md_and_txt(data):
 
     # --- MARKDOWN ---
     md = []
-    md.append(f"# V2.1.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (0thernes LLC · November 20, 2026)\n")
+    md.append(f"# V2.2.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (0thernes LLC · November 2026)\n")
     md.append(f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Version:** `v{s['atlas_version']}` · **Dual License:** Data CC BY 4.0 / Code MIT\n")
-    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × {s['total_subdomains']:,} subdomains**, wired into **1 connected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formula Invariants:** 46 theorems (0 `sorry`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
+    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × {s['total_subdomains']:,} subdomains**, wired into **1 connected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formal Invariants:** 58 theorems (0 `sorry`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
 
     md.append("## 1. November 20, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
     md.append("No fixed finite count of open human problems exists—active mathematical registries alone track well over 1,100–2,000+ open questions (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:\n")
@@ -621,9 +621,9 @@ def export_md_and_txt(data):
     # --- PLAIN TEXT ---
     txt = []
     bar = "=" * 116
-    txt.extend([bar, f"  V2.1.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 20, 2026)",
+    txt.extend([bar, f"  V2.2.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)",
                 f"  Author: {s['author']} ({s['affiliation']} | ORCID: {s['orcid']}) | Dual License: CC BY 4.0 (Data) / MIT (Code)",
-                f"  8 Macro-Pillars | 28 Superdomains | {s['total_subdomains']:,} Subdomains | {s['total_graph_edges']:,} Edges | 46 Pure Lean 4.35.0 Formula Invariants", bar, ""])
+                f"  8 Macro-Pillars | 28 Superdomains | {s['total_subdomains']:,} Subdomains | {s['total_graph_edges']:,} Edges | 58 Pure Lean 4.35.0 Formal Invariants", bar, ""])
     txt.append("[1] EXECUTIVE SUMMARY METRICS\n" + "-" * 116)
     for k, v in s.items():
         if k != "module_counts":
@@ -714,7 +714,7 @@ def export_interactive_html(data):
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>V2.1.0 Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · 0thernes LLC (Nov 2026)</title>
+<title>V2.2.0 Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · 0thernes LLC (Nov 2026)</title>
 <style>
   :root {{
     --bg: #0B1120; --surface: #111827; --surface2: #1E293B; --border: #334155;
@@ -809,8 +809,8 @@ def export_interactive_html(data):
 <header>
   <div class="hdr-top">
     <div>
-      <h1>V2.1.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (0thernes LLC · Nov 2026)</h1>
-      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × {s['total_graph_edges']:,} Graph Couplings · 0thernes CSS + Titan Index · 46 Pure Lean 4.35.0 Formula Invariants · Live Nov 2026 AI Proof-Claim Audit · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
+      <h1>V2.2.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (0thernes LLC · Nov 2026)</h1>
+      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × {s['total_graph_edges']:,} Graph Couplings · 0thernes CSS + Titan Index · 58 Pure Lean 4.35.0 Formal Invariants · Live Nov 2026 AI Proof-Claim Audit · Karpathy AutoResearch + MCP Server · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;">
       <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas" target="_blank" style="text-decoration:none;">GitHub Repo ↗</a>
@@ -824,7 +824,7 @@ def export_interactive_html(data):
     <div class="kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
     <div class="kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
     <div class="kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-    <div class="kpi"><div class="v">46 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
+    <div class="kpi"><div class="v">58 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
     <div class="kpi"><div class="v">500 BCE–2026</div><div class="l">Span (Med Age {s['median_age_years']}y)</div></div>
   </div>
 </header>
@@ -1300,9 +1300,9 @@ def export_pdf_monograph(data):
 
 <div class="cover">
   <div>
-    <div class="cover-kicker">0thernes LLC Institutional Monograph · Version 2.1.0 · November 20, 2026</div>
+    <div class="cover-kicker">0thernes LLC Institutional Monograph · Version 2.2.0 · November 21, 2026</div>
     <h1>Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Fields of Knowledge</h1>
-    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, 0thernes Composite Severity Score (CSS) &amp; Titan Index Atlas, Pure Lean 4.35.0 Formal Formula-Invariant Suite (46 Theorems, 0 sorry), November 2026 AI Proof-Claim Verification Audit, SQLite FTS5 RAG Corpus, and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
+    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, 0thernes Composite Severity Score (CSS) &amp; Titan Index Atlas, Pure Lean 4.35.0 Formal Invariant Suite (58 Theorems, 0 sorry), November 2026 AI Proof-Claim Verification Audit, SQLite FTS5 Hybrid RAG &amp; MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
     <div class="cover-grid">
       <div class="cover-kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
       <div class="cover-kpi"><div class="v">8 × 28</div><div class="l">Pillars × Superdomains</div></div>
@@ -1310,7 +1310,7 @@ def export_pdf_monograph(data):
       <div class="cover-kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
       <div class="cover-kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
       <div class="cover-kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-      <div class="cover-kpi"><div class="v">46 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
+      <div class="cover-kpi"><div class="v">58 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
       <div class="cover-kpi"><div class="v">500 BCE–2026</div><div class="l">Historical Span</div></div>
     </div>
     <div class="cover-pillars">
@@ -1390,7 +1390,7 @@ def export_pdf_monograph(data):
 
 
 def main():
-    print("Loading V2.1.0 Mega-Atlas (0thernes LLC)...")
+    print("Loading V2.2.0 Mega-Atlas (0thernes LLC)...")
     data = load_v2_master()
     export_csv_tsv_json(data)
     export_master_ranking_md(data)
@@ -1398,7 +1398,7 @@ def main():
     export_md_and_txt(data)
     export_interactive_html(data)
     export_pdf_monograph(data)
-    print("\n=== ALL V2.1.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
+    print("\n=== ALL V2.2.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
 
 
 if __name__ == "__main__":

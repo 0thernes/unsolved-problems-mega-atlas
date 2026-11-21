@@ -1,0 +1,58 @@
+{
+  "title": "Unsolved Problems Mega-Atlas (V2.2.0): Cross-Disciplinary Taxonomy, 0thernes CSS Ranking, 1,855-Node Connectome, Offline FTS5 RAG & MCP Server, Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit, and Pure Lean 4.35.0 Formal Invariants",
+  "description": "Reproducible, cryptographically audited cross-disciplinary research infrastructure cataloging 1,855 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars and 28 Superdomains wired into 1 unified connected 5,597-edge NetworkX knowledge graph. Includes unified 0thernes Composite Severity Score (CSS) and Titan Index rankings, per-record epistemic verification flags, a live November 20, 2026 AI proof-claim verification audit (12 unretired claims), a SQLite 3 + FTS5 hybrid BM25/graph-authority RAG engine and zero-dependency Model Context Protocol (MCP) server, a Karpathy-style autonomous research harness (program.md, immutable evaluate.py, results.tsv), MLCommons Croissant 1.0 & W3C RO-Crate 1.1 FAIR metadata, 12 PNG/SVG analytical figures, a 163-page vector PDF monograph, and 58 Pure Lean 4.35.0 formal invariants (zero Mathlib, zero sorry, axioms strictly within [propext, Quot.sound]). Transparent AI-assistance disclosure: curated by solo researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates and Lean proofs certify the atlas's scoring/graph/keep-gate invariants only.",
+  "upload_type": "dataset",
+  "version": "2.2.0",
+  "publication_date": "2026-11-21",
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Donahue, Alexander Stephen",
+      "affiliation": "0thernes LLC, Spokane, WA, USA",
+      "orcid": "0009-0006-8168-9648"
+    }
+  ],
+  "keywords": [
+    "unsolved problems",
+    "open problems",
+    "knowledge graph",
+    "lean 4",
+    "formal verification",
+    "autoresearch",
+    "model context protocol",
+    "croissant",
+    "ro-crate",
+    "sqlite fts5",
+    "composite severity score",
+    "mathematics",
+    "physics",
+    "computer science",
+    "artificial intelligence",
+    "philosophy",
+    "0thernes"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/0thernes/unsolved-problems-mega-atlas",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/0thernes/0thernes-research-archive",
+      "relation": "isPartOf",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/0thernes/unsolved-mathematics",
+      "relation": "references",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Dual-licensed: Data, monographs, charts, and documentation under CC BY 4.0 (LICENSE); software, schemas, RAG, MCP server, tests, CI workflows, and Pure Lean 4.35.0 formal invariant proofs under MIT (LICENSE-CODE). Registered as 0TH-BUILD-007 in 0thernes/0thernes-research-archive."
+}

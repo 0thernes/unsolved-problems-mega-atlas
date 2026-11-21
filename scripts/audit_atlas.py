@@ -59,6 +59,11 @@ def collect_checksum_targets() -> list[Path]:
         "schema/problem.schema.json",
         "schema/atlas.schema.json",
         "docs/WHITE_PAPER.md",
+        "docs/DATASHEET.md",
+        ".zenodo.json",
+        "croissant.json",
+        "ro-crate-metadata.json",
+        "autoresearch/evaluate.py",
     ]:
         p = ROOT / rel
         if p.exists():
@@ -181,7 +186,21 @@ def main() -> None:
         conn.close()
 
     # 4. Institutional identity & ORCID check
-    for rel in ["CITATION.cff", "README.md", "AUTHORS.md", "VERIFICATION.md", "EVIDENCE.md", "RANKING.md"]:
+    for rel in [
+        "CITATION.cff",
+        "CITATION.bib",
+        ".zenodo.json",
+        "croissant.json",
+        "ro-crate-metadata.json",
+        "README.md",
+        "AUTHORS.md",
+        "AGENTS.md",
+        "llms.txt",
+        "VERIFICATION.md",
+        "EVIDENCE.md",
+        "RANKING.md",
+        "docs/DATASHEET.md",
+    ]:
         p = ROOT / rel
         if not p.exists():
             errors.append(f"Missing required institutional file: {rel}")

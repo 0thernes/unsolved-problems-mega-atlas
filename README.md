@@ -1,14 +1,15 @@
-# Unsolved Problems Mega-Atlas (`v2.1.0`)
+# Unsolved Problems Mega-Atlas (`v2.2.0`)
 
-[![CI — Python Audit & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
+[![CI — Python, AutoResearch, MCP & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Interactive Web Atlas (GitHub Pages)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
-[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-46%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-58%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
+[![FAIR](https://img.shields.io/badge/FAIR-Croissant%201.0%20%7C%20RO--Crate%201.1%20%7C%20Zenodo-7C3AED.svg)](croissant.json)
 [![Dual License](https://img.shields.io/badge/License-Data%20CC--BY--4.0%20%7C%20Code%20MIT-0D9488.svg)](NOTICE)
 
-> **1,855 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains of human knowledge** — wired into **1 connected 5,597-edge knowledge graph**, ranked by the **0thernes Composite Severity Score (`CSS`)** and **Composite Titan Index**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline SQLite FTS5 BM25 + graph-hop RAG engine**, **12 publication-grade charts**, **12 export formats**, and **46 Pure Lean 4.35.0 machine-checked formula & graph invariants**.
+> **1,855 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains of human knowledge** — wired into **1 connected 5,597-edge knowledge graph**, ranked by the **0thernes Composite Severity Score (`CSS`)** and **Composite Titan Index**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline Hybrid BM25+Graph RAG CLI (`96.0% MRR@5`) & 7-tool MCP stdio server**, a **Karpathy-style AutoResearch harness (`autoresearch/`)**, **FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo metadata**, **12 publication-grade charts**, **12 export formats**, and **58 Pure Lean 4.35.0 machine-checked formal invariants**.
 
-- **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(standalone offline explorer, live 7-filter search, Any-2-Problems Comparator, Nov 2026 AI Audit & 12-chart zoom gallery)*
+- **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(also serves [`llms.txt`](https://0thernes.github.io/unsolved-problems-mega-atlas/llms.txt), [`croissant.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json) & [`ro-crate-metadata.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json))*
 - **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`0thernes LLC`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
 - **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
 - **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
@@ -17,8 +18,8 @@
 
 ## Epistemic Honesty & Verification Boundary (Read First)
 
-> **Solo Human + Disclosed AI-Assisted Research Infrastructure:** This atlas is architected, directed, audited, and published by solo researcher **Alexander Stephen Donahue** with disclosed frontier AI assistance (see [`AUTHORS.md`](AUTHORS.md) and [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md)).
-> - **What IS machine-verified:** All **46 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, zero Mathlib, zero `sorry`, zero `native_decide`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, and finite graph invariants; JSON Schema Draft 2020-12 compliance on all `1,855` records; `pytest` parity checks; and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
+> **Solo Human + Disclosed AI-Assisted Research Infrastructure:** This atlas is architected, directed, audited, and published by solo researcher **Alexander Stephen Donahue** with disclosed frontier AI assistance (see [`AUTHORS.md`](AUTHORS.md), [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md), and [`docs/DATASHEET.md`](docs/DATASHEET.md)).
+> - **What IS machine-verified:** All **58 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, 7 modules, 817 lines, zero Mathlib, zero `sorry`, zero `native_decide`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, finite graph handshaking, pairwise delta antisymmetry, and Karpathy AutoResearch anti-gaming keep/discard invariants; JSON Schema Draft 2020-12 compliance on all `1,855` records; 19-test `pytest` suite (including live MCP stdio JSON-RPC & FAIR SHA-256 parity); and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
 > - **What is NOT claimed:** This repository makes **zero claim to solve any open problem**. Quantitative rubric scores (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`, `CSS`, `Titan Index`) are **transparent, falsifiable editorial estimates** — not peer-reviewed measurements. Every record carries an explicit `verification_flag`, and **all 12 Fall/Nov 2026 AI proof claims remain officially unretired** pending independent fidelity auditing and peer consensus.
 
 ---
@@ -66,31 +67,40 @@ Active mathematical registries already track well over 1,100–2,000+ open probl
 | **Tabular & Streaming** | [`.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) · [`.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) · [`.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) · [`.jsonl`](outputs/MegaAtlas_Unsolved_Problems_V2.jsonl) | 1,855 × 40 UTF-8 datasets & streaming JSONL validated against [`schema/problem.schema.json`](schema/problem.schema.json) |
 | **Markdown & Plain Text** | [`.md`](outputs/MegaAtlas_Unsolved_Problems_V2.md) · [`.txt`](outputs/MegaAtlas_Unsolved_Problems_V2.txt) | Full text/Mermaid mega-atlas and fixed-width ASCII reference |
 | **12 Vector + Raster Charts** | [`outputs/charts/`](outputs/charts/) | 12 figures × 2 formats (`220 DPI PNG` + `Vector SVG` = 24 files) |
-| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 6 modules, 686 lines, **46 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
+| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 7 modules, 817 lines, **58 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
+| **Karpathy AutoResearch** | [`autoresearch/program.md`](autoresearch/program.md) · [`evaluate.py`](autoresearch/evaluate.py) · [`results.tsv`](autoresearch/results.tsv) | Autonomous research loop, immutable 5-axis AQS + 25-query RAG oracle, Planner–Worker–Verifier [`whiteboard.md`](autoresearch/whiteboard.md) & [`OSS_STACK.md`](autoresearch/OSS_STACK.md) |
+| **MCP Stdio Server** | [`mcp_server/server.py`](mcp_server/server.py) · [`mcp_server/README.md`](mcp_server/README.md) | Zero-dependency JSON-RPC 2.0 server exposing 7 live tools to Claude Code, Antigravity, Cursor & Gemini CLI |
+| **FAIR & AI Discovery** | [`.zenodo.json`](.zenodo.json) · [`croissant.json`](croissant.json) · [`ro-crate-metadata.json`](ro-crate-metadata.json) · [`docs/DATASHEET.md`](docs/DATASHEET.md) | Zenodo Auto-DOI, MLCommons Croissant 1.0, W3C RO-Crate 1.1, Gebru Datasheet, [`AGENTS.md`](AGENTS.md), [`llms.txt`](llms.txt) & [`SECURITY.md`](SECURITY.md) |
 | **Governance & Integrity** | [`VERIFICATION.md`](VERIFICATION.md) · [`EVIDENCE.md`](EVIDENCE.md) · [`PHILOSOPHY.md`](PHILOSOPHY.md) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`CHECKSUMS.sha256`](CHECKSUMS.sha256) | Complete epistemic boundaries, cryptographic hashes & academic review protocols |
 
 ---
 
-## Quickstart: Offline RAG, Verification & Full Rebuild
+## Quickstart: Offline RAG, MCP Server, AutoResearch & Full Rebuild
 
 ```bash
 # Install Python dependencies
 pip install -r requirements.txt
 
-# 1. Query the zero-API SQLite FTS5 BM25 + 1-hop knowledge-graph RAG CLI (<30 ms)
+# 1. Query the zero-API Hybrid BM25 + Graph-Authority RAG CLI (96.0% MRR@5, <30 ms)
 python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
-python rag/query.py --problem NT-001 --hops 1
+python rag/query.py --compare NT-001 CS-001
 python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
 
-# 2. Verify all 46 Pure Lean 4.35.0 formal invariants & print axioms
+# 2. Launch the 7-tool Model Context Protocol (MCP) stdio server for AI agents
+python mcp_server/server.py
+
+# 3. Run the immutable Karpathy-style AutoResearch evaluation oracle
+python autoresearch/evaluate.py --verify-gates
+
+# 4. Verify all 58 Pure Lean 4.35.0 formal invariants & print axioms
 cd lean && lake build && cd ..
 
-# 3. Run the full automated pytest suite & cryptographic SHA-256 auditor
+# 5. Run the full automated pytest suite & cryptographic SHA-256 auditor
 pytest -v
 python scripts/audit_atlas.py --check-lean
 ```
 
-To rebuild every chart, dataset, SQLite DB, `RANKING.md`, HTML, PDF, Lean proof, and SHA-256 checksum from scratch:
+To rebuild every chart, dataset, SQLite DB, `RANKING.md`, FAIR metadata, HTML, PDF, Lean proof, and SHA-256 checksum from scratch:
 - **Windows PowerShell:** `.\build.ps1`
 - **Unix / macOS / WSL:** `make all`
 
@@ -99,18 +109,19 @@ To rebuild every chart, dataset, SQLite DB, `RANKING.md`, HTML, PDF, Lean proof,
 ## Citation & Dual Licensing
 
 - **Data, Taxonomy, Prose, Charts & PDFs:** Creative Commons Attribution 4.0 International ([`LICENSE`](LICENSE)).
-- **Code, Schemas, RAG Engine, Tests, CI & Lean 4 Proofs:** MIT License ([`LICENSE-CODE`](LICENSE-CODE)). See [`NOTICE`](NOTICE) and [`CITATION.cff`](CITATION.cff).
+- **Code, Schemas, RAG/MCP, AutoResearch, Tests, CI & Lean 4 Proofs:** MIT License ([`LICENSE-CODE`](LICENSE-CODE)). See [`NOTICE`](NOTICE), [`CITATION.cff`](CITATION.cff), and [`CITATION.bib`](CITATION.bib).
 
 ```bibtex
 @dataset{donahue2026megaatlas,
   author       = {Donahue, Alexander Stephen},
-  title        = {Unsolved Problems Mega-Atlas (V2.1.0): Cross-Disciplinary Taxonomy,
-                  0thernes CSS Ranking, 1,855-Node Connectome, SQLite FTS5 RAG Engine,
-                  Nov 2026 AI Proof-Claim Audit, and Pure Lean 4.35.0 Formula Invariants},
+  title        = {Unsolved Problems Mega-Atlas (V2.2.0): Cross-Disciplinary Taxonomy,
+                  0thernes CSS Ranking, 1,855-Node Connectome, Offline FTS5 RAG \& MCP Server,
+                  Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit,
+                  and Pure Lean 4.35.0 Formal Invariants},
   year         = {2026},
   month        = nov,
   publisher    = {0thernes LLC},
-  version      = {2.1.0},
+  version      = {2.2.0},
   url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
   note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-007}
 }

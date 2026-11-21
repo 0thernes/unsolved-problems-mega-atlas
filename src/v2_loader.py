@@ -57,7 +57,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": "This V2.1 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge", "Total_Tracked": "1,855 rigorously deduplicated problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formula invariants (46 theorems), JSON Schema, pytest, SHA-256 & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG."},
+    {"Registry": "This V2.2 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge", "Total_Tracked": "1,855 rigorously deduplicated problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formal invariants (58 theorems), JSON Schema, pytest, SHA-256, Karpathy AutoResearch & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG & MCP server."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -172,7 +172,7 @@ def _norm_name(s: str) -> str:
     return s
 
 
-ATLAS_VERSION = "2.1.0"
+ATLAS_VERSION = "2.2.0"
 REFERENCE_YEAR = 2026
 AUTHOR_NAME = "Alexander Stephen Donahue"
 AUTHOR_ORCID = "0009-0006-8168-9648"

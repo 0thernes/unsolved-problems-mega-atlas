@@ -1,6 +1,6 @@
 /-
   MegaAtlasProofs/VerifyAxioms.lean
-  Axiom-allowlist audit across ALL 46 formal theorems in MegaAtlasProofs.
+  Axiom-allowlist audit across ALL 58 formal theorems in MegaAtlasProofs.
   Every theorem must depend strictly on standard kernel axioms within
   [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
   zero Classical.choice, zero custom axioms.
@@ -10,6 +10,7 @@ import MegaAtlasProofs.Scoring
 import MegaAtlasProofs.Quadrants
 import MegaAtlasProofs.Taxonomy
 import MegaAtlasProofs.GraphInvariants
+import MegaAtlasProofs.AutoResearchInvariants
 
 -- Scoring invariants (22 theorems)
 #print axioms MegaAtlasProofs.Scoring.ageScoreCentis_le_cap
@@ -64,3 +65,17 @@ import MegaAtlasProofs.GraphInvariants
 #print axioms MegaAtlasProofs.GraphInvariants.cross_superdomain_le_total
 #print axioms MegaAtlasProofs.GraphInvariants.edge_hierarchy
 #print axioms MegaAtlasProofs.GraphInvariants.dedupBy_length_le
+
+-- AutoResearch & Comparator invariants (12 theorems)
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqs_weights_sum
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqsBps_le_max
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqsBps_extreme_max
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_rag
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_provenance
+#print axioms MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_formal
+#print axioms MegaAtlasProofs.AutoResearchInvariants.failed_gates_always_discard
+#print axioms MegaAtlasProofs.AutoResearchInvariants.shouldKeep_iff
+#print axioms MegaAtlasProofs.AutoResearchInvariants.updateBest_nondecreasing
+#print axioms MegaAtlasProofs.AutoResearchInvariants.updateBest_strict_on_keep
+#print axioms MegaAtlasProofs.AutoResearchInvariants.metricDelta_self
+#print axioms MegaAtlasProofs.AutoResearchInvariants.metricDelta_antisymm

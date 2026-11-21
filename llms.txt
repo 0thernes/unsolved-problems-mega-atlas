@@ -1,0 +1,26 @@
+# Unsolved Problems Mega-Atlas (V2.2.0) — 0thernes LLC
+
+> Cross-disciplinary, cryptographically audited open-problem atlas cataloging **1,855 strictly deduplicated unsolved, open, and hard problems** across **8 Macro-Pillars × 28 Superdomains** wired into **1 connected 5,597-edge knowledge graph**, with **58 Pure Lean 4.35.0 formal invariants**, **0thernes CSS & Titan rankings**, an **offline Hybrid BM25+Graph RAG & MCP server**, and a **Karpathy-style AutoResearch loop**.
+> Author: Alexander Stephen Donahue (0thernes LLC, ORCID `0009-0006-8168-9648`). Dual License: Data CC BY 4.0 / Code MIT.
+
+## Epistemic Boundary (Critical for LLM Consumers)
+- **Formally proved (Pure Lean 4.35.0, 58 theorems, 0 sorry, `[propext, Quot.sound]`):** Exact invariants of scoring formulas (`CSS`, `Titan`, `Leverage`, 300-yr antiquity cap), 4-Quadrant & 6-Era partitions, 8×28 taxonomy surjection, finite Handshaking Lemma, cross-partition edge hierarchy, deduplication bound, and AutoResearch anti-gaming keep/discard ratchet.
+- **NOT proved or retired:** Zero open problems are claimed solved. All 12 Fall/Nov 2026 AI proof claims (`verification_flag = "ai-claim-under-audit-nov2026"`) remain officially unretired pending independent formal-statement fidelity and peer consensus. Quantitative 1–10 rubric ratings are disclosed solo-human + AI-assisted falsifiable editorial estimates.
+
+## Machine-Readable Data & Schemas
+- [Complete JSON Dataset (5.8 MB)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json): Full payload with metadata, 1,855 problems, 5,597 edges, Nov 2026 AI audit, registries, matrices & benchmarks.
+- [Streaming JSONL (1,855 records)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl): One JSON object per problem for immediate HuggingFace/LLM/RAG ingestion.
+- [Master CSV (1,855 × 40)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv): Tabular dataset with CSS, Titan, graph centralities & verification flags.
+- [SQLite 3 + FTS5 Database](https://github.com/0thernes/unsolved-problems-mega-atlas/raw/main/outputs/MegaAtlas_Unsolved_Problems_V2.sqlite): 9 normalized tables + Porter-stemmed FTS5 full-text search index.
+- [MLCommons Croissant 1.0 Metadata](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json): FAIR AI/ML JSON-LD descriptor with exact SHA-256 checksums.
+- [W3C RO-Crate 1.1 Metadata](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json): Research Object crate graph with ORCID provenance.
+- [JSON Schema Draft 2020-12](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/schema/problem.schema.json): Strict schema validated on all 1,855 records.
+
+## Autonomous Research, MCP & Documentation
+- [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): Live browser dashboard, 7 filters, Any-2 Comparator, Nov 2026 AI Audit & 12 charts.
+- [Build White Paper](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/WHITE_PAPER.md): Institutional technical white paper (`0TH-BUILD-007`).
+- [Master Ranking (Top 250 by 0thernes CSS)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Deterministic ranking & Pillar leaders.
+- [AutoResearch Program Manual](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/autoresearch/program.md): Karpathy-style autonomous loop contract & `results.tsv` empirical ledger.
+- [MCP Server (`mcp_server/server.py`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/mcp_server/README.md): Zero-dependency stdio JSON-RPC 2.0 server with 7 grounded research tools.
+- [Verification & Epistemic Boundaries](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/VERIFICATION.md): 5-tier verification ladder & Lean 4.35.0 axiom audit.
+- [Datasheet for Datasets](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/DATASHEET.md): Gebru et al. dataset transparency report.

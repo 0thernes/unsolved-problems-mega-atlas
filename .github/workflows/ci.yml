@@ -1,4 +1,4 @@
-name: Verify Mega-Atlas V2.1.0 (Python + Pure Lean 4.35.0)
+name: Verify Mega-Atlas V2.2.0 (Python + AutoResearch + MCP + Pure Lean 4.35.0)
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   python-audit-and-tests:
-    name: Schema, Pytest, RAG & SHA-256 Audit
+    name: Schema, Pytest, RAG, MCP, FAIR & SHA-256 Audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,17 +27,22 @@ jobs:
       - name: Validate Master Loader, Schema & Connectome
         run: python src/v2_loader.py
 
-      - name: Run Full Pytest Verification Suite
+      - name: Run Full Pytest Verification Suite (incl. Live MCP Stdio & FAIR Metadata)
         run: pytest -v
 
       - name: Run Standalone Cryptographic & Structural Auditor
         run: python scripts/audit_atlas.py
 
-      - name: Smoke-Test Offline SQLite FTS5 + Graph-Hop RAG CLI
-        run: python rag/query.py "Riemann Hypothesis" --top 5 --hops 1
+      - name: Run Immutable Karpathy AutoResearch Evaluator Gate
+        run: python autoresearch/evaluate.py --verify-gates
+
+      - name: Smoke-Test Offline Hybrid BM25 + Graph-Authority RAG CLI
+        run: |
+          python rag/query.py "Riemann Hypothesis zeta zeros" --top 5 --hops 1
+          python rag/query.py --compare NT-001 CS-001
 
   lean-formal-invariants:
-    name: Pure Lean 4.35.0 Formal Invariant Proofs (46 Theorems)
+    name: Pure Lean 4.35.0 Formal Invariant Proofs (58 Theorems)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -48,13 +53,12 @@ jobs:
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
-      - name: Build Pure Lean 4.35.0 Proof Suite & Audit Axioms
+      - name: Build Pure Lean 4.35.0 Proof Suite & Audit All 58 Theorems
         working-directory: lean
         run: |
           lake build 2>&1 | tee lean_build.log
-          # Assert zero sorry, zero admit, zero native_decide, zero disallowed axioms
           python3 -c '
-          import pathlib, sys
+          import pathlib
           log = pathlib.Path("lean_build.log").read_text(encoding="utf-8")
           allowed = {"propext", "Quot.sound"}
           audited = 0
@@ -66,6 +70,6 @@ jobs:
                   used = {x.strip() for x in line.split("[", 1)[1].rsplit("]", 1)[0].split(",") if x.strip()}
                   bad = used - allowed
                   assert not bad, f"Disallowed axiom(s) {bad} in: {line}"
-          assert audited == 46, f"Expected 46 audited theorems, saw {audited}"
+          assert audited == 58, f"Expected 58 audited theorems, saw {audited}"
           print(f"LEAN CI VERIFIED: {audited} theorems strictly within [propext, Quot.sound] or empty!")
           '

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unsolved-problems-mega-atlas"
-version = "2.1.0"
-description = "Exhaustive cross-disciplinary quantitative taxonomy, NetworkX connectome, SQLite FTS5 RAG engine, Nov 2026 AI proof-claim audit, and Pure Lean 4.35.0 formal invariant suite across 1,855 unsolved, open, and hard problems."
+version = "2.2.0"
+description = "Exhaustive cross-disciplinary quantitative taxonomy, NetworkX connectome, SQLite FTS5 Hybrid RAG & MCP server, Karpathy-style AutoResearch harness, FAIR Croissant/RO-Crate/Zenodo metadata, Nov 2026 AI proof-claim audit, and Pure Lean 4.35.0 formal invariant suite (58 theorems) across 1,855 unsolved, open, and hard problems."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT AND CC-BY-4.0" }

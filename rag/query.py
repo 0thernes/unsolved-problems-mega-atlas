@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.1.0, 0thernes LLC).
+Unsolved Problems Mega-Atlas (V2.2.0, 0thernes LLC).
 
-Powered by SQLite FTS5 BM25 full-text ranking + multi-hop knowledge-graph
-expansion over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` — zero API keys,
-zero network calls, sub-30 ms deterministic retrieval with exact provenance IDs.
+Powered by SQLite FTS5 staged BM25 ranking (Strict-AND precision pass +
+title-boosted OR backfill) + multi-hop knowledge-graph expansion + pairwise
+problem comparison over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` —
+zero API keys, zero network calls, sub-30 ms deterministic retrieval.
 
 Examples:
     python rag/query.py "turbulence climate sensitivity" --top 8 --hops 1
     python rag/query.py "Riemann Hypothesis" --top 5 --hops 1 --json
     python rag/query.py --problem NT-001 --hops 1
+    python rag/query.py --compare NT-001 CS-001
     python rag/query.py --pillar "Pure Mathematics" --flag ai-claim-under-audit-nov2026
 """
 
@@ -18,21 +20,95 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sqlite3
-import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DB = ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"
 
+STOPWORDS = {
+    "the", "of", "and", "or", "in", "on", "to", "for", "with", "by", "at",
+    "from", "as", "is", "are", "be", "an", "that", "this", "it", "vs", "versus",
+}
 
-def sanitize_fts_query(raw: str) -> str:
+BM25_WEIGHTS = "0.0, 12.0, 2.0, 3.0, 4.0, 2.0, 3.5, 3.0, 1.5, 2.0, 1.5, 2.0, 1.5, 2.5, 1.5"
+
+
+def tokenize_query(raw: str) -> List[str]:
     tokens = re.findall(r"[A-Za-z0-9_]+", raw)
     if not tokens:
-        return ""
-    return " OR ".join(f'"{t}"' for t in tokens)
+        return []
+    filtered = [t.lower() for t in tokens if t.lower() not in STOPWORDS]
+    dedup = list(dict.fromkeys(filtered if filtered else [t.lower() for t in tokens]))
+    return dedup
+
+
+def _stem_prefix(tok: str) -> str:
+    return tok[:6] if len(tok) > 6 else tok
+
+
+def rerank_hybrid(candidates: List[Dict[str, Any]], query_tokens: List[str]) -> List[Dict[str, Any]]:
+    """Hybrid Lexical + Title-Coverage + Knowledge-Graph Authority (PageRank/Degree) re-ranker.
+    Combines FTS5 BM25 relevance, unique query-token coverage in title & body, and
+    log-scaled graph degree authority so canonical hubs beat niche lexical-noise duplicates.
+    """
+    if not candidates or not query_tokens:
+        return candidates
+    q_stems = [_stem_prefix(t) for t in query_tokens]
+    raw_bm25 = [-float(c.get("bm25_score", 0.0)) for c in candidates]
+    max_b = max(raw_bm25) if raw_bm25 else 1.0
+    min_b = min(raw_bm25) if raw_bm25 else 0.0
+    span_b = max(1e-6, max_b - min_b)
+
+    scored = []
+    for c, rb in zip(candidates, raw_bm25):
+        bm25_norm = (rb - min_b) / span_b
+        title_txt = (c.get("name", "") + " " + c.get("subdomain", "")).lower()
+        body_txt = (
+            title_txt + " " + c.get("core_question", "") + " "
+            + c.get("formal_expression", "") + " " + c.get("competing_approaches", "")
+        ).lower()
+        title_hits = sum(1 for st in q_stems if st in title_txt)
+        body_hits = sum(1 for st in q_stems if st in body_txt)
+        title_cov = title_hits / len(q_stems)
+        body_cov = body_hits / len(q_stems)
+        deg_auth = min(1.0, math.log1p(max(0, int(c.get("graph_degree", 0)))) / math.log1p(45.0))
+        css_prior = min(1.0, float(c.get("css_score", 50.0)) / 100.0)
+
+        hybrid = (
+            0.30 * bm25_norm
+            + 0.35 * title_cov
+            + 0.15 * body_cov
+            + 0.16 * deg_auth
+            + 0.04 * css_prior
+        )
+        c["hybrid_score"] = round(hybrid, 4)
+        scored.append((hybrid, c))
+
+    scored.sort(key=lambda x: (-x[0], -float(x[1].get("css_score", 0.0)), x[1]["id"]))
+    return [c for _, c in scored]
+
+
+def build_fts_stages(raw: str) -> List[Tuple[str, float]]:
+    """Build staged precision-first FTS5 queries:
+      1. Exact phrase (when >=2 tokens) with strong tie-break bonus
+      2. Strict AND across all meaningful tokens (high precision)
+      3. Relaxed OR backfill across all meaningful tokens (high recall)
+    """
+    tokens = tokenize_query(raw)
+    if not tokens:
+        return []
+    quoted = [f'"{t}"' for t in tokens]
+    stages: List[Tuple[str, float]] = []
+    if len(tokens) >= 2:
+        phrase = '"' + " ".join(tokens) + '"'
+        stages.append((phrase, -1000.0))
+        stages.append((" AND ".join(quoted), -100.0))
+    stages.append((" OR ".join(quoted), 0.0))
+    return stages
 
 
 def get_neighbors(conn: sqlite3.Connection, seed_ids: List[str], hops: int = 1) -> Dict[str, List[Dict[str, Any]]]:
@@ -106,33 +182,57 @@ def search_atlas(
     conn.row_factory = sqlite3.Row
     try:
         cur = conn.cursor()
-        rows: List[sqlite3.Row] = []
+        results: List[Dict[str, Any]] = []
 
         if problem_id:
             rows = cur.execute("SELECT *, 0.0 AS bm25_score FROM problems WHERE id = ?", (problem_id.upper(),)).fetchall()
+            results = [dict(r) for r in rows]
         elif query:
-            fts_q = sanitize_fts_query(query)
-            if not fts_q:
+            # Direct Problem ID lookup shortcut if query looks like an exact ID
+            q_trim = query.strip().upper()
+            if re.fullmatch(r"[A-Z0-9]+-[0-9]{3,4}", q_trim):
+                exact_rows = cur.execute("SELECT *, -2000.0 AS bm25_score FROM problems WHERE id = ?", (q_trim,)).fetchall()
+                results.extend(dict(r) for r in exact_rows)
+
+            seen_ids = {r["id"] for r in results}
+            q_tokens = tokenize_query(query)
+            stages = build_fts_stages(query)
+            if not stages and not results:
                 return {"query": query, "count": 0, "results": []}
-            sql = """
-                SELECT p.*, bm25(problems_fts, 0.0, 6.0, 2.0, 2.5, 2.5, 1.5, 3.0, 2.0, 1.5, 2.0, 1.5, 2.0, 1.5, 2.0, 1.5) AS bm25_score
-                FROM problems_fts
-                JOIN problems p ON p.id = problems_fts.id
-                WHERE problems_fts MATCH ?
-            """
-            params: List[Any] = [fts_q]
-            if pillar:
-                sql += " AND p.macro_pillar = ?"
-                params.append(pillar)
-            if superdomain:
-                sql += " AND p.superdomain = ?"
-                params.append(superdomain)
-            if flag:
-                sql += " AND p.verification_flag = ?"
-                params.append(flag)
-            sql += " ORDER BY bm25_score ASC, p.css_score DESC LIMIT ?"
-            params.append(top)
-            rows = cur.execute(sql, params).fetchall()
+
+            pool_limit = max(40, top * 5)
+            pool: List[Dict[str, Any]] = []
+            for fts_q, _stage_bonus in stages:
+                if len(pool) >= pool_limit:
+                    break
+                sql = f"""
+                    SELECT p.*, bm25(problems_fts, {BM25_WEIGHTS}) AS bm25_score
+                    FROM problems_fts
+                    JOIN problems p ON p.id = problems_fts.id
+                    WHERE problems_fts MATCH ?
+                """
+                params: List[Any] = [fts_q]
+                if pillar:
+                    sql += " AND p.macro_pillar = ?"
+                    params.append(pillar)
+                if superdomain:
+                    sql += " AND p.superdomain = ?"
+                    params.append(superdomain)
+                if flag:
+                    sql += " AND p.verification_flag = ?"
+                    params.append(flag)
+                sql += " ORDER BY bm25_score ASC, p.css_score DESC LIMIT ?"
+                params.append(pool_limit)
+                for row in cur.execute(sql, params).fetchall():
+                    rid = row["id"]
+                    if rid not in seen_ids:
+                        seen_ids.add(rid)
+                        pool.append(dict(row))
+                        if len(pool) >= pool_limit:
+                            break
+
+            reranked = rerank_hybrid(pool, q_tokens)
+            results.extend(reranked[: max(0, top - len(results))])
         else:
             sql = "SELECT *, 0.0 AS bm25_score FROM problems WHERE 1=1"
             params = []
@@ -147,9 +247,8 @@ def search_atlas(
                 params.append(flag)
             sql += " ORDER BY css_score DESC, titan_index DESC LIMIT ?"
             params.append(top)
-            rows = cur.execute(sql, params).fetchall()
+            results = [dict(r) for r in cur.execute(sql, params).fetchall()]
 
-        results = [dict(r) for r in rows]
         if hops > 0 and results:
             nbs = get_neighbors(conn, [r["id"] for r in results], hops=hops)
             for r in results:
@@ -164,10 +263,53 @@ def search_atlas(
         conn.close()
 
 
+def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Dict[str, Any]:
+    """Compare any two problems side-by-side with antisymmetric deltas and shared neighbors."""
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    try:
+        cur = conn.cursor()
+        ra = cur.execute("SELECT * FROM problems WHERE id = ?", (id_a.upper(),)).fetchone()
+        rb = cur.execute("SELECT * FROM problems WHERE id = ?", (id_b.upper(),)).fetchone()
+        if not ra or not rb:
+            missing = [x for x, r in [(id_a, ra), (id_b, rb)] if not r]
+            raise ValueError(f"Unknown problem ID(s): {', '.join(missing)}")
+        pa, pb = dict(ra), dict(rb)
+        nbs = get_neighbors(conn, [pa["id"], pb["id"]], hops=1)
+        set_a = {n["id"] for n in nbs.get(pa["id"], [])}
+        set_b = {n["id"] for n in nbs.get(pb["id"], [])}
+        direct_edge = pb["id"] in set_a or pa["id"] in set_b
+        shared = sorted(set_a & set_b)
+        return {
+            "problem_a": pa,
+            "problem_b": pb,
+            "deltas_a_minus_b": {
+                "difficulty_score": pa["difficulty_score"] - pb["difficulty_score"],
+                "tractability_2050": pa["tractability_2050"] - pb["tractability_2050"],
+                "civilizational_impact": pa["civilizational_impact"] - pb["civilizational_impact"],
+                "interdisciplinarity_index": pa["interdisciplinarity_index"] - pb["interdisciplinarity_index"],
+                "css_score": round(pa["css_score"] - pb["css_score"], 2),
+                "titan_index": round(pa["titan_index"] - pb["titan_index"], 2),
+                "graph_degree": pa["graph_degree"] - pb["graph_degree"],
+                "age_years_2026": pa["age_years_2026"] - pb["age_years_2026"],
+            },
+            "graph_relation": {
+                "direct_edge": direct_edge,
+                "same_macro_pillar": pa["macro_pillar"] == pb["macro_pillar"],
+                "same_superdomain": pa["superdomain"] == pb["superdomain"],
+                "shared_neighbors_count": len(shared),
+                "shared_neighbor_ids": shared,
+            },
+        }
+    finally:
+        conn.close()
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V2.1.0)")
-    parser.add_argument("query", nargs="?", default=None, help="Free-text search query (FTS5 BM25)")
+    parser = argparse.ArgumentParser(description="Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V2.2.0)")
+    parser.add_argument("query", nargs="?", default=None, help="Free-text search query (staged FTS5 BM25)")
     parser.add_argument("--problem", dest="problem_id", default=None, help="Exact Problem ID (e.g., NT-001, CS-001, GR-001)")
+    parser.add_argument("--compare", nargs=2, metavar=("ID_A", "ID_B"), default=None, help="Compare two Problem IDs side-by-side")
     parser.add_argument("--pillar", default=None, help="Filter by exact Macro-Pillar name")
     parser.add_argument("--superdomain", default=None, help="Filter by exact Superdomain name")
     parser.add_argument("--flag", default=None, help="Filter by verification_flag")
@@ -175,6 +317,17 @@ def main() -> None:
     parser.add_argument("--hops", type=int, default=0, help="Knowledge-graph neighbor hops to expand (0 or 1)")
     parser.add_argument("--json", dest="as_json", action="store_true", help="Emit machine-readable JSON")
     args = parser.parse_args()
+
+    if args.compare:
+        comp = compare_two_problems(args.compare[0], args.compare[1])
+        if args.as_json:
+            print(json.dumps(comp, indent=2, ensure_ascii=False))
+            return
+        pa, pb, d, rel = comp["problem_a"], comp["problem_b"], comp["deltas_a_minus_b"], comp["graph_relation"]
+        print(f"=== Side-by-Side Comparison: [{pa['id']}] {pa['name']}  vs.  [{pb['id']}] {pb['name']} ===")
+        print(f"  ΔCSS={d['css_score']:+.2f} | ΔTitan={d['titan_index']:+.2f} | ΔDiff={d['difficulty_score']:+d} | ΔTract={d['tractability_2050']:+d} | ΔImpact={d['civilizational_impact']:+d} | ΔDeg={d['graph_degree']:+d}")
+        print(f"  Direct Edge: {rel['direct_edge']} | Same Pillar: {rel['same_macro_pillar']} | Shared Neighbors ({rel['shared_neighbors_count']}): {', '.join(rel['shared_neighbor_ids'][:10])}")
+        return
 
     out = search_atlas(
         query=args.query,

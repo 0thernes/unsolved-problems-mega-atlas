@@ -3,4 +3,11 @@ outputs/** -text
 CHECKSUMS.sha256 text eol=lf
 RANKING.md text eol=lf
 docs/WHITE_PAPER.md text eol=lf
+docs/DATASHEET.md text eol=lf
 schema/*.json text eol=lf
+croissant.json text eol=lf
+ro-crate-metadata.json text eol=lf
+.zenodo.json text eol=lf
+autoresearch/results.tsv text eol=lf
+AGENTS.md text eol=lf
+llms.txt text eol=lf
