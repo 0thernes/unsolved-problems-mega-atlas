@@ -1,0 +1,3 @@
+# Preserve exact binary/byte-for-byte SHA-256 parity across Windows & Linux for all frozen output artifacts
+outputs/** -text
+CHECKSUMS.sha256 text eol=lf
