@@ -16,7 +16,7 @@ import seaborn as sns
 from v2_loader import load_v2_master
 from v2_schema import MACRO_PILLARS
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "outputs_v2", "charts")
+OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "outputs", "charts")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # 8-Colorblind-Safe Executive Jewel Palette for 8 Macro-Pillars

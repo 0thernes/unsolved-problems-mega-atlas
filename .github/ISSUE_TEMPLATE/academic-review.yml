@@ -1,0 +1,34 @@
+name: Academic / Domain-Specialist Review
+description: Submit a domain-expert audit of a Superdomain or subset of entries
+title: "[Academic Review]: "
+labels: ["academic-review"]
+body:
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer Name, Affiliation & Optional ORCID
+      placeholder: e.g. Dr. Jane Doe · Dept. of Mathematics · ORCID 0000-0000-0000-0000
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Audited Superdomain or Problem IDs
+      placeholder: e.g. Number Theory & Arithmetic (NT-001 to NT-050)
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Detailed Audit Findings (Fidelity, Provenance, Status, Rubric Calibration, Couplings)
+    validations:
+      required: true
+  - type: dropdown
+    id: credit
+    attributes:
+      label: Acknowledge in AUTHORS.md?
+      options:
+        - Yes — credit my name/ORCID in AUTHORS.md
+        - No — keep my review anonymous in AUTHORS.md
+    validations:
+      required: true

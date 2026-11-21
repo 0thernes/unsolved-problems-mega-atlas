@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/0thernes/unsolved-problems-mega-atlas/schema/atlas.schema.json",
+  "title": "MegaAtlasPayload",
+  "description": "Top-level JSON Schema Draft 2020-12 contract for outputs/MegaAtlas_Unsolved_Problems_V2.json (0thernes LLC).",
+  "type": "object",
+  "required": [
+    "metadata",
+    "external_registries_nov2026",
+    "ai_verification_audit_nov2026",
+    "macro_pillar_comparison",
+    "superdomain_scorecard",
+    "keystone_network_rankings_top100",
+    "pairwise_deep_contrasts",
+    "recently_resolved_benchmarks",
+    "cross_superdomain_coupling_matrix",
+    "industry_exposure_matrix",
+    "knowledge_graph_edges",
+    "problems"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["title", "version", "author", "orcid", "affiliation", "ai_disclosure", "summary_stats"],
+      "properties": {
+        "title": { "type": "string" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "author": { "type": "string", "const": "Alexander Stephen Donahue" },
+        "orcid": { "type": "string", "const": "0009-0006-8168-9648" },
+        "affiliation": { "type": "string" },
+        "ai_disclosure": { "type": "string", "minLength": 20 },
+        "summary_stats": { "type": "object" }
+      }
+    },
+    "knowledge_graph_edges": {
+      "type": "array",
+      "minItems": 1800,
+      "items": {
+        "type": "object",
+        "required": ["source", "target"],
+        "properties": {
+          "source": { "type": "string" },
+          "target": { "type": "string" }
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "minItems": 1500,
+      "items": { "$ref": "problem.schema.json" }
+    }
+  }
+}

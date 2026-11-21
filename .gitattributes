@@ -1,3 +1,6 @@
-# Preserve exact binary/byte-for-byte SHA-256 parity across Windows & Linux for all frozen output artifacts
+# Preserve exact binary/byte-for-byte SHA-256 parity across Windows & Linux for all audited artifacts
 outputs/** -text
 CHECKSUMS.sha256 text eol=lf
+RANKING.md text eol=lf
+docs/WHITE_PAPER.md text eol=lf
+schema/*.json text eol=lf

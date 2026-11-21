@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/0thernes/unsolved-problems-mega-atlas/schema/problem.schema.json",
+  "title": "MegaAtlasProblem",
+  "description": "Formal JSON Schema Draft 2020-12 contract for a single enriched problem record in the Unsolved Problems Mega-Atlas (V2.1.0, 0thernes LLC).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "macro_pillar",
+    "superdomain",
+    "subdomain",
+    "problem_type",
+    "epistemic_class",
+    "year_formulated",
+    "era",
+    "age_years_2026",
+    "originator",
+    "status_2026",
+    "verification_flag",
+    "ai_verification_nov2026",
+    "registry_source",
+    "core_question",
+    "formal_expression",
+    "difficulty_score",
+    "tractability_2050",
+    "civilizational_impact",
+    "interdisciplinarity_index",
+    "primary_bottleneck",
+    "competing_approaches",
+    "closest_progress_2026",
+    "related_problem_ids",
+    "affected_industries",
+    "scale_regime",
+    "prize_or_initiative",
+    "verification_type",
+    "contrast_axis",
+    "graph_degree",
+    "cross_superdomain_links",
+    "cross_pillar_links",
+    "pagerank",
+    "betweenness",
+    "network_cluster",
+    "titan_index",
+    "css_score",
+    "near_term_leverage_score",
+    "strategic_quadrant"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Z0-9]+-[0-9]{3,4}$" },
+    "name": { "type": "string", "minLength": 3 },
+    "macro_pillar": {
+      "type": "string",
+      "enum": [
+        "Pure Mathematics",
+        "Logic, Statistics & Computing",
+        "Fundamental Physics & Cosmos",
+        "Matter, Materials & Chemistry",
+        "Life, Mind & Medicine",
+        "AI, Quantum Tech, Hardware & Systems",
+        "Engineering, Design, Earth & Energy",
+        "Philosophy, Social & Humanities"
+      ]
+    },
+    "superdomain": {
+      "type": "string",
+      "enum": [
+        "Number Theory & Arithmetic",
+        "Algebra, Group & Category Theory",
+        "Geometry & Topology",
+        "Analysis, Calculus, PDEs & Dynamics",
+        "Combinatorics & Graph Theory",
+        "Mathematical Logic, Set Theory & Computability",
+        "Probability, Stochastic Processes & Statistics",
+        "Computer Science, Complexity, Crypto & Info Theory",
+        "Quantum Mechanics, QFT & Particle Physics",
+        "Spacetime, Gravity, Time, Dimensions & Holography",
+        "Astrophysics, Cosmology & Astrobiology",
+        "Condensed Matter, Solid-State & Quantum Materials",
+        "Fluids, Gases, Plasmas & Non-Equilibrium Matter",
+        "Chemistry, Catalysis & Molecular Sciences",
+        "Biology, Evolution, Origin of Life & Ecology",
+        "Neuroscience, Consciousness & Sentience",
+        "Medicine, Pharmacology, Longevity & Bioengineering",
+        "Artificial Intelligence, ML & Digital Simulations",
+        "Quantum Computing & Quantum Information",
+        "Electronics, Photonics & Computing Hardware",
+        "Systems, Control, Robotics & Cybernetics",
+        "Mechanical, Aerospace, Structural & Civil Engineering",
+        "Architecture, Urbanism, Design & Ergonomics",
+        "Geology, Geophysics, Earth, Ocean & Climate",
+        "Energy, Environment, Food & Sustainability",
+        "Philosophy, Metaphysics, Epistemology & Ethics",
+        "Economics, Game Theory, Finance & Social Systems",
+        "Linguistics, Archaeology, History, Law & Aesthetics"
+      ]
+    },
+    "subdomain": { "type": "string", "minLength": 2 },
+    "problem_type": {
+      "type": "string",
+      "enum": [
+        "Conjecture",
+        "Existence/Uniqueness Proof",
+        "Fundamental Mystery",
+        "Hard Engineering Challenge",
+        "Theoretical Unification",
+        "Paradox / Foundational Apory",
+        "Classification / Structural Problem",
+        "Computational Complexity Separation",
+        "Measurement / Experimental Frontier",
+        "Design / Optimization Frontier"
+      ]
+    },
+    "epistemic_class": {
+      "type": "string",
+      "enum": [
+        "Formal-Deductive",
+        "Empirical-Explanatory",
+        "Constructive-Technological",
+        "Normative-Philosophical",
+        "Hybrid Formal-Empirical"
+      ]
+    },
+    "year_formulated": { "type": "integer", "minimum": -3000, "maximum": 2026 },
+    "era": {
+      "type": "string",
+      "enum": [
+        "Antiquity (<500 CE)",
+        "Early Modern (500-1799)",
+        "19th Century (1800-1899)",
+        "Early-Mid 20th C. (1900-1969)",
+        "Late 20th C. (1970-1999)",
+        "21st Century (2000-2026)"
+      ]
+    },
+    "age_years_2026": { "type": "integer", "minimum": 0, "maximum": 5026 },
+    "originator": { "type": "string", "minLength": 2 },
+    "status_2026": {
+      "type": "string",
+      "enum": [
+        "Completely Open",
+        "Partially Solved / Special Cases",
+        "Active Breakthroughs / Frontier",
+        "AI Proof Claim (Fall/Nov 2026) — Under Verification",
+        "Disputed Human Claim / Under Peer Review",
+        "Independent / Undecidable Suspected",
+        "Experimental Tension / Crisis"
+      ]
+    },
+    "verification_flag": {
+      "type": "string",
+      "enum": [
+        "ai-claim-under-audit-nov2026",
+        "disputed-human-claim",
+        "primary-registry-indexed",
+        "ai-assisted-editorial-synthesis"
+      ]
+    },
+    "ai_verification_nov2026": { "type": "string", "minLength": 2 },
+    "registry_source": { "type": "string", "minLength": 2 },
+    "core_question": { "type": "string", "minLength": 8 },
+    "formal_expression": { "type": "string", "minLength": 1 },
+    "difficulty_score": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "tractability_2050": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "civilizational_impact": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "interdisciplinarity_index": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "primary_bottleneck": {
+      "type": "string",
+      "enum": [
+        "Mathematical Tools Missing",
+        "Energy / Experimental Scale Limit",
+        "Computational Complexity Barrier",
+        "Conceptual / Paradigmatic Gap",
+        "Measurement / Instrumentation Limit",
+        "Materials / Physical Limit",
+        "Multiscale Coupling Complexity",
+        "Ethical / Normative Ambiguity",
+        "Data / Observational Horizon Limit"
+      ]
+    },
+    "competing_approaches": { "type": "string", "minLength": 3 },
+    "closest_progress_2026": { "type": "string", "minLength": 3 },
+    "related_problem_ids": { "type": "string" },
+    "affected_industries": { "type": "string", "minLength": 2 },
+    "scale_regime": {
+      "type": "string",
+      "enum": [
+        "Planck / Sub-Atomic",
+        "Atomic / Molecular",
+        "Mesoscale / Cellular",
+        "Macroscopic / Human",
+        "Planetary / Ecological",
+        "Astrophysical / Cosmic",
+        "Scale-Invariant / Abstract Formal"
+      ]
+    },
+    "prize_or_initiative": { "type": "string", "minLength": 1 },
+    "verification_type": {
+      "type": "string",
+      "enum": [
+        "Formal Mathematical Proof",
+        "Reproducible Laboratory Experiment",
+        "Astronomical / Observational Evidence",
+        "Working Engineering Prototype / Benchmark",
+        "Philosophical / Reflective Consensus",
+        "Computational / Algorithmic Demonstration"
+      ]
+    },
+    "contrast_axis": { "type": "string", "minLength": 3 },
+    "graph_degree": { "type": "integer", "minimum": 1 },
+    "cross_superdomain_links": { "type": "integer", "minimum": 0 },
+    "cross_pillar_links": { "type": "integer", "minimum": 0 },
+    "pagerank": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "betweenness": { "type": "number", "minimum": 0, "maximum": 1 },
+    "network_cluster": { "type": "integer", "minimum": 1 },
+    "titan_index": { "type": "number", "minimum": 0.9, "maximum": 10.0 },
+    "css_score": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+    "near_term_leverage_score": { "type": "number", "minimum": 0.1, "maximum": 10.0 },
+    "strategic_quadrant": {
+      "type": "string",
+      "enum": [
+        "Q1: Near-Term Civilizational Levers (High Impact, High Tractability)",
+        "Q2: Grand Centuries-Scale Titans (High Impact, Low Tractability)",
+        "Q3: Targeted Technical Frontiers (Focused Impact, High Tractability)",
+        "Q4: Deep Foundational & Formal Enigmas (Focused Impact, Low Tractability)"
+      ]
+    }
+  }
+}

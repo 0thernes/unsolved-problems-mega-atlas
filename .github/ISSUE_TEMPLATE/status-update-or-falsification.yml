@@ -1,0 +1,39 @@
+name: Status Update, Proof Claim or Falsification
+description: Report a problem resolution, counterexample, AI proof-claim audit update, or factual error in the Mega-Atlas
+title: "[Status / Falsification]: "
+labels: ["status-update", "verification"]
+body:
+  - type: input
+    id: problem_id
+    attributes:
+      label: Affected Problem ID(s)
+      placeholder: e.g. NT-001, ANL-001, CS-001
+    validations:
+      required: true
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of Update
+      options:
+        - Official Resolution / Peer-Reviewed Proof
+        - Counterexample / Disproof
+        - Nov 2026 AI Proof-Claim Verification Update
+        - Statement Fidelity / Mathematical Error
+        - Score / Ranking Challenge (CSS or Titan Index)
+        - Historical Attribution / Year Correction
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary Evidence & Verifiable Citations
+      description: Provide arXiv IDs, journal DOIs, Lean archive links, Clay CMI / ProofAtlas / Erdős Problems DB URLs, or counterexample code.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Epistemic Standard Check
+      options:
+        - label: I have distinguished machine kernel checks from human formalization-fidelity / community consensus.
+          required: true

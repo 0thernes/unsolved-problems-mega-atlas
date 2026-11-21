@@ -1,0 +1,29 @@
+Unsolved Problems Mega-Atlas (V2.1.0)
+Copyright (c) 2026 Alexander Stephen Donahue — 0thernes LLC, Spokane, WA, USA
+ORCID: https://orcid.org/0009-0006-8168-9648
+Web:   https://0thernes.art
+Repo:  https://github.com/0thernes/unsolved-problems-mega-atlas
+
+DUAL-LICENSE NOTICE
+===================
+1. Data, Taxonomy, Monograph Prose, Ranking Tables, Charts & PDFs (`outputs/`,
+   `docs/`, `RANKING.md`, `README.md`, `src/v2_data/`):
+   Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+   See `LICENSE`.
+
+2. Software, Schemas, Build Scripts, RAG Engine, Tests, CI Workflows & Lean 4
+   Formal Invariant Proofs (`src/v2_*.py`, `rag/`, `scripts/`, `schema/`,
+   `tests/`, `lean/`, `.github/`):
+   Licensed under the MIT License. See `LICENSE-CODE`.
+
+AI-ASSISTANCE TRANSPARENCY NOTICE
+=================================
+This atlas was directed, architected, audited, and published by solo researcher
+Alexander Stephen Donahue (0thernes LLC) with disclosed frontier AI assistance
+for large-scale structured compilation, synthesis, cross-referencing, and
+software generation. Quantitative scores (CSS, Titan Index, difficulty,
+tractability, impact, interdisciplinarity) are transparent, falsifiable
+editorial estimates — NOT peer-reviewed consensus measurements. Machine-checked
+Lean 4.35.0 proofs in `lean/` certify exact mathematical invariants of the
+scoring, quadrant, taxonomy, and graph formulas ONLY; they do NOT claim to
+prove any of the 1,855 open problems cataloged herein.

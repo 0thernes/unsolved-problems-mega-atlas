@@ -1,83 +1,117 @@
-# Unsolved Problems Mega-Atlas (V2.0 · November 20, 2026 Edition)
+# Unsolved Problems Mega-Atlas (`v2.1.0`)
 
-**Exhaustive Deep-Dive Quantitative Taxonomy, Multi-Dimensional Comparison & Contrast Atlas, Cross-Domain NetworkX Connectome, and November 2026 Verification Audit of Humanity's 1,855 Unsolved, Open & Hard Problems Across All Fields of Knowledge**
+[![CI — Python Audit & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
+[![Interactive Web Atlas (GitHub Pages)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-46%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
+[![Dual License](https://img.shields.io/badge/License-Data%20CC--BY--4.0%20%7C%20Code%20MIT-0D9488.svg)](NOTICE)
 
-- **Author:** Alexander Stephen Donahue (`Alexander S. Donahue`) · **ORCID:** [0009-0006-8168-9648](https://orcid.org/0009-0006-8168-9648)
-- **Affiliation:** 0thernes LLC, Spokane, WA, USA · [0thernes.art](https://0thernes.art) · `0_0@0thernes.art`
-- **Repository:** [https://github.com/0thernes/unsolved-problems-mega-atlas](https://github.com/0thernes/unsolved-problems-mega-atlas)
-- **Dual License:** MIT License (`src/`, `.github/`, `scripts/`) · CC BY 4.0 (`outputs/`, `README.md`, figures)
+> **1,855 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains of human knowledge** — wired into **1 connected 5,597-edge knowledge graph**, ranked by the **0thernes Composite Severity Score (`CSS`)** and **Composite Titan Index**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline SQLite FTS5 BM25 + graph-hop RAG engine**, **12 publication-grade charts**, **12 export formats**, and **46 Pure Lean 4.35.0 machine-checked formula & graph invariants**.
 
----
-
-## Executive Scale & Quantitative Snapshot
-
-| Metric | Value | Scope / Significance |
-|---|---:|---|
-| **Cataloged Unique Open / Hard Problems** | **1,855** | Strictly deduplicated from 1,860 raw authored entries (5 cross-field overlaps cleanly merged) |
-| **Taxonomy Hierarchy** | **8 × 28 × 1,705** | 8 Macro-Pillars · 28 Superdomains · 1,705 granular subdomains |
-| **Unified Knowledge-Graph Edges** | **5,597** | **34.6%** cross-superdomain (1,934) · **17.6%** cross-pillar (983) · Avg degree **6.03** |
-| **Connected Components** | **1** (`1,855 / 1,855`) | Every branch of human inquiry joins into **one single connected component** (11 communities) |
-| **Historical Longevity Span** | **500 BCE – 2024 CE** | Median formulation year **1979** (median open age **47 years**; max **2,526 years**) |
-| **Quantitative Means (1–10)** | **D: 8.14 · T2050: 6.78 · I: 7.19** | Interdisciplinarity **7.33** · Composite Titan Index **7.30** |
-| **Fall/Nov 2026 AI Proof Claims Audited** | **12** | Including Sept 8 Navier–Stokes, Oct 6 `openai/math` targets & Nov 20 Lean RH/GRH claims |
-| **Comparative Reference Tables** | **13 + 15 + 20** | 13 Global Open-Problem Registries · 15 Iconic Pairwise Contrasts · 20 Resolved Benchmarks (1995–2026) |
+- **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(standalone offline explorer, live 7-filter search, Any-2-Problems Comparator, Nov 2026 AI Audit & 12-chart zoom gallery)*
+- **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`0thernes LLC`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
+- **Master Research Archive Entry:** `0TH-BUILD-006` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
+- **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
 
 ---
 
-## Complete Multi-Format Deliverables (`outputs/`)
+## Epistemic Honesty & Verification Boundary (Read First)
 
-| Format | File | Description |
-|---|---|---|
-| **Offline Interactive HTML App** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Self-contained offline web app: instant search across all 1,855 problems, 7 cascading facet filters (including **Nov 2026 AI Claims**), paginated sortable table, detail modals with clickable graph neighbors, **Live Any-2-Problems Comparator**, **12-Chart Lightbox Gallery**, **Nov 2026 AI Audit & Global Registries**, **All Matrices**, Dark/Light toggle. |
-| **Vector Monograph (PDF)** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Print-ready vector monograph with executive cover, Nov 20 2026 AI Verification Special Report, Global Registries table, all 12 high-res charts, comparison matrices, Top 40 Keystone hubs, 15 contrasts, 20 resolved benchmarks, and complete 1,855-problem directory. |
-| **Excel Workbook (XLSX)** | [`outputs/MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) | **13 styled sheets** with live Excel formulas (`COUNTA`, `AVERAGE`, `MEDIAN`, `COUNTIF`, `AVERAGEIF`), heat-map conditional scales, frozen panes, auto-filters, and embedded native openpyxl charts. |
-| **Legacy Excel (XLS)** | [`outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | Genuine Excel 97–2003 BIFF `.xls` workbook (8 sheets). |
-| **Master CSV** | [`outputs/MegaAtlas_Unsolved_Problems_V2.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) | UTF-8 BOM RFC4180 table (1,855 rows × 38 columns including NetworkX PageRank, degree, betweenness & Titan Index). |
-| **Master TSV** | [`outputs/MegaAtlas_Unsolved_Problems_V2.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) | Tab-separated table for CLI/R/Python pipelines. |
-| **Structured JSON** | [`outputs/MegaAtlas_Unsolved_Problems_V2.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) | Complete nested JSON with all 1,855 problems, 5,597 graph edges, registries, AI audit ledger, matrices, contrasts & benchmarks. |
-| **Markdown Encyclopedia (MD)** | [`outputs/MegaAtlas_Unsolved_Problems_V2.md`](outputs/MegaAtlas_Unsolved_Problems_V2.md) | Exhaustive GFM reference with Mermaid taxonomy flowchart, all matrices, embedded charts, and complete 1,855-problem catalog. |
-| **Plain Text Reference (TXT)** | [`outputs/MegaAtlas_Unsolved_Problems_V2.txt`](outputs/MegaAtlas_Unsolved_Problems_V2.txt) | Fixed-width ASCII reference with box tables, histograms, matrices, audit ledger, and all 1,855 problems. |
-| **12 Publication Charts** | [`outputs/charts/`](outputs/charts/) | 24 standalone figures (220-DPI `.png` + infinite-zoom vector `.svg`). |
-| **Cryptographic Integrity** | [`CHECKSUMS.sha256`](CHECKSUMS.sha256) | Full SHA-256 manifest verified automatically on every push via GitHub Actions CI. |
+> **Solo Human + Disclosed AI-Assisted Research Infrastructure:** This atlas is architected, directed, audited, and published by solo researcher **Alexander Stephen Donahue** with disclosed frontier AI assistance (see [`AUTHORS.md`](AUTHORS.md) and [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md)).
+> - **What IS machine-verified:** All **46 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, zero Mathlib, zero `sorry`, zero `native_decide`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, and finite graph invariants; JSON Schema Draft 2020-12 compliance on all `1,855` records; `pytest` parity checks; and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
+> - **What is NOT claimed:** This repository makes **zero claim to solve any open problem**. Quantitative rubric scores (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`, `CSS`, `Titan Index`) are **transparent, falsifiable editorial estimates** — not peer-reviewed measurements. Every record carries an explicit `verification_flag`, and **all 12 Fall/Nov 2026 AI proof claims remain officially unretired** pending independent fidelity auditing and peer consensus.
 
 ---
 
-## Eight Macro-Pillars Comparative Scorecard
+## November 20, 2026 AI Proof-Claim Verification Advisory
 
-| Macro-Pillar | Problems | Share | Mean Diff | Mean Tract 2050 | Mean Impact | Nov 2026 AI Claims |
-|---|---:|---:|---:|---:|---:|---:|
-| **Pure Mathematics** (NT, Algebra, Geom/Topo, Analysis/PDEs, Comb) | 515 | 27.8% | 8.88 | 4.95 | 5.44 | 9 |
-| **Life, Mind & Medicine** (Bio/Evo, Neuro/Consciousness, Medicine) | 205 | 11.1% | 7.58 | 8.36 | 8.60 | 0 |
-| **Fundamental Physics & Cosmos** (QM/QFT, Spacetime/QG, Astro/Cosmo) | 198 | 10.7% | 8.11 | 7.18 | 7.32 | 1 |
-| **AI, Quantum Tech, Hardware & Systems** (AI/Sim, QC, Elec, Control/Rob) | 197 | 10.6% | 7.99 | 7.96 | 8.59 | 0 |
-| **Engineering, Design, Earth & Energy** (Mech/Civil, Arch/Ergo, Geo, Energy) | 197 | 10.6% | 7.38 | 8.47 | 8.36 | 0 |
-| **Matter, Materials & Chemistry** (Condensed Matter, Fluids/Plasmas, Chem) | 191 | 10.3% | 7.77 | 8.06 | 7.82 | 0 |
-| **Logic, Statistics & Computing** (Logic/Set, Prob/Stats, CS/Crypto/Info) | 182 | 9.8% | 8.49 | 6.26 | 6.41 | 2 |
-| **Philosophy, Social & Humanities** (Phil/Ethics, Econ/Game, Ling/Hist/Law) | 170 | 9.2% | 7.75 | 5.73 | 7.84 | 0 |
-| **TOTAL / GLOBAL MEAN** | **1,855** | **100.0%** | **8.14** | **6.78** | **7.19** | **12** |
+Active mathematical registries already track well over 1,100–2,000+ open problems (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; Kourovka: >1,000; Kirby: >360). Fall–November 2026 saw dramatic AI proof claims—including OpenAI's Sept 8 **3D Navier–Stokes** blowup claim (`ANL-001`), OpenAI's Oct 6 **722-manuscript bulk release** across 372 topics, and the Nov 20 **Levent Alpöge / Claude multi-million-line Lean 4 Riemann Hypothesis & GRH archive** (`NT-001`, `NT-002`) alongside Stanford's **Alessandro Masullo** human draft. Because Lean kernel compilation checks logical deduction *rather than formalization statement fidelity or community consensus*, **all 12 AI-claimed problems are strictly retained as OPEN under `verification_flag = "ai-claim-under-audit-nov2026"`**.
 
 ---
 
-## Visual Analytics Highlights
+## Key Metrics & Eight Macro-Pillars (`N = 1,855`)
 
-![28-Superdomain Landscape](outputs/charts/01_superdomain_landscape.png)
+| Macro-Pillar | Problems | Share | Superdomains | Mean CSS (0–100) | Mean Titan (0–10) | Mean Diff | Mean Tract (2050) | Mean Impact | Nov 2026 AI Claims |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Pure Mathematics** | 515 | 27.8% | 5 | 59.82 | 6.53 | 8.88 | 4.95 | 5.44 | 9 |
+| **Life, Mind & Medicine** | 205 | 11.1% | 3 | 55.93 | 7.83 | 7.58 | 8.36 | 8.60 | 0 |
+| **Fundamental Physics & Cosmos** | 198 | 10.7% | 3 | 56.44 | 7.39 | 8.11 | 7.18 | 7.32 | 1 |
+| **AI, Quantum Tech, Hardware & Systems** | 197 | 10.6% | 4 | 55.55 | 7.93 | 7.99 | 7.96 | 8.59 | 0 |
+| **Engineering, Design, Earth & Energy** | 197 | 10.6% | 4 | 54.50 | 7.67 | 7.38 | 8.47 | 8.36 | 0 |
+| **Matter, Materials & Chemistry** | 191 | 10.3% | 3 | 55.43 | 7.51 | 7.77 | 8.06 | 7.82 | 0 |
+| **Logic, Statistics & Computing** | 182 | 9.8% | 3 | 57.27 | 7.07 | 8.49 | 6.26 | 6.41 | 2 |
+| **Philosophy, Social & Humanities** | 170 | 9.2% | 3 | 59.90 | 7.71 | 7.75 | 5.73 | 7.84 | 0 |
+| **Unified Mega-Atlas Total / Mean** | **1,855** | **100.0%** | **28** | **57.32** | **7.30** | **8.14** | **6.78** | **7.19** | **12** |
+
+- **Connectome:** **5,597 undirected coupling edges** · **1 single connected component** (`1,855/1,855`) · **34.6%** cross-superdomain (`1,934`) · **17.6%** cross-pillar (`983`) · **11** modularity communities · average degree `6.03`.
+- **Epistemic Flags:** `primary-registry-indexed` (`687`) · `ai-assisted-editorial-synthesis` (`1,145`) · `ai-claim-under-audit-nov2026` (`12`) · `disputed-human-claim` (`11`).
+- **Top Keystone Domino Hubs:** `FLD-001` Fluid Turbulence (`deg=71`, `51` XP) · `CS-001` P vs. NP (`deg=62`, `40` XP) · `GR-001` Quantum Gravity (`deg=53`, `23` XP) · `GEO-002` Climate Sensitivity (`deg=50`, `29` XP) · `STAT-001` 3D Percolation (`deg=39`, `31` XP).
+
+![28-Superdomain Coverage](outputs/charts/01_superdomain_landscape.png)
+
 ![8-Pillar Radial Connectome](outputs/charts/07_keystone_knowledge_graph.png)
-![Nov 2026 Status & Registries](outputs/charts/11_nov2026_status_and_registries.png)
 
 ---
 
-## Honest Verification Boundaries & AI-Assistance Disclosure
+## Export Formats & Institutional Artifacts
 
-- **Epistemic Scope:** Quantitative ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are structured rubric estimates intended for cross-domain comparative analysis—not peer-reviewed consensus forecasts.
-- **November 20, 2026 AI Proof-Claim Discipline:** Problems targeted by Fall–November 2026 AI proof claims—including OpenAI's Sept 8, 2026 Navier–Stokes claim, OpenAI's Oct 6, 2026 `openai/math` bulk release (722 manuscripts across 372 topics), and the Nov 20, 2026 Levent Alpöge / Anthropic Claude multi-million-line Lean 4 Riemann Hypothesis & GRH claim (alongside Alessandro Masullo's human draft)—are explicitly flagged `"AI Proof Claim (Fall/Nov 2026) — Under Verification"` and remain treated as **officially unresolved** pending formal-statement fidelity auditing and independent mathematical community consensus.
-- **Transparency Disclosure:** This dataset, Python analytics pipeline, chart suite, and multi-format export engine were compiled and audited with AI-assisted research tooling, validated programmatically via strict schema assertions, cross-module deduplication, NetworkX graph verification, and SHA-256 cryptographic checksums checked in GitHub Actions CI.
+| Artifact | Path | Purpose |
+|---|---|---|
+| **Interactive Web Atlas** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Offline standalone web app (also live on [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/)): paginated 1,855-row catalog, 7 filters, CSS/Titan sort, Any-2 Comparator, Nov 2026 AI Audit & 12-chart zoom |
+| **Vector PDF Monograph** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Complete ~163-page publication monograph with cover, matrices, 12 embedded figures, contrasts & full 1,855-problem directory |
+| **Build White Paper** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-006`) |
+| **Master Ranking** | [`RANKING.md`](RANKING.md) | Auto-generated Top 250 overall by `0thernes CSS`, 8 Macro-Pillar leaders & Nov 2026 AI watchlist |
+| **SQLite 3 + FTS5 DB** | [`outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`](outputs/MegaAtlas_Unsolved_Problems_V2.sqlite) | 9 normalized tables + Porter-stemmed FTS5 full-text search index powering `rag/query.py` |
+| **Excel Workbooks** | [`MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) · [`_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | 13-sheet live-formula XLSX (`COUNTIF`, `AVERAGEIF`, conditional color scales, native charts) + 8-sheet BIFF `.xls` |
+| **Tabular & Streaming** | [`.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) · [`.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) · [`.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) · [`.jsonl`](outputs/MegaAtlas_Unsolved_Problems_V2.jsonl) | 1,855 × 40 UTF-8 datasets & streaming JSONL validated against [`schema/problem.schema.json`](schema/problem.schema.json) |
+| **Markdown & Plain Text** | [`.md`](outputs/MegaAtlas_Unsolved_Problems_V2.md) · [`.txt`](outputs/MegaAtlas_Unsolved_Problems_V2.txt) | Full text/Mermaid mega-atlas and fixed-width ASCII reference |
+| **12 Vector + Raster Charts** | [`outputs/charts/`](outputs/charts/) | 12 figures × 2 formats (`220 DPI PNG` + `Vector SVG` = 24 files) |
+| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 6 modules, 686 lines, **46 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
+| **Governance & Integrity** | [`VERIFICATION.md`](VERIFICATION.md) · [`EVIDENCE.md`](EVIDENCE.md) · [`PHILOSOPHY.md`](PHILOSOPHY.md) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`CHECKSUMS.sha256`](CHECKSUMS.sha256) | Complete epistemic boundaries, cryptographic hashes & academic review protocols |
 
-## Reproducing Locally
+---
+
+## Quickstart: Offline RAG, Verification & Full Rebuild
 
 ```bash
-python -m venv .venv
-.venv/Scripts/pip install pandas numpy scipy matplotlib seaborn networkx openpyxl xlwt pillow
-python src/v2_loader.py
-python src/v2_charts.py
-python src/v2_export_all.py
+# Install Python dependencies
+pip install -r requirements.txt
+
+# 1. Query the zero-API SQLite FTS5 BM25 + 1-hop knowledge-graph RAG CLI (<30 ms)
+python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
+python rag/query.py --problem NT-001 --hops 1
+python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
+
+# 2. Verify all 46 Pure Lean 4.35.0 formal invariants & print axioms
+cd lean && lake build && cd ..
+
+# 3. Run the full automated pytest suite & cryptographic SHA-256 auditor
+pytest -v
+python scripts/audit_atlas.py --check-lean
+```
+
+To rebuild every chart, dataset, SQLite DB, `RANKING.md`, HTML, PDF, Lean proof, and SHA-256 checksum from scratch:
+- **Windows PowerShell:** `.\build.ps1`
+- **Unix / macOS / WSL:** `make all`
+
+---
+
+## Citation & Dual Licensing
+
+- **Data, Taxonomy, Prose, Charts & PDFs:** Creative Commons Attribution 4.0 International ([`LICENSE`](LICENSE)).
+- **Code, Schemas, RAG Engine, Tests, CI & Lean 4 Proofs:** MIT License ([`LICENSE-CODE`](LICENSE-CODE)). See [`NOTICE`](NOTICE) and [`CITATION.cff`](CITATION.cff).
+
+```bibtex
+@dataset{donahue2026megaatlas,
+  author       = {Donahue, Alexander Stephen},
+  title        = {Unsolved Problems Mega-Atlas (V2.1.0): Cross-Disciplinary Taxonomy,
+                  0thernes CSS Ranking, 1,855-Node Connectome, SQLite FTS5 RAG Engine,
+                  Nov 2026 AI Proof-Claim Audit, and Pure Lean 4.35.0 Formula Invariants},
+  year         = {2026},
+  month        = nov,
+  publisher    = {0thernes LLC},
+  version      = {2.1.0},
+  url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
+  note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-006}
+}
 ```

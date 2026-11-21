@@ -7,6 +7,9 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# Lean 4 build caches (sources, lakefile.toml, lean-toolchain remain tracked)
+lean/.lake/
+
 # OS & Editor Artifacts
 .DS_Store
 Thumbs.db
@@ -17,6 +20,6 @@ desktop.ini
 .vscode/
 .idea/
 
-# Keep all V2.0 Mega-Atlas outputs & charts tracked!
+# Keep all Mega-Atlas outputs, charts & schemas tracked!
 !outputs/
 !outputs/**

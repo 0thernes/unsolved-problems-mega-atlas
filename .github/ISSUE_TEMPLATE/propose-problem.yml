@@ -1,0 +1,55 @@
+name: Propose Open Problem
+description: Propose a new unsolved, open, or hard problem for inclusion in the Mega-Atlas
+title: "[Problem Proposal]: "
+labels: ["problem-proposal", "triage"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Problem Name
+      placeholder: e.g. Bunkbed Conjecture / Generalized Hodge Conjecture
+    validations:
+      required: true
+  - type: dropdown
+    id: pillar
+    attributes:
+      label: Macro-Pillar
+      options:
+        - Pure Mathematics
+        - Logic, Statistics & Computing
+        - Fundamental Physics & Cosmos
+        - Matter, Materials & Chemistry
+        - Life, Mind & Medicine
+        - AI, Quantum Tech, Hardware & Systems
+        - Engineering, Design, Earth & Energy
+        - Philosophy, Social & Humanities
+    validations:
+      required: true
+  - type: input
+    id: superdomain
+    attributes:
+      label: Superdomain & Subdomain
+      placeholder: e.g. Combinatorics & Graph Theory / Percolation Theory
+    validations:
+      required: true
+  - type: input
+    id: provenance
+    attributes:
+      label: Year Formulated, Originator & Primary Registry / Citation
+      placeholder: e.g. 1985 · Kasteleyn · ProofAtlas / arXiv:xxxx.xxxxx
+    validations:
+      required: true
+  - type: textarea
+    id: statement
+    attributes:
+      label: Core Question & Formal / Governing Expression
+      description: Provide a crisp problem statement and formal/mathematical expression.
+    validations:
+      required: true
+  - type: textarea
+    id: justification
+    attributes:
+      label: Cross-Domain Couplings & Proposed Scores (Diff, Tract 2050, Impact, Interdisc)
+      description: Explain which existing Problem IDs this couples to and justify proposed 1–10 ratings.
+    validations:
+      required: true

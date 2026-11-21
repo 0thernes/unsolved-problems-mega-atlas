@@ -57,7 +57,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": "This V2.0 Unified Mega-Atlas (2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge", "Total_Tracked": "1,650–1,800+ rigorously deduplicated problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Strict enum validation, HUB cross-linking & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Only unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph."},
+    {"Registry": "This V2.1 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge", "Total_Tracked": "1,855 rigorously deduplicated problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formula invariants (46 theorems), JSON Schema, pytest, SHA-256 & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -170,6 +170,47 @@ def _norm_name(s: str) -> str:
     s = re.sub(r"\([^)]*\)", "", s)
     s = re.sub(r"[^a-z0-9]+", " ", s).strip()
     return s
+
+
+ATLAS_VERSION = "2.1.0"
+REFERENCE_YEAR = 2026
+AUTHOR_NAME = "Alexander Stephen Donahue"
+AUTHOR_ORCID = "0009-0006-8168-9648"
+AFFILIATION = "0thernes LLC, Spokane, WA, USA"
+
+PRIMARY_REGISTRY_TOKENS = (
+    "proofatlas", "clay", "millennium", "erdős", "erdos", "hilbert", "smale",
+    "landau", "kourovka", "kirby", "open problem garden", "polymath", "philpapers",
+    "sep)", "stanford encyclopedia", "nae ", "darpa", "doe ", "ipcc", "who ",
+    "cern", "ligo", "nist", "irds", "ieee", "aim ", "birs", "oberwolfach",
+    "icm ", "brass-moser-pach", "wikipedia", "langlands", "scottish book",
+    "wolf", "fields", "abel", "nasa", "noaa", "nih ", "fda ", "w3c", "rfc",
+)
+
+
+def classify_verification_flag(status_2026: str, registry_source: str) -> str:
+    """Assign explicit, honest epistemic verification provenance to every record."""
+    if "AI Proof Claim" in status_2026:
+        return "ai-claim-under-audit-nov2026"
+    if "Disputed Human Claim" in status_2026:
+        return "disputed-human-claim"
+    low = registry_source.lower()
+    if any(tok in low for tok in PRIMARY_REGISTRY_TOKENS):
+        return "primary-registry-indexed"
+    return "ai-assisted-editorial-synthesis"
+
+
+def compute_css_score(diff: int, impact: int, degree: int, age_years: int, tract: int) -> float:
+    """0thernes Composite Severity Score (CSS, 0–100) matching 0thernes/unsolved-mathematics:
+        CSS = 0.40 * difficulty_100 + 0.30 * centrality_100 + 0.20 * age_score_100 + 0.10 * (100 - tractability_100)
+    where age_score_100 saturates at 100 for problems >= 300 years old (formally verified in Lean 4.35.0).
+    """
+    diff_100 = float(diff * 10)
+    deg_100 = min(100.0, float(np.log1p(degree) * 25.0))
+    cent_100 = 0.50 * float(impact * 10) + 0.50 * deg_100
+    age_100 = min(100.0, max(0.0, float(age_years) / 3.0))
+    tract_100 = float(tract * 10)
+    return round(0.40 * diff_100 + 0.30 * cent_100 + 0.20 * age_100 + 0.10 * (100.0 - tract_100), 2)
 
 
 def classify_quadrant(impact: float, tractability: float) -> str:
@@ -287,6 +328,14 @@ def load_v2_master() -> Dict[str, Any]:
             + 0.10 * min(10.0, np.log1p(deg[pid]) * 2.5),
             2,
         )
+        out["css_score"] = compute_css_score(
+            out["difficulty_score"],
+            out["civilizational_impact"],
+            deg[pid],
+            out["age_years_2026"],
+            out["tractability_2050"],
+        )
+        out["verification_flag"] = classify_verification_flag(out["status_2026"], out["registry_source"])
         out["near_term_leverage_score"] = round(
             (out["civilizational_impact"] * out["tractability_2050"]) / 10.0, 2
         )
@@ -310,6 +359,7 @@ def load_v2_master() -> Dict[str, Any]:
             "Mean_Impact": round(sub["civilizational_impact"].mean(), 2),
             "Mean_Interdisciplinarity": round(sub["interdisciplinarity_index"].mean(), 2),
             "Mean_Titan_Index": round(sub["titan_index"].mean(), 2),
+            "Mean_CSS": round(sub["css_score"].mean(), 2),
             "Median_Year": int(sub["year_formulated"].median()),
             "Median_Age_Yrs": int(sub["age_years_2026"].median()),
             "Oldest_Year": int(sub["year_formulated"].min()),
@@ -334,6 +384,7 @@ def load_v2_master() -> Dict[str, Any]:
             "Mean_Impact": round(sub["civilizational_impact"].mean(), 2),
             "Mean_Interdisciplinarity": round(sub["interdisciplinarity_index"].mean(), 2),
             "Mean_Titan_Index": round(sub["titan_index"].mean(), 2),
+            "Mean_CSS": round(sub["css_score"].mean(), 2),
             "Median_Year": int(sub["year_formulated"].median()),
             "Oldest_Year": int(sub["year_formulated"].min()),
             "Dominant_Problem_Type": sub["problem_type"].mode().iloc[0],
@@ -374,8 +425,9 @@ def load_v2_master() -> Dict[str, Any]:
 
     df_keystones = (
         df.sort_values(["pagerank", "graph_degree", "titan_index"], ascending=False)
-        [["id", "name", "macro_pillar", "superdomain", "status_2026", "difficulty_score", "tractability_2050",
-          "civilizational_impact", "titan_index", "graph_degree", "cross_superdomain_links", "cross_pillar_links",
+        [["id", "name", "macro_pillar", "superdomain", "status_2026", "verification_flag",
+          "difficulty_score", "tractability_2050", "civilizational_impact", "css_score",
+          "titan_index", "graph_degree", "cross_superdomain_links", "cross_pillar_links",
           "pagerank", "betweenness", "network_cluster"]]
         .reset_index(drop=True)
     )
@@ -391,6 +443,11 @@ def load_v2_master() -> Dict[str, Any]:
     ai_claims_cnt = int((df["status_2026"] == "AI Proof Claim (Fall/Nov 2026) — Under Verification").sum())
 
     summary_stats = {
+        "atlas_version": ATLAS_VERSION,
+        "reference_year": REFERENCE_YEAR,
+        "author": AUTHOR_NAME,
+        "orcid": AUTHOR_ORCID,
+        "affiliation": AFFILIATION,
         "total_problems": int(len(df)),
         "raw_authored_before_dedup": int(len(raw_all)),
         "duplicates_merged": int(len(dropped_dups)),
@@ -407,11 +464,13 @@ def load_v2_master() -> Dict[str, Any]:
         "avg_degree": round(2.0 * G.number_of_edges() / len(df), 2),
         "num_communities": len(communities),
         "ai_claims_nov2026_count": ai_claims_cnt,
+        "verification_flag_counts": {k: int(v) for k, v in df["verification_flag"].value_counts().items()},
         "mean_difficulty": round(float(df["difficulty_score"].mean()), 2),
         "mean_tractability": round(float(df["tractability_2050"].mean()), 2),
         "mean_impact": round(float(df["civilizational_impact"].mean()), 2),
         "mean_interdisciplinarity": round(float(df["interdisciplinarity_index"].mean()), 2),
         "mean_titan_index": round(float(df["titan_index"].mean()), 2),
+        "mean_css_score": round(float(df["css_score"].mean()), 2),
         "median_year": int(df["year_formulated"].median()),
         "oldest_year": int(df["year_formulated"].min()),
         "newest_year": int(df["year_formulated"].max()),

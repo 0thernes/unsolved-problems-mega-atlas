@@ -1,0 +1,48 @@
+name: Deploy Interactive Mega-Atlas to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Stage static GitHub Pages site
+        run: |
+          mkdir -p _site/charts _site/downloads
+          cp outputs/MegaAtlas_Interactive_Dashboard_V2.html _site/index.html
+          cp outputs/charts/*.png outputs/charts/*.svg _site/charts/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.csv _site/downloads/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.json _site/downloads/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.jsonl _site/downloads/
+          cp CHECKSUMS.sha256 _site/downloads/
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

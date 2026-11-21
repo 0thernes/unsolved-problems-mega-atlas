@@ -1,4 +1,4 @@
-name: Verify V2.0 Mega-Atlas Dataset & Integrity
+name: Verify Mega-Atlas V2.1.0 (Python + Pure Lean 4.35.0)
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  validate-atlas:
+  python-audit-and-tests:
+    name: Schema, Pytest, RAG & SHA-256 Audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,32 +19,53 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install verification dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas numpy scipy networkx openpyxl xlwt
+          pip install -r requirements.txt
 
-      - name: Validate Master Dataset Schema, Deduplication & Connectome
-        run: |
-          python src/v2_loader.py
+      - name: Validate Master Loader, Schema & Connectome
+        run: python src/v2_loader.py
 
-      - name: Verify Output Integrity & SHA-256 Manifest
+      - name: Run Full Pytest Verification Suite
+        run: pytest -v
+
+      - name: Run Standalone Cryptographic & Structural Auditor
+        run: python scripts/audit_atlas.py
+
+      - name: Smoke-Test Offline SQLite FTS5 + Graph-Hop RAG CLI
+        run: python rag/query.py "Riemann Hypothesis" --top 5 --hops 1
+
+  lean-formal-invariants:
+    name: Pure Lean 4.35.0 Formal Invariant Proofs (46 Theorems)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install elan & Lean 4.35.0 toolchain
         run: |
-          python -c "
-          import hashlib, pathlib, pandas as pd, openpyxl
-          root = pathlib.Path('.')
-          df = pd.read_csv('outputs/MegaAtlas_Unsolved_Problems_V2.csv')
-          assert len(df) >= 1500, f'Expected >=1500 problems, got {len(df)}'
-          assert df['id'].is_unique, 'Duplicate IDs in CSV!'
-          assert df['macro_pillar'].nunique() == 8, 'Expected 8 Macro-Pillars!'
-          assert df['superdomain'].nunique() == 28, 'Expected 28 Superdomains!'
-          wb = openpyxl.load_workbook('outputs/MegaAtlas_Unsolved_Problems_V2.xlsx')
-          assert len(wb.sheetnames) == 13, f'Expected 13 XLSX sheets, got {len(wb.sheetnames)}'
-          for line in pathlib.Path('CHECKSUMS.sha256').read_text(encoding='utf-8').splitlines():
-              line = line.strip()
-              if not line: continue
-              expected, rel = line.split(None, 1)
-              actual = hashlib.sha256((root / rel).read_bytes()).hexdigest()
-              assert actual == expected, f'SHA-256 mismatch for {rel}'
-          print(f'CI VERIFIED: {len(df)} unique problems, 8 pillars, 28 superdomains, 13 XLSX sheets, all SHA-256 checksums match!')
-          "
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: Build Pure Lean 4.35.0 Proof Suite & Audit Axioms
+        working-directory: lean
+        run: |
+          lake build 2>&1 | tee lean_build.log
+          # Assert zero sorry, zero admit, zero native_decide, zero disallowed axioms
+          python3 -c '
+          import pathlib, sys
+          log = pathlib.Path("lean_build.log").read_text(encoding="utf-8")
+          allowed = {"propext", "Quot.sound"}
+          audited = 0
+          for line in log.splitlines():
+              if "does not depend on any axioms" in line:
+                  audited += 1
+              elif "depends on axioms:" in line:
+                  audited += 1
+                  used = {x.strip() for x in line.split("[", 1)[1].rsplit("]", 1)[0].split(",") if x.strip()}
+                  bad = used - allowed
+                  assert not bad, f"Disallowed axiom(s) {bad} in: {line}"
+          assert audited == 46, f"Expected 46 audited theorems, saw {audited}"
+          print(f"LEAN CI VERIFIED: {audited} theorems strictly within [propext, Quot.sound] or empty!")
+          '

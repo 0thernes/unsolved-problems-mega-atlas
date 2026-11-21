@@ -1,0 +1,73 @@
+# Quantitative Methodology, Scoring Formulas & Known Limitations
+
+**Release:** `v2.1.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
+**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, and graph formulas are machine-checked in Pure Lean 4.35.0 (`lean/MegaAtlasProofs/`, 46 theorems, 0 `sorry`, `[propext, Quot.sound]`).
+
+---
+
+## 1. Taxonomic Architecture
+
+Every entry is assigned to an exact 3-level hierarchy enforced by `src/v2_schema.py` and `schema/problem.schema.json`:
+- **8 Macro-Pillars** (surjective partition proven in `MegaAtlasProofs.Taxonomy.pillarOf_surjective`),
+- **28 Superdomains** (`5 + 3 + 3 + 3 + 3 + 4 + 4 + 3 = 28`, proven in `pillar_partition_sum_28`),
+- **1,705 fine-grained Subdomains**,
+- **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m10`.
+
+## 2. Deduplication & Knowledge-Graph Construction
+
+1. **Strict Deduplication (`src/v2_loader.py`):** 1,860 raw authored entries are scanned in canonical priority order (`m01`–`m09` primary pillars before `m10` specialist extensions). Collisions by exact `id` or normalized title (`_norm_name`) preserve the primary record and merge all cross-references (`raw_links`) so zero edges are lost (`5` cross-field overlaps cleanly merged → `1,855` unique problems). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
+2. **Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Isolated nodes (if any) attach to their superdomain's highest-degree hub. Resulting graph: `1,855` nodes, `5,597` edges, `1` connected component, `11` greedy modularity communities.
+3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links, and cross-pillar bridge links (`cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
+
+## 3. Dual Ranking Formulas (`0thernes CSS` & `Titan Index`)
+
+### A. 0thernes Composite Severity Score (`css_score`, 0–100)
+Directly unified with sibling repository [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics/blob/main/docs/methodology/RANKING.md):
+
+```text
+difficulty_100   = difficulty_score * 10                                  ∈ [10, 100]
+deg_centrality   = min(100.0, 25.0 * ln(1 + graph_degree))                ∈ [0, 100]
+centrality_100   = 0.50 * (civilizational_impact * 10) + 0.50 * deg_centrality
+age_score_100    = min(100.0, max(0.0, (2026 - year_formulated) / 3.0))   ∈ [0, 100]
+tractability_100 = tractability_2050 * 10                                 ∈ [10, 100]
+
+CSS = 0.40 * difficulty_100
+    + 0.30 * centrality_100
+    + 0.20 * age_score_100
+    + 0.10 * (100.0 - tractability_100)
+```
+
+- **Why the 300-Year Saturation Cap?** Problems older than 300 years (e.g., antiquity puzzles posed 300–500 BCE) saturate at `age_score = 100` (formally verified in `ageScoreCentis_saturates_at_300`), preventing antiquity from infinitely swamping difficulty and structural centrality.
+- **Weight Rationale:** Intrinsic difficulty (`0.40`) + structural/civilizational centrality (`0.30`) account for 70% of the score; longevity (`0.20`) rewards centuries-long resistance; inverse tractability (`0.10`) lightly separates entrenched enigmas from imminent breakthroughs.
+
+### B. Composite Titan Index (`titan_index`, 0.90–10.00)
+Emphasizes cross-disciplinary civilizational leverage without historical age weighting:
+```text
+Titan = 0.35 * difficulty_score
+      + 0.35 * civilizational_impact
+      + 0.20 * interdisciplinarity_index
+      + 0.10 * min(10.0, 2.5 * ln(1 + graph_degree))
+```
+
+### C. Near-Term Leverage & Strategic 4-Quadrants
+- `near_term_leverage_score = (civilizational_impact * tractability_2050) / 10.0` (`∈ [0.1, 10.0]`).
+- **Strategic Quadrants:**
+  - `Q1` (`impact ≥ 8, tract ≥ 7`): Near-Term Civilizational Levers (Lean-verified: every `Q1` problem satisfies `near_term_leverage_score ≥ 5.6`).
+  - `Q2` (`impact ≥ 8, tract < 7`): Grand Centuries-Scale Titans.
+  - `Q3` (`impact < 8, tract ≥ 7`): Targeted Technical Frontiers.
+  - `Q4` (`impact < 8, tract < 7`): Deep Foundational & Formal Enigmas.
+
+## 4. Epistemic Verification Flags
+
+Every record carries a deterministic `verification_flag`:
+- `ai-claim-under-audit-nov2026` (`12`): Targeted by unverified Fall/Nov 2026 AI proof claims; explicitly unretired.
+- `disputed-human-claim` (`11`): Contested human proof claims lacking community consensus (e.g., abc/IUT).
+- `primary-registry-indexed` (`687`): Problem provenance explicitly anchored to a named open-problem registry or canonical institutional canon (Clay CMI, ProofAtlas, Erdős DB, Hilbert, Smale, Landau, Kourovka, Kirby, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.).
+- `ai-assisted-editorial-synthesis` (`1,145`): Curated frontier research problem synthesized from domain literature under human direction; awaiting external specialist audit.
+
+## 5. Known Limitations & Biases (Disclosed Honestly)
+
+1. **Rubric Subjectivity:** Integer 1–10 input ratings (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`) are editorial estimates, not objective physical constants.
+2. **Graph Construction Bias:** Hub density reflects curated cross-references (`HUB:*`), so well-known keystone problems (Turbulence, P vs. NP, Quantum Gravity, Climate ECS) naturally accumulate higher PageRank/degree than niche specialist conjectures.
+3. **Antiquity Effect in CSS:** Because Philosophy & Metaphysics problems frequently date to 300 BCE–1750 CE with high difficulty and low empirical tractability, they naturally rank near the top of `CSS` while modern physics/CS/math problems dominate `Titan Index` and `PageRank`. Publishing **both** `CSS` and `Titan Index` exposes this structural contrast transparently.
+4. **Completeness Horizon:** No finite list captures every open question in existence—this atlas is a 1,855-problem unified cross-disciplinary baseline designed for reproducible versioning and community extension.

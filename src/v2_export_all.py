@@ -1,9 +1,10 @@
-"""V2.0 Mega-Atlas Unified Exporter: CSV, TSV, JSON, 13-Sheet XLSX, Legacy XLS, MD, TXT, Interactive HTML & Vector PDF Monograph."""
+"""V2.1.0 Mega-Atlas Unified Exporter (0thernes LLC): CSV, TSV, JSON, JSONL, SQLite+FTS5, 13-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Interactive HTML & Vector PDF Monograph."""
 
 import os
 import json
 import html
 import base64
+import sqlite3
 import subprocess
 import pandas as pd
 import openpyxl
@@ -17,7 +18,7 @@ from v2_loader import load_v2_master
 from v2_schema import MACRO_PILLARS, SUPERDOMAIN_TO_PILLAR
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-OUT_DIR = os.path.join(BASE_DIR, "outputs_v2")
+OUT_DIR = os.path.join(BASE_DIR, "outputs")
 CHARTS_DIR = os.path.join(OUT_DIR, "charts")
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -108,7 +109,15 @@ def export_csv_tsv_json(data):
     p_json = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.json")
     payload = {
         "metadata": {
-            "title": "V2.0 Mega-Atlas of Humanity's Unsolved, Open & Hard Problems (November 20, 2026 Edition)",
+            "title": "Unsolved Problems Mega-Atlas (V2.1.0, November 20, 2026 Edition)",
+            "version": data["summary_stats"]["atlas_version"],
+            "author": "Alexander Stephen Donahue",
+            "orcid": "0009-0006-8168-9648",
+            "affiliation": "0thernes LLC, Spokane, WA, USA",
+            "license_data": "CC-BY-4.0",
+            "license_code": "MIT",
+            "repository": "https://github.com/0thernes/unsolved-problems-mega-atlas",
+            "ai_disclosure": "Directed, architected, and audited by solo researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative scores are transparent editorial estimates, not peer-reviewed measurements.",
             "summary_stats": data["summary_stats"],
         },
         "external_registries_nov2026": data["df_registries"].to_dict(orient="records"),
@@ -123,9 +132,162 @@ def export_csv_tsv_json(data):
         "knowledge_graph_edges": [{"source": u, "target": v} for u, v in data["G"].edges()],
         "problems": df.to_dict(orient="records"),
     }
-    with open(p_json, "w", encoding="utf-8") as f:
+    with open(p_json, "w", encoding="utf-8", newline="\n") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
     print(f"  Saved JSON: {p_json}")
+
+    # Streaming JSONL for HuggingFace / DuckDB / LLM / RAG pipelines
+    p_jsonl = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.jsonl")
+    with open(p_jsonl, "w", encoding="utf-8", newline="\n") as f:
+        for rec in df.to_dict(orient="records"):
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    print(f"  Saved JSONL: {p_jsonl} ({len(df):,} lines)")
+
+    # SQLite 3 + FTS5 Full-Text Search Database
+    p_sqlite = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.sqlite")
+    if os.path.exists(p_sqlite):
+        os.remove(p_sqlite)
+    conn = sqlite3.connect(p_sqlite)
+    try:
+        df.to_sql("problems", conn, index=False, if_exists="replace")
+        pd.DataFrame(
+            [{"source": u, "target": v} for u, v in sorted(data["G"].edges())]
+        ).to_sql("edges", conn, index=False, if_exists="replace")
+        data["df_ai_audit"].to_sql("ai_audit_nov2026", conn, index=False, if_exists="replace")
+        data["df_registries"].to_sql("registries_nov2026", conn, index=False, if_exists="replace")
+        data["df_benchmarks"].to_sql("benchmarks", conn, index=False, if_exists="replace")
+        data["df_contrasts"].to_sql("contrasts", conn, index=False, if_exists="replace")
+        data["df_pillars"].to_sql("pillar_summary", conn, index=False, if_exists="replace")
+        data["df_superdomains"].to_sql("superdomain_summary", conn, index=False, if_exists="replace")
+        pd.DataFrame(
+            [{"key": k, "value": json.dumps(v) if isinstance(v, (dict, list)) else str(v)}
+             for k, v in data["summary_stats"].items()]
+        ).to_sql("metadata", conn, index=False, if_exists="replace")
+
+        cur = conn.cursor()
+        cur.execute("CREATE UNIQUE INDEX idx_problems_id ON problems(id)")
+        cur.execute("CREATE INDEX idx_problems_pillar ON problems(macro_pillar)")
+        cur.execute("CREATE INDEX idx_problems_superdomain ON problems(superdomain)")
+        cur.execute("CREATE INDEX idx_problems_status ON problems(status_2026)")
+        cur.execute("CREATE INDEX idx_problems_vflag ON problems(verification_flag)")
+        cur.execute("CREATE INDEX idx_problems_css ON problems(css_score DESC)")
+        cur.execute("CREATE INDEX idx_edges_src ON edges(source)")
+        cur.execute("CREATE INDEX idx_edges_tgt ON edges(target)")
+        cur.execute("""
+            CREATE VIRTUAL TABLE problems_fts USING fts5(
+                id UNINDEXED,
+                name,
+                macro_pillar,
+                superdomain,
+                subdomain,
+                originator,
+                core_question,
+                formal_expression,
+                primary_bottleneck,
+                competing_approaches,
+                closest_progress_2026,
+                ai_verification_nov2026,
+                affected_industries,
+                registry_source,
+                contrast_axis,
+                tokenize='porter unicode61'
+            )
+        """)
+        cur.execute("""
+            INSERT INTO problems_fts(
+                id, name, macro_pillar, superdomain, subdomain, originator,
+                core_question, formal_expression, primary_bottleneck,
+                competing_approaches, closest_progress_2026,
+                ai_verification_nov2026, affected_industries,
+                registry_source, contrast_axis
+            )
+            SELECT
+                id, name, macro_pillar, superdomain, subdomain, originator,
+                core_question, formal_expression, primary_bottleneck,
+                competing_approaches, closest_progress_2026,
+                ai_verification_nov2026, affected_industries,
+                registry_source, contrast_axis
+            FROM problems
+        """)
+        conn.commit()
+    finally:
+        conn.close()
+    print(f"  Saved SQLite+FTS5: {p_sqlite} ({os.path.getsize(p_sqlite)/1048576:.2f} MB)")
+
+
+def export_master_ranking_md(data):
+    """Generate deterministic RANKING.md at repository root matching 0thernes/unsolved-mathematics."""
+    df = data["df"].sort_values(["css_score", "titan_index", "graph_degree", "id"], ascending=[False, False, False, True]).reset_index(drop=True)
+    s = data["summary_stats"]
+    lines = [
+        "# Master Ranking — Unsolved Problems Mega-Atlas (V2.1.0)",
+        "",
+        f"> **Atlas `v{s['atlas_version']}`** · **{s['total_problems']:,} deduplicated problems** across **8 Macro-Pillars × 28 Superdomains** · Ranked hardest + most central + oldest + least tractable by the **0thernes Composite Severity Score (`CSS`, 0–100)**, alongside the **Composite Titan Index (0–10)**.",
+        f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Reference Year:** `{s['reference_year']}` (frozen for deterministic reproducibility).",
+        "",
+        "## Formula & Honesty Clause",
+        "",
+        "```text",
+        "CSS = 0.40 * (difficulty * 10)",
+        "    + 0.30 * (0.50 * (impact * 10) + 0.50 * min(100, 25 * ln(1 + graph_degree)))",
+        "    + 0.20 * min(100, max(0, (2026 - year_formulated) / 3))",
+        "    + 0.10 * (100 - tractability_2050 * 10)",
+        "```",
+        "",
+        "- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, zero `sorry`, axioms strictly within `[propext, Quot.sound]`).",
+        "- **Epistemic Honesty Clause:** Input scores (`difficulty`, `impact`, `tractability_2050`, `interdisciplinarity`) are **curated AI-assisted editorial estimates**, not peer-reviewed consensus measurements. Treat this ranking as a **falsifiable argument**: disagree with a score? Edit the source entry in `src/v2_data/`, rebuild, and argue from the diff. See [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) and [`VERIFICATION.md`](VERIFICATION.md).",
+        "",
+        "## Top 250 Problems Overall (Ranked by 0thernes CSS)",
+        "",
+        "| Rank | ID | Problem | Macro-Pillar | Posed | CSS | Titan | Diff | Tract | Imp | Deg | Status (Nov 2026) | Verification Flag |",
+        "|---:|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|",
+    ]
+    for rank, r in enumerate(df.head(250).itertuples(), 1):
+        yr_s = f"{abs(r.year_formulated)} BCE" if r.year_formulated < 0 else str(r.year_formulated)
+        nm = str(r.name).replace("|", "\\|")
+        pil_s = r.macro_pillar.split(",")[0].split("&")[0].strip()
+        lines.append(
+            f"| {rank} | `{r.id}` | **{nm}** | {pil_s} | {yr_s} | **{r.css_score:.2f}** | {r.titan_index:.2f} | "
+            f"{r.difficulty_score} | {r.tractability_2050} | {r.civilizational_impact} | {r.graph_degree} | "
+            f"{r.status_2026} | `{r.verification_flag}` |"
+        )
+
+    lines.extend([
+        "",
+        "## Top 5 Flagship Problems per Macro-Pillar",
+        "",
+    ])
+    for pil in MACRO_PILLARS:
+        sub = df[df["macro_pillar"] == pil].head(5)
+        lines.append(f"### {pil} (`n = {int((df['macro_pillar'] == pil).sum())}` · Mean CSS `{df[df['macro_pillar'] == pil]['css_score'].mean():.2f}`)")
+        lines.append("")
+        lines.append("| Pillar Rank | ID | Problem | Superdomain | Posed | CSS | Titan | Verification Flag |")
+        lines.append("|---:|---|---|---|---:|---:|---:|---|")
+        for prk, r in enumerate(sub.itertuples(), 1):
+            yr_s = f"{abs(r.year_formulated)} BCE" if r.year_formulated < 0 else str(r.year_formulated)
+            nm = str(r.name).replace("|", "\\|")
+            lines.append(
+                f"| {prk} | `{r.id}` | **{nm}** | {r.superdomain} | {yr_s} | **{r.css_score:.2f}** | {r.titan_index:.2f} | `{r.verification_flag}` |"
+            )
+        lines.append("")
+
+    ai_df = df[df["verification_flag"] == "ai-claim-under-audit-nov2026"]
+    lines.extend([
+        f"## November 20, 2026 AI Proof-Claim Watchlist ({len(ai_df)} Problems — All Officially Unretired)",
+        "",
+        "| ID | Problem | Superdomain | CSS | Titan | Nov 20, 2026 Audit Summary |",
+        "|---|---|---|---:|---:|---|",
+    ])
+    for r in ai_df.itertuples():
+        nm = str(r.name).replace("|", "\\|")
+        aud = str(r.ai_verification_nov2026).replace("|", "\\|")
+        lines.append(f"| `{r.id}` | **{nm}** | {r.superdomain} | {r.css_score:.2f} | {r.titan_index:.2f} | {aud} |")
+    lines.append("")
+
+    p_rank = os.path.join(BASE_DIR, "RANKING.md")
+    with open(p_rank, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(lines))
+    print(f"  Saved Master Ranking: {p_rank} ({len(lines)} lines)")
 
 
 # ==================== 2. 13-SHEET XLSX & LEGACY XLS ====================
@@ -194,18 +356,19 @@ def export_excel_files(data):
     L_IMP = col_ltr("civilizational_impact")
     L_INT = col_ltr("interdisciplinarity_index")
     L_TIT = col_ltr("titan_index")
+    L_CSS = col_ltr("css_score")
 
     # Sheet 1: Executive_Dashboard (live formulas)
     ws_d = wb.create_sheet(title="Executive_Dashboard")
     ws_d.merge_cells("A1:I1")
-    ws_d["A1"] = f"V2.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (NOVEMBER 20, 2026 EDITION)"
+    ws_d["A1"] = f"V2.1.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)"
     ws_d["A1"].font = Font(name="Calibri", size=15, bold=True, color="FFFFFF")
     ws_d["A1"].fill = PatternFill("solid", fgColor="0F172A")
     ws_d["A1"].alignment = Alignment(horizontal="center", vertical="center")
     ws_d.row_dimensions[1].height = 36
 
     ws_d.merge_cells("A2:I2")
-    ws_d["A2"] = "8 Macro-Pillars × 28 Superdomains × Live Nov 20 2026 AI Proof-Claim Verification Audit × Global Registries × NetworkX Connectome"
+    ws_d["A2"] = "Author: Alexander Stephen Donahue (0thernes LLC · ORCID 0009-0006-8168-9648) · 0thernes CSS + Titan Index · Lean 4.35.0 Formula Invariants · AI-Assisted Disclosure"
     ws_d["A2"].font = Font(name="Calibri", size=10, italic=True, color="334155")
     ws_d["A2"].fill = PatternFill("solid", fgColor="E2E8F0")
     ws_d["A2"].alignment = Alignment(horizontal="center", vertical="center")
@@ -221,7 +384,8 @@ def export_excel_files(data):
         ("Mean Tractability by 2050 (1–10)", f"=AVERAGE(Master_Catalog!{L_TRAC}2:{L_TRAC}{n_rows})", "0.00", "Strong inverse coupling with Difficulty"),
         ("Mean Civilizational Impact (1–10)", f"=AVERAGE(Master_Catalog!{L_IMP}2:{L_IMP}{n_rows})", "0.00", "Strongly coupled with Interdisciplinarity"),
         ("Mean Interdisciplinarity (1–10)", f"=AVERAGE(Master_Catalog!{L_INT}2:{L_INT}{n_rows})", "0.00", "Cross-field linkage index"),
-        ("Mean Composite Titan Index", f"=AVERAGE(Master_Catalog!{L_TIT}2:{L_TIT}{n_rows})", "0.00", "Hardness + Impact + Interdisc + log(Degree)"),
+        ("Mean Composite Titan Index", f"=AVERAGE(Master_Catalog!{L_TIT}2:{L_TIT}{n_rows})", "0.00", "Hardness + Impact + Interdisc + log(Degree) (editorial estimate)"),
+        ("Mean 0thernes CSS (0–100)", f"=AVERAGE(Master_Catalog!{L_CSS}2:{L_CSS}{n_rows})", "0.00", "0.40*Diff + 0.30*Centrality + 0.20*Age + 0.10*(100-Tract) (Lean-verified bounds)"),
         ("Oldest Unsolved Problem Year", f"=MIN(Master_Catalog!{L_YR}2:{L_YR}{n_rows})", "0", "Negative = BCE (back to 500 BCE)"),
         ("Median Problem Age in 2026 (Years)", f"=MEDIAN(Master_Catalog!{L_AGE}2:{L_AGE}{n_rows})", "0", f"Median formulation year: {s['median_year']}"),
     ]
@@ -242,55 +406,59 @@ def export_excel_files(data):
         for ci in range(1, 4):
             ws_d.cell(idx, ci).border = thin
 
-    # Live Pillar Table (Rows 19–28)
-    hdrs = ["MACRO-PILLAR (LIVE FORMULAS)", "Count", "Mean Diff", "Mean Tract", "Mean Impact", "Mean Titan"]
+    # Live Pillar Table (Rows 20–29)
+    hdrs = ["MACRO-PILLAR (LIVE FORMULAS)", "Count", "Mean Diff", "Mean Tract", "Mean Impact", "Mean Titan", "Mean CSS"]
     for ci, h in enumerate(hdrs, 1):
-        c = ws_d.cell(19, ci, h)
+        c = ws_d.cell(20, ci, h)
         c.font = Font(name="Calibri", size=9.8, bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="0F766E")
         c.alignment = Alignment(horizontal="center", vertical="center")
-    for ro, pil in enumerate(MACRO_PILLARS, 20):
+    for ro, pil in enumerate(MACRO_PILLARS, 21):
         ws_d.cell(ro, 1, pil).font = Font(name="Calibri", size=9.6, bold=True)
         ws_d.cell(ro, 2, f'=COUNTIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro})').number_format = "#,##0"
         ws_d.cell(ro, 3, f'=AVERAGEIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro}, Master_Catalog!${L_DIFF}$2:${L_DIFF}${n_rows})').number_format = "0.00"
         ws_d.cell(ro, 4, f'=AVERAGEIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro}, Master_Catalog!${L_TRAC}$2:${L_TRAC}${n_rows})').number_format = "0.00"
         ws_d.cell(ro, 5, f'=AVERAGEIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro}, Master_Catalog!${L_IMP}$2:${L_IMP}${n_rows})').number_format = "0.00"
         ws_d.cell(ro, 6, f'=AVERAGEIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro}, Master_Catalog!${L_TIT}$2:${L_TIT}${n_rows})').number_format = "0.00"
-        for ci in range(1, 7):
+        ws_d.cell(ro, 7, f'=AVERAGEIF(Master_Catalog!${L_PIL}$2:${L_PIL}${n_rows}, A{ro}, Master_Catalog!${L_CSS}$2:${L_CSS}${n_rows})').number_format = "0.00"
+        for ci in range(1, 8):
             ws_d.cell(ro, ci).border = thin
-    ws_d.cell(28, 1, "ALL 8 MACRO-PILLARS TOTAL / MEAN").font = Font(name="Calibri", size=9.8, bold=True)
-    ws_d.cell(28, 2, "=SUM(B20:B27)").number_format = "#,##0"
-    ws_d.cell(28, 3, f"=AVERAGE(Master_Catalog!{L_DIFF}2:{L_DIFF}{n_rows})").number_format = "0.00"
-    ws_d.cell(28, 4, f"=AVERAGE(Master_Catalog!{L_TRAC}2:{L_TRAC}{n_rows})").number_format = "0.00"
-    ws_d.cell(28, 5, f"=AVERAGE(Master_Catalog!{L_IMP}2:{L_IMP}{n_rows})").number_format = "0.00"
-    ws_d.cell(28, 6, f"=AVERAGE(Master_Catalog!{L_TIT}2:{L_TIT}{n_rows})").number_format = "0.00"
-    for ci in range(1, 7):
-        ws_d.cell(28, ci).fill = PatternFill("solid", fgColor="E2E8F0")
-        ws_d.cell(28, ci).border = thin
+    ws_d.cell(29, 1, "ALL 8 MACRO-PILLARS TOTAL / MEAN").font = Font(name="Calibri", size=9.8, bold=True)
+    ws_d.cell(29, 2, "=SUM(B21:B28)").number_format = "#,##0"
+    ws_d.cell(29, 3, f"=AVERAGE(Master_Catalog!{L_DIFF}2:{L_DIFF}{n_rows})").number_format = "0.00"
+    ws_d.cell(29, 4, f"=AVERAGE(Master_Catalog!{L_TRAC}2:{L_TRAC}{n_rows})").number_format = "0.00"
+    ws_d.cell(29, 5, f"=AVERAGE(Master_Catalog!{L_IMP}2:{L_IMP}{n_rows})").number_format = "0.00"
+    ws_d.cell(29, 6, f"=AVERAGE(Master_Catalog!{L_TIT}2:{L_TIT}{n_rows})").number_format = "0.00"
+    ws_d.cell(29, 7, f"=AVERAGE(Master_Catalog!{L_CSS}2:{L_CSS}{n_rows})").number_format = "0.00"
+    for ci in range(1, 8):
+        ws_d.cell(29, ci).fill = PatternFill("solid", fgColor="E2E8F0")
+        ws_d.cell(29, ci).border = thin
 
     bar = BarChart()
     bar.type = "col"
     bar.style = 10
     bar.title = "8 Macro-Pillars Comparative Profile (Difficulty vs. Tractability vs. Impact)"
     bar.y_axis.title = "Mean Score (1–10)"
-    bar.add_data(Reference(ws_d, min_col=3, min_row=19, max_col=5, max_row=27), titles_from_data=True)
-    bar.set_categories(Reference(ws_d, min_col=1, min_row=20, max_row=27))
+    bar.add_data(Reference(ws_d, min_col=3, min_row=20, max_col=5, max_row=28), titles_from_data=True)
+    bar.set_categories(Reference(ws_d, min_col=1, min_row=21, max_row=28))
     bar.width = 19
     bar.height = 11.5
     ws_d.add_chart(bar, "E4")
     ws_d.column_dimensions["A"].width = 40
     ws_d.column_dimensions["B"].width = 15
-    ws_d.column_dimensions["C"].width = 50
+    ws_d.column_dimensions["C"].width = 52
     ws_d.column_dimensions["D"].width = 14
     ws_d.column_dimensions["E"].width = 14
     ws_d.column_dimensions["F"].width = 14
+    ws_d.column_dimensions["G"].width = 14
 
     # Sheet 2: Master_Catalog (ALL 1,600+ rows!)
     ws_m = write_sheet(wb, "Master_Catalog", df, header_hex="0F172A",
                        wrap_names=["name", "core_question", "formal_expression", "ai_verification_nov2026", "competing_approaches", "closest_progress_2026", "affected_industries", "contrast_axis"],
                        freeze="C2")
     for cl, lc, mc, hc in [(L_DIFF, "DCFCE7", "FEF08A", "FCA5A5"), (L_TRAC, "FCA5A5", "FEF08A", "86EFAC"),
-                           (L_IMP, "E0F2FE", "93C5FD", "2563EB"), (L_TIT, "F1F5F9", "FDE047", "F97316")]:
+                           (L_IMP, "E0F2FE", "93C5FD", "2563EB"), (L_TIT, "F1F5F9", "FDE047", "F97316"),
+                           (L_CSS, "EFF6FF", "FDE047", "DC2626")]:
         ws_m.conditional_formatting.add(f"{cl}2:{cl}{n_rows}", ColorScaleRule(start_type="min", start_color=lc, mid_type="percentile", mid_value=50, mid_color=mc, end_type="max", end_color=hc))
 
     # Sheets 3–13
@@ -367,8 +535,9 @@ def export_md_and_txt(data):
 
     # --- MARKDOWN ---
     md = []
-    md.append(f"# V2.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (November 20, 2026 Edition)\n")
-    md.append(f"> **True Comprehensive Scale:** **{s['total_problems']:,}** rigorously validated, deduplicated, authentic unsolved / open / hard problems spanning **8 Macro-Pillars**, **28 Superdomains**, and **{s['total_subdomains']:,} fine-grained subdomains**, wired into a single connected **{s['total_graph_edges']:,}-edge** cross-disciplinary knowledge graph (**{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) — complete with a live **November 20, 2026 AI Proof-Claim & Formal Verification Audit**, **13 Global Registry Benchmarks**, **15 Pairwise Deep Contrasts**, **20 Resolved Benchmarks (1995–2026)**, and **12 Publication-Grade Figures**.\n")
+    md.append(f"# V2.1.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (0thernes LLC · November 20, 2026)\n")
+    md.append(f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Version:** `v{s['atlas_version']}` · **Dual License:** Data CC BY 4.0 / Code MIT\n")
+    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × {s['total_subdomains']:,} subdomains**, wired into **1 connected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formula Invariants:** 46 theorems (0 `sorry`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
 
     md.append("## 1. November 20, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
     md.append("No fixed finite count of open human problems exists—active mathematical registries alone track well over 1,100–2,000+ open questions (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:\n")
@@ -433,8 +602,8 @@ def export_md_and_txt(data):
         for sd in [k for k, v in SUPERDOMAIN_TO_PILLAR.items() if v == pil]:
             sub = p_df[p_df["superdomain"] == sd]
             md.append(f"#### {sd} ({len(sub)} Problems)\n")
-            mini = sub[["id", "name", "year_formulated", "problem_type", "status_2026", "difficulty_score", "tractability_2050", "civilizational_impact", "titan_index", "graph_degree", "primary_bottleneck"]].copy()
-            mini.columns = ["ID", "Problem Name", "Year", "Type", "Status (Nov 2026)", "Diff", "Tract", "Imp", "Titan", "Deg", "Bottleneck"]
+            mini = sub[["id", "name", "year_formulated", "problem_type", "status_2026", "verification_flag", "difficulty_score", "tractability_2050", "civilizational_impact", "css_score", "titan_index", "graph_degree", "primary_bottleneck"]].copy()
+            mini.columns = ["ID", "Problem Name", "Year", "Type", "Status (Nov 2026)", "Verif Flag", "Diff", "Tract", "Imp", "CSS", "Titan", "Deg", "Bottleneck"]
             md.append(df_to_md(mini) + "\n")
             for _, r in sub.iterrows():
                 yr_s = f"{abs(r['year_formulated'])} BCE" if r["year_formulated"] < 0 else str(r["year_formulated"])
@@ -452,8 +621,9 @@ def export_md_and_txt(data):
     # --- PLAIN TEXT ---
     txt = []
     bar = "=" * 116
-    txt.extend([bar, f"  V2.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (NOVEMBER 20, 2026 EDITION)",
-                f"  8 Macro-Pillars | 28 Superdomains | {s['total_subdomains']:,} Subdomains | {s['total_graph_edges']:,} Coupling Edges | 1 Connected Component", bar, ""])
+    txt.extend([bar, f"  V2.1.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 20, 2026)",
+                f"  Author: {s['author']} ({s['affiliation']} | ORCID: {s['orcid']}) | Dual License: CC BY 4.0 (Data) / MIT (Code)",
+                f"  8 Macro-Pillars | 28 Superdomains | {s['total_subdomains']:,} Subdomains | {s['total_graph_edges']:,} Edges | 46 Pure Lean 4.35.0 Formula Invariants", bar, ""])
     txt.append("[1] EXECUTIVE SUMMARY METRICS\n" + "-" * 116)
     for k, v in s.items():
         if k != "module_counts":
@@ -493,8 +663,8 @@ def export_md_and_txt(data):
                 yr_s = f"{abs(r['year_formulated'])} BCE" if r["year_formulated"] < 0 else str(r["year_formulated"])
                 txt.append(f"[{r['id']}] {r['name']}")
                 txt.append(f"  Subdomain : {r['subdomain']} | {r['problem_type']} | {r['epistemic_class']} | {yr_s} ({r['age_years_2026']}y) | {r['originator']} | Registry: {r['registry_source']}")
-                txt.append(f"  Status    : {r['status_2026']} | AI Nov2026: {r['ai_verification_nov2026']}")
-                txt.append(f"  Scores    : Diff={r['difficulty_score']} Tract={r['tractability_2050']} Impact={r['civilizational_impact']} Interdisc={r['interdisciplinarity_index']} Titan={r['titan_index']} Deg={r['graph_degree']} (XP={r['cross_pillar_links']})")
+                txt.append(f"  Status    : {r['status_2026']} | Flag: {r['verification_flag']} | AI Nov2026: {r['ai_verification_nov2026']}")
+                txt.append(f"  Scores    : CSS={r['css_score']:.2f}/100 | Titan={r['titan_index']} | Diff={r['difficulty_score']} Tract={r['tractability_2050']} Impact={r['civilizational_impact']} Interdisc={r['interdisciplinarity_index']} Deg={r['graph_degree']} (XP={r['cross_pillar_links']})")
                 txt.append(f"  Question  : {r['core_question']}")
                 txt.append(f"  Formula   : {r['formal_expression']}")
                 txt.append(f"  Bottleneck: {r['primary_bottleneck']} | Scale: {r['scale_regime']} | Verify: {r['verification_type']}")
@@ -544,7 +714,7 @@ def export_interactive_html(data):
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>V2.0 Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Human Knowledge (Nov 2026)</title>
+<title>V2.1.0 Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · 0thernes LLC (Nov 2026)</title>
 <style>
   :root {{
     --bg: #0B1120; --surface: #111827; --surface2: #1E293B; --border: #334155;
@@ -575,7 +745,7 @@ def export_interactive_html(data):
   .panel {{ display: none; }}
   .panel.active {{ display: block; }}
 
-  .filters {{ display: grid; grid-template-columns: 2fr repeat(6, 1fr); gap: 8px; background: var(--surface); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; }}
+  .filters {{ display: grid; grid-template-columns: 1.9fr repeat(7, 1fr); gap: 8px; background: var(--surface); padding: 12px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; }}
   @media (max-width: 1250px) {{ .filters {{ grid-template-columns: repeat(2, 1fr); }} }}
   .filters input, .filters select {{ width: 100%; padding: 8px 9px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-size: 0.83rem; }}
   .bar-meta {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.86rem; color: var(--muted); flex-wrap: wrap; gap: 8px; }}
@@ -639,10 +809,13 @@ def export_interactive_html(data):
 <header>
   <div class="hdr-top">
     <div>
-      <h1>V2.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (November 20, 2026)</h1>
-      <div class="sub">8 Macro-Pillars · 28 Superdomains · {s['total_subdomains']:,} Subdomains · {s['total_graph_edges']:,} Verified Knowledge-Graph Couplings · Live November 2026 AI Proof-Claim Verification Audit (Navier–Stokes, Oct 2026 722-Manuscript Dump &amp; Nov 20 Lean RH/GRH Claims) · Global Registries Comparison.</div>
+      <h1>V2.1.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (0thernes LLC · Nov 2026)</h1>
+      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × {s['total_graph_edges']:,} Graph Couplings · 0thernes CSS + Titan Index · 46 Pure Lean 4.35.0 Formula Invariants · Live Nov 2026 AI Proof-Claim Audit · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
     </div>
-    <button class="theme-btn" onclick="toggleTheme()">Toggle Light / Dark</button>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas" target="_blank" style="text-decoration:none;">GitHub Repo ↗</a>
+      <button class="theme-btn" onclick="toggleTheme()">Toggle Light / Dark</button>
+    </div>
   </div>
   <div class="kpi-grid">
     <div class="kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
@@ -650,8 +823,8 @@ def export_interactive_html(data):
     <div class="kpi"><div class="v">{s['total_graph_edges']:,}</div><div class="l">Coupling Graph Edges</div></div>
     <div class="kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
     <div class="kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
-    <div class="kpi"><div class="v">{s['mean_difficulty']} / {s['mean_tractability']}</div><div class="l">Mean Diff / Tract 2050</div></div>
-    <div class="kpi"><div class="v">{s['mean_impact']} / 10</div><div class="l">Mean Civiliz. Impact</div></div>
+    <div class="kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
+    <div class="kpi"><div class="v">46 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
     <div class="kpi"><div class="v">500 BCE–2026</div><div class="l">Span (Med Age {s['median_age_years']}y)</div></div>
   </div>
 </header>
@@ -676,6 +849,7 @@ def export_interactive_html(data):
       <select id="fType" onchange="goPage(1)"><option value="">All Problem Types</option></select>
       <select id="fBottleneck" onchange="goPage(1)"><option value="">All Bottlenecks</option></select>
       <select id="fQuadrant" onchange="goPage(1)"><option value="">All 4 Quadrants</option></select>
+      <select id="fVerif" onchange="goPage(1)"><option value="">All Verification Flags</option></select>
     </div>
     <div class="bar-meta">
       <div id="countSummary">Loading...</div>
@@ -706,10 +880,11 @@ def export_interactive_html(data):
             <th onclick="sortBy('difficulty_score')">Diff</th>
             <th onclick="sortBy('tractability_2050')">Tract</th>
             <th onclick="sortBy('civilizational_impact')">Imp</th>
+            <th onclick="sortBy('css_score')">CSS</th>
             <th onclick="sortBy('titan_index')">Titan</th>
             <th onclick="sortBy('graph_degree')">Deg</th>
+            <th onclick="sortBy('verification_flag')">Verif Flag</th>
             <th onclick="sortBy('primary_bottleneck')">Primary Bottleneck</th>
-            <th onclick="sortBy('registry_source')">Registry</th>
           </tr>
         </thead>
         <tbody id="masterTbody"></tbody>
@@ -812,6 +987,7 @@ function populateUI() {{
   fill('fType', uniq('problem_type'));
   fill('fBottleneck', uniq('primary_bottleneck'));
   fill('fQuadrant', uniq('strategic_quadrant'));
+  fill('fVerif', uniq('verification_flag'));
 
   filterSelect('qA', 'selA', 'NT-001');
   filterSelect('qB', 'selB', 'CS-001');
@@ -870,7 +1046,7 @@ function filterAIClaims() {{
   goPage(1);
 }}
 function resetFilters() {{
-  ['fSearch','fPillar','fSuper','fStatus','fType','fBottleneck','fQuadrant'].forEach(id => document.getElementById(id).value = '');
+  ['fSearch','fPillar','fSuper','fStatus','fType','fBottleneck','fQuadrant','fVerif'].forEach(id => document.getElementById(id).value = '');
   goPage(1);
 }}
 function sortBy(col) {{
@@ -886,6 +1062,7 @@ function goPage(pg) {{
   const ft = document.getElementById('fType').value;
   const fb = document.getElementById('fBottleneck').value;
   const fq = document.getElementById('fQuadrant').value;
+  const fv = document.getElementById('fVerif').value;
 
   filteredRows = PROBLEMS.filter(p => {{
     if (fp && p.macro_pillar !== fp) return false;
@@ -894,6 +1071,7 @@ function goPage(pg) {{
     if (ft && p.problem_type !== ft) return false;
     if (fb && p.primary_bottleneck !== fb) return false;
     if (fq && p.strategic_quadrant !== fq) return false;
+    if (fv && p.verification_flag !== fv) return false;
     if (q) {{
       const hay = (p.id+' '+p.name+' '+p.subdomain+' '+p.core_question+' '+p.formal_expression+' '+p.originator+' '+p.competing_approaches+' '+p.affected_industries+' '+p.registry_source+' '+p.ai_verification_nov2026).toLowerCase();
       if (!hay.includes(q)) return false;
@@ -927,10 +1105,11 @@ function goPage(pg) {{
       <td class="num ${{p.difficulty_score>=9?'score-hi':''}}">${{p.difficulty_score}}</td>
       <td class="num ${{p.tractability_2050>=8?'score-good':p.tractability_2050<=4?'score-hi':'score-mid'}}">${{p.tractability_2050}}</td>
       <td class="num">${{p.civilizational_impact}}</td>
+      <td class="num"><b>${{p.css_score.toFixed(1)}}</b></td>
       <td class="num">${{p.titan_index.toFixed(2)}}</td>
       <td class="num">${{p.graph_degree}}</td>
+      <td><span class="badge ${{isAI?'badge-ai':''}}">${{esc(p.verification_flag)}}</span></td>
       <td>${{esc(p.primary_bottleneck)}}</td>
-      <td>${{esc(p.registry_source)}}</td>
     </tr>`;
   }}).join('');
 }}
@@ -954,13 +1133,15 @@ function openDetail(pid) {{
     <div style="color:var(--muted);font-size:0.83rem;margin-bottom:12px;">
       <b>${{esc(p.subdomain)}}</b> · ${{fmtYear(p.year_formulated)}} (${{p.age_years_2026}}y) by <b>${{esc(p.originator)}}</b> · Status: <b>${{esc(p.status_2026)}}</b>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:12px;">
       <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.difficulty_score}}/10</div><div class="l">Difficulty</div></div>
       <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.tractability_2050}}/10</div><div class="l">Tract 2050</div></div>
       <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.civilizational_impact}}/10</div><div class="l">Impact</div></div>
+      <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.css_score}}</div><div class="l">0thernes CSS</div></div>
       <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.titan_index}}</div><div class="l">Titan Index</div></div>
       <div class="kpi" style="background:var(--surface2);"><div class="v">${{p.graph_degree}} (${{p.cross_pillar_links}} XP)</div><div class="l">Degree</div></div>
     </div>
+    <div class="field-box"><strong>Epistemic Verification Flag</strong><span class="badge">${{esc(p.verification_flag)}}</span> · <i>Scores are curated AI-assisted editorial estimates; see VERIFICATION.md.</i></div>
     <div class="field-box"><strong>Core Question</strong>${{esc(p.core_question)}}</div>
     <div class="field-box"><strong>Formal / Governing Expression</strong><div class="mono" style="background:var(--surface2);padding:7px;border-radius:6px;margin-top:3px;">${{esc(p.formal_expression)}}</div></div>
     <div class="field-box"><strong>Nov 20, 2026 AI Claim &amp; Verification Audit</strong>${{esc(p.ai_verification_nov2026)}}</div>
@@ -1054,7 +1235,7 @@ def export_pdf_monograph(data):
                     f'<td class="mono"><b>{html.escape(r.id)}</b></td>'
                     f'<td><b>{html.escape(r.name)}</b>{ai_flag}<br/><span class="muted">{html.escape(r.subdomain)} · {yr_s} ({r.age_years_2026}y) · {html.escape(r.originator[:42])} · <i>{html.escape(r.status_2026)}</i></span></td>'
                     f'<td>{html.escape(r.core_question)}<br/><code class="eq">{html.escape(r.formal_expression[:135])}</code><br/><span class="muted"><b>2026:</b> {html.escape(r.closest_progress_2026[:165])}</span></td>'
-                    f'<td><b>D:{r.difficulty_score} T:{r.tractability_2050} I:{r.civilizational_impact}</b> · Tit:{r.titan_index} · Deg:{r.graph_degree}<br/><span class="muted">{html.escape(r.primary_bottleneck)}<br/>{html.escape(r.registry_source)}<br/>Links: {html.escape(r.related_problem_ids[:44])}</span></td>'
+                    f'<td><b>D:{r.difficulty_score} T:{r.tractability_2050} I:{r.civilizational_impact}</b> · CSS:{r.css_score:.1f} · Tit:{r.titan_index} · Deg:{r.graph_degree}<br/><span class="muted">{html.escape(r.verification_flag)} · {html.escape(r.primary_bottleneck)}<br/>{html.escape(r.registry_source)}<br/>Links: {html.escape(r.related_problem_ids[:44])}</span></td>'
                     f'</tr>'
                 )
             dir_parts.append("</tbody></table>")
@@ -1119,25 +1300,25 @@ def export_pdf_monograph(data):
 
 <div class="cover">
   <div>
-    <div class="cover-kicker">V2.0 Exhaustive Monograph · November 20, 2026 Special Edition</div>
+    <div class="cover-kicker">0thernes LLC Institutional Monograph · Version 2.1.0 · November 20, 2026</div>
     <h1>Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Fields of Knowledge</h1>
-    <div class="cover-sub">A Unified Quantitative Taxonomy, Multi-Dimensional Comparison &amp; Contrast Atlas, November 2026 AI Proof-Claim Verification Audit, Global Open-Problem Registry Synthesis, NetworkX Cross-Pillar Connectome, and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
+    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, 0thernes Composite Severity Score (CSS) &amp; Titan Index Atlas, Pure Lean 4.35.0 Formal Formula-Invariant Suite (46 Theorems, 0 sorry), November 2026 AI Proof-Claim Verification Audit, SQLite FTS5 RAG Corpus, and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
     <div class="cover-grid">
       <div class="cover-kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
       <div class="cover-kpi"><div class="v">8 × 28</div><div class="l">Pillars × Superdomains</div></div>
       <div class="cover-kpi"><div class="v">{s['total_graph_edges']:,}</div><div class="l">Coupling Edges</div></div>
       <div class="cover-kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
       <div class="cover-kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
-      <div class="cover-kpi"><div class="v">{s['mean_difficulty']} / {s['mean_tractability']}</div><div class="l">Diff / Tract 2050</div></div>
-      <div class="cover-kpi"><div class="v">{s['mean_impact']}</div><div class="l">Mean Impact</div></div>
+      <div class="cover-kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
+      <div class="cover-kpi"><div class="v">46 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
       <div class="cover-kpi"><div class="v">500 BCE–2026</div><div class="l">Historical Span</div></div>
     </div>
     <div class="cover-pillars">
-      {''.join(f'<div class="cover-pil" style="border-left-color:{PILLAR_HEX[r.Macro_Pillar]};"><b>{html.escape(r.Macro_Pillar)}</b> — {r.Problem_Count:,} ({r.Share_Pct}%) · D:{r.Mean_Difficulty} T:{r.Mean_Tractability_2050} I:{r.Mean_Impact}</div>' for r in data["df_pillars"].itertuples())}
+      {''.join(f'<div class="cover-pil" style="border-left-color:{PILLAR_HEX[r.Macro_Pillar]};"><b>{html.escape(r.Macro_Pillar)}</b> — {r.Problem_Count:,} ({r.Share_Pct}%) · CSS:{r.Mean_CSS} · D:{r.Mean_Difficulty} T:{r.Mean_Tractability_2050} I:{r.Mean_Impact}</div>' for r in data["df_pillars"].itertuples())}
     </div>
   </div>
   <div class="cover-foot">
-    <b>Release Date:</b> November 20, 2026 · <b>Companion Formats:</b> CSV, TSV, JSON, 13-Sheet Live-Formula XLSX, Legacy XLS, Markdown, Plain Text, Offline Interactive HTML Dashboard &amp; 12 Vector SVG/PNG Charts · <b>Connectome:</b> {s['connected_components']} Unified Component ({s['largest_component_size']:,}/{s['total_problems']:,} nodes).
+    <b>Release:</b> v{s['atlas_version']} (November 20, 2026) · <b>Author:</b> {s['author']} (ORCID {s['orcid']}, 0thernes LLC) · <b>Dual License:</b> CC BY 4.0 (Data/Monograph) / MIT (Code/Lean/RAG) · <b>AI-Assisted Disclosure:</b> Curated by solo researcher with disclosed AI assistance; quantitative scores are falsifiable editorial estimates, not peer-reviewed measurements; Lean 4 proofs verify scoring/graph/taxonomy invariants only.
   </div>
 </div>
 
@@ -1209,14 +1390,15 @@ def export_pdf_monograph(data):
 
 
 def main():
-    print("Loading V2.0 Mega-Atlas...")
+    print("Loading V2.1.0 Mega-Atlas (0thernes LLC)...")
     data = load_v2_master()
     export_csv_tsv_json(data)
+    export_master_ranking_md(data)
     export_excel_files(data)
     export_md_and_txt(data)
     export_interactive_html(data)
     export_pdf_monograph(data)
-    print("\n=== ALL V2.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
+    print("\n=== ALL V2.1.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
 
 
 if __name__ == "__main__":

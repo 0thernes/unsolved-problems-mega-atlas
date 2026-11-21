@@ -1,38 +1,39 @@
-Dual License — 0thernes LLC Research Publishing Standard
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-1. SOURCE CODE (MIT License)
-Applies to all Python scripts, schemas, loaders, chart generators, exporters,
-HTML/JavaScript dashboard logic, and GitHub Actions workflows (`src/`, `.github/`).
+Copyright (c) 2026 Alexander Stephen Donahue (0thernes LLC, Spokane, WA, USA)
+ORCID: https://orcid.org/0009-0006-8168-9648
+Repository: https://github.com/0thernes/unsolved-problems-mega-atlas
 
-Copyright (c) 2026 Alexander Stephen Donahue, 0thernes LLC
+APPLICABILITY (DUAL-LICENSE MODEL)
+==================================
+This Creative Commons Attribution 4.0 International License (CC BY 4.0) applies
+to all dataset records, taxonomies, ranking tables, monographs, white papers,
+documentation, HTML/PDF reports, and PNG/SVG visualizations in this repository
+(`outputs/`, `docs/`, `src/v2_data/`, `RANKING.md`, `README.md`, `PHILOSOPHY.md`,
+`VERIFICATION.md`, `EVIDENCE.md`).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All source code, schemas, build pipelines, RAG query tools, test suites, CI
+workflows, and Pure Lean 4.35.0 formal invariant proofs (`src/v2_*.py`, `rag/`,
+`scripts/`, `schema/`, `tests/`, `lean/`, `.github/`) are separately licensed
+under the MIT License — see `LICENSE-CODE` and `NOTICE`.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+SUMMARY OF CC BY 4.0 TERMS
+==========================
+You are free to:
+  - Share: copy and redistribute the material in any medium or format for any
+    purpose, even commercially.
+  - Adapt: remix, transform, and build upon the material for any purpose,
+    even commercially.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Under the following terms:
+  - Attribution: You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. Recommended attribution:
 
--------------------------------------------------------------------------------
+      Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.1.0).
+      0thernes LLC. ORCID: 0009-0006-8168-9648.
+      https://github.com/0thernes/unsolved-problems-mega-atlas (CC BY 4.0).
 
-2. DATASET, ENCYCLOPEDIA, CHARTS & MONOGRAPH (CC BY 4.0)
-Applies to all tabular datasets, Markdown/TXT/HTML/PDF reports, and PNG/SVG
-figures (`outputs/`, `README.md`).
+  - No additional restrictions: You may not apply legal terms or technological
+    measures that legally restrict others from doing anything the license permits.
 
-Licensed under the Creative Commons Attribution 4.0 International License
-(CC BY 4.0). You may share and adapt the material for any purpose, including
-commercially, provided appropriate credit is given to:
-  Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
-  https://github.com/0thernes/unsolved-problems-mega-atlas
-Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
