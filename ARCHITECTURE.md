@@ -13,7 +13,7 @@ flowchart LR
     E1 --> G
     E2 --> G
     E3 --> G
-    G --> H["Distribution & Preservation\nGitHub Release v2.1.0\nGitHub Pages Live Atlas\n0thernes-research-archive (0TH-BUILD-006)"]
+    G --> H["Distribution & Preservation\nGitHub Release v2.1.0\nGitHub Pages Live Atlas\n0thernes-research-archive (0TH-BUILD-007)"]
 ```
 
 ## Directory Map

@@ -15,7 +15,7 @@ All notable changes to the **Unsolved Problems Mega-Atlas** are documented in th
 - **Dual-License Separation & Institutional Governance:** `LICENSE` (CC BY 4.0), `LICENSE-CODE` (MIT), `NOTICE`, `VERSION`, `AUTHORS.md`, `PHILOSOPHY.md`, `ARCHITECTURE.md`, `VERIFICATION.md`, `EVIDENCE.md`, `RANKING.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `docs/METHODOLOGY.md`, `docs/AI_DISCLOSURE.md`, `docs/ACADEMIC_REVIEW.md`, `docs/WHITE_PAPER.md`.
 - **Build Ergonomics & Community Review:** `requirements.txt`, `pyproject.toml`, `Makefile`, `build.ps1`, structured GitHub Issue & PR templates (`.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`).
 - **Dual-Job CI & Automated GitHub Pages:** Upgraded `.github/workflows/ci.yml` (Python/pytest/audit + Lean 4.35.0 build) and added `.github/workflows/pages.yml` publishing the interactive atlas to `https://0thernes.github.io/unsolved-problems-mega-atlas/`.
-- **Master Archive Registration:** Registered as `0TH-BUILD-006` in `0thernes/0thernes-research-archive`.
+- **Master Archive Registration:** Registered as `0TH-BUILD-007` in `0thernes/0thernes-research-archive`.
 
 ### Changed
 - Made `src/v2_charts.py` and `src/v2_export_all.py` fully self-contained inside `Z:\unsolved-problems-mega-atlas`, outputting directly to `outputs/`.

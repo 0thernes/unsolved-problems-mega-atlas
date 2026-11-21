@@ -5,7 +5,7 @@
 **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)  
 **Repository:** [https://github.com/0thernes/unsolved-problems-mega-atlas](https://github.com/0thernes/unsolved-problems-mega-atlas)  
 **Interactive Web Atlas (GitHub Pages):** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/)  
-**Master Research Archive Registration:** `0TH-BUILD-006` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
+**Master Research Archive Registration:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
 
 ---
 

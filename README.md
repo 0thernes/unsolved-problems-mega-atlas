@@ -10,7 +10,7 @@
 
 - **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(standalone offline explorer, live 7-filter search, Any-2-Problems Comparator, Nov 2026 AI Audit & 12-chart zoom gallery)*
 - **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`0thernes LLC`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
-- **Master Research Archive Entry:** `0TH-BUILD-006` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
+- **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
 - **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
 
 ---
@@ -59,7 +59,7 @@ Active mathematical registries already track well over 1,100–2,000+ open probl
 |---|---|---|
 | **Interactive Web Atlas** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Offline standalone web app (also live on [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/)): paginated 1,855-row catalog, 7 filters, CSS/Titan sort, Any-2 Comparator, Nov 2026 AI Audit & 12-chart zoom |
 | **Vector PDF Monograph** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Complete ~163-page publication monograph with cover, matrices, 12 embedded figures, contrasts & full 1,855-problem directory |
-| **Build White Paper** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-006`) |
+| **Build White Paper** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-007`) |
 | **Master Ranking** | [`RANKING.md`](RANKING.md) | Auto-generated Top 250 overall by `0thernes CSS`, 8 Macro-Pillar leaders & Nov 2026 AI watchlist |
 | **SQLite 3 + FTS5 DB** | [`outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`](outputs/MegaAtlas_Unsolved_Problems_V2.sqlite) | 9 normalized tables + Porter-stemmed FTS5 full-text search index powering `rag/query.py` |
 | **Excel Workbooks** | [`MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) · [`_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | 13-sheet live-formula XLSX (`COUNTIF`, `AVERAGEIF`, conditional color scales, native charts) + 8-sheet BIFF `.xls` |
@@ -112,6 +112,6 @@ To rebuild every chart, dataset, SQLite DB, `RANKING.md`, HTML, PDF, Lean proof,
   publisher    = {0thernes LLC},
   version      = {2.1.0},
   url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
-  note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-006}
+  note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-007}
 }
 ```
