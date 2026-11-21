@@ -1,8 +1,8 @@
-.PHONY: all charts export fair lean test audit evaluate rag mcp clean
+.PHONY: all charts export fair lean test audit forensic zenodo-dry-run evaluate rag mcp clean
 
 PYTHON ?= python
 
-all: charts export fair lean audit evaluate test
+all: charts export fair lean audit forensic zenodo-dry-run evaluate test
 
 charts:
 	$(PYTHON) src/v2_charts.py
@@ -21,6 +21,12 @@ test:
 
 audit:
 	$(PYTHON) scripts/audit_atlas.py --sync-checksums --check-lean
+
+forensic:
+	$(PYTHON) scripts/forensic_audit.py
+
+zenodo-dry-run:
+	$(PYTHON) scripts/publish_zenodo.py --dry-run
 
 evaluate:
 	$(PYTHON) autoresearch/evaluate.py --verify-gates

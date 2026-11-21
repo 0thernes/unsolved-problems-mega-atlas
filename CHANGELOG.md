@@ -2,6 +2,21 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.3.0] — 2026-11-21
+
+### Added & Fixed — Full Multi-Layer Forensic Audit, Biconnected 1,900-Node Atlas, 100% RAG, 9-Tool Dual-Framed MCP, 72 Lean Theorems & Options 1/2/3
+- **Forensic Auditor & Zero-Bug Remediation (`scripts/forensic_audit.py`, `docs/FORENSIC_AUDIT_V2.3.md`):**
+  - Fixed **24 dangling `raw_links`** via automatic canonical `dedup_alias_map` redirection in `src/v2_loader.py` → **`unresolved_raw_links_count = 0`**.
+  - Merged **7 true cross-field near-duplicate pairs** (`GR-019→ANL-014`, `COMB-047→NT-077`, `AI-026→STAT-046`, `ANL-051→NT-085`, `GEOM-049→ALG-025`, `LOG-018→NT-061`, `STAT-033→GEOM-062`) → `12` total deduplicated overlaps.
+  - Eliminated the **last graph articulation point (`GEOM-038`)** via mathematical cross-links on `GEOM-042` & `GEOM-045` → **`articulation_points = 0`**, **`graph_bridges = 0`**, true **2-vertex-connected biconnected connectome** (`5,808` edges, `14` communities).
+- **11th Curated Source Module (`src/v2_data/m11_substrates_margins_adjacents.py`, `52` problems, `SUB-001`..`SUB-052`):** Closed 9 forensically detected blindspots across Basal/Plant/Swarm Cognition, Active Inference/FEP, Cryonics/Biostasis, Space Law/Orbital Debris, Mycology/Soil Networks, Photosynthesis/RuBisCO, Epistemic Security/Formalization Fidelity, Virology/Prions, and Optimal Transport/Information Geometry → **`1,900` strictly unique problems**.
+- **8 Quantitative Multi-Layer Dimensions (`40 → 48` Typed Columns):** Added `substrate_class` (8 substrates), `abstraction_layer` (`L0–L6`, 7 layers), `epistemic_spectrum_score` (`0–100`), `hardness_tractability_gradient` (`D − T ∈ [-9, +9]`), `css_titan_margin` (`CSS − Titan×10 ∈ [-100, +100]`), `bridge_margin_ratio` (`[0, 1]`), `adjacent_pillars_count` (`[0, 7]`), and `margin_role` (4 structural boundary roles), surfaced across JSON Schema, 14-sheet XLSX, SQLite `substrate_summary`, Dashboard, PDF, and **3 new publication charts (`13`, `14`, `15` → 30 PNG/SVG files)**.
+- **Pure Lean 4.35.0 Expansion (`58 → 72` Audited Theorems, 8 Modules, 1,008 Lines):** Added `lean/MegaAtlasProofs/LayerGradients.lean` (14 constructive theorems, zero Mathlib, zero `sorry`, zero `Classical.choice`, strictly `[propext, Quot.sound]` or empty).
+- **100.00% MRR@5 Hybrid RAG (`H-003`) & AutoResearch `AQS = 97.99`:** Added contiguous title bigrams + NetworkX `pagerank` authority fusion in `rag/query.py`, reaching **`25/25` top-1 (`100.00% MRR@5`)** on the untouched immutable evaluator (`autoresearch/evaluate.py`).
+- **Dual-Framed 9-Tool MCP Server (`mcp_server/server.py`):** Added `get_substrate_layer_summary` & `get_margin_and_gradient_extremes` (**7 → 9 tools**) + automatic support for BOTH NDJSON and LSP/MCP `Content-Length:` stdio framing.
+- **Options 1, 2, 3 Preservation & Autonomous Exploration:** Added offline-validated Option 1 Zenodo publisher (`scripts/publish_zenodo.py --dry-run`), Option 1/2 honest archival dossier (`docs/PRESERVATION.md` respecting Software Heritage's Anubis PoW gate), and Option 3 Track B empirical pilot (`research/runs/LOG-002_antihydra_pilot/`) probing Busy Beaver `BB(6)`'s Antihydra map with explicit non-claim boundaries.
+- **25-Test `pytest` & Hardened CI:** Expanded `tests/test_mega_atlas.py` from 19 to 25 tests and updated `.github/workflows/ci.yml` to enforce 72 Lean theorems, `forensic_audit.py`, `publish_zenodo.py --dry-run`, and `evaluate.py --verify-gates`.
+
 ## [2.2.0] — 2026-11-21
 
 ### Added — Karpathy-Style AutoResearch, MCP Server, FAIR Metadata Triad & 58 Pure Lean 4.35.0 Invariants

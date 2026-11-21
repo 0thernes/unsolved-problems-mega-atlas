@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Unsolved Problems Mega-Atlas (V2.2.0): Cross-Disciplinary Taxonomy, 0thernes CSS Ranking, NetworkX Connectome, Offline FTS5 RAG & MCP Server, Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit & Pure Lean 4.35.0 Formal Invariants"
+title: "Unsolved Problems Mega-Atlas (V2.3.0): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch & 72 Pure Lean 4.35.0 Formal Invariants"
 message: "If you use this dataset, knowledge graph, Lean 4 formal invariants, RAG/MCP server, AutoResearch harness, charts, or monograph in research or software, please cite it using the metadata below."
 type: dataset
 authors:
@@ -10,7 +10,7 @@ authors:
     email: "0_0@0thernes.art"
 repository-code: "https://github.com/0thernes/unsolved-problems-mega-atlas"
 url: "https://0thernes.github.io/unsolved-problems-mega-atlas/"
-version: "2.2.0"
+version: "2.3.0"
 date-released: "2026-11-21"
 license: "MIT AND CC-BY-4.0"
 keywords:

@@ -1,0 +1,188 @@
+{
+  "problem_id": "LOG-002",
+  "pilot_name": "Antihydra Collatz-Like BB(6) Finite Margin & Perturbation Probe",
+  "author": "Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)",
+  "epistemic_boundary": "Finite exact arbitrary-precision computational probe ONLY. Proves NO asymptotic halting or non-halting theorem for Antihydra or Busy Beaver BB(6); LOG-002 remains OPEN.",
+  "theoretical_random_walk_drift": 0.5,
+  "theoretical_log2_growth_per_step": 0.584963,
+  "canonical_a0_8_5000_steps": {
+    "a0": 8,
+    "b0": 0,
+    "steps_executed": 5000,
+    "halted": false,
+    "halted_at_step": null,
+    "final_b": 2599,
+    "min_b_margin": 0,
+    "max_b": 2599,
+    "even_steps": 2533,
+    "odd_steps": 2467,
+    "even_fraction": 0.5066,
+    "empirical_b_drift_per_step": 0.5198,
+    "final_a_bit_length": 2928,
+    "log2_a_per_step": 0.5856
+  },
+  "seed_sweep_a0_2_to_100_max2000": {
+    "total_seeds_tested": 99,
+    "halted_count": 66,
+    "surviving_count": 33,
+    "halted_seeds_sample": [
+      {
+        "a0": 3,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 5,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 6,
+        "halted_at_step": 4
+      },
+      {
+        "a0": 7,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 9,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 10,
+        "halted_at_step": 7
+      },
+      {
+        "a0": 11,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 13,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 14,
+        "halted_at_step": 19
+      },
+      {
+        "a0": 15,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 16,
+        "halted_at_step": 22
+      },
+      {
+        "a0": 17,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 19,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 20,
+        "halted_at_step": 19
+      },
+      {
+        "a0": 21,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 22,
+        "halted_at_step": 4
+      },
+      {
+        "a0": 23,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 24,
+        "halted_at_step": 13
+      },
+      {
+        "a0": 25,
+        "halted_at_step": 1
+      },
+      {
+        "a0": 27,
+        "halted_at_step": 1
+      }
+    ],
+    "surviving_close_calls_min_b_le_2": [
+      {
+        "a0": 2,
+        "min_b_margin": 0,
+        "final_b": 1075
+      },
+      {
+        "a0": 4,
+        "min_b_margin": 0,
+        "final_b": 1075
+      },
+      {
+        "a0": 8,
+        "min_b_margin": 0,
+        "final_b": 1036
+      },
+      {
+        "a0": 12,
+        "min_b_margin": 0,
+        "final_b": 1033
+      },
+      {
+        "a0": 18,
+        "min_b_margin": 0,
+        "final_b": 1030
+      },
+      {
+        "a0": 26,
+        "min_b_margin": 0,
+        "final_b": 997
+      },
+      {
+        "a0": 28,
+        "min_b_margin": 0,
+        "final_b": 1075
+      },
+      {
+        "a0": 32,
+        "min_b_margin": 0,
+        "final_b": 1000
+      },
+      {
+        "a0": 34,
+        "min_b_margin": 0,
+        "final_b": 1018
+      },
+      {
+        "a0": 40,
+        "min_b_margin": 0,
+        "final_b": 1033
+      },
+      {
+        "a0": 42,
+        "min_b_margin": 0,
+        "final_b": 1075
+      },
+      {
+        "a0": 44,
+        "min_b_margin": 0,
+        "final_b": 1030
+      },
+      {
+        "a0": 48,
+        "min_b_margin": 0,
+        "final_b": 997
+      },
+      {
+        "a0": 50,
+        "min_b_margin": 0,
+        "final_b": 1021
+      },
+      {
+        "a0": 52,
+        "min_b_margin": 0,
+        "final_b": 988
+      }
+    ]
+  }
+}

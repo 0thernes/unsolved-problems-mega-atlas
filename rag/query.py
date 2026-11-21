@@ -51,21 +51,26 @@ def _stem_prefix(tok: str) -> str:
 
 
 def rerank_hybrid(candidates: List[Dict[str, Any]], query_tokens: List[str]) -> List[Dict[str, Any]]:
-    """Hybrid Lexical + Title-Coverage + Knowledge-Graph Authority (PageRank/Degree) re-ranker.
-    Combines FTS5 BM25 relevance, unique query-token coverage in title & body, and
-    log-scaled graph degree authority so canonical hubs beat niche lexical-noise duplicates.
+    """Hybrid Lexical + Title-Bigram + Knowledge-Graph PageRank/Degree Authority re-ranker (H-003).
+    Combines FTS5 BM25 relevance, unique query-token coverage in title & body, contiguous
+    query bigram hits in the title, and NetworkX graph authority (degree + PageRank).
     """
     if not candidates or not query_tokens:
         return candidates
     q_stems = [_stem_prefix(t) for t in query_tokens]
+    q_bigrams = [f"{query_tokens[i]} {query_tokens[i+1]}" for i in range(len(query_tokens) - 1)]
     raw_bm25 = [-float(c.get("bm25_score", 0.0)) for c in candidates]
     max_b = max(raw_bm25) if raw_bm25 else 1.0
     min_b = min(raw_bm25) if raw_bm25 else 0.0
     span_b = max(1e-6, max_b - min_b)
 
+    max_pr = max((float(c.get("pagerank", 0.0)) for c in candidates), default=1e-6)
+    max_pr = max(max_pr, 1e-6)
+
     scored = []
     for c, rb in zip(candidates, raw_bm25):
         bm25_norm = (rb - min_b) / span_b
+        name_low = re.sub(r"[^a-z0-9]+", " ", c.get("name", "").lower()).strip()
         title_txt = (c.get("name", "") + " " + c.get("subdomain", "")).lower()
         body_txt = (
             title_txt + " " + c.get("core_question", "") + " "
@@ -75,15 +80,22 @@ def rerank_hybrid(candidates: List[Dict[str, Any]], query_tokens: List[str]) -> 
         body_hits = sum(1 for st in q_stems if st in body_txt)
         title_cov = title_hits / len(q_stems)
         body_cov = body_hits / len(q_stems)
+        bigram_cov = (
+            sum(1 for bg in q_bigrams if bg in name_low) / len(q_bigrams)
+            if q_bigrams else title_cov
+        )
         deg_auth = min(1.0, math.log1p(max(0, int(c.get("graph_degree", 0)))) / math.log1p(45.0))
+        pr_auth = min(1.0, float(c.get("pagerank", 0.0)) / max_pr)
+        graph_auth = 0.50 * deg_auth + 0.50 * pr_auth
         css_prior = min(1.0, float(c.get("css_score", 50.0)) / 100.0)
 
         hybrid = (
-            0.30 * bm25_norm
-            + 0.35 * title_cov
-            + 0.15 * body_cov
-            + 0.16 * deg_auth
-            + 0.04 * css_prior
+            0.22 * bm25_norm
+            + 0.24 * title_cov
+            + 0.18 * bigram_cov
+            + 0.10 * body_cov
+            + 0.23 * graph_auth
+            + 0.03 * css_prior
         )
         c["hybrid_score"] = round(hybrid, 4)
         scored.append((hybrid, c))

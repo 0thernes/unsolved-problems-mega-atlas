@@ -14,10 +14,10 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Unsolved Problems Mega-Atlas (V2.2.0)",
-      "version": "2.2.0",
+      "name": "Unsolved Problems Mega-Atlas (V2.3.0)",
+      "version": "2.3.0",
       "datePublished": "2026-11-21",
-      "description": "Unified cross-disciplinary open-problem atlas (1,855 problems, 8 Macro-Pillars, 28 Superdomains, 5,597 graph edges, 58 Pure Lean 4.35.0 formal invariants, SQLite FTS5 RAG/MCP server, and Karpathy-style AutoResearch loop).",
+      "description": "Unified cross-disciplinary open-problem atlas (1,900 problems, 8 Macro-Pillars, 28 Superdomains, 5,597 graph edges, 58 Pure Lean 4.35.0 formal invariants, SQLite FTS5 RAG/MCP server, and Karpathy-style AutoResearch loop).",
       "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
       "identifier": "https://github.com/0thernes/unsolved-problems-mega-atlas",
       "license": {
@@ -114,8 +114,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.csv",
       "description": "Master tabular CSV dataset",
       "encodingFormat": "text/csv",
-      "sha256": "affcbd826e92bf8a28de03bee4330fc381dcc88f8a393d114baacdcab75c6bf6",
-      "contentSize": 3443119
+      "sha256": "ccec31fbf1fac951c9841f5df322ff54d45ffce3a814e5c123e636dcd062bb63",
+      "contentSize": 3742942
     },
     {
       "@id": "outputs/MegaAtlas_Unsolved_Problems_V2.jsonl",
@@ -123,8 +123,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.jsonl",
       "description": "Streaming JSONL dataset",
       "encodingFormat": "application/x-ndjson",
-      "sha256": "e201232a08f40bab5351318137a5cbc4eaf4648f8d7a54c638ab88c4c409eaa1",
-      "contentSize": 4970279
+      "sha256": "8c70f109f2ba733db1954fac737c4f4256cda576de0399360454982956799d79",
+      "contentSize": 5684861
     },
     {
       "@id": "outputs/MegaAtlas_Unsolved_Problems_V2.json",
@@ -132,8 +132,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.json",
       "description": "Complete JSON dataset & knowledge graph",
       "encodingFormat": "application/json",
-      "sha256": "c071e8ff237edccf113f82abd854dd5afa90ae7a94a421ba537c9662a0bf60bf",
-      "contentSize": 6003741
+      "sha256": "db45f529777e97eea3def905d5d05a89a47c7e450d41d4c6372317b45f634702",
+      "contentSize": 6838981
     },
     {
       "@id": "outputs/MegaAtlas_Unsolved_Problems_V2.sqlite",
@@ -141,8 +141,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.sqlite",
       "description": "SQLite 3 + FTS5 RAG database",
       "encodingFormat": "application/vnd.sqlite3",
-      "sha256": "c1c69278e098e1f79b80281a8376bd09a251f12210f3deab64bf6125e40705a1",
-      "contentSize": 10727424
+      "sha256": "a113f246fb79c906dbfed5e7d29520baac6b82f0b02ac9b879bc4da3c9497e2e",
+      "contentSize": 11866112
     },
     {
       "@id": "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
@@ -150,8 +150,8 @@
       "name": "MegaAtlas_Interactive_Dashboard_V2.html",
       "description": "Standalone interactive web atlas",
       "encodingFormat": "text/html",
-      "sha256": "f14ed1d028398554036ca0e74f8ed46b77c4d74ba4a4776bd6432a57059bda35",
-      "contentSize": 18845756
+      "sha256": "cb8a9e38c8f8d02650f755560173ad75e6df7fc24e9a407d85e7d12d8a710cc6",
+      "contentSize": 21647346
     },
     {
       "@id": "outputs/MegaAtlas_Comprehensive_Report_V2.pdf",
@@ -159,8 +159,8 @@
       "name": "MegaAtlas_Comprehensive_Report_V2.pdf",
       "description": "Complete vector PDF monograph",
       "encodingFormat": "application/pdf",
-      "sha256": "9c0aa69fc165ae962efbb65d78eeaa4518ea0408dfea9cbababb21395fc9ff63",
-      "contentSize": 19817594
+      "sha256": "9bc0b73be8dda2050b500fe851112a483a0c0867ce0b24a208b499ff9301cebc",
+      "contentSize": 21397136
     },
     {
       "@id": "docs/WHITE_PAPER.md",
@@ -168,8 +168,8 @@
       "name": "WHITE_PAPER.md",
       "description": "Institutional Build White Paper (0TH-BUILD-007)",
       "encodingFormat": "text/markdown",
-      "sha256": "adb1fe71aec9a6f425b2da30e3f450649861bfdb77803eb15262de759efa8408",
-      "contentSize": 12549
+      "sha256": "a41f6e843cc213db8fc096ddc1f2d1de0ca28a611e238ecdd32724663e3b0827",
+      "contentSize": 14751
     },
     {
       "@id": "docs/DATASHEET.md",
@@ -177,8 +177,8 @@
       "name": "DATASHEET.md",
       "description": "Gebru et al. Datasheet for Datasets",
       "encodingFormat": "text/markdown",
-      "sha256": "6cbf2ccda966e330477a0a40f98b3401d01700f4a0e8bf70089f634f1e484673",
-      "contentSize": 5978
+      "sha256": "7fb23a7e96fc43e67c12b4298370b82701ee8bfb99b0d244aa69fe0225333438",
+      "contentSize": 6946
     },
     {
       "@id": "RANKING.md",
@@ -186,8 +186,8 @@
       "name": "RANKING.md",
       "description": "Master Ranking by 0thernes CSS",
       "encodingFormat": "text/markdown",
-      "sha256": "282ad48343b6877f1083447047349e60563fdde3f157b35a9ff3c87bf4d0ead6",
-      "contentSize": 69725
+      "sha256": "4016f108b3559a754b15069d07b5fc3588f760a77e7ca12f272825dea4e87101",
+      "contentSize": 69656
     },
     {
       "@id": "VERIFICATION.md",
@@ -195,8 +195,8 @@
       "name": "VERIFICATION.md",
       "description": "5-tier epistemic verification boundaries",
       "encodingFormat": "text/markdown",
-      "sha256": "70563129944eb6704a6899d6e74a2478578c966e932442ed76de93c44a7cb4b9",
-      "contentSize": 5772
+      "sha256": "374983a697f9395583f6349d24813ef99268a875808746b86a56f5b2b2d448a8",
+      "contentSize": 6769
     },
     {
       "@id": "CHECKSUMS.sha256",
@@ -218,8 +218,8 @@
       "name": "MegaAtlasProofs.lean",
       "description": "Pure Lean 4.35.0 formal invariant suite (58 theorems, 0 sorry)",
       "encodingFormat": "text/plain",
-      "sha256": "53c8fa88c0a4acafc9cc839da0ab5e1aed814924d4875b6569ce1d58c068d5ec",
-      "contentSize": 398
+      "sha256": "c101784cbfb6a64df8da3385ed4fc3104085ccbb682c90338c737d334d5507b6",
+      "contentSize": 436
     },
     {
       "@id": "autoresearch/program.md",
@@ -245,8 +245,8 @@
       "name": "results.tsv",
       "description": "Empirical AutoResearch experiment audit trail",
       "encodingFormat": "text/tab-separated-values",
-      "sha256": "bff327b50fa348af1ee00cb37be76489c6f9778fad9426bf0aa0de1135e29d97",
-      "contentSize": 834
+      "sha256": "183ec345e39566939a9218941267dfda59e65250ffea70130082d83e08ed5e48",
+      "contentSize": 1048
     },
     {
       "@id": "mcp_server/server.py",
@@ -254,8 +254,8 @@
       "name": "server.py",
       "description": "Zero-dependency MCP stdio JSON-RPC 2.0 server (7 tools)",
       "encodingFormat": "text/x-python",
-      "sha256": "dade564cbec4c230647dbab50561039dfc4abc8d1452bfa224f571f318a10aeb",
-      "contentSize": 12564
+      "sha256": "34e88a5fbce9b689785e932fd34b8e55db29ca992ece8a8eb3621ef21aa2a621",
+      "contentSize": 17012
     },
     {
       "@id": "rag/query.py",
@@ -263,8 +263,8 @@
       "name": "query.py",
       "description": "Offline Hybrid BM25 + graph-authority RAG CLI",
       "encodingFormat": "text/x-python",
-      "sha256": "92ac8b4df7ce9c8de35247766390b035473a3e7e97e9e8b028220d1a266cba8c",
-      "contentSize": 15506
+      "sha256": "e95c38d1c5208c62fa00383d6ce56b577fc13e728a4e9d15ccbcb887f4642071",
+      "contentSize": 16106
     }
   ]
 }

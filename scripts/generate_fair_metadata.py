@@ -43,8 +43,12 @@ def build_croissant(df_cols: list[str], total_problems: int) -> dict:
         "year_formulated", "age_years_2026", "difficulty_score", "tractability_2050",
         "civilizational_impact", "interdisciplinarity_index", "graph_degree",
         "cross_superdomain_links", "cross_pillar_links", "network_cluster",
+        "hardness_tractability_gradient", "adjacent_pillars_count",
     }
-    float_cols = {"pagerank", "betweenness", "titan_index", "css_score", "near_term_leverage_score"}
+    float_cols = {
+        "pagerank", "betweenness", "titan_index", "css_score", "near_term_leverage_score",
+        "epistemic_spectrum_score", "css_titan_margin", "bridge_margin_ratio",
+    }
 
     fields = []
     for col in df_cols:
@@ -98,13 +102,14 @@ def build_croissant(df_cols: list[str], total_problems: int) -> dict:
         "@type": "sc:Dataset",
         "conformsTo": "http://mlcommons.org/croissant/1.0",
         "name": "Unsolved Problems Mega-Atlas",
-        "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.2.0",
+        "alternateName": f"0thernes Unsolved Problems Mega-Atlas V{VERSION}",
         "description": (
             f"Exhaustive, cryptographically audited cross-disciplinary dataset of {total_problems:,} strictly deduplicated "
-            "unsolved, open, and hard problems across 8 Macro-Pillars and 28 Superdomains wired into 1 connected 5,597-edge "
-            "knowledge graph, with 0thernes CSS & Titan Index rankings, per-record epistemic verification flags, Nov 20, 2026 "
-            "AI proof-claim audit, SQLite FTS5 RAG/MCP server, Karpathy-style AutoResearch harness, and 58 Pure Lean 4.35.0 "
-            "formal formula/graph invariants."
+            "unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, "
+            "and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), "
+            "with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 20, 2026 "
+            "AI proof-claim audit, Hybrid RAG (100% MRR@5), 9-tool MCP server, Karpathy-style AutoResearch harness, and 72 Pure Lean 4.35.0 "
+            "formal invariants."
         ),
         "version": VERSION,
         "datePublished": "2026-11-21",

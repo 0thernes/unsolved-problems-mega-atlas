@@ -1,26 +1,27 @@
-# Unsolved Problems Mega-Atlas (`v2.2.0`)
+# Unsolved Problems Mega-Atlas (`v2.3.0`)
 
-[![CI — Python, AutoResearch, MCP & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
+[![CI — Python, AutoResearch, 9-Tool MCP & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Interactive Web Atlas (GitHub Pages)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
-[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-58%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-72%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
 [![FAIR](https://img.shields.io/badge/FAIR-Croissant%201.0%20%7C%20RO--Crate%201.1%20%7C%20Zenodo-7C3AED.svg)](croissant.json)
 [![Dual License](https://img.shields.io/badge/License-Data%20CC--BY--4.0%20%7C%20Code%20MIT-0D9488.svg)](NOTICE)
 
-> **1,855 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains of human knowledge** — wired into **1 connected 5,597-edge knowledge graph**, ranked by the **0thernes Composite Severity Score (`CSS`)** and **Composite Titan Index**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline Hybrid BM25+Graph RAG CLI (`96.0% MRR@5`) & 7-tool MCP stdio server**, a **Karpathy-style AutoResearch harness (`autoresearch/`)**, **FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo metadata**, **12 publication-grade charts**, **12 export formats**, and **58 Pure Lean 4.35.0 machine-checked formal invariants**.
+> **1,900 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)** — wired into a **biconnected 5,808-edge knowledge graph (`0` articulation points, `0` bridges, `0` dangling links)**, ranked by the **0thernes Composite Severity Score (`CSS`)**, **Composite Titan Index**, **Hardness–Tractability Gradient (`D − T`)**, **Dual-Ranking Margin**, and **Epistemic Spectrum**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline Hybrid BM25+PageRank RAG CLI (`100.0% MRR@5`, `25/25` top-1)**, a **dual-framed 9-tool MCP stdio server**, a **Karpathy-style AutoResearch harness (`AQS = 97.99` + Track B Antihydra `BB(6)` pilot)**, **FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo CLI metadata**, **15 publication-grade charts**, **14-sheet XLSX + 12 export formats**, and **72 Pure Lean 4.35.0 machine-checked formal invariants**.
 
 - **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(also serves [`llms.txt`](https://0thernes.github.io/unsolved-problems-mega-atlas/llms.txt), [`croissant.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json) & [`ro-crate-metadata.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json))*
 - **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`0thernes LLC`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
 - **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
 - **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
+- **Forensic Audit & Preservation Dossiers:** [`docs/FORENSIC_AUDIT_V2.3.md`](docs/FORENSIC_AUDIT_V2.3.md) · [`docs/PRESERVATION.md`](docs/PRESERVATION.md)
 
 ---
 
 ## Epistemic Honesty & Verification Boundary (Read First)
 
 > **Solo Human + Disclosed AI-Assisted Research Infrastructure:** This atlas is architected, directed, audited, and published by solo researcher **Alexander Stephen Donahue** with disclosed frontier AI assistance (see [`AUTHORS.md`](AUTHORS.md), [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md), and [`docs/DATASHEET.md`](docs/DATASHEET.md)).
-> - **What IS machine-verified:** All **58 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, 7 modules, 817 lines, zero Mathlib, zero `sorry`, zero `native_decide`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, finite graph handshaking, pairwise delta antisymmetry, and Karpathy AutoResearch anti-gaming keep/discard invariants; JSON Schema Draft 2020-12 compliance on all `1,855` records; 19-test `pytest` suite (including live MCP stdio JSON-RPC & FAIR SHA-256 parity); and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
-> - **What is NOT claimed:** This repository makes **zero claim to solve any open problem**. Quantitative rubric scores (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`, `CSS`, `Titan Index`) are **transparent, falsifiable editorial estimates** — not peer-reviewed measurements. Every record carries an explicit `verification_flag`, and **all 12 Fall/Nov 2026 AI proof claims remain officially unretired** pending independent fidelity auditing and peer consensus.
+> - **What IS machine-verified:** All **72 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, 8 modules, 1,008 lines, zero Mathlib, zero `sorry`, zero `native_decide`, zero `Classical.choice`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, finite graph handshaking, pairwise delta antisymmetry, Karpathy AutoResearch anti-gaming keep/discard gates, and multi-layer substrate/gradient/margin invariants; JSON Schema Draft 2020-12 compliance across all `1,900 × 48` fields; 25-test `pytest` suite (including dual-framed 9-tool MCP stdio JSON-RPC & FAIR SHA-256 parity); biconnected graph topology (`0` articulation points, `0` bridges, `0` dangling links); and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
+> - **What is NOT claimed:** This repository makes **zero claim to solve any open problem** (including Track B's finite Antihydra `BB(6)` probe in `research/runs/LOG-002_antihydra_pilot/`). Quantitative rubric scores (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`, `CSS`, `Titan Index`, gradients, spectrum) are **transparent, falsifiable editorial estimates** — not peer-reviewed measurements. Every record carries an explicit `verification_flag`, and **all 12 Fall/Nov 2026 AI proof claims remain officially unretired** pending independent fidelity auditing and peer consensus.
 
 ---
 
@@ -30,27 +31,30 @@ Active mathematical registries already track well over 1,100–2,000+ open probl
 
 ---
 
-## Key Metrics & Eight Macro-Pillars (`N = 1,855`)
+## Key Metrics & Eight Macro-Pillars (`N = 1,900`)
 
 | Macro-Pillar | Problems | Share | Superdomains | Mean CSS (0–100) | Mean Titan (0–10) | Mean Diff | Mean Tract (2050) | Mean Impact | Nov 2026 AI Claims |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **Pure Mathematics** | 515 | 27.8% | 5 | 59.82 | 6.53 | 8.88 | 4.95 | 5.44 | 9 |
-| **Life, Mind & Medicine** | 205 | 11.1% | 3 | 55.93 | 7.83 | 7.58 | 8.36 | 8.60 | 0 |
-| **Fundamental Physics & Cosmos** | 198 | 10.7% | 3 | 56.44 | 7.39 | 8.11 | 7.18 | 7.32 | 1 |
-| **AI, Quantum Tech, Hardware & Systems** | 197 | 10.6% | 4 | 55.55 | 7.93 | 7.99 | 7.96 | 8.59 | 0 |
-| **Engineering, Design, Earth & Energy** | 197 | 10.6% | 4 | 54.50 | 7.67 | 7.38 | 8.47 | 8.36 | 0 |
-| **Matter, Materials & Chemistry** | 191 | 10.3% | 3 | 55.43 | 7.51 | 7.77 | 8.06 | 7.82 | 0 |
-| **Logic, Statistics & Computing** | 182 | 9.8% | 3 | 57.27 | 7.07 | 8.49 | 6.26 | 6.41 | 2 |
-| **Philosophy, Social & Humanities** | 170 | 9.2% | 3 | 59.90 | 7.71 | 7.75 | 5.73 | 7.84 | 0 |
-| **Unified Mega-Atlas Total / Mean** | **1,855** | **100.0%** | **28** | **57.32** | **7.30** | **8.14** | **6.78** | **7.19** | **12** |
+| **Pure Mathematics** | 514 | 27.1% | 5 | 59.90 | 6.53 | 8.87 | 4.96 | 5.44 | 9 |
+| **Life, Mind & Medicine** | 224 | 11.8% | 3 | 55.97 | 7.81 | 7.58 | 8.33 | 8.55 | 0 |
+| **AI, Quantum Tech, Hardware & Systems** | 203 | 10.7% | 4 | 55.54 | 7.94 | 7.99 | 7.96 | 8.60 | 0 |
+| **Engineering, Design, Earth & Energy** | 202 | 10.6% | 4 | 54.64 | 7.68 | 7.39 | 8.47 | 8.38 | 0 |
+| **Fundamental Physics & Cosmos** | 201 | 10.6% | 3 | 56.47 | 7.40 | 8.11 | 7.18 | 7.33 | 1 |
+| **Matter, Materials & Chemistry** | 196 | 10.3% | 3 | 55.46 | 7.51 | 7.79 | 8.06 | 7.82 | 0 |
+| **Logic, Statistics & Computing** | 185 | 9.7% | 3 | 57.27 | 7.09 | 8.48 | 6.31 | 6.48 | 2 |
+| **Philosophy, Social & Humanities** | 175 | 9.2% | 3 | 59.90 | 7.71 | 7.75 | 5.77 | 7.83 | 0 |
+| **Unified Mega-Atlas Total / Mean** | **1,900** | **100.0%** | **28** | **57.33** | **7.31** | **8.13** | **6.81** | **7.22** | **12** |
 
-- **Connectome:** **5,597 undirected coupling edges** · **1 single connected component** (`1,855/1,855`) · **34.6%** cross-superdomain (`1,934`) · **17.6%** cross-pillar (`983`) · **11** modularity communities · average degree `6.03`.
-- **Epistemic Flags:** `primary-registry-indexed` (`687`) · `ai-assisted-editorial-synthesis` (`1,145`) · `ai-claim-under-audit-nov2026` (`12`) · `disputed-human-claim` (`11`).
-- **Top Keystone Domino Hubs:** `FLD-001` Fluid Turbulence (`deg=71`, `51` XP) · `CS-001` P vs. NP (`deg=62`, `40` XP) · `GR-001` Quantum Gravity (`deg=53`, `23` XP) · `GEO-002` Climate Sensitivity (`deg=50`, `29` XP) · `STAT-001` 3D Percolation (`deg=39`, `31` XP).
+- **Biconnected Connectome:** **5,808 undirected coupling edges** · **1 single connected component** (`1,900/1,900`) · **`0` articulation points** · **`0` bridge edges** · **`0` unresolved raw links** · **35.7%** cross-superdomain (`2,076`) · **18.7%** cross-pillar (`1,084`) · **14** modularity communities · average degree `6.11`.
+- **Multi-Layer Topography (`48` Typed Columns):** **8 Substrates** × **7 Abstraction Layers (`L0–L6`)** · Mean Hardness–Tractability Gradient `D − T = +1.32` · Mean CSS−Titan×10 Margin `-15.76` · Mean Bridge Ratio `0.131` · Mean Adjacent Pillars `0.61` · Margin Roles: `Intra-Pillar Bridge` (`1,108`), `Core Specialist` (`485`), `Trans-Pillar Boundary Interface` (`239`), `Apex Multi-Pillar Keystone` (`68`, incl. `3` universal 7-pillar super-connectors).
+- **Epistemic Flags:** `ai-assisted-editorial-synthesis` (`952`) · `primary-registry-indexed` (`925`) · `ai-claim-under-audit-nov2026` (`12`) · `disputed-human-claim` (`11`).
+- **Top Keystone Domino Hubs:** `FLD-001` Fluid Turbulence (`deg=73`, `51` XP) · `CS-001` P vs. NP (`deg=67`, `42` XP) · `GR-001` Quantum Gravity (`deg=57`, `24` XP) · `GEO-002` Climate Sensitivity (`deg=53`, `31` XP) · `SYS-001` Nonlinear Optimal Control (`deg=45`, `31` XP).
 
 ![28-Superdomain Coverage](outputs/charts/01_superdomain_landscape.png)
 
-![8-Pillar Radial Connectome](outputs/charts/07_keystone_knowledge_graph.png)
+![8 Substrates x 7 Abstraction Layers](outputs/charts/13_substrates_and_abstraction_layers.png)
+
+![Gradients, Margins & Cross-Pillar Adjacents](outputs/charts/14_gradients_margins_and_adjacents.png)
 
 ---
 
@@ -58,44 +62,46 @@ Active mathematical registries already track well over 1,100–2,000+ open probl
 
 | Artifact | Path | Purpose |
 |---|---|---|
-| **Interactive Web Atlas** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Offline standalone web app (also live on [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/)): paginated 1,855-row catalog, 7 filters, CSS/Titan sort, Any-2 Comparator, Nov 2026 AI Audit & 12-chart zoom |
-| **Vector PDF Monograph** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Complete ~163-page publication monograph with cover, matrices, 12 embedded figures, contrasts & full 1,855-problem directory |
-| **Build White Paper** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-007`) |
+| **Interactive Web Atlas** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Offline standalone web app (also live on [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/)): paginated 1,900-row catalog, 7 filters, CSS/Titan sort, Any-2 Comparator, Substrate/Layer/Margin matrices, Nov 2026 AI Audit & 15-chart zoom |
+| **Vector PDF Monograph** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Complete publication monograph with cover, multi-layer scorecards, 15 embedded figures, contrasts & full 1,900-problem directory |
+| **Build White Paper & Forensic Audit** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) · [`docs/FORENSIC_AUDIT_V2.3.md`](docs/FORENSIC_AUDIT_V2.3.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-007`) + full V2.3.0 forensic remediation dossier |
 | **Master Ranking** | [`RANKING.md`](RANKING.md) | Auto-generated Top 250 overall by `0thernes CSS`, 8 Macro-Pillar leaders & Nov 2026 AI watchlist |
-| **SQLite 3 + FTS5 DB** | [`outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`](outputs/MegaAtlas_Unsolved_Problems_V2.sqlite) | 9 normalized tables + Porter-stemmed FTS5 full-text search index powering `rag/query.py` |
-| **Excel Workbooks** | [`MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) · [`_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | 13-sheet live-formula XLSX (`COUNTIF`, `AVERAGEIF`, conditional color scales, native charts) + 8-sheet BIFF `.xls` |
-| **Tabular & Streaming** | [`.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) · [`.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) · [`.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) · [`.jsonl`](outputs/MegaAtlas_Unsolved_Problems_V2.jsonl) | 1,855 × 40 UTF-8 datasets & streaming JSONL validated against [`schema/problem.schema.json`](schema/problem.schema.json) |
+| **SQLite 3 + FTS5 DB** | [`outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`](outputs/MegaAtlas_Unsolved_Problems_V2.sqlite) | 10 normalized tables (incl. `substrate_summary`) + Porter-stemmed FTS5 full-text search index powering `rag/query.py` |
+| **Excel Workbooks** | [`MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) · [`_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | 14-sheet live-formula XLSX (incl. `Substrates_Layers_Margins`, conditional color scales, native charts) + 8-sheet BIFF `.xls` |
+| **Tabular & Streaming** | [`.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) · [`.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) · [`.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) · [`.jsonl`](outputs/MegaAtlas_Unsolved_Problems_V2.jsonl) | 1,900 × 48 UTF-8 datasets & streaming JSONL validated against [`schema/problem.schema.json`](schema/problem.schema.json) |
 | **Markdown & Plain Text** | [`.md`](outputs/MegaAtlas_Unsolved_Problems_V2.md) · [`.txt`](outputs/MegaAtlas_Unsolved_Problems_V2.txt) | Full text/Mermaid mega-atlas and fixed-width ASCII reference |
-| **12 Vector + Raster Charts** | [`outputs/charts/`](outputs/charts/) | 12 figures × 2 formats (`220 DPI PNG` + `Vector SVG` = 24 files) |
-| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 7 modules, 817 lines, **58 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
-| **Karpathy AutoResearch** | [`autoresearch/program.md`](autoresearch/program.md) · [`evaluate.py`](autoresearch/evaluate.py) · [`results.tsv`](autoresearch/results.tsv) | Autonomous research loop, immutable 5-axis AQS + 25-query RAG oracle, Planner–Worker–Verifier [`whiteboard.md`](autoresearch/whiteboard.md) & [`OSS_STACK.md`](autoresearch/OSS_STACK.md) |
-| **MCP Stdio Server** | [`mcp_server/server.py`](mcp_server/server.py) · [`mcp_server/README.md`](mcp_server/README.md) | Zero-dependency JSON-RPC 2.0 server exposing 7 live tools to Claude Code, Antigravity, Cursor & Gemini CLI |
-| **FAIR & AI Discovery** | [`.zenodo.json`](.zenodo.json) · [`croissant.json`](croissant.json) · [`ro-crate-metadata.json`](ro-crate-metadata.json) · [`docs/DATASHEET.md`](docs/DATASHEET.md) | Zenodo Auto-DOI, MLCommons Croissant 1.0, W3C RO-Crate 1.1, Gebru Datasheet, [`AGENTS.md`](AGENTS.md), [`llms.txt`](llms.txt) & [`SECURITY.md`](SECURITY.md) |
+| **15 Vector + Raster Charts** | [`outputs/charts/`](outputs/charts/) | 15 figures × 2 formats (`220 DPI PNG` + `Vector SVG` = 30 files) |
+| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 8 modules, 1,008 lines, **72 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
+| **Karpathy AutoResearch & Track B Pilot** | [`autoresearch/`](autoresearch/program.md) · [`research/runs/LOG-002_antihydra_pilot/`](research/runs/LOG-002_antihydra_pilot/README.md) | Autonomous loop (`AQS = 97.99`, `100% MRR@5`), immutable `evaluate.py`, empirical `results.tsv`, `whiteboard.md` & Track B Antihydra (`BB(6)`) pilot |
+| **MCP Stdio Server** | [`mcp_server/server.py`](mcp_server/server.py) · [`mcp_server/README.md`](mcp_server/README.md) | Zero-dependency dual-framed (NDJSON + `Content-Length`) JSON-RPC 2.0 server exposing **9 live tools** to Claude Code, Antigravity, Cursor & Gemini CLI |
+| **FAIR, Zenodo & Preservation** | [`.zenodo.json`](.zenodo.json) · [`croissant.json`](croissant.json) · [`ro-crate-metadata.json`](ro-crate-metadata.json) · [`scripts/publish_zenodo.py`](scripts/publish_zenodo.py) · [`docs/PRESERVATION.md`](docs/PRESERVATION.md) | Zenodo CLI/Auto-DOI, MLCommons Croissant 1.0, W3C RO-Crate 1.1, Gebru Datasheet, Software Heritage preservation guide, [`AGENTS.md`](AGENTS.md), [`llms.txt`](llms.txt) & [`SECURITY.md`](SECURITY.md) |
 | **Governance & Integrity** | [`VERIFICATION.md`](VERIFICATION.md) · [`EVIDENCE.md`](EVIDENCE.md) · [`PHILOSOPHY.md`](PHILOSOPHY.md) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`CHECKSUMS.sha256`](CHECKSUMS.sha256) | Complete epistemic boundaries, cryptographic hashes & academic review protocols |
 
 ---
 
-## Quickstart: Offline RAG, MCP Server, AutoResearch & Full Rebuild
+## Quickstart: Offline RAG, 9-Tool MCP Server, AutoResearch & Full Rebuild
 
 ```bash
 # Install Python dependencies
 pip install -r requirements.txt
 
-# 1. Query the zero-API Hybrid BM25 + Graph-Authority RAG CLI (96.0% MRR@5, <30 ms)
+# 1. Query the zero-API Hybrid BM25 + PageRank RAG CLI (100.0% MRR@5, <30 ms)
 python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
 python rag/query.py --compare NT-001 CS-001
 python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
 
-# 2. Launch the 7-tool Model Context Protocol (MCP) stdio server for AI agents
+# 2. Launch the 9-tool dual-framed Model Context Protocol (MCP) stdio server
 python mcp_server/server.py
 
-# 3. Run the immutable Karpathy-style AutoResearch evaluation oracle
+# 3. Run the immutable Karpathy-style AutoResearch evaluation oracle & forensic audit
 python autoresearch/evaluate.py --verify-gates
+python scripts/forensic_audit.py
+python scripts/publish_zenodo.py --dry-run
 
-# 4. Verify all 58 Pure Lean 4.35.0 formal invariants & print axioms
+# 4. Verify all 72 Pure Lean 4.35.0 formal invariants & print axioms
 cd lean && lake build && cd ..
 
-# 5. Run the full automated pytest suite & cryptographic SHA-256 auditor
+# 5. Run the full 25-test pytest suite & cryptographic SHA-256 auditor
 pytest -v
 python scripts/audit_atlas.py --check-lean
 ```
@@ -114,14 +120,14 @@ To rebuild every chart, dataset, SQLite DB, `RANKING.md`, FAIR metadata, HTML, P
 ```bibtex
 @dataset{donahue2026megaatlas,
   author       = {Donahue, Alexander Stephen},
-  title        = {Unsolved Problems Mega-Atlas (V2.2.0): Cross-Disciplinary Taxonomy,
-                  0thernes CSS Ranking, 1,855-Node Connectome, Offline FTS5 RAG \& MCP Server,
-                  Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit,
-                  and Pure Lean 4.35.0 Formal Invariants},
+  title        = {Unsolved Problems Mega-Atlas (V2.3.0): Multi-Layer Substrate/Gradient/Margin
+                  Taxonomy, 1,900-Node Biconnected Connectome, 100\% MRR@5 Hybrid RAG \& 9-Tool MCP
+                  Server, Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit,
+                  and 72 Pure Lean 4.35.0 Formal Invariants},
   year         = {2026},
   month        = nov,
   publisher    = {0thernes LLC},
-  version      = {2.2.0},
+  version      = {2.3.0},
   url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
   note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-007}
 }

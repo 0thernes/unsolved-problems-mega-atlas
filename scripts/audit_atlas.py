@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.1.0, 0thernes LLC).
+Unsolved Problems Mega-Atlas (V2.3.0, 0thernes LLC).
 
 Checks:
-  1. Source dataset schema, strict deduplication, 8 Macro-Pillars, 28 Superdomains,
-     88 Canonical Hubs, 1 connected component, Handshaking Lemma, and CSS/Titan bounds.
-  2. JSON Schema Draft 2020-12 compliance on all 1,855 records (`schema/problem.schema.json`).
-  3. Cross-format parity across CSV, TSV, JSON, JSONL, SQLite (+FTS5), 13-sheet XLSX, 8-sheet XLS.
+  1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
+     0 unresolved raw links, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers,
+     88 Canonical Hubs, 1 connected component, 0 articulation points, 0 bridges (biconnected),
+     Handshaking Lemma, and CSS/Titan/Gradient/Margin bounds.
+  2. JSON Schema Draft 2020-12 compliance on all 1,900 records (`schema/problem.schema.json`).
+  3. Cross-format parity across CSV, TSV, JSON, JSONL, SQLite (+FTS5 + substrate_summary), 14-sheet XLSX, 8-sheet XLS.
   4. Institutional identity & ORCID (`0009-0006-8168-9648`) presence across metadata/governance files.
   5. Optional Lean 4.35.0 build & zero-sorry / constructive-axiom audit (`--check-lean`).
   6. Byte-exact SHA-256 verification of all frozen artifacts against `CHECKSUMS.sha256`
@@ -60,10 +62,13 @@ def collect_checksum_targets() -> list[Path]:
         "schema/atlas.schema.json",
         "docs/WHITE_PAPER.md",
         "docs/DATASHEET.md",
+        "docs/FORENSIC_AUDIT_V2.3.md",
+        "docs/PRESERVATION.md",
         ".zenodo.json",
         "croissant.json",
         "ro-crate-metadata.json",
         "autoresearch/evaluate.py",
+        "research/runs/LOG-002_antihydra_pilot/RESULTS.json",
     ]:
         p = ROOT / rel
         if p.exists():
@@ -146,12 +151,22 @@ def main() -> None:
         errors.append(f"Missing canonical hubs: {sorted(missing_hubs)}")
     if s["connected_components"] != 1:
         errors.append(f"Graph disconnected: {s['connected_components']} components")
+    if s.get("articulation_points", 0) != 0:
+        errors.append(f"Graph has {s['articulation_points']} articulation point(s) (expected 0; biconnected)")
+    if s.get("graph_bridges", 0) != 0:
+        errors.append(f"Graph has {s['graph_bridges']} bridge edge(s) (expected 0)")
+    if s.get("unresolved_raw_links_count", 0) != 0:
+        errors.append(f"Found {s['unresolved_raw_links_count']} unresolved raw_links")
+    if df["substrate_class"].nunique() != 8:
+        errors.append(f"Substrate class count mismatch: {df['substrate_class'].nunique()} vs 8")
+    if df["abstraction_layer"].nunique() != 7:
+        errors.append(f"Abstraction layer count mismatch: {df['abstraction_layer'].nunique()} vs 7")
     if int(df["graph_degree"].sum()) != 2 * G.number_of_edges():
         errors.append("Handshaking invariant violated: sum(degree) != 2 * |E|")
     if not (s["cross_pillar_edges"] <= s["cross_superdomain_edges"] <= s["total_graph_edges"]):
         errors.append("Edge hierarchy invariant violated")
 
-    # 2. JSON Schema Draft 2020-12 check on all 1,855 records
+    # 2. JSON Schema Draft 2020-12 check on all 1,900 records
     prob_schema = json.loads((ROOT / "schema" / "problem.schema.json").read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(prob_schema)
     for rec in df.to_dict(orient="records"):
@@ -170,16 +185,19 @@ def main() -> None:
         errors.append(f"JSONL line mismatch: {len(jsonl_lines)} vs {len(df)}")
 
     wb = openpyxl.load_workbook(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.xlsx", read_only=True)
-    if len(wb.sheetnames) != 13:
-        errors.append(f"XLSX sheet count mismatch: {len(wb.sheetnames)} vs 13")
+    if len(wb.sheetnames) != 14:
+        errors.append(f"XLSX sheet count mismatch: {len(wb.sheetnames)} vs 14")
     wb.close()
 
     conn = sqlite3.connect(str(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"))
     try:
         sql_cnt = conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0]
+        sub_cnt = conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0]
         fts_cnt = conn.execute("SELECT COUNT(*) FROM problems_fts WHERE problems_fts MATCH '\"Riemann\"'").fetchone()[0]
         if sql_cnt != len(df):
             errors.append(f"SQLite row mismatch: {sql_cnt} vs {len(df)}")
+        if sub_cnt != 8:
+            errors.append(f"SQLite substrate_summary row mismatch: {sub_cnt} vs 8")
         if fts_cnt < 1:
             errors.append("SQLite FTS5 query returned 0 matches for 'Riemann'")
     finally:
@@ -200,6 +218,8 @@ def main() -> None:
         "EVIDENCE.md",
         "RANKING.md",
         "docs/DATASHEET.md",
+        "docs/FORENSIC_AUDIT_V2.3.md",
+        "docs/PRESERVATION.md",
     ]:
         p = ROOT / rel
         if not p.exists():

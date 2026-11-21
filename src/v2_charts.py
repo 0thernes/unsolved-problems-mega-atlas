@@ -1,4 +1,4 @@
-"""V2.0 Mega-Atlas: Generate 12 Publication-Grade Analytical Charts (PNG + Vector SVG) for 1,600+ Problems across 8 Macro-Pillars & 28 Superdomains."""
+"""V2.3.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG) for 1,900 Problems across 8 Macro-Pillars, 28 Superdomains, 8 Substrates & 7 Abstraction Layers."""
 
 import os
 import textwrap
@@ -13,7 +13,7 @@ import matplotlib.patches as patches
 from matplotlib.gridspec import GridSpec
 import seaborn as sns
 
-from v2_loader import load_v2_master
+from v2_loader import load_v2_master, SUBSTRATE_CLASSES, ABSTRACTION_LAYERS
 from v2_schema import MACRO_PILLARS
 
 OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "outputs", "charts")
@@ -706,8 +706,221 @@ def chart_12_top25_keystone_dominoes(data):
     save_fig(fig, "12_top25_keystone_dominoes")
 
 
+def chart_13_substrates_and_layers(data):
+    """Figure 13 · 8 Substrates × 7 Abstraction Layers (L0–L6) & Substrate Hardness–Tractability Profile."""
+    df_sub = data["df_substrates"].set_index("Substrate_Class").reindex(SUBSTRATE_CLASSES).reset_index()
+    ct = data["ct_substrate_layer"].drop(index="Total", columns="Total", errors="ignore")
+    ct = ct.reindex(index=SUBSTRATE_CLASSES, columns=ABSTRACTION_LAYERS, fill_value=0)
+    n_tot = data["summary_stats"]["total_problems"]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(17.8, 7.8), gridspec_kw={"width_ratios": [1.12, 1.05]})
+
+    short_sub = [s.replace(" / ", "\n/ ") for s in ct.index]
+    short_lay = [c.split(": ")[0] + "\n" + c.split(": ")[1].split(",")[0] for c in ct.columns]
+    sns.heatmap(
+        ct.values, annot=True, fmt="d", cmap="YlGnBu", linewidths=0.7, linecolor="white",
+        xticklabels=short_lay, yticklabels=short_sub, ax=ax1, cbar_kws={"label": "Problem Count"}
+    )
+    ax1.set_title(f"A. 8 Substrates × 7 Abstraction Layers Matrix (N = {n_tot:,})", fontsize=12.4, fontweight="bold", pad=10, loc="left")
+    ax1.tick_params(axis="x", labelsize=8.4)
+    ax1.tick_params(axis="y", labelsize=8.4, rotation=0)
+
+    y = np.arange(len(df_sub))
+    ax2.barh(y + 0.22, df_sub["Mean_Difficulty"], height=0.22, color="#DC2626", alpha=0.88, label="Mean Difficulty (1–10)")
+    ax2.barh(y, df_sub["Mean_Tractability_2050"], height=0.22, color="#10B981", alpha=0.88, label="Mean Tractability 2050 (1–10)")
+    ax2.barh(y - 0.22, df_sub["Mean_CSS"] / 10.0, height=0.22, color="#1D4ED8", alpha=0.88, label="Mean 0thernes CSS / 10")
+    for idx, r in enumerate(df_sub.itertuples()):
+        ax2.text(max(r.Mean_Difficulty, r.Mean_Tractability_2050, r.Mean_CSS / 10.0) + 0.16, idx,
+                 f"Δ(D−T)={r.Mean_Gradient_D_minus_T:+.2f} | Adj={r.Mean_Adjacent_Pillars:.2f}",
+                 va="center", fontsize=8.0, color="#334155", fontweight="bold")
+    ax2.set_yticks(y)
+    ax2.set_yticklabels([s.split(" / ")[0] + " (" + str(int(c)) + ")" for s, c in zip(df_sub["Substrate_Class"], df_sub["Problem_Count"])], fontsize=8.5, fontweight="bold")
+    ax2.invert_yaxis()
+    ax2.set_xlim(0, 14.2)
+    ax2.set_xlabel("Score (0–10 Scale) & Hardness–Tractability Gradient Annotation", fontweight="bold")
+    ax2.set_title("B. Substrate Severity, Tractability & Cross-Pillar Adjacency", fontsize=12.4, fontweight="bold", pad=10, loc="left")
+    ax2.legend(loc="upper center", bbox_to_anchor=(0.48, -0.13), ncol=3, fontsize=8.1, frameon=True, facecolor="white")
+    ax2.grid(axis="x", linestyle="--", alpha=0.6)
+    ax2.set_axisbelow(True)
+
+    fig.suptitle("Multi-Layer Reality Stack: 8 Physical/Formal Substrates × 7 Abstraction Layers (V2.3.0)", fontsize=14.6, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    save_fig(fig, "13_substrates_and_abstraction_layers")
+
+
+def chart_14_gradients_margins_adjacents(data):
+    """Figure 14 · Gradients (D-T), Margins (CSS vs Titan×10), Trans-Pillar Bridge Ratio & Adjacent Pillar Reach."""
+    df = data["df"]
+    fig, axes = plt.subplots(2, 2, figsize=(17.4, 11.6))
+
+    # Panel A: Hardness-Tractability Gradient Distribution by Macro-Pillar
+    ax = axes[0, 0]
+    order = df.groupby("macro_pillar")["hardness_tractability_gradient"].mean().sort_values(ascending=False).index.tolist()
+    sns.boxplot(data=df, y="macro_pillar", x="hardness_tractability_gradient", order=order, hue="macro_pillar",
+                palette=PILLAR_COLORS, legend=False, width=0.62, fliersize=2.2, ax=ax)
+    ax.axvline(0, color="#0F172A", linestyle="--", linewidth=1.2, alpha=0.8)
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels([SHORT_PILLAR[p].replace("\n", " ") for p in order], fontsize=8.4, fontweight="bold")
+    ax.set_xlabel("Hardness − Tractability Gradient (D − T ∈ [-9, +9])", fontweight="bold")
+    ax.set_ylabel("")
+    ax.set_title("A. Hardness–Tractability Chasm Gradient (D − T) by Macro-Pillar", fontsize=11.6, fontweight="bold", loc="left")
+    ax.grid(axis="x", linestyle="--", alpha=0.55)
+
+    # Panel B: CSS vs Titan×10 Margin Scatter
+    ax = axes[0, 1]
+    for pil in MACRO_PILLARS:
+        sub = df[df["macro_pillar"] == pil]
+        ax.scatter(sub["titan_index"] * 10.0, sub["css_score"], s=14 + sub["graph_degree"] * 1.1,
+                   alpha=0.52, color=PILLAR_COLORS[pil], edgecolors="white", linewidth=0.25, label=SHORT_PILLAR[pil].replace("\n", " "))
+    ax.plot([20, 100], [20, 100], "k--", linewidth=1.1, alpha=0.65, label="Parity Line (CSS = Titan×10)")
+    ann_offsets = {
+        "PHIL-004": (-50, 5),
+        "PHIL-003": (-58, 4),
+        "GR-001": (8, 12),
+        "CS-001": (8, -6),
+        "ANL-001": (-58, 12),
+        "NT-001": (-62, -6),
+        "FLD-001": (-48, -18),
+        "SUB-037": (-56, -4),
+    }
+    for pid, (dx, dy) in ann_offsets.items():
+        r = data["id_map"].get(pid)
+        if r:
+            ax.annotate(
+                pid, (r["titan_index"] * 10.0, r["css_score"]), fontsize=7.6, fontweight="bold",
+                xytext=(dx, dy), textcoords="offset points", color="#0F172A",
+                bbox=dict(boxstyle="round,pad=0.16", fc="white", ec="#CBD5E1", alpha=0.88),
+                arrowprops=dict(arrowstyle="-", color="#64748B", lw=0.75),
+            )
+    ax.set_xlim(22, 111)
+    ax.set_ylim(18, 100)
+    ax.set_xlabel("Composite Titan Index × 10 (Impact + Cross-Disciplinary Leverage)", fontweight="bold")
+    ax.set_ylabel("0thernes Composite Severity Score (CSS, 0–100)", fontweight="bold")
+    ax.set_title("B. Dual-Ranking Margin: 0thernes CSS vs. Titan Index × 10", fontsize=11.6, fontweight="bold", loc="left")
+    ax.legend(loc="lower right", fontsize=7.0, ncol=2, frameon=True, facecolor="white")
+    ax.grid(True, linestyle="--", alpha=0.5)
+
+    # Panel C: Margin Role Composition per Macro-Pillar (100% stacked)
+    ax = axes[1, 0]
+    ct_m = data["ct_margin_pillar"].drop(index="Total", columns="Total", errors="ignore")
+    role_order = [
+        "Core Intra-Pillar Specialist",
+        "Intra-Pillar Bridge (Cross-Superdomain)",
+        "Trans-Pillar Boundary Interface",
+        "Apex Multi-Pillar Keystone (3+ Adjacent Pillars)",
+    ]
+    role_cols = ["#94A3B8", "#38BDF8", "#F59E0B", "#DC2626"]
+    ct_m = ct_m.reindex(role_order).fillna(0)
+    pct = ct_m.div(ct_m.sum(axis=0), axis=1) * 100.0
+    x = np.arange(len(MACRO_PILLARS))
+    bot = np.zeros(len(MACRO_PILLARS))
+    for role, col in zip(role_order, role_cols):
+        vals = [pct.loc[role, p] if p in pct.columns else 0.0 for p in MACRO_PILLARS]
+        ax.bar(x, vals, bottom=bot, color=col, width=0.66, edgecolor="white", linewidth=0.5, label=role)
+        bot += np.array(vals)
+    ax.set_xticks(x)
+    ax.set_xticklabels([SHORT_PILLAR[p] for p in MACRO_PILLARS], fontsize=7.8, fontweight="bold")
+    ax.set_ylabel("Share of Pillar Problems (%)", fontweight="bold")
+    ax.set_ylim(0, 108)
+    ax.set_title("C. Disciplinary Core vs. Trans-Pillar Margin & Keystone Roles", fontsize=11.6, fontweight="bold", loc="left")
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.16), ncol=2, fontsize=7.6, frameon=True, facecolor="white")
+    ax.grid(axis="y", linestyle="--", alpha=0.55)
+
+    # Panel D: Adjacent Distinct Macro-Pillars Reach (0..7)
+    ax = axes[1, 1]
+    adj_vc = df["adjacent_pillars_count"].value_counts().reindex(range(8), fill_value=0)
+    bars = ax.bar(adj_vc.index, adj_vc.values, color=["#64748B", "#0284C7", "#0EA5E9", "#F59E0B", "#EA580C", "#DC2626", "#991B1B", "#4C1D95"],
+                  edgecolor="white", linewidth=0.7)
+    for b in bars:
+        h = int(b.get_height())
+        if h > 0:
+            ax.text(b.get_x() + b.get_width() / 2, h + 15, f"{h:,}", ha="center", va="bottom", fontsize=8.4, fontweight="bold")
+    ax.set_xticks(range(8))
+    ax.set_xticklabels([f"{k}\nAdj." for k in range(8)], fontsize=8.4, fontweight="bold")
+    ax.set_ylabel("Number of Problems", fontweight="bold")
+    ax.set_ylim(0, adj_vc.max() * 1.15)
+    ax.set_title("D. Cross-Pillar Adjacency Reach (Distinct Neighboring Pillars ∈ [0, 7])", fontsize=11.6, fontweight="bold", loc="left")
+    ax.grid(axis="y", linestyle="--", alpha=0.55)
+
+    fig.suptitle("Gradients, Margins, Boundaries & Cross-Pillar Adjacencies Across All 1,900 Open Problems", fontsize=14.6, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    save_fig(fig, "14_gradients_margins_and_adjacents")
+
+
+def chart_15_spectrum_and_autoresearch(data):
+    """Figure 15 · Continuous Epistemic Spectrum (0–100) & Karpathy AutoResearch Empirical Ratchet Curve."""
+    df = data["df"]
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(17.4, 7.0), gridspec_kw={"width_ratios": [1.08, 1.02]})
+
+    # Panel A: Epistemic Spectrum Hist across 4 Margin Roles
+    roles = [
+        ("Core Intra-Pillar Specialist", "#64748B"),
+        ("Intra-Pillar Bridge (Cross-Superdomain)", "#0284C7"),
+        ("Trans-Pillar Boundary Interface", "#F59E0B"),
+        ("Apex Multi-Pillar Keystone (3+ Adjacent Pillars)", "#DC2626"),
+    ]
+    bins = np.linspace(0, 100, 21)
+    bottom = np.zeros(len(bins) - 1)
+    centers = 0.5 * (bins[:-1] + bins[1:])
+    for rname, col in roles:
+        sub = df[df["margin_role"] == rname]["epistemic_spectrum_score"]
+        counts, _ = np.histogram(sub, bins=bins)
+        ax1.bar(centers, counts, width=4.4, bottom=bottom, color=col, alpha=0.88, edgecolor="white", linewidth=0.5, label=f"{rname} (n={len(sub)})")
+        bottom += counts
+    ax1.set_xlabel("Epistemic Spectrum Coordinate (0 = Pure Formal-Deductive  <--->  100 = Normative-Philosophical)", fontweight="bold")
+    ax1.set_ylabel("Problem Count", fontweight="bold")
+    ax1.set_title("A. Continuous Epistemic Spectrum Stratified by Structural Margin Role", fontsize=11.8, fontweight="bold", loc="left")
+    ax1.legend(loc="upper right", fontsize=7.8, frameon=True, facecolor="white")
+    ax1.grid(axis="y", linestyle="--", alpha=0.55)
+
+    # Panel B: Live Karpathy AutoResearch Empirical Ratchet from autoresearch/results.tsv
+    tsv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "autoresearch", "results.tsv")
+    if os.path.exists(tsv_path):
+        rdf = pd.read_csv(tsv_path, sep="\t")
+        xs = np.arange(len(rdf))
+        ax2.plot(xs, rdf["aqs_score"], marker="o", linewidth=2.4, markersize=8, color="#1D4ED8", label="Atlas Quality Score (AQS, 0–100)")
+        ax2.plot(xs, rdf["rag_mrr5"], marker="s", linewidth=2.0, linestyle="--", markersize=7, color="#059669", label="25-Query Gold RAG MRR@5 (%)")
+        offsets = {0: (0, 10), 1: (0, -28), 2: (-18, 12), 3: (24, -26), 4: (0, -28)}
+        for idx, row in rdf.iterrows():
+            st = str(row["status"])
+            c = "#DC2626" if st == "discard" else ("#059669" if st == "keep" else "#64748B")
+            ax2.scatter([idx], [row["aqs_score"]], s=105, color=c, zorder=5, edgecolors="white", linewidth=1.2)
+            dx, dy = offsets.get(idx, (0, 10))
+            ax2.annotate(f"{row['aqs_score']:.2f}\n({st})", (idx, row["aqs_score"]),
+                         xytext=(dx, dy), textcoords="offset points",
+                         ha="center", fontsize=7.8, fontweight="bold", color=c,
+                         bbox=dict(boxstyle="round,pad=0.14", fc="white", ec="none", alpha=0.82))
+            if idx == len(rdf) - 1:
+                ax2.annotate(f"MRR@5: {row['rag_mrr5']:.0f}% ({row['rag_top1']})", (idx, row["rag_mrr5"]),
+                             xytext=(-32, 12), textcoords="offset points",
+                             ha="center", fontsize=7.8, fontweight="bold", color="#059669",
+                             bbox=dict(boxstyle="round,pad=0.20", fc="#ECFDF5", ec="#10B981"))
+        clean_labels = []
+        for d in rdf["description"]:
+            head = str(d).split(":")[0].strip()
+            if "baseline" in head.lower():
+                clean_labels.append("v2.1.0\nBaseline")
+            elif "(" in head:
+                a, b = head.split("(", 1)
+                clean_labels.append(f"{a.strip()}\n({b.strip()}")
+            else:
+                clean_labels.append(head)
+        ax2.set_xticks(xs)
+        ax2.set_xticklabels(clean_labels, fontsize=8.1, fontweight="bold")
+        ax2.set_xlim(-0.45, len(rdf) - 0.55)
+    ax2.set_ylim(71, 108)
+    ax2.set_ylabel("Immutable Evaluator Score (0–100)", fontweight="bold")
+    ax2.set_title("B. Karpathy AutoResearch Empirical Ratchet (autoresearch/results.tsv)", fontsize=11.8, fontweight="bold", loc="left")
+    ax2.legend(loc="lower right", fontsize=8.2, frameon=True, facecolor="white")
+    ax2.grid(True, linestyle="--", alpha=0.55)
+
+    fig.suptitle("Epistemic Spectrum Topography & Autonomous Research Verification Trajectory (0thernes LLC)", fontsize=14.4, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    save_fig(fig, "15_epistemic_spectrum_and_autoresearch")
+
+
 def main():
-    print("Loading V2.0 Mega-Atlas for 12 publication-grade charts...")
+    print("Loading V2.3.0 Mega-Atlas for 15 publication-grade charts...")
     data = load_v2_master()
     chart_01_superdomain_landscape(data)
     chart_02_strategic_quadrant(data)
@@ -721,7 +934,10 @@ def main():
     chart_10_correlations_and_benchmarks(data)
     chart_11_nov2026_status_and_registries(data)
     chart_12_top25_keystone_dominoes(data)
-    print("All 12 V2.0 charts (24 files: PNG + SVG) generated!")
+    chart_13_substrates_and_layers(data)
+    chart_14_gradients_margins_adjacents(data)
+    chart_15_spectrum_and_autoresearch(data)
+    print("All 15 V2.3.0 charts (30 files: PNG + SVG) generated!")
 
 
 if __name__ == "__main__":

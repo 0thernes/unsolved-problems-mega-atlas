@@ -1,6 +1,6 @@
 # AGENTS.md — AI Coding & Research Agent Onboarding Contract
 
-> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas`**.
+> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas` (`v2.3.0`)**.
 
 ## 1. Canonical Identity & Attribution (MANDATORY)
 
@@ -12,25 +12,28 @@
 
 ## 2. Non-Negotiable Epistemic & Verification Rules
 
-1. **Zero Proof Inflation:** Never claim to prove, solve, or retire any of the 1,855 open problems. All 12 Fall/Nov 2026 AI proof-claim targets (`verification_flag = "ai-claim-under-audit-nov2026"`) MUST stay explicitly unretired pending independent formal-statement fidelity and peer consensus.
-2. **Pure Lean 4.35.0 Hygiene (`lean/`):** Zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero custom `axiom` declarations. Every theorem must be listed in `lean/MegaAtlasProofs/VerifyAxioms.lean` and depend strictly on `[propext, Quot.sound]` or empty.
+1. **Zero Proof Inflation:** Never claim to prove, solve, or retire any of the 1,900 open problems. All 12 Fall/Nov 2026 AI proof-claim targets (`verification_flag = "ai-claim-under-audit-nov2026"`) MUST stay explicitly unretired pending independent formal-statement fidelity and peer consensus. Track B empirical probes (e.g., `research/runs/LOG-002_antihydra_pilot/`) must carry explicit non-claim boundaries.
+2. **Pure Lean 4.35.0 Hygiene (`lean/`):** Zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero custom `axiom` declarations. Every theorem (**72 audited**) must be listed in `lean/MegaAtlasProofs/VerifyAxioms.lean` and depend strictly on `[propext, Quot.sound]` or empty.
 3. **Anti-Gaming Harness Lock:** During autonomous optimization loops (`autoresearch/program.md`), **NEVER modify** `autoresearch/evaluate.py`, `schema/*.json`, `tests/test_mega_atlas.py` (never weaken assertions), or `VERIFICATION.md`.
-4. **Honest AI Disclosure:** Never fabricate DOIs, peer-review endorsements, or fake external citations. Preserve negative/discarded experiment rows in `autoresearch/results.tsv`.
-5. **ReFS Dev Drive & Windows PowerShell Safety:** When running on Windows in bracketed paths, always use `-LiteralPath`. Keep virtual environments inside `.venv/` (gitignored).
+4. **Honest AI Disclosure & Zero Auth/PoW Bypass:** Never fabricate DOIs, peer-review endorsements, or fake external citations; never bypass CAPTCHAs or Software Heritage Anubis PoW gates. Preserve negative/discarded experiment rows in `autoresearch/results.tsv`.
+5. **Biconnected Graph Hygiene:** Any edit to `src/v2_data/m01..m11.py` must maintain `unresolved_raw_links_count == 0`, `connected_components == 1`, `articulation_points == 0`, and `graph_bridges == 0` (checked by `scripts/forensic_audit.py`).
+6. **ReFS Dev Drive & Windows PowerShell Safety:** When running on Windows in bracketed paths, always use `-LiteralPath`. Keep virtual environments inside `.venv/` (gitignored).
 
 ## 3. Built-In Agentic Tools & Fast Commands
 
 ```bash
-# Offline Hybrid BM25 + Graph-Authority RAG CLI (<30 ms, zero API keys)
+# Offline Hybrid BM25 + PageRank RAG CLI (100.0% MRR@5, <30 ms, zero API keys)
 python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
 python rag/query.py --compare NT-001 CS-001
 python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
 
-# Model Context Protocol (MCP) stdio JSON-RPC 2.0 server (7 live tools)
+# Model Context Protocol (MCP) dual-framed stdio JSON-RPC 2.0 server (9 live tools)
 python mcp_server/server.py
 
-# Immutable Karpathy-style AutoResearch Evaluator
+# Immutable Karpathy-style AutoResearch Evaluator & Forensic Multi-Layer Auditor
 python autoresearch/evaluate.py --verify-gates
+python scripts/forensic_audit.py
+python scripts/publish_zenodo.py --dry-run
 
 # Full Verification Pipeline (must pass before any commit/PR)
 cd lean && lake build && cd ..

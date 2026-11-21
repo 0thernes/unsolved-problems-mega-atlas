@@ -42,14 +42,14 @@
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Unsolved Problems Mega-Atlas",
-  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.2.0",
-  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,855 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars and 28 Superdomains wired into 1 connected 5,597-edge knowledge graph, with 0thernes CSS & Titan Index rankings, per-record epistemic verification flags, Nov 20, 2026 AI proof-claim audit, SQLite FTS5 RAG/MCP server, Karpathy-style AutoResearch harness, and 58 Pure Lean 4.35.0 formal formula/graph invariants.",
-  "version": "2.2.0",
+  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.3.0",
+  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 20, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 9-tool MCP server, Karpathy-style AutoResearch harness, and 72 Pure Lean 4.35.0 formal invariants.",
+  "version": "2.3.0",
   "datePublished": "2026-11-21",
   "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
   "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.2.0). 0thernes LLC. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.3.0). 0thernes LLC. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
   "creator": {
     "@type": "sc:Person",
     "name": "Alexander Stephen Donahue",
@@ -80,21 +80,21 @@
       "@type": "cr:FileObject",
       "@id": "mega-atlas-csv",
       "name": "MegaAtlas_Unsolved_Problems_V2.csv",
-      "description": "Master tabular CSV (1,855 rows x 40 columns, UTF-8).",
+      "description": "Master tabular CSV (1,900 rows x 48 columns, UTF-8).",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv",
       "encodingFormat": "text/csv",
-      "sha256": "affcbd826e92bf8a28de03bee4330fc381dcc88f8a393d114baacdcab75c6bf6",
-      "contentSize": "3443119 B"
+      "sha256": "ccec31fbf1fac951c9841f5df322ff54d45ffce3a814e5c123e636dcd062bb63",
+      "contentSize": "3742942 B"
     },
     {
       "@type": "cr:FileObject",
       "@id": "mega-atlas-jsonl",
       "name": "MegaAtlas_Unsolved_Problems_V2.jsonl",
-      "description": "Streaming newline-delimited JSON (1,855 records) for LLM/RAG/HuggingFace ingestion.",
+      "description": "Streaming newline-delimited JSON (1,900 records) for LLM/RAG/HuggingFace ingestion.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl",
       "encodingFormat": "application/x-ndjson",
-      "sha256": "e201232a08f40bab5351318137a5cbc4eaf4648f8d7a54c638ab88c4c409eaa1",
-      "contentSize": "4970279 B"
+      "sha256": "8c70f109f2ba733db1954fac737c4f4256cda576de0399360454982956799d79",
+      "contentSize": "5684861 B"
     },
     {
       "@type": "cr:FileObject",
@@ -103,8 +103,8 @@
       "description": "Complete JSON payload including problems, 5,597 graph edges, Nov 2026 AI audit, registries, benchmarks & matrices.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json",
       "encodingFormat": "application/json",
-      "sha256": "c071e8ff237edccf113f82abd854dd5afa90ae7a94a421ba537c9662a0bf60bf",
-      "contentSize": "6003741 B"
+      "sha256": "db45f529777e97eea3def905d5d05a89a47c7e450d41d4c6372317b45f634702",
+      "contentSize": "6838981 B"
     },
     {
       "@type": "cr:FileObject",
@@ -113,8 +113,8 @@
       "description": "SQLite 3 normalized relational database with Porter-stemmed FTS5 full-text search index.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.sqlite",
       "encodingFormat": "application/vnd.sqlite3",
-      "sha256": "c1c69278e098e1f79b80281a8376bd09a251f12210f3deab64bf6125e40705a1",
-      "contentSize": "10727424 B"
+      "sha256": "a113f246fb79c906dbfed5e7d29520baac6b82f0b02ac9b879bc4da3c9497e2e",
+      "contentSize": "11866112 B"
     }
   ],
   "recordSet": [
@@ -122,7 +122,7 @@
       "@type": "cr:RecordSet",
       "@id": "problems",
       "name": "problems",
-      "description": "All 1,855 strictly deduplicated unsolved, open, and hard problems.",
+      "description": "All 1,900 strictly deduplicated unsolved, open, and hard problems.",
       "key": {
         "@id": "problems/id"
       },
@@ -684,6 +684,118 @@
             },
             "extract": {
               "column": "strategic_quadrant"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/substrate_class",
+          "name": "substrate_class",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "substrate_class"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/abstraction_layer",
+          "name": "abstraction_layer",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "abstraction_layer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/epistemic_spectrum_score",
+          "name": "epistemic_spectrum_score",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "epistemic_spectrum_score"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/hardness_tractability_gradient",
+          "name": "hardness_tractability_gradient",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "hardness_tractability_gradient"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/css_titan_margin",
+          "name": "css_titan_margin",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "css_titan_margin"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/bridge_margin_ratio",
+          "name": "bridge_margin_ratio",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "bridge_margin_ratio"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/adjacent_pillars_count",
+          "name": "adjacent_pillars_count",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "adjacent_pillars_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "problems/margin_role",
+          "name": "margin_role",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "mega-atlas-csv"
+            },
+            "extract": {
+              "column": "margin_role"
             }
           }
         }

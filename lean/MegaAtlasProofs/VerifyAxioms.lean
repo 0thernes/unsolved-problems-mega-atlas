@@ -1,6 +1,6 @@
 /-
   MegaAtlasProofs/VerifyAxioms.lean
-  Axiom-allowlist audit across ALL 58 formal theorems in MegaAtlasProofs.
+  Axiom-allowlist audit across ALL 72 formal theorems in MegaAtlasProofs.
   Every theorem must depend strictly on standard kernel axioms within
   [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
   zero Classical.choice, zero custom axioms.
@@ -11,6 +11,7 @@ import MegaAtlasProofs.Quadrants
 import MegaAtlasProofs.Taxonomy
 import MegaAtlasProofs.GraphInvariants
 import MegaAtlasProofs.AutoResearchInvariants
+import MegaAtlasProofs.LayerGradients
 
 -- Scoring invariants (22 theorems)
 #print axioms MegaAtlasProofs.Scoring.ageScoreCentis_le_cap
@@ -79,3 +80,19 @@ import MegaAtlasProofs.AutoResearchInvariants
 #print axioms MegaAtlasProofs.AutoResearchInvariants.updateBest_strict_on_keep
 #print axioms MegaAtlasProofs.AutoResearchInvariants.metricDelta_self
 #print axioms MegaAtlasProofs.AutoResearchInvariants.metricDelta_antisymm
+
+-- Substrate, Abstraction-Layer, Gradient, Margin & Adjacent invariants (14 theorems)
+#print axioms MegaAtlasProofs.LayerGradients.substrate_count_eq_8
+#print axioms MegaAtlasProofs.LayerGradients.layer_count_eq_7
+#print axioms MegaAtlasProofs.LayerGradients.allSubstrates_complete
+#print axioms MegaAtlasProofs.LayerGradients.layerIndex_le_6
+#print axioms MegaAtlasProofs.LayerGradients.hardnessTractGradient_bounds
+#print axioms MegaAtlasProofs.LayerGradients.hardnessTractGradient_zero_iff
+#print axioms MegaAtlasProofs.LayerGradients.hardnessTractGradient_mono_diff
+#print axioms MegaAtlasProofs.LayerGradients.hardnessTractGradient_anti_tract
+#print axioms MegaAtlasProofs.LayerGradients.cssTitanMarginBps_bounds
+#print axioms MegaAtlasProofs.LayerGradients.bridgeMarginBps_le_10000
+#print axioms MegaAtlasProofs.LayerGradients.bridgeMarginBps_zero_when_no_cross
+#print axioms MegaAtlasProofs.LayerGradients.adjacent_pillars_lt_8
+#print axioms MegaAtlasProofs.LayerGradients.marginRole_exhaustive
+#print axioms MegaAtlasProofs.LayerGradients.apexKeystone_requires_3_adjacent

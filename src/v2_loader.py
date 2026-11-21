@@ -23,7 +23,20 @@ MODULE_NAMES = [
     "v2_data.m08_eng_arch_geo_ener",
     "v2_data.m09_phil_econ_hum",
     "v2_data.m10_deep_proofatlas_specialist",
+    "v2_data.m11_substrates_margins_adjacents",
 ]
+
+# Forensically audited true cross-field duplicates merged cleanly (secondary_id -> canonical_id)
+# All cross-references targeting a merged ID are automatically redirected via `dedup_alias_map`.
+EXPLICIT_DUPLICATE_ALIASES: Dict[str, str] = {
+    "GR-019": "ANL-014",     # Strong & Weak Cosmic Censorship Conjectures
+    "COMB-047": "NT-077",    # Erdős–Turán Conjecture on Additive Bases
+    "AI-026": "STAT-046",    # Identifiability of Latent Variables in Causal Representation Learning
+    "ANL-051": "NT-085",     # Furstenberg's ×2, ×3 Invariant Measure Conjecture
+    "GEOM-049": "ALG-025",   # Whitehead Asphericity Conjecture
+    "LOG-018": "NT-061",     # Hilbert's 10th Problem over ℚ
+    "STAT-033": "GEOM-062",  # Kannan–Lovász–Simonovits (KLS) Isoperimetric Conjecture
+}
 
 CANONICAL_INDUSTRIES = [
     ("AI & Software", ["AI", "Machine Learning", "Software", "NLP", "Data Science", "Cloud", "Search", "LLM", "Algorithm"]),
@@ -57,7 +70,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": "This V2.2 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains of Human Knowledge", "Total_Tracked": "1,855 rigorously deduplicated problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formal invariants (58 theorems), JSON Schema, pytest, SHA-256, Karpathy AutoResearch & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities into 1 connected graph with SQLite FTS5 RAG & MCP server."},
+    {"Registry": "This V2.3 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formal invariants (72 theorems), JSON Schema, pytest, SHA-256, Karpathy AutoResearch & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with Hybrid RAG, 9-tool MCP server & quantitative substrate/gradient/margin layers."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -172,7 +185,7 @@ def _norm_name(s: str) -> str:
     return s
 
 
-ATLAS_VERSION = "2.2.0"
+ATLAS_VERSION = "2.3.0"
 REFERENCE_YEAR = 2026
 AUTHOR_NAME = "Alexander Stephen Donahue"
 AUTHOR_ORCID = "0009-0006-8168-9648"
@@ -185,7 +198,128 @@ PRIMARY_REGISTRY_TOKENS = (
     "cern", "ligo", "nist", "irds", "ieee", "aim ", "birs", "oberwolfach",
     "icm ", "brass-moser-pach", "wikipedia", "langlands", "scottish book",
     "wolf", "fields", "abel", "nasa", "noaa", "nih ", "fda ", "w3c", "rfc",
+    "yau's open problems", "arnold's problems", "minimal model program",
+    "grand challenge", "decadal survey", "open problems in", "brain initiative",
+    "human cell atlas", "iter", "jwst", "iupac", "iupap", "oecd", "unep",
+    "unesco", "simons", "stoc", "focs", "soda", "neurips", "icml", "aaai",
+    "roadmap", "cospar", "cepi", "c2pa", "carb-x", "ripe ", "spun", "siam",
+    "un copuos", "esa ", "nimh", "biophysical society", "allen discovery",
 )
+
+SUBSTRATE_CLASSES = [
+    "Abstract / Formal-Symbolic",
+    "Quantum / Field / Sub-Atomic",
+    "Condensed / Solid / Metamaterial",
+    "Fluid / Plasma / Continuum",
+    "Molecular / Chemical / Catalytic",
+    "Biological / Cellular / Neural",
+    "Silicon / Photonic / Synthetic-AI",
+    "Planetary / Cosmic / Socio-Technical",
+]
+
+ABSTRACTION_LAYERS = [
+    "L0: Formal & Axiomatic",
+    "L1: Quantum & Spacetime",
+    "L2: Atomic, Material & Continuum",
+    "L3: Living, Ecological & Neural",
+    "L4: Computational, AI & Cyber-Physical",
+    "L5: Engineered, Planetary & Cosmic",
+    "L6: Normative, Economic & Semantic",
+]
+
+SUPERDOMAIN_TO_SUBSTRATE = {
+    "Number Theory & Arithmetic": "Abstract / Formal-Symbolic",
+    "Algebra, Group & Category Theory": "Abstract / Formal-Symbolic",
+    "Geometry & Topology": "Abstract / Formal-Symbolic",
+    "Analysis, Calculus, PDEs & Dynamics": "Abstract / Formal-Symbolic",
+    "Combinatorics & Graph Theory": "Abstract / Formal-Symbolic",
+    "Mathematical Logic, Set Theory & Computability": "Abstract / Formal-Symbolic",
+    "Probability, Stochastic Processes & Statistics": "Abstract / Formal-Symbolic",
+    "Computer Science, Complexity, Crypto & Info Theory": "Abstract / Formal-Symbolic",
+    "Quantum Mechanics, QFT & Particle Physics": "Quantum / Field / Sub-Atomic",
+    "Spacetime, Gravity, Time, Dimensions & Holography": "Quantum / Field / Sub-Atomic",
+    "Quantum Computing & Quantum Information": "Quantum / Field / Sub-Atomic",
+    "Condensed Matter, Solid-State & Quantum Materials": "Condensed / Solid / Metamaterial",
+    "Fluids, Gases, Plasmas & Non-Equilibrium Matter": "Fluid / Plasma / Continuum",
+    "Chemistry, Catalysis & Molecular Sciences": "Molecular / Chemical / Catalytic",
+    "Biology, Evolution, Origin of Life & Ecology": "Biological / Cellular / Neural",
+    "Neuroscience, Consciousness & Sentience": "Biological / Cellular / Neural",
+    "Medicine, Pharmacology, Longevity & Bioengineering": "Biological / Cellular / Neural",
+    "Artificial Intelligence, ML & Digital Simulations": "Silicon / Photonic / Synthetic-AI",
+    "Electronics, Photonics & Computing Hardware": "Silicon / Photonic / Synthetic-AI",
+    "Systems, Control, Robotics & Cybernetics": "Silicon / Photonic / Synthetic-AI",
+    "Astrophysics, Cosmology & Astrobiology": "Planetary / Cosmic / Socio-Technical",
+    "Mechanical, Aerospace, Structural & Civil Engineering": "Planetary / Cosmic / Socio-Technical",
+    "Architecture, Urbanism, Design & Ergonomics": "Planetary / Cosmic / Socio-Technical",
+    "Geology, Geophysics, Earth, Ocean & Climate": "Planetary / Cosmic / Socio-Technical",
+    "Energy, Environment, Food & Sustainability": "Planetary / Cosmic / Socio-Technical",
+    "Philosophy, Metaphysics, Epistemology & Ethics": "Planetary / Cosmic / Socio-Technical",
+    "Economics, Game Theory, Finance & Social Systems": "Planetary / Cosmic / Socio-Technical",
+    "Linguistics, Archaeology, History, Law & Aesthetics": "Planetary / Cosmic / Socio-Technical",
+}
+
+SUPERDOMAIN_TO_LAYER = {
+    "Number Theory & Arithmetic": "L0: Formal & Axiomatic",
+    "Algebra, Group & Category Theory": "L0: Formal & Axiomatic",
+    "Geometry & Topology": "L0: Formal & Axiomatic",
+    "Analysis, Calculus, PDEs & Dynamics": "L0: Formal & Axiomatic",
+    "Combinatorics & Graph Theory": "L0: Formal & Axiomatic",
+    "Mathematical Logic, Set Theory & Computability": "L0: Formal & Axiomatic",
+    "Probability, Stochastic Processes & Statistics": "L0: Formal & Axiomatic",
+    "Computer Science, Complexity, Crypto & Info Theory": "L0: Formal & Axiomatic",
+    "Quantum Mechanics, QFT & Particle Physics": "L1: Quantum & Spacetime",
+    "Spacetime, Gravity, Time, Dimensions & Holography": "L1: Quantum & Spacetime",
+    "Quantum Computing & Quantum Information": "L1: Quantum & Spacetime",
+    "Condensed Matter, Solid-State & Quantum Materials": "L2: Atomic, Material & Continuum",
+    "Fluids, Gases, Plasmas & Non-Equilibrium Matter": "L2: Atomic, Material & Continuum",
+    "Chemistry, Catalysis & Molecular Sciences": "L2: Atomic, Material & Continuum",
+    "Biology, Evolution, Origin of Life & Ecology": "L3: Living, Ecological & Neural",
+    "Neuroscience, Consciousness & Sentience": "L3: Living, Ecological & Neural",
+    "Medicine, Pharmacology, Longevity & Bioengineering": "L3: Living, Ecological & Neural",
+    "Artificial Intelligence, ML & Digital Simulations": "L4: Computational, AI & Cyber-Physical",
+    "Electronics, Photonics & Computing Hardware": "L4: Computational, AI & Cyber-Physical",
+    "Systems, Control, Robotics & Cybernetics": "L4: Computational, AI & Cyber-Physical",
+    "Astrophysics, Cosmology & Astrobiology": "L5: Engineered, Planetary & Cosmic",
+    "Mechanical, Aerospace, Structural & Civil Engineering": "L5: Engineered, Planetary & Cosmic",
+    "Architecture, Urbanism, Design & Ergonomics": "L5: Engineered, Planetary & Cosmic",
+    "Geology, Geophysics, Earth, Ocean & Climate": "L5: Engineered, Planetary & Cosmic",
+    "Energy, Environment, Food & Sustainability": "L5: Engineered, Planetary & Cosmic",
+    "Philosophy, Metaphysics, Epistemology & Ethics": "L6: Normative, Economic & Semantic",
+    "Economics, Game Theory, Finance & Social Systems": "L6: Normative, Economic & Semantic",
+    "Linguistics, Archaeology, History, Law & Aesthetics": "L6: Normative, Economic & Semantic",
+}
+
+
+def compute_epistemic_spectrum(epistemic_class: str, verification_type: str) -> float:
+    """Continuous 0–100 coordinate along the Formal-Deductive (0) <-> Normative-Philosophical (100) spectrum."""
+    base_map = {
+        "Formal-Deductive": 10.0,
+        "Hybrid Formal-Empirical": 40.0,
+        "Empirical-Explanatory": 62.0,
+        "Constructive-Technological": 74.0,
+        "Normative-Philosophical": 94.0,
+    }
+    verif_adj = {
+        "Formal Mathematical Proof": -6.0,
+        "Computational / Algorithmic Demonstration": -2.0,
+        "Reproducible Laboratory Experiment": 2.0,
+        "Astronomical / Observational Evidence": 4.0,
+        "Working Engineering Prototype / Benchmark": 6.0,
+        "Philosophical / Reflective Consensus": 6.0,
+    }
+    val = base_map.get(epistemic_class, 50.0) + verif_adj.get(verification_type, 0.0)
+    return round(min(100.0, max(0.0, val)), 1)
+
+
+def classify_margin_role(adj_pillars: int, cross_sd: int, bridge_ratio: float) -> str:
+    """Exact 4-class margin role matching Lean 4.35.0 `MegaAtlasProofs.LayerGradients.classifyMarginRole`."""
+    if adj_pillars >= 3:
+        return "Apex Multi-Pillar Keystone (3+ Adjacent Pillars)"
+    if adj_pillars >= 1 and bridge_ratio >= 0.30:
+        return "Trans-Pillar Boundary Interface"
+    if cross_sd >= 1 or adj_pillars >= 1:
+        return "Intra-Pillar Bridge (Cross-Superdomain)"
+    return "Core Intra-Pillar Specialist"
 
 
 def classify_verification_flag(status_2026: str, registry_source: str) -> str:
@@ -232,30 +366,52 @@ def load_v2_master() -> Dict[str, Any]:
         module_counts[mname] = len(probs)
         raw_all.extend(probs)
 
-    # 1. Strict deduplication (preserving all canonical HUB IDs first!)
+    # 1. Strict deduplication + alias resolution map (zero silently dropped links!)
     hub_id_set = set(CANONICAL_HUBS.values())
-    seen_ids = set()
+    seen_ids: Dict[str, Dict[str, Any]] = {}
     seen_norm_names: Dict[str, Dict[str, Any]] = {}
+    dedup_alias_map: Dict[str, str] = {}
     deduped: List[Dict[str, Any]] = []
     dropped_dups: List[str] = []
 
-    # Sort so canonical hubs & primary modules (m01..m09) take priority over m10 if a name overlaps
+    # First pass: index canonical entries and handle exact ID / explicit cross-field aliases / normalized-name merges
+    pending_explicit: List[Dict[str, Any]] = []
     for rec in raw_all:
+        rec = dict(rec)
+        rec["raw_links"] = list(rec["raw_links"])
         pid = rec["id"]
+        if pid in EXPLICIT_DUPLICATE_ALIASES:
+            pending_explicit.append(rec)
+            continue
         if pid in seen_ids:
+            dedup_alias_map[pid] = pid
             dropped_dups.append(f"ID_DUP:{pid}")
             continue
         nn = _norm_name(rec["name"])
-        # Check exact normalized name collision (skip short trivial tokens)
         if nn in seen_norm_names and pid not in hub_id_set:
-            # Merge any new links into the primary record instead of losing them
             primary = seen_norm_names[nn]
             primary["raw_links"] = list(dict.fromkeys(primary["raw_links"] + rec["raw_links"]))
+            dedup_alias_map[pid] = primary["id"]
             dropped_dups.append(f"NAME_DUP:{pid}=={primary['id']} ({rec['name']})")
             continue
-        seen_ids.add(pid)
+        seen_ids[pid] = rec
         seen_norm_names[nn] = rec
         deduped.append(rec)
+
+    # Merge explicit forensically audited cross-field near-duplicates into their canonical target
+    for rec in pending_explicit:
+        pid = rec["id"]
+        canon_id = EXPLICIT_DUPLICATE_ALIASES[pid]
+        if canon_id in seen_ids:
+            primary = seen_ids[canon_id]
+            primary["raw_links"] = list(dict.fromkeys(primary["raw_links"] + rec["raw_links"]))
+            if rec["registry_source"] and rec["registry_source"] not in primary["registry_source"]:
+                primary["registry_source"] = f"{primary['registry_source']}; {rec['registry_source']}"
+            dedup_alias_map[pid] = canon_id
+            dropped_dups.append(f"CROSS_FIELD_DUP:{pid}=={canon_id} ({rec['name']})")
+        else:
+            seen_ids[pid] = rec
+            deduped.append(rec)
 
     id_set = {r["id"] for r in deduped}
 
@@ -269,11 +425,12 @@ def load_v2_master() -> Dict[str, Any]:
     missing_sd = set(SUPERDOMAIN_TO_PILLAR.keys()) - seen_sd
     assert not missing_sd, f"Missing superdomains: {missing_sd}"
 
-    # 2. Resolve HUB:* and internal IDs into clean valid cross-reference lists & build NetworkX graph
+    # 2. Resolve HUB:*, dedup_alias_map, and internal IDs into clean valid cross-reference lists & build NetworkX graph
     G = nx.Graph()
     for r in deduped:
         G.add_node(r["id"], name=r["name"], superdomain=r["superdomain"], macro_pillar=r["macro_pillar"])
 
+    unresolved_raw_links = 0
     for r in deduped:
         resolved = []
         for tok in r["raw_links"]:
@@ -281,9 +438,12 @@ def load_v2_master() -> Dict[str, Any]:
             if not tok:
                 continue
             target = CANONICAL_HUBS.get(tok, tok)
+            target = dedup_alias_map.get(target, target)
             if target in id_set and target != r["id"]:
                 resolved.append(target)
                 G.add_edge(r["id"], target)
+            elif target != r["id"]:
+                unresolved_raw_links += 1
         r["related_problem_ids"] = ",".join(dict.fromkeys(resolved))
 
     # Connect any rare isolated nodes to their superdomain's highest-degree hub so graph stays richly connected
@@ -314,6 +474,7 @@ def load_v2_master() -> Dict[str, Any]:
         nbs = list(G.neighbors(pid))
         x_sd = sum(1 for nb in nbs if id_map[nb]["superdomain"] != r["superdomain"])
         x_pil = sum(1 for nb in nbs if id_map[nb]["macro_pillar"] != r["macro_pillar"])
+        adj_pillars = len({id_map[nb]["macro_pillar"] for nb in nbs if id_map[nb]["macro_pillar"] != r["macro_pillar"]})
         out = {k: v for k, v in r.items() if k != "raw_links"}
         out["graph_degree"] = deg[pid]
         out["cross_superdomain_links"] = x_sd
@@ -340,6 +501,15 @@ def load_v2_master() -> Dict[str, Any]:
             (out["civilizational_impact"] * out["tractability_2050"]) / 10.0, 2
         )
         out["strategic_quadrant"] = classify_quadrant(out["civilizational_impact"], out["tractability_2050"])
+        # V2.3.0 Multi-Layer Substrate, Spectrum, Gradient, Margin & Adjacent Fields (Lean 4.35.0 verified)
+        out["substrate_class"] = SUPERDOMAIN_TO_SUBSTRATE[out["superdomain"]]
+        out["abstraction_layer"] = SUPERDOMAIN_TO_LAYER[out["superdomain"]]
+        out["epistemic_spectrum_score"] = compute_epistemic_spectrum(out["epistemic_class"], out["verification_type"])
+        out["hardness_tractability_gradient"] = int(out["difficulty_score"] - out["tractability_2050"])
+        out["css_titan_margin"] = round(out["css_score"] - out["titan_index"] * 10.0, 2)
+        out["bridge_margin_ratio"] = round(x_pil / max(1, deg[pid]), 4)
+        out["adjacent_pillars_count"] = int(adj_pillars)
+        out["margin_role"] = classify_margin_role(adj_pillars, x_sd, out["bridge_margin_ratio"])
         enriched.append(out)
 
     df = pd.DataFrame(enriched)
@@ -401,6 +571,27 @@ def load_v2_master() -> Dict[str, Any]:
     ct_era_pillar = pd.crosstab(df["era"], df["macro_pillar"], margins=True, margins_name="Total")
     ct_quadrant_pillar = pd.crosstab(df["strategic_quadrant"], df["macro_pillar"], margins=True, margins_name="Total")
     ct_verif_epistemic = pd.crosstab(df["verification_type"], df["epistemic_class"], margins=True, margins_name="Total")
+    ct_substrate_layer = pd.crosstab(df["substrate_class"], df["abstraction_layer"], margins=True, margins_name="Total")
+    ct_margin_pillar = pd.crosstab(df["margin_role"], df["macro_pillar"], margins=True, margins_name="Total")
+
+    substrate_rows = []
+    for sub_cls in SUBSTRATE_CLASSES:
+        sub = df[df["substrate_class"] == sub_cls]
+        substrate_rows.append({
+            "Substrate_Class": sub_cls,
+            "Problem_Count": int(len(sub)),
+            "Share_Pct": round(100.0 * len(sub) / len(df), 1),
+            "Mean_CSS": round(sub["css_score"].mean(), 2),
+            "Mean_Titan_Index": round(sub["titan_index"].mean(), 2),
+            "Mean_Difficulty": round(sub["difficulty_score"].mean(), 2),
+            "Mean_Tractability_2050": round(sub["tractability_2050"].mean(), 2),
+            "Mean_Gradient_D_minus_T": round(sub["hardness_tractability_gradient"].mean(), 2),
+            "Mean_CSS_Titan_Margin": round(sub["css_titan_margin"].mean(), 2),
+            "Mean_Epistemic_Spectrum": round(sub["epistemic_spectrum_score"].mean(), 1),
+            "Mean_Bridge_Margin_Ratio": round(sub["bridge_margin_ratio"].mean(), 3),
+            "Mean_Adjacent_Pillars": round(sub["adjacent_pillars_count"].mean(), 2),
+        })
+    df_substrates = pd.DataFrame(substrate_rows)
 
     # 28x28 Cross-Superdomain Coupling Adjacency Matrix
     sd_list = list(SUPERDOMAIN_TO_PILLAR.keys())
@@ -461,16 +652,24 @@ def load_v2_master() -> Dict[str, Any]:
         "cross_pillar_edge_pct": round(100.0 * cross_pil_edges / max(1, G.number_of_edges()), 1),
         "connected_components": int(nx.number_connected_components(G)),
         "largest_component_size": int(len(max(nx.connected_components(G), key=len))),
+        "articulation_points": int(len(list(nx.articulation_points(G)))),
+        "graph_bridges": int(len(list(nx.bridges(G)))),
+        "unresolved_raw_links_count": int(unresolved_raw_links),
         "avg_degree": round(2.0 * G.number_of_edges() / len(df), 2),
         "num_communities": len(communities),
         "ai_claims_nov2026_count": ai_claims_cnt,
         "verification_flag_counts": {k: int(v) for k, v in df["verification_flag"].value_counts().items()},
+        "margin_role_counts": {k: int(v) for k, v in df["margin_role"].value_counts().items()},
         "mean_difficulty": round(float(df["difficulty_score"].mean()), 2),
         "mean_tractability": round(float(df["tractability_2050"].mean()), 2),
         "mean_impact": round(float(df["civilizational_impact"].mean()), 2),
         "mean_interdisciplinarity": round(float(df["interdisciplinarity_index"].mean()), 2),
         "mean_titan_index": round(float(df["titan_index"].mean()), 2),
         "mean_css_score": round(float(df["css_score"].mean()), 2),
+        "mean_hardness_tractability_gradient": round(float(df["hardness_tractability_gradient"].mean()), 2),
+        "mean_css_titan_margin": round(float(df["css_titan_margin"].mean()), 2),
+        "mean_bridge_margin_ratio": round(float(df["bridge_margin_ratio"].mean()), 3),
+        "mean_adjacent_pillars": round(float(df["adjacent_pillars_count"].mean()), 2),
         "median_year": int(df["year_formulated"].median()),
         "oldest_year": int(df["year_formulated"].min()),
         "newest_year": int(df["year_formulated"].max()),
@@ -495,6 +694,10 @@ def load_v2_master() -> Dict[str, Any]:
         "ct_era_pillar": ct_era_pillar,
         "ct_quadrant_pillar": ct_quadrant_pillar,
         "ct_verif_epistemic": ct_verif_epistemic,
+        "ct_substrate_layer": ct_substrate_layer,
+        "ct_margin_pillar": ct_margin_pillar,
+        "df_substrates": df_substrates,
+        "dedup_alias_map": dedup_alias_map,
         "df_coupling": df_coupling,
         "df_industry": df_industry,
         "df_keystones": df_keystones,
@@ -509,7 +712,7 @@ def load_v2_master() -> Dict[str, Any]:
 if __name__ == "__main__":
     d = load_v2_master()
     s = d["summary_stats"]
-    print("=== V2.0 MEGA-ATLAS VALIDATION PASSED ===")
+    print(f"=== V{ATLAS_VERSION} MEGA-ATLAS VALIDATION PASSED ===")
     for k, v in s.items():
         if k != "module_counts":
             print(f"  {k}: {v}")
