@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Unsolved Problems Mega-Atlas (V2.0, November 20, 2026 Edition): Exhaustive Quantitative Taxonomy, Cross-Domain Connectome & Verification Audit Across All Human Knowledge"
+message: "If you use this dataset, network model, charts, or comparative atlas in research or software, please cite it using the metadata below."
+type: dataset
+authors:
+  - family-names: Donahue
+    given-names: Alexander Stephen
+    orcid: "https://orcid.org/0009-0006-8168-9648"
+    affiliation: "0thernes LLC, Spokane, WA, USA"
+    email: "0_0@0thernes.art"
+repository-code: "https://github.com/0thernes/unsolved-problems-mega-atlas"
+url: "https://0thernes.art"
+version: "2.0.0"
+date-released: "2026-11-20"
+license: "MIT AND CC-BY-4.0"
+keywords:
+  - unsolved problems
+  - open problems
+  - mathematics
+  - physics
+  - computer science
+  - artificial intelligence
+  - philosophy
+  - engineering
+  - knowledge graph
+  - formal verification
+  - comparative taxonomy

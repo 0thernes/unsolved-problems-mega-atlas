@@ -1,0 +1,49 @@
+name: Verify V2.0 Mega-Atlas Dataset & Integrity
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-atlas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install verification dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy networkx openpyxl xlwt
+
+      - name: Validate Master Dataset Schema, Deduplication & Connectome
+        run: |
+          python src/v2_loader.py
+
+      - name: Verify Output Integrity & SHA-256 Manifest
+        run: |
+          python -c "
+          import hashlib, pathlib, pandas as pd, openpyxl
+          root = pathlib.Path('.')
+          df = pd.read_csv('outputs/MegaAtlas_Unsolved_Problems_V2.csv')
+          assert len(df) >= 1500, f'Expected >=1500 problems, got {len(df)}'
+          assert df['id'].is_unique, 'Duplicate IDs in CSV!'
+          assert df['macro_pillar'].nunique() == 8, 'Expected 8 Macro-Pillars!'
+          assert df['superdomain'].nunique() == 28, 'Expected 28 Superdomains!'
+          wb = openpyxl.load_workbook('outputs/MegaAtlas_Unsolved_Problems_V2.xlsx')
+          assert len(wb.sheetnames) == 13, f'Expected 13 XLSX sheets, got {len(wb.sheetnames)}'
+          for line in pathlib.Path('CHECKSUMS.sha256').read_text(encoding='utf-8').splitlines():
+              line = line.strip()
+              if not line: continue
+              expected, rel = line.split(None, 1)
+              actual = hashlib.sha256((root / rel).read_bytes()).hexdigest()
+              assert actual == expected, f'SHA-256 mismatch for {rel}'
+          print(f'CI VERIFIED: {len(df)} unique problems, 8 pillars, 28 superdomains, 13 XLSX sheets, all SHA-256 checksums match!')
+          "

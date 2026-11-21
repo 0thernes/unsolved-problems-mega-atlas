@@ -1,0 +1,22 @@
+# Python & Virtual Environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.log
+.vscode/
+.idea/
+
+# Keep all V2.0 Mega-Atlas outputs & charts tracked!
+!outputs/
+!outputs/**
