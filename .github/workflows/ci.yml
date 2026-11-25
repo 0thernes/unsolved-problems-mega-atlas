@@ -17,6 +17,8 @@ jobs:
     name: Schema, Pytest, RAG 100%, 9-Tool MCP & SHA-256 (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
+    env:
+      PYTHONUTF8: "1"
     strategy:
       fail-fast: false
       matrix:

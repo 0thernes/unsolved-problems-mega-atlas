@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   Score any repository against the Build Standard for LLMs (90 items). Report-only: always exits 0 unless misused.
 .DESCRIPTION
@@ -52,7 +52,8 @@ function Get-Matches([string]$alts) {
 }
 function Test-Any([string]$alts) { return ((Get-Matches $alts).Count -gt 0) }
 function Test-TextFile([string]$f) {
-  try { $fs = [System.IO.File]::OpenRead($f) } catch { return $false }
+  $fp = if ([System.IO.Path]::IsPathRooted($f)) { $f } else { Join-Path $Root $f }
+  try { $fs = [System.IO.File]::OpenRead($fp) } catch { return $false }
   try { $buf = New-Object byte[] 8000; $n = $fs.Read($buf, 0, 8000); for ($i = 0; $i -lt $n; $i++) { if ($buf[$i] -eq 0) { return $false } }; return $true } finally { $fs.Dispose() }
 }
 function Test-Grep([string]$file, [string]$re) {

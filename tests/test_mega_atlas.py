@@ -226,6 +226,7 @@ def test_mcp_stdio_server_ndjson_all_9_tools():
         input=stdin_payload,
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
         check=True,
     )
@@ -348,6 +349,7 @@ def test_zenodo_json_metadata_and_publisher_dry_run():
         [sys.executable, str(ROOT / "scripts" / "publish_zenodo.py"), "--dry-run"],
         capture_output=True,
         text=True,
+        encoding="utf-8",
         timeout=30,
         check=True,
     )
