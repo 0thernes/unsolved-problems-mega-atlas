@@ -2,7 +2,7 @@
 
 ## Our Standard
 
-The **Unsolved Problems Mega-Atlas** (0thernes LLC) is an open, falsifiable research infrastructure project. We welcome mathematicians, scientists, engineers, philosophers, independent researchers, and software contributors of all backgrounds.
+The **Unsolved Problems Mega-Atlas** (Independent Researcher (0thernes)) is an open, falsifiable research infrastructure project. We welcome mathematicians, scientists, engineers, philosophers, independent researchers, and software contributors of all backgrounds.
 
 We commit to:
 - **Intellectual rigor paired with collegiality:** Attack arguments, formulas, citations, and edge cases mercilessly; treat people with respect.

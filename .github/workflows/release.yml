@@ -1,0 +1,46 @@
+name: Release Checksums & SLSA Provenance Attestation
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage release bundle and generate SHA256SUMS
+        run: |
+          mkdir -p release-dist
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.csv release-dist/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.json release-dist/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.jsonl release-dist/
+          cp outputs/MegaAtlas_Unsolved_Problems_V2.sqlite release-dist/
+          cp outputs/MegaAtlas_Comprehensive_Report_V2.pdf release-dist/
+          cp CHECKSUMS.sha256 release-dist/
+          cp data/MANIFEST.sha256 release-dist/data-MANIFEST.sha256
+          cp croissant.json ro-crate-metadata.json .zenodo.json CITATION.cff release-dist/
+          (cd release-dist && sha256sum * > SHA256SUMS)
+          cat release-dist/SHA256SUMS
+      - name: Generate Sigstore SLSA build provenance attestations
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: release-dist/*
+      - name: Publish GitHub Release with SHA256SUMS
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          gh release create "$TAG" release-dist/* \
+            --title "Unsolved Problems Mega-Atlas $TAG" \
+            --notes "Automated release of Unsolved Problems Mega-Atlas $TAG with SHA256SUMS and Sigstore SLSA provenance attestations. See CHANGELOG.md for details." \
+            || gh release upload "$TAG" release-dist/* --clobber

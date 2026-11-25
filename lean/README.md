@@ -1,6 +1,6 @@
 # Pure Lean 4.35.0 Formal Invariant Suite (`lean/`)
 
-**Author:** Alexander Stephen Donahue (`0thernes LLC`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
+**Author:** Alexander Stephen Donahue (`Independent Researcher (0thernes)`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
 **Toolchain:** `leanprover/lean4:v4.35.0` · **External Dependencies:** None (zero Mathlib)
 
 ## Scope & Honest Boundary

@@ -1,0 +1,12 @@
+title = "gitleaks config for unsolved-problems-mega-atlas"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Exclude audit scripts' regex definitions and generated output archives"
+paths = [
+  '''^scripts/audit-repo\.sh$''',
+  '''^scripts/Audit-Repo\.ps1$''',
+  '''^outputs/.*''',
+]

@@ -14,8 +14,8 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Unsolved Problems Mega-Atlas (V2.3.0)",
-      "version": "2.3.0",
+      "name": "Unsolved Problems Mega-Atlas (V2.3.1)",
+      "version": "2.3.1",
       "datePublished": "2026-11-21",
       "description": "Unified cross-disciplinary open-problem atlas (1,900 problems, 8 Macro-Pillars, 28 Superdomains, 5,597 graph edges, 58 Pure Lean 4.35.0 formal invariants, SQLite FTS5 RAG/MCP server, and Karpathy-style AutoResearch loop).",
       "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
@@ -98,7 +98,7 @@
     {
       "@id": "https://0thernes.art/#org",
       "@type": "Organization",
-      "name": "0thernes LLC",
+      "name": "Independent Researcher (0thernes)",
       "url": "https://0thernes.art",
       "location": "Spokane, WA, USA"
     },
@@ -195,8 +195,8 @@
       "name": "VERIFICATION.md",
       "description": "5-tier epistemic verification boundaries",
       "encodingFormat": "text/markdown",
-      "sha256": "374983a697f9395583f6349d24813ef99268a875808746b86a56f5b2b2d448a8",
-      "contentSize": 6769
+      "sha256": "8115fe1669a442c949626684f765243c83bf054ce0acc138ce8fca9c32876927",
+      "contentSize": 6790
     },
     {
       "@id": "CHECKSUMS.sha256",
@@ -218,8 +218,8 @@
       "name": "MegaAtlasProofs.lean",
       "description": "Pure Lean 4.35.0 formal invariant suite (58 theorems, 0 sorry)",
       "encodingFormat": "text/plain",
-      "sha256": "c101784cbfb6a64df8da3385ed4fc3104085ccbb682c90338c737d334d5507b6",
-      "contentSize": 436
+      "sha256": "4deb8a52bb8f2f83cafbeb61a2ddaebc658f766528101dae037dd674de733e4e",
+      "contentSize": 449
     },
     {
       "@id": "autoresearch/program.md",
@@ -227,8 +227,8 @@
       "name": "program.md",
       "description": "Karpathy-style autonomous research instruction manual",
       "encodingFormat": "text/markdown",
-      "sha256": "67f2951e5404524db09b68b5ea16594e5441944e84d6239ba191955052b45e8e",
-      "contentSize": 5800
+      "sha256": "a2a80125151c426d8d60a5beb257b00fd29590c2d4085fd0c929a24a11b3b0b7",
+      "contentSize": 5875
     },
     {
       "@id": "autoresearch/evaluate.py",
@@ -254,8 +254,8 @@
       "name": "server.py",
       "description": "Zero-dependency MCP stdio JSON-RPC 2.0 server (7 tools)",
       "encodingFormat": "text/x-python",
-      "sha256": "34e88a5fbce9b689785e932fd34b8e55db29ca992ece8a8eb3621ef21aa2a621",
-      "contentSize": 17012
+      "sha256": "5b49c3212e931aacb5a2bde88dc0c65e43f86cd6af0f7f941c2432bd6f785a56",
+      "contentSize": 17495
     },
     {
       "@id": "rag/query.py",
@@ -263,8 +263,8 @@
       "name": "query.py",
       "description": "Offline Hybrid BM25 + graph-authority RAG CLI",
       "encodingFormat": "text/x-python",
-      "sha256": "e95c38d1c5208c62fa00383d6ce56b577fc13e728a4e9d15ccbcb887f4642071",
-      "contentSize": 16106
+      "sha256": "0d428b75e9b0748ba07a685b506dae9e82c72880947decfe5e8d2b6da075642c",
+      "contentSize": 16479
     }
   ]
 }

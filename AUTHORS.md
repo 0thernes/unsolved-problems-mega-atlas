@@ -4,7 +4,7 @@
 
 **Alexander Stephen Donahue** (`Alexander S. Donahue`)  
 - **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)
-- **Affiliation:** 0thernes LLC, Spokane, WA, USA
+- **Affiliation:** Independent Researcher (0thernes), Spokane, WA, USA
 - **Email:** `0_0@0thernes.art`
 - **Web / GitHub:** [0thernes.art](https://0thernes.art) · [@0thernes](https://github.com/0thernes)
 - **Master Research Archive:** [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
@@ -18,7 +18,7 @@ Because this atlas is produced by a **solo independent researcher** operating at
 - Initial quantitative rubric estimation (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`),
 - Python pipeline, SQLite FTS5 RAG engine, JSON Schema, pytest, visualization, and Lean 4.35.0 proof scaffolding.
 
-Per 0thernes LLC institutional integrity policy:
+Per Independent Researcher (0thernes) institutional integrity policy:
 1. AI assistance is **never concealed**, and AI-synthesized entries are **never represented as human-peer-reviewed**.
 2. Every record carries an explicit `verification_flag` distinguishing named primary-registry tracking from AI-assisted editorial synthesis and unverified Fall/Nov 2026 AI proof claims.
 3. All structural, cryptographic, and formal-formula claims are independently enforced by deterministic software (`pytest`, `jsonschema`, SHA-256) and the Pure Lean 4.35.0 kernel (`lake build`).
@@ -29,7 +29,7 @@ See [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md), [`VERIFICATION.md`](VERIFI
 
 Please cite via [`CITATION.cff`](CITATION.cff) or:
 
-> Donahue, Alexander Stephen (2026). *Unsolved Problems Mega-Atlas (V2.1.0): Exhaustive Cross-Disciplinary Taxonomy, 0thernes CSS Ranking, NetworkX Connectome, SQLite FTS5 RAG Engine, Nov 2026 AI Proof-Claim Audit & Pure Lean 4.35.0 Formula Invariants.* 0thernes LLC. ORCID: `0009-0006-8168-9648`. https://github.com/0thernes/unsolved-problems-mega-atlas (Data: CC BY 4.0; Code: MIT).
+> Donahue, Alexander Stephen (2026). *Unsolved Problems Mega-Atlas (V2.1.0): Exhaustive Cross-Disciplinary Taxonomy, 0thernes CSS Ranking, NetworkX Connectome, SQLite FTS5 RAG Engine, Nov 2026 AI Proof-Claim Audit & Pure Lean 4.35.0 Formula Invariants.* Independent Researcher (0thernes). ORCID: `0009-0006-8168-9648`. https://github.com/0thernes/unsolved-problems-mega-atlas (Data: CC BY 4.0; Code: MIT).
 
 ## External Contributors & Academic Reviewers
 

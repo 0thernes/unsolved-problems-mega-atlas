@@ -32,9 +32,10 @@ sys.path.insert(0, str(ROOT / "rag"))
 
 from query import DEFAULT_DB, compare_two_problems, search_atlas  # noqa: E402
 
+SERVER_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.3.1"
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
-    "version": "2.3.0",
+    "version": SERVER_VERSION,
 }
 PROTOCOL_VERSION = "2024-11-05"
 

@@ -6,7 +6,7 @@
 
 Humanity's unsolved problems live in isolated silos. Number theorists track `ProofAtlas.ai` and `erdosproblems.com`; topologists consult Kirby's list; physicists monitor cosmological tensions; engineers track NAE Grand Challenges and DOE Earthshots; philosophers debate PhilPapers apories. Yet the deepest bottlenecks of the 21st century—quantum gravity, fluid turbulence, abiogenesis, consciousness, AI alignment, post-Moore compute, climate tipping points—**do not respect departmental walls**.
 
-This Mega-Atlas maps **1,855 unsolved, open, and hard problems** across **all 8 Macro-Pillars and 28 Superdomains of human knowledge** into **one connected 5,597-edge graph**, while holding strictly to the institutional standards of **0thernes LLC** (matching its sibling pure-mathematics deep-dive atlas, [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics)).
+This Mega-Atlas maps **1,855 unsolved, open, and hard problems** across **all 8 Macro-Pillars and 28 Superdomains of human knowledge** into **one connected 5,597-edge graph**, while holding strictly to the institutional standards of **Independent Researcher (0thernes)** (matching its sibling pure-mathematics deep-dive atlas, [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics)).
 
 ## Five Non-Negotiable Principles
 

@@ -42,21 +42,21 @@
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Unsolved Problems Mega-Atlas",
-  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.3.0",
+  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.3.1",
   "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 20, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 9-tool MCP server, Karpathy-style AutoResearch harness, and 72 Pure Lean 4.35.0 formal invariants.",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "datePublished": "2026-11-21",
   "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
   "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.3.0). 0thernes LLC. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.3.1). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
   "creator": {
     "@type": "sc:Person",
     "name": "Alexander Stephen Donahue",
     "identifier": "https://orcid.org/0009-0006-8168-9648",
     "affiliation": {
       "@type": "sc:Organization",
-      "name": "0thernes LLC",
+      "name": "Independent Researcher (0thernes)",
       "url": "https://0thernes.art"
     }
   },

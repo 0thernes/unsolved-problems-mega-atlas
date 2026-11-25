@@ -231,8 +231,9 @@ def test_mcp_stdio_server_ndjson_all_9_tools():
     )
     resps = [json.loads(line) for line in proc.stdout.splitlines() if line.strip()]
     assert len(resps) == len(reqs)
+    expected_ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     assert resps[0]["result"]["serverInfo"]["name"] == "unsolved-problems-mega-atlas"
-    assert resps[0]["result"]["serverInfo"]["version"] == "2.3.0"
+    assert resps[0]["result"]["serverInfo"]["version"] == expected_ver
     tools = {t["name"] for t in resps[1]["result"]["tools"]}
     assert tools == {
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
@@ -275,7 +276,7 @@ def test_mcp_stdio_server_content_length_framing():
     assert len(body) == expected_len
     msg = json.loads(body.decode("utf-8"))
     assert msg["id"] == 99
-    assert msg["result"]["serverInfo"]["version"] == "2.3.0"
+    assert msg["result"]["serverInfo"]["version"] == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 
 
 # ==================== 6. KARPATHY AUTORESEARCH HARNESS & TRACK B PILOT ====================

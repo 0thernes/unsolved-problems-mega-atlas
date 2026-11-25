@@ -1,14 +1,15 @@
 # AGENTS.md — AI Coding & Research Agent Onboarding Contract
 
-> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas` (`v2.3.0`)**.
+> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas` (`v2.3.1`)**.
 
 ## 1. Canonical Identity & Attribution (MANDATORY)
 
 - **Author / Human-in-the-Loop:** Alexander Stephen Donahue (`Alexander S. Donahue`)
 - **ORCID:** `0009-0006-8168-9648` (`https://orcid.org/0009-0006-8168-9648`)
-- **Affiliation:** 0thernes LLC, Spokane, WA, USA · `0_0@0thernes.art` · `https://0thernes.art`
+- **Affiliation:** Independent Researcher, Spokane, WA, USA · `0_0@0thernes.art` · `https://0thernes.art` (never assert an unformed LLC entity)
 - **Master Research Archive:** `0TH-BUILD-007` in `https://github.com/0thernes/0thernes-research-archive`
 - **Dual License:** Data/Prose/Charts/PDF (`CC BY 4.0`, `LICENSE`) · Code/Schemas/RAG/MCP/Lean (`MIT`, `LICENSE-CODE`).
+- **Build Standard v1.2.0 Hard Rules (`R1`–`R8`):** Commit straight to `main`, zero PR templates or banned bot configs (`R4`), report-only linters (`R3`), zero fabricated numbers (`R6`), 10-class finding taxonomy (`R7`).
 
 ## 2. Non-Negotiable Epistemic & Verification Rules
 

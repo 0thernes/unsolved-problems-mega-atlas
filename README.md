@@ -1,4 +1,4 @@
-# Unsolved Problems Mega-Atlas (`v2.3.0`)
+# Unsolved Problems Mega-Atlas (`v2.3.1`)
 
 [![CI — Python, AutoResearch, 9-Tool MCP & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Interactive Web Atlas (GitHub Pages)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
@@ -6,12 +6,13 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
 [![FAIR](https://img.shields.io/badge/FAIR-Croissant%201.0%20%7C%20RO--Crate%201.1%20%7C%20Zenodo-7C3AED.svg)](croissant.json)
 [![Dual License](https://img.shields.io/badge/License-Data%20CC--BY--4.0%20%7C%20Code%20MIT-0D9488.svg)](NOTICE)
+[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 > **1,900 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)** — wired into a **biconnected 5,808-edge knowledge graph (`0` articulation points, `0` bridges, `0` dangling links)**, ranked by the **0thernes Composite Severity Score (`CSS`)**, **Composite Titan Index**, **Hardness–Tractability Gradient (`D − T`)**, **Dual-Ranking Margin**, and **Epistemic Spectrum**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline Hybrid BM25+PageRank RAG CLI (`100.0% MRR@5`, `25/25` top-1)**, a **dual-framed 9-tool MCP stdio server**, a **Karpathy-style AutoResearch harness (`AQS = 97.99` + Track B Antihydra `BB(6)` pilot)**, **FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo CLI metadata**, **15 publication-grade charts**, **14-sheet XLSX + 12 export formats**, and **72 Pure Lean 4.35.0 machine-checked formal invariants**.
 
 - **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(also serves [`llms.txt`](https://0thernes.github.io/unsolved-problems-mega-atlas/llms.txt), [`croissant.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json) & [`ro-crate-metadata.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json))*
-- **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`0thernes LLC`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
-- **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive)
+- **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`Independent Researcher`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
+- **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive) · **Solved-Problem Cross-Reference Audit:** [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](docs/0THERNES_SOLVED_AUDIT_2026-11-25.md) (`0/1,900` grand problems retired)
 - **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
 - **Forensic Audit & Preservation Dossiers:** [`docs/FORENSIC_AUDIT_V2.3.md`](docs/FORENSIC_AUDIT_V2.3.md) · [`docs/PRESERVATION.md`](docs/PRESERVATION.md)
 
@@ -108,7 +109,29 @@ python scripts/audit_atlas.py --check-lean
 
 To rebuild every chart, dataset, SQLite DB, `RANKING.md`, FAIR metadata, HTML, PDF, Lean proof, and SHA-256 checksum from scratch:
 - **Windows PowerShell:** `.\build.ps1`
-- **Unix / macOS / WSL:** `make all`
+- **Unix / macOS / WSL:** `make all` or `just reproduce`
+
+---
+
+## Usage Examples
+
+```bash
+# Run the minimal Python RAG + pairwise comparator demo
+python examples/query_demo.py
+
+# Inspect cross-pillar hubs and Nov 2026 AI proof claims
+python rag/query.py --flag ai-claim-under-audit-nov2026 --top 12
+python rag/query.py --compare FLD-001 GEO-002
+
+# Run Build Standard v1.2.0 audit and full test suite
+just reproduce
+```
+
+---
+
+## Maintenance Status
+
+**Status: Active** (repostatus: `active`). Dataset schema `v2.3.1` is stable; quarterly verification updates track the 12 flagged Fall/Nov 2026 AI proof claims and community status reports (see [ROADMAP.md](ROADMAP.md), [CLAIMS.md](CLAIMS.md), [LIMITATIONS.md](LIMITATIONS.md), and [REPLICATION.md](REPLICATION.md)).
 
 ---
 
@@ -120,14 +143,14 @@ To rebuild every chart, dataset, SQLite DB, `RANKING.md`, FAIR metadata, HTML, P
 ```bibtex
 @dataset{donahue2026megaatlas,
   author       = {Donahue, Alexander Stephen},
-  title        = {Unsolved Problems Mega-Atlas (V2.3.0): Multi-Layer Substrate/Gradient/Margin
+  title        = {Unsolved Problems Mega-Atlas (V2.3.1): Multi-Layer Substrate/Gradient/Margin
                   Taxonomy, 1,900-Node Biconnected Connectome, 100\% MRR@5 Hybrid RAG \& 9-Tool MCP
                   Server, Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit,
                   and 72 Pure Lean 4.35.0 Formal Invariants},
   year         = {2026},
   month        = nov,
-  publisher    = {0thernes LLC},
-  version      = {2.3.0},
+  publisher    = {Independent Researcher (0thernes)},
+  version      = {2.3.1},
   url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
   note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-007}
 }

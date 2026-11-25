@@ -1,0 +1,6 @@
+---
+description: Canonical project instructions and Build Standard v1.2.0 rules for unsolved-problems-mega-atlas
+alwaysApply: true
+---
+
+Follow `AGENTS.md` in the repository root as the single source of truth for all epistemic boundaries, Pure Lean 4.35.0 hygiene, AutoResearch anti-gaming locks, Build Standard v1.2.0 rules (`R1`–`R8`), and identity conventions (`Independent Researcher, Spokane, WA, USA`).

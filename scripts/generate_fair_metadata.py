@@ -118,7 +118,7 @@ def build_croissant(df_cols: list[str], total_problems: int) -> dict:
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "citeAs": (
             f"Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V{VERSION}). "
-            f"0thernes LLC. ORCID: 0009-0006-8168-9648. {REPO_URL}"
+            f"Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. {REPO_URL}"
         ),
         "creator": {
             "@type": "sc:Person",
@@ -126,7 +126,7 @@ def build_croissant(df_cols: list[str], total_problems: int) -> dict:
             "identifier": ORCID_URL,
             "affiliation": {
                 "@type": "sc:Organization",
-                "name": "0thernes LLC",
+                "name": "Independent Researcher (0thernes)",
                 "url": "https://0thernes.art",
             },
         },
@@ -245,7 +245,7 @@ def build_ro_crate(total_problems: int) -> dict:
         {
             "@id": "https://0thernes.art/#org",
             "@type": "Organization",
-            "name": "0thernes LLC",
+            "name": "Independent Researcher (0thernes)",
             "url": "https://0thernes.art",
             "location": "Spokane, WA, USA",
         },

@@ -1,6 +1,6 @@
 # Verification & Epistemic Boundaries
 
-**Author / Curator:** Alexander Stephen Donahue (`0thernes LLC`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
+**Author / Curator:** Alexander Stephen Donahue (`Independent Researcher (0thernes)`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
 **Release:** `v2.3.0` (November 21, 2026)
 
 This document defines the **exact, non-negotiable epistemic boundary** between what is **machine-proved**, what is **programmatically audited**, what is **anchored to named external registries**, and what remains **curated editorial estimation or unverified frontier claims**.

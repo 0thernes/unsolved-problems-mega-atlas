@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unsolved-problems-mega-atlas"
-version = "2.3.0"
+version = "2.3.1"
 description = "1,900-problem biconnected open-problems connectome across 8 Macro-Pillars x 28 Superdomains x 8 Substrates x 7 Abstraction Layers, with 0thernes CSS, Hybrid FTS5 RAG (100% MRR@5) & 9-tool MCP server, Karpathy AutoResearch, FAIR Croissant/RO-Crate/Zenodo metadata, Nov 2026 AI proof-claim audit & 72 Pure Lean 4.35.0 formal invariants."
 readme = "README.md"
 requires-python = ">=3.11"

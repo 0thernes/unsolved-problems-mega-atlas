@@ -1,17 +1,17 @@
 cff-version: 1.2.0
-title: "Unsolved Problems Mega-Atlas (V2.3.0): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch & 72 Pure Lean 4.35.0 Formal Invariants"
+title: "Unsolved Problems Mega-Atlas (V2.3.1): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch & 72 Pure Lean 4.35.0 Formal Invariants"
 message: "If you use this dataset, knowledge graph, Lean 4 formal invariants, RAG/MCP server, AutoResearch harness, charts, or monograph in research or software, please cite it using the metadata below."
 type: dataset
 authors:
   - family-names: Donahue
     given-names: Alexander Stephen
     orcid: "https://orcid.org/0009-0006-8168-9648"
-    affiliation: "0thernes LLC, Spokane, WA, USA"
+    affiliation: "Independent Researcher, Spokane, WA, USA"
     email: "0_0@0thernes.art"
 repository-code: "https://github.com/0thernes/unsolved-problems-mega-atlas"
 url: "https://0thernes.github.io/unsolved-problems-mega-atlas/"
-version: "2.3.0"
-date-released: "2026-11-21"
+version: "2.3.1"
+date-released: "2026-11-25"
 license: "MIT AND CC-BY-4.0"
 keywords:
   - unsolved problems

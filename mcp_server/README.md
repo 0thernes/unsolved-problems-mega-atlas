@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP) Server (`mcp_server/`)
 
-Zero-dependency pure-Python **MCP dual-framed stdio JSON-RPC 2.0 server** (auto-detects both line-delimited NDJSON AND LSP/MCP `Content-Length:` headers) exposing all **1,900 unsolved problems (48 fields)**, **5,808 biconnected knowledge-graph edges**, **8 Substrates × 7 Abstraction Layers**, the **November 20, 2026 AI proof-claim audit**, and **0thernes LLC provenance** directly to AI coding/research agents (**Claude Code**, **Antigravity**, **Cursor**, **Gemini CLI**, **Codex**).
+Zero-dependency pure-Python **MCP dual-framed stdio JSON-RPC 2.0 server** (auto-detects both line-delimited NDJSON AND LSP/MCP `Content-Length:` headers) exposing all **1,900 unsolved problems (48 fields)**, **5,808 biconnected knowledge-graph edges**, **8 Substrates × 7 Abstraction Layers**, the **November 20, 2026 AI proof-claim audit**, and **Independent Researcher (0thernes) provenance** directly to AI coding/research agents (**Claude Code**, **Antigravity**, **Cursor**, **Gemini CLI**, **Codex**).
 
 ## Exposed MCP Tools (9)
 

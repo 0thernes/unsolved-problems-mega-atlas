@@ -1,7 +1,7 @@
 # Cryptographic Evidence & Provenance Dossier
 
 **Project:** Unsolved Problems Mega-Atlas (`v2.3.0`)  
-**Author / Curator:** Alexander Stephen Donahue (`0thernes LLC`, Spokane, WA, USA)  
+**Author / Curator:** Alexander Stephen Donahue (`Independent Researcher (0thernes)`, Spokane, WA, USA)  
 **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)  
 **Repository:** [https://github.com/0thernes/unsolved-problems-mega-atlas](https://github.com/0thernes/unsolved-problems-mega-atlas)  
 **Interactive Web Atlas (GitHub Pages):** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/)  

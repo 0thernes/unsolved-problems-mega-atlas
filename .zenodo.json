@@ -1,15 +1,15 @@
 {
-  "title": "Unsolved Problems Mega-Atlas (V2.3.0): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch, Nov 2026 AI Audit & 72 Pure Lean 4.35.0 Formal Invariants",
+  "title": "Unsolved Problems Mega-Atlas (V2.3.1): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch, Nov 2026 AI Audit & 72 Pure Lean 4.35.0 Formal Invariants",
   "description": "Reproducible, cryptographically audited cross-disciplinary research infrastructure cataloging 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers (L0-L6) wired into 1 biconnected 5,808-edge NetworkX knowledge graph (0 articulation points, 0 dangling links). Includes unified 0thernes Composite Severity Score (CSS) and Titan Index rankings, quantitative hardness-tractability gradients, CSS-Titan margins, bridge ratios, adjacent-pillar counts, per-record epistemic verification flags, a live November 20, 2026 AI proof-claim audit (12 unretired claims), a SQLite 3 + FTS5 Hybrid BM25+Bigram+PageRank RAG CLI (100% MRR@5 on 25-query benchmark) and zero-dependency 9-tool Model Context Protocol (MCP) server, a Karpathy-style autonomous research harness (Track A + Track B pilot), MLCommons Croissant 1.0 & W3C RO-Crate 1.1 FAIR metadata, 15 PNG/SVG analytical figures (30 files), a vector PDF monograph, and 72 Pure Lean 4.35.0 formal invariants (8 modules, 1,008 lines, zero Mathlib, zero sorry, axioms strictly within [propext, Quot.sound]).",
   "upload_type": "dataset",
-  "version": "2.3.0",
-  "publication_date": "2026-11-21",
+  "version": "2.3.1",
+  "publication_date": "2026-11-25",
   "license": "cc-by-4.0",
   "access_right": "open",
   "creators": [
     {
       "name": "Donahue, Alexander Stephen",
-      "affiliation": "0thernes LLC, Spokane, WA, USA",
+      "affiliation": "Independent Researcher, Spokane, WA, USA",
       "orcid": "0009-0006-8168-9648"
     }
   ],

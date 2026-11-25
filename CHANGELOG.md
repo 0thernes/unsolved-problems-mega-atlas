@@ -2,6 +2,15 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.3.1] — 2026-11-25
+
+### Fixed & Added — Build Standard v1.2.0 Hardening, R4 Remediation & 0/1,900 Archive Solved-Problem Audit
+- **Removed R4-banned file (`conflict`):** Deleted `.github/PULL_REQUEST_TEMPLATE.md` and enforced Build Standard `R4` via regression test in `tests/test_build_standard_and_properties.py`.
+- **Affiliation accuracy (`problem`):** Replaced unformed-entity `"0thernes LLC"` strings across active governance and FAIR metadata (`README.md`, `CITATION.cff`, `.zenodo.json`, `AGENTS.md`, `croissant.json`, `ro-crate-metadata.json`) with `Independent Researcher, Spokane, WA, USA` (matching ORCID `0009-0006-8168-9648`).
+- **Honest Solved-Problem Cross-Reference (`gap`):** Added [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](docs/0THERNES_SOLVED_AUDIT_2026-11-25.md) recording the complete 1,900-problem audit against `0thernes-research-archive` (`0 / 1,900` grand problems retired; `7` partial/special-case methodological links documented honestly).
+- **Build Standard v1.2.0 Infrastructure:** Added `repo.yaml`, `repo-standard.schema.json`, `CLAIMS.md`, `LIMITATIONS.md`, `REPLICATION.md`, `ROADMAP.md`, `SUPPORT.md`, `UPGRADING.md`, `.editorconfig`, `.gitleaks.toml`, `justfile`, `GEMINI.md`, `.cursor/rules/build-standard.mdc`, `llms-full.txt`, `CLAUDE.md` (`@AGENTS.md`), `examples/`, `data/MANIFEST.sha256`, `.github/labels.tsv`, `.github/workflows/release.yml` (`SHA256SUMS` + Sigstore SLSA), cross-platform CI (`ubuntu`/`windows`/`macos` + `ruff`/`mypy`/`gitleaks`/`audit-repo.sh`), `docs/{configuration,operations,threat-model,faq,glossary,run-log,adr/*,reviews/*,media/social-preview.svg}`, and Hypothesis/negative/mutation tests.
+- **Single-version consistency (`hole`):** Updated `mcp_server/server.py` and `tests/test_mega_atlas.py` to read `VERSION` dynamically.
+
 ## [2.3.0] — 2026-11-21
 
 ### Added & Fixed — Full Multi-Layer Forensic Audit, Biconnected 1,900-Node Atlas, 100% RAG, 9-Tool Dual-Framed MCP, 72 Lean Theorems & Options 1/2/3

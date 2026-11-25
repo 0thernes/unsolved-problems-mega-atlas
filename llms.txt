@@ -1,7 +1,7 @@
-# Unsolved Problems Mega-Atlas (V2.3.0) — 0thernes LLC
+# Unsolved Problems Mega-Atlas (V2.3.0) — Independent Researcher (0thernes)
 
 > Cross-disciplinary, cryptographically audited open-problem atlas cataloging **1,900 strictly deduplicated unsolved, open, and hard problems** across **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers (`L0–L6`)** wired into **1 biconnected 5,808-edge knowledge graph (`0` articulation points, `0` bridges, `0` dangling links)**, with **72 Pure Lean 4.35.0 formal invariants**, **0thernes CSS, Titan, Gradient, Margin & Epistemic Spectrum metrics**, an **offline 100% MRR@5 Hybrid BM25+PageRank RAG & dual-framed 9-tool MCP server**, and a **Karpathy-style AutoResearch loop (`AQS = 97.99`) + Track B Antihydra `BB(6)` pilot**.
-> Author: Alexander Stephen Donahue (0thernes LLC, ORCID `0009-0006-8168-9648`). Dual License: Data CC BY 4.0 / Code MIT.
+> Author: Alexander Stephen Donahue (Independent Researcher (0thernes), ORCID `0009-0006-8168-9648`). Dual License: Data CC BY 4.0 / Code MIT.
 
 ## Epistemic Boundary (Critical for LLM Consumers)
 - **Formally proved (Pure Lean 4.35.0, 72 theorems, 0 sorry, `[propext, Quot.sound]`):** Exact invariants of scoring formulas (`CSS`, `Titan`, `Leverage`, 300-yr antiquity cap), 4-Quadrant & 6-Era partitions, 8×28 taxonomy surjection, finite Handshaking Lemma, cross-partition edge hierarchy, deduplication bound, AutoResearch anti-gaming keep/discard ratchet, and multi-layer Substrate/Layer/Gradient/Margin/Bridge/Apex-Keystone invariants.
