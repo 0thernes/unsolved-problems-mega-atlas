@@ -65,7 +65,7 @@ def _read_atlas_version() -> str:
             v = f.read().strip()
             if v:
                 return v
-    return "2.7.0"
+    return "2.8.0"
 
 
 ATLAS_VERSION = _read_atlas_version()
@@ -87,7 +87,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants (103 theorems + live negative rejection), JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256 + RFC 3161 TSA, AutoResearch & Nov 25 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 10-tool MCP server, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
+    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants (103 theorems + live negative rejection), JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 Track B probes & Nov 26 2026 registry delta audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 11-tool MCP server, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -324,19 +324,27 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
     },
     {
         "Archive_ID": "0TH-BUILD-012",
-        "Repo": "0thernes/xiaomi-17t-pro-lab (v3.0.0, 2026-11-26)",
+        "Repo": "0thernes/xiaomi-17t-pro-lab (v3.1.0, 2026-11-26)",
         "Parent_Atlas_IDs": "HW-001, HW-002, QM-011",
-        "Scoped_Result": "Proved 59 silicon-to-quantum hardware modeling invariants (discrete PDE thermal stability, unitary operator bounds, finite contextuality & AdversarialTests) paired with 60-digit differential oracles.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 59 audited Palomar decls across 6/6 kernels + leanchecker --fresh, CI #45748904789, Rekor 4117264287)",
+        "Scoped_Result": "Proved 75 constructive silicon-to-quantum hardware modeling invariants (28 zero-axiom; discrete PDE thermal stability, unitary operator bounds, finite contextuality & AdversarialTests) paired with 60-digit differential oracles.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 75 audited Palomar decls across 6/6 kernels + leanchecker --fresh, SWH swh:1:snp:06ad26ff, CI #45821462528, Rekor 4124262738)",
         "Parent_Problem_Status": "STILL OPEN — Certifies mathematical model invariants only; post-Moore CMOS scaling (HW-001) & practical Landauer reversible computing (HW-002) remain OPEN.",
     },
     {
-        "Archive_ID": "0TH-BUILD-001 / 006 / 008–011",
-        "Repo": "0thernes A-Life Omega Suite (5 repos) & black-hole-simulation-lab",
+        "Archive_ID": "0TH-BUILD-001 / 006 / 008–011 / 013",
+        "Repo": "0thernes A-Life Omega Suite (6 repos incl. alife-singularity-omega-package v3.4.0) & black-hole-simulation-lab",
         "Parent_Atlas_IDs": "BIO-001, BIO-015, BIO-022, SUB-001, GR-001, GR-002",
-        "Scoped_Result": "Proved 258 combined discrete A-Life/biophysical invariants (cellulogonic-mecha v1.5.0: 70, cellular-engine-omega v5.2.0: 89, autophage: 31, noetic-organism-omega: 48, asmodensius-native: 20) plus 8 zero-axiom Schwarzschild rational limits (black-hole-simulation-lab).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 266 combined discrete invariants across 6 public build repos; 6/6 kernels on cellulogonic-mecha CI #45751776610 & cellular-engine-omega CI #45749131672)",
+        "Scoped_Result": "Proved 350 combined discrete A-Life/biophysical invariants (cellulogonic-mecha v1.6.0: 78, cellular-engine-omega v5.3.0: 100, autophage v1.4.0: 48, noetic-organism-omega v2.1.0: 54, asmodensius-native v1.1.0: 30, alife-singularity-omega-package v3.4.0: 40 local + 291 native = 327) plus 8 zero-axiom Schwarzschild rational limits (black-hole-simulation-lab).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 358 combined discrete invariants across 7 public build repos; 6/6 kernels on cellulogonic-mecha CI #45812871840, cellular-engine-omega CI #45810663954 & alife-singularity-omega-package CI #45821196180, SWH swh:1:snp:e275a272)",
         "Parent_Problem_Status": "STILL OPEN — Coarse-grained discrete simulation & classical textbook limits only; abiogenesis (BIO-001), morphogenesis (BIO-022), basal cognition (SUB-001) & quantum gravity (GR-001..002) remain OPEN.",
+    },
+    {
+        "Archive_ID": "0TH-BUILD-015",
+        "Repo": "0thernes/glitchling-jam (v2.3.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "SYS-001, AI-002",
+        "Scoped_Result": "Proved 72 discrete deterministic simulation, state-machine, and procedural-control invariants across 11 Pure Lean 4.35.0 modules (1,858 lines) alongside 77/77 Build Standard v1.2.0 compliance.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 72 audited decls across 6/6 independent kernels, 3-OS CI #45823061012, Release v2.3.0 #45823677167)",
+        "Parent_Problem_Status": "STILL OPEN — Certifies bounded discrete software/simulation invariants only; nonlinear stochastic optimal control (SYS-001) & continual AGI (AI-002) remain OPEN.",
     },
 ]
 

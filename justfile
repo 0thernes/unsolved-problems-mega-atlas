@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Canonical command runner for Unsolved Problems Mega-Atlas (V2.7.0)
+# Canonical command runner for Unsolved Problems Mega-Atlas (V2.8.0)
 # Usage: `just` to list recipes, `just reproduce` to rebuild & verify everything.
 
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
@@ -16,9 +16,11 @@ setup:
     {{python}} -m pip install --upgrade pip
     {{python}} -m pip install -e ".[dev]"
 
-# Regenerate all 15 charts, 5 PDF paper figures, social card, exports, FAIR metadata & checksums
+# Regenerate all 3 Track B probes, 15 charts, 5 PDF paper figures, social card, exports, FAIR metadata & checksums
 build:
     {{python}} research/runs/LOG-002_antihydra_pilot/antihydra_probe.py
+    {{python}} research/runs/NT-005_collatz_parity_pilot/collatz_probe.py
+    {{python}} research/runs/COMB-001_ramsey_witness_pilot/ramsey_probe.py
     {{python}} src/v2_charts.py
     {{python}} src/v2_export_all.py --skip-pdf
     {{python}} scripts/generate_fair_metadata.py
@@ -80,6 +82,14 @@ deploy:
 # Verify dual cryptographic timestamps (DigiCert RFC 3161 .tsr + Bitcoin OpenTimestamps .ots)
 stamp:
     {{python}} scripts/stamp_timestamps.py --verify
+
+# Poll public external open-problem registries (advisory delta report only; zero auto-retirement)
+sync-registries:
+    {{python}} scripts/sync_external_registries.py --live --write-report
+
+# Run community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
+rubric-diff:
+    {{python}} scripts/rubric_override_diff.py --override examples/rubric_override_sample.json
 
 # Print rollback instructions for static GitHub Pages / GitHub Releases
 rollback:

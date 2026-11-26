@@ -22,6 +22,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.8.0"
 CHECKSUMS_PATH = ROOT / "CHECKSUMS.sha256"
 TSR_PATH = ROOT / "CHECKSUMS.sha256.tsr"
 OTS_PATH = ROOT / "CHECKSUMS.sha256.ots"
@@ -59,7 +60,7 @@ def mint_rfc3161() -> None:
         req = urllib.request.Request(
             DIGICERT_TSA_URL,
             data=tsq_path.read_bytes(),
-            headers={"Content-Type": "application/timestamp-query", "User-Agent": "MegaAtlas-TSA/2.7.0"},
+            headers={"Content-Type": "application/timestamp-query", "User-Agent": f"MegaAtlas-TSA/{ATLAS_VERSION}"},
             method="POST",
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
@@ -91,7 +92,7 @@ def mint_opentimestamps() -> None:
                 headers={
                     "Content-Type": "application/x-www-form-urlencoded",
                     "Accept": "application/vnd.opentimestamps.v1",
-                    "User-Agent": "MegaAtlas-OTS/2.7.0",
+                    "User-Agent": f"MegaAtlas-OTS/{ATLAS_VERSION}",
                 },
                 method="POST",
             )

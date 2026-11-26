@@ -1,4 +1,4 @@
-# AI-Assistance Transparency, Export-Control & Venue Disclosure Policy (`v2.7.0`)
+# AI-Assistance Transparency, Export-Control & Venue Disclosure Policy (`v2.8.0`)
 
 **Principal Author & Responsible Human-in-the-Loop:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 
@@ -6,7 +6,7 @@
 
 This project is built by an **independent solo researcher working with frontier AI coding and research assistants (`Gemini / Antigravity`)**. Rather than obscuring AI involvement—or inflating AI outputs into pretended institutional peer review—this repository adheres to full disclosure:
 
-- **Human Role (Alexander Stephen Donahue — sole author):** Conceived the project and its `v2.0`–`v2.7` cross-disciplinary scope, enforced benchmarking against primary registries (`ProofAtlas.ai`, `erdosproblems.com`, Clay CMI, Kourovka, Kirby), established the November 2026 AI proof-claim containment policy, mandated dual-licensing (`CC-BY-4.0` / `Apache-2.0`), directed the 6-kernel Pure Lean 4.35.0 formal invariant & adversarial-refutation suite and multi-cycle adversarial hardening reviews, verified visual & typesetting outputs, and assumes sole scholarly accountability.
+- **Human Role (Alexander Stephen Donahue — sole author):** Conceived the project and its `v2.0`–`v2.8` cross-disciplinary scope, enforced benchmarking against primary registries (`ProofAtlas.ai`, `erdosproblems.com`, Clay CMI, Kourovka, Kirby), established the November 2026 AI proof-claim containment policy, mandated dual-licensing (`CC-BY-4.0` / `Apache-2.0`), directed the 6-kernel Pure Lean 4.35.0 formal invariant & adversarial-refutation suite and multi-cycle adversarial hardening reviews, verified visual & typesetting outputs, and assumes sole scholarly accountability.
 - **AI Role (Disclosed Tooling Assistance — non-author):** Parallel drafting and structuring of domain modules (`m01`–`m11`), initial editorial rubric scoring, Python pipeline/RAG/MCP/oracle/test engineering, Lean 4.35.0 tactic proof drafting & witness scaffolding (independently audited across 6 proof kernels), and AMS-LaTeX typesetting under human supervision.
 
 ## 2. Venue-Specific AI Disclosure Alignment (Playbook v1.3 Item 40)
@@ -21,7 +21,7 @@ This project is built by an **independent solo researcher working with frontier 
 2. **Six-Kernel Formal Lean 4.35.0 Invariants & Adversarial Refutations (`lean/`):** All **103** theorems (`72` core + `12` NonVacuity + `10` AdversarialTests + `9` Palomar targets) compile with `0` `sorry` in `lean/`, `0` `native_decide`, axioms strictly `⊆ [propext, Quot.sound]`, across `6/6` independent kernels via `scripts/verify_lean_six_kernels.sh`.
 3. **Differential Reference Oracle & 100% Mutation Testing (`reference/`, `scripts/run_mutation_audit.py`):** 50-digit `Decimal`/`Fraction` differential verification across `2,000+` cases, 1,000-example Hypothesis property checks, and `6/6` mutation-kill auditing.
 4. **Per-Record Verification Flags (`verification_flag`):** Every record explicitly declares `primary-registry-indexed` (`925`), `ai-assisted-editorial-synthesis` (`952`), `ai-claim-under-audit-nov2026` (`12`), or `disputed-human-claim` (`11`).
-5. **Conservative November 26, 2026 Proof-Claim Containment:** Zero (`0/1,900`) overarching problems—including all 12 Fall/Nov 2026 AI proof-claim targets and the parent IDs of all 16 companion archive entries (76 public repos audited)—are marked solved or retired.
+5. **Conservative November 26, 2026 Proof-Claim Containment:** Zero (`0/1,900`) overarching problems—including all 12 Fall/Nov 2026 AI proof-claim targets and the parent IDs of all 17 companion archive rows (43 archive entries / 76 public repos audited)—are marked solved or retired.
 6. **Live Citation, Retraction & Dual Cryptographic Timestamp Auditing:** `scripts/check_citations.py` verifies `12/12` BibTeX URLs/DOIs live with `0` Crossref retractions; `CHECKSUMS.sha256` & `data/MANIFEST.sha256` verify byte-exact artifact integrity; dual DigiCert RFC 3161 (`CHECKSUMS.sha256.tsr`) + 3-calendar Bitcoin OpenTimestamps (`CHECKSUMS.sha256.ots`) proofs cryptographically timestamp `CHECKSUMS.sha256` (verified by `scripts/stamp_timestamps.py --verify`); GitHub `actions/attest-build-provenance@v2` issues SLSA attestations on the frozen PDF, arXiv tarball, Lean axiom report, checksums, `.tsr`, and `.ots`.
 7. **Zero Fabricated Credentials:** No fake DOIs, no fabricated peer review, no fake legal entities, and no programmatic bypassing of external anti-bot/PoW gates.
 
@@ -38,7 +38,8 @@ To preserve auditability without exposing secrets, API tokens, local drive paths
 | `v2.4.0` | 2026-11-25 | `Gemini / Antigravity` | Lean 4.35.0 6-kernel Palomar upgrade (`92` thms), AMS-LaTeX white paper, 50-digit oracle, mutation audit, `<5 MB` HTML refactor | Commit `f838db1` · CI `#45728933812` |
 | `v2.5.0` | 2026-11-26 | `Gemini / Antigravity` | Round 2 hostile-referee audit (`H-401`–`H-411`), `AdversarialTests.lean` (`103` thms), Crossref retraction checks, 100% SPDX headers | Commit `ceeee0c` · CI `#45743507132` |
 | `v2.6.0` | 2026-11-26 | `Gemini / Antigravity` | Round 3 3-cycle audit (`H-501`–`H-527`), `leanchecker --fresh` + live negative Lean rejection, DigiCert RFC 3161 `.tsr`, 10-page PDF visual QA | Commit `d23b4d7` · CI `#45749252063` |
-| `v2.7.0` | 2026-11-26 | `Gemini / Antigravity` | Round 4 3-cycle audit (`H-601`–`H-614`), 76-repo/16-entry archive sync, dual RFC 3161 `.tsr` + 3-calendar Bitcoin `.ots`, strict CSP, MCP/RAG hardening | Tag `v2.7.0` · `CHECKSUMS.sha256` + `.tsr` + `.ots` |
+| `v2.7.0` | 2026-11-26 | `Gemini / Antigravity` | Round 4 3-cycle audit (`H-601`–`H-614`), 76-repo/16-entry archive sync, dual RFC 3161 `.tsr` + 3-calendar Bitcoin `.ots`, strict CSP, MCP/RAG hardening | Commit `541f093` · CI `#45806252859` |
+| `v2.8.0` | 2026-11-26 | `Gemini / Antigravity` | 4-roadmap release: 43-entry archive sync (`17` rows), `sync_external_registries.py`, Track B `NT-005`/`COMB-001` probes, `rubric_override_diff.py` + 11th MCP tool | Tag `v2.8.0` · `CHECKSUMS.sha256` + `.tsr` + `.ots` |
 
 ## 6. Open External Review Invitation
 

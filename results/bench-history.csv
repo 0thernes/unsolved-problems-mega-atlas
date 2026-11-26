@@ -4,3 +4,4 @@ timestamp_utc,version,commit,environment,load_median_s,load_iqr_s,rag_query_medi
 2026-11-26T02:54:36Z,2.6.0,ceeee0c,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",3.8469,1.1105,9.8434,3.1804,75.9044,6.4799,PASS
 2026-11-26T03:12:20Z,2.6.0,ceeee0c,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",3.3784,0.2271,9.8566,0.9754,80.8728,4.9333,PASS
 2026-11-26T10:39:53Z,2.7.0,d23b4d7,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",2.3306,0.2166,7.0437,1.4189,71.248,8.1559,PASS
+2026-11-26T13:37:44Z,2.8.0,541f093,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",3.6831,0.6044,10.2804,1.0523,79.9292,8.2996,PASS

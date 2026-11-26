@@ -2,6 +2,21 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.8.0] — 2026-11-26
+
+### Added & Upgraded — 4-Item Roadmap Execution: 43-Entry Archive Sync, Automated External Registry Delta Auditor, Track B Collatz & Ramsey Probes, and Community Rubric Sensitivity Simulator
+- **Live 43-Entry Archive Sync (`16 → 17` Companion Rows; `0 / 1,900` Overarching Parents Retired) & `ROADMAP.md` Cure:**
+  - Synced `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` (`src/v2_loader.py`), `paper/main.tex` Table 4, `RANKING.md`, `CLAIMS.md`, `README.md`, `docs/literature-search-log.md`, and MCP tool #9 against `0thernes-research-archive` @ `93b306b` (`43` public entries across `29` submodules / `76` public repos) — adding `0TH-BUILD-013` (`alife-singularity-omega-package v3.4.0`, `327` 6-kernel proofs) & `0TH-BUILD-015` (`glitchling-jam v2.3.0`, `72` proofs) and upgrading `cellulogonic-mecha v1.6.0` (`78`), `cellular-engine-omega v5.3.0` (`100`), `xiaomi-17t-pro-lab v3.1.0` (`75` + SWH), `autophage v1.4.0` (`48`), `noetic-organism-omega v2.1.0` (`54`), and `asmodensius-native v1.1.0` (`30`). Strictly affirms **`0 / 1,900`** overarching Mega-Atlas parents retired.
+  - Fixed duplicate `v2.7.0` ordering and stale planned-release entries in `ROADMAP.md` (locked with automated regression test).
+- **Automated External Registry Delta Sync Engine (`scripts/sync_external_registries.py`, `just sync-registries`):**
+  - Zero-dependency read-only HTTPS auditor polling `claymath.org/millennium-problems/`, `erdosproblems.com/`, and `proofatlas.ai/open-problems/` without bypassing any anti-bot/JS gate, producing advisory diff reports (`results/registry_delta.json`, `docs/registry-delta-2026-11-26.md`) strictly for human editorial review (`3/3` HTTP 200 live-checked, `0` retirement signals).
+- **Two New Reproducible Track B Exact Computational Probes (`research/runs/`):**
+  - **`NT-005_collatz_parity_pilot/` (`collatz_probe.py`):** Exact arbitrary-precision convergence sweep over `1..100,000` (`max_steps n=77031->350`, `max_peak n=77671->1,570,824,736`) plus exhaustive verification of the Terras (1976) compressed Collatz parity-vector bijection on `Z / 2^k Z` for `k = 1..12` (`2^12 = 4,096` classes); explicitly affirms `NT-005` remains **OPEN**.
+  - **`COMB-001_ramsey_witness_pilot/` (`ramsey_probe.py`):** Zero-dependency exact bitmask clique/independent-set certifier with full cyclic automorphism checks certifying 7 constructive Ramsey lower bounds (`R(3,3)>5`, `R(3,4)>8`, `R(3,5)>13`, `R(4,4)>17`, `R(4,5)>24`, `R(5,5)>37`, `R(6,6)>101`); explicitly affirms `COMB-001` remains **OPEN**.
+- **Community Rubric Override & Sensitivity Diff Engine (`scripts/rubric_override_diff.py`, `just rubric-diff`, MCP Tool #11 `simulate_rubric_override`):**
+  - Makes Claim `C9` quantitatively falsifiable in one command or MCP call, computing Spearman `rho`, Kendall `tau`, Top-25 Jaccard overlap, Quadrant migrations, and Top-10 rank movers under custom CSS weights and/or structured per-problem rating overrides (`examples/rubric_override_sample.json`).
+  - Expanded automated `pytest` suite from `69` to **`75` checks** (`+6` tests covering all 4 new capabilities + negative bounds) and minted fresh dual DigiCert RFC 3161 (`.tsr`) + 3-calendar Bitcoin OpenTimestamps (`.ots`) proofs.
+
 ## [2.7.0] — 2026-11-26
 
 ### Added, Fixed & Hardened — Round 4 Deep-Dive 3-Cycle Audit: 76-Repo / 16-Entry Archive Sync, Dual RFC 3161 + Bitcoin OpenTimestamps, Strict CSP Web Apps, Hardened RAG/MCP Runtime & 6 New Regression Tests

@@ -1,6 +1,6 @@
 # Quantitative Methodology, Scoring Formulas & Known Limitations
 
-**Release:** `v2.7.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
+**Release:** `v2.8.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
 **Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, finite graph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in Pure Lean 4.35.0 (`lean/`, **103** audited theorems, 0 `sorry` in `lean/`, 6 independent kernels + live negative kernel rejection via `scripts/verify_lean_six_kernels.sh`, `[propext, Quot.sound]`).
 
 ---

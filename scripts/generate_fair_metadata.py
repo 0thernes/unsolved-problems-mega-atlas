@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deterministic FAIR Scholarly Metadata Generator (`v2.7.0`):
+Deterministic FAIR Scholarly Metadata Generator (`v2.8.0`):
   1. `croissant.json`         — MLCommons Croissant 1.0 JSON-LD dataset specification
   2. `ro-crate-metadata.json` — W3C / ResearchObject RO-Crate 1.1 JSON-LD descriptor
   3. `data/MANIFEST.sha256`   — Canonical SHA-256 manifest of frozen tracked data & paper artifacts
@@ -27,7 +27,7 @@ REPO_URL = "https://github.com/0thernes/unsolved-problems-mega-atlas"
 PAGES_URL = "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 RAW_BASE = "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/"
 ORCID_URL = "https://orcid.org/0009-0006-8168-9648"
-VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.8.0"
 
 
 def _lean_theorem_count() -> int:
@@ -119,7 +119,7 @@ def build_croissant(df_cols: list[str], total_problems: int, total_edges: int) -
             "unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, "
             f"and 7 Abstraction Layers wired into 1 biconnected {total_edges:,}-edge knowledge graph (0 articulation points, 0 dangling links), "
             "with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 "
-            f"AI proof-claim audit, Hybrid RAG (100% MRR@5), 10-tool MCP server, Karpathy-style AutoResearch harness, and {lean_n} Pure Lean 4.35.0 "
+            f"AI proof-claim audit, Hybrid RAG (100% MRR@5), 11-tool MCP server, 3 Track B probes, Karpathy-style AutoResearch harness, and {lean_n} Pure Lean 4.35.0 "
             "formal invariant theorems verified across 6 independent kernels."
         ),
         "version": VERSION,
@@ -233,7 +233,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("autoresearch/program.md", "text/markdown", "Karpathy-style autonomous research instruction manual"),
         ("autoresearch/evaluate.py", "text/x-python", "Immutable AutoResearch evaluation oracle"),
         ("autoresearch/results.tsv", "text/tab-separated-values", "Empirical AutoResearch experiment audit trail"),
-        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (10 tools)"),
+        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (11 tools)"),
         ("rag/query.py", "text/x-python", "Offline Hybrid BM25 + graph-authority RAG CLI (auto-builds SQLite FTS5)"),
     ]
     graph = [
@@ -252,7 +252,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
                 f"8 Substrates, 7 Abstraction Layers, {total_edges:,} biconnected graph edges, {lean_n} Pure Lean 4.35.0 formal invariants "
-                "across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop)."
+                "across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 11-tool MCP server, 3 Track B probes, and Karpathy-style AutoResearch loop)."
             ),
             "url": PAGES_URL,
             "identifier": REPO_URL,

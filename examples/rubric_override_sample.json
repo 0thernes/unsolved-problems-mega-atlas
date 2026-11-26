@@ -1,0 +1,19 @@
+{
+  "label": "near-term-impact-focused-community-rubric",
+  "description": "Sample community rubric override de-emphasizing historical antiquity (0.20 -> 0.05) in favor of graph centrality/impact (0.30 -> 0.45) plus three illustrative domain-expert per-problem score overrides.",
+  "css_weights": [0.40, 0.45, 0.05, 0.10],
+  "problem_overrides": {
+    "AI-001": {
+      "difficulty_score": 10,
+      "tractability_2050": 5,
+      "civilizational_impact": 10
+    },
+    "ENR-001": {
+      "tractability_2050": 8,
+      "civilizational_impact": 10
+    },
+    "NT-001": {
+      "tractability_2050": 6
+    }
+  }
+}

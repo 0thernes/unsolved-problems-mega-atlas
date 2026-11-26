@@ -2,8 +2,8 @@
 # Project manifest for the Build Standard for LLMs v1.2.0. Read by scripts/Audit-Repo.ps1.
 standard: "1.2.0"
 name: "unsolved-problems-mega-atlas"
-version: "2.7.0"
-description: "1,900 deduplicated unsolved, open & hard problems across 8 Pillars, 28 Superdomains, 8 Substrates & 7 Layers (5,808 biconnected edges), 103 Pure Lean 4.35.0 theorems across 6 kernels, offline Hybrid RAG (100% MRR@5), 10-tool MCP server, AutoResearch harness & AMS-LaTeX white paper."
+version: "2.8.0"
+description: "1,900 deduplicated unsolved, open & hard problems across 8 Pillars, 28 Superdomains, 8 Substrates & 7 Layers (5,808 biconnected edges), 103 Pure Lean 4.35.0 theorems across 6 kernels, offline Hybrid RAG (100% MRR@5), 11-tool MCP server, 3 Track B probes, AutoResearch harness & AMS-LaTeX white paper."
 owner: "0thernes"
 author: "Alexander Stephen Donahue"
 orcid: "0009-0006-8168-9648"
@@ -39,11 +39,11 @@ items:
   A37: {status: done, evidence: "Explicit latency & artifact-size budgets documented and dynamically verified in docs/benchmarks.md (<4.5s load, <30ms RAG query, <250ms 1,900-row oracle diff, <4.0MB HTML, <5.0MB tracked files)"}
   A38: {status: done, evidence: "WCAG 2.2 AA controls in outputs/MegaAtlas_Interactive_Dashboard_V2.html (skip-to-content link, ARIA tablist/tab/tabpanel roles, aria-labels, :focus-visible outlines, prefers-reduced-motion, Escape modal close); English (en-US, UTF-8) locale declared"}
   B03: {status: done, evidence: "Deterministic seeded NetworkX betweenness (seed=42), deterministic gzip/tar/XLSX/LF CSV-TSV exports, frozen REFERENCE_YEAR=2026, and repeatability tests in tests/test_properties_and_differential.py"}
-  B05: {status: done, evidence: "Comprehensive 63-test pytest suite (tests/test_mega_atlas.py + tests/test_properties_and_differential.py) covering every claim C1-C10 in CLAIMS.md"}
-  B06: {status: done, evidence: "Negative boundary tests for malformed MCP JSON-RPC, unknown tools, unclamped top/hops, missing required args, invalid Problem IDs, out-of-range ratings, JSON Schema rejections, plus 10 kernel-checked Lean AdversarialTests refutations and live negative Lean kernel rejection"}
-  B07: {status: done, evidence: "Named regression tests for every fixed defect logged in HARDENING_LOG.md (dangling raw_links, GEOM-038 articulation point, 12 duplicate aliases, CM-001/LOG-001 RAG misses, stale SQLite auto-rebuild, SECURITY.md/formalization.yaml/statement-fidelity.md parity, private-path ban, SPDX/WCAG/RFC 3161 TSA coverage)"}
+  B05: {status: done, evidence: "Comprehensive 75-test pytest suite (tests/test_mega_atlas.py + tests/test_properties_and_differential.py) covering every claim C1-C10 in CLAIMS.md, all 3 Track B probes, external registry delta sync, and rubric sensitivity diff"}
+  B06: {status: done, evidence: "Negative boundary tests for malformed MCP JSON-RPC, unknown tools, unclamped top/hops, missing required args, invalid rubric weights/overrides, invalid Problem IDs, out-of-range ratings, JSON Schema rejections, plus 10 kernel-checked Lean AdversarialTests refutations and live negative Lean kernel rejection"}
+  B07: {status: done, evidence: "Named regression tests for every fixed defect logged in HARDENING_LOG.md (dangling raw_links, GEOM-038 articulation point, 12 duplicate aliases, CM-001/LOG-001 RAG misses, stale SQLite auto-rebuild, SECURITY.md/formalization.yaml/statement-fidelity.md parity, private-path ban, SPDX/WCAG/RFC 3161 TSA/OTS/CSP/LF-only coverage)"}
   B08: {status: done, evidence: "Golden snapshot tests in tests/test_properties_and_differential.py against results/lean_axioms.txt (drift-checked via scripts/check_readme_axioms.py) and tests/golden/top10_css_titan.json"}
-  B09: {status: done, evidence: "JSON Schema Draft 2020-12 record contract validated on all 1,900 records plus live end-to-end MCP stdio JSON-RPC 2.0 protocol contract tests (NDJSON + Content-Length) across all 10 tools and error codes"}
+  B09: {status: done, evidence: "JSON Schema Draft 2020-12 record contract validated on all 1,900 records plus live end-to-end MCP stdio JSON-RPC 2.0 protocol contract tests (NDJSON + Content-Length) across all 11 tools and error codes"}
   B11: {status: done, evidence: "2,000+ case differential tests comparing src/v2_loader.py against independent 50-digit Decimal/Fraction oracle (reference/scoring_oracle.py) plus 6-kernel Lean 4.35.0 replay"}
   B12: {status: done, evidence: "Independent reference/scoring_oracle.py using Python fractions.Fraction and 50-digit decimal.Decimal with zero shared code from src/v2_loader.py"}
   B14: {status: done, evidence: "Metamorphic tests in tests/test_properties_and_differential.py (row-order shuffling invariance, pillar-filter subsetting, pairwise comparator antisymmetry, age saturation plateau)"}

@@ -1,4 +1,4 @@
-# System Architecture — Unsolved Problems Mega-Atlas (`V2.7.0`)
+# System Architecture — Unsolved Problems Mega-Atlas (`V2.8.0`)
 
 See also [`docs/architecture.md`](docs/architecture.md) and Architecture Decision Records in [`docs/adr/`](docs/adr/README.md).
 
@@ -15,7 +15,7 @@ flowchart LR
     E1 --> G
     E2 --> G
     E3 --> G
-    G --> H["Distribution & Preservation\nGitHub Release v2.7.0 · GitHub Pages\nZenodo CLI/FAIR (Croissant/RO-Crate) · Dual RFC 3161 + OTS\n0thernes-research-archive (0TH-BUILD-007)"]
+    G --> H["Distribution & Preservation\nGitHub Release v2.8.0 · GitHub Pages\nZenodo CLI/FAIR (Croissant/RO-Crate) · Dual RFC 3161 + OTS\n0thernes-research-archive (0TH-BUILD-007)"]
 ```
 
 ## Directory Map
@@ -33,12 +33,12 @@ flowchart LR
 | `reference/` | Independent 50-digit `Decimal` / `Fraction` reference oracle (`scoring_oracle.py`) with zero shared production code | Apache-2.0 |
 | `schema/` | JSON Schema Draft 2020-12 formal contracts (`problem.schema.json` with 48 typed fields, `atlas.schema.json`) | Apache-2.0 |
 | `rag/` | Zero-API offline Hybrid BM25 + Title-Bigram + PageRank + graph-hop retrieval CLI (`rag/query.py`, `100.0% MRR@5`, auto-builds SQLite on clean clones) | Apache-2.0 |
-| `mcp_server/` | Zero-dependency dual-framed (NDJSON + `Content-Length:`) stdio JSON-RPC 2.0 server exposing **10 grounded research tools** | Apache-2.0 |
+| `mcp_server/` | Zero-dependency dual-framed (NDJSON + `Content-Length:`) stdio JSON-RPC 2.0 server exposing **11 grounded research tools** (incl. `simulate_rubric_override`) | Apache-2.0 |
 | `autoresearch/` | Karpathy-style autonomous research loop (`program.md`, immutable `evaluate.py`, empirical `results.tsv`, `whiteboard.md`, `OSS_STACK.md`) | Apache-2.0 |
-| `research/runs/` | Track B open-problem empirical exploration pilots (`LOG-002_antihydra_pilot/` probing `BB(6)` Antihydra with strict non-claim bounds) | Apache-2.0 / CC-BY-4.0 |
-| `tests/` | Automated **50+ test `pytest` suite** (`test_mega_atlas.py`, `test_properties_and_differential.py`, `golden/top10_css_titan.json`) covering schema, Hypothesis, 50-digit oracle differential, metamorphic, golden, negative, 100% RAG, 10-tool MCP, FAIR, Lean & SHA-256 | Apache-2.0 |
-| `scripts/` | `audit_atlas.py`, `forensic_audit.py`, `run_mutation_audit.py`, `benchmark_atlas.py`, `build_paper.py`, `check_citations.py` (with Crossref retraction check), `check_readme_axioms.py`, `verify_lean_six_kernels.sh`, `generate_fair_metadata.py`, `generate_llms_full.py`, `publish_zenodo.py`, `Audit-Repo.ps1` | Apache-2.0 |
-| `outputs/` | All `< 5 MB` tracked `v2.7.0` datasets, 15×2 charts, and WCAG 2.2 AA Interactive HTML (heavy `.sqlite`/`.json`/`.jsonl`/168p PDF regenerated deterministically & attached to GitHub Releases) | CC-BY-4.0 |
+| `research/runs/` | Three exact finite Track B computational pilots (`LOG-002_antihydra_pilot/`, `NT-005_collatz_parity_pilot/`, `COMB-001_ramsey_witness_pilot/`) with strict non-claim bounds | Apache-2.0 / CC-BY-4.0 |
+| `tests/` | Automated **75-test `pytest` suite** (`test_mega_atlas.py`, `test_properties_and_differential.py`, `golden/top10_css_titan.json`) covering schema, Hypothesis, 50-digit oracle differential, metamorphic, golden, negative, 100% RAG, 11-tool MCP, 3 Track B probes, registry delta sync, rubric sensitivity, FAIR, Lean & SHA-256 | Apache-2.0 |
+| `scripts/` | `audit_atlas.py`, `forensic_audit.py`, `run_mutation_audit.py`, `benchmark_atlas.py`, `build_paper.py`, `check_citations.py` (with Crossref retraction check), `check_readme_axioms.py`, `verify_lean_six_kernels.sh`, `stamp_timestamps.py`, `sync_external_registries.py`, `rubric_override_diff.py`, `generate_fair_metadata.py`, `generate_llms_full.py`, `publish_zenodo.py`, `Audit-Repo.ps1` | Apache-2.0 |
+| `outputs/` | All `< 5 MB` tracked `v2.8.0` datasets, 15×2 charts, and WCAG 2.2 AA Interactive HTML (heavy `.sqlite`/`.json`/`.jsonl`/168p PDF regenerated deterministically & attached to GitHub Releases) | CC-BY-4.0 |
 | `docs/` | `WHITE_PAPER.md`, `DATASHEET.md`, `FORENSIC_AUDIT_V2.3.md`, `PRESERVATION.md`, `METHODOLOGY.md`, `AI_DISCLOSURE.md`, `ACADEMIC_REVIEW.md`, `statement-fidelity.md`, `literature-search-log.md`, `benchmarks.md`, `threat-model.md`, `operations.md`, `adr/`, `reviews/`, `media/` | CC-BY-4.0 |
 | `.github/` | 3-OS + 6-kernel + Tectonic + SLSA CI (`ci.yml`), 2-job GitHub Pages (`pages.yml`), tag release bundler (`release.yml`), 10-class `labels.tsv`, and structured Issue templates (no PR template per R4) | Apache-2.0 |
 

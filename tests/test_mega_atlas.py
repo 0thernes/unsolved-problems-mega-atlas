@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.7.0)."""
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.8.0)."""
 
 from __future__ import annotations
 
@@ -174,7 +174,7 @@ def test_exported_files_parity(master_data):
     assert len(csv_df) == n and csv_df.shape[1] == 48
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
-    assert len(payload["author_frontier_contributions"]) == 16
+    assert len(payload["author_frontier_contributions"]) == 17
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
     assert payload["metadata"]["license_code"] == "Apache-2.0"
@@ -188,7 +188,7 @@ def test_exported_files_parity(master_data):
         assert conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0] == n
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
-        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 16
+        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 17
     finally:
         conn.close()
 
@@ -210,7 +210,7 @@ def test_offline_rag_hybrid_bm25_pagerank_and_graph_hops():
     assert len(exact["results"][0]["graph_neighbors"]) >= 1
 
 
-def test_mcp_stdio_server_ndjson_all_10_tools():
+def test_mcp_stdio_server_ndjson_all_11_tools():
     reqs = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
@@ -224,6 +224,7 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
         {"jsonrpc": "2.0", "id": 10, "method": "tools/call", "params": {"name": "get_margin_and_gradient_extremes", "arguments": {"limit": 5}}},
         {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "list_author_frontier_contributions", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 12, "method": "tools/call", "params": {"name": "get_atlas_provenance", "arguments": {}}},
+        {"jsonrpc": "2.0", "id": 13, "method": "tools/call", "params": {"name": "simulate_rubric_override", "arguments": {"css_weights": [0.40, 0.45, 0.05, 0.10], "problem_overrides": {"AI-001": {"tractability_2050": 5}}, "top_movers": 3}}},
     ]
     stdin_payload = "\n".join(json.dumps(r) for r in reqs) + "\n"
     proc = subprocess.run(
@@ -245,6 +246,7 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
         "get_top_ranked", "get_pillar_summary", "get_substrate_layer_summary",
         "get_margin_and_gradient_extremes", "list_author_frontier_contributions", "get_atlas_provenance",
+        "simulate_rubric_override",
     }
     p_nt001 = json.loads(resps[3]["result"]["content"][0]["text"])
     assert p_nt001["id"] == "NT-001"
@@ -259,11 +261,15 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
     assert len(margins["apex_multi_pillar_keystones"]) == 5
     contribs = json.loads(resps[10]["result"]["content"][0]["text"])
     assert contribs["overarching_atlas_problems_retired"] == 0
-    assert contribs["scoped_preprints_count"] == 16
+    assert contribs["scoped_preprints_count"] == 17
     prov = json.loads(resps[11]["result"]["content"][0]["text"])
     assert prov["orcid"] == EXPECTED_ORCID
     assert prov["dual_license"]["code"] == "Apache-2.0"
     assert prov["lean_verification"]["audited_theorems"] == 103
+    sim = json.loads(resps[12]["result"]["content"][0]["text"])
+    assert sim["problems_evaluated"] == 1900
+    assert 0.5 < sim["rank_correlation"]["spearman_rho"] < 1.0
+    assert len(sim["biggest_risers"]) == 3
 
 
 def test_mcp_stdio_server_content_length_framing():

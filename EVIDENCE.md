@@ -1,4 +1,4 @@
-# Cryptographic & Formal Evidence Dossier (`v2.7.0`)
+# Cryptographic & Formal Evidence Dossier (`v2.8.0`)
 
 **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 **Date:** November 25–26, 2026 · **Archive ID:** `0TH-BUILD-007`
@@ -23,7 +23,7 @@
 |---|---|---|
 | Structural, JSON Schema, Parity & Checksums | `python scripts/audit_atlas.py --check-lean` | `1,900` unique rows, `48` cols, `5,808` edges, `0` APs, `0` bridges, `0` dangling links, 100% SHA-256 parity |
 | Forensic Biconnectivity & RAG Audit | `python scripts/forensic_audit.py` | `nx.is_biconnected(G) == True`, `0` dangling links, `0/25` RAG top-1 misses |
-| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all 69 tests (incl. live negative Lean kernel rejection, dual `.tsr`+`.ots` binding, strict CSP, zero-CRLF/BOM & zero broken links) |
+| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all 75 tests (incl. 3 Track B probes, external registry delta sync, rubric sensitivity diff, 11-tool MCP, live negative Lean kernel rejection, dual `.tsr`+`.ots` binding, strict CSP, zero-CRLF/BOM & zero broken links) |
 | Semantic Mutation Audit (B13) | `python scripts/run_mutation_audit.py` | `6/6` mutants killed (`100.0%` kill rate) |
 | Static Lint & Typecheck | `ruff check` + `mypy` | `0` lint errors, `0` type errors |
 | Immutable AutoResearch Evaluator | `python autoresearch/evaluate.py --verify-gates` | `aqs_score=97.99`, `rag_mrr5=100.00` (`25/25` top-1), `lean_theorems=103`, `hard_gates=PASS` |

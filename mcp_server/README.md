@@ -1,11 +1,11 @@
-# Model Context Protocol (MCP) Stdio Server (`v2.7.0`)
+# Model Context Protocol (MCP) Stdio Server (`v2.8.0`)
 
-Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **10 grounded scientific research tools** over the 1,900-problem Unsolved Problems Mega-Atlas. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio, automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
+Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **11 grounded scientific research tools** over the 1,900-problem Unsolved Problems Mega-Atlas. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio (`1 MiB` frame ceiling), automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
 
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
 - **License:** `Apache-2.0` (`../LICENSE-CODE`)
 
-## Exposed Tools (10)
+## Exposed Tools (11)
 
 1. `search_problems` — Hybrid BM25 + Title-Bigram + PageRank RAG search with pillar/superdomain/flag filters & 1-hop graph expansion.
 2. `get_problem` — Complete 48-field structured dossier by exact Problem ID + 1-hop graph neighbors.
@@ -15,8 +15,9 @@ Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **10
 6. `get_pillar_summary` — 8-Macro-Pillar quantitative scorecard.
 7. `get_substrate_layer_summary` — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix.
 8. `get_margin_and_gradient_extremes` — Steepest `D−T` chasms, highest tractability margins, CSS–Titan divergences, and Apex Multi-Pillar Keystones.
-9. `list_author_frontier_contributions` — 16 companion archive entries (`0thernes-research-archive`) with explicit COI, non-peer-reviewed status, and `0/1,900` overarching Atlas parents retired.
+9. `list_author_frontier_contributions` — 17 companion archive rows (`0thernes-research-archive`, 43 public entries / 76 repos audited) with explicit COI, non-peer-reviewed status, and `0/1,900` overarching Atlas parents retired.
 10. `get_atlas_provenance` — Author/ORCID, 103-theorem 6-kernel Lean 4.35.0 audit status, dual license, and summary stats.
+11. `simulate_rubric_override` — Community rubric sensitivity simulator returning Spearman `rho`, Kendall `tau`, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers under custom CSS weights or per-problem score overrides.
 
 ## Client Configuration (Claude Code / Antigravity / Cursor / Gemini CLI)
 

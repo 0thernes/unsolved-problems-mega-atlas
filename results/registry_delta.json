@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "atlas_version": "2.8.0",
+  "checked_utc": "2026-11-26T13:35:56Z",
+  "mode": "live",
+  "policy": "Advisory editorial delta only — ZERO automatic problem retirement. Community & primary-registry consensus required.",
+  "committed_registries_indexed": 13,
+  "committed_ai_audit_entries": 6,
+  "unretired_nov2026_ai_claim_targets": 12,
+  "registries": [
+    {
+      "key": "clay_millennium",
+      "name": "Clay Mathematics Institute Millennium Prize Problems",
+      "url": "https://www.claymath.org/millennium-problems/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "The Millennium Prize Problems - Clay Mathematics Institute",
+      "text_bytes": 7570,
+      "extracted_signals": [
+        "Millennium Prize Problems",
+        "Poincaré Conjecture",
+        "Poincaré conjecture"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "erdos_problems",
+      "name": "Erdos Problems Database (Thomas F. Bloom)",
+      "url": "https://www.erdosproblems.com/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Erdős Problems",
+      "text_bytes": 1990,
+      "extracted_signals": [
+        "1221 problems",
+        "Erdős Problems",
+        "Erdős problems"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "proofatlas",
+      "name": "ProofAtlas Open Problems Dataset",
+      "url": "https://proofatlas.ai/open-problems/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Top 500 Open Math Problems: LLM-assessed Importance — ProofAtlas",
+      "text_bytes": 196262,
+      "extracted_signals": [
+        "500 open problems",
+        "Top 500",
+        "ProofAtlas"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    }
+  ]
+}

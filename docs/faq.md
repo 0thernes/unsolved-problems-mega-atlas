@@ -10,7 +10,7 @@ Because compiling a multi-million-line Lean proof archive (such as the Nov 21, 2
 **No.** They are explicitly disclosed AI-assisted editorial estimates created by solo independent researcher Alexander Stephen Donahue. Treat them as a transparent, editable, falsifiable argument: edit any entry in `src/v2_data/`, run `just build`, and inspect the exact diff in `RANKING.md`.
 
 ### 4. Why aren't the `.sqlite`, `.json`, `.jsonl`, or 168-page Directory PDF files committed directly in git?
-Build Standard v1.2.0 (**A24**) keeps every git-tracked file strictly `< 5 MB` so clones stay fast and clean. Deterministic `.json.gz` (`1.28 MB`), `.jsonl.gz` (`1.21 MB`), `.csv`, `.tsv`, 15-sheet `.xlsx`, `<4 MB` Interactive HTML, all 30 charts, and the 10-page AMS-LaTeX white paper PDF (`0.68 MB`) ARE committed directly. Running `rag/query.py` or `mcp_server/server.py` auto-builds the SQLite FTS5 index locally in `< 1 s` (and auto-rebuilds on version upgrades), and all full uncompressed release artifacts are attached to **GitHub Release `v2.7.0`**.
+Build Standard v1.2.0 (**A24**) keeps every git-tracked file strictly `< 5 MB` so clones stay fast and clean. Deterministic `.json.gz` (`1.28 MB`), `.jsonl.gz` (`1.21 MB`), `.csv`, `.tsv`, 15-sheet `.xlsx`, `<4 MB` Interactive HTML, all 30 charts, and the 10-page AMS-LaTeX white paper PDF (`0.68 MB`) ARE committed directly. Running `rag/query.py` or `mcp_server/server.py` auto-builds the SQLite FTS5 index locally in `< 1 s` (and auto-rebuilds on version upgrades), and all full uncompressed release artifacts are attached to **GitHub Release `v2.8.0`**.
 
 ### 5. How can I verify the Lean 4.35.0 proofs myself in under 30 seconds?
 ```bash

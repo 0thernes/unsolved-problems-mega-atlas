@@ -2,6 +2,18 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.7.0` to `v2.8.0`
+
+### 1. Live 43-Entry Companion Archive Sync (`16` → `17` Rows; `0 / 1,900` Parents Retired)
+- Expanded `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` in `src/v2_loader.py` from `16` to **`17` companion rows** reflecting all `43` public entries in `0thernes-research-archive` (`93b306b`), adding `0TH-BUILD-013` (`alife-singularity-omega-package v3.4.0`) & `0TH-BUILD-015` (`glitchling-jam v2.3.0`) and updating `cellulogonic-mecha v1.6.0`, `cellular-engine-omega v5.3.0`, `xiaomi-17t-pro-lab v3.1.0`, `autophage v1.4.0`, `noetic-organism-omega v2.1.0`, and `asmodensius-native v1.1.0`. Cached SQLite databases automatically rebuild cleanly on upgrade.
+
+### 2. Automated External Registry Delta Auditor & Two New Track B Probes
+- Added `scripts/sync_external_registries.py` (`just sync-registries`) for advisory live/offline diffing against `claymath.org`, `erdosproblems.com`, and `proofatlas.ai`.
+- Added two exact finite Track B computational probes (`research/runs/NT-005_collatz_parity_pilot/` and `research/runs/COMB-001_ramsey_witness_pilot/`) wired into `just build`.
+
+### 3. Community Rubric Sensitivity Diff Engine & 11th MCP Tool (`simulate_rubric_override`)
+- Added `scripts/rubric_override_diff.py` (`just rubric-diff`, sample in `examples/rubric_override_sample.json`) and exposed `simulate_rubric_override` as the 11th tool in `mcp_server/server.py`. All existing 10 MCP tool signatures remain 100% backwards-compatible.
+
 ## Upgrading from `v2.6.0` to `v2.7.0`
 
 ### 1. Live 76-Repo Companion Archive Expansion (`12` → `16` Verified Entries; `0 / 1,900` Parents Retired)

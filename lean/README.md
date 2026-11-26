@@ -1,4 +1,4 @@
-# Pure Lean 4.35.0 Formal Invariant Suite (`MegaAtlasProofs`, `v2.7.0`)
+# Pure Lean 4.35.0 Formal Invariant Suite (`MegaAtlasProofs`, `v2.8.0`)
 
 - **Toolchain:** `leanprover/lean4:v4.35.0` (zero Mathlib, zero external Lake dependencies)
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)

@@ -3,13 +3,13 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.7.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.8.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
 (auto-built deterministically on first run or version upgrade).
 
-Exposes 10 grounded scientific research tools to Claude Code, Antigravity,
+Exposes 11 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
   1. search_problems                  — Hybrid BM25 + bigram + PageRank RAG + 1-hop neighbors
   2. get_problem                      — Full problem dossier by exact Problem ID
@@ -19,8 +19,9 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. list_author_frontier_contributions — 16 companion archive entries (0thernes-research-archive; explicitly separate from still-OPEN parent problems)
+  9. list_author_frontier_contributions — 17 companion archive entries (43 public archive entries audited; parent problems remain OPEN)
  10. get_atlas_provenance             — ORCID, 6-kernel Pure Lean 4.35.0 audit status, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
+ 11. simulate_rubric_override         — Community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard, movers & Quadrant shifts)
 """
 
 from __future__ import annotations
@@ -33,10 +34,12 @@ from typing import Any, Dict, List
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "rag"))
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
+from rubric_override_diff import DEFAULT_CSS_WEIGHTS, evaluate_rubric_override  # noqa: E402
 
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.8.0"
 MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on Content-Length JSON-RPC frames
 MAX_QUERY_CHARS = 4096
 
@@ -152,13 +155,35 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_author_frontier_contributions",
-        "description": "List the 16 author-curated Lean-verified companion archive entries (0thernes-research-archive, 76 public repos audited) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
+        "description": "List the 17 author-curated Lean-verified companion archive entries (0thernes-research-archive, 43 public entries / 76 public repos audited) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
         "name": "get_atlas_provenance",
         "description": "Return canonical author/ORCID identity, independent researcher affiliation, 6-kernel Pure Lean 4.35.0 Palomar formal audit status, dual-license terms (CC-BY-4.0 / Apache-2.0), and dataset summary stats.",
         "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "simulate_rubric_override",
+        "description": "Simulate alternative CSS weights [w_diff, w_cent, w_age, w_tract] (sum=1.0) and/or per-problem editorial rating overrides (1..10) across all 1,900 problems, returning Spearman rho, Kendall tau, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers (makes Claim C9 quantitatively falsifiable).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "css_weights": {
+                    "type": "array",
+                    "items": {"type": "number"},
+                    "minItems": 4,
+                    "maxItems": 4,
+                    "description": "Optional 4-element weight vector [w_diff, w_cent, w_age, w_tract] summing to 1.0",
+                },
+                "problem_overrides": {
+                    "type": "object",
+                    "description": "Optional map of Problem ID -> {difficulty_score?, tractability_2050?, civilizational_impact?, interdisciplinarity_index?} in 1..10",
+                },
+                "label": {"type": "string", "default": "mcp-rubric-override"},
+                "top_movers": {"type": "integer", "minimum": 1, "maximum": 25, "default": 5},
+            },
+        },
     },
 ]
 
@@ -315,6 +340,25 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             "ai_disclosure": "Curated by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
             "summary_stats": meta,
         }
+    if name == "simulate_rubric_override":
+        raw_w = args.get("css_weights")
+        if raw_w is None:
+            weights = DEFAULT_CSS_WEIGHTS
+        else:
+            if not isinstance(raw_w, list) or len(raw_w) != 4 or any(isinstance(x, bool) or not isinstance(x, (int, float)) for x in raw_w):
+                raise ValueError("Argument 'css_weights' must be a 4-element list of numbers summing to 1.0")
+            weights = (float(raw_w[0]), float(raw_w[1]), float(raw_w[2]), float(raw_w[3]))
+        overrides = args.get("problem_overrides")
+        if overrides is not None and not isinstance(overrides, dict):
+            raise ValueError("Argument 'problem_overrides' must be a JSON object")
+        label = str(args.get("label", "mcp-rubric-override"))[:120]
+        top_movers = _parse_clamped_int(args.get("top_movers"), 5, 1, 25, "top_movers")
+        return evaluate_rubric_override(
+            css_weights=weights,
+            problem_overrides=overrides,
+            label=label,
+            top_movers=top_movers,
+        )
     raise ValueError(f"Unknown tool: {name}")
 
 

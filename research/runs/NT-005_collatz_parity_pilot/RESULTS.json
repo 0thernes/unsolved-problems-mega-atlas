@@ -1,0 +1,146 @@
+{
+  "canonical_benchmarks": [
+    {
+      "even_steps": 70,
+      "n": 27,
+      "odd_steps": 41,
+      "peak": 9232,
+      "steps": 111
+    },
+    {
+      "even_steps": 108,
+      "n": 703,
+      "odd_steps": 62,
+      "peak": 250504,
+      "steps": 170
+    },
+    {
+      "even_steps": 118,
+      "n": 9663,
+      "odd_steps": 66,
+      "peak": 27114424,
+      "steps": 184
+    },
+    {
+      "even_steps": 221,
+      "n": 77031,
+      "odd_steps": 129,
+      "peak": 21933016,
+      "steps": 350
+    },
+    {
+      "even_steps": 329,
+      "n": 837799,
+      "odd_steps": 195,
+      "peak": 2974984576,
+      "steps": 524
+    }
+  ],
+  "epistemic_status": "OPEN \u2014 Finite exact verification only; proves ZERO part of NT-005.",
+  "problem_id": "NT-005",
+  "problem_name": "Collatz Conjecture (3n + 1 Problem)",
+  "sha256_canonical_json": "1605c523e4873487b6f9208a0a8840298ba921aa3068ceda33eb887b47933acb",
+  "sweep_range": {
+    "all_converged_to_1": true,
+    "max_n": 100000,
+    "min_n": 1
+  },
+  "sweep_records": {
+    "highest_excursion_ratio": {
+      "n": 77671,
+      "peak": 1570824736,
+      "ratio_rounded": 20224.0828
+    },
+    "highest_odd_density_steps_ge_50": {
+      "density_rounded": 0.369369,
+      "heuristic_critical_log2_div_log3": 0.63093,
+      "n": 27,
+      "odd_steps": 41,
+      "total_steps": 111
+    },
+    "highest_peak_value": {
+      "n": 77671,
+      "peak": 1570824736
+    },
+    "longest_stopping_time": {
+      "n": 77031,
+      "odd_steps": 129,
+      "steps": 350
+    }
+  },
+  "terras_parity_bijection_k1_to_k12": [
+    {
+      "is_bijection": true,
+      "k": 1,
+      "modulus": 2,
+      "unique_parity_vectors": 2
+    },
+    {
+      "is_bijection": true,
+      "k": 2,
+      "modulus": 4,
+      "unique_parity_vectors": 4
+    },
+    {
+      "is_bijection": true,
+      "k": 3,
+      "modulus": 8,
+      "unique_parity_vectors": 8
+    },
+    {
+      "is_bijection": true,
+      "k": 4,
+      "modulus": 16,
+      "unique_parity_vectors": 16
+    },
+    {
+      "is_bijection": true,
+      "k": 5,
+      "modulus": 32,
+      "unique_parity_vectors": 32
+    },
+    {
+      "is_bijection": true,
+      "k": 6,
+      "modulus": 64,
+      "unique_parity_vectors": 64
+    },
+    {
+      "is_bijection": true,
+      "k": 7,
+      "modulus": 128,
+      "unique_parity_vectors": 128
+    },
+    {
+      "is_bijection": true,
+      "k": 8,
+      "modulus": 256,
+      "unique_parity_vectors": 256
+    },
+    {
+      "is_bijection": true,
+      "k": 9,
+      "modulus": 512,
+      "unique_parity_vectors": 512
+    },
+    {
+      "is_bijection": true,
+      "k": 10,
+      "modulus": 1024,
+      "unique_parity_vectors": 1024
+    },
+    {
+      "is_bijection": true,
+      "k": 11,
+      "modulus": 2048,
+      "unique_parity_vectors": 2048
+    },
+    {
+      "is_bijection": true,
+      "k": 12,
+      "modulus": 4096,
+      "unique_parity_vectors": 4096
+    }
+  ],
+  "track": "Track B \u2014 Reproducible Finite Computational Exploration"
+}

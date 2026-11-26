@@ -497,7 +497,7 @@ def test_b07_regression_rag_auto_rebuilds_stale_sqlite_version(tmp_path):
         auth = conn2.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0]
         assert ver == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         assert cnt == 1900
-        assert auth == 16
+        assert auth == 17
     finally:
         conn2.close()
 
@@ -744,3 +744,106 @@ def test_b07_regression_zero_broken_relative_markdown_links():
             if rel_path and not (p.parent / rel_path).exists():
                 broken.append((rel, target))
     assert not broken, f"Broken relative markdown links detected: {broken}"
+
+
+def test_b07_regression_external_registry_delta_offline_and_gate_parser():
+    """Verify external registry delta sync works offline and detects anti-bot/JS gate pages honestly."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import sync_external_registries as ser
+
+    rep = ser.build_delta_report(live=False)
+    assert rep["mode"] == "offline"
+    assert rep["committed_registries_indexed"] == 13
+    assert len(rep["registries"]) == 3
+
+    gated = ser.parse_registry_html(ser.TARGETS[0], "<html><title>Just a moment...</title><body>Verify you are human</body></html>", 403)
+    assert gated["fetch_status"] == "js_rendered_or_gated"
+    clean = ser.parse_registry_html(ser.TARGETS[1], "<html><title>Erdos Problems</title><body>" + ("x " * 100) + "1221 problems tracked.</body></html>", 200)
+    assert clean["fetch_status"] == "live_checked"
+    assert any("1221 problems" in s for s in clean["extracted_signals"])
+    assert (ROOT / "docs" / "registry-delta-2026-11-26.md").exists()
+    assert (ROOT / "results" / "registry_delta.json").exists()
+
+
+def test_b07_regression_track_b_collatz_pilot_reproducible():
+    """Verify Track B NT-005 Collatz parity probe RESULTS.json and exact Terras bijection."""
+    res_path = ROOT / "research" / "runs" / "NT-005_collatz_parity_pilot" / "RESULTS.json"
+    assert res_path.exists()
+    data = json.loads(res_path.read_text(encoding="utf-8"))
+    assert data["problem_id"] == "NT-005"
+    assert "OPEN" in data["epistemic_status"]
+    assert data["sweep_range"]["max_n"] == 100_000
+    assert data["sweep_range"]["all_converged_to_1"] is True
+    assert data["sweep_records"]["longest_stopping_time"]["n"] == 77031
+    assert data["sweep_records"]["longest_stopping_time"]["steps"] == 350
+    assert data["sweep_records"]["highest_peak_value"]["n"] == 77671
+    assert data["sweep_records"]["highest_peak_value"]["peak"] == 1570824736
+    assert len(data["terras_parity_bijection_k1_to_k12"]) == 12
+    assert all(row["is_bijection"] for row in data["terras_parity_bijection_k1_to_k12"])
+
+
+def test_b07_regression_track_b_ramsey_witnesses_reproducible():
+    """Verify Track B COMB-001 Ramsey constructive witness RESULTS.json & live re-check of P_17 and C_24."""
+    res_path = ROOT / "research" / "runs" / "COMB-001_ramsey_witness_pilot" / "RESULTS.json"
+    assert res_path.exists()
+    data = json.loads(res_path.read_text(encoding="utf-8"))
+    assert data["problem_id"] == "COMB-001"
+    assert "OPEN" in data["epistemic_status"]
+    assert data["witnesses_certified_count"] == 7
+    bounds = {w["lower_bound_proved"] for w in data["witnesses"]}
+    assert {"R(3,3) > 5", "R(4,4) > 17", "R(4,5) > 24", "R(5,5) > 37", "R(6,6) > 101"}.issubset(bounds)
+    assert all(w["certified"] and w["cyclic_automorphism_verified"] for w in data["witnesses"])
+
+    sys.path.insert(0, str(ROOT / "research" / "runs" / "COMB-001_ramsey_witness_pilot"))
+    import ramsey_probe as rp
+
+    c24 = rp.circulant_adj(24, (1, 2, 4, 8, 9))
+    assert rp.verify_cyclic_automorphism_and_symmetry(c24)
+    assert not rp.has_clique_full(c24, 4)
+    assert not rp.has_clique_full(rp.complement_adj(c24), 5)
+
+
+def test_b07_regression_rubric_override_identity_and_sensitivity_diff():
+    """Verify rubric_override_diff.py gives exact rho=1.0 on default weights and measurable sensitivity on sample override."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import rubric_override_diff as rod
+
+    ident = rod.evaluate_rubric_override(css_weights=(0.40, 0.30, 0.20, 0.10), problem_overrides={})
+    assert ident["rank_correlation"]["spearman_rho"] == 1.0
+    assert ident["rank_correlation"]["kendall_tau"] == 1.0
+    assert ident["rank_correlation"]["top25_jaccard_overlap"] == 1.0
+    assert ident["rank_correlation"]["max_abs_rank_shift"] == 0
+
+    sample = json.loads((ROOT / "examples" / "rubric_override_sample.json").read_text(encoding="utf-8"))
+    raw_w = sample["css_weights"]
+    diff = rod.evaluate_rubric_override(
+        css_weights=(float(raw_w[0]), float(raw_w[1]), float(raw_w[2]), float(raw_w[3])),
+        problem_overrides=sample["problem_overrides"],
+        label=sample["label"],
+    )
+    assert diff["problems_evaluated"] == 1900
+    assert diff["problem_overrides_applied"] == 3
+    assert 0.5 < diff["rank_correlation"]["spearman_rho"] < 1.0
+    assert diff["rank_correlation"]["max_abs_rank_shift"] > 100
+
+
+def test_b06_rubric_override_rejects_invalid_weights_ids_and_ratings():
+    """Negative boundary tests for rubric_override_diff.py validation."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import rubric_override_diff as rod
+
+    with pytest.raises(ValueError, match="sum to 1.0"):
+        rod.evaluate_rubric_override(css_weights=(0.5, 0.5, 0.5, 0.0))
+    with pytest.raises(ValueError, match="Unknown Problem ID"):
+        rod.evaluate_rubric_override(problem_overrides={"FAKE-999": {"difficulty_score": 5}})
+    with pytest.raises(ValueError, match="integer in 1..10"):
+        rod.evaluate_rubric_override(problem_overrides={"NT-001": {"difficulty_score": 11}})
+
+
+def test_b07_regression_roadmap_no_duplicate_current_and_planned_version():
+    """Ensure ROADMAP.md never lists the current shipped version again under Planned Next Releases."""
+    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    rm = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+    assert f"**Current Release:** `v{ver}`" in rm
+    planned = rm.split("## Planned Next Releases", 1)[1]
+    assert f"`v{ver}`" not in planned, f"Current release v{ver} still listed under Planned Next Releases!"
