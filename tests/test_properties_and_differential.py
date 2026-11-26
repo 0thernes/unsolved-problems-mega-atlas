@@ -581,9 +581,16 @@ def test_b07_regression_statement_fidelity_19_rows_and_symbols_valid():
 
 def test_b07_regression_live_negative_lean_kernel_rejection(tmp_path):
     """Playbook Item 12: when Lean is installed, prove the active kernel rejects a deliberately false theorem."""
+    import shutil
+
     lake_exe = Path.home() / ".elan" / "bin" / ("lake.exe" if sys.platform == "win32" else "lake")
-    lake_bin = str(lake_exe) if lake_exe.exists() else "lake"
-    probe = subprocess.run([lake_bin, "--version"], capture_output=True, text=True, check=False)
+    lake_bin = str(lake_exe) if lake_exe.exists() else shutil.which("lake")
+    if not lake_bin:
+        pytest.skip("Lean 4 / lake not installed on this runner")
+    try:
+        probe = subprocess.run([lake_bin, "--version"], capture_output=True, text=True, check=False)
+    except FileNotFoundError:
+        pytest.skip("Lean 4 / lake not installed on this runner")
     if probe.returncode != 0:
         pytest.skip("Lean 4 / lake not installed on this runner")
     neg = tmp_path / "NegativeKernelTest.lean"

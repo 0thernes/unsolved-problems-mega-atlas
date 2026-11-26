@@ -13,5 +13,6 @@
 *.sqlite binary
 *.olean binary
 *.ilean binary
+*.tsr binary
 *.c binary
 *.o binary
