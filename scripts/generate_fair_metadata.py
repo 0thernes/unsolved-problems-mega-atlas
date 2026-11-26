@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deterministic FAIR Scholarly Metadata Generator (`v2.5.0`):
+Deterministic FAIR Scholarly Metadata Generator (`v2.7.0`):
   1. `croissant.json`         — MLCommons Croissant 1.0 JSON-LD dataset specification
   2. `ro-crate-metadata.json` — W3C / ResearchObject RO-Crate 1.1 JSON-LD descriptor
   3. `data/MANIFEST.sha256`   — Canonical SHA-256 manifest of frozen tracked data & paper artifacts
@@ -27,7 +27,7 @@ REPO_URL = "https://github.com/0thernes/unsolved-problems-mega-atlas"
 PAGES_URL = "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 RAW_BASE = "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/"
 ORCID_URL = "https://orcid.org/0009-0006-8168-9648"
-VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.5.0"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
 
 
 def _lean_theorem_count() -> int:
@@ -226,6 +226,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("VERIFICATION.md", "text/markdown", "Five-tier epistemic verification boundaries"),
         ("CHECKSUMS.sha256", "text/plain", "Cryptographic SHA-256 integrity manifest"),
         ("CHECKSUMS.sha256.tsr", "application/timestamp-reply", "DigiCert RFC 3161 Trusted Timestamp token for CHECKSUMS.sha256"),
+        ("CHECKSUMS.sha256.ots", "application/octet-stream", "Multi-calendar Bitcoin OpenTimestamps proof for CHECKSUMS.sha256"),
         ("croissant.json", "application/ld+json", "MLCommons Croissant 1.0 metadata"),
         ("lean/MegaAtlasProofs.lean", "text/plain", f"Zero-Mathlib Lean 4.35.0 formal invariant suite ({lean_n} audited theorems, 6 kernels)"),
         ("results/lean_axioms.txt", "text/plain", f"Verbatim Lean 4.35.0 #print axioms transcript ({lean_n} theorems)"),
@@ -247,7 +248,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "@type": "Dataset",
             "name": f"Unsolved Problems Mega-Atlas (V{VERSION})",
             "version": VERSION,
-            "datePublished": "2026-11-25",
+            "datePublished": "2026-11-26",
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
                 f"8 Substrates, 7 Abstraction Layers, {total_edges:,} biconnected graph edges, {lean_n} Pure Lean 4.35.0 formal invariants "
@@ -283,7 +284,9 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "description": desc,
             "encodingFormat": mime,
         }
-        if p.exists() and rel not in ("CHECKSUMS.sha256", "croissant.json"):
+        # Exclude CHECKSUMS.sha256, its dual timestamp proofs (.tsr/.ots), and croissant.json
+        # to keep the cryptographic hash graph strictly acyclic across rebuilds.
+        if p.exists() and rel not in ("CHECKSUMS.sha256", "CHECKSUMS.sha256.tsr", "CHECKSUMS.sha256.ots", "croissant.json"):
             digest, sz = sha256_and_size(rel)
             entry["sha256"] = digest
             entry["contentSize"] = sz

@@ -497,7 +497,7 @@ def test_b07_regression_rag_auto_rebuilds_stale_sqlite_version(tmp_path):
         auth = conn2.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0]
         assert ver == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         assert cnt == 1900
-        assert auth == 12
+        assert auth == 16
     finally:
         conn2.close()
 
@@ -623,3 +623,124 @@ def test_b07_regression_wcag_all_6_tabpanels_and_dialogs():
     html_txt = (ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html").read_text(encoding="utf-8")
     assert html_txt.count('role="tabpanel"') == 6
     assert html_txt.count('role="dialog" aria-modal="true"') == 2
+
+
+def test_b06_mcp_rejects_negative_oversized_content_length_and_bool_args():
+    """Verify MCP server blocks negative/oversized Content-Length DoS frames and rejects bool integers."""
+    framed = (
+        b"Content-Length: -1\r\n\r\n"
+        b"Content-Length: 99999999\r\n\r\n"
+    )
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input=framed,
+        capture_output=True,
+        timeout=30,
+        check=True,
+    )
+    assert proc.stdout.count(b'"code": -32700') == 2
+
+    reqs = [
+        {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "search_problems", "arguments": {"query": "Riemann", "top": True}}},
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "search_problems", "arguments": {"query": "x" * 5000}}},
+    ]
+    proc2 = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input="\n".join(json.dumps(r) for r in reqs) + "\n",
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=True,
+    )
+    resps = [json.loads(line) for line in proc2.stdout.splitlines() if line.strip()]
+    assert len(resps) == 2
+    assert resps[0]["result"]["isError"] is True and "integer" in resps[0]["result"]["content"][0]["text"]
+    assert resps[1]["result"]["isError"] is True and "4096" in resps[1]["result"]["content"][0]["text"]
+
+
+def test_b07_regression_search_and_compare_auto_rebuild_stale_default_db(tmp_path, monkeypatch):
+    """Verify search_atlas() and compare_two_problems() catch a stale existing DEFAULT_DB and auto-rebuild."""
+    import sqlite3
+    import query as qmod
+
+    stale_db = tmp_path / "default_stale.sqlite"
+    conn = sqlite3.connect(str(stale_db))
+    conn.execute("CREATE TABLE metadata (key TEXT, value TEXT)")
+    conn.execute("INSERT INTO metadata VALUES ('atlas_version', '0.0.1-stale')")
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(qmod, "DEFAULT_DB", stale_db)
+    res = qmod.search_atlas(problem_id="NT-001", hops=0, db_path=stale_db)
+    assert res["count"] == 1 and res["results"][0]["id"] == "NT-001"
+    comp = qmod.compare_two_problems("NT-001", "CS-001", db_path=stale_db)
+    assert comp["problem_a"]["id"] == "NT-001" and comp["problem_b"]["id"] == "CS-001"
+
+
+def test_b07_regression_opentimestamps_ots_present_and_binds_checksums():
+    """Playbook Item 26: verify CHECKSUMS.sha256.ots exists and binds SHA256(CHECKSUMS.sha256) with OTS calendars."""
+    import hashlib
+
+    ots_path = ROOT / "CHECKSUMS.sha256.ots"
+    chk_path = ROOT / "CHECKSUMS.sha256"
+    assert ots_path.exists() and ots_path.stat().st_size > 100, "Missing or truncated CHECKSUMS.sha256.ots"
+    ots_bytes = ots_path.read_bytes()
+    magic = b"\x00OpenTimestamps\x00\x00Proof\x00\xbf\x89\xe2\xe8\x84\xe8\x92\x94\x01\x08"
+    expected_digest = hashlib.sha256(chk_path.read_bytes()).digest()
+    assert ots_bytes.startswith(magic + expected_digest), "CHECKSUMS.sha256.ots does not bind current CHECKSUMS.sha256!"
+    assert b"https://" in ots_bytes, "CHECKSUMS.sha256.ots missing OpenTimestamps calendar URIs"
+
+
+def test_b07_regression_strict_csp_on_dashboard_and_blueprint_html():
+    """Verify both GitHub Pages HTML apps enforce strict zero-CDN Content-Security-Policy & Referrer-Policy."""
+    for rel in ("outputs/MegaAtlas_Interactive_Dashboard_V2.html", "blueprint/index.html"):
+        txt = (ROOT / rel).read_text(encoding="utf-8")
+        assert 'http-equiv="Content-Security-Policy"' in txt, f"Missing CSP header in {rel}"
+        assert "default-src 'none'" in txt, f"Weak CSP in {rel}"
+        assert 'name="referrer" content="no-referrer"' in txt, f"Missing Referrer-Policy in {rel}"
+    bp = (ROOT / "blueprint" / "index.html").read_text(encoding="utf-8")
+    assert 'class="skip-link"' in bp and '<main id="main">' in bp
+
+
+def test_b07_regression_zero_crlf_and_zero_bom_in_tracked_text_files():
+    """Enforce .gitattributes LF-only & zero-BOM hygiene across all tracked non-output text files."""
+    proc = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True)
+    text_exts = {".py", ".lean", ".md", ".tex", ".bib", ".yml", ".yaml", ".json", ".toml", ".sh", ".ps1", ".html", ".txt", ".tsv", ".csv", ".cff"}
+    bad_crlf, bad_bom = [], []
+    for rel in proc.stdout.splitlines():
+        if rel.startswith("outputs/"):
+            continue
+        p = ROOT / rel
+        if not p.exists() or p.suffix.lower() not in text_exts:
+            continue
+        raw = p.read_bytes()
+        if raw.startswith(b"\xef\xbb\xbf"):
+            bad_bom.append(rel)
+        if b"\r\n" in raw:
+            bad_crlf.append(rel)
+    assert not bad_bom, f"UTF-8 BOM detected in tracked text files: {bad_bom}"
+    assert not bad_crlf, f"CRLF line endings detected in tracked text files: {bad_crlf}"
+
+
+def test_b07_regression_zero_broken_relative_markdown_links():
+    """Ensure every relative Markdown link across all tracked non-output .md files resolves on disk."""
+    proc = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True)
+    broken = []
+    for rel in proc.stdout.splitlines():
+        if not rel.endswith(".md") or rel.startswith("outputs/"):
+            continue
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        txt = p.read_text(encoding="utf-8", errors="ignore")
+        txt = re.sub(r"```.*?```", "", txt, flags=re.S)
+        txt = re.sub(r"`[^`\n]+`", "", txt)
+        for m in re.finditer(r"\[[^\]]+\]\(([^)]+)\)", txt):
+            target = m.group(1).strip().split()[0]
+            if target.startswith(("http://", "https://", "mailto:", "#", "file://")):
+                continue
+            rel_path = target.split("#")[0]
+            if rel_path and not (p.parent / rel_path).exists():
+                broken.append((rel, target))
+    assert not broken, f"Broken relative markdown links detected: {broken}"

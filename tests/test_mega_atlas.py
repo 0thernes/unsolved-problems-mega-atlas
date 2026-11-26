@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.6.0)."""
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.7.0)."""
 
 from __future__ import annotations
 
@@ -174,7 +174,7 @@ def test_exported_files_parity(master_data):
     assert len(csv_df) == n and csv_df.shape[1] == 48
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
-    assert len(payload["author_frontier_contributions"]) == 12
+    assert len(payload["author_frontier_contributions"]) == 16
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
     assert payload["metadata"]["license_code"] == "Apache-2.0"
@@ -188,7 +188,7 @@ def test_exported_files_parity(master_data):
         assert conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0] == n
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
-        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 12
+        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 16
     finally:
         conn.close()
 
@@ -259,7 +259,7 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
     assert len(margins["apex_multi_pillar_keystones"]) == 5
     contribs = json.loads(resps[10]["result"]["content"][0]["text"])
     assert contribs["overarching_atlas_problems_retired"] == 0
-    assert contribs["scoped_preprints_count"] == 12
+    assert contribs["scoped_preprints_count"] == 16
     prov = json.loads(resps[11]["result"]["content"][0]["text"])
     assert prov["orcid"] == EXPECTED_ORCID
     assert prov["dual_license"]["code"] == "Apache-2.0"

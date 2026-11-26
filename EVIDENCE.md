@@ -1,4 +1,4 @@
-# Cryptographic & Formal Evidence Dossier (`v2.6.0`)
+# Cryptographic & Formal Evidence Dossier (`v2.7.0`)
 
 **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 **Date:** November 25–26, 2026 · **Archive ID:** `0TH-BUILD-007`
@@ -23,7 +23,7 @@
 |---|---|---|
 | Structural, JSON Schema, Parity & Checksums | `python scripts/audit_atlas.py --check-lean` | `1,900` unique rows, `48` cols, `5,808` edges, `0` APs, `0` bridges, `0` dangling links, 100% SHA-256 parity |
 | Forensic Biconnectivity & RAG Audit | `python scripts/forensic_audit.py` | `nx.is_biconnected(G) == True`, `0` dangling links, `0/25` RAG top-1 misses |
-| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all 60+ tests (incl. live negative Lean kernel rejection & RFC 3161 `.tsr` binding) |
+| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all 69 tests (incl. live negative Lean kernel rejection, dual `.tsr`+`.ots` binding, strict CSP, zero-CRLF/BOM & zero broken links) |
 | Semantic Mutation Audit (B13) | `python scripts/run_mutation_audit.py` | `6/6` mutants killed (`100.0%` kill rate) |
 | Static Lint & Typecheck | `ruff check` + `mypy` | `0` lint errors, `0` type errors |
 | Immutable AutoResearch Evaluator | `python autoresearch/evaluate.py --verify-gates` | `aqs_score=97.99`, `rag_mrr5=100.00` (`25/25` top-1), `lean_theorems=103`, `hard_gates=PASS` |
@@ -31,10 +31,11 @@
 | Reproducible 10-Run Benchmarks | `python scripts/benchmark_atlas.py` | Recorded in [`docs/benchmarks.md`](docs/benchmarks.md) & [`results/bench-history.csv`](results/bench-history.csv) |
 | Build Standard v1.2.0 Audit | `pwsh scripts/Audit-Repo.ps1` | **100.0%** Structure / **100.0%** Completion / **100.0%** Core (`0` FAILs) |
 
-## 3. Cryptographic Integrity Manifests, RFC 3161 TSA & Provenance
+## 3. Cryptographic Integrity Manifests, Dual Timestamping (RFC 3161 + OTS) & Provenance
 
 - Root manifest: [`CHECKSUMS.sha256`](CHECKSUMS.sha256)
-- **DigiCert RFC 3161 Trusted Timestamp (Playbook v1.3 Item 26):** [`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr) (inspect with `openssl ts -reply -in CHECKSUMS.sha256.tsr -text` and verify SHA-256 imprint against `sha256sum CHECKSUMS.sha256`)
+- **DigiCert RFC 3161 Trusted Timestamp (Playbook v1.3 Item 26):** [`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr) (verify via `python scripts/stamp_timestamps.py --verify` or `openssl ts -reply -in CHECKSUMS.sha256.tsr -text`)
+- **Bitcoin OpenTimestamps Multi-Calendar Proof (Playbook v1.3 Item 26):** [`CHECKSUMS.sha256.ots`](CHECKSUMS.sha256.ots) (stamped across 3 independent OpenTimestamps calendars; verified via `python scripts/stamp_timestamps.py --verify`)
 - Data & paper manifest: [`data/MANIFEST.sha256`](data/MANIFEST.sha256)
 - FAIR descriptors: [`croissant.json`](croissant.json), [`ro-crate-metadata.json`](ro-crate-metadata.json), [`.zenodo.json`](.zenodo.json)
-- Build provenance: GitHub `actions/attest-build-provenance@v2` SLSA attestations on `main` pushes and `v*` releases (attesting PDF, arXiv tarball, `results/lean_axioms.txt`, `CHECKSUMS.sha256`, and `CHECKSUMS.sha256.tsr`).
+- Build provenance: GitHub `actions/attest-build-provenance@v2` SLSA attestations on `main` pushes and `v*` releases (attesting PDF, arXiv tarball, `results/lean_axioms.txt`, `CHECKSUMS.sha256`, `CHECKSUMS.sha256.tsr`, and `CHECKSUMS.sha256.ots`).

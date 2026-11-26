@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.7.0, Alexander Stephen Donahue).
 
 Checks:
   1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
@@ -171,7 +171,7 @@ def audit_lean(errors: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.6.0).")
+    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.7.0).")
     parser.add_argument("--sync-checksums", action="store_true", help="Regenerate CHECKSUMS.sha256 before auditing")
     parser.add_argument("--check-lean", action="store_true", help="Run Pure Lean 4.35.0 build & axiom audit")
     args = parser.parse_args()
@@ -322,6 +322,17 @@ def main() -> None:
                 errors.append(f"data/MANIFEST.sha256 references missing file: {rel}")
             elif sha256_file(target) != expected:
                 errors.append(f"data/MANIFEST.sha256 mismatch for {rel}")
+
+    # 5c. Verify dual cryptographic timestamps (DigiCert RFC 3161 .tsr + Bitcoin OpenTimestamps .ots)
+    if chk_path.exists() and not args.sync_checksums:
+        chk_digest = hashlib.sha256(chk_path.read_bytes()).digest()
+        tsr_path = ROOT / "CHECKSUMS.sha256.tsr"
+        if not tsr_path.exists() or tsr_path.stat().st_size < 200 or chk_digest not in tsr_path.read_bytes():
+            errors.append("CHECKSUMS.sha256.tsr missing or does not bind current CHECKSUMS.sha256")
+        ots_path = ROOT / "CHECKSUMS.sha256.ots"
+        ots_magic = b"\x00OpenTimestamps\x00\x00Proof\x00\xbf\x89\xe2\xe8\x84\xe8\x92\x94\x01\x08" + chk_digest
+        if not ots_path.exists() or not ots_path.read_bytes().startswith(ots_magic):
+            errors.append("CHECKSUMS.sha256.ots missing or does not bind current CHECKSUMS.sha256")
 
     # 6. Optional Lean 4.35.0 formal invariant audit
     if args.check_lean:

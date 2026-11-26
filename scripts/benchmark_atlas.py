@@ -106,7 +106,7 @@ def main() -> None:
     header = ["timestamp_utc", "version", "commit", "environment", "load_median_s", "load_iqr_s", "rag_query_median_ms", "rag_query_iqr_ms", "diff_1900_median_ms", "diff_1900_iqr_ms", "checksum_pass"]
     write_hdr = not csv_path.exists()
     with csv_path.open("a", encoding="utf-8", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         if write_hdr:
             w.writerow(header)
         w.writerow([ts, ver, sha, env_str, l_med, l_iqr, r_med, r_iqr, d_med, d_iqr, "PASS"])

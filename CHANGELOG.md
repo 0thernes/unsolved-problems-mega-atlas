@@ -2,6 +2,20 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.7.0] — 2026-11-26
+
+### Added, Fixed & Hardened — Round 4 Deep-Dive 3-Cycle Audit: 76-Repo / 16-Entry Archive Sync, Dual RFC 3161 + Bitcoin OpenTimestamps, Strict CSP Web Apps, Hardened RAG/MCP Runtime & 6 New Regression Tests
+- **Live 76-Repo Ecosystem Sync (`12 → 16` Verified Companion Entries; `0 / 1,900` Overarching Parents Retired):**
+  - Audited all **76** public `0thernes` repositories (`50` own non-fork repos) and latest `0thernes-research-archive` (`6d4ae27`). Expanded `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` (`src/v2_loader.py`), `paper/main.tex` §6 / Table 4, `RANKING.md`, `CLAIMS.md`, `README.md`, `docs/literature-search-log.md`, and MCP tool #9 to **16 live-verified companion entries** (`11` Tier-I + `5` Tier-II) — adding `0TH-2026-014` (`monodromia v1.0.0`, 98 decls), `0TH-2026-015` (`promislow-fracton-amoeba v1.0.0`, 20 decls), `0TH-2026-016` (`zero-error-torus-frontier v1.0.0`, 32 decls), and `0TH-BUILD-012` (`xiaomi-17t-pro-lab v3.0.0`, 59 decls), and upgrading `0TH-2026-012` (`v4.0.0`, 27 thms/29 decls), `0TH-2026-011` (`v2.5.0`, 28 thms/63 decls), `0TH-2026-009` (`v2.9.0`), `0TH-2026-006` (`v2.2.0`, 723 thms), `0TH-2026-007/008` (`v1.3.0`, 24 thms, DOI `10.5281/zenodo.24548051`), `0TH-BUILD-003` (`v1.5.0`, 149 decls), `0TH-BUILD-002` (`v2.4.0`, 85 decls), and the A-Life Omega suite (`266` combined decls). Strictly affirms **`0 / 1,900`** overarching Mega-Atlas parent problems retired.
+- **Dual Cryptographic Timestamping — DigiCert RFC 3161 (`.tsr`) + 3-Calendar Bitcoin OpenTimestamps (`.ots`) (Playbook v1.3 Item 26):**
+  - Added zero-dependency [`scripts/stamp_timestamps.py`](scripts/stamp_timestamps.py) (`--mint` / `--verify`, `just stamp`), minted [`CHECKSUMS.sha256.ots`](CHECKSUMS.sha256.ots) across 3 independent OpenTimestamps Bitcoin calendars alongside fresh [`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr), wired dual `.tsr` + `.ots` verification directly into `scripts/audit_atlas.py`, `.github/workflows/ci.yml` (SLSA attested), `.github/workflows/release.yml`, `scripts/publish_zenodo.py`, and `ro-crate-metadata.json`.
+  - Fixed self-referential hash-cycle bug (`H-614`) in `scripts/generate_fair_metadata.py` by excluding `.tsr`/`.ots` from self-hashing inside `ro-crate-metadata.json`.
+- **Runtime Bugs, Security Hardening, Strict CSP & Zero-CRLF Hygiene (`H-601`–`H-615`):**
+  - Fixed `rag/query.py` (`H-610`) so `search_atlas()` and `compare_two_problems()` check `_db_is_fresh()` on `DEFAULT_DB` (backed by an `O(1)` stat cache) instead of bypassing freshness checks when an outdated `.sqlite` exists on disk, and removed hardcoded `V2.5.0` from CLI argparse description.
+  - Hardened `mcp_server/server.py` (`H-611`) with a `1 MiB` (`1..1,048,576`) `Content-Length` frame ceiling (blocking negative/oversized DoS reads), `4,096`-char query validation, and strict integer parsing rejecting `bool` args.
+  - Added strict zero-CDN `Content-Security-Policy` & `Referrer-Policy` headers (`H-603`) to BOTH `outputs/MegaAtlas_Interactive_Dashboard_V2.html` (`src/v2_export_all.py`) and `blueprint/index.html` (plus WCAG 2.2 AA skip-link & `<main>` landmark on `blueprint/index.html`).
+  - Fixed `scripts/benchmark_atlas.py` (`H-605`) to write pure LF (`lineterminator="\n"`) into `results/bench-history.csv`, upgraded `paper/refs.bib` `donahue2026synapse` to live DOI `10.5281/zenodo.24548051` (`v1.3.0`), added Playbook Item 33 redacted AI workflow provenance log in `docs/AI_DISCLOSURE.md`, cured remaining capitalized `11-Page` typo in `README.md:20`, and added **6 new permanent regression tests** (`63 → 69` `pytest` tests).
+
 ## [2.6.0] — 2026-11-26
 
 ### Added, Fixed & Hardened — Round 3 Deep-Dive 3-Cycle Audit: 12 Companion Archive Entries, Live Negative Lean Kernel Rejection, DigiCert RFC 3161 TSA, Hardened MCP/RAG & 10 New Regression Tests

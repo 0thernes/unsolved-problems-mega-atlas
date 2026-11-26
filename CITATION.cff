@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this dataset, knowledge graph, Lean 4.35.0 formal invariant suite, RAG/MCP server, or white paper, please cite it as below."
-title: "Unsolved Problems Mega-Atlas (V2.6.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
-version: "2.6.0"
+title: "Unsolved Problems Mega-Atlas (V2.7.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+version: "2.7.0"
 date-released: "2026-11-26"
 type: dataset
 license:

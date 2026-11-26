@@ -1,4 +1,4 @@
-# System Architecture — Unsolved Problems Mega-Atlas (`V2.6.0`)
+# System Architecture — Unsolved Problems Mega-Atlas (`V2.7.0`)
 
 See also [`docs/architecture.md`](docs/architecture.md) and Architecture Decision Records in [`docs/adr/`](docs/adr/README.md).
 
@@ -10,12 +10,12 @@ flowchart LR
     C --> D
     D --> E1["Tabular & Compressed Exports (<5 MB)\nCSV · TSV · JSON.gz · JSONL.gz (48 cols)\n15-Sheet XLSX · 8-Sheet XLS"]
     D --> E2["Offline RAG & 10-Tool MCP\nAuto-Built SQLite 3 + FTS5 Porter\nrag/query.py (100% MRR@5)\nmcp_server/server.py (NDJSON + Content-Length)"]
-    D --> E3["Publications & Web Atlas\n11-Page AMS-LaTeX PDF + arXiv Tarball\nRANKING.md · MD · TXT\nWCAG 2.2 AA HTML (<4 MB) + Blueprint"]
+    D --> E3["Publications & Web Atlas\n10-Page AMS-LaTeX PDF + arXiv Tarball\nRANKING.md · MD · TXT\nWCAG 2.2 AA HTML (<4 MB) + Blueprint"]
     F["Zero-Mathlib Lean 4.35.0 Suite\nlean/ + palomar/ (14 Files · 1,707 Lines)\n103 Audited Theorems · 6/6 Kernels\nNonVacuity + AdversarialTests\n0 sorry in lean/ · [propext, Quot.sound]"] --> G["Deep Verification & 3-OS CI\n50-Digit Oracle · Hypothesis · 6/6 Mutants\nschema/*.json · 50+ pytest · ruff · mypy\nautoresearch/evaluate.py (AQS=97.99)\nCHECKSUMS.sha256 · SLSA Provenance"]
     E1 --> G
     E2 --> G
     E3 --> G
-    G --> H["Distribution & Preservation\nGitHub Release v2.6.0 · GitHub Pages\nZenodo CLI/FAIR (Croissant/RO-Crate) · RFC 3161 TSA\n0thernes-research-archive (0TH-BUILD-007)"]
+    G --> H["Distribution & Preservation\nGitHub Release v2.7.0 · GitHub Pages\nZenodo CLI/FAIR (Croissant/RO-Crate) · Dual RFC 3161 + OTS\n0thernes-research-archive (0TH-BUILD-007)"]
 ```
 
 ## Directory Map
@@ -38,7 +38,7 @@ flowchart LR
 | `research/runs/` | Track B open-problem empirical exploration pilots (`LOG-002_antihydra_pilot/` probing `BB(6)` Antihydra with strict non-claim bounds) | Apache-2.0 / CC-BY-4.0 |
 | `tests/` | Automated **50+ test `pytest` suite** (`test_mega_atlas.py`, `test_properties_and_differential.py`, `golden/top10_css_titan.json`) covering schema, Hypothesis, 50-digit oracle differential, metamorphic, golden, negative, 100% RAG, 10-tool MCP, FAIR, Lean & SHA-256 | Apache-2.0 |
 | `scripts/` | `audit_atlas.py`, `forensic_audit.py`, `run_mutation_audit.py`, `benchmark_atlas.py`, `build_paper.py`, `check_citations.py` (with Crossref retraction check), `check_readme_axioms.py`, `verify_lean_six_kernels.sh`, `generate_fair_metadata.py`, `generate_llms_full.py`, `publish_zenodo.py`, `Audit-Repo.ps1` | Apache-2.0 |
-| `outputs/` | All `< 5 MB` tracked `v2.6.0` datasets, 15×2 charts, and WCAG 2.2 AA Interactive HTML (heavy `.sqlite`/`.json`/`.jsonl`/168p PDF regenerated deterministically & attached to GitHub Releases) | CC-BY-4.0 |
+| `outputs/` | All `< 5 MB` tracked `v2.7.0` datasets, 15×2 charts, and WCAG 2.2 AA Interactive HTML (heavy `.sqlite`/`.json`/`.jsonl`/168p PDF regenerated deterministically & attached to GitHub Releases) | CC-BY-4.0 |
 | `docs/` | `WHITE_PAPER.md`, `DATASHEET.md`, `FORENSIC_AUDIT_V2.3.md`, `PRESERVATION.md`, `METHODOLOGY.md`, `AI_DISCLOSURE.md`, `ACADEMIC_REVIEW.md`, `statement-fidelity.md`, `literature-search-log.md`, `benchmarks.md`, `threat-model.md`, `operations.md`, `adr/`, `reviews/`, `media/` | CC-BY-4.0 |
 | `.github/` | 3-OS + 6-kernel + Tectonic + SLSA CI (`ci.yml`), 2-job GitHub Pages (`pages.yml`), tag release bundler (`release.yml`), 10-class `labels.tsv`, and structured Issue templates (no PR template per R4) | Apache-2.0 |
 

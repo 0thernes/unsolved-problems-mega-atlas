@@ -14,5 +14,6 @@
 *.olean binary
 *.ilean binary
 *.tsr binary
+*.ots binary
 *.c binary
 *.o binary

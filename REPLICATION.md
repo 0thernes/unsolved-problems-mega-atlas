@@ -1,4 +1,4 @@
-# Independent Clean-Clone Replication Protocol & Log (`v2.6.0`)
+# Independent Clean-Clone Replication Protocol & Log (`v2.7.0`)
 
 Per **Build Standard for LLMs v1.2.0 (B43, B44)**, this document provides step-by-step instructions to independently replicate every quantitative result, formal proof, chart, white paper PDF, and benchmark from a fresh git clone — plus the recorded verification log of an actual clean-directory replication run.
 

@@ -1,4 +1,4 @@
-# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.6.0`)
+# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.7.0`)
 
 Per the **Defensible Independent AI Research Playbook v1.3 (Pass 4 — Statement-Fidelity Audit)**,
 this document audits every single theorem group in `lean/` against the paper (`paper/main.tex`)
@@ -39,4 +39,4 @@ stating exact fidelity status and any intentional modeling abstraction.
 ## 3. Author Sign-Off (Playbook v1.3 Item 10)
 
 - **Audited & Signed Off By:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
-- **Date:** `2026-11-26` (`v2.6.0`, all 19 rows reviewed against Lean 4.35.0 source, Python runtime symbols, and `paper/main.tex` Table 3)
+- **Date:** `2026-11-26` (`v2.7.0`, all 19 rows reviewed against Lean 4.35.0 source, Python runtime symbols, and `paper/main.tex` Table 3)

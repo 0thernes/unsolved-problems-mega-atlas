@@ -78,6 +78,7 @@ jobs:
         run: |
           sha256sum -c CHECKSUMS.sha256
           (cd data && sha256sum -c MANIFEST.sha256)
+          python scripts/stamp_timestamps.py --verify
           python -c "import subprocess, pathlib, sys; files = subprocess.check_output(['git','ls-files']).decode().splitlines(); big = [(f, pathlib.Path(f).stat().st_size) for f in files if pathlib.Path(f).exists() and pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, f'Tracked files >= 5MB: {big}'; print(f'PASS: All {len(files)} tracked files < 5 MB!')"
           ! grep -rnE "ghp_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" --exclude-dir=.git --exclude-dir=.lake .
       - name: Install Tectonic
@@ -103,3 +104,4 @@ jobs:
             results/lean_axioms.txt
             CHECKSUMS.sha256
             CHECKSUMS.sha256.tsr
+            CHECKSUMS.sha256.ots

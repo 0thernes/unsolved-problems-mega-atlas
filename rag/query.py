@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.7.0, Alexander Stephen Donahue).
 
 Powered by SQLite FTS5 staged BM25 ranking (Exact phrase + Strict-AND precision pass +
 relaxed OR backfill + hybrid title/bigram/PageRank re-ranker) + multi-hop knowledge-graph
@@ -32,6 +32,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DB = ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"
+_FRESH_CACHE: Dict[str, Tuple[int, int, Optional[str]]] = {}
 
 
 def _db_is_fresh(db_path: Path) -> bool:
@@ -40,6 +41,11 @@ def _db_is_fresh(db_path: Path) -> bool:
         return False
     ver_file = ROOT / "VERSION"
     expected_ver = ver_file.read_text(encoding="utf-8").strip() if ver_file.exists() else None
+    st = db_path.stat()
+    cache_key = str(db_path.resolve())
+    sig = (st.st_mtime_ns, st.st_size, expected_ver)
+    if _FRESH_CACHE.get(cache_key) == sig:
+        return True
     try:
         conn = sqlite3.connect(str(db_path))
         try:
@@ -50,6 +56,7 @@ def _db_is_fresh(db_path: Path) -> bool:
             auth_cnt = conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()
             if cnt is None or int(cnt[0]) != 1900 or auth_cnt is None or int(auth_cnt[0]) < 1:
                 return False
+            _FRESH_CACHE[cache_key] = sig
             return True
         finally:
             conn.close()
@@ -61,6 +68,7 @@ def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
     """Auto-build the local SQLite FTS5 index deterministically if absent or stale after an upgrade."""
     if _db_is_fresh(db_path):
         return db_path
+    _FRESH_CACHE.pop(str(db_path.resolve()), None)
     if db_path.exists():
         db_path.unlink()
     src_dir = str(ROOT / "src")
@@ -284,11 +292,10 @@ def search_atlas(
     hops: int = 0,
     db_path: Path = DEFAULT_DB,
 ) -> Dict[str, Any]:
-    if not db_path.exists():
-        if db_path == DEFAULT_DB:
-            ensure_sqlite_db(db_path)
-        else:
-            raise FileNotFoundError(f"SQLite FTS5 database not found at {db_path}. Run `python src/v2_export_all.py`.")
+    if db_path == DEFAULT_DB:
+        ensure_sqlite_db(db_path)
+    elif not db_path.exists():
+        raise FileNotFoundError(f"SQLite FTS5 database not found at {db_path}. Run `python src/v2_export_all.py`.")
 
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
@@ -377,8 +384,10 @@ def search_atlas(
 
 def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Dict[str, Any]:
     """Compare any two problems side-by-side with antisymmetric deltas and shared neighbors."""
-    if not db_path.exists() and db_path == DEFAULT_DB:
+    if db_path == DEFAULT_DB:
         ensure_sqlite_db(db_path)
+    elif not db_path.exists():
+        raise FileNotFoundError(f"SQLite FTS5 database not found at {db_path}. Run `python src/v2_export_all.py`.")
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
     try:
@@ -420,7 +429,8 @@ def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Di
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V2.5.0)")
+    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
+    parser = argparse.ArgumentParser(description=f"Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V{ver})")
     parser.add_argument("query", nargs="?", default=None, help="Free-text search query (staged FTS5 BM25)")
     parser.add_argument("--problem", dest="problem_id", default=None, help="Exact Problem ID (e.g., NT-001, CS-001, GR-001)")
     parser.add_argument("--compare", nargs=2, metavar=("ID_A", "ID_B"), default=None, help="Compare two Problem IDs side-by-side")

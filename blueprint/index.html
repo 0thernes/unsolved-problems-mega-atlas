@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.6.0)</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none';" />
+<meta name="referrer" content="no-referrer" />
+<title>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.7.0)</title>
 <style>
   :root { --bg:#0B1120; --card:#111827; --card2:#1E293B; --border:#334155; --text:#F1F5F9; --muted:#94A3B8; --accent:#38BDF8; --green:#34D399; --violet:#A78BFA; --rose:#FB7185; }
   * { box-sizing:border-box; margin:0; padding:0; }
+  .skip-link { position:absolute; left:-9999px; top:0; background:#38BDF8; color:#0B1120; padding:10px 16px; font-weight:800; z-index:200; border-radius:0 0 8px 0; }
+  .skip-link:focus { left:8px; top:8px; }
+  :focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
   body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:28px; max-width:1380px; margin:0 auto; }
   a { color:var(--accent); text-decoration:none; }
   a:hover { text-decoration:underline; }
@@ -30,8 +35,9 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to proof blueprint</a>
 <header>
-  <h1>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.6.0)</h1>
+  <h1>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.7.0)</h1>
   <div class="sub">Author: <b>Alexander Stephen Donahue</b> (Independent Researcher, Spokane, WA · ORCID <a href="https://orcid.org/0009-0006-8168-9648" target="_blank" rel="noopener noreferrer">0009-0006-8168-9648</a>) · Zero-Mathlib Pure Lean 4.35.0 · 103 Audited Theorems · 6 Independent Proof Kernels + Live Negative Kernel Rejection via <code>scripts/verify_lean_six_kernels.sh</code></div>
   <div class="pills">
     <span class="pill ok">103 Audited Theorems</span>
@@ -45,6 +51,7 @@
   </div>
 </header>
 
+<main id="main">
 <div class="warn-box">
   <b>Honest Verification Boundary:</b> This blueprint tracks machine-checked formal invariants of the Mega-Atlas scoring formulas, taxonomic partition, finite graph handshaking, deduplication, AutoResearch keep/discard ratchet, substrate/gradient/margin geometry, concrete NonVacuity witnesses, and constructive AdversarialTests refutations ONLY. It does <b>NOT</b> prove any of the 1,900 cataloged open scientific or mathematical problems (<code>0 / 1,900</code> retired).
 </div>
@@ -222,5 +229,6 @@
     </ul>
   </div>
 </div>
+</main>
 </body>
 </html>

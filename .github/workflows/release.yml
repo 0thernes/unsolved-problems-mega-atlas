@@ -40,7 +40,7 @@ jobs:
           cp outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls release_assets/
           cp outputs/MegaAtlas_Unsolved_Problems_V2.md release_assets/
           cp outputs/MegaAtlas_Unsolved_Problems_V2.txt release_assets/
-          cp croissant.json ro-crate-metadata.json CHECKSUMS.sha256 CHECKSUMS.sha256.tsr data/MANIFEST.sha256 release_assets/
+          cp croissant.json ro-crate-metadata.json CHECKSUMS.sha256 CHECKSUMS.sha256.tsr CHECKSUMS.sha256.ots data/MANIFEST.sha256 release_assets/
           (cd release_assets && sha256sum * > SHA256SUMS)
       - name: Attest release bundle provenance
         uses: actions/attest-build-provenance@v2

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (`v2.5.0`).
+Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (`v2.7.0`).
 
   - `--dry-run` (default, zero network/auth required): Validates `.zenodo.json` against
     Zenodo's REST deposit metadata schema, verifies ORCID `0009-0006-8168-9648`, checks
@@ -64,6 +64,8 @@ def main() -> None:
         "croissant.json",
         "ro-crate-metadata.json",
         "CHECKSUMS.sha256",
+        "CHECKSUMS.sha256.tsr",
+        "CHECKSUMS.sha256.ots",
     ]
     print(f"DRY-RUN PASS: .zenodo.json valid for v{meta['version']} (ORCID {EXPECTED_ORCID}, license {meta['license']})")
     for rel in artifacts:

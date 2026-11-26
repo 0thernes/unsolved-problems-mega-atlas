@@ -4,8 +4,8 @@
 
 | Version | Supported |
 |---|---|
-| `2.6.x` (`main`) | Yes |
-| `< 2.6.0` | No — upgrade to `2.6.0` (`UPGRADING.md`) |
+| `2.7.x` (`main`) | Yes |
+| `< 2.7.0` | No — upgrade to `2.7.0` (`UPGRADING.md`) |
 
 ## Reporting a Vulnerability
 

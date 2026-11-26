@@ -14,5 +14,5 @@ public import MegaAtlasProofs.AdversarialTests
 /-!
   MegaAtlasProofs.lean
   Root entry point for the Unsolved Problems Mega-Atlas Pure Lean 4.35.0
-  Formal Invariant Verification Suite (Alexander Stephen Donahue, v2.6.0).
+  Formal Invariant Verification Suite (Alexander Stephen Donahue, v2.7.0).
 -/

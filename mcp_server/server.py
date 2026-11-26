@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.7.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
@@ -19,7 +19,7 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. list_author_frontier_contributions — 12 companion archive entries (0thernes-research-archive; explicitly separate from still-OPEN parent problems)
+  9. list_author_frontier_contributions — 16 companion archive entries (0thernes-research-archive; explicitly separate from still-OPEN parent problems)
  10. get_atlas_provenance             — ORCID, 6-kernel Pure Lean 4.35.0 audit status, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
 """
 
@@ -36,7 +36,17 @@ sys.path.insert(0, str(ROOT / "rag"))
 
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.6.0"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
+MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on Content-Length JSON-RPC frames
+MAX_QUERY_CHARS = 4096
+
+
+def _parse_clamped_int(val: Any, default: int, lo: int, hi: int, name: str) -> int:
+    if val is None:
+        return default
+    if isinstance(val, bool) or not isinstance(val, int):
+        raise ValueError(f"Argument '{name}' must be an integer (not bool/str)")
+    return max(lo, min(hi, val))
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
     "version": ATLAS_VERSION,
@@ -142,7 +152,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_author_frontier_contributions",
-        "description": "List the 12 author-curated Lean-verified companion archive entries (0thernes-research-archive) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
+        "description": "List the 16 author-curated Lean-verified companion archive entries (0thernes-research-archive, 76 public repos audited) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -167,10 +177,16 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     if not isinstance(args, dict):
         raise ValueError("Tool arguments must be a JSON object")
     if name == "search_problems":
-        top = max(1, min(50, int(args.get("top", 8))))
-        hops = max(0, min(1, int(args.get("hops", 1))))
+        q_raw = args.get("query")
+        if q_raw is not None:
+            if not isinstance(q_raw, str):
+                raise ValueError("Argument 'query' must be a string")
+            if len(q_raw) > MAX_QUERY_CHARS:
+                raise ValueError(f"Argument 'query' exceeds {MAX_QUERY_CHARS} characters")
+        top = _parse_clamped_int(args.get("top"), 8, 1, 50, "top")
+        hops = _parse_clamped_int(args.get("hops"), 1, 0, 1, "hops")
         return search_atlas(
-            query=args.get("query"),
+            query=q_raw,
             pillar=args.get("pillar"),
             superdomain=args.get("superdomain"),
             flag=args.get("flag"),
@@ -181,7 +197,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         pid = args.get("problem_id")
         if not pid or not isinstance(pid, str):
             raise ValueError("Missing required string argument: problem_id")
-        hops = max(0, min(1, int(args.get("hops", 1))))
+        hops = _parse_clamped_int(args.get("hops"), 1, 0, 1, "hops")
         res = search_atlas(problem_id=pid, hops=hops)
         if not res["results"]:
             raise ValueError(f"Problem ID not found: {pid}")
@@ -212,7 +228,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         metric = str(args.get("metric", "css_score"))
         if metric not in allowed:
             raise ValueError(f"Unsupported metric: {metric}")
-        limit = max(1, min(100, int(args.get("limit", 15))))
+        limit = _parse_clamped_int(args.get("limit"), 15, 1, 100, "limit")
         where = ["1=1"]
         params: List[Any] = []
         if args.get("pillar"):
@@ -243,7 +259,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         return {"substrates": substrates, "abstraction_layers": layers}
     if name == "get_margin_and_gradient_extremes":
-        lim = max(1, min(30, int(args.get("limit", 10))))
+        lim = _parse_clamped_int(args.get("limit"), 10, 1, 30, "limit")
         steepest = _query_db(
             "SELECT id, name, macro_pillar, substrate_class, difficulty_score, tractability_2050, hardness_tractability_gradient, css_score "
             "FROM problems ORDER BY hardness_tractability_gradient DESC, css_score DESC LIMIT ?", (lim,)
@@ -387,6 +403,9 @@ def serve_stdio() -> None:
                 h = buf.readline()
                 if not h or h in (b"\r\n", b"\n"):
                     break
+            if length <= 0 or length > MAX_FRAME_BYTES:
+                _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Content-Length out of bounds (1..{MAX_FRAME_BYTES}): {length}"}}, framed)
+                continue
             raw_body = buf.read(length)
         else:
             raw_body = stripped

@@ -1,6 +1,6 @@
 # AGENTS.md — Canonical Agent Instructions (`unsolved-problems-mega-atlas`)
 
-> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.6.0`
+> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.7.0`
 > **Author / Maintainer:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
 > **Dual License:** Data/Figures/White Paper `CC-BY-4.0` (`LICENSE`) · Code/Lean/Tests `Apache-2.0` (`LICENSE-CODE`)
 

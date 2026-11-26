@@ -2,6 +2,20 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.6.0` to `v2.7.0`
+
+### 1. Live 76-Repo Companion Archive Expansion (`12` → `16` Verified Entries; `0 / 1,900` Parents Retired)
+- Expanded `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` in `src/v2_loader.py` (propagated across JSON, SQLite, 15-sheet XLSX, HTML Tab 2, `RANKING.md`, `paper/main.tex` Table 4, and MCP tool `list_author_frontier_contributions`) from `12` to **`16` live-verified companion entries** (`11` Tier-I + `5` Tier-II across `76` public `0thernes` repos) — adding `0TH-2026-014` (`monodromia v1.0.0`), `0TH-2026-015` (`promislow-fracton-amoeba v1.0.0`), `0TH-2026-016` (`zero-error-torus-frontier v1.0.0`), and `0TH-BUILD-012` (`xiaomi-17t-pro-lab v3.0.0`), and upgrading 8 existing entries. Every overarching Mega-Atlas parent problem remains **OPEN** (`0 / 1,900` retired).
+
+### 2. Dual Cryptographic Timestamping (RFC 3161 `.tsr` + Bitcoin OpenTimestamps `.ots`) & Acyclic RO-Crate
+- Added [`scripts/stamp_timestamps.py`](scripts/stamp_timestamps.py) (`just stamp`) minting and verifying BOTH `CHECKSUMS.sha256.tsr` (DigiCert RFC 3161) and `CHECKSUMS.sha256.ots` (3-calendar Bitcoin OpenTimestamps) — verified inside `scripts/audit_atlas.py`, CI, and `pytest`, and attested via SLSA.
+- Fixed `scripts/generate_fair_metadata.py` to exclude `.tsr`/`.ots` from self-referential hashing inside `ro-crate-metadata.json`.
+
+### 3. Runtime Security, Freshness & Strict CSP Hardening
+- Fixed `rag/query.py` (`search_atlas` / `compare_two_problems`) to always check `_db_is_fresh()` on `DEFAULT_DB` (backed by an `O(1)` stat cache) so cached `.sqlite` databases auto-rebuild transparently on version upgrades.
+- Hardened `mcp_server/server.py` with a `1 MiB` `Content-Length` frame ceiling, `4,096`-char query cap, and strict integer parsing rejecting JSON booleans.
+- Added strict zero-CDN `Content-Security-Policy` + `Referrer-Policy` headers on both `outputs/MegaAtlas_Interactive_Dashboard_V2.html` and `blueprint/index.html` (plus WCAG 2.2 AA skip-link & `<main>` landmark on `blueprint/index.html`).
+
 ## Upgrading from `v2.5.0` to `v2.6.0`
 
 ### 1. Live Companion Archive Expansion (`10` → `12` Verified Entries; `0 / 1,900` Parents Retired)

@@ -65,7 +65,7 @@ def _read_atlas_version() -> str:
             v = f.read().strip()
             if v:
                 return v
-    return "2.6.0"
+    return "2.7.0"
 
 
 ATLAS_VERSION = _read_atlas_version()
@@ -212,18 +212,18 @@ def _norm_name(s: str) -> str:
 OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
     {
         "Archive_ID": "0TH-2026-012",
-        "Repo": "0thernes/coded-pir-mlwe-complexity-lab (v3.0.0, 2026-11-26)",
-        "Parent_Atlas_IDs": "CS-053, CS-026, QC-042, CS-004, CS-001, CS-010, CS-012, CS-051",
-        "Scoped_Result": "Resolved Sun-Tao-Xu-Zhang (arXiv:2603.10769) Schur-product syzygy rank via Koszul-Veronese moment annihilation (4/7 -> 10/17); proved strict LFSR domination over Sun-Zhang (arXiv:2610.37412); refuted Luo (arXiv:2604.15858) via det(B)=q^m; proved ring-universal anti-periodic DFT cancellation (Chen ePrint 2024/555 Step 9); certified 8/13 polymatroid defeating all infinitely many Matus M_s inequalities; proved characteristic-free Strassen-Winograd rank_F(<2,2,2>)=7 & all-m Koszul rank >= m^2+2.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 23 theorems T1a-T3h / 25 audited decls, 6/6 independent kernels, CI #45741278208, Rekor 4116227116)",
-        "Parent_Problem_Status": "STILL OPEN — General coded-PIR capacity, worst-case quantum MLWE, matrix-mult exponent omega=2, P!=NP & VP!=VNP explicitly remain OPEN; preprint not peer-reviewed.",
+        "Repo": "0thernes/coded-pir-mlwe-complexity-lab (v4.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "CS-053, CS-026, QC-042, CS-004, CS-001, CS-010, CS-012, CS-051, CS-049",
+        "Scoped_Result": "Resolved Sun-Tao-Xu-Zhang (arXiv:2603.10769) Schur-product syzygy rank via Koszul-Veronese annihilation (4/7 -> 10/17); proved strict LFSR domination over Sun-Zhang (arXiv:2610.37412); refuted Luo (arXiv:2604.15858) via det(B)=q^m; proved anti-periodic DFT cancellation (Chen ePrint 2024/555 Step 9); certified 8/13 polymatroid defeating all infinitely many Matus M_s inequalities; proved characteristic-free Strassen-Winograd rank_F(<2,2,2>)=7, all-m Koszul rank >= m^2+2 & Brockett-Dobkin/Shannon-capacity Z[sqrt(5)] SOS certificates.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 27 theorems T1a-T3j / 29 audited decls, 6/6 independent kernels, CI #45754219328, Rekor 4118120599)",
+        "Parent_Problem_Status": "STILL OPEN — General coded-PIR capacity, worst-case quantum MLWE, matrix-mult exponent omega=2, P!=NP, VP!=VNP & exact Theta(C_7) explicitly remain OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-011",
-        "Repo": "0thernes/secmesh-pqsi (v2.4.0, 2026-11-26)",
+        "Repo": "0thernes/secmesh-pqsi (v2.5.0, 2026-11-26)",
         "Parent_Atlas_IDs": "CS-002, CS-026, CS-028, CS-030, CS-053, CS-061, QC-004, QC-018, QC-021, QC-030, QC-042, STAT-014, SYS-024",
-        "Scoped_Result": "Proved 27 cryptographic/IT/QGT invariants including Chern-Concurrence-Entropy Conservation Law (c_eff^2 + C^2 = 1), first-principles Toner CHSH monogamy, exact Hiding-Binding Conservation Law (TV + Overlap = 1), and sharp FIPS 203 Compress_1 margin |e|<=831.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 27 theorems T1a-T7b + NonVacuity + AdversarialTests = 60 audited decls, 6/6 independent kernels, CI #45740501716)",
+        "Scoped_Result": "Proved 28 cryptographic/IT/QGT invariants (T1a-T7c) including Chern-Concurrence-Entropy Conservation Law (c_eff^2 + C^2 = 1), first-principles Toner CHSH monogamy, exact Hiding-Binding Conservation Law (TV + Overlap = 1), Theorem T7c Microcrypt EFI & sharp FIPS 203 Compress_1 margin |e|<=831.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 28 theorems T1a-T7c + NonVacuity + 5 AdversarialTests = 63 audited decls, 6/6 independent kernels + live negative rejection, CI #45745957907)",
         "Parent_Problem_Status": "STILL OPEN — Explicitly separates all 13 referenced Mega-Atlas open conjectures as unresolved; preprint not peer-reviewed.",
     },
     {
@@ -236,10 +236,10 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
     },
     {
         "Archive_ID": "0TH-2026-009",
-        "Repo": "0thernes/pauli-contextuality-lab (v2.8.0, 2026-11-26)",
+        "Repo": "0thernes/pauli-contextuality-lab (v2.9.0, 2026-11-26)",
         "Parent_Atlas_IDs": "QM-011, QC-037, QC-013",
         "Scoped_Result": "Answered Muller & Saniga (arXiv:2609.19862v1 Sec. 6) with exact disjoint Mermin copy degrees (7^k-5^k)/2 & (6^k-4^k)/2; proved eigenvalue-multiset Jonah Conjecture E across all 9 vertex cases for all N>=4 (modulo cited Theorem B4 outside Lean), exact 4-qubit C3 binary optima (368 vs 344, gap 24), infinite |Psi_{3m}> family & 11/12 sequential bias cap.",
-        "Kernel_Audit": "Lean 4.35.0 / Mathlib (2,206 exhaustively audited decls, 12 comparator targets across 6/6 independent kernels, CI #45722562212, Rekor 4114410283)",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (2,206 exhaustively audited decls, 12 comparator targets across 6/6 independent kernels, CI #45741807525, Rekor 4116592110)",
         "Parent_Problem_Status": "STILL OPEN — Overarching QM-011/QC-037/QC-013 contextuality foundations remain OPEN; preprint not peer-reviewed.",
     },
     {
@@ -247,15 +247,15 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
         "Repo": "0thernes/kochen-specker-extremal-lab (v1.9.0, 2026-11-26)",
         "Parent_Atlas_IDs": "QM-011",
         "Scoped_Result": "Certified exact minimum Kochen-Specker set sizes inside restricted coordinate pools: 31 rays in 3D integer pools (|c|<=2..4), 33 in 3D roots of unity, 18 in 4D {0,+1,-1}^4, and 29 in 5D.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited decls, 6/6 independent kernels + leanchecker --fresh + 3 false-variant rejections, CI #45741815040) + checked DRUP UNSAT proofs",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited decls, 6/6 independent kernels + leanchecker --fresh + 3 false-variant rejections, CI #45741815040, Rekor 4116355625) + checked DRUP UNSAT proofs",
         "Parent_Problem_Status": "STILL OPEN — Unrestricted general minimal-KS problem in R^3 explicitly remains OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-006",
-        "Repo": "0thernes/multinomial-tv-conjecture (v2.1.0, 2026-11-26)",
+        "Repo": "0thernes/multinomial-tv-conjecture (v2.2.0, 2026-11-26)",
         "Parent_Atlas_IDs": "STAT-001 (Related Probability / Asymptotic Statistics)",
         "Scoped_Result": "Resolved Conjecture 7.7 (conj:atriangle) of Banic & Elezovic (arXiv:2610.17046v1 / 2611.14735v1) on second-order variance of multinomial discrete total variation (a_triangle = 1/32 - 4*sqrt(3)/243), making linear gamma(n) & cyclic gamma_c(n) unconditional for n>=5.",
-        "Kernel_Audit": "Lean 4.35.0 / Mathlib (576 exhaustively audited theorems, 6/6 independent kernels + live negative kernel rejection + DigiCert RFC 3161 TSA, CI #45741323731, Rekor 4116347212)",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (723 exhaustively audited named+private theorems, Palomar module headers, 6/6 kernels + live negative rejection + dual RFC 3161/OTS, CI #45747471704, Rekor 4117130014)",
         "Parent_Problem_Status": "STANDALONE SUB-CONJECTURE — Adjacent to STAT-001; not one of the 1,900 overarching atlas IDs; preprint not yet externally peer-reviewed.",
     },
     {
@@ -267,19 +267,43 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
         "Parent_Problem_Status": "STILL OPEN — Barrier formalization & heuristic falsification only; P vs. NP (CS-001) and all related complexity separations explicitly remain OPEN.",
     },
     {
+        "Archive_ID": "0TH-2026-014",
+        "Repo": "0thernes/monodromia (v1.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "CM-018, FLD-060, CM-016, QM-011",
+        "Scoped_Result": "Machine-checked 98 declarations across 6 pillars on non-Hermitian spectral knots, higher-order exceptional-point Petermann cancellation, generalized Brillouin zone collapse, non-reciprocal critical matter & plastic-squared dipole scars.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 98 audited decls incl. 7 NonVacuity + 7 AdversarialTests + 9 Palomar targets across 6/6 kernels, SWH snapshot, CI #45749048047)",
+        "Parent_Problem_Status": "STILL OPEN — Discrete model & algebraic spectral invariants only; general non-Hermitian topological classification (CM-018) & non-reciprocal phase transitions (FLD-060) remain OPEN.",
+    },
+    {
+        "Archive_ID": "0TH-2026-015",
+        "Repo": "0thernes/promislow-fracton-amoeba (v1.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "ALG-035, ANL-063, QC-032, CM-016, CM-018, FLD-060",
+        "Scoped_Result": "Formalized Hantzsche-Wendt group ring no-sign-lift obstructions on Gardam support, Hensel geometric identity, all-prime Type-II fracton codes & discrete 3D non-Hermitian B_4 monodromy invariants.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 20 audited decls across 6/6 kernels, SWH snapshot, 90/90 Build Standard, CI #45751946493, Rekor 4117699930)",
+        "Parent_Problem_Status": "STILL OPEN — Kaplansky unit/zero-divisor conjectures (ALG-035), Gottschalk surjunctivity (ANL-063) & 3D self-correcting quantum memory (QC-032) explicitly remain OPEN.",
+    },
+    {
+        "Archive_ID": "0TH-2026-016",
+        "Repo": "0thernes/zero-error-torus-frontier (v1.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "CS-049",
+        "Scoped_Result": "Machine-checked coset-quotient compression theorems (T1a-T4d), separation-graph barriers, and chunked 81-ball independent-set certificates bounding finite zero-error Shannon capacity constructions on odd cycles & tori.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 32 audited decls incl. 7 NonVacuity + 7 AdversarialTests + 18 Palomar targets across 6/6 kernels, CI #45762976065, Rekor 4119482036)",
+        "Parent_Problem_Status": "STILL OPEN — Determining exact Shannon zero-error capacity Theta(C_n) for any odd n >= 7 (CS-049) explicitly remains OPEN; preprint not peer-reviewed.",
+    },
+    {
         "Archive_ID": "0TH-2026-007 / 008",
-        "Repo": "0thernes/human-synapse-bouton-lab (v1.2.0, 2026-11-23)",
+        "Repo": "0thernes/human-synapse-bouton-lab (v1.3.0, 2026-11-26)",
         "Parent_Atlas_IDs": "NEURO-001, NEURO-019",
-        "Scoped_Result": "Proved 18 positive-domain synaptic biophysical invariants & 2x2 algebraic factorization bounds, and honestly refuted pre-registered 40 Hz mitochondrial ATP sustainability (f_crit = 29.5625 Hz).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 18 theorems + 20 non-vacuity witnesses, 6/6 kernels, DOI 10.5281/zenodo.24484350, CI #45277848703)",
+        "Scoped_Result": "Proved 24 positive-domain synaptic biophysical invariants (+ 26 witnesses + 6 AdversarialChecks) & 2x2 algebraic factorization bounds, and honestly refuted pre-registered 40 Hz mitochondrial ATP sustainability (f_crit = 29.5625 Hz).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, zero Classical.choice, 24 theorems + 26 witnesses + 6 AdversarialChecks, 6/6 kernels, DOI 10.5281/zenodo.24548051, CI #45747272478)",
         "Parent_Problem_Status": "STILL OPEN — Explicitly disclaims solving phenomenal consciousness, sentience, or brain-wide energy coding; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-BUILD-003",
-        "Repo": "0thernes/ultrametrica (v1.4.1, 2026-11-26)",
+        "Repo": "0thernes/ultrametrica (v1.5.0, 2026-11-26)",
         "Parent_Atlas_IDs": "SUB-032, GR-001, GR-002, GR-003",
-        "Scoped_Result": "Proved discrete p-adic AdS/CFT algebraic invariants (Theorems I-VI), including arbitrary multi-edge curved AdS Gauss-Bonnet curvature and universal weighted-graph holographic RT Strong Subadditivity (SSA).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 120 audited decls + 8 comparator targets across 6/6 independent kernels, 19-page PDF, CI #45740525070)",
+        "Scoped_Result": "Proved discrete p-adic AdS/CFT algebraic invariants (139 core theorems + 10 Palomar targets), including arbitrary-degree multi-edge Kantorovich primal-dual duality for curved AdS Gauss-Bonnet curvature & universal graph RT Strong Subadditivity (SSA).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited Palomar decls across 6/6 independent kernels, 19-page PDF, CI #45747436539, Rekor 4117126869)",
         "Parent_Problem_Status": "STILL OPEN — Explicit 0/1,900 Mega-Atlas cross-check; continuum quantum gravity (GR-001..003) & physical p-adic holography (SUB-032) remain OPEN.",
     },
     {
@@ -292,19 +316,27 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
     },
     {
         "Archive_ID": "0TH-BUILD-002",
-        "Repo": "0thernes/planaria (v2.3.0, 2026-11-26)",
+        "Repo": "0thernes/planaria (v2.4.0, 2026-11-26)",
         "Parent_Atlas_IDs": "CS-053, SYS-001",
-        "Scoped_Result": "Proved discrete GF(256) Cauchy/RS MDS recovery, 8-level Merkle integrity, caller-windowed anastomosis, 4-qubit complex unitarity, and exact 6,421,059,993,600 reachable discrete state count for .hbin executables.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 70 audited theorems across 6/6 independent kernels, CI #45732566225)",
+        "Scoped_Result": "Proved 85 discrete invariants covering GF(256) Cauchy/RS MDS recovery, dual-path Merkle binding, arbitrary-list unpinned quorums, caller-windowed anastomosis, 4-qubit unitarity & 8 AdversarialTests refutations for .hbin executables.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 85 audited decls across 6/6 kernels + live negative tamper CI #45750499053, Rekor 4117431803)",
         "Parent_Problem_Status": "STILL OPEN — Certifies discrete engineering invariants only; general coding-theory & nonlinear control problems remain OPEN.",
+    },
+    {
+        "Archive_ID": "0TH-BUILD-012",
+        "Repo": "0thernes/xiaomi-17t-pro-lab (v3.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "HW-001, HW-002, QM-011",
+        "Scoped_Result": "Proved 59 silicon-to-quantum hardware modeling invariants (discrete PDE thermal stability, unitary operator bounds, finite contextuality & AdversarialTests) paired with 60-digit differential oracles.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 59 audited Palomar decls across 6/6 kernels + leanchecker --fresh, CI #45748904789, Rekor 4117264287)",
+        "Parent_Problem_Status": "STILL OPEN — Certifies mathematical model invariants only; post-Moore CMOS scaling (HW-001) & practical Landauer reversible computing (HW-002) remain OPEN.",
     },
     {
         "Archive_ID": "0TH-BUILD-001 / 006 / 008–011",
         "Repo": "0thernes A-Life Omega Suite (5 repos) & black-hole-simulation-lab",
-        "Parent_Atlas_IDs": "BIO-001, SUB-001, GR-001, GR-002",
-        "Scoped_Result": "Proved 218 combined discrete A-Life/biophysical model invariants (cellulogonic-mecha 58, cellular-engine-omega 61, autophage 31, noetic-organism-omega 48, asmodensius-native 20) plus 8 zero-axiom Schwarzschild rational limits (black-hole-simulation-lab).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 226 combined discrete invariants across 6 public build repos, zero sorry)",
-        "Parent_Problem_Status": "STILL OPEN — Coarse-grained discrete simulation & classical textbook limits only; abiogenesis (BIO-001), basal cognition (SUB-001) & quantum gravity (GR-001..002) remain OPEN.",
+        "Parent_Atlas_IDs": "BIO-001, BIO-015, BIO-022, SUB-001, GR-001, GR-002",
+        "Scoped_Result": "Proved 258 combined discrete A-Life/biophysical invariants (cellulogonic-mecha v1.5.0: 70, cellular-engine-omega v5.2.0: 89, autophage: 31, noetic-organism-omega: 48, asmodensius-native: 20) plus 8 zero-axiom Schwarzschild rational limits (black-hole-simulation-lab).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 266 combined discrete invariants across 6 public build repos; 6/6 kernels on cellulogonic-mecha CI #45751776610 & cellular-engine-omega CI #45749131672)",
+        "Parent_Problem_Status": "STILL OPEN — Coarse-grained discrete simulation & classical textbook limits only; abiogenesis (BIO-001), morphogenesis (BIO-022), basal cognition (SUB-001) & quantum gravity (GR-001..002) remain OPEN.",
     },
 ]
 
