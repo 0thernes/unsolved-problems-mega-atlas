@@ -1,10 +1,19 @@
-# Threat Model (`docs/threat-model.md`)
+# Threat Model & Security Analysis (Build Standard B36)
 
-| Threat ID | Threat | Impact | Mitigations |
+This repository is an offline-first scientific dataset, Lean 4.35.0 proof suite, static HTML/JS web dashboard, SQLite FTS5 RAG CLI, and local stdio MCP JSON-RPC 2.0 server. It runs **no public web backend, handles zero user authentication or PII, and makes zero runtime outbound network calls**.
+
+## 1. STRIDE Analysis Across Trust Boundaries
+
+| Surface | Threat (STRIDE) | Concrete Risk | Mitigation Implemented |
 |---|---|---|---|
-| **T1** | **Epistemic inflation / false retirement** (marking an unverified AI claim or preprint as "solved") | Misleading scientific registry | All 12 Nov 2026 AI claims locked under `verification_flag = "ai-claim-under-audit-nov2026"` (`test_nov2026_ai_claims_explicitly_flagged`); explicit `0/1,900` solved audit in `docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`. |
-| **T2** | **AutoResearch reward hacking** (agent alters evaluator or tests to inflate `AQS`) | Invalid benchmark score | `AGENTS.md` locks `autoresearch/evaluate.py`, `schema/*.json`, and `tests/test_mega_atlas.py`; SHA-256 of `autoresearch/evaluate.py` pinned in `CHECKSUMS.sha256`; anti-gaming gate formally proved in `MegaAtlasProofs.AutoResearchInvariants.failed_gates_always_discard`. |
-| **T3** | **Graph / schema corruption** (dangling `raw_links`, articulation points, duplicate IDs) | Broken RAG hops and connectome metrics | Enforced on every push by `src/v2_loader.py`, `scripts/forensic_audit.py`, `schema/problem.schema.json`, and 25+ pytest assertions. |
-| **T4** | **Lean 4 invariant bypass** (`sorry`, `admit`, `native_decide`, custom axioms) | Broken formal proofs | Comment-stripped forbidden-token scan + exact 72-theorem axiom allowlist (`[propext, Quot.sound]`) in `scripts/audit_atlas.py` and `.github/workflows/ci.yml`. |
-| **T5** | **SQL injection / malformed JSON-RPC in offline RAG or MCP server** | Local crash or bad query execution | Parameterized SQLite queries in `rag/query.py`; strict JSON-RPC 2.0 input validation & dual NDJSON/`Content-Length` stdio tests in `tests/test_mega_atlas.py`; zero network sockets exposed. |
-| **T6** | **Secret leakage or tampered releases** | Supply-chain compromise | `gitleaks` report-only scan in CI; `SHA256SUMS` + Sigstore SLSA attestations in `.github/workflows/release.yml`. |
+| **MCP Stdio Server (`mcp_server/server.py`)** | Tampering / Injection | Malformed JSON-RPC, invalid `Content-Length`, SQL injection via `query`, `pillar`, `substrate`, or `metric` arguments | Strict parameterized SQLite `?` bindings; allowlist validation on `metric` enum (`allowed = {...}`); clamped integer `limit`/`top`/`hops`; structured JSON-RPC `-32700`/`-32601` & `isError: true` error handling; negative boundary tests in `tests/test_properties_and_differential.py`. |
+| **SQLite FTS5 Query (`rag/query.py`)** | DoS / FTS5 Syntax Injection | Special characters (`"`, `*`, `NEAR/`, unbalanced parens) crashing FTS5 `MATCH` | `tokenize_query()` strips non-alphanumeric chars via `re.findall(r"[A-Za-z0-9_]+", raw)` and wraps every token in safe double quotes before `MATCH ?`. |
+| **Interactive Web Atlas (`outputs/MegaAtlas_Interactive_Dashboard_V2.html`)** | Cross-Site Scripting (XSS) | Malicious HTML/script payloads inside problem fields or `</script>` breakout | Every dynamic text interpolation passes through `esc()` HTML entity escaping in JS and `html.escape()` in Python; embedded JSON escapes `</` as `<\/`. Static read-only page with zero user-submitted backend persistence. |
+| **Lean 4.35.0 Formal Proofs (`lean/`)** | Spoofing / Proof Forgery | Hidden `sorry`, `admit`, `native_decide`, `Lean.ofReduceBool`, custom `axiom`, or statement drift between paper and proof | Zero `sorry`/`admit`/`native_decide`/`axiom` scanner in `scripts/audit_atlas.py` & `autoresearch/evaluate.py`; verbatim `#print axioms` drift checker (`scripts/check_readme_axioms.py`); 6 independent proof kernels via `bwrap`-sandboxed `lake comparator --paranoid`. |
+| **Supply Chain / Release Artifacts** | Tampering / Repudiation | Corrupted PDF, arXiv tarball, or dataset files after build | `CHECKSUMS.sha256` + `data/MANIFEST.sha256` verified in CI; deterministic archives (`mtime=0`); GitHub `actions/attest-build-provenance@v2` SLSA provenance attestations on `main` pushes. |
+| **Optional Zenodo Token (`scripts/publish_zenodo.py`)** | Information Disclosure | Accidental secret commit to git | `.env` gitignored; `.env.example` contains empty placeholders only; CI runs regex secret-leak scan (`ghp_`, `sk-`, `AKIA`, private key headers). |
+
+## 2. OWASP LLM / Agentic Consumption Risks (MCP & `llms.txt`)
+
+- **Prompt Injection via Corpus Text:** Because the corpus is authored and audited statically in `src/v2_data/`, all 1,900 records are deterministic and git-versioned. MCP tool responses return structured JSON strictly tagged with `verification_flag`, `ai_disclosure`, and `conflict_of_interest_disclosure` so consuming agents cannot conflate editorial estimates or unverified AI claims with peer-reviewed facts.
+- **Reward Hacking in AutoResearch:** Immutable `autoresearch/evaluate.py` + Lean-verified `failed_gates_always_discard` theorem prevent an autonomous agent from inflating `AQS` while breaking schema, biconnectivity, or Lean zero-sorry gates.

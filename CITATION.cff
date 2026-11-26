@@ -1,34 +1,38 @@
 cff-version: 1.2.0
-title: "Unsolved Problems Mega-Atlas (V2.3.1): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch & 72 Pure Lean 4.35.0 Formal Invariants"
-message: "If you use this dataset, knowledge graph, Lean 4 formal invariants, RAG/MCP server, AutoResearch harness, charts, or monograph in research or software, please cite it using the metadata below."
+message: "If you use this dataset, knowledge graph, Lean 4.35.0 formal invariant suite, RAG/MCP server, or white paper, please cite it as below."
+title: "Unsolved Problems Mega-Atlas (V2.4.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+version: "2.4.0"
+date-released: "2026-11-25"
 type: dataset
+license:
+  - CC-BY-4.0
+  - Apache-2.0
+repository-code: "https://github.com/0thernes/unsolved-problems-mega-atlas"
+url: "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 authors:
-  - family-names: Donahue
-    given-names: Alexander Stephen
+  - family-names: "Donahue"
+    given-names: "Alexander Stephen"
     orcid: "https://orcid.org/0009-0006-8168-9648"
     affiliation: "Independent Researcher, Spokane, WA, USA"
     email: "0_0@0thernes.art"
-repository-code: "https://github.com/0thernes/unsolved-problems-mega-atlas"
-url: "https://0thernes.github.io/unsolved-problems-mega-atlas/"
-version: "2.3.1"
-date-released: "2026-11-25"
-license: "MIT AND CC-BY-4.0"
 keywords:
-  - unsolved problems
-  - open problems
-  - mathematics
-  - physics
-  - computer science
-  - artificial intelligence
-  - philosophy
-  - engineering
-  - knowledge graph
-  - lean 4
-  - formal verification
-  - autoresearch
-  - model context protocol
-  - croissant
-  - ro-crate
-  - composite severity score
-  - offline rag
-  - comparative taxonomy
+  - "unsolved problems"
+  - "open problems"
+  - "knowledge graph"
+  - "Lean 4"
+  - "formal verification"
+  - "Palomar comparator"
+  - "RAG"
+  - "Model Context Protocol"
+  - "AutoResearch"
+  - "FAIR metadata"
+abstract: >-
+  Strictly deduplicated cross-disciplinary open-problem research infrastructure
+  cataloging 1,900 unsolved, open, and hard problems spanning 8 Macro-Pillars,
+  28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into
+  1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0
+  dangling links), paired with 92 zero-Mathlib Pure Lean 4.35.0 formal invariant
+  theorems verified across 6 independent proof kernels, a 10-page AMS-LaTeX white
+  paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), a 10-tool stdio MCP server,
+  and an immutable Karpathy-style AutoResearch harness (AQS = 97.99). Zero (0/1,900)
+  overarching open problems are claimed solved; Lean verifies internal invariants only.

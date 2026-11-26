@@ -1,7 +1,13 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
+
+public import MegaAtlasProofs.Scoring
+
 /-
   MegaAtlasProofs/LayerGradients.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for the
-  V2.3.0 Multi-Layer Substrate, Spectrum, Gradient, Margin & Adjacent Framework:
+  Multi-Layer Substrate, Spectrum, Gradient, Margin & Adjacent Framework:
     1. 8-Substrate & 7-Abstraction-Layer (`L0..L6`) totality & ordinal bounds
     2. Hardness-Tractability Gradient (`d - t in [-9, 9]`): exact bounds,
        monotonicity in difficulty, anti-monotonicity in tractability, zero iff equal
@@ -10,14 +16,14 @@
     5. Adjacent Pillars Bound (`adjPillars <= 7` strictly < 8 total Macro-Pillars)
     6. Margin Role 4-Class Partition exhaustiveness & mutual exclusivity
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
-
-import MegaAtlasProofs.Scoring
 
 namespace MegaAtlasProofs.LayerGradients
 
 open MegaAtlasProofs.Scoring
+
+@[expose] public section
 
 /-- Eight canonical substrates spanning formal, quantum, material, biological, synthetic & cosmic reality. -/
 inductive SubstrateClass where
@@ -169,5 +175,7 @@ theorem apexKeystone_requires_3_adjacent (adj crossSD bps : Nat) :
     split
     · simp [h]
     · split <;> simp [h]
+
+end
 
 end MegaAtlasProofs.LayerGradients

@@ -1,3 +1,6 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/AutoResearchInvariants.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for the
@@ -11,10 +14,12 @@
        discarded commits leave best score unchanged (never regresses)
     4. Pairwise Problem Comparison Delta Antisymmetry & Zero Self-Delta
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
 
 namespace MegaAtlasProofs.AutoResearchInvariants
+
+@[expose] public section
 
 /-- Immutable Atlas Quality Score (AQS) in integer basis points (0..10000 = 0.00..100.00),
     matching `autoresearch/evaluate.py`:
@@ -111,5 +116,7 @@ theorem metricDelta_self (a : Int) : metricDelta a a = 0 := by
 theorem metricDelta_antisymm (a b : Int) : metricDelta a b = - metricDelta b a := by
   unfold metricDelta
   omega
+
+end
 
 end MegaAtlasProofs.AutoResearchInvariants

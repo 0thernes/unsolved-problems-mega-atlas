@@ -1,11 +1,12 @@
 {
-  "title": "Unsolved Problems Mega-Atlas (V2.3.1): 1,900-Problem Biconnected Connectome, 8 Substrates × 7 Abstraction Layers, Gradients & Margins, 0thernes CSS, Hybrid RAG (100% MRR@5) & 9-Tool MCP Server, Karpathy AutoResearch, Nov 2026 AI Audit & 72 Pure Lean 4.35.0 Formal Invariants",
-  "description": "Reproducible, cryptographically audited cross-disciplinary research infrastructure cataloging 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers (L0-L6) wired into 1 biconnected 5,808-edge NetworkX knowledge graph (0 articulation points, 0 dangling links). Includes unified 0thernes Composite Severity Score (CSS) and Titan Index rankings, quantitative hardness-tractability gradients, CSS-Titan margins, bridge ratios, adjacent-pillar counts, per-record epistemic verification flags, a live November 20, 2026 AI proof-claim audit (12 unretired claims), a SQLite 3 + FTS5 Hybrid BM25+Bigram+PageRank RAG CLI (100% MRR@5 on 25-query benchmark) and zero-dependency 9-tool Model Context Protocol (MCP) server, a Karpathy-style autonomous research harness (Track A + Track B pilot), MLCommons Croissant 1.0 & W3C RO-Crate 1.1 FAIR metadata, 15 PNG/SVG analytical figures (30 files), a vector PDF monograph, and 72 Pure Lean 4.35.0 formal invariants (8 modules, 1,008 lines, zero Mathlib, zero sorry, axioms strictly within [propext, Quot.sound]).",
+  "title": "Unsolved Problems Mega-Atlas (V2.4.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure",
+  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0 dangling links), with 0thernes CSS & Titan Index rankings, per-record verification flags, Nov 25, 2026 AI proof-claim audit, 92 Pure Lean 4.35.0 formal invariant theorems across 6 independent kernels, 10-page AMS-LaTeX white paper + clean-room arXiv tarball, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), 10-tool stdio MCP server, and Karpathy-style AutoResearch harness (AQS = 97.99). Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID 0009-0006-8168-9648). AI-assisted editorial disclosure: quantitative ratings are falsifiable estimates, not peer-reviewed measurements; 0/1,900 overarching open problems are retired.",
   "upload_type": "dataset",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "publication_date": "2026-11-25",
-  "license": "cc-by-4.0",
   "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
   "creators": [
     {
       "name": "Donahue, Alexander Stephen",
@@ -17,20 +18,16 @@
     "unsolved problems",
     "open problems",
     "knowledge graph",
-    "lean 4",
+    "Lean 4",
     "formal verification",
-    "autoresearch",
-    "model context protocol",
-    "croissant",
-    "ro-crate",
-    "sqlite fts5",
-    "composite severity score",
+    "Palomar comparator",
+    "RAG",
+    "Model Context Protocol",
+    "AutoResearch",
+    "FAIR data",
     "mathematics",
     "physics",
-    "computer science",
-    "artificial intelligence",
-    "philosophy",
-    "0thernes"
+    "computer science"
   ],
   "related_identifiers": [
     {
@@ -47,12 +44,6 @@
       "identifier": "https://github.com/0thernes/0thernes-research-archive",
       "relation": "isPartOf",
       "scheme": "url"
-    },
-    {
-      "identifier": "https://github.com/0thernes/unsolved-mathematics",
-      "relation": "references",
-      "scheme": "url"
     }
-  ],
-  "notes": "Dual-licensed: Data, monographs, charts, and documentation under CC BY 4.0 (LICENSE); software, schemas, RAG, MCP server, tests, CI workflows, and Pure Lean 4.35.0 formal invariant proofs under MIT (LICENSE-CODE). Registered as 0TH-BUILD-007 in 0thernes/0thernes-research-archive."
+  ]
 }

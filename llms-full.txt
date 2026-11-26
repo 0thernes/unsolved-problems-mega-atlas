@@ -1,336 +1,624 @@
-===== FILE: README.md =====
-# Unsolved Problems Mega-Atlas (`v2.3.1`)
+# Unsolved Problems Mega-Atlas (v2.4.0) — Complete Agent Context (`llms-full.txt`)
 
-[![CI — Python, AutoResearch, 9-Tool MCP & Pure Lean 4.35.0](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
-[![Interactive Web Atlas (GitHub Pages)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
-[![Lean 4.35.0](https://img.shields.io/badge/Lean%204.35.0-72%20theorems%20%C2%B7%200%20sorry-2563EB.svg)](lean/MegaAtlasProofs/VerifyAxioms.lean)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39.svg)](https://orcid.org/0009-0006-8168-9648)
-[![FAIR](https://img.shields.io/badge/FAIR-Croissant%201.0%20%7C%20RO--Crate%201.1%20%7C%20Zenodo-7C3AED.svg)](croissant.json)
-[![Dual License](https://img.shields.io/badge/License-Data%20CC--BY--4.0%20%7C%20Code%20MIT-0D9488.svg)](NOTICE)
-[![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+> Generated deterministically by `python scripts/generate_llms_full.py`.
+> Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID 0009-0006-8168-9648).
+> License: CC-BY-4.0 (data/prose) / Apache-2.0 (code/Lean).
 
-> **1,900 rigorously deduplicated unsolved, open, and hard problems across ALL 8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)** — wired into a **biconnected 5,808-edge knowledge graph (`0` articulation points, `0` bridges, `0` dangling links)**, ranked by the **0thernes Composite Severity Score (`CSS`)**, **Composite Titan Index**, **Hardness–Tractability Gradient (`D − T`)**, **Dual-Ranking Margin**, and **Epistemic Spectrum**, paired with a **live November 20, 2026 AI Proof-Claim Verification Audit**, an **offline Hybrid BM25+PageRank RAG CLI (`100.0% MRR@5`, `25/25` top-1)**, a **dual-framed 9-tool MCP stdio server**, a **Karpathy-style AutoResearch harness (`AQS = 97.99` + Track B Antihydra `BB(6)` pilot)**, **FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo CLI metadata**, **15 publication-grade charts**, **14-sheet XLSX + 12 export formats**, and **72 Pure Lean 4.35.0 machine-checked formal invariants**.
+================================================================================
+## FILE: README.md — Project Overview & Quick Start
+================================================================================
 
-- **Live Interactive Web Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) *(also serves [`llms.txt`](https://0thernes.github.io/unsolved-problems-mega-atlas/llms.txt), [`croissant.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json) & [`ro-crate-metadata.json`](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json))*
-- **Author / Curator (Human-in-the-Loop):** **Alexander Stephen Donahue** (`Independent Researcher`, Spokane, WA, USA · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648) · [0thernes.art](https://0thernes.art))
-- **Master Research Archive Entry:** `0TH-BUILD-007` in [`0thernes/0thernes-research-archive`](https://github.com/0thernes/0thernes-research-archive) · **Solved-Problem Cross-Reference Audit:** [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](docs/0THERNES_SOLVED_AUDIT_2026-11-25.md) (`0/1,900` grand problems retired)
-- **Companion Deep-Dive Math Atlas:** [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics) *(shares the exact 0thernes `CSS` ranking standard)*
-- **Forensic Audit & Preservation Dossiers:** [`docs/FORENSIC_AUDIT_V2.3.md`](docs/FORENSIC_AUDIT_V2.3.md) · [`docs/PRESERVATION.md`](docs/PRESERVATION.md)
+# Unsolved Problems Mega-Atlas (`v2.4.0`)
 
----
+[![CI](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
+[![Pages](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean-4.35.0%20%7C%2092%20Thms%20%7C%206%20Kernels-2ea44f)](lean/README.md)
+[![Data License: CC BY 4.0](https://img.shields.io/badge/Data-CC%20BY%204.0-blue)](LICENSE)
+[![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue)](LICENSE-CODE)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39)](https://orcid.org/0009-0006-8168-9648)
 
-## Epistemic Honesty & Verification Boundary (Read First)
+![Unsolved Problems Mega-Atlas Social Preview](docs/media/social-preview.png)
 
-> **Solo Human + Disclosed AI-Assisted Research Infrastructure:** This atlas is architected, directed, audited, and published by solo researcher **Alexander Stephen Donahue** with disclosed frontier AI assistance (see [`AUTHORS.md`](AUTHORS.md), [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md), and [`docs/DATASHEET.md`](docs/DATASHEET.md)).
-> - **What IS machine-verified:** All **72 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, 8 modules, 1,008 lines, zero Mathlib, zero `sorry`, zero `native_decide`, zero `Classical.choice`, axioms strictly within `[propext, Quot.sound]` or empty) certifying exact scoring, quadrant, era, taxonomy, finite graph handshaking, pairwise delta antisymmetry, Karpathy AutoResearch anti-gaming keep/discard gates, and multi-layer substrate/gradient/margin invariants; JSON Schema Draft 2020-12 compliance across all `1,900 × 48` fields; 25-test `pytest` suite (including dual-framed 9-tool MCP stdio JSON-RPC & FAIR SHA-256 parity); biconnected graph topology (`0` articulation points, `0` bridges, `0` dangling links); and byte-exact SHA-256 digests (`CHECKSUMS.sha256`).
-> - **What is NOT claimed:** This repository makes **zero claim to solve any open problem** (including Track B's finite Antihydra `BB(6)` probe in `research/runs/LOG-002_antihydra_pilot/`). Quantitative rubric scores (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`, `CSS`, `Titan Index`, gradients, spectrum) are **transparent, falsifiable editorial estimates** — not peer-reviewed measurements. Every record carries an explicit `verification_flag`, and **all 12 Fall/Nov 2026 AI proof claims remain officially unretired** pending independent fidelity auditing and peer consensus.
+> **Status:** `active` · **Version:** `2.4.0` (November 25, 2026) · **Master Archive Entry:** `0TH-BUILD-007`
+> **Author / Curator:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
+> **Dual License:** Dataset, Charts, White Paper & Prose [`CC-BY-4.0`](LICENSE) · Code, Lean 4.35.0 Proofs, Tests & Tools [`Apache-2.0`](LICENSE-CODE)
+> **Supported locales:** English (`en-US`, UTF-8)
 
----
+An open-source, cryptographically audited, multi-format cross-disciplinary research infrastructure cataloging **`1,900` strictly deduplicated unsolved, open, and hard problems** spanning **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,752 subdomains**, wired into **1 biconnected `5,808`-edge knowledge graph** (`0` articulation points, `0` bridges, `0` dangling links, `35.7%` cross-superdomain, `18.7%` cross-pillar), paired with:
 
-## November 20, 2026 AI Proof-Claim Verification Advisory
-
-Active mathematical registries already track well over 1,100–2,000+ open problems (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; Kourovka: >1,000; Kirby: >360). Fall–November 2026 saw dramatic AI proof claims—including OpenAI's Sept 8 **3D Navier–Stokes** blowup claim (`ANL-001`), OpenAI's Oct 6 **722-manuscript bulk release** across 372 topics, and the Nov 20 **Levent Alpöge / Claude multi-million-line Lean 4 Riemann Hypothesis & GRH archive** (`NT-001`, `NT-002`) alongside Stanford's **Alessandro Masullo** human draft. Because Lean kernel compilation checks logical deduction *rather than formalization statement fidelity or community consensus*, **all 12 AI-claimed problems are strictly retained as OPEN under `verification_flag = "ai-claim-under-audit-nov2026"`**.
-
----
-
-## Key Metrics & Eight Macro-Pillars (`N = 1,900`)
-
-| Macro-Pillar | Problems | Share | Superdomains | Mean CSS (0–100) | Mean Titan (0–10) | Mean Diff | Mean Tract (2050) | Mean Impact | Nov 2026 AI Claims |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| **Pure Mathematics** | 514 | 27.1% | 5 | 59.90 | 6.53 | 8.87 | 4.96 | 5.44 | 9 |
-| **Life, Mind & Medicine** | 224 | 11.8% | 3 | 55.97 | 7.81 | 7.58 | 8.33 | 8.55 | 0 |
-| **AI, Quantum Tech, Hardware & Systems** | 203 | 10.7% | 4 | 55.54 | 7.94 | 7.99 | 7.96 | 8.60 | 0 |
-| **Engineering, Design, Earth & Energy** | 202 | 10.6% | 4 | 54.64 | 7.68 | 7.39 | 8.47 | 8.38 | 0 |
-| **Fundamental Physics & Cosmos** | 201 | 10.6% | 3 | 56.47 | 7.40 | 8.11 | 7.18 | 7.33 | 1 |
-| **Matter, Materials & Chemistry** | 196 | 10.3% | 3 | 55.46 | 7.51 | 7.79 | 8.06 | 7.82 | 0 |
-| **Logic, Statistics & Computing** | 185 | 9.7% | 3 | 57.27 | 7.09 | 8.48 | 6.31 | 6.48 | 2 |
-| **Philosophy, Social & Humanities** | 175 | 9.2% | 3 | 59.90 | 7.71 | 7.75 | 5.77 | 7.83 | 0 |
-| **Unified Mega-Atlas Total / Mean** | **1,900** | **100.0%** | **28** | **57.33** | **7.31** | **8.13** | **6.81** | **7.22** | **12** |
-
-- **Biconnected Connectome:** **5,808 undirected coupling edges** · **1 single connected component** (`1,900/1,900`) · **`0` articulation points** · **`0` bridge edges** · **`0` unresolved raw links** · **35.7%** cross-superdomain (`2,076`) · **18.7%** cross-pillar (`1,084`) · **14** modularity communities · average degree `6.11`.
-- **Multi-Layer Topography (`48` Typed Columns):** **8 Substrates** × **7 Abstraction Layers (`L0–L6`)** · Mean Hardness–Tractability Gradient `D − T = +1.32` · Mean CSS−Titan×10 Margin `-15.76` · Mean Bridge Ratio `0.131` · Mean Adjacent Pillars `0.61` · Margin Roles: `Intra-Pillar Bridge` (`1,108`), `Core Specialist` (`485`), `Trans-Pillar Boundary Interface` (`239`), `Apex Multi-Pillar Keystone` (`68`, incl. `3` universal 7-pillar super-connectors).
-- **Epistemic Flags:** `ai-assisted-editorial-synthesis` (`952`) · `primary-registry-indexed` (`925`) · `ai-claim-under-audit-nov2026` (`12`) · `disputed-human-claim` (`11`).
-- **Top Keystone Domino Hubs:** `FLD-001` Fluid Turbulence (`deg=73`, `51` XP) · `CS-001` P vs. NP (`deg=67`, `42` XP) · `GR-001` Quantum Gravity (`deg=57`, `24` XP) · `GEO-002` Climate Sensitivity (`deg=53`, `31` XP) · `SYS-001` Nonlinear Optimal Control (`deg=45`, `31` XP).
-
-![28-Superdomain Coverage](outputs/charts/01_superdomain_landscape.png)
-
-![8 Substrates x 7 Abstraction Layers](outputs/charts/13_substrates_and_abstraction_layers.png)
-
-![Gradients, Margins & Cross-Pillar Adjacents](outputs/charts/14_gradients_margins_and_adjacents.png)
+- **92 Zero-Mathlib Pure Lean 4.35.0 Formal Invariant Theorems** (`72` core module invariants + `12` concrete NonVacuity & boundary witnesses + `8` Palomar contract specifications) verified across **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) with constructive axioms strictly within `[propext, Quot.sound]`.
+- **10-Page Publication-Grade AMS-LaTeX White Paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf), `0` overfull hboxes, `12/12` live-verified citations) + deterministic clean-room [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz).
+- **Live Interactive Web Atlas & Lean Proof Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) and [Lean 4.35.0 Proof Blueprint DAG](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/) (WCAG 2.2 AA accessible, `< 4 MB`).
+- **Offline SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, `25/25` top-1)** + **Zero-Dependency Dual-Framed 10-Tool MCP Server** (`mcp_server/server.py`) + **Immutable Karpathy-Style AutoResearch Harness** (`AQS = 97.99`) + **Track B Antihydra (`LOG-002`) Finite Bigint Pilot**.
+- **Deep Verification Ladder:** 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic & golden snapshots, and **100% (`6/6`) mutation-kill coverage**.
 
 ---
 
-## Export Formats & Institutional Artifacts
+## Honest Verification Boundary (Read First)
 
-| Artifact | Path | Purpose |
-|---|---|---|
-| **Interactive Web Atlas** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | Offline standalone web app (also live on [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/)): paginated 1,900-row catalog, 7 filters, CSS/Titan sort, Any-2 Comparator, Substrate/Layer/Margin matrices, Nov 2026 AI Audit & 15-chart zoom |
-| **Vector PDF Monograph** | [`outputs/MegaAtlas_Comprehensive_Report_V2.pdf`](outputs/MegaAtlas_Comprehensive_Report_V2.pdf) | Complete publication monograph with cover, multi-layer scorecards, 15 embedded figures, contrasts & full 1,900-problem directory |
-| **Build White Paper & Forensic Audit** | [`docs/WHITE_PAPER.md`](docs/WHITE_PAPER.md) · [`docs/FORENSIC_AUDIT_V2.3.md`](docs/FORENSIC_AUDIT_V2.3.md) | Concise institutional white paper archived in `0thernes-research-archive` (`0TH-BUILD-007`) + full V2.3.0 forensic remediation dossier |
-| **Master Ranking** | [`RANKING.md`](RANKING.md) | Auto-generated Top 250 overall by `0thernes CSS`, 8 Macro-Pillar leaders & Nov 2026 AI watchlist |
-| **SQLite 3 + FTS5 DB** | [`outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`](outputs/MegaAtlas_Unsolved_Problems_V2.sqlite) | 10 normalized tables (incl. `substrate_summary`) + Porter-stemmed FTS5 full-text search index powering `rag/query.py` |
-| **Excel Workbooks** | [`MegaAtlas_Unsolved_Problems_V2.xlsx`](outputs/MegaAtlas_Unsolved_Problems_V2.xlsx) · [`_Legacy.xls`](outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls) | 14-sheet live-formula XLSX (incl. `Substrates_Layers_Margins`, conditional color scales, native charts) + 8-sheet BIFF `.xls` |
-| **Tabular & Streaming** | [`.csv`](outputs/MegaAtlas_Unsolved_Problems_V2.csv) · [`.tsv`](outputs/MegaAtlas_Unsolved_Problems_V2.tsv) · [`.json`](outputs/MegaAtlas_Unsolved_Problems_V2.json) · [`.jsonl`](outputs/MegaAtlas_Unsolved_Problems_V2.jsonl) | 1,900 × 48 UTF-8 datasets & streaming JSONL validated against [`schema/problem.schema.json`](schema/problem.schema.json) |
-| **Markdown & Plain Text** | [`.md`](outputs/MegaAtlas_Unsolved_Problems_V2.md) · [`.txt`](outputs/MegaAtlas_Unsolved_Problems_V2.txt) | Full text/Mermaid mega-atlas and fixed-width ASCII reference |
-| **15 Vector + Raster Charts** | [`outputs/charts/`](outputs/charts/) | 15 figures × 2 formats (`220 DPI PNG` + `Vector SVG` = 30 files) |
-| **Pure Lean 4.35.0 Suite** | [`lean/MegaAtlasProofs/`](lean/MegaAtlasProofs/) | 8 modules, 1,008 lines, **72 audited theorems**, 0 `sorry`, `[propext, Quot.sound]` |
-| **Karpathy AutoResearch & Track B Pilot** | [`autoresearch/`](autoresearch/program.md) · [`research/runs/LOG-002_antihydra_pilot/`](research/runs/LOG-002_antihydra_pilot/README.md) | Autonomous loop (`AQS = 97.99`, `100% MRR@5`), immutable `evaluate.py`, empirical `results.tsv`, `whiteboard.md` & Track B Antihydra (`BB(6)`) pilot |
-| **MCP Stdio Server** | [`mcp_server/server.py`](mcp_server/server.py) · [`mcp_server/README.md`](mcp_server/README.md) | Zero-dependency dual-framed (NDJSON + `Content-Length`) JSON-RPC 2.0 server exposing **9 live tools** to Claude Code, Antigravity, Cursor & Gemini CLI |
-| **FAIR, Zenodo & Preservation** | [`.zenodo.json`](.zenodo.json) · [`croissant.json`](croissant.json) · [`ro-crate-metadata.json`](ro-crate-metadata.json) · [`scripts/publish_zenodo.py`](scripts/publish_zenodo.py) · [`docs/PRESERVATION.md`](docs/PRESERVATION.md) | Zenodo CLI/Auto-DOI, MLCommons Croissant 1.0, W3C RO-Crate 1.1, Gebru Datasheet, Software Heritage preservation guide, [`AGENTS.md`](AGENTS.md), [`llms.txt`](llms.txt) & [`SECURITY.md`](SECURITY.md) |
-| **Governance & Integrity** | [`VERIFICATION.md`](VERIFICATION.md) · [`EVIDENCE.md`](EVIDENCE.md) · [`PHILOSOPHY.md`](PHILOSOPHY.md) · [`ARCHITECTURE.md`](ARCHITECTURE.md) · [`CHECKSUMS.sha256`](CHECKSUMS.sha256) | Complete epistemic boundaries, cryptographic hashes & academic review protocols |
+1. **Zero (`0 / 1,900`) overarching Mega-Atlas open problems are claimed solved or retired.** Our 92 Lean 4.35.0 theorems verify the atlas's *internal* scoring, quadrant/era, taxonomy, finite graph handshaking, deduplication, AutoResearch ratchet, and gradient/margin invariants **only**.
+2. **Author-Curated Scoped Preprints (`0thernes-research-archive`):** Seven independent companion preprints resolve narrowly scoped published sub-conjectures or structural invariants (cataloged transparently in `paper/main.tex` Section 6, `RANKING.md`, and MCP tool `list_author_frontier_contributions`); all are self-published (not externally peer-reviewed) and explicitly keep every overarching Mega-Atlas parent problem **OPEN**.
+3. **November 25, 2026 AI Proof Claims:** All `12` Fall/Nov 2026 AI proof-claim targets (`NT-001` Riemann Hypothesis, `NT-002` GRH, `ANL-001` 3D Navier–Stokes, etc.) remain explicitly flagged `ai-claim-under-audit-nov2026` and **officially unretired** pending human-readable exposition and Clay/community consensus.
+4. **Editorial Rubric Disclosure:** Quantitative ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are disclosed AI-assisted editorial estimates — not peer-reviewed consensus measurements. Edit `src/v2_data/`, run `just build`, and argue from the diff!
 
 ---
 
-## Quickstart: Offline RAG, 9-Tool MCP Server, AutoResearch & Full Rebuild
+## 5-Second Lean 4.35.0 Formal Verification
+
+Reproduce the full 92-theorem constructive axiom audit locally in under 10 seconds:
 
 ```bash
-# Install Python dependencies
-pip install -r requirements.txt
-
-# 1. Query the zero-API Hybrid BM25 + PageRank RAG CLI (100.0% MRR@5, <30 ms)
-python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
-python rag/query.py --compare NT-001 CS-001
-python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
-
-# 2. Launch the 9-tool dual-framed Model Context Protocol (MCP) stdio server
-python mcp_server/server.py
-
-# 3. Run the immutable Karpathy-style AutoResearch evaluation oracle & forensic audit
-python autoresearch/evaluate.py --verify-gates
-python scripts/forensic_audit.py
-python scripts/publish_zenodo.py --dry-run
-
-# 4. Verify all 72 Pure Lean 4.35.0 formal invariants & print axioms
-cd lean && lake build && cd ..
-
-# 5. Run the full 25-test pytest suite & cryptographic SHA-256 auditor
-pytest -v
-python scripts/audit_atlas.py --check-lean
+cd lean
+lake build
+lake env lean MegaAtlasProofs/VerifyAxioms.lean
 ```
 
-To rebuild every chart, dataset, SQLite DB, `RANKING.md`, FAIR metadata, HTML, PDF, Lean proof, and SHA-256 checksum from scratch:
-- **Windows PowerShell:** `.\build.ps1`
-- **Unix / macOS / WSL:** `make all` or `just reproduce`
+Verbatim Palomar headline theorem audit from [`results/lean_axioms.txt`](results/lean_axioms.txt) (drift-checked in CI via `scripts/check_readme_axioms.py`):
 
----
+<!-- LEAN_AXIOMS_START -->
+```text
+'MegaAtlasProofs.Palomar.m1_scoring_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m3_taxonomy_invariants' depends on axioms: [propext]
+'MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m7_nonvacuity_certificate' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants' depends on axioms: [propext, Quot.sound]
+```
+<!-- LEAN_AXIOMS_END -->
 
-## Usage Examples
+On Linux with `bubblewrap`, replay all **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) in one sandboxed command:
 
 ```bash
-# Run the minimal Python RAG + pairwise comparator demo
-python examples/query_demo.py
-
-# Inspect cross-pillar hubs and Nov 2026 AI proof claims
-python rag/query.py --flag ai-claim-under-audit-nov2026 --top 12
-python rag/query.py --compare FLD-001 GEO-002
-
-# Run Build Standard v1.2.0 audit and full test suite
-just reproduce
+cd lean && lake comparator --config comparator.json --paranoid
 ```
 
 ---
 
-## Maintenance Status
+## Usage
 
-**Status: Active** (repostatus: `active`). Dataset schema `v2.3.1` is stable; quarterly verification updates track the 12 flagged Fall/Nov 2026 AI proof claims and community status reports (see [ROADMAP.md](ROADMAP.md), [CLAIMS.md](CLAIMS.md), [LIMITATIONS.md](LIMITATIONS.md), and [REPLICATION.md](REPLICATION.md)).
-
----
-
-## Citation & Dual Licensing
-
-- **Data, Taxonomy, Prose, Charts & PDFs:** Creative Commons Attribution 4.0 International ([`LICENSE`](LICENSE)).
-- **Code, Schemas, RAG/MCP, AutoResearch, Tests, CI & Lean 4 Proofs:** MIT License ([`LICENSE-CODE`](LICENSE-CODE)). See [`NOTICE`](NOTICE), [`CITATION.cff`](CITATION.cff), and [`CITATION.bib`](CITATION.bib).
-
-```bibtex
-@dataset{donahue2026megaatlas,
-  author       = {Donahue, Alexander Stephen},
-  title        = {Unsolved Problems Mega-Atlas (V2.3.1): Multi-Layer Substrate/Gradient/Margin
-                  Taxonomy, 1,900-Node Biconnected Connectome, 100\% MRR@5 Hybrid RAG \& 9-Tool MCP
-                  Server, Karpathy-Style AutoResearch Harness, Nov 2026 AI Proof-Claim Audit,
-                  and 72 Pure Lean 4.35.0 Formal Invariants},
-  year         = {2026},
-  month        = nov,
-  publisher    = {Independent Researcher (0thernes)},
-  version      = {2.3.1},
-  url          = {https://github.com/0thernes/unsolved-problems-mega-atlas},
-  note         = {ORCID: 0009-0006-8168-9648; Master Archive: 0TH-BUILD-007}
-}
-```
-
-===== FILE: AGENTS.md =====
-# AGENTS.md — AI Coding & Research Agent Onboarding Contract
-
-> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas` (`v2.3.1`)**.
-
-## 1. Canonical Identity & Attribution (MANDATORY)
-
-- **Author / Human-in-the-Loop:** Alexander Stephen Donahue (`Alexander S. Donahue`)
-- **ORCID:** `0009-0006-8168-9648` (`https://orcid.org/0009-0006-8168-9648`)
-- **Affiliation:** Independent Researcher, Spokane, WA, USA · `0_0@0thernes.art` · `https://0thernes.art` (never assert an unformed LLC entity)
-- **Master Research Archive:** `0TH-BUILD-007` in `https://github.com/0thernes/0thernes-research-archive`
-- **Dual License:** Data/Prose/Charts/PDF (`CC BY 4.0`, `LICENSE`) · Code/Schemas/RAG/MCP/Lean (`MIT`, `LICENSE-CODE`).
-- **Build Standard v1.2.0 Hard Rules (`R1`–`R8`):** Commit straight to `main`, zero PR templates or banned bot configs (`R4`), report-only linters (`R3`), zero fabricated numbers (`R6`), 10-class finding taxonomy (`R7`).
-
-## 2. Non-Negotiable Epistemic & Verification Rules
-
-1. **Zero Proof Inflation:** Never claim to prove, solve, or retire any of the 1,900 open problems. All 12 Fall/Nov 2026 AI proof-claim targets (`verification_flag = "ai-claim-under-audit-nov2026"`) MUST stay explicitly unretired pending independent formal-statement fidelity and peer consensus. Track B empirical probes (e.g., `research/runs/LOG-002_antihydra_pilot/`) must carry explicit non-claim boundaries.
-2. **Pure Lean 4.35.0 Hygiene (`lean/`):** Zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero custom `axiom` declarations. Every theorem (**72 audited**) must be listed in `lean/MegaAtlasProofs/VerifyAxioms.lean` and depend strictly on `[propext, Quot.sound]` or empty.
-3. **Anti-Gaming Harness Lock:** During autonomous optimization loops (`autoresearch/program.md`), **NEVER modify** `autoresearch/evaluate.py`, `schema/*.json`, `tests/test_mega_atlas.py` (never weaken assertions), or `VERIFICATION.md`.
-4. **Honest AI Disclosure & Zero Auth/PoW Bypass:** Never fabricate DOIs, peer-review endorsements, or fake external citations; never bypass CAPTCHAs or Software Heritage Anubis PoW gates. Preserve negative/discarded experiment rows in `autoresearch/results.tsv`.
-5. **Biconnected Graph Hygiene:** Any edit to `src/v2_data/m01..m11.py` must maintain `unresolved_raw_links_count == 0`, `connected_components == 1`, `articulation_points == 0`, and `graph_bridges == 0` (checked by `scripts/forensic_audit.py`).
-6. **ReFS Dev Drive & Windows PowerShell Safety:** When running on Windows in bracketed paths, always use `-LiteralPath`. Keep virtual environments inside `.venv/` (gitignored).
-
-## 3. Built-In Agentic Tools & Fast Commands
-
-```bash
-# Offline Hybrid BM25 + PageRank RAG CLI (100.0% MRR@5, <30 ms, zero API keys)
-python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
-python rag/query.py --compare NT-001 CS-001
-python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
-
-# Model Context Protocol (MCP) dual-framed stdio JSON-RPC 2.0 server (9 live tools)
-python mcp_server/server.py
-
-# Immutable Karpathy-style AutoResearch Evaluator & Forensic Multi-Layer Auditor
-python autoresearch/evaluate.py --verify-gates
-python scripts/forensic_audit.py
-python scripts/publish_zenodo.py --dry-run
-
-# Full Verification Pipeline (must pass before any commit/PR)
-cd lean && lake build && cd ..
-python scripts/generate_fair_metadata.py
-python scripts/audit_atlas.py --sync-checksums --check-lean
-pytest -v
-```
-
-## 4. Autonomous Research Loop Entry Point
-
-To run autonomous optimization or open-problem investigation cycles, read [`autoresearch/program.md`](autoresearch/program.md), inspect [`autoresearch/results.tsv`](autoresearch/results.tsv) and [`autoresearch/whiteboard.md`](autoresearch/whiteboard.md), and follow the strict keep/discard git ratchet proved in `MegaAtlasProofs.AutoResearchInvariants.shouldKeep_iff`.
-
-===== FILE: CLAIMS.md =====
-# Claims Ledger (`CLAIMS.md`)
-
-Every structural, formal, algorithmic, and epistemic claim made by **Unsolved Problems Mega-Atlas** is numbered, paired with verifiable evidence, and paired with an explicit falsification criterion (**what would prove us wrong**).
-
-| ID | Claim | Verification Tier | Evidence | What Would Prove Us Wrong |
-|---|---|---|---|---|
-| **C1** | The dataset contains exactly `1,900` unique, strictly deduplicated problems across `8` Macro-Pillars, `28` Superdomains, `8` Substrates, and `7` Abstraction Layers (`48` typed fields), with `0` JSON Schema Draft 2020-12 errors and `0` unresolved `raw_links`. | **Automated schema & exact audit** | `tests/test_mega_atlas.py`, `scripts/audit_atlas.py`, `scripts/forensic_audit.py` | Any duplicate `id`, missing column, JSON Schema violation, or dangling `raw_links` reference. |
-| **C2** | The `5,808`-edge undirected connectome has `1` connected component, `0` articulation points, and `0` bridge edges (true 2-vertex-connected biconnected graph), satisfying the Handshaking Lemma $\sum \deg = 2|E|$. | **Exact NetworkX audit + Lean 4 theorem** | `test_graph_biconnectivity_and_handshaking`, `MegaAtlasProofs.GraphInvariants` | Any disconnected vertex, articulation point, bridge edge, or degree-sum discrepancy. |
-| **C3** | All `72` formal invariant theorems in `lean/MegaAtlasProofs/` compile in Pure Lean 4.35.0 (zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero `Classical.choice`, axioms strictly within `[propext, Quot.sound]` or empty). | **Kernel-checked Lean 4.35.0** | `lean/MegaAtlasProofs/VerifyAxioms.lean`, `.github/workflows/ci.yml` | Any forbidden Lean token, missing theorem, or axiom outside `[propext, Quot.sound]`. |
-| **C4** | The offline Hybrid BM25 + Title-Bigram + PageRank RAG engine achieves `100.0% MRR@5` (`25/25` top-1) on the immutable 25-query cross-pillar benchmark (`autoresearch/evaluate.py`, `AQS = 97.99`), and the dual-framed 9-tool MCP stdio server passes both NDJSON and `Content-Length` JSON-RPC 2.0 tests. | **Automated deterministic pytest + AutoResearch oracle** | `autoresearch/evaluate.py --verify-gates`, `test_mcp_stdio_server_*` | Any query dropping below top-1, `AQS < 97.0`, or JSON-RPC framing failure. |
-| **C5** | Zero of the `1,900` open problems are claimed solved or retired by this repository (including all `12` Fall/Nov 2026 AI proof claims under `verification_flag = "ai-claim-under-audit-nov2026"` and the 2026-11-25 audit of `0thernes-research-archive`). | **Explicit epistemic audit** | `test_nov2026_ai_claims_explicitly_flagged`, `docs/0THERNES_SOLVED_AUDIT_2026-11-25.md` | Any record falsely claiming retirement of an unverified AI claim or unreviewed preprint. |
-| **C6** | All frozen artifacts across CSV, TSV, JSON, JSONL, SQLite+FTS5, 14-sheet XLSX, 8-sheet XLS, 30 charts, FAIR metadata (`croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`), and monographs match byte-exact SHA-256 checksums (`CHECKSUMS.sha256` and `data/MANIFEST.sha256`). | **Cryptographic SHA-256 check** | `scripts/audit_atlas.py`, `test_sha256_checksums_manifest_exact`, `test_croissant_json_ld_and_sha256_parity` | Any SHA-256 mismatch or cross-format row/column drift. |
-
-## Explicit Falsification Protocol (What Would Prove Us Wrong)
-
-Any of the following refutes a claim above and will be logged in `CHANGELOG.md` and corrected immediately:
-1. A failing record against `schema/problem.schema.json` or an unresolved graph edge in `src/v2_loader.py`.
-2. A Lean 4 kernel rejection, forbidden token, or disallowed axiom in `lean/MegaAtlasProofs/`.
-3. A SHA-256 mismatch in `CHECKSUMS.sha256`, `data/MANIFEST.sha256`, or `croissant.json`.
-4. A demonstrated factual error in a problem's historical status, domain taxonomy, or 2026 AI-claim verification flag (report via `.github/ISSUE_TEMPLATE/status-update-or-falsification.yml`).
-
-===== FILE: LIMITATIONS.md =====
-# Limitations, Epistemic Boundaries & Real-vs-Metaphor (`LIMITATIONS.md`)
-
-## 1. What This Atlas Does and Does Not Claim
-
-- **Zero solved-problem claims:** This repository is a **research taxonomy, knowledge graph, and verification infrastructure** — it makes **zero claim** to solve or retire any of the `1,900` open problems (see also [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](docs/0THERNES_SOLVED_AUDIT_2026-11-25.md)).
-- **Editorial vs. formal metrics:** The `72` Pure Lean 4.35.0 theorems (`lean/MegaAtlasProofs/`) verify exact **mathematical properties of the scoring, classification, graph-handshaking, and AutoResearch gate functions** — they do **NOT** prove that the subjective rubric inputs (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are objective physical constants. Those rubric inputs are transparent, falsifiable editorial estimates.
-- **No external peer review:** The catalog, white paper (`docs/WHITE_PAPER.md`), and rubric scores have been authored by solo researcher Alexander Stephen Donahue with disclosed AI assistance (see `docs/AI_DISCLOSURE.md` and `docs/DATASHEET.md`) and have not undergone formal journal peer review.
-- **12 Nov 2026 AI proof claims remain unretired:** Lean kernel compilation alone does not establish formalization statement fidelity or community consensus; all 12 AI-targeted problems stay open under `verification_flag = "ai-claim-under-audit-nov2026"`.
-- **Committed release artifacts > 5 MB (Build Standard `A24` trade-off):** Six generated dataset/monograph files inside `outputs/` (`MegaAtlas_Comprehensive_Report_V2.pdf`, `MegaAtlas_Interactive_Dashboard_V2.html`, `MegaAtlas_Print_Report_V2.html`, `MegaAtlas_Unsolved_Problems_V2.sqlite`, `.json`, `.jsonl`) exceed 5 MB. They are intentionally committed so GitHub Pages, the offline RAG CLI, the 9-tool MCP server, and `pytest` work directly from a clean clone without external LFS or cloud hosting (see [ADR 0002](docs/adr/0002-dual-license-and-committed-atlas-artifacts.md)).
-
-## 2. Real vs. Metaphor
-
-- **"Connectome" / "Keystone Domino Hubs":** Graph-theoretic metaphors for the literal undirected co-dependency graph $G = (V, E)$ with $|V|=1{,}900$ problem nodes and $|E|=5{,}808$ curated mathematical/scientific dependency edges (measured literally by degree, betweenness centrality, PageRank, and cross-pillar edge count).
-- **"Titan Index" / "0thernes CSS":** Named deterministic weighted formulas over `[1..10]` editorial integer scores and problem age (capped at 300 years), formally bounded and proved monotonic in `lean/MegaAtlasProofs/Scoring.lean`.
-- **"Biconnected":** Used in its strict graph-theoretic sense (`nx.is_biconnected(G) == True`: 1 connected component, 0 articulation points, 0 bridge edges).
-- **"AutoResearch":** Refers to the deterministic, offline keep/discard evaluation loop (`autoresearch/evaluate.py` + `results.tsv`) optimizing local RAG retrieval metrics under locked gates — not autonomous theorem proving of open conjectures.
-
-===== FILE: REPLICATION.md =====
-# Replication Protocol (`REPLICATION.md`)
-
-Any independent researcher can verify all `1,900` records, `5,808` graph edges, `72` Pure Lean 4.35.0 theorems, `100% MRR@5` offline RAG benchmark, dual-framed 9-tool MCP server, FAIR metadata, and byte-exact SHA-256 digests from a clean clone.
-
-## 1. Clean-Clone Verification Steps
+### 1. Quickstart Setup & Demo (Zero API Keys, 100% Offline)
 
 ```bash
 git clone https://github.com/0thernes/unsolved-problems-mega-atlas.git
 cd unsolved-problems-mega-atlas
-python3 -m pip install -r requirements.txt
-
-# 1. Verify master loader, 48-field JSON Schema, biconnected graph & forensic audit
-python3 src/v2_loader.py
-python3 scripts/forensic_audit.py
-
-# 2. Run full pytest suite (existing 25 tests + Build Standard property/mutation/integrity tests)
-python3 -m pytest -v
-
-# 3. Run cryptographic SHA-256 auditor, AutoResearch oracle & Zenodo dry-run
-python3 scripts/audit_atlas.py
-python3 autoresearch/evaluate.py --verify-gates
-python3 scripts/publish_zenodo.py --dry-run
-
-# 4. Verify all 72 Pure Lean 4.35.0 formal invariant theorems (zero Mathlib, ~15s)
-cd lean && lake build && cd ..
-
-# 5. Run Build Standard v1.2.0 repo audit
-bash scripts/audit-repo.sh .
+python -m venv .venv
+# Windows: .venv\Scripts\activate  |  Linux/macOS: source .venv/bin/activate
+pip install -e ".[dev]"
+python examples/quickstart_demo.py
 ```
 
-## 2. Full From-Scratch Regeneration
+### 2. Offline Hybrid RAG Search & Side-by-Side Comparison
 
-To regenerate all 15 PNG/SVG charts, all 12 export formats, SQLite+FTS5 DB, `RANKING.md`, FAIR JSON-LD manifests, and `CHECKSUMS.sha256` from the modular Python source under `src/v2_data/`:
+The SQLite FTS5 index auto-builds deterministically in `< 1 s` on first run on a clean clone:
 
 ```bash
-make all        # Linux / macOS / WSL
-# or:
-.\build.ps1     # Windows PowerShell
+python rag/query.py "turbulence climate sensitivity" --top 8 --hops 1
+python rag/query.py --problem NT-001 --hops 1
+python rag/query.py --compare NT-001 CS-001
+python rag/query.py --flag ai-claim-under-audit-nov2026 --top 15
 ```
 
-## 3. Replication Log
+### 3. Model Context Protocol (MCP) 10-Tool Stdio Server
 
-| Date | Replicator | Environment | Version | Lean (72 Thms) | Pytest + Audits | Notes |
-|---|---|---|---|---|---|---|
-| 2026-11-21 | Alexander S. Donahue (author) | Windows 11 + Ubuntu CI, Lean 4.35.0, Python 3.12 | `v2.3.0` | PASS (72/72) | PASS (25/25) | Initial V2.3.0 biconnected release. |
-| 2026-11-25 | Alexander S. Donahue (author) | Windows 11, Lean 4.35.0, Python 3.13.12 | `v2.3.1` | PASS (72/72) | PASS (all tests + hypothesis/mutation/ruff/mypy) | Build Standard v1.2.0 hardening, R4 remediation, 0/1,900 archive solved-audit. |
-| 2026-11-25 | GitHub Actions CI (`ubuntu-latest`, `windows-latest`, `macos-latest`) | Hosted runners, Lean 4.35.0, Python 3.12 | `v2.3.1` | PASS (72/72) | PASS (3 OSes) | Automated cross-platform CI + release `SHA256SUMS` + SLSA attestation. |
+Connect Claude Code, Antigravity, Cursor, or Gemini CLI directly (zero external MCP SDK required):
 
-*External replications are warmly invited — open an issue with the `replication` label to append your verified run here.*
+```json
+{
+  "mcpServers": {
+    "unsolved-problems-mega-atlas": {
+      "command": "python",
+      "args": ["mcp_server/server.py"]
+    }
+  }
+}
+```
 
-===== FILE: docs/0THERNES_SOLVED_AUDIT_2026-11-25.md =====
-# 0thernes Research Archive vs. Unsolved Problems Mega-Atlas — Honest Solved-Problem Audit (2026-11-25)
+### 4. Full Deterministic Rebuild & Verification (`justfile`)
 
-**Audit Date:** 2026-11-25
-**Atlas Snapshot Audited:** `outputs/MegaAtlas_Unsolved_Problems_V2.json` (`1,900` problems across `8` Macro-Pillars × `28` Superdomains)
-**Archive Snapshot Audited:** `0thernes/0thernes-research-archive/registry/PAPERS.json` (`12` entries, `0TH-2026-001` through `0TH-2026-012`)
-**Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
-
----
-
-## Executive Verdict
-
-- **Grand Mega-Atlas problems retired / completely solved:** **`0 / 1,900`**.
-- **Conjecture 7.7 (`0TH-2026-006`, `multinomial-tv-conjecture`, `v2.0.0`):** **`0` matches** among the `61` macro `STAT-*` problems in the Mega-Atlas. Conjecture 7.7 of Banić & Elezović (`arXiv:2610.17046v1`, 2026) is a specialized 2026 paper conjecture in discrete probability/asymptotics that is machine-verified in Lean 4 across 6 kernels, but it is **not** one of the 1,900 macro open problems cataloged in this atlas.
-- **Exact partial / special-case / methodological overlaps:** **`7` Mega-Atlas macro nodes** intersect specific sub-results in `0thernes-research-archive`. None of these retire the corresponding grand problem; all `1,900` Mega-Atlas entries remain strictly **OPEN**.
+```bash
+just reproduce   # Rebuild exports + pytest + 92-thm Lean audit + AMS-LaTeX paper + SHA-256
+just mutate      # 6-mutant semantic mutation testing (100% kill rate)
+just bench       # 10-iteration warmed benchmark harness -> docs/benchmarks.md
+just audit       # Forensic biconnectivity, Zenodo dry-run & immutable AutoResearch gates
+```
 
 ---
 
-## Detailed Overlap Table (Partial / Special-Case Links Only — ZERO Retirements)
+## Key Artifacts & Exports
 
-| Mega-Atlas ID | Macro Problem Title | Archive Entry(ies) | Exact Verified Scope of Contribution | Why the Grand Problem Remains OPEN |
+| Artifact | Location | Size | Notes |
+|---|---|---|---|
+| **10-Page AMS-LaTeX White Paper PDF** | [`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf) | `0.67 MB` | Tectonic `amsart`, `0` overfull hboxes, `12/12` live citations |
+| **Clean-Room arXiv Source Tarball** | [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz) | `0.50 MB` | Deterministic (`mtime=0`), verified clean-room compile |
+| **Interactive Web Atlas (WCAG 2.2 AA)** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | `3.80 MB` | Live at [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/) |
+| **Interactive Lean 4.35.0 Blueprint** | [`blueprint/index.html`](blueprint/index.html) | `12 KB` | SVG DAG linking all 92 audited theorems |
+| **Tabular & Compressed JSON Exports** | `outputs/*.csv`, `*.tsv`, `*.json.gz`, `*.jsonl.gz`, `*.xlsx` (15 sheets), `*.xls` | `< 5 MB` each | 100% JSON Schema Draft 2020-12 valid; full uncompressed `.sqlite`/`.json`/168p PDF on [GitHub Releases](https://github.com/0thernes/unsolved-problems-mega-atlas/releases) |
+| **15 Analytical Figures (PNG + SVG)** | `outputs/charts/01..15.{png,svg}` + `paper/figures/*.pdf` | `35` vector/raster files | Colorblind-safe 8-pillar palette |
+| **FAIR Metadata & Checksums** | `croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`, `CHECKSUMS.sha256`, `data/MANIFEST.sha256` | Tracked | Cryptographically synced |
+| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`HARDENING_LOG.md`](HARDENING_LOG.md) | Tracked | Full 3-cycle, 10-pass red-team audit |
+
+---
+
+## Limitations
+
+See [`LIMITATIONS.md`](LIMITATIONS.md) for the complete analysis and Literal-vs-Metaphor table. Key boundaries:
+- Quantitative rubric inputs (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`) are solo AI-assisted editorial estimates, not peer-reviewed measurements.
+- Pure Mathematics has denser historical registries than applied engineering/humanities (`952` of `1,900` records are flagged `ai-assisted-editorial-synthesis`).
+- Lean 4.35.0 certifies discrete structural invariants over bounded inputs; IEEE-754 `log1p` terms are verified differentially against the 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`).
+- Neither this dataset nor the companion white paper has undergone external journal peer review.
+
+---
+
+## Citation & Preservation
+
+See [`CITATION.cff`](CITATION.cff) and [`CITATION.bib`](CITATION.bib):
+
+```bibtex
+@misc{donahue2026megaatlas,
+  author  = {Donahue, Alexander Stephen},
+  title   = {Unsolved Problems Mega-Atlas (V2.4.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Formal Invariant Suite, and Deterministic Research Infrastructure Across 1,900 Open Problems},
+  year    = {2026},
+  month   = nov,
+  version = {2.4.0},
+  url     = {https://github.com/0thernes/unsolved-problems-mega-atlas},
+  note    = {ORCID: 0009-0006-8168-9648. Master Archive ID: 0TH-BUILD-007.}
+}
+```
+
+================================================================================
+## FILE: AGENTS.md — Agent Entry Point & Hard Rules
+================================================================================
+
+# AGENTS.md — Canonical Agent Instructions (`unsolved-problems-mega-atlas`)
+
+> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.4.0`
+> **Author / Maintainer:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
+> **Dual License:** Data/Figures/White Paper `CC-BY-4.0` (`LICENSE`) · Code/Lean/Tests `Apache-2.0` (`LICENSE-CODE`)
+
+## 1. Repository Map
+
+- `src/v2_schema.py`, `src/v2_data/m01..m11.py` — 1,912 raw authored records deduplicated into `1,900` unique open problems across 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers.
+- `src/v2_loader.py` — Deterministic loader, alias redirection, NetworkX biconnectivity/PageRank/betweenness (`seed=42`, `REFERENCE_YEAR=2026`), and scoring (`CSS`, `Titan`, `Leverage`, `Gradients`, `Margins`).
+- `src/v2_charts.py`, `src/v2_export_all.py` — Generates 15 PNG/SVG charts, 5 vector PDF paper figures, 1280×640 social preview, `<4 MB` WCAG 2.2 AA Interactive HTML, CSV/TSV/XLSX/XLS/MD/TXT, deterministic `.json.gz`/`.jsonl.gz`, `RANKING.md`, and gitignored `.sqlite`/`.json`/`.jsonl`/`build/` directory PDF.
+- `rag/query.py`, `mcp_server/server.py` — Offline Porter-stemmed SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, auto-builds DB on fresh clones) and zero-dependency dual-framed 10-tool stdio MCP server.
+- `lean/`, `palomar/PalomarChallenge.lean` — Zero-Mathlib Pure Lean 4.35.0 formal invariant suite (**92 audited theorems** across 6 independent kernels via `lake comparator --config comparator.json --paranoid`, `0` `sorry` in `lean/`, constructive axioms `⊆ [propext, Quot.sound]`).
+- `paper/main.tex`, `paper/refs.bib`, `scripts/build_paper.py` — 10-page Tectonic AMS-LaTeX white paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`) + deterministic clean-room `dist/arxiv_submission.tar.gz`.
+- `reference/scoring_oracle.py`, `tests/`, `scripts/run_mutation_audit.py`, `scripts/benchmark_atlas.py` — 50-digit Decimal/Fraction oracle, Hypothesis property suite, differential/metamorphic/golden/negative tests, mutation testing (`6/6`), and 10-iteration warmed benchmarks.
+- `autoresearch/evaluate.py` — **STRICTLY IMMUTABLE** Karpathy-style evaluation oracle (`AQS = 97.99`). **NEVER MODIFY THIS FILE.**
+
+## 2. Canonical Commands (`justfile`)
+
+```bash
+just setup       # Create .venv and install editable + dev deps
+just build       # Regenerate charts, exports, FAIR JSONs, llms-full.txt & checksums
+just test        # Run full pytest suite (functional, Hypothesis, differential, MCP, FAIR)
+just lint        # Run ruff check
+just typecheck   # Run mypy
+just mutate      # Run 6-mutant semantic mutation audit (requires 100% kill rate)
+just bench       # Run 10-iteration warmed benchmarks -> docs/benchmarks.md
+just lean        # Build Lean 4.35.0 suite, audit all 92 axioms & verify README parity
+just paper       # Compile AMS-LaTeX PDF (0 overfull), clean-room arXiv tarball & verify 12 citations
+just audit       # Run audit_atlas.py, forensic_audit.py, publish_zenodo.py --dry-run & evaluate.py
+just reproduce   # End-to-end build + test + lean + paper + checksum verification
+```
+
+## 3. Non-Negotiable Hard Rules (Build Standard v1.2.0 R1–R8)
+
+- **R1 (No friction):** Zero branch protection, zero required status checks, zero git hooks, zero commit/tag signing. CI is purely informational.
+- **R2 (Trunk workflow):** Commit and push straight to `main`. No PRs, no feature branches. Use GitHub Issues for discussion and review.
+- **R3 (No auto-merge/bot PRs):** No Dependabot, Renovate, or bot PR files.
+- **R4 (No PR templates):** `.github/PULL_REQUEST_TEMPLATE.md` is banned. Keep only issue templates in `.github/ISSUE_TEMPLATE/`.
+- **R5 (Lean & Hygiene):** Keep all git-tracked files strictly `< 5 MB` (`A24`). Keep `lean/**/*.lean` 100% free of `sorry`, `admit`, `native_decide`, and custom `axiom` (`palomar/PalomarChallenge.lean` holds the `sorry`-only Palomar contract outside `lean/`).
+- **R6 (Immutability):** Never modify `autoresearch/evaluate.py` during research or hardening loops.
+- **R7 (No fabricated claims):** Never fabricate DOIs, peer-review status, benchmark timings, or legal entities (author affiliation is strictly `Independent Researcher, Spokane, WA, USA` — never assert an unformed LLC).
+- **R8 (Exact 10 Finding Classes):** Every audit, review, erratum, and issue classifies findings strictly into:
+  `bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, `blindspot`.
+
+## 4. Honest Epistemic Boundaries
+
+1. Lean 4.35.0 verifies internal scoring, quadrant/era, taxonomy, graph handshaking, deduplication, AutoResearch ratchet, gradient/margin, and NonVacuity invariants ONLY — **0 / 1,900 overarching open problems are solved or retired**.
+2. Quantitative difficulty/tractability/impact/interdisciplinarity scores are disclosed AI-assisted editorial estimates, not peer-reviewed measurements.
+3. All 12 Fall/Nov 2026 AI proof claims remain officially unretired pending human-readable proofs and community consensus.
+
+================================================================================
+## FILE: CLAIMS.md — Falsifiable Claims Ledger
+================================================================================
+
+# Falsifiable Claims Ledger — Unsolved Problems Mega-Atlas (`v2.4.0`)
+
+Every headline claim made in `README.md`, the AMS-LaTeX white paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), and `docs/WHITE_PAPER.md` is registered below with its epistemic tier, exact verification command, latest observed result, and explicit refutation condition (Build Standard **B04** & **B42**).
+
+| Claim ID | Epistemic Tier | Exact Claim | Verification Command | Last Verified Result (2026-11-25) | Refutation Condition |
+|---|---|---|---|---|---|
+| **C1** | `[kernel-checked]` | All **92** Pure Lean 4.35.0 theorems (`72` core + `12` NonVacuity + `8` Palomar contracts) compile with `0` `sorry` in `lean/`, `0` `native_decide`, `0` custom axioms, constructive axioms strictly within `[propext, Quot.sound]`, across all **6** independent proof kernels. | `cd lean && lake build && lake env lean MegaAtlasProofs/VerifyAxioms.lean` + 6-kernel CI (`lake comparator --paranoid`) | PASS (`92/92` theorems; `1,753` decls accepted by `lean`, `leanchecker-paranoid`, `con-leche`, `con-ron`, `nanoda_bin`; `lean4lean` + `bwrap` in Linux CI) | Any kernel rejects, any unpermitted axiom (`sorryAx`, `Classical.choice`, `Lean.ofReduceBool`) appears, or `results/lean_axioms.txt` drifts from `README.md`. |
+| **C2** | `[program-audited]` | Master catalog holds exactly **1,900** unique problems (`48` typed columns, 100% JSON Schema Draft 2020-12 valid) forming **1** biconnected undirected graph with **5,808** edges, **0** articulation points, **0** bridges, **0** dangling `raw_links`, and exact Handshaking sum `2 × 5,808 = 11,616`. | `python scripts/audit_atlas.py --check-lean && python scripts/forensic_audit.py` | PASS (`1,900` rows, `5,808` edges, `0` APs, `0` bridges, `0` dangling links) | Any duplicate ID, schema error, disconnected component, articulation point, bridge, or unresolved link. |
+| **C3** | `[program-audited]` | Python scoring (`CSS`, `Titan`, `Leverage`, `Quadrant`, `Era`, `MarginRole`) agrees with the independent 50-digit `Decimal`/`Fraction` reference oracle across all 1,900 atlas rows + 2,000 randomized differential cases + 1,000-example Hypothesis property checks, and kills **100% (`6/6`)** of planted semantic mutants. | `pytest tests/test_properties_and_differential.py -v && python scripts/run_mutation_audit.py` | PASS (`0` oracle mismatches; `6/6` mutants killed = `100.0%`) | Any differential discrepancy `> 0.01`, Hypothesis counterexample, or surviving mutant. |
+| **C4** | `[program-audited]` | Offline deterministic SQLite FTS5 Hybrid BM25 + Title-Bigram + PageRank RAG engine achieves **100.0% MRR@5 (`25/25` top-1)** and immutable AutoResearch score **`AQS = 97.99`** with all hard gates PASS. | `python autoresearch/evaluate.py --verify-gates` | PASS (`aqs_score=97.99`, `rag_mrr5=100.00`, `25/25` top-1, `hard_gates=PASS`) | MRR@5 drops below `100.0%`, `AQS` drops below `97.99`, or any hard gate fails. |
+| **C5** | `[program-audited]` | Zero-dependency stdio MCP server (`mcp_server/server.py`) speaks both NDJSON and `Content-Length:` framing across all **10** grounded tools and handles malformed/unknown requests safely. | `pytest tests/test_mega_atlas.py -k mcp -v` | PASS (`10/10` tools + framing + negative error handling verified) | Protocol parse failure, missing tool, unhandled exception, or wrong provenance metadata. |
+| **C6** | `[registry-indexed]` | All **12** Fall/November 2026 AI proof-claim targets (`NT-001`, `NT-002`, `ANL-001`, etc.) remain flagged `ai-claim-under-audit-nov2026` and officially unretired pending human-readable proofs and community consensus. | `pytest tests/test_mega_atlas.py -k nov2026 -v` | PASS (`12/12` flagged; Nov 21 Lean FRO multi-kernel note recorded without retiring CMI status) | Official Clay Mathematics Institute or peer-reviewed mathematical consensus retires one of the 12 problems. |
+| **C7** | `[program-audited]` | Track B Antihydra (`LOG-002`) canonical orbit (`a_0=8, b_0=0`, `5,000` exact bigint steps) does not halt (`final_b=2,599`, `min_b=0`, `even_fraction=0.5066`); `66/99` perturbed seeds in `[2, 100]` halt within `2,000` steps. | `python research/runs/LOG-002_antihydra_pilot/antihydra_probe.py` | PASS (exact bigint output matches `RESULTS.json`; `LOG-002` explicitly stays OPEN) | Independent arbitrary-precision execution yields different `final_b` or halting counts. |
+| **C8** | `[program-audited]` | Companion 10-page AMS-LaTeX white paper compiles with **0** overfull hboxes and **0** undefined refs/citations; clean-room `dist/arxiv_submission.tar.gz` builds cleanly; all **12/12** BibTeX URLs/DOIs verify live. | `python scripts/build_paper.py && python scripts/check_citations.py` | PASS (`0.672 MB` PDF, `0.498 MB` tarball, `0` warnings, `12/12` HTTP/DOI 200) | Tectonic build error, overfull hbox, undefined reference, or broken citation DOI/URL. |
+| **C9** | `[editorial-estimate]` | Integer rubric ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are transparent, falsifiable AI-assisted editorial estimates, NOT peer-reviewed psychometric measurements. | N/A (declared in `docs/METHODOLOGY.md`, `LIMITATIONS.md`, `RANKING.md`) | Explicitly disclosed across all artifacts | Refuted only if any artifact falsely presents rubric inputs as peer-reviewed ground truth. |
+| **C10** | `[open-conjecture]` | **Zero (`0 / 1,900`)** overarching Mega-Atlas open problems are solved or retired by this repository or by the author's 7 companion scoped preprints (`0thernes-research-archive`). | Cross-audit in `docs/WHITE_PAPER.md` & `paper/main.tex` Section 6 | Verified (`0/1,900` overarching IDs retired; 7 scoped preprints carry explicit COI & parent-OPEN tags) | Any claim in this repo falsely marking an overarching Atlas parent ID as solved. |
+
+================================================================================
+## FILE: VERIFICATION.md — Epistemic Verification Boundaries
+================================================================================
+
+# Epistemic Verification Architecture & Boundaries (`v2.4.0`)
+
+**Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
+
+Every artifact in this repository belongs explicitly to one of **five strictly separated verification tiers**. Nothing from a lower tier is ever presented as a higher tier.
+
+| Tier | Label | What Is Verified | Tooling / Proof Engine | Explicit Boundary |
 |---|---|---|---|---|
-| **`QM-011`** | *Quantum Contextuality, Ontological Models, and Nonlocal Resource Theories* | `0TH-2026-001`..`005`, `009` (`pauli-contextuality-lab`, `v2.7.2`) | Lean 4.35.0 6-kernel proofs of the Hoggar/Kramers spectral floor, Jonah's Conjecture E across all 9 vertex cases for all $N \ge 4$, exact disjoint Mermin degrees $(7^k-5^k)/2$ and $(6^k-4^k)/2$ (Muller & Saniga Sec. 6), KS coordinate-pool minima (31/33/18/29), and finite adaptive-tree sequential contextuality bounds. | Proves sharp specialized theorems on $N$-qubit Pauli geometries and finite sequential games; does not resolve the full general ontological-model classification or universal resource theory of contextuality. |
-| **`QC-037`** | *Zauner's SIC-POVM Conjecture* | `0TH-2026-001` (`pauli-contextuality-lab`) | Formalizes the known $d=8$ Hoggar SIC fiducial as a floor-saturating witness of the 3-qubit spectral bound. | Zauner's conjecture requires existence of Weyl–Heisenberg SIC-POVMs in *all* finite dimensions $d \ge 2$; $d=8$ Hoggar lines were already known (Hoggar 1998). |
-| **`CS-053`** | *Coded & Byzantine Private Information Retrieval (PIR) Capacity* | `0TH-2026-012` (`coded-pir-mlwe-complexity-lab`) | Explicit coded-PIR / MLWE complexity reductions and finite parameter bounds. | General Byzantine/colluding coded-PIR capacity across all $(N, K, T, B)$ regimes remains open. |
-| **`CS-026` / `QC-042`** | *Lattice-Based Cryptography & Module-LWE (MLWE) Worst-to-Average-Case Hardness* | `0TH-2026-012` (`coded-pir-mlwe-complexity-lab`) | Concrete security/complexity bounds and formal analysis of specific MLWE instances. | Worst-case-to-average-case hardness of general MLWE / RLWE for all moduli and error rates remains open. |
-| **`CS-005`** | *Time/Space Hierarchy & Catalytic Space Computation* | `0TH-2026-010` (`catalytic-register-frontiers`, DOI `10.5281/ZENODO.24517198`) | Formalized catalytic-register frontier constructions and register-tradeoff bounds. | Major complexity separations (`L` vs `CL` vs `P`, `PSPACE` vs `P`) remain open. |
-| **`NEURO-001`** *(and `NEURO-018`..`043`)* | *Neural Correlates of Consciousness & Synaptic Ultrastructure* | `0TH-2026-007`, `0TH-2026-008` (`human-synaptic-bouton-verification`) | Quantitative synaptic bouton verification and mathematical modeling notes. | Fundamental explanatory and empirical problems of consciousness and cortical computation remain open. |
+| **Tier 1** | `[kernel-checked]` | **92** Pure Lean 4.35.0 formal theorems (`Scoring`, `Quadrants`, `Taxonomy`, `GraphInvariants`, `AutoResearchInvariants`, `LayerGradients`, `NonVacuity`, `PalomarSolution`), `0` `sorry` in `lean/`, `0` `native_decide`, axioms strictly `⊆ [propext, Quot.sound]`. | `lake build` + 6 independent kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) via `lake comparator --paranoid` | Certifies internal scoring/taxonomy/graph/ratchet invariants **ONLY**. Proves **0 / 1,900** cataloged open problems. |
+| **Tier 2** | `[program-audited]` | `1,900` unique rows (`48` cols), 100% JSON Schema Draft 2020-12 valid, `1` biconnected component (`5,808` edges, `0` APs, `0` bridges, `0` dangling links), 50-digit `Decimal` oracle parity (`2,000+` cases), Hypothesis (`1,000` ex.), `6/6` mutation kill rate, `100.0% MRR@5` RAG, `AQS=97.99`, 10-tool MCP, `0` overfull hboxes in AMS-LaTeX PDF, `12/12` live HTTP/DOI citations, Track B Antihydra finite bigint run (`5,000` steps). | `pytest`, `hypothesis`, `reference/scoring_oracle.py`, `scripts/run_mutation_audit.py`, `scripts/audit_atlas.py`, `scripts/forensic_audit.py`, `scripts/build_paper.py`, `scripts/check_citations.py`, `autoresearch/evaluate.py` | Verifies software, schema, cryptographic digests, and finite computation; proves no asymptotic conjectures. |
+| **Tier 3** | `[registry-indexed]` | `925` primary-registry-indexed problems + `12` Fall/Nov 2026 AI proof claims (`ai-claim-under-audit-nov2026`) + `11` disputed human claims (`disputed-human-claim`). | Primary registries (`ProofAtlas`, `Erdős DB`, `Clay CMI`, `Kourovka`, `Kirby`, `NAE`, `WHO`, `IPCC`, etc.) | Point-in-time snapshot as of **November 25, 2026**; all 12 AI claims remain officially unretired. |
+| **Tier 4** | `[editorial-estimate]` | Integer `1–10` rubric scores (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) and `952` `ai-assisted-editorial-synthesis` entries. | Solo human curation with disclosed AI assistance (`docs/AI_DISCLOSURE.md`) | Falsifiable editorial estimates — NOT peer-reviewed empirical measurements. |
+| **Tier 5** | `[open-conjecture]` | All `1,900` overarching Atlas open problems (including the parent IDs of the 7 companion author preprints in `0thernes-research-archive`). | Open scientific / mathematical frontier | **0 / 1,900 overarching Atlas problems are retired.** |
 
----
+See [`docs/statement-fidelity.md`](docs/statement-fidelity.md) for the row-by-row Lean-vs-Python fidelity matrix and [`CLAIMS.md`](CLAIMS.md) for exact verification commands and refutation conditions.
 
-## Epistemic Policy Enforcement
+================================================================================
+## FILE: LIMITATIONS.md — Known Limitations & Literal vs. Metaphor Table
+================================================================================
 
-In accordance with `AGENTS.md`, `CLAIMS.md`, and `LIMITATIONS.md`:
-1. **No problem in `outputs/MegaAtlas_Unsolved_Problems_V2.json` has been marked solved or retired** based on any 0thernes preprint.
-2. Any future retirement of a Mega-Atlas problem requires independent mathematical consensus, statement-fidelity audit, and explicit archival peer verification.
+# Known Limitations & Scope Boundaries
+
+Per **Build Standard for LLMs v1.2.0 (B41)** and the **Defensible Independent AI Research Playbook v1.3**, every known limitation, platform caveat, methodological bias, and literal-vs-metaphor boundary is stated plainly below.
+
+## 1. Epistemic & Methodological Limitations
+
+1. **Editorial Rubric Subjectivity:** The `1–10` ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are curated AI-assisted editorial estimates by a solo independent researcher, NOT multi-rater peer-reviewed consensus scores. They should be treated as explicit, editable, falsifiable hypotheses (`src/v2_data/`).
+2. **Disciplinary Registry Skew:** Pure Mathematics (`514` problems, `27.1%`) has deep historical registries (`ProofAtlas`, `Erdős Problems`, `Clay Millennium`, `Kourovka`, `Kirby`), whereas emerging engineering, design, and humanities frontiers lack centralized problem registries. Accordingly, `952 / 1,900` records carry the explicit flag `ai-assisted-editorial-synthesis` rather than `primary-registry-indexed`.
+3. **Volatility of Fall–November 2026 AI Proof Claims:** The `12` problems flagged `ai-claim-under-audit-nov2026` (including `NT-001` Riemann Hypothesis, `NT-002` GRH, and `ANL-001` 3D Navier–Stokes) reflect a point-in-time snapshot as of **November 25, 2026**. Even where Lean multi-kernel certification succeeded (Alpöge/Claude RH/GRH archive on Nov 21, 2026), lack of a complete human-readable paper and pending Clay CMI/community evaluation keep all 12 officially unretired.
+4. **No External Peer Review:** Neither this dataset, the AMS-LaTeX white paper, nor the 7 cross-referenced companion preprints in `0thernes-research-archive` have undergone external journal peer review.
+5. **Formal Verification Scope Boundary:** Lean 4.35.0 (`92` theorems across 6 kernels) certifies ONLY discrete formula bounds, monotonicity, taxonomy partitions, finite graph handshaking, deduplication monotonicity, AutoResearch keep/discard ratchet properties, gradient/margin bounds, and concrete NonVacuity witnesses. It proves **ZERO** of the `1,900` open problems themselves (`0 / 1,900` retired). IEEE-754 `log1p(degree)` calculations are checked differentially against our 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), not inside Lean.
+6. **Track B Antihydra Pilot Is Finite Only:** `research/runs/LOG-002_antihydra_pilot/` evaluates `5,000` exact bigint steps (`a_0=8`) and `99` seeds (`a_0 ∈ [2, 100]` to `2,000` steps). It provides zero proof regarding asymptotic halting of Antihydra or `BB(6)`.
+
+## 2. Platform, Runtime & Packaging Caveats
+
+- **Tested Platforms:** Local execution verified on Windows 11 (`x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15). GitHub Actions CI executes across `ubuntu-latest`, `macos-latest`, and `windows-latest`.
+- **`lake comparator` Sandbox (`bubblewrap`):** Full `bwrap`-sandboxed `lake comparator --config comparator.json --paranoid` runs on Linux (`ubuntu-latest` CI); Windows lacks Linux `bwrap` user namespaces, so local Windows verification replays `lean`, `leanchecker`, `leanchecker-paranoid`, `nanoda_bin`, `con-leche --verified`, and `con-ron --verified` directly while Linux CI runs the full sandboxed 6-kernel comparator including `lean4lean`.
+- **Optional 168-Page Chrome Directory PDF:** `src/v2_export_all.py` builds the optional 168-page directory PDF into gitignored `build/` only when Chrome/Edge is installed (`--skip-pdf` skips it cleanly on headless CI; the canonical scholarly PDF is `dist/Donahue_2026_unsolved_problems_mega_atlas.pdf` compiled by Tectonic).
+- **Locale Scope:** All text, search tokenization (`porter unicode61`), and UI copy target **English (`en-US`, UTF-8)** only.
+
+## 3. Literal vs. Metaphor Boundary Table
+
+| Term Used in Atlas / Paper | Literal Technical Meaning | What It Does NOT Claim |
+|---|---|---|
+| **Biconnected Connectome / Knowledge Graph** | An undirected NetworkX graph (`1,900` vertices, `5,808` edges) with `nx.is_biconnected(G) == True` (`0` articulation points, `0` bridges). | Does NOT claim biological neural anatomy or causal proof-reduction between every adjacent pair. |
+| **Keystone Domino Hub** | A vertex with high PageRank, graph degree, and ≥ 3 adjacent foreign Macro-Pillars (`adjacent_pillars_count >= 3`). | Does NOT prove that solving the hub mathematically implies solving all neighbors. |
+| **Hardness–Tractability Chasm / Gradient (`D − T`)** | Signed integer difference `difficulty_score - tractability_2050 ∈ [-9, +9]`. | Not a physical PDE gradient or thermodynamic potential. |
+| **Multi-Layer Reality Stack (`8 Substrates × 7 Layers`)** | A deterministic 2D taxonomic lookup table mapping each of the 28 Superdomains to one Substrate and one Abstraction Layer (`L0..L6`). | Not a claim of ontological reductionism across physics, biology, and ethics. |
+| **AutoResearch Ratchet** | Automated local evaluation against immutable `autoresearch/evaluate.py` keeping changes only when hard gates pass and `AQS` strictly increases. | Not autonomous discovery of mathematical proofs of open conjectures. |
+| **Verified / Formalized** | Machine-checked in Lean 4.35.0 across 6 kernels for the 92 structural invariant theorems in `lean/`, OR schema/parity-checked in Python for dataset properties. | NEVER means that any of the 1,900 cataloged open problems are solved or peer-reviewed. |
+
+================================================================================
+## FILE: docs/statement-fidelity.md — Lean 4.35.0 Statement-Fidelity Audit
+================================================================================
+
+# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.4.0`)
+
+Per the **Defensible Independent AI Research Playbook v1.3 (Pass 4 — Statement-Fidelity Audit)**,
+this document audits every single theorem group in `lean/` against the paper (`paper/main.tex`)
+and Python runtime (`src/v2_loader.py`, `src/v2_schema.py`, `autoresearch/evaluate.py`, `rag/query.py`),
+stating exact fidelity status and any intentional modeling abstraction.
+
+## 1. Module-to-Runtime Correspondence Table
+
+| # | Lean Module & Theorem(s) | Paper / Python Definition | Fidelity Status | Exact Scope Boundary / Divergence |
+|---|---|---|---|---|
+| 1 | `Scoring.ageScoreCentis_*` (4 thms) | `min(100.0, max(0.0, age_years / 3.0))` (`v2_loader.py:409`) | Exact integer centis | Integer floor `(age * 100) / 3` vs IEEE-754 float; differs by `< 0.01` point (`0` diffs > `0.01` across 2,000 oracle checks). |
+| 2 | `Scoring.css_weights_sum`, `cssBps_*` (9 thms) | `0.40*diff + 0.30*cent + 0.20*age + 0.10*(100-tract)` (`v2_loader.py:401`) | Exact linear bps; `ln` abstracted | Transcendental `min(100, 25*ln(1+deg))` abstracted as bounded `cent100 <= 100`; verified differentially against 50-digit `Decimal` oracle (`reference/scoring_oracle.py`). |
+| 3 | `Scoring.titan_weights_sum`, `titanCentis_*` (6 thms) | `0.35*d + 0.35*i + 0.20*r + 0.10*min(10, 2.5*ln(1+deg))` (`v2_loader.py:549`) | Exact linear centis; `ln` abstracted | Same `ln(1+deg)` boundary checked via `reference/scoring_oracle.py`. |
+| 4 | `Scoring.leverageTenths_*` (3 thms) | `(impact * tractability_2050) / 10.0` (`v2_loader.py:564`) | Exact 1-to-1 isomorphism | Zero divergence (`impact * tract` in tenths). |
+| 5 | `Quadrants.classify_eq_Q{1..4}_iff`, `classify_exhaustive`, `highImpact_preserved`, `highTract_preserved`, `Q1_leverage_ge_56` (8 thms) | `classify_quadrant(impact, tract)` (`v2_loader.py:414`) | Exact 1-to-1 isomorphism | Zero divergence; thresholds `impact >= 8` and `tract >= 7` match verbatim. |
+| 6 | `Quadrants.computeEra_*` (3 thms) | `compute_era(year)` (`v2_schema.py`) | Exact 1-to-1 isomorphism | Zero divergence across all 6 cutoffs (`500, 1800, 1900, 1970, 2000`). |
+| 7 | `Taxonomy.pillar_count_eq_8`, `superdomain_count_eq_28`, `pillar_partition_*`, `all*_complete`, `pillarOf_surjective`, `cross_pillar_implies_cross_superdomain` (8 thms) | `MACRO_PILLARS` (8), `SUPERDOMAIN_TO_PILLAR` (28) (`v2_schema.py`) | Exact 1-to-1 isomorphism | Exact `[5, 3, 3, 3, 3, 4, 4, 3]` partition verified identically. |
+| 8 | `GraphInvariants.handshaking_lemma` | `sum(deg(v)) == 2 * |E|` on `nx.Graph()` (`v2_loader.py:524`) | Exact finite-graph theorem | Holds universally for all finite nodup vertex lists & closed edge lists; biconnectivity (`0` APs, `0` bridges) checked programmatically by NetworkX. |
+| 9 | `GraphInvariants.cross_pillar_le_cross_superdomain`, `cross_superdomain_le_total`, `edge_hierarchy` | `cross_pillar_edges <= cross_superdomain_edges <= total_graph_edges` | Exact 1-to-1 isomorphism | Zero divergence (`1,084 <= 2,076 <= 5,808`). |
+| 10 | `GraphInvariants.dedupBy_length_le` | First-occurrence deduplication (`v2_loader.py:443`) | Exact cardinality bound | Proves `|dedup| <= |raw|` (`1,900 <= 1,912`). |
+| 11 | `AutoResearchInvariants.aqs_*` (6 thms) | `aqs_score` in immutable `autoresearch/evaluate.py:208` | Exact integer bps | Weights `25+25+20+15+15=100`, bounds `[0, 10000]`, strict monotonicity. |
+| 12 | `AutoResearchInvariants.failed_gates_always_discard`, `shouldKeep_iff`, `updateBest_*` (4 thms) | Karpathy keep/discard protocol (`autoresearch/program.md`) | Exact formal policy | Guarantees failed hard gates ALWAYS discard regardless of candidate score. |
+| 13 | `AutoResearchInvariants.metricDelta_self`, `metricDelta_antisymm` (2 thms) | `compare_two_problems` deltas (`rag/query.py:298`) | Exact integer antisymmetry | Float differences verified to `1e-6` in `test_pairwise_comparator_antisymmetry`. |
+| 14 | `LayerGradients.substrate_count_eq_8`, `layer_count_eq_7`, `allSubstrates_complete`, `layerIndex_le_6` (4 thms) | `SUBSTRATE_CLASSES` (8), `ABSTRACTION_LAYERS` (7) (`v2_loader.py:273`) | Exact 1-to-1 isomorphism | Zero divergence. |
+| 15 | `LayerGradients.hardnessTractGradient_*`, `cssTitanMarginBps_bounds` (5 thms) | `difficulty_score - tractability_2050`, `css_score - 10 * titan_index` | Exact integer / bps bounds | Exact `[-9, +9]` and `[-10000, +10000]` bounds. |
+| 16 | `LayerGradients.bridgeMarginBps_*`, `adjacent_pillars_lt_8`, `marginRole_exhaustive`, `apexKeystone_requires_3_adjacent` (5 thms) | `bridge_margin_ratio`, `adjacent_pillars_count`, `classify_margin_role` | Exact bps correspondence | `3000 bps` matches `bridge_ratio >= 0.30`. |
+| 17 | `NonVacuity.*` (12 thms) | Concrete inhabitants + sharp negative boundaries | Non-vacuity proof | Proves zero hypothesis bundles across M1–M6 are unsatisfiable. |
+| 18 | `PalomarSolution.m1..m7`, `prove_all_mega_atlas_invariants` (8 thms) | `palomar/PalomarChallenge.lean` contract | Exact comparator identity | Verified via `lake comparator --config comparator.json --paranoid` across 6 kernels. |
+
+## 2. What Is Explicitly NOT Formalized in Lean
+
+1. **None of the 1,900 cataloged open scientific or mathematical problems are proved in Lean.**
+2. **Transcendental `ln(1 + degree)` floating-point calls** are verified differentially against 50-digit `Decimal` in `reference/scoring_oracle.py`, not inside Lean.
+3. **NetworkX PageRank, betweenness, modularity, and biconnectivity** are audited programmatically via `tests/test_mega_atlas.py` and `scripts/forensic_audit.py`.
+4. **SQLite FTS5 Porter-stemming BM25 ranking** is audited via the immutable 25-query Gold Benchmark (`100.0% MRR@5`) and negative/metamorphic tests.
+
+================================================================================
+## FILE: lean/Challenge.lean — Formal Lean 4.35.0 Challenge Specification (M1-M7)
+================================================================================
+
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
+
+public import MegaAtlasProofs
+
+/-!
+# Formal Challenge Specification (`M1`–`M7`)
+
+Clean exported theorem specification contract for independent 6-kernel verification
+(`lean`, `leanchecker`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`,
+`con-ron` via `lake comparator --config comparator.json --paranoid`).
+All proofs live in `Solution.lean` and `MegaAtlasProofs.*`.
+-/
+
+namespace MegaAtlasProofs.Challenge
+
+open MegaAtlasProofs.Scoring
+open MegaAtlasProofs.Quadrants
+open MegaAtlasProofs.Taxonomy
+open MegaAtlasProofs.GraphInvariants
+open MegaAtlasProofs.AutoResearchInvariants
+open MegaAtlasProofs.LayerGradients
+open MegaAtlasProofs.NonVacuity
+
+@[expose] public section
+
+def M1_ScoringInvariants : Prop :=
+  (40 + 30 + 20 + 10 = 100) ∧
+  (35 + 35 + 20 + 10 = 100) ∧
+  (∀ ageYears : Nat, ageScoreCentis ageYears ≤ 10000) ∧
+  (∀ ageYears : Nat, 300 ≤ ageYears → ageScoreCentis ageYears = 10000) ∧
+  (∀ d c a t : Nat, d ≤ 100 → c ≤ 100 → a ≤ 100 → cssBps d c a t ≤ 10000) ∧
+  (∀ d c a t : Nat, 10 ≤ d → 5 ≤ c → 550 ≤ cssBps d c a t) ∧
+  (∀ d₁ d₂ c a t : Nat, d₁ ≤ d₂ → cssBps d₁ c a t ≤ cssBps d₂ c a t) ∧
+  (∀ d c a t₁ t₂ : Nat, t₁ ≤ t₂ → cssBps d c a t₂ ≤ cssBps d c a t₁) ∧
+  (∀ d i r degT : Nat, 1 ≤ d → d ≤ 10 → 1 ≤ i → i ≤ 10 → 1 ≤ r → r ≤ 10 → degT ≤ 100 →
+    90 ≤ titanCentis d i r degT ∧ titanCentis d i r degT ≤ 1000) ∧
+  (∀ imp tr : Nat, 1 ≤ imp → imp ≤ 10 → 1 ≤ tr → tr ≤ 10 →
+    1 ≤ leverageTenths imp tr ∧ leverageTenths imp tr ≤ 100)
+
+def M2_QuadrantAndEraInvariants : Prop :=
+  (∀ imp tr : Nat, classifyQuadrant imp tr = .Q1 ↔ imp ≥ 8 ∧ tr ≥ 7) ∧
+  (∀ imp tr : Nat, classifyQuadrant imp tr = .Q2 ↔ imp ≥ 8 ∧ tr < 7) ∧
+  (∀ imp tr : Nat, classifyQuadrant imp tr = .Q3 ↔ imp < 8 ∧ tr ≥ 7) ∧
+  (∀ imp tr : Nat, classifyQuadrant imp tr = .Q4 ↔ imp < 8 ∧ tr < 7) ∧
+  (∀ imp tr : Nat, classifyQuadrant imp tr = .Q1 → 56 ≤ leverageTenths imp tr) ∧
+  (∀ y₁ y₂ : Int, y₁ ≤ y₂ → eraRank (computeEra y₁) ≤ eraRank (computeEra y₂))
+
+def M3_TaxonomyInvariants : Prop :=
+  allPillars.length = 8 ∧
+  allSuperdomains.length = 28 ∧
+  allPillars.map (fun p => (superdomainsIn p).length) = [5, 3, 3, 3, 3, 4, 4, 3] ∧
+  (∀ s : Superdomain, s ∈ allSuperdomains) ∧
+  (∀ p : MacroPillar, p ∈ allPillars) ∧
+  (∀ p : MacroPillar, ∃ s : Superdomain, pillarOf s = p) ∧
+  (∀ s₁ s₂ : Superdomain, pillarOf s₁ ≠ pillarOf s₂ → s₁ ≠ s₂)
+
+def M4_GraphAndDedupInvariants : Prop :=
+  (∀ (V : Type) [DecidableEq V] (vs : List V) (_ : vs.Nodup) (es : List (Edge V)),
+    (∀ e ∈ es, e.u ∈ vs ∧ e.v ∈ vs) →
+    sumNat (vs.map (fun x => degreeOf x es)) = 2 * es.length) ∧
+  (∀ (V : Type) (sd : V → Superdomain) (es : List (Edge V)),
+    crossPillarCount sd es ≤ crossSuperdomainCount sd es ∧
+    crossSuperdomainCount sd es ≤ es.length) ∧
+  (∀ (α β : Type) [DecidableEq β] (key : α → β) (seen : List β) (xs : List α),
+    (dedupBy key seen xs).length ≤ xs.length)
+
+def M5_AutoResearchRatchetInvariants : Prop :=
+  (25 + 25 + 20 + 15 + 15 = 100) ∧
+  (∀ s r p g f : Nat, s ≤ 100 → r ≤ 100 → p ≤ 100 → g ≤ 100 → f ≤ 100 → aqsBps s r p g f ≤ 10000) ∧
+  (∀ bestScore candScore : Nat, shouldKeep false bestScore candScore = false) ∧
+  (∀ gates bestScore candScore, shouldKeep gates bestScore candScore = true ↔ gates = true ∧ bestScore < candScore) ∧
+  (∀ gates bestScore candScore, bestScore ≤ updateBest gates bestScore candScore) ∧
+  (∀ a : Int, metricDelta a a = 0) ∧
+  (∀ a b : Int, metricDelta a b = - metricDelta b a)
+
+def M6_LayerGradientMarginInvariants : Prop :=
+  allSubstrates.length = 8 ∧
+  allLayers.length = 7 ∧
+  (∀ s : SubstrateClass, s ∈ allSubstrates) ∧
+  (∀ l : AbstractionLayer, layerIndex l ≤ 6) ∧
+  (∀ d t : Int, 1 ≤ d → d ≤ 10 → 1 ≤ t → t ≤ 10 →
+    -9 ≤ hardnessTractGradient d t ∧ hardnessTractGradient d t ≤ 9) ∧
+  (∀ c t : Int, 0 ≤ c → c ≤ 10000 → 0 ≤ t → t ≤ 1000 →
+    -10000 ≤ cssTitanMarginBps c t ∧ cssTitanMarginBps c t ≤ 10000) ∧
+  (∀ cp deg : Nat, cp ≤ deg → bridgeMarginBps cp deg ≤ 10000) ∧
+  (∀ adj crossSD bps : Nat, classifyMarginRole adj crossSD bps = .apexKeystone ↔ adj ≥ 3)
+
+def M7_NonVacuityCertificate : Prop :=
+  (cssBps 100 100 55 40 = 8700 ∧ ageScoreCentis 299 < 10000) ∧
+  (classifyQuadrant 8 7 = .Q1 ∧ classifyQuadrant 8 6 = .Q2 ∧
+   classifyQuadrant 7 7 = .Q3 ∧ classifyQuadrant 7 6 = .Q4) ∧
+  (computeEra (-500) = .antiquity ∧ computeEra 2000 = .twentyFirstC) ∧
+  (sumNat (sampleVertices.map (fun x => degreeOf x sampleEdges)) = 2 * sampleEdges.length ∧
+   crossPillarCount sampleSuperdomain sampleEdges = 2) ∧
+  (shouldKeep true 9169 9649 = true ∧ shouldKeep false 9649 10000 = false) ∧
+  (classifyMarginRole 3 5 4000 = .apexKeystone ∧
+   classifyMarginRole 2 3 3000 = .transPillarMargin ∧
+   classifyMarginRole 2 3 2999 = .intraPillarBridge ∧
+   classifyMarginRole 0 0 0 = .coreSpecialist)
+
+def AllMegaAtlasInvariants : Prop :=
+  M1_ScoringInvariants ∧
+  M2_QuadrantAndEraInvariants ∧
+  M3_TaxonomyInvariants ∧
+  M4_GraphAndDedupInvariants ∧
+  M5_AutoResearchRatchetInvariants ∧
+  M6_LayerGradientMarginInvariants ∧
+  M7_NonVacuityCertificate
+
+end
+
+end MegaAtlasProofs.Challenge
+
+================================================================================
+## FILE: results/lean_axioms.txt — Verbatim 92-Theorem Lean 4.35.0 Axiom Audit
+================================================================================
+
+'MegaAtlasProofs.Scoring.ageScoreCentis_le_cap' depends on axioms: [propext]
+'MegaAtlasProofs.Scoring.ageScoreCentis_zero' does not depend on any axioms
+'MegaAtlasProofs.Scoring.ageScoreCentis_saturates_at_300' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.ageScoreCentis_mono' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.css_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.Scoring.cssBps_le_max' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_ge_valid_min' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_cent' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_age' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_anti_tract' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_extreme_max' does not depend on any axioms
+'MegaAtlasProofs.Scoring.cssBps_extreme_min' does not depend on any axioms
+'MegaAtlasProofs.Scoring.titan_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.Scoring.titanCentis_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_impact' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_interdisc' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_deg' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.leverageTenths_bounds' does not depend on any axioms
+'MegaAtlasProofs.Scoring.leverageTenths_comm' does not depend on any axioms
+'MegaAtlasProofs.Scoring.leverageTenths_mono' does not depend on any axioms
+'MegaAtlasProofs.Quadrants.classify_eq_Q1_iff' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.classify_eq_Q2_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_eq_Q3_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_eq_Q4_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_exhaustive' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.highImpact_preserved' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.highTract_preserved' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.Q1_leverage_ge_56' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.computeEra_mono' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.computeEra_ancient_sample' does not depend on any axioms
+'MegaAtlasProofs.Quadrants.computeEra_nov2026_sample' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_count_eq_8' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.superdomain_count_eq_28' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_partition_sizes' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_partition_sum_28' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.allSuperdomains_complete' depends on axioms: [propext]
+'MegaAtlasProofs.Taxonomy.allPillars_complete' depends on axioms: [propext]
+'MegaAtlasProofs.Taxonomy.pillarOf_surjective' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.cross_pillar_implies_cross_superdomain' does not depend on any axioms
+'MegaAtlasProofs.GraphInvariants.handshaking_lemma' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.cross_pillar_le_cross_superdomain' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.cross_superdomain_le_total' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.edge_hierarchy' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.dedupBy_length_le' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqs_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_le_max' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_extreme_max' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_rag' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_provenance' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_formal' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.failed_gates_always_discard' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.shouldKeep_iff' depends on axioms: [propext]
+'MegaAtlasProofs.AutoResearchInvariants.updateBest_nondecreasing' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.updateBest_strict_on_keep' depends on axioms: [propext]
+'MegaAtlasProofs.AutoResearchInvariants.metricDelta_self' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.metricDelta_antisymm' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.substrate_count_eq_8' does not depend on any axioms
+'MegaAtlasProofs.LayerGradients.layer_count_eq_7' does not depend on any axioms
+'MegaAtlasProofs.LayerGradients.allSubstrates_complete' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.layerIndex_le_6' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_zero_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_anti_tract' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.cssTitanMarginBps_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.bridgeMarginBps_le_10000' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.bridgeMarginBps_zero_when_no_cross' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.adjacent_pillars_lt_8' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.marginRole_exhaustive' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.apexKeystone_requires_3_adjacent' depends on axioms: [propext]
+'MegaAtlasProofs.NonVacuity.nonvac_scoring_valid_witness' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.boundary_age_299_not_saturated' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_four_quadrants' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.boundary_non_Q1_leverage_below_56' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_six_eras' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_graph_triangle_witness' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.NonVacuity.nonvac_dedup_strict_shrink' depends on axioms: [propext]
+'MegaAtlasProofs.NonVacuity.nonvac_autoresearch_keep_and_discard' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_four_margin_roles' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_gradient_and_margin_extremes' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_taxonomy_cross_pillar_witness' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m1_scoring_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m3_taxonomy_invariants' depends on axioms: [propext]
+'MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m7_nonvacuity_certificate' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants' depends on axioms: [propext, Quot.sound]
+
+================================================================================
+## FILE: REPLICATION.md — Clean-Clone Replication Protocol & Log
+================================================================================
+
+# Independent Clean-Clone Replication Protocol & Log (`v2.4.0`)
+
+Per **Build Standard for LLMs v1.2.0 (B43, B44)**, this document provides step-by-step instructions to independently replicate every quantitative result, formal proof, chart, white paper PDF, and benchmark from a fresh git clone — plus the recorded verification log of an actual clean-directory replication run.
+
+## 1. Prerequisites
+
+- Python `3.10+` (`3.12` tested)
+- `git`
+- Lean 4 via `elan` (`lean/lean-toolchain` pins `leanprover/lean4:v4.35.0` automatically)
+- Tectonic (`>= 0.15`) for AMS-LaTeX PDF & clean-room arXiv tarball compilation
+- Optional: `just` command runner (every command also runs directly with `python` / `lake`)
+
+## 2. Exact Clean-Clone Replication Steps
+
+```bash
+# 1. Clone cleanly into an isolated directory
+git clone https://github.com/0thernes/unsolved-problems-mega-atlas.git mega-atlas-repl
+cd mega-atlas-repl
+
+# 2. Verify tracked cryptographic manifests before executing any build script
+python -c "import hashlib, pathlib; lines=[l.strip().split(None,1) for l in pathlib.Path('CHECKSUMS.sha256').read_text().splitlines() if l.strip()]; assert all(hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==h for h,p in lines); print(f'OK: {len(lines)} checksums')"
+
+# 3. Install dependencies in a fresh virtual environment
+python -m venv .venv
+# Windows: .\.venv\Scripts\python.exe  |  Linux/macOS: .venv/bin/python
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e ".[dev]"
+
+# 4. Run full verification suite (auto-builds SQLite FTS5 DB on demand!)
+.venv/bin/python -m pytest tests/ -v
+.venv/bin/python examples/quickstart_demo.py
+.venv/bin/python scripts/audit_atlas.py --check-lean
+.venv/bin/python scripts/forensic_audit.py
+.venv/bin/python scripts/run_mutation_audit.py
+.venv/bin/python scripts/check_readme_axioms.py
+.venv/bin/python autoresearch/evaluate.py --verify-gates
+
+# 5. Independently verify Lean 4.35.0 formal proofs (92 theorems)
+cd lean && lake clean && lake build && lake env lean MegaAtlasProofs/VerifyAxioms.lean
+# Compare verbatim against ../results/lean_axioms.txt (zero diff)
+# On Linux with bubblewrap: lake comparator --config comparator.json --paranoid
+cd ..
+
+# 6. Independently compile AMS-LaTeX white paper & clean-room arXiv tarball
+.venv/bin/python scripts/build_paper.py
+.venv/bin/python scripts/check_citations.py
+```
+
+## 3. Expected Exact Tolerances
+
+- **Dataset cardinality & topology:** Exact (`1,900` problems, `48` columns, `5,808` edges, `0` articulation points, `0` bridges, `0` dangling links).
+- **Lean 4.35.0 axioms:** Byte-exact match against `results/lean_axioms.txt` (`92` lines, axioms `⊆ [propext, Quot.sound]`).
+- **Differential scoring oracle:** `<= 0.01` rounding tolerance across all `1,900` atlas records + `2,000` randomized inputs.
+- **RAG & AutoResearch:** Exact `100.00% MRR@5` (`25/25` top-1), `AQS = 97.99`, `hard_gates = PASS`.
+- **Mutation kill rate:** Exact `100.0%` (`6/6` mutants killed).
+- **AMS-LaTeX PDF:** `0` overfull hboxes, `0` undefined references/citations, `12/12` live citations.
+
+## 4. Recorded Independent Replication Runs (B44)
+
+| Date (UTC) | Environment / OS | Source Tested | Result & Exact Observed Metrics |
+|---|---|---|---|
+| 2026-11-25 | Windows 11 `x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15 | Fresh git clone from portable `git bundle --all` into isolated `Z:\temp_mega_atlas_repl` (reusing read-only `.venv` packages) | **PASS** — `CHECKSUMS.sha256` 100% match before build; SQLite FTS5 auto-built cleanly; full `pytest`, `audit_atlas.py --check-lean` (`92` thms), `forensic_audit.py`, `run_mutation_audit.py` (`6/6`), `evaluate.py` (`AQS=97.99`, `100% MRR@5`), `build_paper.py` (`0` overfull), and `check_citations.py` (`12/12`) ALL PASSED with zero errors. |
+

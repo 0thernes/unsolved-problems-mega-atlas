@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/0thernes/unsolved-problems-mega-atlas/schema/problem.schema.json",
   "title": "MegaAtlasProblem",
-  "description": "Formal JSON Schema Draft 2020-12 contract for a single enriched problem record in the Unsolved Problems Mega-Atlas (V2.1.0, 0thernes LLC).",
+  "description": "Formal JSON Schema Draft 2020-12 contract for a single enriched problem record in the Unsolved Problems Mega-Atlas (V2.4.0, Alexander Stephen Donahue).",
   "type": "object",
   "additionalProperties": false,
   "required": [

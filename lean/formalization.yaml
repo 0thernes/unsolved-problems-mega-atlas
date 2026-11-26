@@ -1,0 +1,139 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# SPDX-License-Identifier: Apache-2.0
+version: "v0.4"
+release_version: "2.4.0"
+
+project:
+  name: "Unsolved Problems Mega-Atlas Formal Invariant Suite (MegaAtlasProofs)"
+  description: >-
+    Zero-Mathlib Lean 4.35.0 formalization of 92 audited theorems (72 core module
+    theorems + 12 concrete non-vacuity and negative-boundary witnesses + 8 headline
+    Palomar comparator theorems) certifying the exact scoring functions (0thernes CSS,
+    300-year antiquity saturation, Titan Index, Near-Term Leverage), 4-quadrant and
+    6-era classifiers, 8-Macro-Pillar x 28-Superdomain taxonomic partition, finite
+    undirected Handshaking Lemma and cross-partition edge hierarchy, first-occurrence
+    deduplication cardinality bound, Karpathy-style AutoResearch anti-reward-hacking
+    keep/discard ratchet, pairwise comparison antisymmetry, and 8-substrate x 7-layer
+    gradient/margin/bridge invariants for the 1,900-problem Unsolved Problems Mega-Atlas.
+  authors:
+    - name: "Alexander Stephen Donahue"
+      orcid: "0009-0006-8168-9648"
+      email: "0_0@0thernes.art"
+      affiliation: "Independent Researcher, Spokane, WA, USA"
+  responsible_maintainers:
+    - name: "Alexander Stephen Donahue"
+      github: "0thernes"
+      orcid: "0009-0006-8168-9648"
+      email: "0_0@0thernes.art"
+  license: "Apache-2.0"
+
+classification:
+  arxiv:
+    - "cs.DL"
+    - "cs.LO"
+    - "cs.IR"
+  msc2020:
+    - "03B35"
+    - "68T30"
+    - "05C90"
+
+sources:
+  - title: "Unsolved Problems Mega-Atlas (V2.4.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+    authors:
+      - "Alexander Stephen Donahue"
+    id: "https://github.com/0thernes/unsolved-problems-mega-atlas"
+    type: "original-proof"
+    relationship: "other"
+    note: >-
+      Original formal invariant suite and companion AMS-LaTeX white paper first
+      presented in this repository. No external DOI, arXiv ID, or peer review is
+      claimed prior to confirmed external assignment.
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Certifies exact integer/basis-point scoring, quadrant/era classification,
+    8x28 taxonomy partition, finite undirected Handshaking Lemma, cross-partition
+    edge hierarchy, deduplication monotonicity, AutoResearch keep/discard ratchet,
+    substrate/layer/gradient/margin bounds, and concrete NonVacuity witnesses with
+    zero Mathlib and zero Classical.choice (axioms strictly within [propext, Quot.sound]).
+    Explicitly NOT formalized inside Lean: floating-point log(1+degree) terms
+    (verified differentially against exact Python Fraction/Decimal oracles) and any
+    of the 1,900 open scientific or mathematical problems themselves (0/1,900 retired).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Quot.sound"
+  main_results:
+    - declaration: "MegaAtlasProofs.Palomar.m1_scoring_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m3_taxonomy_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m7_nonvacuity_certificate"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+
+automation:
+  methods:
+    - method: "manual"
+      notes: "Alexander Stephen Donahue conceived the atlas architecture, formal invariant scope, epistemic boundary discipline, and multi-cycle hardening review, and bears sole responsibility for the work."
+    - method: "agent"
+      models:
+        - "Gemini (Antigravity)"
+      framework: "Antigravity"
+      notes: >-
+        Assisted with Lean 4.35.0 proof engineering, NonVacuity witness construction,
+        Python/RAG/MCP implementation, property/differential testing, and AMS-LaTeX
+        manuscript preparation under human direction and audit.
+
+fidelity:
+  divergences: >-
+    Lean 4.35.0 verifies exact integer basis-point/centi-unit scoring formulas with
+    abstract bounded centrality/degree inputs (`cent100 <= 100`, `degTermTenths <= 100`),
+    whereas the Python runtime (`src/v2_loader.py`) evaluates the transcendental
+    `min(100.0, 25.0 * ln(1 + degree))` term in IEEE-754 float64, differentially checked
+    against an exact Python reference oracle across 2,000+ randomized and atlas cases.
+    See `docs/statement-fidelity.md` for the complete row-by-row fidelity matrix.
+
+review:
+  status: "self-assessed"
+  notes: >-
+    Not externally peer-reviewed. Machine-checked across all 6 independent Lean 4.35.0
+    proof kernels via `lake comparator --config comparator.json --paranoid` (Lean default,
+    leanchecker-paranoid, lean4lean, nanoda_bin, con-leche --verified, con-ron --verified),
+    with 0 warnings, 0 proof sorries in `lean/`, 0 native_decide, and concrete NonVacuity witnesses.

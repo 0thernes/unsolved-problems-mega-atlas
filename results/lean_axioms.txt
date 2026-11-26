@@ -1,0 +1,92 @@
+'MegaAtlasProofs.Scoring.ageScoreCentis_le_cap' depends on axioms: [propext]
+'MegaAtlasProofs.Scoring.ageScoreCentis_zero' does not depend on any axioms
+'MegaAtlasProofs.Scoring.ageScoreCentis_saturates_at_300' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.ageScoreCentis_mono' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.css_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.Scoring.cssBps_le_max' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_ge_valid_min' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_cent' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_mono_age' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_anti_tract' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.cssBps_extreme_max' does not depend on any axioms
+'MegaAtlasProofs.Scoring.cssBps_extreme_min' does not depend on any axioms
+'MegaAtlasProofs.Scoring.titan_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.Scoring.titanCentis_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_impact' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_interdisc' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.titanCentis_mono_deg' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Scoring.leverageTenths_bounds' does not depend on any axioms
+'MegaAtlasProofs.Scoring.leverageTenths_comm' does not depend on any axioms
+'MegaAtlasProofs.Scoring.leverageTenths_mono' does not depend on any axioms
+'MegaAtlasProofs.Quadrants.classify_eq_Q1_iff' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.classify_eq_Q2_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_eq_Q3_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_eq_Q4_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.classify_exhaustive' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.highImpact_preserved' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.highTract_preserved' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.Q1_leverage_ge_56' depends on axioms: [propext]
+'MegaAtlasProofs.Quadrants.computeEra_mono' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Quadrants.computeEra_ancient_sample' does not depend on any axioms
+'MegaAtlasProofs.Quadrants.computeEra_nov2026_sample' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_count_eq_8' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.superdomain_count_eq_28' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_partition_sizes' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.pillar_partition_sum_28' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.allSuperdomains_complete' depends on axioms: [propext]
+'MegaAtlasProofs.Taxonomy.allPillars_complete' depends on axioms: [propext]
+'MegaAtlasProofs.Taxonomy.pillarOf_surjective' does not depend on any axioms
+'MegaAtlasProofs.Taxonomy.cross_pillar_implies_cross_superdomain' does not depend on any axioms
+'MegaAtlasProofs.GraphInvariants.handshaking_lemma' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.cross_pillar_le_cross_superdomain' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.cross_superdomain_le_total' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.edge_hierarchy' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.GraphInvariants.dedupBy_length_le' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqs_weights_sum' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_le_max' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_extreme_max' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_rag' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_provenance' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.aqsBps_mono_formal' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.failed_gates_always_discard' does not depend on any axioms
+'MegaAtlasProofs.AutoResearchInvariants.shouldKeep_iff' depends on axioms: [propext]
+'MegaAtlasProofs.AutoResearchInvariants.updateBest_nondecreasing' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.updateBest_strict_on_keep' depends on axioms: [propext]
+'MegaAtlasProofs.AutoResearchInvariants.metricDelta_self' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AutoResearchInvariants.metricDelta_antisymm' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.substrate_count_eq_8' does not depend on any axioms
+'MegaAtlasProofs.LayerGradients.layer_count_eq_7' does not depend on any axioms
+'MegaAtlasProofs.LayerGradients.allSubstrates_complete' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.layerIndex_le_6' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_zero_iff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_mono_diff' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.hardnessTractGradient_anti_tract' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.cssTitanMarginBps_bounds' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.bridgeMarginBps_le_10000' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.bridgeMarginBps_zero_when_no_cross' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.adjacent_pillars_lt_8' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.LayerGradients.marginRole_exhaustive' depends on axioms: [propext]
+'MegaAtlasProofs.LayerGradients.apexKeystone_requires_3_adjacent' depends on axioms: [propext]
+'MegaAtlasProofs.NonVacuity.nonvac_scoring_valid_witness' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.boundary_age_299_not_saturated' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_four_quadrants' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.boundary_non_Q1_leverage_below_56' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_six_eras' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_graph_triangle_witness' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.NonVacuity.nonvac_dedup_strict_shrink' depends on axioms: [propext]
+'MegaAtlasProofs.NonVacuity.nonvac_autoresearch_keep_and_discard' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_four_margin_roles' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_gradient_and_margin_extremes' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_taxonomy_cross_pillar_witness' does not depend on any axioms
+'MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m1_scoring_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m3_taxonomy_invariants' depends on axioms: [propext]
+'MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m7_nonvacuity_certificate' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants' depends on axioms: [propext, Quot.sound]

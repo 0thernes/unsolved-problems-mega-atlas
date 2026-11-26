@@ -1,6 +1,6 @@
 # AutoResearch Track B Pilot — `LOG-002` (Busy Beaver `BB(6)` / Antihydra Margin Probe)
 
-**Author / Curator:** Alexander Stephen Donahue (`0thernes LLC`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
+**Author / Curator:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
 **Target Problem:** `LOG-002` — *Busy Beaver `BB(6)` & Small-Machine Cryptids* (Logic, Statistics & Computing)  
 **Mode:** `autoresearch/program.md` Track B (Planner → Worker → Verifier)
 

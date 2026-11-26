@@ -1,0 +1,12 @@
+name: Question / Discussion
+description: Ask a question about methodology, Lean invariants, RAG/MCP usage, or citations
+title: "[question]: "
+labels: ["concern"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Include relevant Problem IDs, theorem names, or file paths if applicable.
+    validations:
+      required: true

@@ -1,0 +1,25 @@
+name: Feature / Enhancement Proposal
+description: Suggest an improvement to the dataset, Lean invariants, RAG/MCP server, charts, or tooling
+title: "[feature]: "
+labels: ["gap"]
+body:
+  - type: dropdown
+    id: finding_class
+    attributes:
+      label: Finding Class (Build Standard v1.2.0)
+      options:
+        - gap
+        - hole
+        - blindspot
+        - issue
+        - dilemma
+        - concern
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+      description: Clearly describe what should be added or improved and how to verify it.
+    validations:
+      required: true

@@ -1,4 +1,5 @@
-"""V2.0 Mega-Atlas Master Loader: merges all 10 parallel modules, strictly deduplicates, resolves HUB:* links, computes NetworkX analytics & matrices."""
+# SPDX-License-Identifier: Apache-2.0
+"""V2.4.0 Mega-Atlas Master Loader: merges all 11 parallel modules, strictly deduplicates with alias redirection, resolves HUB:* links, computes biconnected NetworkX analytics & multi-layer matrices."""
 
 import os
 import re
@@ -60,9 +61,9 @@ CANONICAL_INDUSTRIES = [
 EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "ProofAtlas (proofatlas.ai)", "Scope": "Pure & Applied Mathematics (LLM-ranked + tracked)", "Total_Tracked": "1,100+ eligible (Top-500 edition)", "Open_Count_Nov2026": "243 open in Top-500 (hundreds more in full 1,100+)", "Verification_Standard": "Community + Lean formalization tracking", "Nov2026_Highlight": "Actively tracks AI-targeted conjectures (e.g. #243 APSP subcubic, 3SUM, ETH)."},
     {"Registry": "Erdős Problems DB (erdosproblems.com)", "Scope": "Combinatorics, Number Theory, Discrete Geometry", "Total_Tracked": "~1,221 problems", "Open_Count_Nov2026": "~630+ open (~550+ solved/closed)", "Verification_Standard": "Thomas Bloom curation + Lean 4 formal checks", "Nov2026_Highlight": "Rapid 2025–2026 wave of AI-assisted literature recovery & Lean-checked closures."},
-    {"Registry": "Clay Millennium Prize Problems", "Scope": "7 Crown-Jewel Math & Math-Physics Problems ($1M each)", "Total_Tracked": "7 problems", "Open_Count_Nov2026": "6 officially unresolved (only 3D Poincaré retired)", "Verification_Standard": "2-year post-publication refereeing + CMI Scientific Advisory Board", "Nov2026_Highlight": "Navier-Stokes (Sept 8, OpenAI) & RH (Nov 20, Alpöge/Claude + Masullo) claims BOTH unverified/unretired."},
+    {"Registry": "Clay Millennium Prize Problems", "Scope": "7 Crown-Jewel Math & Math-Physics Problems ($1M each)", "Total_Tracked": "7 problems", "Open_Count_Nov2026": "6 officially unresolved (only 3D Poincaré retired)", "Verification_Standard": "2-year post-publication refereeing + CMI Scientific Advisory Board", "Nov2026_Highlight": "Navier-Stokes (Sept 8, OpenAI) disputed; RH/GRH Lean archive (Nov 20–21, Alpöge/Claude) passed Lean FRO multi-kernel check without human paper yet; CMI has NOT retired either."},
     {"Registry": "OpenAI Bulk Math Release (openai/math)", "Scope": "17 Mathematical Fields (AI-generated bulk dump)", "Total_Tracked": "722 manuscripts across 372 result families (~4,000 posed)", "Open_Count_Nov2026": "Verification largely pending; several retracted within 24h", "Verification_Standard": "Unrefereed GitHub dump + partial Lean artifacts", "Nov2026_Highlight": "Oct 6, 2026 'Mathocalypse' sparked 28 Fields Medalists' misalignment warning & refereeing crisis."},
-    {"Registry": "Nov 20, 2026 RH/GRH Lean & Human Claims", "Scope": "Riemann Hypothesis & Generalized Riemann Hypothesis", "Total_Tracked": "2 landmark conjectures (RH, GRH)", "Open_Count_Nov2026": "Under active fidelity & human audit (officially OPEN)", "Verification_Standard": "Alpöge/Claude multi-million-line Lean compiles (Sutherland); Masullo human draft released by AMS Pres. Vakil", "Nov2026_Highlight": "Lean kernel checks logical derivation; human mathematicians still auditing statement fidelity & conceptual validity."},
+    {"Registry": "Nov 20–25, 2026 RH/GRH Lean & Human Claims", "Scope": "Riemann Hypothesis & Generalized Riemann Hypothesis", "Total_Tracked": "2 landmark conjectures (RH, GRH)", "Open_Count_Nov2026": "Multi-kernel Lean certified (Nov 21); NO human paper yet; CMI OPEN", "Verification_Standard": "Alpöge/Claude ~17M-line Lean archive certified by Lean FRO & Mathlib (lean4lean/con-leche/con-ron); Masullo 940-pp human draft under active gap critique", "Nov2026_Highlight": "Historic divide: machine-checked formal truth vs. human comprehension, exposition, and Clay 2-year refereeing."},
     {"Registry": "Kourovka Notebook (Group Theory)", "Scope": "Finite, Infinite & Combinatorial Group Theory", "Total_Tracked": ">1,000 problems (20+ editions since 1965)", "Open_Count_Nov2026": "~600+ open", "Verification_Standard": "Peer-reviewed journal publication", "Nov2026_Highlight": "Gold-standard specialist catalog feeding Algebra & Topology frontiers."},
     {"Registry": "Kirby's List (Low-Dim Topology)", "Scope": "3- & 4-Manifolds, Knots, Links & Gauge Theory", "Total_Tracked": "~360+ major problems (with sub-parts >1,000)", "Open_Count_Nov2026": "~200+ open (SPC4, Slice-Ribbon, Unknotting)", "Verification_Standard": "Peer-reviewed topology literature", "Nov2026_Highlight": "Smooth 4D Poincaré & Slice-Ribbon remain crown-jewel unsolved holdouts."},
     {"Registry": "Hilbert's 23 Problems (1900) & Smale's 18 (1998)", "Scope": "Foundations, Number Theory, Geometry, Physics, Complexity", "Total_Tracked": "41 canonical century-defining problems", "Open_Count_Nov2026": "~16–18 fully or partially open", "Verification_Standard": "Consensus mathematical proof", "Nov2026_Highlight": "Hilbert 6th classical hard-sphere solved (Deng-Hani-Ma 2025); Hilbert 8th, 12th, 16th & Smale 9th/16th remain open."},
@@ -70,19 +71,19 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": "This V2.3 Unified Mega-Atlas (0thernes LLC, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "Pure Lean 4.35.0 formal invariants (72 theorems), JSON Schema, pytest, SHA-256, Karpathy AutoResearch & Nov 20 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with Hybrid RAG, 9-tool MCP server & quantitative substrate/gradient/margin layers."},
+    {"Registry": "This V2.4 Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants, JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256, AutoResearch & Nov 25 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 10-tool MCP server, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
     {
         "Claim_ID": "AUDIT-01",
         "Problem": "Riemann Hypothesis & GRH (NT-001, NT-002)",
-        "Date": "2026-11-20",
+        "Date": "2026-11-20 to 2026-11-25",
         "Claimant_System": "Levent Alpöge (Anthropic / Claude) + Independent Human Draft by Alessandro Masullo (Stanford)",
-        "Artifact_Type": "Multi-million-line Lean 4 formal archive (~250,000+ prose pages equivalent) + Human preprint released via AMS Pres. Ravi Vakil",
-        "Machine_Check_Status": "Compiles cleanly in Lean kernel with standard axioms (independently confirmed by Andrew Sutherland, MIT)",
-        "Human_Fidelity_Audit": "IN PROGRESS — Formalization fidelity (confirming Lean definitions match literal RH/GRH with zero subtle encoding drift) & human comprehension expected to take months to years",
-        "Official_Status_Nov2026": "OFFICIALLY OPEN at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification'",
+        "Artifact_Type": "~17M-line Lean 4 formal archive (14 files) + 940-page human draft ('The Music of the Primes') released via AMS Pres. Ravi Vakil",
+        "Machine_Check_Status": "CERTIFIED (Nov 21, 2026) — Lean FRO & Mathlib Initiative confirmed clean build & replay across official kernel, lean4lean, con-leche & con-ron matching Mathlib's official RH statement (Andrew Sutherland et al.)",
+        "Human_Fidelity_Audit": "HUMAN EXPOSITION PENDING — Zero complete human-readable paper exists yet for Alpöge/Claude archive; rival Masullo 940-page draft is undergoing active community gap critiques",
+        "Official_Status_Nov2026": "OFFICIALLY UNRETIRED at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification' pending human exposition & 2-year refereeing",
     },
     {
         "Claim_ID": "AUDIT-02",
@@ -185,11 +186,74 @@ def _norm_name(s: str) -> str:
     return s
 
 
-ATLAS_VERSION = "2.3.0"
+ATLAS_VERSION = "2.4.0"
 REFERENCE_YEAR = 2026
 AUTHOR_NAME = "Alexander Stephen Donahue"
 AUTHOR_ORCID = "0009-0006-8168-9648"
-AFFILIATION = "0thernes LLC, Spokane, WA, USA"
+AFFILIATION = "Independent Researcher, Spokane, WA, USA"
+
+# Strictly scoped author-curated preprints (Alexander S. Donahue, ORCID 0009-0006-8168-9648)
+# archived in 0thernes/0thernes-research-archive. Disclosed self-reference (NOT peer-reviewed):
+# ZERO overarching Mega-Atlas parent problems are retired as solved; entries document exact
+# kernel-checked sub-conjecture resolutions or refutations while explicitly marking parent problems OPEN.
+OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
+    {
+        "Archive_ID": "0TH-2026-012",
+        "Repo": "0thernes/coded-pir-mlwe-complexity-lab (v1.0.0, 2026-11-25)",
+        "Parent_Atlas_IDs": "CS-053, CS-026, CS-001, CS-051",
+        "Scoped_Result": "Resolved Sun-Tao-Xu-Zhang (arXiv:2603.10769) Schur-product syzygy rank via Koszul-Veronese moment annihilation (4/7 -> 10/17); proved strict LFSR domination over Sun-Zhang (arXiv:2610.37412); refuted Luo (arXiv:2604.15858) via det(B)=q^m; proved ring-universal anti-periodic DFT cancellation explaining Chen ePrint 2024/555 Step 9; certified 8/13 polymatroid & F_11 Byzantine rate-2/5 witness.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 14 theorems T1a-T3d, 6/6 independent kernels via lake comparator --paranoid, CI #45695797431)",
+        "Parent_Problem_Status": "STILL OPEN — Non-linear C(2,4,2,2), general M>=3 PIR, worst-case quantum MLWE & P!=NP explicitly remain OPEN; preprint not peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-011",
+        "Repo": "0thernes/secmesh-pqsi (v2.1.0, 2026-11-25)",
+        "Parent_Atlas_IDs": "CS-002, CS-026, CS-028, CS-030, CS-053, CS-061, QC-004, QC-018, QC-021, QC-030, QC-042, STAT-014, SYS-024",
+        "Scoped_Result": "Proved 27 cryptographic/IT/QGT invariants including Chern-Concurrence-Entropy Conservation Law (c_eff^2 + C^2 = 1), first-principles Toner CHSH monogamy, exact Hiding-Binding Conservation Law (TV + Overlap = 1), and sharp FIPS 203 Compress_1 margin |e|<=831.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 27 theorems T1a-T7b, 6/6 independent kernels, CI #45687371560)",
+        "Parent_Problem_Status": "STILL OPEN — Explicitly separates all 13 referenced Mega-Atlas open conjectures as unresolved; preprint not peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-010",
+        "Repo": "0thernes/catalytic-register-frontiers (v1.0.1, 2026-11-24)",
+        "Parent_Atlas_IDs": "CS-005",
+        "Scoped_Result": "Resolved two open questions of Vinciguerra (arXiv:2609.18692): complete base-p digit-sum dichotomy for 2-register passive catalytic programs over F_p and broke 3-register exponent from log_5(4)~0.8614 down to unique minimizer log_13(8)~0.8107.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 20 theorems, 7 kernels, 8/8 CaDiCaL LRAT UNSAT proofs, DOI 10.5281/zenodo.24517198, CI #45500957443)",
+        "Parent_Problem_Status": "STILL OPEN — General L vs. P, P vs. PSPACE & r>=4 catalytic loops remain OPEN; preprint not peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-009",
+        "Repo": "0thernes/pauli-contextuality-lab (v2.7.2, 2026-11-25)",
+        "Parent_Atlas_IDs": "QM-011",
+        "Scoped_Result": "Proved Jonah's Conjecture E across all 9 vertex cases for all N>=4, exact disjoint Mermin copy formulas (7^k-5^k)/2 & (6^k-4^k)/2 answering Muller & Saniga (arXiv:2609.19862v1 Sec. 6), exact 4-qubit C3 binary optima (368 vs 344, gap 24), infinite non-closed |Psi_{3m}> family & sequential bias cap.",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (2,206 audited decls, 12 comparator targets across 6/6 independent kernels, CI #45693255547)",
+        "Parent_Problem_Status": "STILL OPEN — Overarching QM-011 ontological/contextuality foundations remain OPEN; preprint not peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-004",
+        "Repo": "0thernes/kochen-specker-extremal-lab (v1.8.0, 2026-11-24)",
+        "Parent_Atlas_IDs": "QM-011",
+        "Scoped_Result": "Certified exact minimum Kochen-Specker set sizes inside restricted coordinate pools: 31 rays in 3D integer pools (|c|<=2..4), 33 in 3D roots of unity, 18 in 4D {0,+1,-1}^4, and 29 in 5D.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited decls, 6/6 independent kernels, CI #45516972182) + checked DRUP UNSAT proofs",
+        "Parent_Problem_Status": "STILL OPEN — Unrestricted general minimal-KS problem in R^3 explicitly remains OPEN; preprint not peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-006",
+        "Repo": "0thernes/multinomial-tv-conjecture (v1.0.0, 2026-11-20)",
+        "Parent_Atlas_IDs": "STAT-001 (Related Probability / Asymptotic Statistics)",
+        "Scoped_Result": "Resolved Conjecture 7.7 (conj:atriangle) of Banic & Elezovic (arXiv:2610.17046v1 / 2611.14735v1) on second-order variance of multinomial discrete total variation (a_triangle = 1/32 - 4*sqrt(3)/243), making linear gamma(n) & cyclic gamma_c(n) unconditional for n>=5.",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (4,960 lines, 19 audited theorems, standard axioms, CI #44862576204)",
+        "Parent_Problem_Status": "STANDALONE SUB-CONJECTURE — Not one of the 1,900 open atlas IDs; preprint not yet externally peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-007 / 008",
+        "Repo": "0thernes/human-synapse-bouton-lab (v1.2.0, 2026-11-23)",
+        "Parent_Atlas_IDs": "NEURO-001, NEURO-019",
+        "Scoped_Result": "Proved 18 positive-domain synaptic biophysical invariants & 2x2 algebraic factorization bounds, and honestly refuted pre-registered 40 Hz mitochondrial ATP sustainability (f_crit = 29.5625 Hz).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 18 theorems + 20 non-vacuity witnesses, 6/6 kernels, DOI 10.5281/zenodo.24484350, CI #45277848703)",
+        "Parent_Problem_Status": "STILL OPEN — Explicitly disclaims solving phenomenal consciousness, sentience, or brain-wide energy coding; preprint not peer-reviewed.",
+    },
+]
 
 PRIMARY_REGISTRY_TOKENS = (
     "proofatlas", "clay", "millennium", "erdős", "erdos", "hilbert", "smale",
@@ -677,6 +741,7 @@ def load_v2_master() -> Dict[str, Any]:
         "total_benchmarks": len(RECENTLY_RESOLVED_BENCHMARKS),
         "total_contrasts": len(PAIRWISE_CONTRASTS),
         "total_external_registries": len(EXTERNAL_REGISTRIES_NOV2026),
+        "total_author_frontier_preprints": len(OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS),
         "module_counts": module_counts,
     }
 
@@ -705,6 +770,7 @@ def load_v2_master() -> Dict[str, Any]:
         "df_contrasts": df_contrasts,
         "df_registries": pd.DataFrame(EXTERNAL_REGISTRIES_NOV2026),
         "df_ai_audit": pd.DataFrame(AI_VERIFICATION_AUDIT_NOV2026),
+        "df_author_contributions": pd.DataFrame(OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS),
         "summary_stats": summary_stats,
     }
 

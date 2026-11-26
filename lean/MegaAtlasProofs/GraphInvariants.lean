@@ -1,3 +1,9 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
+
+public import MegaAtlasProofs.Taxonomy
+
 /-
   MegaAtlasProofs/GraphInvariants.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for the
@@ -6,14 +12,14 @@
     2. Exact Cross-Partition Hierarchy: cross_pillar_edges <= cross_superdomain_edges <= |E|
     3. Deduplication Cardinality Bound: |dedup(xs)| <= |xs|
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
-
-import MegaAtlasProofs.Taxonomy
 
 namespace MegaAtlasProofs.GraphInvariants
 
 open MegaAtlasProofs.Taxonomy
+
+@[expose] public section
 
 /-- An undirected edge between two vertices `u` and `v`. -/
 structure Edge (V : Type) where
@@ -169,5 +175,7 @@ theorem dedupBy_length_le {α β : Type} [DecidableEq β] (key : α → β)
     · have h := ih (key x :: seen)
       simp only [List.length_cons]
       omega
+
+end
 
 end MegaAtlasProofs.GraphInvariants

@@ -1,120 +1,124 @@
-name: Verify Mega-Atlas (Cross-Platform Python, AutoResearch, 9-Tool MCP & Pure Lean 4.35.0)
+# SPDX-License-Identifier: Apache-2.0
+name: Mega-Atlas Multi-OS, Six-Kernel Lean 4.35.0 & White Paper CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+    tags: ["v*"]
   workflow_dispatch:
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions:
   contents: read
+  id-token: write
+  attestations: write
 
 jobs:
-  python-audit-and-tests:
-    name: Schema, Pytest, RAG 100%, 9-Tool MCP & SHA-256 (${{ matrix.os }})
+  python-verification-matrix:
+    name: Python 3.12 Verification Ladder (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 20
     env:
       PYTHONUTF8: "1"
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Validate Master Loader, 48-Field Schema & Biconnected Connectome
-        run: python src/v2_loader.py
-
-      - name: Run Full Pytest Verification Suite
-        run: pytest -v
-
-      - name: Run Standalone Cryptographic & Structural Auditor
-        run: python scripts/audit_atlas.py
-
-      - name: Run Forensic Multi-Layer Integrity Audit
-        run: python scripts/forensic_audit.py
-
-      - name: Validate Zenodo Deposition Manifest (Offline Dry-Run)
-        run: python scripts/publish_zenodo.py --dry-run
-
-      - name: Run Immutable Karpathy AutoResearch Evaluator Gate
-        run: python autoresearch/evaluate.py --verify-gates
-
-      - name: Smoke-Test Offline Hybrid BM25 + PageRank RAG CLI & Example
-        run: |
-          python rag/query.py "Riemann Hypothesis zeta zeros" --top 5 --hops 1
-          python rag/query.py --compare NT-001 CS-001
-          python examples/query_demo.py
-
-  lint-security-and-audit:
-    name: Report-Only Linters, Secret Scan & Build Standard Audit
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install linter dependencies
-        run: pip install ruff mypy
-      - name: Report-only linters (ruff & mypy)
-        continue-on-error: true
+      - name: Install package & dev verification dependencies
         run: |
-          python -m ruff check src/ scripts/ rag/ mcp_server/ autoresearch/ tests/
-          python -m mypy --ignore-missing-imports scripts/ rag/ mcp_server/
-      - name: Build Standard v1.2.0 repo audit
-        run: bash scripts/audit-repo.sh .
-      - name: Secret scan (gitleaks, report-only)
-        uses: gitleaks/gitleaks-action@v2
-        continue-on-error: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Regenerate derived SQLite+FTS5 & JSON/JSONL artifacts (--skip-pdf)
+        run: |
+          python src/v2_export_all.py --skip-pdf
+      - name: Run full pytest suite (functional, Hypothesis, differential, metamorphic, MCP, FAIR)
+        run: |
+          pytest tests/ -v
+      - name: Run runnable quickstart demo, forensic audit, Zenodo dry-run & AutoResearch gates
+        run: |
+          python examples/quickstart_demo.py
+          python scripts/audit_atlas.py
+          python scripts/forensic_audit.py
+          python scripts/publish_zenodo.py --dry-run
+          python autoresearch/evaluate.py --verify-gates
+          python scripts/check_readme_axioms.py
+      - name: Run static lint (ruff), typecheck (mypy) & 6-mutant semantic mutation audit (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          ruff check src rag mcp_server reference scripts examples tests
+          mypy src rag mcp_server reference scripts examples --ignore-missing-imports
+          python scripts/run_mutation_audit.py
 
-  lean-formal-invariants:
-    name: Pure Lean 4.35.0 Formal Invariant Proofs (72 Theorems)
+  lean4-six-kernels:
+    name: Zero-Mathlib Lean 4.35.0 Six-Kernel & Palomar Comparator Audit
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install elan & Lean 4.35.0 toolchain
+      - uses: actions/checkout@v4
+      - name: Install bubblewrap and Elan (Lean 4.35.0)
         run: |
+          sudo apt-get update && sudo apt-get install -y bubblewrap
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
-
-      - name: Build Pure Lean 4.35.0 Proof Suite & Audit All 72 Theorems
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Clean build, 92-theorem axiom audit & 6-kernel replay (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
         working-directory: lean
         run: |
-          lake build 2>&1 | tee lean_build.log
-          python3 -c '
-          import pathlib
-          log = pathlib.Path("lean_build.log").read_text(encoding="utf-8")
-          allowed = {"propext", "Quot.sound"}
-          audited = 0
-          for line in log.splitlines():
-              if "does not depend on any axioms" in line:
-                  audited += 1
-              elif "depends on axioms:" in line:
-                  audited += 1
-                  used = {x.strip() for x in line.split("[", 1)[1].rsplit("]", 1)[0].split(",") if x.strip()}
-                  bad = used - allowed
-                  assert not bad, f"Disallowed axiom(s) {bad} in: {line}"
-          assert audited == 72, f"Expected 72 audited theorems, saw {audited}"
-          print(f"LEAN CI VERIFIED: {audited} theorems strictly within [propext, Quot.sound] or empty!")
-          '
+          elan show
+          lake build
+          lake env lean MegaAtlasProofs/VerifyAxioms.lean > /tmp/ci_axioms.txt
+          cat /tmp/ci_axioms.txt
+          ! grep -E "sorryAx|_native|Lean\.ofReduceBool|Lean\.trustCompiler|Classical\.choice" /tmp/ci_axioms.txt
+          diff -u --strip-trailing-cr ../results/lean_axioms.txt /tmp/ci_axioms.txt
+          lake env leanchecker Solution
+          lake env leanchecker PalomarSolution
+          lake env leanchecker-paranoid Solution
+          lake env leanchecker-paranoid PalomarSolution
+          lake env leanexport PalomarSolution -- MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses > /tmp/PalomarSolution.export
+          lake env con-leche --verified /tmp/PalomarSolution.export
+          lake env con-ron --verified /tmp/PalomarSolution.export
+          cat << 'EOF' > /tmp/nanoda.json
+          {
+            "export_file_path": "/tmp/PalomarSolution.export",
+            "use_stdin": false,
+            "permitted_axioms": ["propext", "Quot.sound"],
+            "unpermitted_axiom_hard_error": true,
+            "nat_extension": true,
+            "string_extension": true
+          }
+          EOF
+          lake env nanoda_bin /tmp/nanoda.json
+          lake check --paranoid
+          lake comparator --config comparator.json --paranoid
+
+  white-paper-and-provenance:
+    name: AMS-LaTeX White Paper, Checksums, Secret Audit & SLSA Provenance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Tectonic
+        run: |
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          echo "$PWD" >> "$GITHUB_PATH"
+      - name: Compile AMS-LaTeX white paper (0 overfull hboxes), verify clean-room arXiv tarball & live citations
+        run: |
+          python scripts/build_paper.py
+          python scripts/check_citations.py
+      - name: Verify SHA-256 manifests, <5 MB tracked hygiene & secret scan
+        run: |
+          sha256sum -c CHECKSUMS.sha256
+          (cd data && sha256sum -c MANIFEST.sha256)
+          python -c "import subprocess, pathlib, sys; files = subprocess.check_output(['git','ls-files']).decode().splitlines(); big = [(f, pathlib.Path(f).stat().st_size) for f in files if pathlib.Path(f).exists() and pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, f'Tracked files >= 5MB: {big}'; print(f'PASS: All {len(files)} tracked files < 5 MB!')"
+          ! grep -rnE "ghp_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" --exclude-dir=.git --exclude-dir=.lake .
+      - name: Attest frozen white paper PDF, arXiv tarball & CHECKSUMS provenance on main push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/Donahue_2026_unsolved_problems_mega_atlas.pdf
+            dist/arxiv_submission.tar.gz
+            CHECKSUMS.sha256

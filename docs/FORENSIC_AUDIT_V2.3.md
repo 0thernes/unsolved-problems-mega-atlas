@@ -2,7 +2,7 @@
 
 - **Author / Curator:** Alexander Stephen Donahue (`Alexander S. Donahue`)
 - **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)
-- **Affiliation:** 0thernes LLC, Spokane, WA, USA (`0_0@0thernes.art` · `https://0thernes.art`)
+- **Affiliation:** Independent Researcher, Spokane, WA, USA (`0_0@0thernes.art` · `https://0thernes.art`)
 - **Audit Scope:** Full breadth-and-depth forensic audit across substrates, abstraction layers (`L0–L6`), hardness–tractability gradients, dual-ranking margins, epistemic spectrum coordinates, structural graph topology, cross-pillar adjacencies, blindspots, RAG retrieval, MCP transport, Lean 4.35.0 formal invariants, and Options 1 / 2 / 3 archival & autonomous-research pipelines.
 - **Reproducible Auditor Script:** [`scripts/forensic_audit.py`](../scripts/forensic_audit.py)
 

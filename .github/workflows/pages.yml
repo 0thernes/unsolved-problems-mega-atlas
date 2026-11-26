@@ -1,8 +1,9 @@
-name: Deploy Interactive Mega-Atlas & FAIR Metadata to GitHub Pages
+# SPDX-License-Identifier: Apache-2.0
+name: Deploy Interactive Web Atlas & Lean Proof Blueprint to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -21,29 +22,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Stage static GitHub Pages site & FAIR/LLM manifests
+      - uses: actions/checkout@v4
+      - name: Assemble static site (Interactive Atlas + 30 Charts + Lean Blueprint + FAIR/LLMs metadata)
         run: |
-          mkdir -p _site/charts _site/downloads
+          mkdir -p _site/charts _site/blueprint
           cp outputs/MegaAtlas_Interactive_Dashboard_V2.html _site/index.html
-          cp outputs/charts/*.png outputs/charts/*.svg _site/charts/
-          cp outputs/MegaAtlas_Unsolved_Problems_V2.csv _site/downloads/
-          cp outputs/MegaAtlas_Unsolved_Problems_V2.json _site/downloads/
-          cp outputs/MegaAtlas_Unsolved_Problems_V2.jsonl _site/downloads/
-          cp CHECKSUMS.sha256 _site/downloads/
-          cp llms.txt croissant.json ro-crate-metadata.json .zenodo.json CITATION.cff CITATION.bib _site/
+          cp outputs/charts/* _site/charts/
+          cp blueprint/index.html _site/blueprint/index.html
+          cp llms.txt llms-full.txt croissant.json ro-crate-metadata.json _site/
           touch _site/.nojekyll
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: "_site"
-
-      - name: Deploy to GitHub Pages
-        id: deployment
+          path: _site
+      - id: deployment
         uses: actions/deploy-pages@v4

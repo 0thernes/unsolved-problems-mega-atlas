@@ -1,6 +1,6 @@
 ---
-description: Canonical project instructions and Build Standard v1.2.0 rules for unsolved-problems-mega-atlas
+description: Canonical Build Standard v1.2.0 & Verification Rules for Unsolved Problems Mega-Atlas
 alwaysApply: true
 ---
 
-Follow `AGENTS.md` in the repository root as the single source of truth for all epistemic boundaries, Pure Lean 4.35.0 hygiene, AutoResearch anti-gaming locks, Build Standard v1.2.0 rules (`R1`–`R8`), and identity conventions (`Independent Researcher, Spokane, WA, USA`).
+Follow all rules, commands, epistemic boundaries, and the 10 finding classes documented in `AGENTS.md` and `docs/build-standard.md`. Never modify `autoresearch/evaluate.py`, never commit files >= 5 MB, never assert an unformed LLC as a legal entity, and commit straight to `main` (no PRs, no feature branches).

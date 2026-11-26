@@ -1,3 +1,6 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/Taxonomy.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for the
@@ -7,10 +10,12 @@
     - Exact partition sum: 5 + 3 + 3 + 3 + 3 + 4 + 4 + 3 = 28
     - Cross-pillar separation strictly implies cross-superdomain separation
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
 
 namespace MegaAtlasProofs.Taxonomy
+
+@[expose] public section
 
 inductive MacroPillar where
   | pureMath
@@ -134,5 +139,7 @@ theorem cross_pillar_implies_cross_superdomain (s₁ s₂ : Superdomain)
   intro heq
   subst heq
   exact h rfl
+
+end
 
 end MegaAtlasProofs.Taxonomy

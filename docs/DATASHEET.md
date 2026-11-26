@@ -1,4 +1,4 @@
-# Datasheet for the Unsolved Problems Mega-Atlas (`v2.3.0`)
+# Datasheet for the Unsolved Problems Mega-Atlas (`v2.4.0`)
 
 > Structured according to Gebru et al. (2021), *"Datasheets for Datasets"*, Communications of the ACM 64(12).
 
@@ -6,8 +6,8 @@
 
 ## 1. Motivation
 
-- **For what purpose was the dataset created?** To unify humanity's fragmented open-problem lists (spanning pure mathematics, logic/CS, fundamental physics, matter/chemistry, biology/neuroscience/medicine, AI/quantum/hardware/systems, engineering/design/earth/energy, and philosophy/economics/humanities) into a single schema-validated, biconnected, cross-linked multi-layer knowledge graph with transparent dual ranking (`0thernes CSS` + `Titan Index`), quantitative substrate/layer/gradient/margin/spectrum layers, `100% MRR@5` offline RAG & 9-tool MCP tooling, and a live November 20, 2026 AI proof-claim verification audit.
-- **Who created and funded the dataset?** Solo independent researcher **Alexander Stephen Donahue** (**0thernes LLC**, Spokane, WA, USA; ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)), self-funded with zero external corporate or government sponsorship, utilizing disclosed frontier AI assistance under continuous human architectural direction and automated verification gates.
+- **For what purpose was the dataset created?** To unify humanity's fragmented open-problem lists (spanning pure mathematics, logic/CS, fundamental physics, matter/chemistry, biology/neuroscience/medicine, AI/quantum/hardware/systems, engineering/design/earth/energy, and philosophy/economics/humanities) into a single schema-validated, biconnected, cross-linked multi-layer knowledge graph with transparent dual ranking (`0thernes CSS` + `Titan Index`), quantitative substrate/layer/gradient/margin/spectrum layers, `100% MRR@5` offline RAG & 10-tool MCP tooling, 6-kernel Lean 4.35.0 formal invariants, and a live November 25, 2026 AI proof-claim verification audit.
+- **Who created and funded the dataset?** Independent researcher **Alexander Stephen Donahue** (`Independent Researcher, Spokane, WA, USA`; ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)), self-funded with zero external corporate or government sponsorship, utilizing disclosed frontier AI assistance under continuous human architectural direction and automated verification gates.
 
 ## 2. Composition
 
@@ -25,9 +25,9 @@
 
 - **Deduplication & Alias Redirection:** `src/v2_loader.py` enforces exact `id`, normalized title (`_norm_name`), and explicit cross-field duplicate uniqueness (`1,912 → 1,900`, `12` overlaps merged) while routing every incoming cross-reference through `dedup_alias_map` so **`unresolved_raw_links_count == 0`** and the connectome is strictly **2-vertex-connected (`0` articulation points, `0` bridges)**.
 - **Formal & Automated Checks:**
-  - **72 Pure Lean 4.35.0 theorems** (`lean/MegaAtlasProofs/`, 8 modules, 1,008 lines, zero Mathlib, zero `sorry`, `[propext, Quot.sound]`) certify scoring bounds/monotonicity/300-year saturation, 4-Quadrant & 6-Era partitions, 8×28 surjection, Handshaking Lemma, cross-partition edge hierarchy, deduplication bound, AutoResearch anti-gaming keep/discard gates, and multi-layer substrate/gradient/margin invariants.
+  - **92 Pure Lean 4.35.0 theorems** (`lean/`, zero Mathlib, zero `sorry` in `lean/`, `[propext, Quot.sound]`) verified across **6 independent proof kernels** via `lake comparator --paranoid`, including `12` concrete NonVacuity witnesses and `8` Palomar specifications.
   - **JSON Schema Draft 2020-12** (`schema/problem.schema.json`) validated on all 1,900 × 48 records.
-  - **25-test `pytest` suite**, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 97.99`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
+  - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `6/6` (100%) mutation-kill audit, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 97.99`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
 
 ## 5. Uses & Out-of-Scope Warnings
 
@@ -39,6 +39,6 @@
 
 ## 6. Distribution & Maintenance
 
-- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.3.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
-- **Licensing:** Dual-licensed — Data/Prose/Charts/PDF under **CC BY 4.0** (`LICENSE`); Code/Schemas/RAG/MCP/Lean under **MIT** (`LICENSE-CODE`).
-- **Maintenance:** Maintained by Alexander Stephen Donahue (`0_0@0thernes.art`) via semantic versioning (`CHANGELOG.md`), structured GitHub Issue/PR templates, and community academic review (`docs/ACADEMIC_REVIEW.md`).
+- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.4.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 10-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
+- **Licensing:** Dual-licensed — Data/Prose/Charts/White Paper under **CC BY 4.0** (`LICENSE`); Code/Schemas/RAG/MCP/Lean under **Apache-2.0** (`LICENSE-CODE`).
+- **Maintenance:** Maintained by Alexander Stephen Donahue (`0_0@0thernes.art`) via semantic versioning (`CHANGELOG.md`), structured 10-class GitHub Issue templates, and community academic review (`docs/ACADEMIC_REVIEW.md`).

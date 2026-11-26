@@ -1,48 +1,50 @@
-# AGENTS.md — AI Coding & Research Agent Onboarding Contract
+# AGENTS.md — Canonical Agent Instructions (`unsolved-problems-mega-atlas`)
 
-> Standard repository instructions for Claude Code, Antigravity, Cursor, Codex, Gemini CLI, and autonomous research agents working inside **`0thernes/unsolved-problems-mega-atlas` (`v2.3.1`)**.
+> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.4.0`
+> **Author / Maintainer:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
+> **Dual License:** Data/Figures/White Paper `CC-BY-4.0` (`LICENSE`) · Code/Lean/Tests `Apache-2.0` (`LICENSE-CODE`)
 
-## 1. Canonical Identity & Attribution (MANDATORY)
+## 1. Repository Map
 
-- **Author / Human-in-the-Loop:** Alexander Stephen Donahue (`Alexander S. Donahue`)
-- **ORCID:** `0009-0006-8168-9648` (`https://orcid.org/0009-0006-8168-9648`)
-- **Affiliation:** Independent Researcher, Spokane, WA, USA · `0_0@0thernes.art` · `https://0thernes.art` (never assert an unformed LLC entity)
-- **Master Research Archive:** `0TH-BUILD-007` in `https://github.com/0thernes/0thernes-research-archive`
-- **Dual License:** Data/Prose/Charts/PDF (`CC BY 4.0`, `LICENSE`) · Code/Schemas/RAG/MCP/Lean (`MIT`, `LICENSE-CODE`).
-- **Build Standard v1.2.0 Hard Rules (`R1`–`R8`):** Commit straight to `main`, zero PR templates or banned bot configs (`R4`), report-only linters (`R3`), zero fabricated numbers (`R6`), 10-class finding taxonomy (`R7`).
+- `src/v2_schema.py`, `src/v2_data/m01..m11.py` — 1,912 raw authored records deduplicated into `1,900` unique open problems across 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers.
+- `src/v2_loader.py` — Deterministic loader, alias redirection, NetworkX biconnectivity/PageRank/betweenness (`seed=42`, `REFERENCE_YEAR=2026`), and scoring (`CSS`, `Titan`, `Leverage`, `Gradients`, `Margins`).
+- `src/v2_charts.py`, `src/v2_export_all.py` — Generates 15 PNG/SVG charts, 5 vector PDF paper figures, 1280×640 social preview, `<4 MB` WCAG 2.2 AA Interactive HTML, CSV/TSV/XLSX/XLS/MD/TXT, deterministic `.json.gz`/`.jsonl.gz`, `RANKING.md`, and gitignored `.sqlite`/`.json`/`.jsonl`/`build/` directory PDF.
+- `rag/query.py`, `mcp_server/server.py` — Offline Porter-stemmed SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, auto-builds DB on fresh clones) and zero-dependency dual-framed 10-tool stdio MCP server.
+- `lean/`, `palomar/PalomarChallenge.lean` — Zero-Mathlib Pure Lean 4.35.0 formal invariant suite (**92 audited theorems** across 6 independent kernels via `lake comparator --config comparator.json --paranoid`, `0` `sorry` in `lean/`, constructive axioms `⊆ [propext, Quot.sound]`).
+- `paper/main.tex`, `paper/refs.bib`, `scripts/build_paper.py` — 10-page Tectonic AMS-LaTeX white paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`) + deterministic clean-room `dist/arxiv_submission.tar.gz`.
+- `reference/scoring_oracle.py`, `tests/`, `scripts/run_mutation_audit.py`, `scripts/benchmark_atlas.py` — 50-digit Decimal/Fraction oracle, Hypothesis property suite, differential/metamorphic/golden/negative tests, mutation testing (`6/6`), and 10-iteration warmed benchmarks.
+- `autoresearch/evaluate.py` — **STRICTLY IMMUTABLE** Karpathy-style evaluation oracle (`AQS = 97.99`). **NEVER MODIFY THIS FILE.**
 
-## 2. Non-Negotiable Epistemic & Verification Rules
-
-1. **Zero Proof Inflation:** Never claim to prove, solve, or retire any of the 1,900 open problems. All 12 Fall/Nov 2026 AI proof-claim targets (`verification_flag = "ai-claim-under-audit-nov2026"`) MUST stay explicitly unretired pending independent formal-statement fidelity and peer consensus. Track B empirical probes (e.g., `research/runs/LOG-002_antihydra_pilot/`) must carry explicit non-claim boundaries.
-2. **Pure Lean 4.35.0 Hygiene (`lean/`):** Zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero custom `axiom` declarations. Every theorem (**72 audited**) must be listed in `lean/MegaAtlasProofs/VerifyAxioms.lean` and depend strictly on `[propext, Quot.sound]` or empty.
-3. **Anti-Gaming Harness Lock:** During autonomous optimization loops (`autoresearch/program.md`), **NEVER modify** `autoresearch/evaluate.py`, `schema/*.json`, `tests/test_mega_atlas.py` (never weaken assertions), or `VERIFICATION.md`.
-4. **Honest AI Disclosure & Zero Auth/PoW Bypass:** Never fabricate DOIs, peer-review endorsements, or fake external citations; never bypass CAPTCHAs or Software Heritage Anubis PoW gates. Preserve negative/discarded experiment rows in `autoresearch/results.tsv`.
-5. **Biconnected Graph Hygiene:** Any edit to `src/v2_data/m01..m11.py` must maintain `unresolved_raw_links_count == 0`, `connected_components == 1`, `articulation_points == 0`, and `graph_bridges == 0` (checked by `scripts/forensic_audit.py`).
-6. **ReFS Dev Drive & Windows PowerShell Safety:** When running on Windows in bracketed paths, always use `-LiteralPath`. Keep virtual environments inside `.venv/` (gitignored).
-
-## 3. Built-In Agentic Tools & Fast Commands
+## 2. Canonical Commands (`justfile`)
 
 ```bash
-# Offline Hybrid BM25 + PageRank RAG CLI (100.0% MRR@5, <30 ms, zero API keys)
-python rag/query.py "turbulence climate sensitivity" --top 6 --hops 1
-python rag/query.py --compare NT-001 CS-001
-python rag/query.py --flag ai-claim-under-audit-nov2026 --top 20
-
-# Model Context Protocol (MCP) dual-framed stdio JSON-RPC 2.0 server (9 live tools)
-python mcp_server/server.py
-
-# Immutable Karpathy-style AutoResearch Evaluator & Forensic Multi-Layer Auditor
-python autoresearch/evaluate.py --verify-gates
-python scripts/forensic_audit.py
-python scripts/publish_zenodo.py --dry-run
-
-# Full Verification Pipeline (must pass before any commit/PR)
-cd lean && lake build && cd ..
-python scripts/generate_fair_metadata.py
-python scripts/audit_atlas.py --sync-checksums --check-lean
-pytest -v
+just setup       # Create .venv and install editable + dev deps
+just build       # Regenerate charts, exports, FAIR JSONs, llms-full.txt & checksums
+just test        # Run full pytest suite (functional, Hypothesis, differential, MCP, FAIR)
+just lint        # Run ruff check
+just typecheck   # Run mypy
+just mutate      # Run 6-mutant semantic mutation audit (requires 100% kill rate)
+just bench       # Run 10-iteration warmed benchmarks -> docs/benchmarks.md
+just lean        # Build Lean 4.35.0 suite, audit all 92 axioms & verify README parity
+just paper       # Compile AMS-LaTeX PDF (0 overfull), clean-room arXiv tarball & verify 12 citations
+just audit       # Run audit_atlas.py, forensic_audit.py, publish_zenodo.py --dry-run & evaluate.py
+just reproduce   # End-to-end build + test + lean + paper + checksum verification
 ```
 
-## 4. Autonomous Research Loop Entry Point
+## 3. Non-Negotiable Hard Rules (Build Standard v1.2.0 R1–R8)
 
-To run autonomous optimization or open-problem investigation cycles, read [`autoresearch/program.md`](autoresearch/program.md), inspect [`autoresearch/results.tsv`](autoresearch/results.tsv) and [`autoresearch/whiteboard.md`](autoresearch/whiteboard.md), and follow the strict keep/discard git ratchet proved in `MegaAtlasProofs.AutoResearchInvariants.shouldKeep_iff`.
+- **R1 (No friction):** Zero branch protection, zero required status checks, zero git hooks, zero commit/tag signing. CI is purely informational.
+- **R2 (Trunk workflow):** Commit and push straight to `main`. No PRs, no feature branches. Use GitHub Issues for discussion and review.
+- **R3 (No auto-merge/bot PRs):** No Dependabot, Renovate, or bot PR files.
+- **R4 (No PR templates):** `.github/PULL_REQUEST_TEMPLATE.md` is banned. Keep only issue templates in `.github/ISSUE_TEMPLATE/`.
+- **R5 (Lean & Hygiene):** Keep all git-tracked files strictly `< 5 MB` (`A24`). Keep `lean/**/*.lean` 100% free of `sorry`, `admit`, `native_decide`, and custom `axiom` (`palomar/PalomarChallenge.lean` holds the `sorry`-only Palomar contract outside `lean/`).
+- **R6 (Immutability):** Never modify `autoresearch/evaluate.py` during research or hardening loops.
+- **R7 (No fabricated claims):** Never fabricate DOIs, peer-review status, benchmark timings, or legal entities (author affiliation is strictly `Independent Researcher, Spokane, WA, USA` — never assert an unformed LLC).
+- **R8 (Exact 10 Finding Classes):** Every audit, review, erratum, and issue classifies findings strictly into:
+  `bug`, `error`, `issue`, `problem`, `concern`, `dilemma`, `conflict`, `gap`, `hole`, `blindspot`.
+
+## 4. Honest Epistemic Boundaries
+
+1. Lean 4.35.0 verifies internal scoring, quadrant/era, taxonomy, graph handshaking, deduplication, AutoResearch ratchet, gradient/margin, and NonVacuity invariants ONLY — **0 / 1,900 overarching open problems are solved or retired**.
+2. Quantitative difficulty/tractability/impact/interdisciplinarity scores are disclosed AI-assisted editorial estimates, not peer-reviewed measurements.
+3. All 12 Fall/Nov 2026 AI proof claims remain officially unretired pending human-readable proofs and community consensus.

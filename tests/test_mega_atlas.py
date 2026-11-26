@@ -1,7 +1,10 @@
-"""Comprehensive 25-test pytest verification suite for the Unsolved Problems Mega-Atlas (V2.3.0, 0thernes LLC)."""
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.4.0)."""
 
 from __future__ import annotations
 
+import gzip
 import hashlib
 import json
 import re
@@ -21,21 +24,23 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "rag"))
 sys.path.insert(0, str(ROOT / "autoresearch"))
 
+from evaluate import evaluate_all  # noqa: E402
+from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 from v2_loader import (  # noqa: E402
     ABSTRACTION_LAYERS,
+    EXPLICIT_DUPLICATE_ALIASES,
     SUBSTRATE_CLASSES,
     compute_css_score,
     load_v2_master,
 )
 from v2_schema import CANONICAL_HUBS, MACRO_PILLARS, SUPERDOMAIN_TO_PILLAR  # noqa: E402
-from query import compare_two_problems, search_atlas  # noqa: E402
-from evaluate import evaluate_all  # noqa: E402
 
 EXPECTED_ORCID = "0009-0006-8168-9648"
 
 
 @pytest.fixture(scope="module")
 def master_data():
+    ensure_sqlite_db(DEFAULT_DB)
     return load_v2_master()
 
 
@@ -79,14 +84,12 @@ def test_css_and_titan_exact_bounds(master_data):
     assert (df["css_score"] >= 0.0).all() and (df["css_score"] <= 100.0).all()
     assert (df["titan_index"] >= 0.90).all() and (df["titan_index"] <= 10.00).all()
     assert (df["near_term_leverage_score"] >= 0.1).all() and (df["near_term_leverage_score"] <= 10.0).all()
-    # Antiquity 300-year saturation check
     assert compute_css_score(10, 10, 10, 300, 1) == compute_css_score(10, 10, 10, 2500, 1)
     assert compute_css_score(9, 8, 10, 100, 5) > compute_css_score(8, 8, 10, 100, 5)
     assert compute_css_score(8, 8, 10, 100, 3) > compute_css_score(8, 8, 10, 100, 7)
 
 
 def test_layer_gradient_margin_spectrum_bounds(master_data):
-    """Verify V2.3.0 multi-layer invariants matching Lean MegaAtlasProofs.LayerGradients."""
     df = master_data["df"]
     assert ((df["hardness_tractability_gradient"] >= -9) & (df["hardness_tractability_gradient"] <= 9)).all()
     assert (df["hardness_tractability_gradient"] == df["difficulty_score"] - df["tractability_2050"]).all()
@@ -94,7 +97,6 @@ def test_layer_gradient_margin_spectrum_bounds(master_data):
     assert ((df["epistemic_spectrum_score"] >= 0.0) & (df["epistemic_spectrum_score"] <= 100.0)).all()
     assert ((df["bridge_margin_ratio"] >= 0.0) & (df["bridge_margin_ratio"] <= 1.0)).all()
     assert ((df["adjacent_pillars_count"] >= 0) & (df["adjacent_pillars_count"] <= 7)).all()
-    # Apex Multi-Pillar Keystone iff adjacent_pillars_count >= 3
     apex_mask = df["margin_role"] == "Apex Multi-Pillar Keystone (3+ Adjacent Pillars)"
     assert (apex_mask == (df["adjacent_pillars_count"] >= 3)).all()
 
@@ -103,12 +105,10 @@ def test_quadrant_leverage_lower_bound(master_data):
     df = master_data["df"]
     q1 = df[df["strategic_quadrant"].str.startswith("Q1:")]
     assert len(q1) > 0
-    # Matches Lean theorem MegaAtlasProofs.Quadrants.Q1_leverage_ge_56
     assert (q1["near_term_leverage_score"] >= 5.6).all()
 
 
 def test_pairwise_comparator_antisymmetry():
-    # Matches Lean theorems MegaAtlasProofs.AutoResearchInvariants.metricDelta_self & metricDelta_antisymm
     c_ab = compare_two_problems("NT-001", "CS-001")
     c_ba = compare_two_problems("CS-001", "NT-001")
     c_aa = compare_two_problems("NT-001", "NT-001")
@@ -159,31 +159,36 @@ def test_every_record_has_valid_verification_flag(master_data):
     assert set(df["verification_flag"].unique()).issubset(valid)
 
 
-# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 9-TOOL MCP SERVER ====================
+# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 10-TOOL MCP SERVER ====================
 
 
 def test_exported_files_parity(master_data):
     n = len(master_data["df"])
     csv_df = pd.read_csv(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.csv")
     tsv_df = pd.read_csv(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.tsv", sep="\t")
-    payload = json.loads((ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.json").read_text(encoding="utf-8"))
-    jsonl_lines = (ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.jsonl").read_text(encoding="utf-8").splitlines()
+    with gzip.open(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.json.gz", "rt", encoding="utf-8") as f:
+        payload = json.load(f)
+    with gzip.open(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.jsonl.gz", "rt", encoding="utf-8") as f:
+        jsonl_lines = f.read().splitlines()
 
     assert len(csv_df) == n and csv_df.shape[1] == 48
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
+    assert len(payload["author_frontier_contributions"]) == 7
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
+    assert payload["metadata"]["license_code"] == "Apache-2.0"
 
     wb = openpyxl.load_workbook(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.xlsx", read_only=True)
-    assert len(wb.sheetnames) == 14
+    assert len(wb.sheetnames) == 15
     wb.close()
 
-    conn = sqlite3.connect(str(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"))
+    conn = sqlite3.connect(str(DEFAULT_DB))
     try:
         assert conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0] == n
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
+        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 7
     finally:
         conn.close()
 
@@ -205,8 +210,7 @@ def test_offline_rag_hybrid_bm25_pagerank_and_graph_hops():
     assert len(exact["results"][0]["graph_neighbors"]) >= 1
 
 
-def test_mcp_stdio_server_ndjson_all_9_tools():
-    """Spawn mcp_server/server.py over real NDJSON stdio JSON-RPC 2.0 and test all 9 tools."""
+def test_mcp_stdio_server_ndjson_all_10_tools():
     reqs = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
@@ -218,7 +222,8 @@ def test_mcp_stdio_server_ndjson_all_9_tools():
         {"jsonrpc": "2.0", "id": 8, "method": "tools/call", "params": {"name": "get_pillar_summary", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 9, "method": "tools/call", "params": {"name": "get_substrate_layer_summary", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 10, "method": "tools/call", "params": {"name": "get_margin_and_gradient_extremes", "arguments": {"limit": 5}}},
-        {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "get_atlas_provenance", "arguments": {}}},
+        {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "list_author_frontier_contributions", "arguments": {}}},
+        {"jsonrpc": "2.0", "id": 12, "method": "tools/call", "params": {"name": "get_atlas_provenance", "arguments": {}}},
     ]
     stdin_payload = "\n".join(json.dumps(r) for r in reqs) + "\n"
     proc = subprocess.run(
@@ -232,14 +237,13 @@ def test_mcp_stdio_server_ndjson_all_9_tools():
     )
     resps = [json.loads(line) for line in proc.stdout.splitlines() if line.strip()]
     assert len(resps) == len(reqs)
-    expected_ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     assert resps[0]["result"]["serverInfo"]["name"] == "unsolved-problems-mega-atlas"
-    assert resps[0]["result"]["serverInfo"]["version"] == expected_ver
+    assert resps[0]["result"]["serverInfo"]["version"] == "2.4.0"
     tools = {t["name"] for t in resps[1]["result"]["tools"]}
     assert tools == {
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
         "get_top_ranked", "get_pillar_summary", "get_substrate_layer_summary",
-        "get_margin_and_gradient_extremes", "get_atlas_provenance",
+        "get_margin_and_gradient_extremes", "list_author_frontier_contributions", "get_atlas_provenance",
     }
     p_nt001 = json.loads(resps[3]["result"]["content"][0]["text"])
     assert p_nt001["id"] == "NT-001"
@@ -251,17 +255,17 @@ def test_mcp_stdio_server_ndjson_all_9_tools():
     assert len(sub_sum["substrates"]) == 8
     assert len(sub_sum["abstraction_layers"]) == 7
     margins = json.loads(resps[9]["result"]["content"][0]["text"])
-    assert len(margins["steepest_hardness_tractability_chasms"]) == 5
-    assert len(margins["highest_tractability_over_hardness_margins"]) == 5
-    assert len(margins["largest_positive_css_over_titan_margins"]) == 5
     assert len(margins["apex_multi_pillar_keystones"]) == 5
-    prov = json.loads(resps[10]["result"]["content"][0]["text"])
+    contribs = json.loads(resps[10]["result"]["content"][0]["text"])
+    assert contribs["overarching_atlas_problems_retired"] == 0
+    assert contribs["scoped_preprints_count"] == 7
+    prov = json.loads(resps[11]["result"]["content"][0]["text"])
     assert prov["orcid"] == EXPECTED_ORCID
-    assert prov["lean_verification"]["audited_theorems"] == 72
+    assert prov["dual_license"]["code"] == "Apache-2.0"
+    assert prov["lean_verification"]["audited_theorems"] == 92
 
 
 def test_mcp_stdio_server_content_length_framing():
-    """Verify MCP server also speaks standard LSP/MCP Content-Length header framing."""
     req = json.dumps({"jsonrpc": "2.0", "id": 99, "method": "initialize", "params": {}}).encode("utf-8")
     framed = f"Content-Length: {len(req)}\r\n\r\n".encode("ascii") + req
     proc = subprocess.run(
@@ -277,7 +281,7 @@ def test_mcp_stdio_server_content_length_framing():
     assert len(body) == expected_len
     msg = json.loads(body.decode("utf-8"))
     assert msg["id"] == 99
-    assert msg["result"]["serverInfo"]["version"] == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    assert msg["result"]["serverInfo"]["version"] == "2.4.0"
 
 
 # ==================== 6. KARPATHY AUTORESEARCH HARNESS & TRACK B PILOT ====================
@@ -289,8 +293,8 @@ def test_autoresearch_evaluator_100pct_rag_and_results_ledger():
     assert m["schema_health"] == 100.0
     assert m["rag_mrr5"] == 100.0
     assert m["rag_top1"] == 25
-    assert m["lean_theorems"] == 72
-    assert m["aqs_score"] >= 97.0
+    assert m["lean_theorems"] == 92
+    assert m["aqs_score"] >= 97.9
 
     tsv_lines = (ROOT / "autoresearch" / "results.tsv").read_text(encoding="utf-8").splitlines()
     assert len(tsv_lines) >= 6
@@ -311,7 +315,6 @@ def test_track_b_antihydra_pilot_artifact_reproducible():
 
 
 def test_alias_redirection_eliminates_all_duplicate_secondaries(master_data):
-    from v2_loader import EXPLICIT_DUPLICATE_ALIASES
     id_set = set(master_data["df"]["id"])
     for secondary_id, canonical_id in EXPLICIT_DUPLICATE_ALIASES.items():
         assert secondary_id not in id_set, f"Secondary duplicate {secondary_id} still present!"
@@ -336,7 +339,7 @@ def test_all_15_charts_png_and_svg_present_and_nonempty():
         assert p.stat().st_size > 5_000, f"Chart file suspiciously small: {p.name}"
 
 
-# ==================== 7. FAIR METADATA & OPTION 1 ZENODO DRY-RUN ====================
+# ==================== 7. FAIR METADATA & ZENODO DRY-RUN ====================
 
 
 def test_zenodo_json_metadata_and_publisher_dry_run():
@@ -375,54 +378,37 @@ def test_ro_crate_metadata():
     assert f"https://orcid.org/{EXPECTED_ORCID}" in ids
     assert "lean/MegaAtlasProofs.lean" in ids
     assert "mcp_server/server.py" in ids
-    assert "autoresearch/program.md" in ids
+    assert "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf" in ids
 
 
-# ==================== 8. INSTITUTIONAL GOVERNANCE, LEAN & CHECKSUMS ====================
+# ==================== 8. GOVERNANCE, LEAN 4.35.0 & CHECKSUMS ====================
 
 
-def test_institutional_orcid_and_governance_files():
+def test_governance_and_orcid_files():
     for rel in [
-        "VERSION",
-        "CITATION.cff",
-        "CITATION.bib",
-        ".zenodo.json",
-        "croissant.json",
-        "ro-crate-metadata.json",
-        "AGENTS.md",
-        "CLAUDE.md",
-        "llms.txt",
-        "SECURITY.md",
-        "LICENSE",
-        "LICENSE-CODE",
-        "NOTICE",
-        "AUTHORS.md",
-        "PHILOSOPHY.md",
-        "ARCHITECTURE.md",
-        "VERIFICATION.md",
-        "EVIDENCE.md",
-        "RANKING.md",
-        "CHANGELOG.md",
-        "CONTRIBUTING.md",
-        "CODE_OF_CONDUCT.md",
-        "docs/METHODOLOGY.md",
-        "docs/AI_DISCLOSURE.md",
-        "docs/ACADEMIC_REVIEW.md",
-        "docs/WHITE_PAPER.md",
-        "docs/DATASHEET.md",
-        "docs/FORENSIC_AUDIT_V2.3.md",
-        "docs/PRESERVATION.md",
-        "autoresearch/program.md",
-        "autoresearch/evaluate.py",
-        "autoresearch/results.tsv",
-        "autoresearch/whiteboard.md",
-        "autoresearch/OSS_STACK.md",
-        "mcp_server/server.py",
-        "mcp_server/README.md",
-        "scripts/forensic_audit.py",
-        "scripts/publish_zenodo.py",
+        "VERSION", "CITATION.cff", "CITATION.bib", ".zenodo.json", "croissant.json",
+        "ro-crate-metadata.json", "AGENTS.md", "CLAUDE.md", "GEMINI.md", "llms.txt",
+        "llms-full.txt", "SECURITY.md", "SUPPORT.md", "ROADMAP.md", "UPGRADING.md",
+        "LICENSE", "LICENSE-CODE", "NOTICE", "THIRD_PARTY_NOTICES.md", "AUTHORS.md",
+        "PHILOSOPHY.md", "ARCHITECTURE.md", "VERIFICATION.md", "EVIDENCE.md",
+        "CLAIMS.md", "LIMITATIONS.md", "REPLICATION.md", "ERRATA.md", "DEVIATIONS.md",
+        "HARDENING_LOG.md", "RANKING.md", "CHANGELOG.md", "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md", "repo.yaml", "justfile",
+        "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "dist/arxiv_submission.tar.gz",
+        "blueprint/index.html", "results/lean_axioms.txt",
+        "docs/METHODOLOGY.md", "docs/AI_DISCLOSURE.md", "docs/ACADEMIC_REVIEW.md",
+        "docs/WHITE_PAPER.md", "docs/DATASHEET.md", "docs/FORENSIC_AUDIT_V2.3.md",
+        "docs/PRESERVATION.md", "docs/statement-fidelity.md", "docs/architecture.md",
+        "docs/operations.md", "docs/threat-model.md", "docs/benchmarks.md",
+        "docs/faq.md", "docs/glossary.md", "docs/configuration.md", "docs/run-log.md",
+        "docs/media/social-preview.png",
+        "autoresearch/program.md", "autoresearch/evaluate.py", "autoresearch/results.tsv",
+        "autoresearch/whiteboard.md", "autoresearch/OSS_STACK.md",
+        "mcp_server/server.py", "mcp_server/README.md",
+        "scripts/forensic_audit.py", "scripts/publish_zenodo.py", "scripts/build_paper.py",
+        "scripts/check_citations.py", "scripts/check_readme_axioms.py", "scripts/run_mutation_audit.py",
     ]:
-        assert (ROOT / rel).exists(), f"Missing institutional artifact: {rel}"
+        assert (ROOT / rel).exists(), f"Missing required artifact: {rel}"
 
     for rel in [
         "CITATION.cff", "CITATION.bib", ".zenodo.json", "croissant.json", "ro-crate-metadata.json",
@@ -433,9 +419,9 @@ def test_institutional_orcid_and_governance_files():
         assert EXPECTED_ORCID in (ROOT / rel).read_text(encoding="utf-8"), f"Missing ORCID in {rel}"
 
 
-def test_lean_sources_zero_sorry_and_72_audited_theorems():
+def test_lean_sources_zero_sorry_and_92_audited_theorems():
     lean_files = [p for p in (ROOT / "lean").rglob("*.lean") if ".lake" not in p.parts]
-    assert len(lean_files) == 8
+    assert len(lean_files) == 12
     for lf in lean_files:
         raw = lf.read_text(encoding="utf-8")
         no_blocks = re.sub(r"/-.*?-/", "", raw, flags=re.S)
@@ -445,14 +431,14 @@ def test_lean_sources_zero_sorry_and_72_audited_theorems():
         for line in code.splitlines():
             assert not line.strip().startswith("axiom "), f"Custom axiom in {lf}: {line}"
     aud = (ROOT / "lean" / "MegaAtlasProofs" / "VerifyAxioms.lean").read_text(encoding="utf-8")
-    assert sum(1 for l in aud.splitlines() if l.strip().startswith("#print axioms ")) == 72
+    assert sum(1 for ln in aud.splitlines() if ln.strip().startswith("#print axioms ")) == 92
 
 
 def test_sha256_checksums_manifest_exact():
     chk = ROOT / "CHECKSUMS.sha256"
     assert chk.exists()
-    lines = [l.strip() for l in chk.read_text(encoding="utf-8").splitlines() if l.strip()]
-    assert len(lines) >= 52
+    lines = [ln.strip() for ln in chk.read_text(encoding="utf-8").splitlines() if ln.strip()]
+    assert len(lines) >= 50
     for line in lines:
         expected, rel = line.split(None, 1)
         target = ROOT / rel

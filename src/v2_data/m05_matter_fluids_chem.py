@@ -11,7 +11,7 @@ _SRC = str(Path(__file__).resolve().parent.parent)
 if _SRC not in sys.path:
     sys.path.insert(0, _SRC)
 
-from v2_schema import P
+from v2_schema import P  # noqa: E402
 
 CM = "Condensed Matter, Solid-State & Quantum Materials"
 FLD = "Fluids, Gases, Plasmas & Non-Equilibrium Matter"

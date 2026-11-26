@@ -1,30 +1,81 @@
-# Task runner for unsolved-problems-mega-atlas (Build Standard v1.2.0, A31 & B01)
-set shell := ["bash", "-euo", "pipefail", "-c"]
+# SPDX-License-Identifier: Apache-2.0
+# Canonical command runner for Unsolved Problems Mega-Atlas (V2.4.0)
+# Usage: `just` to list recipes, `just reproduce` to rebuild & verify everything.
 
+set windows-shell := ["pwsh", "-NoLogo", "-Command"]
+
+python := if os() == "windows" { ".venv/Scripts/python.exe" } else { ".venv/bin/python" }
+
+# Show available recipes
 default:
     @just --list
 
+# Create local virtual environment and install pinned dev dependencies
 setup:
-    python3 -m pip install -r requirements.txt
+    python -m venv .venv
+    {{python}} -m pip install --upgrade pip
+    {{python}} -m pip install -e ".[dev]"
 
+# Regenerate all 15 charts, 5 PDF paper figures, social card, exports, FAIR metadata & checksums
+build:
+    {{python}} research/runs/LOG-002_antihydra_pilot/antihydra_probe.py
+    {{python}} src/v2_charts.py
+    {{python}} src/v2_export_all.py --skip-pdf
+    {{python}} scripts/generate_fair_metadata.py
+    {{python}} scripts/generate_llms_full.py
+    {{python}} scripts/audit_atlas.py --sync-checksums
+
+# Full end-to-end deterministic reproduction (data + tests + Lean + paper + checksums)
+reproduce: build test lean paper
+    {{python}} scripts/audit_atlas.py --sync-checksums --check-lean
+    {{python}} autoresearch/evaluate.py --verify-gates
+
+# Run full pytest suite (functional, property, differential, metamorphic, golden, MCP, FAIR)
 test:
-    python3 -m pytest -v
+    {{python}} -m pytest tests/ -v
 
-lean:
-    cd lean && lake build
-
+# Run static lint checks (ruff)
 lint:
-    python3 -m ruff check src/ scripts/ rag/ mcp_server/ autoresearch/ tests/ || true
-    python3 -m mypy --ignore-missing-imports scripts/ rag/ mcp_server/ || true
+    {{python}} -m ruff check src rag mcp_server reference scripts examples tests
 
-reproduce:
-    python3 src/v2_loader.py
-    python3 scripts/forensic_audit.py
-    python3 scripts/audit_atlas.py
-    python3 autoresearch/evaluate.py --verify-gates
-    python3 scripts/publish_zenodo.py --dry-run
-    python3 -m pytest -v
-    bash scripts/audit-repo.sh .
+# Run static type checking (mypy)
+typecheck:
+    {{python}} -m mypy src rag mcp_server reference scripts examples --ignore-missing-imports
 
+# Run mutation testing audit (assert 100% kill rate across planted mutants)
+mutate:
+    {{python}} scripts/run_mutation_audit.py
+
+# Run reproducible 10-iteration warmed benchmark suite
+bench:
+    {{python}} scripts/benchmark_atlas.py
+
+# Build and audit all 92 Pure Lean 4.35.0 theorems + README verbatim axiom parity
+lean:
+    cd lean && lake build && lake env lean MegaAtlasProofs/VerifyAxioms.lean
+    {{python}} scripts/check_readme_axioms.py
+
+# Compile AMS-LaTeX white paper, package clean-room arXiv tarball & verify citations
+paper:
+    {{python}} scripts/build_paper.py
+    {{python}} scripts/check_citations.py
+
+# Run Build Standard v1.2.0 repository audit and forensic/Zenodo audits
 audit:
-    bash scripts/audit-repo.sh .
+    {{python}} scripts/audit_atlas.py --check-lean
+    {{python}} scripts/forensic_audit.py
+    {{python}} scripts/publish_zenodo.py --dry-run
+    {{python}} autoresearch/evaluate.py --verify-gates
+
+# Verify GitHub Pages deployment readiness locally
+deploy:
+    {{python}} src/v2_export_all.py --skip-pdf
+    @echo "Pages artifacts ready in outputs/MegaAtlas_Interactive_Dashboard_V2.html, outputs/charts/, blueprint/, llms.txt"
+
+# Print rollback instructions for static GitHub Pages / GitHub Releases
+rollback:
+    @echo "Rollback procedure: checkout prior release tag (e.g. git checkout v2.3.0) or revert commit on main; GitHub Pages redeploys automatically via .github/workflows/pages.yml. See docs/operations.md."
+
+# Remove untracked build caches while preserving tracked repository files
+clean:
+    rm -rf build/ paper/build/ .pytest_cache/ .mypy_cache/ .ruff_cache/

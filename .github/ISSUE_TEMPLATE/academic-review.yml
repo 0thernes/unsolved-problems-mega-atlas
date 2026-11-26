@@ -1,34 +1,35 @@
-name: Academic / Domain-Specialist Review
-description: Submit a domain-expert audit of a Superdomain or subset of entries
-title: "[Academic Review]: "
-labels: ["academic-review"]
+name: Academic & Formal-Verification Review
+description: Submit an independent critique of mathematical accuracy, Lean statement fidelity, or editorial scores
+title: "[review]: "
+labels: ["concern"]
 body:
-  - type: input
-    id: reviewer
+  - type: dropdown
+    id: finding_class
     attributes:
-      label: Reviewer Name, Affiliation & Optional ORCID
-      placeholder: e.g. Dr. Jane Doe · Dept. of Mathematics · ORCID 0000-0000-0000-0000
+      label: Finding Class (Build Standard v1.2.0)
+      options:
+        - error
+        - bug
+        - issue
+        - problem
+        - concern
+        - dilemma
+        - conflict
+        - gap
+        - hole
+        - blindspot
     validations:
       required: true
   - type: input
-    id: scope
+    id: target
     attributes:
-      label: Audited Superdomain or Problem IDs
-      placeholder: e.g. Number Theory & Arithmetic (NT-001 to NT-050)
+      label: Target Problem ID, Theorem, or Paper Section
+      placeholder: "e.g., NT-001, MegaAtlasProofs.Scoring.cssBps_le_max, Section 4"
     validations:
       required: true
   - type: textarea
-    id: findings
+    id: critique
     attributes:
-      label: Detailed Audit Findings (Fidelity, Provenance, Status, Rubric Calibration, Couplings)
-    validations:
-      required: true
-  - type: dropdown
-    id: credit
-    attributes:
-      label: Acknowledge in AUTHORS.md?
-      options:
-        - Yes — credit my name/ORCID in AUTHORS.md
-        - No — keep my review anonymous in AUTHORS.md
+      label: Technical Critique & Primary Citations (DOIs / arXiv IDs)
     validations:
       required: true

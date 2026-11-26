@@ -10,7 +10,7 @@ _SRC_DIR = str(Path(__file__).resolve().parent.parent)
 if _SRC_DIR not in sys.path:
     sys.path.insert(0, _SRC_DIR)
 
-from v2_schema import P
+from v2_schema import P  # noqa: E402
 
 GEOM = "Geometry & Topology"
 ANL = "Analysis, Calculus, PDEs & Dynamics"

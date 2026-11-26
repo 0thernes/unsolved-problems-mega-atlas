@@ -1,17 +1,21 @@
-# Roadmap
+# Roadmap — Unsolved Problems Mega-Atlas
 
-## Completed (`v2.3.1`)
-- `1,900` strictly deduplicated problems across `8` Macro-Pillars × `28` Superdomains × `8` Substrates × `7` Abstraction Layers (`48` typed fields, `0` dangling links, biconnected `5,808`-edge graph).
-- `72` Pure Lean 4.35.0 formal invariant theorems (`0` Mathlib, `0` `sorry`, strictly `[propext, Quot.sound]` or empty).
-- `100.0% MRR@5` offline Hybrid BM25+PageRank RAG CLI, dual-framed 9-tool MCP stdio server, Karpathy AutoResearch harness, and FAIR Croissant 1.0 / RO-Crate 1.1 / Zenodo metadata.
-- Build Standard v1.2.0 hardening (cross-platform CI, `SHA256SUMS` + Sigstore SLSA releases, Hypothesis/mutation tests, R4 banned-file removal, honest `0/1,900` archive solved-problem audit).
+> **Status:** `active` · **Current Release:** `v2.4.0` (November 25, 2026)
 
-## Planned
-- Periodic quarterly audits of the `12` Fall/Nov 2026 AI proof claims (`verification_flag = "ai-claim-under-audit-nov2026"`) as independent human fidelity reviews conclude.
-- Optional Zenodo Versioned DOI minting using `scripts/publish_zenodo.py` once manual review is completed.
-- Community-submitted falsification/status updates via `.github/ISSUE_TEMPLATE/status-update-or-falsification.yml`.
+## Completed Milestones
 
-## Not Planned
-- Claiming automatic retirement of open problems based solely on unreviewed AI preprints or unverified Lean builds.
-- Adding hosted cloud API dependencies to the offline RAG CLI or MCP server.
-- Removing the standalone committed `outputs/` snapshot required for zero-dependency GitHub Pages and offline replication (see `docs/adr/0002-dual-license-and-committed-atlas-artifacts.md`).
+- **`v2.0.0`–`v2.1.0`:** Expanded from 278 baseline records to 1,855+ deduplicated problems across 8 Macro-Pillars × 28 Superdomains with JSON Schema Draft 2020-12 validation and Pure Lean 4.35.0 scoring/taxonomy/graph invariants.
+- **`v2.2.0`:** Added Karpathy-style immutable AutoResearch harness (`autoresearch/evaluate.py`), SQLite FTS5 Hybrid RAG (`100% MRR@5`), stdio MCP server, and FAIR metadata (`croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`).
+- **`v2.3.0`:** Expanded to 1,900 biconnected problems (`5,808` edges, `0` articulation points, `0` bridges, `0` dangling links), added 8 Substrates × 7 Abstraction Layers, gradients/margins, 72 Lean theorems, 15 charts, and Track B `LOG-002` Antihydra pilot.
+- **`v2.4.0` (Current):** Upgraded to 6-kernel Lean 4.35.0 Palomar verification (`92` audited theorems incl. `NonVacuity.lean`), publication-grade Tectonic AMS-LaTeX white paper + clean-room `arxiv_submission.tar.gz`, 50-digit Decimal/Fraction reference oracle + Hypothesis property suite + 100% mutation kill rate, WCAG 2.2 AA `<4 MB` web atlas, interactive Lean Proof Blueprint, 10-tool MCP server, Apache-2.0 code license, legal identity cure, and 100% Build Standard v1.2.0 compliance.
+
+## Planned Next Releases
+
+- **`v2.5.0` (Q1 2027 — External Registry Delta Sync & Live Proof-Claim Audits):**
+  - Track post-Nov 2026 community outcomes on the 12 flagged AI proof claims (especially human-readable exposition & CMI review of the Alpöge/Claude RH/GRH archive and OpenAI Oct 2026 bulk dump).
+  - Add automated registry-diff importer for `erdosproblems.com` and `proofatlas.ai` open/solved status transitions.
+- **`v2.6.0` (Q2 2027 — Track B Frontier Probes & Zenodo Concept DOI):**
+  - Add 2–3 additional reproducible Track B finite computational probes (e.g., Collatz parity margins `NT-005`, Ramsey diagonal lower-bound witnesses `COMB-001`) under identical honest finite-boundary guarantees.
+  - Mint persistent Zenodo Concept DOI upon repository GitHub–Zenodo activation.
+- **`v3.0.0` (2027 — External Peer-Reviewed Expert Rubric Calibration):**
+  - Collect open community rubric overrides via structured issue diffs to compare solo editorial scores against multi-rater domain-expert distributions.

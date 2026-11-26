@@ -1,7 +1,7 @@
 {
   "problem_id": "LOG-002",
   "pilot_name": "Antihydra Collatz-Like BB(6) Finite Margin & Perturbation Probe",
-  "author": "Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)",
+  "author": "Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)",
   "epistemic_boundary": "Finite exact arbitrary-precision computational probe ONLY. Proves NO asymptotic halting or non-halting theorem for Antihydra or Busy Beaver BB(6); LOG-002 remains OPEN.",
   "theoretical_random_walk_drift": 0.5,
   "theoretical_log2_growth_per_step": 0.584963,

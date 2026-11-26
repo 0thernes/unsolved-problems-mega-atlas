@@ -42,23 +42,20 @@
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Unsolved Problems Mega-Atlas",
-  "alternateName": "0thernes Unsolved Problems Mega-Atlas V2.3.1",
-  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 20, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 9-tool MCP server, Karpathy-style AutoResearch harness, and 72 Pure Lean 4.35.0 formal invariants.",
-  "version": "2.3.1",
-  "datePublished": "2026-11-21",
+  "alternateName": "Unsolved Problems Mega-Atlas V2.4.0",
+  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 10-tool MCP server, Karpathy-style AutoResearch harness, and 92 Pure Lean 4.35.0 formal invariant theorems verified across 6 independent kernels.",
+  "version": "2.4.0",
+  "datePublished": "2026-11-25",
   "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
   "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.3.1). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.4.0). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
   "creator": {
     "@type": "sc:Person",
     "name": "Alexander Stephen Donahue",
     "identifier": "https://orcid.org/0009-0006-8168-9648",
-    "affiliation": {
-      "@type": "sc:Organization",
-      "name": "Independent Researcher (0thernes)",
-      "url": "https://0thernes.art"
-    }
+    "affiliation": "Independent Researcher, Spokane, WA, USA",
+    "url": "https://0thernes.art"
   },
   "keywords": [
     "unsolved problems",
@@ -66,6 +63,7 @@
     "knowledge graph",
     "lean 4",
     "formal verification",
+    "palomar comparator",
     "autoresearch",
     "mcp",
     "rag",
@@ -83,38 +81,38 @@
       "description": "Master tabular CSV (1,900 rows x 48 columns, UTF-8).",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv",
       "encodingFormat": "text/csv",
-      "sha256": "ccec31fbf1fac951c9841f5df322ff54d45ffce3a814e5c123e636dcd062bb63",
-      "contentSize": "3742942 B"
+      "sha256": "5e3044e5f4932e5a85b8c65e3205184d454e08ce60a368dbb81bf179b72e6033",
+      "contentSize": "3741256 B"
     },
     {
       "@type": "cr:FileObject",
-      "@id": "mega-atlas-jsonl",
-      "name": "MegaAtlas_Unsolved_Problems_V2.jsonl",
-      "description": "Streaming newline-delimited JSON (1,900 records) for LLM/RAG/HuggingFace ingestion.",
-      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl",
-      "encodingFormat": "application/x-ndjson",
-      "sha256": "8c70f109f2ba733db1954fac737c4f4256cda576de0399360454982956799d79",
-      "contentSize": "5684861 B"
+      "@id": "mega-atlas-tsv",
+      "name": "MegaAtlas_Unsolved_Problems_V2.tsv",
+      "description": "Tab-separated master table (1,900 rows x 48 columns, UTF-8).",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.tsv",
+      "encodingFormat": "text/tab-separated-values",
+      "sha256": "89ae8d17b3fe520c064e3881588ade437197aeac3d1fb530531207b8b0ff977a",
+      "contentSize": "3709841 B"
     },
     {
       "@type": "cr:FileObject",
-      "@id": "mega-atlas-json",
-      "name": "MegaAtlas_Unsolved_Problems_V2.json",
-      "description": "Complete JSON payload including problems, 5,597 graph edges, Nov 2026 AI audit, registries, benchmarks & matrices.",
-      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json",
-      "encodingFormat": "application/json",
-      "sha256": "db45f529777e97eea3def905d5d05a89a47c7e450d41d4c6372317b45f634702",
-      "contentSize": "6838981 B"
+      "@id": "mega-atlas-jsonl-gz",
+      "name": "MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
+      "description": "Deterministic gzipped streaming NDJSON (1,900 records) for LLM/RAG/HuggingFace ingestion.",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
+      "encodingFormat": "application/gzip",
+      "sha256": "01db671fc49756cb439940c1024ca21e7fb474e6cc3b38c0be8be569e9f283d5",
+      "contentSize": "1270437 B"
     },
     {
       "@type": "cr:FileObject",
-      "@id": "mega-atlas-sqlite",
-      "name": "MegaAtlas_Unsolved_Problems_V2.sqlite",
-      "description": "SQLite 3 normalized relational database with Porter-stemmed FTS5 full-text search index.",
-      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.sqlite",
-      "encodingFormat": "application/vnd.sqlite3",
-      "sha256": "a113f246fb79c906dbfed5e7d29520baac6b82f0b02ac9b879bc4da3c9497e2e",
-      "contentSize": "11866112 B"
+      "@id": "mega-atlas-json-gz",
+      "name": "MegaAtlas_Unsolved_Problems_V2.json.gz",
+      "description": "Deterministic gzipped complete JSON payload including problems, 5,808 graph edges, Nov 25, 2026 AI audit, registries, benchmarks & matrices.",
+      "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
+      "encodingFormat": "application/gzip",
+      "sha256": "eb87b463b2d74dbba19562cc4585467864ad3d9966a62b67649a1e60fa28dd97",
+      "contentSize": "1344671 B"
     }
   ],
   "recordSet": [

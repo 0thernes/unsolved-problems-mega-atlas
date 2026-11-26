@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """
 AutoResearch Track B Pilot — LOG-002 (Busy Beaver BB(6) / Antihydra Recurrence Probe)
-Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 
 EPISTEMIC BOUNDARY (READ FIRST):
   This script performs EXACT arbitrary-precision finite computational exploration
@@ -95,7 +97,7 @@ def main() -> None:
     report = {
         "problem_id": "LOG-002",
         "pilot_name": "Antihydra Collatz-Like BB(6) Finite Margin & Perturbation Probe",
-        "author": "Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)",
+        "author": "Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)",
         "epistemic_boundary": (
             "Finite exact arbitrary-precision computational probe ONLY. Proves NO asymptotic halting "
             "or non-halting theorem for Antihydra or Busy Beaver BB(6); LOG-002 remains OPEN."

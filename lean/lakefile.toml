@@ -1,6 +1,26 @@
+# SPDX-License-Identifier: Apache-2.0
 name = "MegaAtlasProofs"
-version = "2.3.0"
-defaultTargets = ["MegaAtlasProofs"]
+version = "2.4.0"
+defaultTargets = ["MegaAtlasProofs", "Challenge", "Solution", "PalomarSolution"]
+
+[leanOptions]
+autoImplicit = false
+relaxedAutoImplicit = false
+linter.unusedVariables = true
+linter.deprecated = true
 
 [[lean_lib]]
 name = "MegaAtlasProofs"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
+
+[[lean_lib]]
+name = "PalomarChallenge"
+srcDir = "../palomar"
+
+[[lean_lib]]
+name = "PalomarSolution"

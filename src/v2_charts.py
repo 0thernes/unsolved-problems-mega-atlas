@@ -1,4 +1,6 @@
-"""V2.3.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG) for 1,900 Problems across 8 Macro-Pillars, 28 Superdomains, 8 Substrates & 7 Abstraction Layers."""
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
+"""V2.4.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
 
 import os
 import textwrap
@@ -16,8 +18,21 @@ import seaborn as sns
 from v2_loader import load_v2_master, SUBSTRATE_CLASSES, ABSTRACTION_LAYERS
 from v2_schema import MACRO_PILLARS
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "outputs", "charts")
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+OUT_DIR = os.path.join(ROOT_DIR, "outputs", "charts")
+PAPER_FIG_DIR = os.path.join(ROOT_DIR, "paper", "figures")
+MEDIA_DIR = os.path.join(ROOT_DIR, "docs", "media")
 os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(PAPER_FIG_DIR, exist_ok=True)
+os.makedirs(MEDIA_DIR, exist_ok=True)
+
+PAPER_PDF_EXPORTS = {
+    "01_superdomain_landscape": "fig01_superdomain_landscape.pdf",
+    "02_strategic_impact_tractability_quadrant": "fig02_strategic_quadrant.pdf",
+    "11_nov2026_status_and_registries": "fig11_nov2026_status.pdf",
+    "13_substrates_and_abstraction_layers": "fig13_substrates_layers.pdf",
+    "15_epistemic_spectrum_and_autoresearch": "fig15_spectrum_autoresearch.pdf",
+}
 
 # 8-Colorblind-Safe Executive Jewel Palette for 8 Macro-Pillars
 PILLAR_COLORS = {
@@ -94,8 +109,11 @@ def save_fig(fig, stem: str, bg="#FFFFFF"):
     svg = os.path.join(OUT_DIR, f"{stem}.svg")
     fig.savefig(png, dpi=220, bbox_inches="tight", facecolor=bg)
     fig.savefig(svg, bbox_inches="tight", facecolor=bg)
+    if stem in PAPER_PDF_EXPORTS:
+        pdf = os.path.join(PAPER_FIG_DIR, PAPER_PDF_EXPORTS[stem])
+        fig.savefig(pdf, bbox_inches="tight", facecolor=bg)
     plt.close(fig)
-    print(f"  Saved {stem}.png & .svg")
+    print(f"  Saved {stem}.png & .svg" + (f" + paper/figures/{PAPER_PDF_EXPORTS[stem]}" if stem in PAPER_PDF_EXPORTS else ""))
 
 
 def chart_01_superdomain_landscape(data):
@@ -578,7 +596,7 @@ def chart_10_correlations_and_benchmarks(data):
         ("titan_index", "Titan\nIndex"),
     ]
     corr = df[[c for c, _ in num_cols]].corr()
-    lbls = [l for _, l in num_cols]
+    lbls = [lbl for _, lbl in num_cols]
     corr.index = lbls
     corr.columns = lbls
 
@@ -632,7 +650,7 @@ def chart_11_nov2026_status_and_registries(data):
     ax1.set_xlim(0, max_x * 1.24)
     ax1.set_xlabel("Number of Problems", fontweight="bold")
     ax1.set_ylabel("")
-    ax1.set_title("A. Nov 20, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
+    ax1.set_title("A. Nov 25, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
     ax1.grid(axis="x", linestyle="--", alpha=0.6)
     ax1.set_axisbelow(True)
 
@@ -663,7 +681,7 @@ def chart_11_nov2026_status_and_registries(data):
 
     handles = [mpatches.Patch(color=PILLAR_COLORS[p], label=p) for p in MACRO_PILLARS]
     fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.30, -0.09), frameon=True, facecolor="#F8FAFC", fontsize=8.0)
-    fig.suptitle("November 20, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
+    fig.suptitle("November 25, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
     plt.tight_layout()
     save_fig(fig, "11_nov2026_status_and_registries")
 
@@ -743,7 +761,7 @@ def chart_13_substrates_and_layers(data):
     ax2.grid(axis="x", linestyle="--", alpha=0.6)
     ax2.set_axisbelow(True)
 
-    fig.suptitle("Multi-Layer Reality Stack: 8 Physical/Formal Substrates × 7 Abstraction Layers (V2.3.0)", fontsize=14.6, fontweight="bold", y=1.01)
+    fig.suptitle("Multi-Layer Reality Stack: 8 Physical/Formal Substrates × 7 Abstraction Layers (V2.4.0)", fontsize=14.6, fontweight="bold", y=1.01)
     plt.tight_layout()
     save_fig(fig, "13_substrates_and_abstraction_layers")
 
@@ -914,13 +932,82 @@ def chart_15_spectrum_and_autoresearch(data):
     ax2.legend(loc="lower right", fontsize=8.2, frameon=True, facecolor="white")
     ax2.grid(True, linestyle="--", alpha=0.55)
 
-    fig.suptitle("Epistemic Spectrum Topography & Autonomous Research Verification Trajectory (0thernes LLC)", fontsize=14.4, fontweight="bold", y=1.01)
+    fig.suptitle("Epistemic Spectrum Topography & Autonomous Research Verification Trajectory (V2.4.0)", fontsize=14.4, fontweight="bold", y=1.01)
     plt.tight_layout()
     save_fig(fig, "15_epistemic_spectrum_and_autoresearch")
 
 
+def generate_social_preview(data):
+    """Generate crisp 1280x640 (<1 MB) GitHub OpenGraph social preview card at docs/media/social-preview.png."""
+    s = data["summary_stats"]
+    df_p = data["df_pillars"]
+    fig = plt.figure(figsize=(12.8, 6.4), dpi=100)
+    fig.patch.set_facecolor("#0B1120")
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_facecolor("#0B1120")
+    ax.set_xlim(0, 1280)
+    ax.set_ylim(0, 640)
+    ax.axis("off")
+
+    # Subtle accent bar and header
+    ax.add_patch(patches.Rectangle((0, 624), 1280, 16, facecolor="#38BDF8", edgecolor="none"))
+    ax.text(56, 565, "0THERNES OPEN-PROBLEM RESEARCH INFRASTRUCTURE  ·  V2.4.0  ·  NOV 2026",
+            fontsize=11.5, fontweight="bold", color="#38BDF8", family="DejaVu Sans")
+    ax.text(56, 495, "Unsolved Problems Mega-Atlas", fontsize=34, fontweight="bold", color="#F8FAFC")
+    ax.text(56, 448, "1,900 Deduplicated Problems · 8 Pillars × 28 Superdomains × 8 Substrates × 7 Layers · 5,808 Biconnected Edges",
+            fontsize=13, color="#CBD5E1")
+
+    # 4 KPI Cards
+    cards = [
+        (f"{s['total_problems']:,}", "OPEN & HARD PROBLEMS", "#38BDF8"),
+        (f"{s['total_graph_edges']:,}", "BICONNECTED EDGES (0 APS)", "#34D399"),
+        ("6 / 6 KERNELS", "PURE LEAN 4.35.0 PALOMAR", "#A78BFA"),
+        ("100% MRR@5", "HYBRID RAG + 10-TOOL MCP", "#FBBF24"),
+    ]
+    for i, (val, lbl, col) in enumerate(cards):
+        x0 = 56 + i * 296
+        ax.add_patch(patches.FancyBboxPatch((x0, 315), 274, 98, boxstyle="round,pad=0.3,rounding_size=12",
+                                            facecolor="#111827", edgecolor="#334155", linewidth=1.4))
+        ax.text(x0 + 20, 370, val, fontsize=20, fontweight="bold", color=col)
+        ax.text(x0 + 20, 336, lbl, fontsize=9.2, fontweight="bold", color="#94A3B8")
+
+    # Pillar distribution bar across bottom
+    bar_x = 56
+    bar_w = 1168
+    ax.text(56, 272, "8 MACRO-PILLAR COVERAGE DISTRIBUTION (N = 1,900)", fontsize=10.5, fontweight="bold", color="#94A3B8")
+    cur_x = bar_x
+    for r in df_p.itertuples():
+        seg_w = bar_w * (r.Problem_Count / s["total_problems"])
+        col = PILLAR_COLORS[r.Macro_Pillar]
+        ax.add_patch(patches.Rectangle((cur_x, 224), seg_w - 2, 34, facecolor=col, edgecolor="none"))
+        if seg_w > 85:
+            ax.text(cur_x + seg_w / 2, 241, f"{r.Problem_Count}", ha="center", va="center",
+                    fontsize=9.5, fontweight="bold", color="#FFFFFF")
+        cur_x += seg_w
+
+    # Compact legend grid
+    for idx, r in enumerate(df_p.itertuples()):
+        row_i = idx // 4
+        col_i = idx % 4
+        lx = 56 + col_i * 296
+        ly = 178 - row_i * 34
+        ax.add_patch(patches.Rectangle((lx, ly - 5), 14, 14, facecolor=PILLAR_COLORS[r.Macro_Pillar], edgecolor="none"))
+        short_nm = r.Macro_Pillar.split(",")[0].split("&")[0].strip()
+        ax.text(lx + 22, ly + 2, f"{short_nm} ({r.Problem_Count})", va="center", fontsize=10, color="#E2E8F0")
+
+    ax.text(56, 68, "Alexander Stephen Donahue (ORCID 0009-0006-8168-9648) · Independent Researcher, Spokane, WA, USA",
+            fontsize=10.2, color="#94A3B8")
+    ax.text(56, 38, "github.com/0thernes/unsolved-problems-mega-atlas  ·  Data: CC-BY-4.0  ·  Code & Lean: Apache-2.0",
+            fontsize=9.8, color="#64748B")
+
+    out_path = os.path.join(MEDIA_DIR, "social-preview.png")
+    fig.savefig(out_path, dpi=100, facecolor="#0B1120")
+    plt.close(fig)
+    print(f"  Saved social preview card: {out_path} ({os.path.getsize(out_path)/1024:.1f} KB)")
+
+
 def main():
-    print("Loading V2.3.0 Mega-Atlas for 15 publication-grade charts...")
+    print("Loading V2.4.0 Mega-Atlas for 15 publication-grade charts + paper PDFs + social preview...")
     data = load_v2_master()
     chart_01_superdomain_landscape(data)
     chart_02_strategic_quadrant(data)
@@ -937,7 +1024,8 @@ def main():
     chart_13_substrates_and_layers(data)
     chart_14_gradients_margins_adjacents(data)
     chart_15_spectrum_and_autoresearch(data)
-    print("All 15 V2.3.0 charts (30 files: PNG + SVG) generated!")
+    generate_social_preview(data)
+    print("All 15 V2.4.0 charts (30 PNG+SVG) + 5 vector PDF paper figures + social preview generated!")
 
 
 if __name__ == "__main__":

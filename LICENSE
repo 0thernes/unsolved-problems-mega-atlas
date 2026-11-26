@@ -1,39 +1,38 @@
 Creative Commons Attribution 4.0 International (CC BY 4.0)
+==========================================================
 
-Copyright (c) 2026 Alexander Stephen Donahue (0thernes LLC, Spokane, WA, USA)
-ORCID: https://orcid.org/0009-0006-8168-9648
-Repository: https://github.com/0thernes/unsolved-problems-mega-atlas
+Copyright (c) 2026 Alexander Stephen Donahue
+ORCID: 0009-0006-8168-9648
+Affiliation: Independent Researcher, Spokane, WA, USA
+Web: https://0thernes.art | GitHub: https://github.com/0thernes/unsolved-problems-mega-atlas
 
-APPLICABILITY (DUAL-LICENSE MODEL)
-==================================
-This Creative Commons Attribution 4.0 International License (CC BY 4.0) applies
-to all dataset records, taxonomies, ranking tables, monographs, white papers,
-documentation, HTML/PDF reports, and PNG/SVG visualizations in this repository
-(`outputs/`, `docs/`, `src/v2_data/`, `RANKING.md`, `README.md`, `PHILOSOPHY.md`,
-`VERIFICATION.md`, `EVIDENCE.md`).
+DUAL-LICENSING NOTICE
+---------------------
+1. Dataset, Structured Catalog, Charts, Figures, Prose, White Paper & Documentation:
+   Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+   Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 
-All source code, schemas, build pipelines, RAG query tools, test suites, CI
-workflows, and Pure Lean 4.35.0 formal invariant proofs (`src/v2_*.py`, `rag/`,
-`scripts/`, `schema/`, `tests/`, `lean/`, `.github/`) are separately licensed
-under the MIT License — see `LICENSE-CODE` and `NOTICE`.
+2. Source Code, Lean 4.35.0 Formal Proof Modules, Palomar Contracts, RAG/MCP Tools,
+   Reference Oracles, Test Suites, Build Recipes & CI Scripts:
+   Licensed under the Apache License, Version 2.0 (see `LICENSE-CODE`).
 
-SUMMARY OF CC BY 4.0 TERMS
-==========================
 You are free to:
-  - Share: copy and redistribute the material in any medium or format for any
-    purpose, even commercially.
-  - Adapt: remix, transform, and build upon the material for any purpose,
+  * Share — copy and redistribute the material in any medium or format for any purpose,
     even commercially.
+  * Adapt — remix, transform, and build upon the material for any purpose, even commercially.
 
 Under the following terms:
-  - Attribution: You must give appropriate credit, provide a link to the
-    license, and indicate if changes were made. Recommended attribution:
+  * Attribution — You must give appropriate credit, provide a link to the license, and
+    indicate if changes were made. Recommended attribution:
 
-      Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.1.0).
-      0thernes LLC. ORCID: 0009-0006-8168-9648.
-      https://github.com/0thernes/unsolved-problems-mega-atlas (CC BY 4.0).
+      Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.4.0).
+      Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648.
+      https://github.com/0thernes/unsolved-problems-mega-atlas
 
-  - No additional restrictions: You may not apply legal terms or technological
-    measures that legally restrict others from doing anything the license permits.
+  * No additional restrictions — You may not apply legal terms or technological measures
+    that legally restrict others from doing anything the license permits.
 
-Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+Disclaimer:
+The material is provided "as is", without warranty of any kind, express or implied.
+Quantitative difficulty, tractability, impact, and interdisciplinarity scores are
+curated AI-assisted editorial estimates, not peer-reviewed empirical measurements.

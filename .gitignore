@@ -1,28 +1,35 @@
-# Python & Virtual Environments
+# Python environments & caches
 .venv/
 venv/
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
-.ruff_cache/
 .mypy_cache/
+.ruff_cache/
 .hypothesis/
-release-dist/
+*.egg-info/
+.coverage
 
-# Lean 4 build caches (sources, lakefile.toml, lean-toolchain remain tracked)
+# Lean 4 build caches (keep lean/lake-manifest.json tracked for lake comparator!)
 lean/.lake/
+palomar/.lake/
 
-# OS & Editor Artifacts
+# Derived heavy artifacts (>5 MB) regenerated deterministically by `just build` / `src/v2_export_all.py`
+# and published in full on GitHub Releases (keeps git repo strictly <5 MB per file; Build Standard A24)
+build/
+paper/build/
+outputs/MegaAtlas_Unsolved_Problems_V2.sqlite
+outputs/MegaAtlas_Unsolved_Problems_V2.json
+outputs/MegaAtlas_Unsolved_Problems_V2.jsonl
+outputs/MegaAtlas_Comprehensive_Report_V2.pdf
+outputs/MegaAtlas_Print_Report_V2.html
+
+# Local secrets & OS junk
+.env
+.env.local
+!.env.example
 .DS_Store
 Thumbs.db
-desktop.ini
-*.tmp
-*.bak
 *.log
-.vscode/
-.idea/
-
-# Keep all Mega-Atlas outputs, charts & schemas tracked!
-!outputs/
-!outputs/**
+*.tmp

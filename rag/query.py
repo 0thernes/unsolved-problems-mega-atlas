@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.2.0, 0thernes LLC).
+Unsolved Problems Mega-Atlas (V2.4.0, Alexander Stephen Donahue).
 
-Powered by SQLite FTS5 staged BM25 ranking (Strict-AND precision pass +
-title-boosted OR backfill) + multi-hop knowledge-graph expansion + pairwise
-problem comparison over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` —
-zero API keys, zero network calls, sub-30 ms deterministic retrieval.
+Powered by SQLite FTS5 staged BM25 ranking (Exact phrase + Strict-AND precision pass +
+relaxed OR backfill + hybrid title/bigram/PageRank re-ranker) + multi-hop knowledge-graph
+expansion + pairwise problem comparison over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` —
+zero API keys, zero network calls, sub-30 ms deterministic retrieval. Automatically
+rebuilds the local SQLite FTS5 index on demand on clean git clones.
 
 Examples:
     python rag/query.py "turbulence climate sensitivity" --top 8 --hops 1
@@ -23,11 +26,80 @@ import json
 import math
 import re
 import sqlite3
+import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DB = ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"
+
+
+def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
+    """Auto-build the local SQLite FTS5 index deterministically if absent on a fresh clone."""
+    if db_path.exists() and db_path.stat().st_size > 0:
+        return db_path
+    src_dir = str(ROOT / "src")
+    if src_dir not in sys.path:
+        sys.path.insert(0, src_dir)
+    import pandas as pd  # noqa: PLC0415
+    from v2_loader import load_v2_master  # noqa: PLC0415
+
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    data = load_v2_master()
+    df = data["df"]
+    conn = sqlite3.connect(str(db_path))
+    try:
+        df.to_sql("problems", conn, index=False, if_exists="replace")
+        pd.DataFrame(
+            [{"source": u, "target": v} for u, v in sorted(data["G"].edges())]
+        ).to_sql("edges", conn, index=False, if_exists="replace")
+        data["df_ai_audit"].to_sql("ai_audit_nov2026", conn, index=False, if_exists="replace")
+        data["df_registries"].to_sql("registries_nov2026", conn, index=False, if_exists="replace")
+        data["df_author_contributions"].to_sql("author_frontier_contributions", conn, index=False, if_exists="replace")
+        data["df_benchmarks"].to_sql("benchmarks", conn, index=False, if_exists="replace")
+        data["df_contrasts"].to_sql("contrasts", conn, index=False, if_exists="replace")
+        data["df_pillars"].to_sql("pillar_summary", conn, index=False, if_exists="replace")
+        data["df_superdomains"].to_sql("superdomain_summary", conn, index=False, if_exists="replace")
+        data["df_substrates"].to_sql("substrate_summary", conn, index=False, if_exists="replace")
+        pd.DataFrame(
+            [{"key": k, "value": json.dumps(v) if isinstance(v, (dict, list)) else str(v)}
+             for k, v in data["summary_stats"].items()]
+        ).to_sql("metadata", conn, index=False, if_exists="replace")
+        cur = conn.cursor()
+        cur.execute("CREATE UNIQUE INDEX idx_problems_id ON problems(id)")
+        cur.execute("CREATE INDEX idx_problems_pillar ON problems(macro_pillar)")
+        cur.execute("CREATE INDEX idx_problems_superdomain ON problems(superdomain)")
+        cur.execute("CREATE INDEX idx_problems_status ON problems(status_2026)")
+        cur.execute("CREATE INDEX idx_problems_vflag ON problems(verification_flag)")
+        cur.execute("CREATE INDEX idx_problems_css ON problems(css_score DESC)")
+        cur.execute("CREATE INDEX idx_edges_src ON edges(source)")
+        cur.execute("CREATE INDEX idx_edges_tgt ON edges(target)")
+        cur.execute("""
+            CREATE VIRTUAL TABLE problems_fts USING fts5(
+                id UNINDEXED, name, macro_pillar, superdomain, subdomain, originator,
+                core_question, formal_expression, primary_bottleneck, competing_approaches,
+                closest_progress_2026, ai_verification_nov2026, affected_industries,
+                registry_source, contrast_axis, tokenize='porter unicode61'
+            )
+        """)
+        cur.execute("""
+            INSERT INTO problems_fts(
+                id, name, macro_pillar, superdomain, subdomain, originator,
+                core_question, formal_expression, primary_bottleneck, competing_approaches,
+                closest_progress_2026, ai_verification_nov2026, affected_industries,
+                registry_source, contrast_axis
+            )
+            SELECT
+                id, name, macro_pillar, superdomain, subdomain, originator,
+                core_question, formal_expression, primary_bottleneck, competing_approaches,
+                closest_progress_2026, ai_verification_nov2026, affected_industries,
+                registry_source, contrast_axis
+            FROM problems
+        """)
+        conn.commit()
+    finally:
+        conn.close()
+    return db_path
 
 STOPWORDS = {
     "the", "of", "and", "or", "in", "on", "to", "for", "with", "by", "at",
@@ -188,7 +260,10 @@ def search_atlas(
     db_path: Path = DEFAULT_DB,
 ) -> Dict[str, Any]:
     if not db_path.exists():
-        raise FileNotFoundError(f"SQLite FTS5 database not found at {db_path}. Run `python src/v2_export_all.py`.")
+        if db_path == DEFAULT_DB:
+            ensure_sqlite_db(db_path)
+        else:
+            raise FileNotFoundError(f"SQLite FTS5 database not found at {db_path}. Run `python src/v2_export_all.py`.")
 
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
@@ -277,6 +352,8 @@ def search_atlas(
 
 def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Dict[str, Any]:
     """Compare any two problems side-by-side with antisymmetric deltas and shared neighbors."""
+    if not db_path.exists() and db_path == DEFAULT_DB:
+        ensure_sqlite_db(db_path)
     conn = sqlite3.connect(str(db_path))
     conn.row_factory = sqlite3.Row
     try:
@@ -318,7 +395,7 @@ def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Di
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V2.2.0)")
+    parser = argparse.ArgumentParser(description="Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V2.4.0)")
     parser.add_argument("query", nargs="?", default=None, help="Free-text search query (staged FTS5 BM25)")
     parser.add_argument("--problem", dest="problem_id", default=None, help="Exact Problem ID (e.g., NT-001, CS-001, GR-001)")
     parser.add_argument("--compare", nargs=2, metavar=("ID_A", "ID_B"), default=None, help="Compare two Problem IDs side-by-side")

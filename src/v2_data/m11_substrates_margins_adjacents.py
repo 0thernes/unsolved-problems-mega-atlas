@@ -1,8 +1,10 @@
 """Module 11 (V2.3.0 Forensic Blindspot Closure): 52 High-Rigor Open & Hard Problems Across Underrepresented Substrates, Gradients, Margins, Spectrums & Cross-Pillar Adjacents."""
 
-import sys, os
+import os
+import sys
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-from v2_schema import P
+from v2_schema import P  # noqa: E402
 
 # Shorthand exact superdomains
 NT = "Number Theory & Arithmetic"

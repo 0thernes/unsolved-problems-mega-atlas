@@ -1,20 +1,54 @@
-# Scholarly Code of Conduct
+# Contributor Covenant Code of Conduct
 
-## Our Standard
+## Our Pledge
 
-The **Unsolved Problems Mega-Atlas** (Independent Researcher (0thernes)) is an open, falsifiable research infrastructure project. We welcome mathematicians, scientists, engineers, philosophers, independent researchers, and software contributors of all backgrounds.
+We as members, contributors, and leaders pledge to make participation in our
+community a harassment-free experience for everyone, regardless of age, body
+size, visible or invisible disability, ethnicity, sex characteristics, gender
+identity and expression, level of experience, education, socio-economic status,
+nationality, personal appearance, race, caste, color, religion, or sexual
+identity and orientation.
 
-We commit to:
-- **Intellectual rigor paired with collegiality:** Attack arguments, formulas, citations, and edge cases mercilessly; treat people with respect.
-- **Radical epistemic honesty:** Never exaggerate certainty, fabricate references, disguise AI outputs as human peer review, or claim an open problem is solved without consensus verification.
-- **Attribution & credit:** Credit original problem posers, registry maintainers (`ProofAtlas.ai`, `erdosproblems.com`, Clay CMI, Kourovka, Kirby, PhilPapers, etc.), reviewers, and critics accurately.
+We pledge to act and interact in ways that contribute to an open, welcoming,
+diverse, inclusive, and healthy community.
 
-## Unacceptable Behavior
+## Our Standards
 
-- Harassment, personal attacks, doxxing, or discrimination of any kind.
-- Deliberate submission of fabricated citations, falsified Lean proofs (`sorry` / custom axioms / `native_decide` smuggling), or spam AI proof dumps without verification metadata.
-- Misrepresenting the atlas's editorial estimates as peer-reviewed verdicts.
+Examples of behavior that contributes to a positive environment for our
+community include:
 
-## Reporting & Enforcement
+- Demonstrating empathy and kindness toward other people
+- Being respectful of differing opinions, viewpoints, and experiences
+- Giving and gracefully accepting constructive academic and engineering feedback
+- Accepting responsibility and apologizing to those affected by our mistakes
+- Focusing on what is best not just for us as individuals, but for the overall community
 
-Concerns may be reported privately to **Alexander Stephen Donahue** (`0_0@0thernes.art`, ORCID `0009-0006-8168-9648`). Maintainers reserve the right to remove or reject contributions that violate these standards.
+Examples of unacceptable behavior include:
+
+- The use of sexualized language or imagery, and sexual attention or advances of any kind
+- Trolling, insulting or derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or email address, without explicit permission
+- Fabricating citations, peer review, or formal proof results
+
+## Enforcement Responsibilities
+
+Project maintainer **Alexander Stephen Donahue** (`Independent Researcher, Spokane, WA, USA`,
+ORCID `0009-0006-8168-9648`) is responsible for clarifying and enforcing our standards of
+acceptable behavior.
+
+## Scope
+
+This Code of Conduct applies within all project spaces, including GitHub Issues, discussions,
+and direct correspondence regarding this repository.
+
+## Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the
+maintainer at `0_0@0thernes.art`. All complaints will be reviewed and investigated promptly
+and fairly.
+
+## Attribution
+
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org),
+version 2.1, available at https://www.contributor-covenant.org/version/2/1/code_of_conduct.html.

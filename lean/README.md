@@ -1,19 +1,33 @@
-# Pure Lean 4.35.0 Formal Invariant Suite (`lean/`)
+# Pure Lean 4.35.0 Formal Invariant Suite (`MegaAtlasProofs`, `v2.4.0`)
 
-**Author:** Alexander Stephen Donahue (`Independent Researcher (0thernes)`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
-**Toolchain:** `leanprover/lean4:v4.35.0` · **External Dependencies:** None (zero Mathlib)
+- **Toolchain:** `leanprover/lean4:v4.35.0` (zero Mathlib, zero external Lake dependencies)
+- **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
+- **License:** `Apache-2.0` (`../LICENSE-CODE`)
+- **Audited Theorems:** **92** (`0` `sorry` in `lean/`, `0` `native_decide`, `0` custom `axiom`, axioms strictly `⊆ [propext, Quot.sound]`)
+- **Interactive Proof Blueprint:** [`../blueprint/index.html`](../blueprint/index.html)
 
-## Scope & Honest Boundary
+## Module Inventory
 
-This proof library formally certifies **72 exact discrete mathematical invariants** (8 files, 1,008 lines) of the Unsolved Problems Mega-Atlas's scoring formulas (`CSS`, antiquity 300-year saturation, `Titan Index`, `Near-Term Leverage`), 4-Quadrant and 6-Era classifiers, 8×28 hierarchical taxonomy surjection, finite undirected graph Handshaking Lemma (`∑ deg = 2|E|`), cross-partition edge hierarchy (`cross_pillar ≤ cross_superdomain ≤ |E|`), deduplication cardinality bound, **Karpathy-style AutoResearch AQS bounds & anti-gaming keep/discard ratchet**, pairwise comparison delta antisymmetry, and **V2.3.0 multi-layer Substrate/Layer/Gradient/Margin/Bridge/Apex-Keystone invariants** (`LayerGradients.lean`).
+| File | Theorems | Scope |
+|---|---:|---|
+| `MegaAtlasProofs/Scoring.lean` | 22 | CSS, Titan, Leverage weights, bounds, monotonicity & 300-year antiquity cap |
+| `MegaAtlasProofs/Quadrants.lean` | 11 | Strategic 4-quadrant exact iff, Q1 leverage floor ≥ 5.6, monotone 6-era classifier |
+| `MegaAtlasProofs/Taxonomy.lean` | 8 | 8 Macro-Pillars × 28 Superdomains (`[5,3,3,3,3,4,4,3]`), surjectivity & separation |
+| `MegaAtlasProofs/GraphInvariants.lean` | 5 | Finite undirected Handshaking Lemma (`∑ deg = 2|E|`), edge hierarchy, deduplication bound |
+| `MegaAtlasProofs/AutoResearchInvariants.lean` | 12 | `aqsBps` bounds, anti-gaming keep/discard ratchet, pairwise delta antisymmetry |
+| `MegaAtlasProofs/LayerGradients.lean` | 14 | 8 Substrates × 7 Layers (`L0..L6`), `D−T` gradient `[-9,+9]`, CSS−Titan margin, 4-class MarginRole |
+| `MegaAtlasProofs/NonVacuity.lean` | 12 | Concrete inhabitants & sharp negative boundaries for every hypothesis bundle |
+| `Challenge.lean` / `Solution.lean` / `PalomarSolution.lean` | 8 | Clean Palomar specification (`M1`–`M7` + `prove_all_mega_atlas_invariants`) matched against `../palomar/PalomarChallenge.lean` |
+| `MegaAtlasProofs/VerifyAxioms.lean` | — | Audits `#print axioms` across all **92** theorems → frozen in `../results/lean_axioms.txt` |
 
-> **Honest Boundary:** These theorems verify mathematical properties of the *atlas's quantitative and verification framework* only. They do **not** claim to prove any of the 1,900 open problems cataloged in the dataset.
-
-## Build & Axiom Audit
+## Local & 6-Kernel Verification Commands
 
 ```bash
-cd lean
-lake build
+lake clean && lake build
+lake env lean MegaAtlasProofs/VerifyAxioms.lean
+lake env leanchecker-paranoid PalomarSolution
+# Linux with bubblewrap (full 6-kernel Palomar comparator):
+lake comparator --config comparator.json --paranoid
 ```
 
-All 72 theorems compile (`10 jobs`) with **zero warnings**, **zero `sorry`**, **zero `admit`**, **zero `native_decide`**, **zero `Classical.choice`**, and **`#print axioms` strictly within `[propext, Quot.sound]` or empty** (audited in `MegaAtlasProofs/VerifyAxioms.lean`).
+> **Scope Boundary:** These proofs verify internal atlas formulas, taxonomy, finite graph handshaking, deduplication, AutoResearch ratchet, and margin invariants **ONLY**. They prove **0 / 1,900** of the cataloged open problems. See `../docs/statement-fidelity.md` and `formalization.yaml`.

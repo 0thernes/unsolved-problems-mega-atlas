@@ -1,13 +1,21 @@
-# Frequently Asked Questions (`docs/faq.md`)
+# Frequently Asked Questions (FAQ)
 
-### 1. Did any of Alexander Donahue's / 0thernes's papers solve one of the 1,900 Mega-Atlas problems?
-**No (`0 / 1,900` retired).** A full 1,900-problem cross-reference completed on 2026-11-25 confirmed that zero grand Mega-Atlas problems are retired, and `multinomial-tv-conjecture` (`0TH-2026-006`) is a specialized 2026 preprint conjecture not cataloged in the 61 macro `STAT-*` problems. Seven macro nodes (`QM-011`, `QC-037`, `CS-053`, `CS-026`, `QC-042`, `CS-005`, `NEURO-001`) have explicit partial/special-case methodological overlaps; see [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](0THERNES_SOLVED_AUDIT_2026-11-25.md).
+### 1. Did you solve any of the 1,900 open problems in this atlas?
+**No (`0 / 1,900` overarching Atlas problems retired).** The Lean 4.35.0 proofs in this repository (`92` theorems across 6 kernels) certify the atlas's *internal* scoring, taxonomy, graph handshaking, deduplication, AutoResearch ratchet, and margin invariants — NOT the 1,900 open problems themselves. Seven companion independent preprints in `0thernes-research-archive` resolve narrowly scoped published sub-conjectures (documented transparently in `paper/main.tex` Section 6 and MCP tool `list_author_frontier_contributions`), and every single one explicitly keeps its overarching Mega-Atlas parent problem **OPEN**.
 
-### 2. Why are the 12 Fall/Nov 2026 AI proof claims still listed as OPEN?
-Lean compilation verifies logical deduction from formalized statements, NOT whether those formalized statements match the historical open problem without subtle drift or community peer consensus. Every AI claim stays unretired under `verification_flag = "ai-claim-under-audit-nov2026"`.
+### 2. Why are the Fall/November 2026 AI proof claims (Riemann Hypothesis, Navier–Stokes, etc.) still marked OPEN?
+Because compiling a multi-million-line Lean proof archive (such as the Nov 21, 2026 Lean FRO / Mathlib Initiative multi-kernel certification of the Alpöge/Claude RH/GRH archive) checks deductive soundness, NOT human-readable exposition or Clay Mathematics Institute community retirement. All 12 Fall/Nov 2026 AI proof-claim targets remain explicitly flagged `ai-claim-under-audit-nov2026` until official community consensus retires them.
 
-### 3. Why do the 72 Lean 4 proofs not use Mathlib?
-Keeping `lean/MegaAtlasProofs/` 100% Pure Lean 4.35.0 (zero Mathlib, zero `Classical.choice`, strictly `[propext, Quot.sound]` or empty) lets anyone compile and audit all 72 theorems in ~15 seconds from a clean clone without downloading multi-gigabyte caches.
+### 3. Are the `difficulty_score`, `tractability_2050`, and `civilizational_impact` scores peer-reviewed?
+**No.** They are explicitly disclosed AI-assisted editorial estimates created by solo independent researcher Alexander Stephen Donahue. Treat them as a transparent, editable, falsifiable argument: edit any entry in `src/v2_data/`, run `just build`, and inspect the exact diff in `RANKING.md`.
 
-### 4. Why are large files (`outputs/*.pdf`, `*.html`, `*.sqlite`) committed to Git?
-So GitHub Pages, the offline RAG CLI (`rag/query.py`), the 9-tool MCP server (`mcp_server/server.py`), and `pytest` work immediately after `git clone` with zero cloud or LFS dependencies (see [ADR 0002](adr/0002-dual-license-and-committed-atlas-artifacts.md)).
+### 4. Why aren't the `.sqlite`, `.json`, `.jsonl`, or 168-page Directory PDF files committed directly in git?
+Build Standard v1.2.0 (**A24**) keeps every git-tracked file strictly `< 5 MB` so clones stay fast and clean. Deterministic `.json.gz` (`1.28 MB`), `.jsonl.gz` (`1.21 MB`), `.csv`, `.tsv`, 15-sheet `.xlsx`, `<4 MB` Interactive HTML, all 30 charts, and the 10-page AMS-LaTeX white paper PDF (`0.67 MB`) ARE committed directly. Running `rag/query.py` or `mcp_server/server.py` auto-builds the SQLite FTS5 index locally in `< 1 s`, and all full uncompressed release artifacts are attached to **GitHub Release `v2.4.0`**.
+
+### 5. How can I verify the Lean 4.35.0 proofs myself in under 30 seconds?
+```bash
+cd lean
+lake build
+lake env lean MegaAtlasProofs/VerifyAxioms.lean
+```
+Every one of the 92 theorems reports axioms strictly within `[propext, Quot.sound]` (zero `sorryAx`, zero `Classical.choice`, zero `Lean.ofReduceBool`). On Linux with `bubblewrap`, run `lake comparator --config comparator.json --paranoid` to replay all 6 independent proof kernels.

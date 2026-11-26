@@ -1,0 +1,52 @@
+[
+  {
+    "id": "PHIL-004",
+    "css_score": 92.97,
+    "titan_index": 9.72
+  },
+  {
+    "id": "PHIL-003",
+    "css_score": 90.13,
+    "titan_index": 9.23
+  },
+  {
+    "id": "PHIL-001",
+    "css_score": 89.9,
+    "titan_index": 8.96
+  },
+  {
+    "id": "PHIL-006",
+    "css_score": 86.8,
+    "titan_index": 8.24
+  },
+  {
+    "id": "PHIL-002",
+    "css_score": 85.76,
+    "titan_index": 8.66
+  },
+  {
+    "id": "GR-001",
+    "css_score": 83.4,
+    "titan_index": 10.0
+  },
+  {
+    "id": "ANL-001",
+    "css_score": 82.98,
+    "titan_index": 9.31
+  },
+  {
+    "id": "ANL-002",
+    "css_score": 82.83,
+    "titan_index": 8.56
+  },
+  {
+    "id": "GEOM-003",
+    "css_score": 82.07,
+    "titan_index": 7.45
+  },
+  {
+    "id": "NT-001",
+    "css_score": 81.97,
+    "titan_index": 9.34
+  }
+]

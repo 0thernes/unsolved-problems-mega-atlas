@@ -2,14 +2,29 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.4.0] — 2026-11-25
+
+### Added & Upgraded — Six-Kernel Lean 4.35.0 Palomar Verification, AMS-LaTeX White Paper, Deep Verification Ladder & 100% Build Standard v1.2.0 Compliance
+- **Six-Kernel Pure Lean 4.35.0 Palomar Upgrade (`72 → 92` Audited Theorems):**
+  - Migrated all Lean modules to Lean 4.35.0 `module` syntax (`public import`, `@[expose] public section`) with strict `[leanOptions]` (`autoImplicit = false`, `linter.unusedVariables = true`, `linter.deprecated = true`).
+  - Added [`lean/MegaAtlasProofs/NonVacuity.lean`](lean/MegaAtlasProofs/NonVacuity.lean) (`12` concrete inhabitants & sharp negative boundary witnesses), [`lean/Challenge.lean`](lean/Challenge.lean), [`lean/Solution.lean`](lean/Solution.lean), [`lean/PalomarSolution.lean`](lean/PalomarSolution.lean), [`palomar/PalomarChallenge.lean`](palomar/PalomarChallenge.lean) (outside `lean/` preserving immutable `autoresearch/evaluate.py` — ADR 0004), [`lean/comparator.json`](lean/comparator.json), and [`lean/formalization.yaml`](lean/formalization.yaml).
+  - Audited all **92** theorems (`1,753` exported declarations) strictly within constructive `[propext, Quot.sound]` across all 6 independent kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche --verified`, `con-ron --verified`); froze [`results/lean_axioms.txt`](results/lean_axioms.txt) with automated README drift check (`scripts/check_readme_axioms.py`) and interactive SVG Proof Blueprint (`blueprint/index.html`).
+- **Publication-Grade 10-Page AMS-LaTeX White Paper & Clean-Room arXiv Tarball (`paper/`, `dist/`):**
+  - Authored `paper/main.tex` & `paper/refs.bib` with 5 vector PDF figures, Numbered Claims Ledger, Statement-Fidelity Audit Matrix, and companion author-preprint COI cross-map; compiled via Tectonic (`scripts/build_paper.py`) into `dist/Donahue_2026_unsolved_problems_mega_atlas.pdf` (`0.672 MB`, `0` overfull hboxes, `0` undefined refs) + deterministic `dist/arxiv_submission.tar.gz` (`0.498 MB`), with **12/12** live-verified URL/DOI citations (`scripts/check_citations.py`).
+- **November 25, 2026 RH/GRH Update & Companion Author Preprints Cross-Audit:**
+  - Updated `NT-001` & `NT-002` with the Nov 21, 2026 Lean FRO / Mathlib Initiative multi-kernel certification note while keeping all 12 AI proof-claim targets officially unretired.
+  - Added transparent cross-map of 7 companion author preprints (`0thernes-research-archive`) across JSON, SQLite, 15-sheet XLSX, HTML Tab 2, `RANKING.md`, and 10th MCP tool `list_author_frontier_contributions` — explicitly verifying **`0 / 1,900` overarching Atlas parent problems retired**.
+- **Deep Verification Ladder (`reference/`, `tests/test_properties_and_differential.py`, `scripts/`):**
+  - Added independent 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case randomized + 1,900-row exhaustive differential tests, metamorphic & golden snapshot tests, negative boundary tests, 6-mutant semantic mutation audit (`100%` kill rate via `scripts/run_mutation_audit.py`), and 10-iteration warmed benchmark suite (`scripts/benchmark_atlas.py` → `docs/benchmarks.md` + `results/bench-history.csv`).
+- **`< 5 MB` Git Hygiene (A24), WCAG 2.2 AA Web Atlas & Legal/License Alignment:**
+  - Refactored `outputs/MegaAtlas_Interactive_Dashboard_V2.html` (`20.64 MB → 3.80 MB`, external `charts/*.png` + columnar JSON + WCAG 2.2 AA accessibility); tracked deterministic `.json.gz` (`1.28 MB`) & `.jsonl.gz` (`1.21 MB`); added auto-building `ensure_sqlite_db()` in `rag/query.py`; moved Chrome directory PDF to gitignored `build/` (attached to GitHub Releases).
+  - Upgraded code license to **Apache-2.0** (`LICENSE-CODE`, SPDX headers, `THIRD_PARTY_NOTICES.md`) and replaced inaccurate `"0thernes LLC"` entity strings with `"Independent Researcher, Spokane, WA, USA"` matching ORCID `0009-0006-8168-9648`.
+  - Achieved **100.0%** Build Standard v1.2.0 compliance (`repo.yaml`, `justfile`, `CLAIMS.md`, `LIMITATIONS.md`, `REPLICATION.md`, `HARDENING_LOG.md`, `ERRATA.md`, `DEVIATIONS.md`, `SUPPORT.md`, `ROADMAP.md`, `UPGRADING.md`, ADRs, threat model, operations runbook, 10-class issue templates, removed banned PR template, 3-OS + 6-kernel + Tectonic + SLSA CI, `release.yml`, and `1280×640` `docs/media/social-preview.png`).
+
 ## [2.3.1] — 2026-11-25
 
-### Fixed & Added — Build Standard v1.2.0 Hardening, R4 Remediation & 0/1,900 Archive Solved-Problem Audit
-- **Removed R4-banned file (`conflict`):** Deleted `.github/PULL_REQUEST_TEMPLATE.md` and enforced Build Standard `R4` via regression test in `tests/test_build_standard_and_properties.py`.
-- **Affiliation accuracy (`problem`):** Replaced unformed-entity `"0thernes LLC"` strings across active governance and FAIR metadata (`README.md`, `CITATION.cff`, `.zenodo.json`, `AGENTS.md`, `croissant.json`, `ro-crate-metadata.json`) with `Independent Researcher, Spokane, WA, USA` (matching ORCID `0009-0006-8168-9648`).
-- **Honest Solved-Problem Cross-Reference (`gap`):** Added [`docs/0THERNES_SOLVED_AUDIT_2026-11-25.md`](docs/0THERNES_SOLVED_AUDIT_2026-11-25.md) recording the complete 1,900-problem audit against `0thernes-research-archive` (`0 / 1,900` grand problems retired; `7` partial/special-case methodological links documented honestly).
-- **Build Standard v1.2.0 Infrastructure:** Added `repo.yaml`, `repo-standard.schema.json`, `CLAIMS.md`, `LIMITATIONS.md`, `REPLICATION.md`, `ROADMAP.md`, `SUPPORT.md`, `UPGRADING.md`, `.editorconfig`, `.gitleaks.toml`, `justfile`, `GEMINI.md`, `.cursor/rules/build-standard.mdc`, `llms-full.txt`, `CLAUDE.md` (`@AGENTS.md`), `examples/`, `data/MANIFEST.sha256`, `.github/labels.tsv`, `.github/workflows/release.yml` (`SHA256SUMS` + Sigstore SLSA), cross-platform CI (`ubuntu`/`windows`/`macos` + `ruff`/`mypy`/`gitleaks`/`audit-repo.sh`), `docs/{configuration,operations,threat-model,faq,glossary,run-log,adr/*,reviews/*,media/social-preview.svg}`, and Hypothesis/negative/mutation tests.
-- **Single-version consistency (`hole`):** Updated `mcp_server/server.py` and `tests/test_mega_atlas.py` to read `VERSION` dynamically.
+### Fixed & Hardened — Initial Build Standard v1.2.0 Pass, Windows UTF-8 CI Fix & Solved-Problem Cross-Check
+- Initial Build Standard v1.2.0 baseline scaffolding, `.gitleaks.toml`, removal of banned PR template, initial `"0thernes LLC"` entity cure, Windows `PYTHONUTF8=1` + explicit UTF-8 subprocess decoding in tests, and `Audit-Repo.ps1` relative-path fix (all superseded and completed to 100.0% in `v2.4.0`).
 
 ## [2.3.0] — 2026-11-21
 
@@ -38,7 +53,7 @@ All notable changes to the **Unsolved Problems Mega-Atlas** are documented in th
 
 ## [2.1.0] — 2026-11-21
 
-### Added — 0thernes LLC Institutional Research Standard Upgrade
+### Added — Institutional Research Standard Upgrade
 - **Pure Lean 4.35.0 Formal Invariant Suite (`lean/MegaAtlasProofs/`):** 6 modules, 686 lines, **46 audited theorems** (zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, all `#print axioms` strictly within `[propext, Quot.sound]` or empty) formally verifying exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation of `CSS`, `Titan Index`, and `Near-Term Leverage`, exhaustiveness/monotonicity of the 4-Quadrant and 6-Era classifiers, surjectivity of the 8×28 taxonomy, the finite undirected Handshaking Lemma (`∑ deg = 2|E|`), cross-partition edge hierarchy, and deduplication cardinality bounds.
 - **0thernes Composite Severity Score (`css_score`, 0–100):** Unified scoring formula matching sibling repository [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics), surfaced across CSV, TSV, JSON, JSONL, SQLite, XLSX, XLS, MD, TXT, Interactive HTML, PDF, and auto-generated `RANKING.md`.
 - **Per-Record Epistemic `verification_flag`:** Transparent 4-class epistemic provenance (`primary-registry-indexed`, `ai-assisted-editorial-synthesis`, `ai-claim-under-audit-nov2026`, `disputed-human-claim`) on all 1,855 records.

@@ -1,38 +1,9 @@
-# Philosophy & Epistemic Ethic
+# Research Philosophy & Epistemic Design Principles
 
-> *Why this Mega-Atlas exists, what it refuses to claim, and the verification discipline that governs a solo human + AI-assisted research instrument.*
+The **Unsolved Problems Mega-Atlas (`v2.4.0`)** is built around five non-negotiable engineering and scholarly principles:
 
-## The Premise
-
-Humanity's unsolved problems live in isolated silos. Number theorists track `ProofAtlas.ai` and `erdosproblems.com`; topologists consult Kirby's list; physicists monitor cosmological tensions; engineers track NAE Grand Challenges and DOE Earthshots; philosophers debate PhilPapers apories. Yet the deepest bottlenecks of the 21st century—quantum gravity, fluid turbulence, abiogenesis, consciousness, AI alignment, post-Moore compute, climate tipping points—**do not respect departmental walls**.
-
-This Mega-Atlas maps **1,855 unsolved, open, and hard problems** across **all 8 Macro-Pillars and 28 Superdomains of human knowledge** into **one connected 5,597-edge graph**, while holding strictly to the institutional standards of **Independent Researcher (0thernes)** (matching its sibling pure-mathematics deep-dive atlas, [`0thernes/unsolved-mathematics`](https://github.com/0thernes/unsolved-mathematics)).
-
-## Five Non-Negotiable Principles
-
-### 1. Honesty Over Hype (Especially in November 2026)
-Fall–November 2026 brought an unprecedented surge of frontier AI mathematical proof claims (OpenAI's Sept 8 Navier–Stokes blowup claim, Oct 6 722-manuscript bulk release, and Nov 20 Alpöge/Claude multi-million-line Lean 4 Riemann Hypothesis & GRH archive alongside Stanford's Masullo draft). Our policy is absolute:
-- **No problem is retired as "solved" until independent human fidelity auditing and community consensus settle it.** All 12 AI-claimed problems carry `verification_flag = "ai-claim-under-audit-nov2026"` and remain officially open.
-- **No editorial score is disguised as objective physics or peer review.** Every record carries an explicit `verification_flag` and transparent scoring formula.
-- **No formal proof scope is ever inflated.** Our 46 Pure Lean 4.35.0 theorems verify mathematical invariants of the *atlas's own scoring, quadrant, taxonomy, and graph equations*—not solutions to any of the 1,855 open problems.
-
-### 2. Solo Human + AI-Assisted Means *Stricter* Verification, Not Looser
-Working as an independent solo researcher with AI assistance removes institutional gatekeeping—which means we must **build our own adversarial guardrails directly into the repository**:
-- Formal JSON Schema Draft 2020-12 validation on all 1,855 records,
-- Pure Lean 4.35.0 machine-checked invariants (`zero sorry`, `zero native_decide`, strictly constructive `[propext, Quot.sound]` axioms),
-- Automated `pytest` regression tests + cross-format parity checks (CSV, TSV, JSON, JSONL, SQLite+FTS5, XLSX, XLS),
-- Byte-exact SHA-256 cryptographic checksums (`CHECKSUMS.sha256`) enforced on every GitHub Actions CI push.
-
-### 3. Structure Reveals Hidden Coupling
-Forcing 1,855 problems across mathematics, physics, biology, neuroscience, AI, engineering, design, and philosophy into a single typed schema exposes structural truths invisible inside any single discipline: **34.6% of all knowledge-graph couplings cross superdomains** and **17.6% cross entire Macro-Pillars**, unifying all 1,855 problems into **1 single connected component**.
-
-### 4. Dual-Audience Infrastructure (Humans + Offline AI/RAG)
-Humans inspect charts, side-by-side comparators, PDF monographs, and `RANKING.md`. Research agents and pipelines query structured schemas, JSONL streams, and our zero-API **SQLite FTS5 BM25 + graph-hop RAG engine** (`rag/query.py`)—always returning exact Problem IDs, formulas, and provenance flags rather than ungrounded prose.
-
-### 5. Every Ranking Is a Falsifiable Argument
-Ordering 1,855 questions across all human inquiry is inherently contestable. Both our **0thernes Composite Severity Score (`CSS`, 0–100)** and **Composite Titan Index (0–10)** are deterministic, transparent functions of committed source modules. Disagree with where a problem sits? Edit its attributes in `src/v2_data/`, run `python src/v2_export_all.py`, verify via `pytest`, and argue from the git diff.
-
-## What This Atlas Is Not
-- It is **not** a claim to have proved or solved any open problem.
-- It is **not** human-peer-reviewed consensus (until external specialists formally review entries via [`docs/ACADEMIC_REVIEW.md`](docs/ACADEMIC_REVIEW.md)).
-- It is **not** a static encyclopedia—it is a reproducible, cryptographically audited, version-controlled scientific instrument.
+1. **Radical Epistemic Honesty Over Hype:** Never conflate an unrefereed AI proof dump with a community-retired theorem; never conflate machine-checked scoring invariants (`92` Lean 4.35.0 theorems) with proofs of the `1,900` open problems themselves (`0 / 1,900` retired); never conflate solo editorial scores with peer-reviewed ground truth.
+2. **Falsifiability by Construction:** Every quantitative score, taxonomic placement, cross-reference edge, and ranking in `RANKING.md` is generated deterministically from human-readable source files (`src/v2_data/`). Disagree with a rating or link? Edit the record, run `just build`, and argue directly from the diff.
+3. **Layered Defense-in-Depth Verification:** Combine six independent Lean 4.35.0 proof kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`), an independent 50-digit `Decimal`/`Fraction` reference oracle, 1,000-example Hypothesis property testing, 100% (`6/6`) mutation-kill auditing, JSON Schema Draft 2020-12 validation, and an immutable AutoResearch evaluator (`autoresearch/evaluate.py`).
+4. **Offline-First, Zero-Lock-In Preservation:** Zero API keys, zero cloud vendor lock-in, zero binary blobs `>= 5 MB` in git history, deterministic archives (`mtime=0`), FAIR JSON-LD metadata (`croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`), and clean-room reproducible AMS-LaTeX source (`dist/arxiv_submission.tar.gz`).
+5. **Cross-Disciplinary Connectomics Without Reductionism:** Wire formal mathematics, quantum/spacetime physics, materials, biology/mind, AI/computing hardware, engineering/climate, and philosophy/humanities into a single biconnected graph (`5,808` edges, `0` articulation points) while preserving each domain's distinct epistemic verification standard (`Formal-Deductive` through `Normative-Philosophical`).

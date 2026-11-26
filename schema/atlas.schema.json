@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/0thernes/unsolved-problems-mega-atlas/schema/atlas.schema.json",
   "title": "MegaAtlasPayload",
-  "description": "Top-level JSON Schema Draft 2020-12 contract for outputs/MegaAtlas_Unsolved_Problems_V2.json (0thernes LLC).",
+  "description": "Top-level JSON Schema Draft 2020-12 contract for outputs/MegaAtlas_Unsolved_Problems_V2.json (Alexander Stephen Donahue, V2.4.0).",
   "type": "object",
   "required": [
     "metadata",

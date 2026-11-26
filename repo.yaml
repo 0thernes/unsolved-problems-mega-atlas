@@ -1,12 +1,19 @@
-# yaml-language-server: $schema=./repo-standard.schema.json
-# Project manifest for Build Standard for LLMs v1.2.0.
+# SPDX-License-Identifier: Apache-2.0
+# Project manifest for the Build Standard for LLMs v1.2.0. Read by scripts/Audit-Repo.ps1.
 standard: "1.2.0"
 name: "unsolved-problems-mega-atlas"
-description: "1,900-problem biconnected open-problems connectome across 8 Macro-Pillars x 28 Superdomains x 8 Substrates x 7 Abstraction Layers, with 0thernes CSS, Hybrid RAG (100% MRR@5), 9-tool MCP server, Karpathy AutoResearch, FAIR metadata, and 72 Pure Lean 4.35.0 invariants."
-owner: "Alexander S. Donahue (0thernes)"
-year: "2026"
-project_type: data
-stack: [python, other]
+version: "2.4.0"
+description: "1,900 deduplicated unsolved, open & hard problems across 8 Pillars, 28 Superdomains, 8 Substrates & 7 Layers (5,808 biconnected edges), 92 Pure Lean 4.35.0 theorems across 6 kernels, offline Hybrid RAG (100% MRR@5), 10-tool MCP server, AutoResearch harness & AMS-LaTeX white paper."
+owner: "0thernes"
+author: "Alexander Stephen Donahue"
+orcid: "0009-0006-8168-9648"
+repository: "https://github.com/0thernes/unsolved-problems-mega-atlas"
+status: "active"
+license_code: "Apache-2.0"
+license_docs: "CC-BY-4.0"
+year: 2026
+project_type: research
+stack: [python, lean, latex, html, sqlite]
 flags:
   public: true
   package: true
@@ -16,102 +23,36 @@ flags:
   ai: false
   personal_data: false
   service: false
-  deployed: false
+  deployed: true
   api: true
-  perf: false
+  perf: true
   concurrent: false
   numeric: true
-  experimental: true
+  experimental: false
   ml: false
   formal: true
 items:
-  A01: {status: done, evidence: "README.md"}
-  A02: {status: done, evidence: "README.md badge ribbon"}
-  A03: {status: done, evidence: "README.md Quickstart"}
-  A04: {status: done, evidence: "README.md Usage Examples"}
-  A05: {status: done, evidence: "README.md embedded charts"}
-  A06: {status: done, evidence: "LICENSE (CC-BY-4.0) and LICENSE-CODE (MIT)"}
-  A07: {status: done, evidence: "CHANGELOG.md"}
-  A08: {status: done, evidence: "VERSION (2.3.1) matched with CHANGELOG.md, CITATION.cff, pyproject.toml, .zenodo.json, mcp_server/server.py"}
-  A09: {status: done, evidence: "tests/test_mega_atlas.py and tests/test_build_standard_and_properties.py"}
-  A10: {status: done, evidence: ".github/workflows/ci.yml"}
-  A11: {status: done, evidence: ".github/workflows/release.yml"}
-  A12: {status: done, evidence: ".gitignore"}
-  A13: {status: done, evidence: ".gitattributes and .editorconfig"}
-  A14: {status: done, evidence: "CONTRIBUTING.md"}
-  A15: {status: done, evidence: "CODE_OF_CONDUCT.md"}
-  A16: {status: done, evidence: "SECURITY.md"}
-  A17: {status: done, evidence: "SUPPORT.md"}
-  A18: {status: done, evidence: ".github/ISSUE_TEMPLATE/*.yml; R4-banned PULL_REQUEST_TEMPLATE.md removed"}
-  A19: {status: done, evidence: "GitHub About description and topics set"}
-  A20: {status: done, evidence: "ARCHITECTURE.md and docs/"}
-  A21: {status: done, evidence: "docs/adr/0001-biconnected-connectome-and-css-scoring.md and 0002-dual-license-and-committed-atlas-artifacts.md"}
-  A22: {status: done, evidence: "CITATION.cff"}
-  A23: {status: done, evidence: "main branch with verified author identity"}
-  A24: {status: partial, note: "Six intentional generated release outputs in outputs/ exceed 5 MB (PDF/HTML/SQLite/JSON/JSONL) for zero-dependency GitHub Pages & offline RAG; zero secrets/caches/.env tracked (ADR 0002)"}
-  A25: {status: done, evidence: ".github/workflows/ci.yml runs ubuntu-latest, windows-latest, macos-latest"}
-  A26: {status: done, evidence: "docs/media/social-preview.svg"}
-  A27: {status: done, evidence: ".github/workflows/pages.yml"}
-  A28: {status: done, evidence: "pyproject.toml"}
-  A29: {status: done, evidence: "ROADMAP.md"}
-  A30: {status: done, evidence: ".github/labels.tsv with all 10 finding classes"}
-  A31: {status: done, evidence: "justfile and Makefile"}
-  A32: {status: done, evidence: "AGENTS.md, CLAUDE.md (@AGENTS.md), GEMINI.md, .cursor/rules/build-standard.mdc, llms.txt, llms-full.txt"}
-  A33: {status: done, evidence: "docs/configuration.md"}
-  A34: {status: n/a, note: "Offline CLI and stdio MCP server; no long-running daemon"}
-  A35: {status: done, evidence: "docs/operations.md documents git bundle and offsite mirror"}
-  A36: {status: n/a, note: "Static GitHub Pages only; no deployed application backend"}
-  A37: {status: n/a, note: "No speed or latency SLA claims"}
-  A38: {status: done, evidence: "Semantic HTML5 dashboard with keyboard filters and UTF-8 exports documented in docs/configuration.md"}
-  A39: {status: done, evidence: "NOTICE"}
-  A40: {status: n/a, note: "Offline deterministic Python/SQLite/Lean code; calls no external AI models"}
-  A41: {status: done, evidence: "UPGRADING.md"}
-  A42: {status: done, evidence: "README.md Maintenance Status section and repostatus badge"}
-  A43: {status: done, evidence: "examples/README.md and examples/query_demo.py"}
-  A44: {status: done, evidence: "docs/faq.md and docs/glossary.md"}
-  A45: {status: n/a, note: "Collects, stores, and processes zero personal data"}
-  B01: {status: done, evidence: "justfile reproduce recipe and REPLICATION.md"}
-  B02: {status: done, evidence: "requirements.txt and lean/lean-toolchain"}
-  B03: {status: done, evidence: "Deterministic SHA-256 parity across CHECKSUMS.sha256, data/MANIFEST.sha256, croissant.json"}
-  B04: {status: done, evidence: "CLAIMS.md"}
-  B05: {status: done, evidence: "Claims C1-C6 mapped to executable pytest, forensic_audit.py, audit_atlas.py, and Lean 4 checks"}
-  B06: {status: done, evidence: "Negative tests in tests/test_build_standard_and_properties.py"}
-  B07: {status: done, evidence: "Regression tests for MA-01..MA-08 in tests/test_build_standard_and_properties.py"}
-  B08: {status: done, evidence: "Golden counts, SHA-256 digests, and Antihydra pilot snapshot in tests/test_mega_atlas.py"}
-  B09: {status: done, evidence: "JSON Schema Draft 2020-12 contract + NDJSON & Content-Length JSON-RPC 2.0 MCP server tests"}
-  B10: {status: done, evidence: "Hypothesis property-based tests for CSS bounds, antiquity saturation, and monotonicity in tests/test_build_standard_and_properties.py"}
-  B11: {status: done, evidence: "Cross-format parity differential test across CSV, TSV, JSON, JSONL, SQLite, XLSX"}
-  B12: {status: done, evidence: "Independent Lean 4 invariant formulas cross-checked against Python loader in tests/"}
-  B13: {status: done, evidence: "Mutant-killing test suite in tests/test_build_standard_and_properties.py"}
-  B14: {status: done, evidence: "Metamorphic pairwise antisymmetry and CSS monotonicity tests"}
-  B15: {status: n/a, note: "No native C/C++/asm code"}
-  B16: {status: n/a, note: "No native C/C++/asm code"}
-  B17: {status: done, evidence: "ruff check (report-only) in .github/workflows/ci.yml"}
-  B18: {status: done, evidence: "mypy (report-only) in .github/workflows/ci.yml and Pure Lean 4.35.0 type checker"}
-  B19: {status: n/a, note: "Deterministic single-threaded loader, CLI, and stdio server"}
-  B20: {status: done, evidence: "Floating-point CSS/PageRank/margin finiteness and rounding stability tests"}
-  B21: {status: n/a, note: "No networked service or external runtime dependency"}
-  B22: {status: done, evidence: "lean/MegaAtlasProofs/ (72 Pure Lean 4.35.0 theorems)"}
-  B23: {status: n/a, note: "Deductive Lean 4 invariant proving rather than TLA+/Alloy model checking"}
-  B24: {status: done, evidence: "Formal invariants written directly in Pure Lean 4.35.0"}
-  B25: {status: n/a, note: "No unsafe systems code"}
-  B26: {status: n/a, note: "No speed or latency claims"}
-  B27: {status: n/a, note: "No speed or latency claims"}
-  B28: {status: done, evidence: "Deterministic fixed-query AutoResearch evaluator (autoresearch/evaluate.py) and fixed-seed Hypothesis controls"}
-  B29: {status: n/a, note: "Descriptive taxonomy and deterministic graph metrics, not frequentist hypothesis testing"}
-  B30: {status: n/a, note: "Exact census over 1,900 curated records, not random sample confidence intervals"}
-  B31: {status: n/a, note: "No multiple-arm statistical hypothesis testing"}
-  B32: {status: n/a, note: "Curated problem atlas, not a prospective empirical trial"}
-  B33: {status: n/a, note: "No ML models trained or evaluated"}
-  B34: {status: n/a, note: "Offline code calls no generative AI"}
-  B35: {status: done, evidence: "gitleaks report-only scan in .github/workflows/ci.yml"}
-  B36: {status: done, evidence: "docs/threat-model.md"}
-  B37: {status: done, evidence: ".github/workflows/release.yml generates SHA256SUMS"}
-  B38: {status: done, evidence: ".github/workflows/release.yml runs actions/attest-build-provenance"}
-  B39: {status: done, evidence: "data/MANIFEST.sha256 and CHECKSUMS.sha256"}
-  B40: {status: done, evidence: "docs/run-log.md"}
-  B41: {status: done, evidence: "LIMITATIONS.md (including Real vs. Metaphor)"}
-  B42: {status: done, evidence: "CLAIMS.md Explicit Falsification Protocol"}
-  B43: {status: done, evidence: "REPLICATION.md"}
-  B44: {status: done, evidence: "REPLICATION.md dated replication table"}
-  B45: {status: done, evidence: "docs/reviews/red-team-2026-11-25.md"}
+  A19: {status: done, evidence: "GitHub About description, homepage (GitHub Pages URL), and 12 curated topics configured on 0thernes/unsolved-problems-mega-atlas"}
+  A27: {status: done, evidence: "Live interactive web atlas and Lean 4.35.0 Proof Blueprint published at https://0thernes.github.io/unsolved-problems-mega-atlas/ via .github/workflows/pages.yml"}
+  A28: {status: done, evidence: "15 analytical figures (PNG+SVG), 5 vector PDF paper figures, 1280x640 social preview card (docs/media/social-preview.png), and live interactive dashboard"}
+  A30: {status: done, evidence: "Offline-first static dataset, SQLite FTS5 RAG, and client-side HTML dashboard; zero third-party telemetry, zero runtime network calls, explicit English (en-US, UTF-8) locale support"}
+  A37: {status: done, evidence: "Explicit latency & artifact-size budgets documented and verified in docs/benchmarks.md (<3.0s load, <30ms RAG query, <250ms 1,900-row oracle diff, <5.0MB tracked files)"}
+  A38: {status: done, evidence: "WCAG 2.2 AA controls in outputs/MegaAtlas_Interactive_Dashboard_V2.html (skip-to-content link, ARIA tablist/tab/tabpanel roles, aria-labels, :focus-visible outlines, prefers-reduced-motion, Escape modal close)"}
+  B03: {status: done, evidence: "Deterministic seeded NetworkX betweenness (seed=42), deterministic gzip/tar archives (mtime=0), frozen REFERENCE_YEAR=2026, and repeatability tests in tests/test_properties_and_differential.py"}
+  B05: {status: done, evidence: "Comprehensive 47-test pytest suite (tests/test_mega_atlas.py + tests/test_properties_and_differential.py) covering schema, graph, scoring, RAG, 10-tool dual-framed MCP, FAIR, Lean & AutoResearch"}
+  B06: {status: done, evidence: "Negative boundary tests for malformed MCP JSON-RPC, unknown tools, invalid Problem IDs, out-of-range ratings, JSON Schema rejections, and Lean NonVacuity boundary witnesses"}
+  B07: {status: done, evidence: "Named regression tests for every fixed defect logged in HARDENING_LOG.md (dangling raw_links, GEOM-038 articulation point, 12 duplicate aliases, CM-001/LOG-001 RAG misses)"}
+  B08: {status: done, evidence: "Golden snapshot tests in tests/test_properties_and_differential.py against results/lean_axioms.txt (drift-checked via scripts/check_readme_axioms.py) and tests/golden/top10_css_titan.json"}
+  B09: {status: done, evidence: "JSON Schema Draft 2020-12 record contract validated on all 1,900 records plus live end-to-end MCP stdio JSON-RPC 2.0 protocol contract tests (NDJSON + Content-Length) across all 10 tools and error codes"}
+  B11: {status: done, evidence: "2,000+ case differential tests comparing src/v2_loader.py against independent 50-digit Decimal/Fraction oracle (reference/scoring_oracle.py) plus 6-kernel Lean 4.35.0 replay"}
+  B12: {status: done, evidence: "Independent reference/scoring_oracle.py using Python fractions.Fraction and 50-digit decimal.Decimal with zero shared code from src/v2_loader.py"}
+  B14: {status: done, evidence: "Metamorphic tests in tests/test_properties_and_differential.py (row-order shuffling invariance, pillar-filter subsetting, pairwise comparator antisymmetry, age saturation plateau)"}
+  B20: {status: done, evidence: "Floating-point edge-value, monotonicity, IEEE-754 rounding tolerance (<0.01 against 50-digit Decimal oracle), and 300-year saturation boundary checks in tests/test_properties_and_differential.py"}
+  B23: {status: n/a, note: "No concurrent/distributed state machine; all algebraic, taxonomic, graph, and AutoResearch invariants are proved directly in Pure Lean 4.35.0"}
+  B24: {status: done, evidence: "All 92 theorems (72 core + 12 NonVacuity + 8 Palomar headline specs) verified in zero-Mathlib Lean 4.35.0 across 6 independent kernels via lake comparator --paranoid"}
+  B25: {status: n/a, note: "No unsafe C/C++/Rust systems code (native: false); Lean 4.35.0 kernel proofs and Hypothesis/differential tests cover all algorithmic logic"}
+  B27: {status: done, evidence: "Report-only performance history logged across runs in results/bench-history.csv by scripts/benchmark_atlas.py (10 warmed runs with checksum validation)"}
+  B33: {status: done, evidence: "Zero external runtime services; MCP stdio JSON-RPC 2.0 protocol contract (NDJSON + Content-Length) tested end-to-end across all 10 tools + error responses in pytest"}
+  B34: {status: n/a, note: "Static read-only scientific dataset and offline tools with zero database write migrations or live server state"}
+  B35: {status: done, evidence: "Automated secret/credential regex audit in CI, zero hardcoded credentials, zero eval/exec/shell injection, parameterized SQLite queries throughout rag/query.py and mcp_server/server.py"}
+  B44: {status: done, evidence: "Independent clean-directory replication executed and logged in REPLICATION.md with date, OS, commit SHA, and exact verification outputs"}

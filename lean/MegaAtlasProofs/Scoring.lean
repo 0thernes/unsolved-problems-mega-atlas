@@ -1,16 +1,21 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/Scoring.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for the
-  0thernes Mega-Atlas scoring functions:
+  Mega-Atlas scoring functions:
     1. 0thernes Composite Severity Score (CSS, basis points in [0, 10000])
     2. Antiquity Age Saturation Function (300-year cap)
     3. Composite Titan Index (centi-units in [90, 1000])
     4. Near-Term Leverage Score (tenths in [1, 100])
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
 
 namespace MegaAtlasProofs.Scoring
+
+@[expose] public section
 
 /-- Antiquity-capped age score in centi-points (0..10000 representing 0.00..100.00).
     Matches `min(100.0, max(0.0, age_years / 3.0))` in Python `v2_loader.py`
@@ -155,5 +160,7 @@ theorem leverageTenths_mono {i₁ i₂ t₁ t₂ : Nat} (hi : i₁ ≤ i₂) (ht
     leverageTenths i₁ t₁ ≤ leverageTenths i₂ t₂ := by
   unfold leverageTenths
   exact Nat.mul_le_mul hi ht
+
+end
 
 end MegaAtlasProofs.Scoring

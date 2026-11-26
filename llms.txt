@@ -1,28 +1,28 @@
-# Unsolved Problems Mega-Atlas (V2.3.0) — Independent Researcher (0thernes)
+# Unsolved Problems Mega-Atlas (v2.4.0)
 
-> Cross-disciplinary, cryptographically audited open-problem atlas cataloging **1,900 strictly deduplicated unsolved, open, and hard problems** across **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers (`L0–L6`)** wired into **1 biconnected 5,808-edge knowledge graph (`0` articulation points, `0` bridges, `0` dangling links)**, with **72 Pure Lean 4.35.0 formal invariants**, **0thernes CSS, Titan, Gradient, Margin & Epistemic Spectrum metrics**, an **offline 100% MRR@5 Hybrid BM25+PageRank RAG & dual-framed 9-tool MCP server**, and a **Karpathy-style AutoResearch loop (`AQS = 97.99`) + Track B Antihydra `BB(6)` pilot**.
-> Author: Alexander Stephen Donahue (Independent Researcher (0thernes), ORCID `0009-0006-8168-9648`). Dual License: Data CC BY 4.0 / Code MIT.
+> Exhaustive, cryptographically audited cross-disciplinary open-problem research infrastructure: 1,900 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0 dangling links), paired with 92 Pure Lean 4.35.0 formal invariant theorems across 6 independent kernels, a 10-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), a 10-tool stdio MCP server, and an immutable Karpathy-style AutoResearch harness (AQS = 97.99).
 
-## Epistemic Boundary (Critical for LLM Consumers)
-- **Formally proved (Pure Lean 4.35.0, 72 theorems, 0 sorry, `[propext, Quot.sound]`):** Exact invariants of scoring formulas (`CSS`, `Titan`, `Leverage`, 300-yr antiquity cap), 4-Quadrant & 6-Era partitions, 8×28 taxonomy surjection, finite Handshaking Lemma, cross-partition edge hierarchy, deduplication bound, AutoResearch anti-gaming keep/discard ratchet, and multi-layer Substrate/Layer/Gradient/Margin/Bridge/Apex-Keystone invariants.
-- **NOT proved or retired:** Zero open problems are claimed solved (including Track B's finite Antihydra `BB(6)` simulation). All 12 Fall/Nov 2026 AI proof claims (`verification_flag = "ai-claim-under-audit-nov2026"`) remain officially unretired pending independent formal-statement fidelity and peer consensus. Quantitative 1–10 rubric ratings are disclosed solo-human + AI-assisted falsifiable editorial estimates.
+- **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
+- **Dual License:** Data/Figures/White Paper `CC-BY-4.0` · Code/Lean/RAG/MCP `Apache-2.0`
+- **Honest Boundary:** Zero (`0/1,900`) overarching Atlas problems are retired; Lean verifies internal invariants only; rubric scores are falsifiable editorial estimates.
 
-## Machine-Readable Data & Schemas
-- [Complete JSON Dataset](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json): Full payload with metadata, 1,900 problems (48 fields), 5,808 biconnected edges, substrate/layer/margin matrices, Nov 2026 AI audit, registries & benchmarks.
-- [Streaming JSONL (1,900 records)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl): One JSON object per problem for immediate HuggingFace/LLM/RAG ingestion.
-- [Master CSV (1,900 × 48)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv): Tabular dataset with CSS, Titan, graph centralities, substrates, layers, gradients, margins & verification flags.
-- [SQLite 3 + FTS5 Database](https://github.com/0thernes/unsolved-problems-mega-atlas/raw/main/outputs/MegaAtlas_Unsolved_Problems_V2.sqlite): 10 normalized tables (incl. `substrate_summary`) + Porter-stemmed FTS5 full-text search index.
-- [MLCommons Croissant 1.0 Metadata](https://0thernes.github.io/unsolved-problems-mega-atlas/croissant.json): FAIR AI/ML JSON-LD descriptor (48 fields) with exact SHA-256 checksums.
-- [W3C RO-Crate 1.1 Metadata](https://0thernes.github.io/unsolved-problems-mega-atlas/ro-crate-metadata.json): Research Object crate graph with ORCID provenance.
-- [JSON Schema Draft 2020-12](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/schema/problem.schema.json): Strict 48-field schema validated on all 1,900 records.
+## Core Documentation
 
-## Autonomous Research, MCP & Documentation
-- [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): Live browser dashboard, 7 filters, Any-2 Comparator, Substrate/Layer/Margin matrices, Nov 2026 AI Audit & 15 charts.
-- [Build White Paper](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/WHITE_PAPER.md): Institutional technical white paper (`0TH-BUILD-007`).
-- [Forensic Multi-Layer Audit (`v2.3.0`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/FORENSIC_AUDIT_V2.3.md): Complete remediation ledger of 8 forensic defects/blindspots + Options 1/2/3 results.
-- [Master Ranking (Top 250 by 0thernes CSS)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Deterministic ranking & Pillar leaders.
-- [AutoResearch Program Manual](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/autoresearch/program.md): Karpathy-style autonomous loop contract & `results.tsv` empirical ledger (`AQS = 97.99`).
-- [MCP Server (`mcp_server/server.py`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/mcp_server/README.md): Zero-dependency dual-framed stdio JSON-RPC 2.0 server with 9 grounded research tools.
-- [Verification & Epistemic Boundaries](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/VERIFICATION.md): 5-tier verification ladder & 72-theorem Lean 4.35.0 axiom audit.
-- [Datasheet for Datasets](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/DATASHEET.md): Gebru et al. dataset transparency report.
-- [Preservation Guide (Zenodo & Software Heritage)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/PRESERVATION.md): Archival instructions with honest anti-bypass compliance.
+- [README](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/README.md): Overview, quick start, 5-second Lean verification, and release downloads
+- [AGENTS.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/AGENTS.md): Canonical instructions, commands, and Build Standard v1.2.0 Hard Rules R1–R8
+- [CLAIMS.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/CLAIMS.md): Falsifiable Claims Ledger (`C1`–`C10`) with exact commands and refutation criteria
+- [VERIFICATION.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/VERIFICATION.md): Five-tier epistemic verification boundaries
+- [LIMITATIONS.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/LIMITATIONS.md): Known limitations, platform caveats, and Literal vs. Metaphor table
+- [Statement Fidelity Audit](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/statement-fidelity.md): 18-row Lean-vs-Python fidelity correspondence matrix
+- [REPLICATION.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/REPLICATION.md): Clean-clone replication protocol and logged run
+- [Full Agent Context (`llms-full.txt`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/llms-full.txt): Concatenated single-file reference context
+
+## Formal Proofs, White Paper & Interactive Interfaces
+
+- [AMS-LaTeX White Paper PDF](https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/dist/Donahue_2026_unsolved_problems_mega_atlas.pdf): 10-page publication-grade Tectonic PDF (`0` overfull hboxes)
+- [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): WCAG 2.2 AA browser explorer for all 1,900 problems & 15 charts
+- [Interactive Lean 4.35.0 Proof Blueprint](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/): SVG dependency DAG & module inventory for all 92 audited theorems
+- [Verbatim Lean Axiom Audit](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/results/lean_axioms.txt): All 92 `#print axioms` lines (`⊆ [propext, Quot.sound]`)
+- [FAIR Metadata (Croissant 1.0)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/croissant.json): MLCommons Croissant JSON-LD descriptor
+- [FAIR Metadata (RO-Crate 1.1)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/ro-crate-metadata.json): W3C RO-Crate JSON-LD descriptor
+- [Master Ranking (`RANKING.md`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Top 250 problems by 0thernes CSS + Nov 25, 2026 AI watchlist

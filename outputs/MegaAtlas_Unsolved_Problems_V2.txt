@@ -1,16 +1,16 @@
 ====================================================================================================================
-  V2.3.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)
-  Author: Alexander Stephen Donahue (0thernes LLC, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / MIT (Code)
-  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 5,808 Edges (0 Art. Pts) | 72 Pure Lean 4.35.0 Theorems
+  V2.4.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
+  Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)
+  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 5,808 Edges (0 Art. Pts) | 92 Pure Lean 4.35.0 Theorems (6 Kernels)
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.3.0
+  atlas_version                       : 2.4.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
-  affiliation                         : 0thernes LLC, Spokane, WA, USA
+  affiliation                         : Independent Researcher, Spokane, WA, USA
   total_problems                      : 1900
   raw_authored_before_dedup           : 1912
   duplicates_merged                   : 12
@@ -49,14 +49,15 @@
   total_benchmarks                    : 20
   total_contrasts                     : 15
   total_external_registries           : 13
+  total_author_frontier_preprints     : 7
 
-[2] NOVEMBER 20, 2026 AI PROOF-CLAIM VERIFICATION AUDIT
+[2] NOVEMBER 25, 2026 AI PROOF-CLAIM VERIFICATION AUDIT
 --------------------------------------------------------------------------------------------------------------------
-  [AUDIT-01] Riemann Hypothesis & GRH (NT-001, NT-002) (2026-11-20)
+  [AUDIT-01] Riemann Hypothesis & GRH (NT-001, NT-002) (2026-11-20 to 2026-11-25)
     Claimant  : Levent Alpöge (Anthropic / Claude) + Independent Human Draft by Alessandro Masullo (Stanford)
-    Machine   : Compiles cleanly in Lean kernel with standard axioms (independently confirmed by Andrew Sutherland, MIT)
-    Human/Peer: IN PROGRESS — Formalization fidelity (confirming Lean definitions match literal RH/GRH with zero subtle encoding drift) & human comprehension expected to take months to years
-    Verdict   : OFFICIALLY OPEN at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification'
+    Machine   : CERTIFIED (Nov 21, 2026) — Lean FRO & Mathlib Initiative confirmed clean build & replay across official kernel, lean4lean, con-leche & con-ron matching Mathlib's official RH statement (Andrew Sutherland et al.)
+    Human/Peer: HUMAN EXPOSITION PENDING — Zero complete human-readable paper exists yet for Alpöge/Claude archive; rival Masullo 940-page draft is undergoing active community gap critiques
+    Verdict   : OFFICIALLY UNRETIRED at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification' pending human exposition & 2-year refereeing
 
   [AUDIT-02] 3D Navier–Stokes Existence & Smoothness (ANL-001) (2026-09-08)
     Claimant  : OpenAI unreleased frontier reasoning system (~10,000 coordinated instances, 88 hrs)
@@ -95,9 +96,9 @@
 +========================================+========================================+========================================+========================================+
 | ProofAtlas (proofatlas.ai)             | 1,100+ eligible (Top-500 edition)      | 243 open in Top-500 (hundreds more in  | Actively tracks AI-targeted conjecture |
 | Erdős Problems DB (erdosproblems.com)  | ~1,221 problems                        | ~630+ open (~550+ solved/closed)       | Rapid 2025–2026 wave of AI-assisted li |
-| Clay Millennium Prize Problems         | 7 problems                             | 6 officially unresolved (only 3D Poinc | Navier-Stokes (Sept 8, OpenAI) & RH (N |
+| Clay Millennium Prize Problems         | 7 problems                             | 6 officially unresolved (only 3D Poinc | Navier-Stokes (Sept 8, OpenAI) dispute |
 | OpenAI Bulk Math Release (openai/math) | 722 manuscripts across 372 result fami | Verification largely pending; several  | Oct 6, 2026 'Mathocalypse' sparked 28  |
-| Nov 20, 2026 RH/GRH Lean & Human Claim | 2 landmark conjectures (RH, GRH)       | Under active fidelity & human audit (o | Lean kernel checks logical derivation; |
+| Nov 20–25, 2026 RH/GRH Lean & Human Cl | 2 landmark conjectures (RH, GRH)       | Multi-kernel Lean certified (Nov 21);  | Historic divide: machine-checked forma |
 | Kourovka Notebook (Group Theory)       | >1,000 problems (20+ editions since 19 | ~600+ open                             | Gold-standard specialist catalog feedi |
 | Kirby's List (Low-Dim Topology)        | ~360+ major problems (with sub-parts > | ~200+ open (SPC4, Slice-Ribbon, Unknot | Smooth 4D Poincaré & Slice-Ribbon rema |
 | Hilbert's 23 Problems (1900) & Smale's | 41 canonical century-defining problems | ~16–18 fully or partially open         | Hilbert 6th classical hard-sphere solv |
@@ -105,7 +106,7 @@
 | Wikipedia Lists of Unsolved Problems ( | ~1,200+ distinct entries across 20+ li | ~1,100+ open                           | Broadest public cross-disciplinary map |
 | NAE 14 Grand Challenges & DARPA/DOE Ea | ~100+ flagship technology targets      | ~90+ active engineering frontiers      | Dominates Quadrant 1 (Near-Term Civili |
 | PhilPapers Survey & Metaphysics/Ethics | ~100+ enduring philosophical problems  | ~100% actively contested (up to 2,526  | AI alignment & digital sentience turne |
-| This V2.3 Unified Mega-Atlas (0thernes | 1,900 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
+| This V2.4 Unified Mega-Atlas (A. S. Do | 1,900 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 
 [4] 8 MACRO-PILLARS COMPARATIVE SCORECARD
@@ -289,24 +290,24 @@
 --- SUPERDOMAIN: Number Theory & Arithmetic (131 Problems) ---
 [NT-001] Riemann Hypothesis
   Subdomain : Analytic Number Theory | Conjecture | Formal-Deductive | 1859 (167y) | Bernhard Riemann | Registry: Clay Mathematics Institute Millennium Prize; Hilbert #8; ProofAtlas
-  Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20, 2026: Levent Alpöge (Anthropic/Claude) multi-million-line Lean 4 proof compiles in Lean kernel (Andrew Sutherland confirms kernel check); same-day rival human draft by Alessandro Masullo (Stanford); statement fidelity & peer verification pending (Clay CMI officially open)
+  Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20–25, 2026: Alpöge/Claude ~17M-line Lean 4 archive certified by Lean FRO & Mathlib Initiative (Nov 21) across independent kernels (lean4lean, con-leche, con-ron) matching Mathlib RH statement, but NO human-readable exposition exists yet; rival Masullo 940-page human draft facing gap objections; Clay CMI officially unretired
   Scores    : CSS=81.97/100 | Titan=9.34 | Diff=10 Tract=6 Impact=9 Interdisc=9 Deg=34 (XP=10)
   Question  : Do all non-trivial zeros of the analytically continued Riemann zeta function lie strictly on the critical line Re(s) = 1/2?
   Formula   : ζ(s) = 0, 0 < Re(s) < 1  ==>  Re(s) = 1/2
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
   Approaches: Hilbert-Polya spectral operator; Connes noncommutative geometry; F_1 absolute algebraic geometry; GUE random matrix correspondence; AI-assisted Lean 4 formal proof synthesis
-  2026 State: First 3×10^12 zeros verified numerically; mid-2026 Anthropic/Claude improved proven critical-line zero fraction from 41.7% to 67.2%; Nov 20, 2026: Levent Alpöge (Anthropic/Claude) released a multi-million-line Lean proof compiling cleanly in the Lean kernel (independently compiled by MIT's Andrew Sutherland), alongside a same-day independent Stanford all-human draft by Alessandro Masullo (posted via AMS president Ravi Vakil); both await statement-fidelity auditing & full peer verification; Clay CMI Millennium Prize remains officially open
+  2026 State: First 3×10^12 zeros verified numerically; mid-2026 Anthropic/Claude improved proven critical-line zero fraction from 41.7% to 67.2%; Nov 20, 2026: Levent Alpöge (Anthropic/Claude) released a ~17M-line Lean 4 proof archive; Nov 21, 2026: Lean FRO & Mathlib Initiative jointly certified multi-kernel replay (official kernel, lean4lean, con-leche, con-ron) and Mathlib RH statement match (Andrew Sutherland et al.), yet NO complete human-readable paper exists yet; same-day 940-page all-human Stanford draft by Alessandro Masullo faces active gap queries; Clay CMI Millennium Prize remains officially unretired pending human exposition & peer consensus
   Links/Ind : NT-002,NT-009,NT-011,NT-012,CS-002 | Industries: Cybersecurity, Cryptography, Financial Modeling, Formal Verification, Computational Mathematics | Axis: Discrete Prime Distribution vs. Continuous Complex Analysis
 ------------------------------------------------------------------------------------------------
 [NT-002] Generalized & Grand Riemann Hypotheses (GRH)
   Subdomain : Analytic Number Theory | Conjecture | Formal-Deductive | 1884 (142y) | Adolf Piltz / Extended to Automorphic L-functions | Registry: Hilbert #8 Extension; Langlands Program; ProofAtlas
-  Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20, 2026: Covered by both Levent Alpöge (Anthropic/Claude) Lean 4 proof claim (kernel-compiled by Andrew Sutherland) and Alessandro Masullo's independent Stanford human draft; pending formal fidelity audit & peer verification
+  Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20–25, 2026: Dirichlet-L GRH covered in Alpöge/Claude ~17M-line Lean 4 archive (Nov 21 multi-kernel certified; no human paper yet) & rival Masullo 940-page human draft (under gap critique); Grand Automorphic RH & formal peer consensus pending
   Scores    : CSS=76.62/100 | Titan=8.58 | Diff=10 Tract=5 Impact=8 Interdisc=8 Deg=14 (XP=2)
   Question  : Do all non-trivial zeros of every Dirichlet L-function, Dedekind zeta function, and global automorphic L-function lie on the critical line Re(s) = 1/2?
   Formula   : L(s, π) = 0, 0 < Re(s) < 1  ==>  Re(s) = 1/2
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
   Approaches: Langlands functoriality + Arthur-Selberg trace formula; motivic L-functions; Siegel zero elimination; AI-assisted formal proof synthesis in Lean 4
-  2026 State: Proved for function fields over finite fields (Weil/Deligne); conditional deterministic primality & class-group algorithms depend on GRH; Nov 20, 2026: both Levent Alpöge's Anthropic/Claude Lean 4 archive (compiled by Andrew Sutherland) and Alessandro Masullo's Stanford human draft assert proofs covering GRH/Dirichlet L-functions, pending formal definition fidelity checks and community peer review
+  2026 State: Proved for function fields over finite fields (Weil/Deligne); conditional deterministic primality & class-group algorithms depend on GRH; Nov 20–25, 2026: Alpöge/Claude Lean 4 archive covers Dirichlet L-function GRH and passed Nov 21 Lean FRO / Mathlib multi-kernel checks without a human-readable paper yet; full automorphic Grand RH & peer-reviewed consensus remain pending; rival Masullo 940-page draft under active community critique
   Links/Ind : NT-001,NT-008,NT-010,NT-060,CS-001 | Industries: Cryptography, Algorithmic Primality, Formal Verification, Academic Mathematics | Axis: Local Modular Arithmetic vs. Global Analytic Continuation
 ------------------------------------------------------------------------------------------------
 [NT-003] Goldbach's Strong Conjecture

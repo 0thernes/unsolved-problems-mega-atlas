@@ -9,4 +9,6 @@ paths = [
   '''^scripts/audit-repo\.sh$''',
   '''^scripts/Audit-Repo\.ps1$''',
   '''^outputs/.*''',
+  '''^dist/.*''',
+  '''^paper/build/.*''',
 ]

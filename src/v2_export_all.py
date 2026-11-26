@@ -1,11 +1,18 @@
-"""V2.1.0 Mega-Atlas Unified Exporter (0thernes LLC): CSV, TSV, JSON, JSONL, SQLite+FTS5, 13-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Interactive HTML & Vector PDF Monograph."""
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
+"""V2.4.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
 
+import argparse
+import datetime
+import gzip
 import os
 import json
 import html
 import base64
+import re
 import sqlite3
 import subprocess
+import zipfile
 import pandas as pd
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -19,8 +26,27 @@ from v2_schema import MACRO_PILLARS, SUPERDOMAIN_TO_PILLAR
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 OUT_DIR = os.path.join(BASE_DIR, "outputs")
+BUILD_DIR = os.path.join(BASE_DIR, "build")
 CHARTS_DIR = os.path.join(OUT_DIR, "charts")
 os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(BUILD_DIR, exist_ok=True)
+
+
+def _lean_theorem_count() -> int:
+    p = os.path.join(BASE_DIR, "lean", "MegaAtlasProofs", "VerifyAxioms.lean")
+    if not os.path.exists(p):
+        return 72
+    with open(p, "r", encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip().startswith("#print axioms "))
+
+
+def _write_deterministic_gz(src_path: str, gz_path: str) -> None:
+    """Write a byte-deterministic gzip archive (mtime=0, empty filename header)."""
+    with open(src_path, "rb") as f_in:
+        raw = f_in.read()
+    with open(gz_path, "wb") as f_out:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=f_out, compresslevel=9, mtime=0) as gz:
+            gz.write(raw)
 
 PILLAR_HEX = {
     "Pure Mathematics": "#1D4ED8",
@@ -44,7 +70,7 @@ CHART_ITEMS = [
     ("08_scale_regime_vs_verification.png", "Figure 8 · Physical/Abstract Scale Regimes × Epistemic Class & Verification Modes"),
     ("09_industry_exposure_heatmap.png", "Figure 9 · Global Industry Exposure Matrix (28 Superdomains × 16 Economic Sectors)"),
     ("10_correlation_and_resolved_benchmarks.png", "Figure 10 · Quantitative Structural Correlations & 20 Resolved Historical Benchmarks (1995–2026)"),
-    ("11_nov2026_status_and_registries.png", "Figure 11 · November 20, 2026 Verification Status & Global Open-Problem Registry Scale Comparison"),
+    ("11_nov2026_status_and_registries.png", "Figure 11 · November 25, 2026 Verification Status & Global Open-Problem Registry Scale Comparison"),
     ("12_top25_keystone_dominoes.png", "Figure 12 · Top 25 Keystone Domino Hubs: Coupling Degree, Cross-Pillar Bridges & Leverage"),
     ("13_substrates_and_abstraction_layers.png", "Figure 13 · Multi-Layer Reality Stack: 8 Substrates × 7 Abstraction Layers (L0–L6) & Severity"),
     ("14_gradients_margins_and_adjacents.png", "Figure 14 · Hardness–Tractability Gradients (D−T), CSS–Titan Margins, Bridge Ratios & Adjacent Pillars"),
@@ -102,29 +128,30 @@ def df_to_html_table(df: pd.DataFrame, include_index=False, cls="data-table") ->
 def export_csv_tsv_json(data):
     df = data["df"]
     p_csv = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.csv")
-    df.to_csv(p_csv, index=False, encoding="utf-8-sig")
+    df.to_csv(p_csv, index=False, encoding="utf-8-sig", lineterminator="\n")
     print(f"  Saved CSV: {p_csv} ({len(df):,} rows × {len(df.columns)} cols)")
 
     p_tsv = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.tsv")
-    df.to_csv(p_tsv, index=False, sep="\t", encoding="utf-8")
+    df.to_csv(p_tsv, index=False, sep="\t", encoding="utf-8", lineterminator="\n")
     print(f"  Saved TSV: {p_tsv}")
 
     p_json = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.json")
     payload = {
         "metadata": {
-            "title": "Unsolved Problems Mega-Atlas (V2.3.0, November 21, 2026 Edition)",
+            "title": f"Unsolved Problems Mega-Atlas (V{data['summary_stats']['atlas_version']}, November 25, 2026 Edition)",
             "version": data["summary_stats"]["atlas_version"],
             "author": "Alexander Stephen Donahue",
             "orcid": "0009-0006-8168-9648",
-            "affiliation": "0thernes LLC, Spokane, WA, USA",
+            "affiliation": "Independent Researcher, Spokane, WA, USA",
             "license_data": "CC-BY-4.0",
-            "license_code": "MIT",
+            "license_code": "Apache-2.0",
             "repository": "https://github.com/0thernes/unsolved-problems-mega-atlas",
-            "ai_disclosure": "Directed, architected, and audited by solo researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative scores are transparent editorial estimates, not peer-reviewed measurements.",
+            "ai_disclosure": "Directed, architected, and audited by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative scores are transparent editorial estimates, not peer-reviewed measurements.",
             "summary_stats": data["summary_stats"],
         },
         "external_registries_nov2026": data["df_registries"].to_dict(orient="records"),
         "ai_verification_audit_nov2026": data["df_ai_audit"].to_dict(orient="records"),
+        "author_frontier_contributions": data["df_author_contributions"].to_dict(orient="records"),
         "macro_pillar_comparison": data["df_pillars"].to_dict(orient="records"),
         "superdomain_scorecard": data["df_superdomains"].to_dict(orient="records"),
         "substrate_layer_scorecard": data["df_substrates"].to_dict(orient="records"),
@@ -138,14 +165,18 @@ def export_csv_tsv_json(data):
     }
     with open(p_json, "w", encoding="utf-8", newline="\n") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
-    print(f"  Saved JSON: {p_json}")
+    p_json_gz = p_json + ".gz"
+    _write_deterministic_gz(p_json, p_json_gz)
+    print(f"  Saved JSON: {p_json} + deterministic .gz ({os.path.getsize(p_json_gz)/1048576:.2f} MB)")
 
     # Streaming JSONL for HuggingFace / DuckDB / LLM / RAG pipelines
     p_jsonl = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.jsonl")
     with open(p_jsonl, "w", encoding="utf-8", newline="\n") as f:
         for rec in df.to_dict(orient="records"):
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    print(f"  Saved JSONL: {p_jsonl} ({len(df):,} lines)")
+    p_jsonl_gz = p_jsonl + ".gz"
+    _write_deterministic_gz(p_jsonl, p_jsonl_gz)
+    print(f"  Saved JSONL: {p_jsonl} ({len(df):,} lines) + deterministic .gz ({os.path.getsize(p_jsonl_gz)/1048576:.2f} MB)")
 
     # SQLite 3 + FTS5 Full-Text Search Database
     p_sqlite = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.sqlite")
@@ -159,6 +190,7 @@ def export_csv_tsv_json(data):
         ).to_sql("edges", conn, index=False, if_exists="replace")
         data["df_ai_audit"].to_sql("ai_audit_nov2026", conn, index=False, if_exists="replace")
         data["df_registries"].to_sql("registries_nov2026", conn, index=False, if_exists="replace")
+        data["df_author_contributions"].to_sql("author_frontier_contributions", conn, index=False, if_exists="replace")
         data["df_benchmarks"].to_sql("benchmarks", conn, index=False, if_exists="replace")
         data["df_contrasts"].to_sql("contrasts", conn, index=False, if_exists="replace")
         data["df_pillars"].to_sql("pillar_summary", conn, index=False, if_exists="replace")
@@ -221,11 +253,12 @@ def export_csv_tsv_json(data):
 
 
 def export_master_ranking_md(data):
-    """Generate deterministic RANKING.md at repository root matching 0thernes/unsolved-mathematics."""
+    """Generate deterministic RANKING.md at repository root."""
     df = data["df"].sort_values(["css_score", "titan_index", "graph_degree", "id"], ascending=[False, False, False, True]).reset_index(drop=True)
     s = data["summary_stats"]
+    lean_n = _lean_theorem_count()
     lines = [
-        "# Master Ranking — Unsolved Problems Mega-Atlas (V2.3.0)",
+        f"# Master Ranking — Unsolved Problems Mega-Atlas (V{s['atlas_version']})",
         "",
         f"> **Atlas `v{s['atlas_version']}`** · **{s['total_problems']:,} deduplicated problems** across **8 Macro-Pillars × 28 Superdomains** · Ranked hardest + most central + oldest + least tractable by the **0thernes Composite Severity Score (`CSS`, 0–100)**, alongside the **Composite Titan Index (0–10)**.",
         f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Reference Year:** `{s['reference_year']}` (frozen for deterministic reproducibility).",
@@ -239,8 +272,8 @@ def export_master_ranking_md(data):
         "    + 0.10 * (100 - tractability_2050 * 10)",
         "```",
         "",
-        "- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, zero `sorry`, axioms strictly within `[propext, Quot.sound]`).",
-        "- **Epistemic Honesty Clause:** Input scores (`difficulty`, `impact`, `tractability_2050`, `interdisciplinarity`) are **curated AI-assisted editorial estimates**, not peer-reviewed consensus measurements. Treat this ranking as a **falsifiable argument**: disagree with a score? Edit the source entry in `src/v2_data/`, rebuild, and argue from the diff. See [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) and [`VERIFICATION.md`](VERIFICATION.md).",
+        f"- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, {lean_n} audited theorems, zero `sorry` in `lean/`, 6 independent kernels via `lake comparator --paranoid`, axioms strictly within `[propext, Quot.sound]`).",
+        "- **Epistemic Honesty Clause:** Input scores (`difficulty`, `impact`, `tractability_2050`, `interdisciplinarity`) are **curated AI-assisted editorial estimates**, not peer-reviewed consensus measurements. Treat this ranking as a **falsifiable argument**: disagree with a score? Edit the source entry in `src/v2_data/`, rebuild, and argue from the diff. See [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md), [`CLAIMS.md`](CLAIMS.md), and [`VERIFICATION.md`](VERIFICATION.md).",
         "",
         "## Top 250 Problems Overall (Ranked by 0thernes CSS)",
         "",
@@ -278,15 +311,29 @@ def export_master_ranking_md(data):
 
     ai_df = df[df["verification_flag"] == "ai-claim-under-audit-nov2026"]
     lines.extend([
-        f"## November 20, 2026 AI Proof-Claim Watchlist ({len(ai_df)} Problems — All Officially Unretired)",
+        f"## November 25, 2026 AI Proof-Claim Watchlist ({len(ai_df)} Problems — All Officially Unretired)",
         "",
-        "| ID | Problem | Superdomain | CSS | Titan | Nov 20, 2026 Audit Summary |",
+        "| ID | Problem | Superdomain | CSS | Titan | Nov 25, 2026 Audit Summary |",
         "|---|---|---|---:|---:|---|",
     ])
     for r in ai_df.itertuples():
         nm = str(r.name).replace("|", "\\|")
         aud = str(r.ai_verification_nov2026).replace("|", "\\|")
         lines.append(f"| `{r.id}` | **{nm}** | {r.superdomain} | {r.css_score:.2f} | {r.titan_index:.2f} | {aud} |")
+
+    lines.extend([
+        "",
+        "## Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)",
+        "",
+        "> **Conflict-of-Interest & Scope Disclosure:** The 7 repositories below are independent preprints by Alexander Stephen Donahue (ORCID `0009-0006-8168-9648`, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving structural invariants. Every overarching Mega-Atlas parent problem remains **OPEN**.",
+        "",
+        "| Archive ID | Repository | Parent Atlas IDs | Scoped Machine-Checked Result | Parent Status |",
+        "|---|---|---|---|---|",
+    ])
+    for r in data["df_author_contributions"].itertuples():
+        lines.append(
+            f"| `{r.Archive_ID}` | `{r.Repo}` | `{r.Parent_Atlas_IDs}` | {str(r.Scoped_Result).replace('|', '/')} | {str(r.Parent_Problem_Status).replace('|', '/')} |"
+        )
     lines.append("")
 
     p_rank = os.path.join(BASE_DIR, "RANKING.md")
@@ -351,7 +398,9 @@ def export_excel_files(data):
 
     # Locate exact dynamic Excel column letters in Master_Catalog
     cols_m = list(df.columns)
-    col_ltr = lambda cname: get_column_letter(cols_m.index(cname) + 1)
+
+    def col_ltr(cname: str) -> str:
+        return get_column_letter(cols_m.index(cname) + 1)
     n_rows = len(df) + 1
     L_PIL = col_ltr("macro_pillar")
     L_YR = col_ltr("year_formulated")
@@ -366,14 +415,14 @@ def export_excel_files(data):
     # Sheet 1: Executive_Dashboard (live formulas)
     ws_d = wb.create_sheet(title="Executive_Dashboard")
     ws_d.merge_cells("A1:I1")
-    ws_d["A1"] = f"V2.3.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)"
+    ws_d["A1"] = f"V{s['atlas_version']} MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)"
     ws_d["A1"].font = Font(name="Calibri", size=15, bold=True, color="FFFFFF")
     ws_d["A1"].fill = PatternFill("solid", fgColor="0F172A")
     ws_d["A1"].alignment = Alignment(horizontal="center", vertical="center")
     ws_d.row_dimensions[1].height = 36
 
     ws_d.merge_cells("A2:I2")
-    ws_d["A2"] = "Author: Alexander Stephen Donahue (0thernes LLC · ORCID 0009-0006-8168-9648) · 0thernes CSS + Titan Index · Lean 4.35.0 Formula Invariants · AI-Assisted Disclosure"
+    ws_d["A2"] = f"Author: {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · 0thernes CSS + Titan Index · 6-Kernel Lean 4.35.0 Formal Invariants · AI-Assisted Disclosure"
     ws_d["A2"].font = Font(name="Calibri", size=10, italic=True, color="334155")
     ws_d["A2"].fill = PatternFill("solid", fgColor="E2E8F0")
     ws_d["A2"].alignment = Alignment(horizontal="center", vertical="center")
@@ -494,10 +543,38 @@ def export_excel_files(data):
     ws_ind = write_sheet(wb, "Industry_Exposure", data["df_industry"], include_index=True, header_hex="0369A1")
     ws_ind.conditional_formatting.add("B2:Q29", ColorScaleRule(start_type="num", start_value=0, start_color="FFFFFF", mid_type="num", mid_value=12, mid_color="A7F3D0", end_type="max", end_color="059669"))
     write_sheet(wb, "Substrates_Margins", data["df_substrates"], header_hex="312E81", wrap_names=["Substrate_Class"])
+    write_sheet(wb, "Author_Frontier_Preprints", data["df_author_contributions"], header_hex="475569",
+                wrap_names=["Repo", "Parent_Atlas_IDs", "Scoped_Result", "Kernel_Audit", "Parent_Problem_Status"])
+
+    fixed_dt = datetime.datetime(2026, 11, 25, 0, 0, 0)
+    wb.properties.created = fixed_dt
+    wb.properties.modified = fixed_dt
+    wb.properties.creator = "Alexander Stephen Donahue (ORCID 0009-0006-8168-9648)"
+    wb.properties.lastModifiedBy = "Mega-Atlas V2.4.0 Deterministic Exporter"
 
     p_xlsx = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.xlsx")
     wb.save(p_xlsx)
-    print(f"  Saved 14-sheet XLSX: {p_xlsx}")
+    # Normalize ZIP entry order, timestamps, and docProps/core.xml so XLSX is byte-for-byte reproducible across OSes
+    p_xlsx_tmp = p_xlsx + ".tmp"
+    with zipfile.ZipFile(p_xlsx, "r") as zin, zipfile.ZipFile(
+        p_xlsx_tmp, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9
+    ) as zout:
+        for info in sorted(zin.infolist(), key=lambda i: i.filename):
+            data_bytes = zin.read(info.filename)
+            if info.filename == "docProps/core.xml":
+                xml_txt = data_bytes.decode("utf-8")
+                xml_txt = re.sub(
+                    r"(<dcterms:modified[^>]*>)[^<]*(</dcterms:modified>)",
+                    r"\g<1>2026-11-25T00:00:00Z\g<2>",
+                    xml_txt,
+                )
+                data_bytes = xml_txt.encode("utf-8")
+            zi = zipfile.ZipInfo(filename=info.filename, date_time=(2026, 11, 25, 0, 0, 0))
+            zi.compress_type = zipfile.ZIP_DEFLATED
+            zi.external_attr = 0o644 << 16
+            zout.writestr(zi, data_bytes)
+    os.replace(p_xlsx_tmp, p_xlsx)
+    print(f"  Saved 15-sheet XLSX: {p_xlsx} ({os.path.getsize(p_xlsx)/1048576:.2f} MB)")
 
     # Legacy BIFF .xls (Excel 97–2003, supports up to 65,536 rows cleanly!)
     book = xlwt.Workbook(encoding="utf-8")
@@ -537,19 +614,22 @@ def export_excel_files(data):
 def export_md_and_txt(data):
     df = data["df"]
     s = data["summary_stats"]
-    id_map = data["id_map"]
+    lean_n = _lean_theorem_count()
 
     # --- MARKDOWN ---
     md = []
-    md.append(f"# V2.3.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (0thernes LLC · November 2026)\n")
-    md.append(f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Version:** `v{s['atlas_version']}` · **Dual License:** Data CC BY 4.0 / Code MIT\n")
-    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × {s['total_subdomains']:,} subdomains**, wired into **1 biconnected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**0 articulation points**, **{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formal Invariants:** 72 theorems (0 `sorry`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
+    md.append(f"# V{s['atlas_version']} Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (November 2026)\n")
+    md.append(f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Version:** `v{s['atlas_version']}` · **Dual License:** Data CC BY 4.0 / Code Apache-2.0\n")
+    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × {s['total_subdomains']:,} subdomains**, wired into **1 biconnected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**0 articulation points**, **{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formal Invariants:** {lean_n} audited theorems across 6 independent kernels (0 `sorry` in `lean/`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
 
-    md.append("## 1. November 20, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
+    md.append("## 1. November 25, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
     md.append("No fixed finite count of open human problems exists—active mathematical registries alone track well over 1,100–2,000+ open questions (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:\n")
     md.append(df_to_md(data["df_ai_audit"]) + "\n")
     md.append("### Global Open-Problem Registries & Scale Comparison (November 2026)\n")
     md.append(df_to_md(data["df_registries"]) + "\n")
+    md.append("### Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)\n")
+    md.append("> *COI & Scope Notice:* Independent preprints by Alexander Stephen Donahue (not externally peer-reviewed); every parent Atlas problem remains **OPEN**.\n")
+    md.append(df_to_md(data["df_author_contributions"]) + "\n")
     md.append("![Nov 2026 Status & Registries](charts/11_nov2026_status_and_registries.png)\n")
 
     md.append("## 2. Conceptual Models & Mermaid Taxonomies\n")
@@ -602,7 +682,7 @@ def export_md_and_txt(data):
     md.append("## 7. 20 Recently Resolved Historical Benchmarks (1995–2026)\n")
     md.append(df_to_md(data["df_benchmarks"]) + "\n")
 
-    md.append("## 8. Complete 12-Figure Visual Analytics Gallery\n")
+    md.append("## 8. Complete 15-Figure Visual Analytics Gallery\n")
     for fname, cap in CHART_ITEMS:
         md.append(f"### {cap}\n![{cap}](charts/{fname})\n")
 
@@ -625,21 +705,21 @@ def export_md_and_txt(data):
             md.append("")
 
     p_md = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.md")
-    with open(p_md, "w", encoding="utf-8") as f:
+    with open(p_md, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(md))
     print(f"  Saved Markdown Mega-Atlas: {p_md} ({len(md):,} lines)")
 
     # --- PLAIN TEXT ---
     txt = []
     bar = "=" * 116
-    txt.extend([bar, f"  V2.3.0 MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (0THERNES LLC · NOV 2026)",
-                f"  Author: {s['author']} ({s['affiliation']} | ORCID: {s['orcid']}) | Dual License: CC BY 4.0 (Data) / MIT (Code)",
-                f"  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | {s['total_graph_edges']:,} Edges (0 Art. Pts) | 72 Pure Lean 4.35.0 Theorems", bar, ""])
+    txt.extend([bar, f"  V{s['atlas_version']} MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)",
+                f"  Author: {s['author']} ({s['affiliation']} | ORCID: {s['orcid']}) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)",
+                f"  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | {s['total_graph_edges']:,} Edges (0 Art. Pts) | {lean_n} Pure Lean 4.35.0 Theorems (6 Kernels)", bar, ""])
     txt.append("[1] EXECUTIVE SUMMARY METRICS\n" + "-" * 116)
     for k, v in s.items():
         if k != "module_counts":
             txt.append(f"  {k:<36}: {v}")
-    txt.append("\n[2] NOVEMBER 20, 2026 AI PROOF-CLAIM VERIFICATION AUDIT\n" + "-" * 116)
+    txt.append("\n[2] NOVEMBER 25, 2026 AI PROOF-CLAIM VERIFICATION AUDIT\n" + "-" * 116)
     for _, r in data["df_ai_audit"].iterrows():
         txt.append(f"  [{r['Claim_ID']}] {r['Problem']} ({r['Date']})")
         txt.append(f"    Claimant  : {r['Claimant_System']}")
@@ -685,25 +765,30 @@ def export_md_and_txt(data):
                 txt.append("-" * 96)
 
     p_txt = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.txt")
-    with open(p_txt, "w", encoding="utf-8") as f:
+    with open(p_txt, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(txt))
     print(f"  Saved Plain Text Mega-Reference: {p_txt} ({len(txt):,} lines)")
 
 
-# ==================== 4. INTERACTIVE HTML (PAGINATED FOR 1,700+ ROWS!) ====================
+# ==================== 4. INTERACTIVE HTML (<4 MB, WCAG 2.2 AA ACCESSIBLE, COLUMNAR JSON) ====================
 def export_interactive_html(data):
     df = data["df"]
     s = data["summary_stats"]
-    probs_json = json.dumps(df.to_dict(orient="records"), ensure_ascii=False).replace("</", "<\\/")
-    contrasts_json = json.dumps(data["df_contrasts"].to_dict(orient="records"), ensure_ascii=False).replace("</", "<\\/")
-    bench_json = json.dumps(data["df_benchmarks"].to_dict(orient="records"), ensure_ascii=False).replace("</", "<\\/")
-    audit_json = json.dumps(data["df_ai_audit"].to_dict(orient="records"), ensure_ascii=False).replace("</", "<\\/")
-    regs_json = json.dumps(data["df_registries"].to_dict(orient="records"), ensure_ascii=False).replace("</", "<\\/")
-    pal_json = json.dumps(PILLAR_HEX)
+    lean_n = _lean_theorem_count()
+    cols = list(df.columns)
+    rows = [[None if pd.isna(v) else (v.item() if hasattr(v, "item") else v) for v in row] for row in df.itertuples(index=False)]
+    cols_json = json.dumps(cols, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    rows_json = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    contrasts_json = json.dumps(data["df_contrasts"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    bench_json = json.dumps(data["df_benchmarks"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    audit_json = json.dumps(data["df_ai_audit"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    regs_json = json.dumps(data["df_registries"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    contribs_json = json.dumps(data["df_author_contributions"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    pal_json = json.dumps(PILLAR_HEX, separators=(",", ":"))
 
     gallery_html = "\n".join(
-        f'<div class="chart-card" onclick="openLightbox(this)"><div class="chart-cap">{html.escape(cap)}</div>'
-        f'<img src="{b64_img(fname)}" alt="{html.escape(cap)}" loading="lazy" /></div>'
+        f'<div class="chart-card" role="button" tabindex="0" aria-label="Zoom {html.escape(cap)}" onclick="openLightbox(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){{event.preventDefault();openLightbox(this);}}"><div class="chart-cap">{html.escape(cap)}</div>'
+        f'<img src="charts/{fname}" alt="{html.escape(cap)}" loading="lazy" /></div>'
         for fname, cap in CHART_ITEMS
     )
 
@@ -728,7 +813,7 @@ def export_interactive_html(data):
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>V2.3.0 Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · 0thernes LLC (Nov 2026)</title>
+<title>V{s['atlas_version']} Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · Alexander S. Donahue (Nov 2026)</title>
 <style>
   :root {{
     --bg: #0B1120; --surface: #111827; --surface2: #1E293B; --border: #334155;
@@ -739,6 +824,10 @@ def export_interactive_html(data):
     --text: #0F172A; --muted: #475569; --accent: #0284C7; --good: #059669; --warn: #D97706; --bad: #DC2626;
   }}
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  .skip-link {{ position: absolute; left: -9999px; top: 0; background: #38BDF8; color: #0B1120; padding: 10px 16px; font-weight: 800; z-index: 200; border-radius: 0 0 8px 0; }}
+  .skip-link:focus {{ left: 8px; top: 8px; }}
+  :focus-visible {{ outline: 3px solid var(--accent); outline-offset: 2px; }}
+  @media (prefers-reduced-motion: reduce) {{ *, *::before, *::after {{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }} }}
   body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; background: var(--bg); color: var(--text); line-height: 1.48; }}
   header {{ background: linear-gradient(135deg, #0B1120 0%, #1E1B4B 48%, #0C4A6E 100%); color: #FFF; padding: 24px 30px; border-bottom: 1px solid #334155; }}
   .hdr-top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }}
@@ -820,15 +909,18 @@ def export_interactive_html(data):
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <header>
   <div class="hdr-top">
     <div>
-      <h1>V2.3.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (0thernes LLC · Nov 2026)</h1>
-      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Graph Edges · 0thernes CSS + Titan Index · 72 Pure Lean 4.35.0 Formal Invariants · Hybrid RAG (100% MRR@5) + 9-Tool MCP Server + Karpathy AutoResearch · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
+      <h1>V{s['atlas_version']} Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (Nov 2026)</h1>
+      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Graph Edges · 0thernes CSS + Titan Index · {lean_n} Pure Lean 4.35.0 Theorems (6 Kernels / Palomar) · Hybrid RAG (100% MRR@5) + 10-Tool MCP Server + Karpathy AutoResearch · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas" target="_blank" style="text-decoration:none;">GitHub Repo ↗</a>
-      <button class="theme-btn" onclick="toggleTheme()">Toggle Light / Dark</button>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <a class="theme-btn" href="blueprint/index.html" style="text-decoration:none;">Lean Blueprint ↗</a>
+      <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas/releases/latest" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">White Paper PDF ↗</a>
+      <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">GitHub Repo ↗</a>
+      <button class="theme-btn" type="button" onclick="toggleTheme()" aria-label="Toggle light or dark color theme">Toggle Light / Dark</button>
     </div>
   </div>
   <div class="kpi-grid">
@@ -838,32 +930,32 @@ def export_interactive_html(data):
     <div class="kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
     <div class="kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
     <div class="kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-    <div class="kpi"><div class="v">72 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
+    <div class="kpi"><div class="v">{lean_n} / 6K</div><div class="l">Lean 4.35 Thms / Kernels</div></div>
     <div class="kpi"><div class="v">500 BCE–2026</div><div class="l">Span (Med Age {s['median_age_years']}y)</div></div>
   </div>
 </header>
 
-<nav class="tabs">
-  <button class="tab-btn active" onclick="showTab('explorer', this)">1. Master Catalog ({s['total_problems']:,})</button>
-  <button class="tab-btn" onclick="showTab('nov2026', this)">2. Nov 2026 AI Audit &amp; Global Registries</button>
-  <button class="tab-btn" onclick="showTab('comparator', this)">3. Live Side-by-Side Comparator</button>
-  <button class="tab-btn" onclick="showTab('charts', this)">4. Visual Analytics Gallery (15 Charts)</button>
-  <button class="tab-btn" onclick="showTab('matrices', this)">5. Substrates, Layers, Margins &amp; Contrast Matrices (13)</button>
-  <button class="tab-btn" onclick="showTab('contrasts', this)">6. 15 Iconic Contrasts &amp; 20 Resolved Benchmarks</button>
+<nav class="tabs" role="tablist" aria-label="Mega-Atlas Sections">
+  <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-explorer" onclick="showTab('explorer', this)">1. Master Catalog ({s['total_problems']:,})</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-nov2026" onclick="showTab('nov2026', this)">2. Nov 2026 AI Audit, Registries &amp; Scoped Preprints</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-comparator" onclick="showTab('comparator', this)">3. Live Side-by-Side Comparator</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-charts" onclick="showTab('charts', this)">4. Visual Analytics Gallery (15 Charts)</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-matrices" onclick="showTab('matrices', this)">5. Substrates, Layers, Margins &amp; Contrast Matrices (13)</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-contrasts" onclick="showTab('contrasts', this)">6. 15 Iconic Contrasts &amp; 20 Resolved Benchmarks</button>
 </nav>
 
-<main>
+<main id="main-content" tabindex="-1">
   <!-- TAB 1: MASTER CATALOG -->
-  <section id="tab-explorer" class="panel active">
+  <section id="tab-explorer" class="panel active" role="tabpanel">
     <div class="filters">
-      <input id="fSearch" type="text" placeholder="Instant search across all {s['total_problems']:,} problems (ID, name, equation, originator, approaches, industries, registry)..." oninput="goPage(1)" />
-      <select id="fPillar" onchange="goPage(1)"><option value="">All 8 Macro-Pillars</option></select>
-      <select id="fSuper" onchange="goPage(1)"><option value="">All 28 Superdomains</option></select>
-      <select id="fStatus" onchange="goPage(1)"><option value="">All Nov 2026 Statuses</option></select>
-      <select id="fType" onchange="goPage(1)"><option value="">All Problem Types</option></select>
-      <select id="fBottleneck" onchange="goPage(1)"><option value="">All Bottlenecks</option></select>
-      <select id="fQuadrant" onchange="goPage(1)"><option value="">All 4 Quadrants</option></select>
-      <select id="fVerif" onchange="goPage(1)"><option value="">All Verification Flags</option></select>
+      <input id="fSearch" type="text" aria-label="Search problems" placeholder="Instant search across all {s['total_problems']:,} problems (ID, name, equation, originator, approaches, industries, registry)..." oninput="goPage(1)" />
+      <select id="fPillar" aria-label="Filter by Macro-Pillar" onchange="goPage(1)"><option value="">All 8 Macro-Pillars</option></select>
+      <select id="fSuper" aria-label="Filter by Superdomain" onchange="goPage(1)"><option value="">All 28 Superdomains</option></select>
+      <select id="fStatus" aria-label="Filter by Nov 2026 Status" onchange="goPage(1)"><option value="">All Nov 2026 Statuses</option></select>
+      <select id="fType" aria-label="Filter by Problem Type" onchange="goPage(1)"><option value="">All Problem Types</option></select>
+      <select id="fBottleneck" aria-label="Filter by Bottleneck" onchange="goPage(1)"><option value="">All Bottlenecks</option></select>
+      <select id="fQuadrant" aria-label="Filter by Strategic Quadrant" onchange="goPage(1)"><option value="">All 4 Quadrants</option></select>
+      <select id="fVerif" aria-label="Filter by Verification Flag" onchange="goPage(1)"><option value="">All Verification Flags</option></select>
     </div>
     <div class="bar-meta">
       <div id="countSummary">Loading...</div>
@@ -907,17 +999,22 @@ def export_interactive_html(data):
   </section>
 
   <!-- TAB 2: NOV 2026 AI AUDIT & REGISTRIES -->
-  <section id="tab-nov2026" class="panel">
+  <section id="tab-nov2026" class="panel" role="tabpanel">
     <div class="alert-box">
-      <b>Why "Right Now" (November 20, 2026) Is Historically Unprecedented:</b> Active registries like <b>ProofAtlas.ai</b> (1,100+ eligible; 243 open in Top-500) and <b>Erdős Problems DB</b> (~1,221 tracked; ~630 open) coexist with dramatic Fall–November 2026 AI proof claims—including OpenAI's Sept 8 <b>3D Navier–Stokes</b> claim, OpenAI's Oct 6 bulk release (<b>722 manuscripts across 372 topics</b>), and today's Nov 20 <b>Levent Alpöge / Claude multi-million-line Lean Riemann Hypothesis &amp; GRH claim</b> alongside Stanford's <b>Alessandro Masullo</b> human draft. Machine kernel compilation checks logical deduction, NOT formal-statement fidelity or community consensus—so all six Clay Millennium Problems remain officially unretired pending independent verification.
+      <b>Why "Right Now" (November 25, 2026) Is Historically Unprecedented:</b> Active registries like <b>ProofAtlas.ai</b> (1,100+ eligible; 243 open in Top-500) and <b>Erdős Problems DB</b> (~1,221 tracked; ~630 open) coexist with dramatic Fall–November 2026 AI proof claims—including OpenAI's Sept 8 <b>3D Navier–Stokes</b> claim, OpenAI's Oct 6 bulk release (<b>722 manuscripts across 372 topics</b>), and the Nov 20–21 <b>Levent Alpöge / Claude ~17M-line Lean Riemann Hypothesis &amp; GRH archive</b> (multi-kernel certified by Lean FRO &amp; Mathlib Initiative on Nov 21, with no complete human-readable paper yet) alongside Stanford's <b>Alessandro Masullo</b> human draft. Machine kernel compilation checks logical deduction, NOT human exposition or community consensus—so all six Clay Millennium Problems remain officially unretired.
     </div>
-    <h2 style="margin-bottom:10px;">A. Live November 20, 2026 AI Proof-Claim Verification Audit</h2>
+    <h2 style="margin-bottom:10px;">A. Live November 25, 2026 AI Proof-Claim Verification Audit</h2>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Audit ID</th><th>Targeted Problem(s)</th><th>Date</th><th>Claimant / System</th><th>Artifact Type</th><th>Machine Check Status</th><th>Human Fidelity &amp; Peer Review</th><th>Official Nov 2026 Verdict</th></tr></thead><tbody id="auditTbody"></tbody></table>
     </div>
     <h2 style="margin-bottom:10px;">B. Global Open-Problem Registries &amp; Scale Comparison (13 Major Trackers)</h2>
-    <div class="table-wrap">
+    <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Registry / Tracker</th><th>Scope</th><th>Total Tracked</th><th>Open Count (Nov 2026)</th><th>Verification Standard</th><th>November 2026 Context</th></tr></thead><tbody id="regsTbody"></tbody></table>
+    </div>
+    <h2 style="margin-bottom:8px;">C. Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)</h2>
+    <p style="color:var(--muted);font-size:0.84rem;margin-bottom:10px;"><i>Conflict-of-Interest &amp; Scope Disclosure:</i> Independent preprints by Alexander Stephen Donahue (ORCID 0009-0006-8168-9648; self-published, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving structural invariants. All overarching Mega-Atlas parent problems explicitly remain <b>OPEN</b>.</p>
+    <div class="table-wrap">
+      <table class="data-table"><thead><tr><th>Archive ID</th><th>Repository</th><th>Parent Atlas IDs</th><th>Scoped Machine-Checked Result</th><th>Kernel Verification</th><th>Overarching Parent Status</th></tr></thead><tbody id="contribsTbody"></tbody></table>
     </div>
   </section>
 
@@ -967,11 +1064,14 @@ def export_interactive_html(data):
 <div class="modal-bg" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt="Zoom" /></div>
 
 <script>
-const PROBLEMS = {probs_json};
+const COLS = {cols_json};
+const ROWS = {rows_json};
+const PROBLEMS = ROWS.map(r => {{ const o = {{}}; for (let i = 0; i < COLS.length; i++) o[COLS[i]] = r[i]; return o; }});
 const CONTRASTS = {contrasts_json};
 const BENCHMARKS = {bench_json};
 const AI_AUDIT = {audit_json};
 const REGISTRIES = {regs_json};
+const AUTHOR_CONTRIBS = {contribs_json};
 const PILLAR_COLORS = {pal_json};
 const ID_MAP = Object.fromEntries(PROBLEMS.map(p => [p.id, p]));
 
@@ -985,12 +1085,18 @@ const fmtYear = y => y < 0 ? Math.abs(y) + ' BCE' : String(y);
 function toggleTheme() {{ const r = document.documentElement; r.setAttribute('data-theme', r.getAttribute('data-theme')==='dark'?'light':'dark'); }}
 function showTab(id, btn) {{
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => {{ b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); }});
   document.getElementById('tab-' + id).classList.add('active');
-  if (btn) btn.classList.add('active');
+  if (btn) {{ btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); }}
 }}
 function openLightbox(card) {{ document.getElementById('lightboxImg').src = card.querySelector('img').src; document.getElementById('lightbox').classList.add('open'); }}
 function closeModal() {{ document.getElementById('detailModal').classList.remove('open'); }}
+document.addEventListener('keydown', e => {{
+  if (e.key === 'Escape') {{
+    closeModal();
+    document.getElementById('lightbox').classList.remove('open');
+  }}
+}});
 
 function populateUI() {{
   const uniq = k => [...new Set(PROBLEMS.map(p => p[k]))].sort();
@@ -1024,6 +1130,10 @@ function populateUI() {{
 
   document.getElementById('regsTbody').innerHTML = REGISTRIES.map(r => `
     <tr><td><b>${{esc(r.Registry)}}</b></td><td>${{esc(r.Scope)}}</td><td><b>${{esc(r.Total_Tracked)}}</b></td><td>${{esc(r.Open_Count_Nov2026)}}</td><td>${{esc(r.Verification_Standard)}}</td><td>${{esc(r.Nov2026_Highlight)}}</td></tr>
+  `).join('');
+
+  document.getElementById('contribsTbody').innerHTML = AUTHOR_CONTRIBS.map(c => `
+    <tr><td class="mono"><b>${{esc(c.Archive_ID)}}</b></td><td class="mono">${{esc(c.Repo)}}</td><td class="mono">${{esc(c.Parent_Atlas_IDs)}}</td><td>${{esc(c.Scoped_Result)}}</td><td>${{esc(c.Kernel_Audit)}}</td><td><span class="badge">${{esc(c.Parent_Problem_Status)}}</span></td></tr>
   `).join('');
 
   document.getElementById('contrastsGrid').innerHTML = CONTRASTS.map(c => `
@@ -1159,7 +1269,7 @@ function openDetail(pid) {{
     <div class="field-box"><strong>Substrate · Abstraction Layer · Gradient · Margin Role</strong><span class="badge">${{esc(p.substrate_class)}}</span> <span class="badge">${{esc(p.abstraction_layer)}}</span> <span class="badge">${{esc(p.margin_role)}}</span><br/>Gradient (D−T): <b>${{p.hardness_tractability_gradient >= 0 ? '+' + p.hardness_tractability_gradient : p.hardness_tractability_gradient}}</b> · CSS−Titan×10 Margin: <b>${{p.css_titan_margin >= 0 ? '+' + p.css_titan_margin : p.css_titan_margin}}</b> · Epistemic Spectrum: <b>${{p.epistemic_spectrum_score}}/100</b> · Bridge Ratio: <b>${{(p.bridge_margin_ratio*100).toFixed(1)}}%</b> · Adjacent Pillars: <b>${{p.adjacent_pillars_count}}/7</b></div>
     <div class="field-box"><strong>Core Question</strong>${{esc(p.core_question)}}</div>
     <div class="field-box"><strong>Formal / Governing Expression</strong><div class="mono" style="background:var(--surface2);padding:7px;border-radius:6px;margin-top:3px;">${{esc(p.formal_expression)}}</div></div>
-    <div class="field-box"><strong>Nov 20, 2026 AI Claim &amp; Verification Audit</strong>${{esc(p.ai_verification_nov2026)}}</div>
+    <div class="field-box"><strong>Nov 25, 2026 AI Claim &amp; Verification Audit</strong>${{esc(p.ai_verification_nov2026)}}</div>
     <div class="field-box"><strong>Primary Bottleneck · Scale · Verification</strong>${{esc(p.primary_bottleneck)}} · ${{esc(p.scale_regime)}} · ${{esc(p.verification_type)}}</div>
     <div class="field-box"><strong>Competing Approaches</strong>${{esc(p.competing_approaches)}}</div>
     <div class="field-box"><strong>2026 Frontier Progress</strong>${{esc(p.closest_progress_2026)}}</div>
@@ -1206,16 +1316,16 @@ goPage(1);
 </html>
 """
     p_html = os.path.join(OUT_DIR, "MegaAtlas_Interactive_Dashboard_V2.html")
-    with open(p_html, "w", encoding="utf-8") as f:
+    with open(p_html, "w", encoding="utf-8", newline="\n") as f:
         f.write(doc)
-    print(f"  Saved V2.3.0 Interactive HTML Dashboard: {p_html} ({os.path.getsize(p_html)/1048576:.2f} MB)")
+    print(f"  Saved V{s['atlas_version']} Interactive HTML Dashboard: {p_html} ({os.path.getsize(p_html)/1048576:.2f} MB)")
 
 
-# ==================== 5. PUBLICATION PRINT HTML & VECTOR PDF MONOGRAPH ====================
+# ==================== 5. PUBLICATION PRINT HTML & VECTOR DIRECTORY PDF MONOGRAPH (build/) ====================
 def export_pdf_monograph(data):
     df = data["df"]
     s = data["summary_stats"]
-    id_map = data["id_map"]
+    lean_n = _lean_theorem_count()
 
     chart_blocks = "".join(
         f'<div class="fig-block"><div class="fig-cap">{html.escape(cap)}</div>'
@@ -1259,7 +1369,7 @@ def export_pdf_monograph(data):
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>V2.3.0 Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (Nov 2026)</title>
+<title>V{s['atlas_version']} Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (Nov 2026)</title>
 <style>
   @page {{ size: letter portrait; margin: 0.48in 0.45in 0.52in 0.45in; }}
   * {{ box-sizing: border-box; }}
@@ -1315,9 +1425,9 @@ def export_pdf_monograph(data):
 
 <div class="cover">
   <div>
-    <div class="cover-kicker">0thernes LLC Institutional Monograph · Version 2.3.0 · November 21, 2026</div>
+    <div class="cover-kicker">Independent Research Monograph · Version {s['atlas_version']} · November 25, 2026</div>
     <h1>Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Fields of Knowledge</h1>
-    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, Pure Lean 4.35.0 Formal Invariant Suite (72 Theorems, 0 sorry), November 2026 AI Proof-Claim Verification Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 9-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
+    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, 6-Kernel Pure Lean 4.35.0 Formal Invariant Suite ({lean_n} Audited Theorems, 0 sorry in lean/), November 25, 2026 AI Proof-Claim Verification Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 10-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
     <div class="cover-grid">
       <div class="cover-kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
       <div class="cover-kpi"><div class="v">8 × 28 × 7</div><div class="l">Pillars × SD × Layers</div></div>
@@ -1325,7 +1435,7 @@ def export_pdf_monograph(data):
       <div class="cover-kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
       <div class="cover-kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
       <div class="cover-kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-      <div class="cover-kpi"><div class="v">72 / 0</div><div class="l">Lean 4.35 Thms / sorry</div></div>
+      <div class="cover-kpi"><div class="v">{lean_n} / 6K</div><div class="l">Lean 4.35 Thms / Kernels</div></div>
       <div class="cover-kpi"><div class="v">500 BCE–2026</div><div class="l">Historical Span</div></div>
     </div>
     <div class="cover-pillars">
@@ -1333,15 +1443,15 @@ def export_pdf_monograph(data):
     </div>
   </div>
   <div class="cover-foot">
-    <b>Release:</b> v{s['atlas_version']} (November 21, 2026) · <b>Author:</b> {s['author']} (ORCID {s['orcid']}, 0thernes LLC) · <b>Dual License:</b> CC BY 4.0 (Data/Monograph) / MIT (Code/Lean/RAG) · <b>AI-Assisted Disclosure:</b> Curated by solo researcher with disclosed AI assistance; quantitative scores are falsifiable editorial estimates, not peer-reviewed measurements; Lean 4 proofs verify scoring/graph/taxonomy invariants only.
+    <b>Release:</b> v{s['atlas_version']} (November 25, 2026) · <b>Author:</b> {s['author']} (ORCID {s['orcid']}, {s['affiliation']}) · <b>Dual License:</b> CC BY 4.0 (Data/Monograph) / Apache-2.0 (Code/Lean/RAG) · <b>AI-Assisted Disclosure:</b> Curated by independent researcher with disclosed AI assistance; quantitative scores are falsifiable editorial estimates, not peer-reviewed measurements; Lean 4 proofs verify scoring/graph/taxonomy invariants only.
   </div>
 </div>
 
-<h2 class="sec">Section 1 · November 20, 2026 Special Report: AI Proof Claims, Verification Crisis &amp; Global Registries</h2>
+<h2 class="sec">Section 1 · November 25, 2026 Special Report: AI Proof Claims, Verification Crisis &amp; Global Registries</h2>
 <div class="callout">
-  <b>Live November 20, 2026 Verification Advisory:</b> No single fixed count of open mathematical or scientific problems exists—active registries track thousands (<b>ProofAtlas.ai</b>: 1,100+ eligible / 243 open in Top-500; <b>Erdős Problems DB</b>: ~1,221 tracked / ~630+ open; <b>Kourovka</b>: &gt;1,000; <b>Kirby</b>: 360+). Rapid Fall–November 2026 AI claims (OpenAI Sept 8 Navier–Stokes, OpenAI Oct 6 722-manuscript dump, Nov 20 Alpöge/Claude Lean RH &amp; GRH archive + Masullo human draft) remain <b>unverified / officially open</b> pending independent formal-statement fidelity and peer refereeing.
+  <b>Live November 25, 2026 Verification Advisory:</b> No single fixed count of open mathematical or scientific problems exists—active registries track thousands (<b>ProofAtlas.ai</b>: 1,100+ eligible / 243 open in Top-500; <b>Erdős Problems DB</b>: ~1,221 tracked / ~630+ open; <b>Kourovka</b>: &gt;1,000; <b>Kirby</b>: 360+). Rapid Fall–November 2026 AI claims (OpenAI Sept 8 Navier–Stokes, OpenAI Oct 6 722-manuscript dump, Nov 20–21 Alpöge/Claude Lean RH &amp; GRH archive + Masullo human draft) remain <b>unretired / officially open</b> pending human-readable exposition and peer refereeing.
 </div>
-<h3 class="subsec">1.1 November 20, 2026 AI Proof-Claim Verification Audit Ledger</h3>
+<h3 class="subsec">1.1 November 25, 2026 AI Proof-Claim Verification Audit Ledger</h3>
 {df_to_html_table(data["df_ai_audit"])}
 <h3 class="subsec">1.2 Global Open-Problem Registries &amp; Trackers Comparison (13 Benchmarks)</h3>
 {df_to_html_table(data["df_registries"])}
@@ -1387,36 +1497,46 @@ def export_pdf_monograph(data):
 </body>
 </html>
 """
-    p_html = os.path.join(OUT_DIR, "MegaAtlas_Print_Report_V2.html")
-    with open(p_html, "w", encoding="utf-8") as f:
+    p_html = os.path.join(BUILD_DIR, "MegaAtlas_Print_Report_V2.html")
+    with open(p_html, "w", encoding="utf-8", newline="\n") as f:
         f.write(print_html)
     print(f"  Saved Print Monograph HTML: {p_html}")
 
-    p_pdf = os.path.join(OUT_DIR, "MegaAtlas_Comprehensive_Report_V2.pdf")
+    p_pdf = os.path.join(BUILD_DIR, "MegaAtlas_Comprehensive_Report_V2.pdf")
     chrome_candidates = [
         r"C:\Program Files\Google\Chrome\Application\chrome.exe",
         r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
         r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        "/usr/bin/google-chrome",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
     ]
     browser = next((c for c in chrome_candidates if os.path.exists(c)), None)
-    assert browser, "Chrome/Edge not found!"
+    if not browser:
+        print("  NOTE: No headless Chrome/Edge binary found; skipped optional directory PDF build.")
+        return
     url = "file:///" + p_html.replace("\\", "/")
-    print(f"  Compiling V2.3.0 PDF Monograph via {os.path.basename(browser)}...")
+    print(f"  Compiling V{s['atlas_version']} Directory PDF Monograph via {os.path.basename(browser)}...")
     res = subprocess.run([browser, "--headless=new", "--disable-gpu", "--no-sandbox", "--print-to-pdf-no-header", f"--print-to-pdf={p_pdf}", url], capture_output=True, text=True, timeout=240)
     assert os.path.exists(p_pdf) and os.path.getsize(p_pdf) > 200_000, f"PDF build failed: {res.stderr}"
-    print(f"  Saved V2.3.0 Vector PDF Monograph: {p_pdf} ({os.path.getsize(p_pdf)/1048576:.2f} MB)")
+    print(f"  Saved V{s['atlas_version']} Vector Directory PDF Monograph: {p_pdf} ({os.path.getsize(p_pdf)/1048576:.2f} MB)")
 
 
 def main():
-    print("Loading V2.3.0 Mega-Atlas (0thernes LLC)...")
+    parser = argparse.ArgumentParser(description="Export all Unsolved Problems Mega-Atlas formats.")
+    parser.add_argument("--skip-pdf", action="store_true", help="Skip optional Chrome-headless directory PDF build into build/")
+    args = parser.parse_args()
+
+    print("Loading V2.4.0 Mega-Atlas (Alexander Stephen Donahue)...")
     data = load_v2_master()
     export_csv_tsv_json(data)
     export_master_ranking_md(data)
     export_excel_files(data)
     export_md_and_txt(data)
     export_interactive_html(data)
-    export_pdf_monograph(data)
-    print("\n=== ALL V2.3.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
+    if not args.skip_pdf:
+        export_pdf_monograph(data)
+    print("\n=== ALL V2.4.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
 
 
 if __name__ == "__main__":

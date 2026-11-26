@@ -1,17 +1,17 @@
-# Preserve exact binary/byte-for-byte SHA-256 parity across Windows & Linux for all audited artifacts
-outputs/** -text
-CHECKSUMS.sha256 text eol=lf
-RANKING.md text eol=lf
-docs/WHITE_PAPER.md text eol=lf
-docs/DATASHEET.md text eol=lf
-docs/FORENSIC_AUDIT_V2.3.md text eol=lf
-docs/PRESERVATION.md text eol=lf
-schema/*.json text eol=lf
-croissant.json text eol=lf
-ro-crate-metadata.json text eol=lf
-.zenodo.json text eol=lf
-autoresearch/evaluate.py text eol=lf
-autoresearch/results.tsv text eol=lf
-research/runs/LOG-002_antihydra_pilot/RESULTS.json text eol=lf
-AGENTS.md text eol=lf
-llms.txt text eol=lf
+# SPDX-License-Identifier: Apache-2.0
+# Enforce deterministic LF line endings across Windows, macOS, and Linux so
+# byte-exact SHA-256 manifests (CHECKSUMS.sha256, data/MANIFEST.sha256) match
+# identically on every operating system and clean clone.
+* text=auto eol=lf
+
+*.png binary
+*.pdf binary
+*.gz binary
+*.tgz binary
+*.xlsx binary
+*.xls binary
+*.sqlite binary
+*.olean binary
+*.ilean binary
+*.c binary
+*.o binary

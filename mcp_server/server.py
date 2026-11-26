@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.3.0, 0thernes LLC).
+Unsolved Problems Mega-Atlas (V2.4.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
-and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`.
+and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
+(auto-built deterministically on first run if absent on a fresh git clone).
 
-Exposes 9 grounded scientific research tools to Claude Code, Antigravity,
+Exposes 10 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
   1. search_problems                  — Hybrid BM25 + bigram + PageRank RAG + 1-hop neighbors
   2. get_problem                      — Full problem dossier by exact Problem ID
@@ -16,7 +19,8 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. get_atlas_provenance             — ORCID, 72 Pure Lean 4.35.0 theorems, epistemic boundaries & license
+  9. list_author_frontier_contributions — 7 author-curated scoped Lean-verified preprints (explicitly separate from still-OPEN parent problems)
+ 10. get_atlas_provenance             — ORCID, 6-kernel Pure Lean 4.35.0 audit status, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
 """
 
 from __future__ import annotations
@@ -30,14 +34,24 @@ from typing import Any, Dict, List
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "rag"))
 
-from query import DEFAULT_DB, compare_two_problems, search_atlas  # noqa: E402
+from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 
-SERVER_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.3.1"
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
-    "version": SERVER_VERSION,
+    "version": "2.4.0",
 }
 PROTOCOL_VERSION = "2024-11-05"
+
+
+def _count_lean_axioms_audited() -> int:
+    audit_path = ROOT / "lean" / "MegaAtlasProofs" / "VerifyAxioms.lean"
+    if not audit_path.exists():
+        return 0
+    return sum(
+        1 for line in audit_path.read_text(encoding="utf-8").splitlines()
+        if line.strip().startswith("#print axioms ")
+    )
+
 
 TOOLS: List[Dict[str, Any]] = [
     {
@@ -58,7 +72,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "get_problem",
-        "description": "Retrieve the complete 48-field structured dossier (including substrate_class, abstraction_layer, gradients, margins, formal expression, Nov 2026 audit notes, and 1-hop coupled graph neighbors) for a single Problem ID.",
+        "description": "Retrieve the complete 48-field structured dossier (including substrate_class, abstraction_layer, gradients, margins, formal expression, Nov 25, 2026 audit notes, and 1-hop coupled graph neighbors) for a single Problem ID.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -82,7 +96,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_nov2026_ai_claims",
-        "description": "Return all 12 Fall/November 2026 AI proof-claim targets (explicitly flagged unretired) together with the 6-item November 20, 2026 AI Proof-Claim Verification Audit ledger.",
+        "description": "Return all 12 Fall/November 2026 AI proof-claim targets (explicitly flagged unretired) together with the 6-item November 25, 2026 AI Proof-Claim Verification Audit ledger.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -126,14 +140,20 @@ TOOLS: List[Dict[str, Any]] = [
         },
     },
     {
+        "name": "list_author_frontier_contributions",
+        "description": "List the 7 author-curated Lean-verified scoped sub-conjecture preprints (0thernes-research-archive) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags.",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
         "name": "get_atlas_provenance",
-        "description": "Return canonical author/ORCID identity, 0thernes LLC verification boundaries, Pure Lean 4.35.0 formal invariant audit status (72 theorems, 0 sorry), dual-license terms, and dataset summary stats.",
+        "description": "Return canonical author/ORCID identity, independent researcher affiliation, 6-kernel Pure Lean 4.35.0 Palomar formal audit status, dual-license terms (CC-BY-4.0 / Apache-2.0), and dataset summary stats.",
         "inputSchema": {"type": "object", "properties": {}},
     },
 ]
 
 
-def _query_db(sql: str, params: tuple = ()) -> List[Dict[str, Any]]:
+def _query_db(sql: str, params: tuple[Any, ...] = ()) -> List[Dict[str, Any]]:
+    ensure_sqlite_db(DEFAULT_DB)
     conn = sqlite3.connect(str(DEFAULT_DB))
     conn.row_factory = sqlite3.Row
     try:
@@ -166,7 +186,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         )
         ledger = _query_db("SELECT * FROM ai_audit_nov2026")
         return {
-            "policy": "All 12 Fall/Nov 2026 AI proof claims remain OFFICIALLY UNRETIRED pending independent statement-fidelity audit and peer consensus.",
+            "policy": "All 12 Fall/Nov 2026 AI proof claims remain OFFICIALLY UNRETIRED pending independent human-readable proofs, statement-fidelity audit, and peer consensus.",
             "flagged_problems_count": len(claims),
             "flagged_problems": claims,
             "audit_ledger": ledger,
@@ -233,29 +253,37 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             "largest_positive_css_over_titan_margins": css_gt_titan,
             "apex_multi_pillar_keystones": apex_keystones,
         }
+    if name == "list_author_frontier_contributions":
+        contribs = _query_db("SELECT * FROM author_frontier_contributions")
+        return {
+            "conflict_of_interest_disclosure": "Self-authored independent preprints by Alexander Stephen Donahue (ORCID 0009-0006-8168-9648); none have undergone external journal peer review.",
+            "overarching_atlas_problems_retired": 0,
+            "scoped_preprints_count": len(contribs),
+            "contributions": contribs,
+        }
     if name == "get_atlas_provenance":
         meta_rows = _query_db("SELECT key, value FROM metadata")
         meta = {r["key"]: r["value"] for r in meta_rows}
+        lean_thms = _count_lean_axioms_audited()
         return {
-            "title": "Unsolved Problems Mega-Atlas (V2.3.0)",
+            "title": "Unsolved Problems Mega-Atlas (V2.4.0)",
             "author": "Alexander Stephen Donahue",
             "orcid": "0009-0006-8168-9648",
             "orcid_url": "https://orcid.org/0009-0006-8168-9648",
-            "affiliation": "0thernes LLC, Spokane, WA, USA",
+            "affiliation": "Independent Researcher, Spokane, WA, USA",
             "repository": "https://github.com/0thernes/unsolved-problems-mega-atlas",
             "web_atlas": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
             "master_archive_id": "0TH-BUILD-007",
-            "dual_license": {"data": "CC-BY-4.0", "code": "MIT"},
+            "dual_license": {"data": "CC-BY-4.0", "code": "Apache-2.0"},
             "lean_verification": {
                 "toolchain": "leanprover/lean4:v4.35.0",
-                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry, zero native_decide)",
-                "modules": 8,
-                "lines": 1008,
-                "audited_theorems": 72,
+                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry in lean/, zero native_decide, 6 independent proof kernels via lake comparator --paranoid)",
+                "audited_theorems": lean_thms,
+                "kernels": ["lean", "leanchecker-paranoid", "lean4lean", "nanoda_bin", "con-leche", "con-ron"],
                 "axiom_allowlist": ["propext", "Quot.sound"],
-                "boundary": "Certifies exact scoring, quadrant, era, taxonomy, finite graph handshaking, AutoResearch keep/discard ratchet, and substrate/layer/gradient/margin invariants ONLY; does NOT prove any of the 1,900 open problems.",
+                "boundary": "Certifies exact scoring, quadrant, era, taxonomy, finite graph handshaking, AutoResearch keep/discard ratchet, substrate/layer/gradient/margin invariants, and concrete NonVacuity witnesses ONLY; does NOT prove any of the 1,900 open problems.",
             },
-            "ai_disclosure": "Curated by solo human researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
+            "ai_disclosure": "Curated by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
             "summary_stats": meta,
         }
     raise ValueError(f"Unknown tool: {name}")
@@ -337,8 +365,11 @@ def serve_stdio() -> None:
         framed = False
         if stripped.lower().startswith(b"content-length:"):
             framed = True
-            length = int(stripped.split(b":", 1)[1].strip())
-            # Drain remaining header lines until blank line
+            try:
+                length = int(stripped.split(b":", 1)[1].strip())
+            except ValueError as exc:
+                _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Invalid Content-Length: {exc}"}}, framed)
+                continue
             while True:
                 h = buf.readline()
                 if not h or h in (b"\r\n", b"\n"):

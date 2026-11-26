@@ -1,23 +1,24 @@
 # Quantitative Methodology, Scoring Formulas & Known Limitations
 
-**Release:** `v2.1.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
-**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, and graph formulas are machine-checked in Pure Lean 4.35.0 (`lean/MegaAtlasProofs/`, 46 theorems, 0 `sorry`, `[propext, Quot.sound]`).
+**Release:** `v2.4.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
+**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, finite graph, AutoResearch ratchet, gradient/margin, and NonVacuity formulas are machine-checked in Pure Lean 4.35.0 (`lean/`, **92** audited theorems, 0 `sorry` in `lean/`, 6 independent kernels via `lake comparator --paranoid`, `[propext, Quot.sound]`).
 
 ---
 
 ## 1. Taxonomic Architecture
 
-Every entry is assigned to an exact 3-level hierarchy enforced by `src/v2_schema.py` and `schema/problem.schema.json`:
+Every entry is assigned to an exact multi-layer hierarchy enforced by `src/v2_schema.py` and `schema/problem.schema.json`:
 - **8 Macro-Pillars** (surjective partition proven in `MegaAtlasProofs.Taxonomy.pillarOf_surjective`),
 - **28 Superdomains** (`5 + 3 + 3 + 3 + 3 + 4 + 4 + 3 = 28`, proven in `pillar_partition_sum_28`),
-- **1,705 fine-grained Subdomains**,
-- **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m10`.
+- **8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)**,
+- **1,752 fine-grained Subdomains**,
+- **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m11`.
 
 ## 2. Deduplication & Knowledge-Graph Construction
 
-1. **Strict Deduplication (`src/v2_loader.py`):** 1,860 raw authored entries are scanned in canonical priority order (`m01`–`m09` primary pillars before `m10` specialist extensions). Collisions by exact `id` or normalized title (`_norm_name`) preserve the primary record and merge all cross-references (`raw_links`) so zero edges are lost (`5` cross-field overlaps cleanly merged → `1,855` unique problems). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
-2. **Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Isolated nodes (if any) attach to their superdomain's highest-degree hub. Resulting graph: `1,855` nodes, `5,597` edges, `1` connected component, `11` greedy modularity communities.
-3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links, and cross-pillar bridge links (`cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
+1. **Strict Deduplication (`src/v2_loader.py`):** 1,912 raw authored entries are scanned in canonical priority order (`m01`–`m11`). Collisions by exact `id`, normalized title (`_norm_name`), or `EXPLICIT_DUPLICATE_ALIASES` preserve the primary record and redirect every incoming link via `dedup_alias_map` so zero edges are lost (`12` overlaps cleanly merged → **`1,900` unique problems**, `0` unresolved raw links). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
+2. **Biconnected Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Resulting graph: **`1,900` nodes, `5,808` edges, `1` connected component, `0` articulation points, `0` bridges (`nx.is_biconnected(G) == True`), `14` greedy modularity communities**.
+3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links (`2,076`, `35.7%`), and cross-pillar bridge links (`1,084`, `18.7%`; `cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
 
 ## 3. Dual Ranking Formulas (`0thernes CSS` & `Titan Index`)
 
@@ -62,12 +63,12 @@ Titan = 0.35 * difficulty_score
 Every record carries a deterministic `verification_flag`:
 - `ai-claim-under-audit-nov2026` (`12`): Targeted by unverified Fall/Nov 2026 AI proof claims; explicitly unretired.
 - `disputed-human-claim` (`11`): Contested human proof claims lacking community consensus (e.g., abc/IUT).
-- `primary-registry-indexed` (`687`): Problem provenance explicitly anchored to a named open-problem registry or canonical institutional canon (Clay CMI, ProofAtlas, Erdős DB, Hilbert, Smale, Landau, Kourovka, Kirby, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.).
-- `ai-assisted-editorial-synthesis` (`1,145`): Curated frontier research problem synthesized from domain literature under human direction; awaiting external specialist audit.
+- `primary-registry-indexed` (`925`): Problem provenance explicitly anchored to a named open-problem registry or canonical institutional canon (Clay CMI, ProofAtlas, Erdős DB, Hilbert, Smale, Landau, Kourovka, Kirby, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.).
+- `ai-assisted-editorial-synthesis` (`952`): Curated frontier research problem synthesized from domain literature under human direction; awaiting external specialist audit.
 
 ## 5. Known Limitations & Biases (Disclosed Honestly)
 
 1. **Rubric Subjectivity:** Integer 1–10 input ratings (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`) are editorial estimates, not objective physical constants.
 2. **Graph Construction Bias:** Hub density reflects curated cross-references (`HUB:*`), so well-known keystone problems (Turbulence, P vs. NP, Quantum Gravity, Climate ECS) naturally accumulate higher PageRank/degree than niche specialist conjectures.
 3. **Antiquity Effect in CSS:** Because Philosophy & Metaphysics problems frequently date to 300 BCE–1750 CE with high difficulty and low empirical tractability, they naturally rank near the top of `CSS` while modern physics/CS/math problems dominate `Titan Index` and `PageRank`. Publishing **both** `CSS` and `Titan Index` exposes this structural contrast transparently.
-4. **Completeness Horizon:** No finite list captures every open question in existence—this atlas is a 1,855-problem unified cross-disciplinary baseline designed for reproducible versioning and community extension.
+4. **Completeness Horizon:** No finite list captures every open question in existence—this atlas is a `1,900`-problem unified cross-disciplinary baseline designed for reproducible versioning and community extension. See [`LIMITATIONS.md`](../LIMITATIONS.md).

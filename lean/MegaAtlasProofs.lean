@@ -1,13 +1,17 @@
-/-
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
+
+public import MegaAtlasProofs.Scoring
+public import MegaAtlasProofs.Quadrants
+public import MegaAtlasProofs.Taxonomy
+public import MegaAtlasProofs.GraphInvariants
+public import MegaAtlasProofs.AutoResearchInvariants
+public import MegaAtlasProofs.LayerGradients
+public import MegaAtlasProofs.NonVacuity
+
+/-!
   MegaAtlasProofs.lean
   Root entry point for the Unsolved Problems Mega-Atlas Pure Lean 4.35.0
-  Formal Invariant Verification Suite (0thernes LLC, v2.3.0 — 72 theorems).
+  Formal Invariant Verification Suite (Alexander Stephen Donahue, v2.4.0).
 -/
-
-import MegaAtlasProofs.Scoring
-import MegaAtlasProofs.Quadrants
-import MegaAtlasProofs.Taxonomy
-import MegaAtlasProofs.GraphInvariants
-import MegaAtlasProofs.AutoResearchInvariants
-import MegaAtlasProofs.LayerGradients
-import MegaAtlasProofs.VerifyAxioms

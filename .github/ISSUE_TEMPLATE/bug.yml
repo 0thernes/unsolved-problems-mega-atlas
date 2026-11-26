@@ -1,0 +1,42 @@
+name: Bug / Defect Report
+description: Report a bug, error, broken invariant, schema failure, or reproducibility defect
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: finding_class
+    attributes:
+      label: Finding Class (Build Standard v1.2.0)
+      description: Classify this finding strictly into one of the 10 standard classes.
+      options:
+        - bug
+        - error
+        - issue
+        - problem
+        - concern
+        - dilemma
+        - conflict
+        - gap
+        - hole
+        - blindspot
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the exact defect, file path, line number, or failing command.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction steps
+      placeholder: "python scripts/audit_atlas.py ..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS, Python & Lean versions
+      placeholder: "Ubuntu 24.04 / Python 3.12 / Lean 4.35.0"

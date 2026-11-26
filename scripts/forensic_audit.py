@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deep Multi-Layer Forensic Audit for the Unsolved Problems Mega-Atlas (0thernes LLC).
+Deep Multi-Layer Forensic Audit for the Unsolved Problems Mega-Atlas (V2.4.0).
 
 Audits across breadth, depth, substrates, gradients, margins, spectrums, taxonomies, and adjacents:
   1. Dangling / unresolved / self-referential `raw_links` across m01..m10
@@ -13,7 +15,6 @@ Audits across breadth, depth, substrates, gradients, margins, spectrums, taxonom
 
 from __future__ import annotations
 
-import collections
 import importlib
 import os
 import re

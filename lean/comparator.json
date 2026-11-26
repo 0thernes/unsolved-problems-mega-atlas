@@ -1,0 +1,19 @@
+{
+  "challenge_module": "PalomarChallenge",
+  "solution_module": "PalomarSolution",
+  "theorem_names": [
+    "MegaAtlasProofs.Palomar.m1_scoring_invariants",
+    "MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants",
+    "MegaAtlasProofs.Palomar.m3_taxonomy_invariants",
+    "MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants",
+    "MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants",
+    "MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants",
+    "MegaAtlasProofs.Palomar.m7_nonvacuity_certificate",
+    "MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound"
+  ]
+}

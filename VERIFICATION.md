@@ -1,51 +1,15 @@
-# Verification & Epistemic Boundaries
+# Epistemic Verification Architecture & Boundaries (`v2.4.0`)
 
-**Author / Curator:** Alexander Stephen Donahue (`Independent Researcher (0thernes)`, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))  
-**Release:** `v2.3.0` (November 21, 2026)
+**Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 
-This document defines the **exact, non-negotiable epistemic boundary** between what is **machine-proved**, what is **programmatically audited**, what is **anchored to named external registries**, and what remains **curated editorial estimation or unverified frontier claims**.
+Every artifact in this repository belongs explicitly to one of **five strictly separated verification tiers**. Nothing from a lower tier is ever presented as a higher tier.
 
----
+| Tier | Label | What Is Verified | Tooling / Proof Engine | Explicit Boundary |
+|---|---|---|---|---|
+| **Tier 1** | `[kernel-checked]` | **92** Pure Lean 4.35.0 formal theorems (`Scoring`, `Quadrants`, `Taxonomy`, `GraphInvariants`, `AutoResearchInvariants`, `LayerGradients`, `NonVacuity`, `PalomarSolution`), `0` `sorry` in `lean/`, `0` `native_decide`, axioms strictly `⊆ [propext, Quot.sound]`. | `lake build` + 6 independent kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) via `lake comparator --paranoid` | Certifies internal scoring/taxonomy/graph/ratchet invariants **ONLY**. Proves **0 / 1,900** cataloged open problems. |
+| **Tier 2** | `[program-audited]` | `1,900` unique rows (`48` cols), 100% JSON Schema Draft 2020-12 valid, `1` biconnected component (`5,808` edges, `0` APs, `0` bridges, `0` dangling links), 50-digit `Decimal` oracle parity (`2,000+` cases), Hypothesis (`1,000` ex.), `6/6` mutation kill rate, `100.0% MRR@5` RAG, `AQS=97.99`, 10-tool MCP, `0` overfull hboxes in AMS-LaTeX PDF, `12/12` live HTTP/DOI citations, Track B Antihydra finite bigint run (`5,000` steps). | `pytest`, `hypothesis`, `reference/scoring_oracle.py`, `scripts/run_mutation_audit.py`, `scripts/audit_atlas.py`, `scripts/forensic_audit.py`, `scripts/build_paper.py`, `scripts/check_citations.py`, `autoresearch/evaluate.py` | Verifies software, schema, cryptographic digests, and finite computation; proves no asymptotic conjectures. |
+| **Tier 3** | `[registry-indexed]` | `925` primary-registry-indexed problems + `12` Fall/Nov 2026 AI proof claims (`ai-claim-under-audit-nov2026`) + `11` disputed human claims (`disputed-human-claim`). | Primary registries (`ProofAtlas`, `Erdős DB`, `Clay CMI`, `Kourovka`, `Kirby`, `NAE`, `WHO`, `IPCC`, etc.) | Point-in-time snapshot as of **November 25, 2026**; all 12 AI claims remain officially unretired. |
+| **Tier 4** | `[editorial-estimate]` | Integer `1–10` rubric scores (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) and `952` `ai-assisted-editorial-synthesis` entries. | Solo human curation with disclosed AI assistance (`docs/AI_DISCLOSURE.md`) | Falsifiable editorial estimates — NOT peer-reviewed empirical measurements. |
+| **Tier 5** | `[open-conjecture]` | All `1,900` overarching Atlas open problems (including the parent IDs of the 7 companion author preprints in `0thernes-research-archive`). | Open scientific / mathematical frontier | **0 / 1,900 overarching Atlas problems are retired.** |
 
-## Five-Tier Epistemic Verification Ladder
-
-| Tier | Verification Level | Scope in This Repository | Mechanism | What It Does **NOT** Prove |
-|---:|---|---|---|---|
-| **L1** | **Kernel-Checked Formal Proof (Pure Lean 4.35.0)** | Exact discrete invariants of `CSS`, antiquity 300-year saturation, `Titan Index`, `Near-Term Leverage`, 4-Quadrant exhaustiveness/monotonicity, `Q1` leverage bound `≥ 5.6`, 6-Era monotonicity, 8×28 taxonomy surjection, Handshaking Lemma (`∑ deg = 2|E|`), cross-partition edge hierarchy, deduplication bound, **AutoResearch `AQS` bounds & anti-gaming keep/discard ratchet**, pairwise delta antisymmetry, and **multi-layer Substrate/Layer/Gradient/Margin/Bridge/Apex-Keystone invariants**. | `lean/MegaAtlasProofs/` (**8 modules, 1,008 lines, 72 audited theorems**, zero Mathlib, zero `sorry`, zero `admit`, zero `native_decide`, zero `Classical.choice`, `#print axioms` strictly within `[propext, Quot.sound]` or empty). | Does **NOT** prove or resolve any of the 1,900 open mathematical or scientific problems. |
-| **L2** | **Deterministic Software, Forensic & Cryptographic Audit** | All 1,900 × 48 record types/enums, JSON Schema Draft 2020-12 compliance, unique IDs, `0` unresolved raw links, all 88 canonical hubs, **biconnected single component (`1,900/1,900`, `0` articulation points, `0` bridges)**, empirical Handshaking parity (`11,616 = 2 × 5,808`), PageRank mass conservation (`∑ PR ≈ 1.0`), CSV/TSV/JSON/JSONL/SQLite+FTS5/14-sheet XLSX/XLS parity, `100% MRR@5` RAG, dual-framed 9-tool MCP stdio server, Track B Antihydra artifact reproducibility, ORCID presence, Zenodo dry-run validation, and byte-exact SHA-256 digests. | `pytest -v` (25 tests), `python scripts/audit_atlas.py --check-lean`, `python scripts/forensic_audit.py`, `python autoresearch/evaluate.py --verify-gates`, `CHECKSUMS.sha256`, and GitHub Actions CI (`.github/workflows/ci.yml`). | Does **NOT** validate historical attribution dates, scientific consensus, or subjective rubric scores against external primary journals. |
-| **L3** | **Primary-Registry Indexed (`primary-registry-indexed`)** | **925 problems (`48.7%`)** explicitly cross-referenced to canonical external trackers (Clay CMI, ProofAtlas, Erdős Problems DB, Hilbert, Smale, Landau, Kourovka, Kirby, Brass-Moser-Pach, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.). | `registry_source` provenance metadata + `verification_flag = "primary-registry-indexed"`. | Existence and prominence are registry-anchored, while numeric rubric scores remain editorial estimates (Tier L4). |
-| **L4** | **AI-Assisted Editorial Synthesis (`ai-assisted-editorial-synthesis`)** | **952 frontier problems (`50.1%`)** and all quantitative rubric scores (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`, derived `CSS`, `Titan Index`, gradients, margins, and epistemic spectrum coordinates). | Directed by solo human curator Alexander S. Donahue with disclosed AI assistance; fully editable & falsifiable via PRs. | **Not human-peer-reviewed.** Must be treated as structured research infrastructure and falsifiable editorial estimates. |
-| **L5** | **Unverified Frontier Proof Claims (`ai-claim-under-audit-nov2026` / `disputed-human-claim`)** | **12 Fall/Nov 2026 AI proof claims** (including Sept 8 OpenAI Navier–Stokes, Oct 6 722-manuscript bulk dump targets, and Nov 20 Alpöge/Claude Lean RH/GRH + Masullo human draft) + **11 disputed human claims** (e.g., abc/IUT) + **Track B finite exploration pilots** (`research/runs/LOG-002_antihydra_pilot/`). | Isolated via dedicated `status_2026`, `verification_flag`, the 6-item `ai_verification_audit_nov2026` ledger, and explicit negative-claim headers on Track B runs. | **Explicitly NOT retired as solved.** Machine kernel compilation checks logical deduction, not statement fidelity or peer consensus; finite simulation never proves non-halting. |
-
----
-
-## Pure Lean 4.35.0 Formal Audit Summary
-
-- **Toolchain:** `leanprover/lean4:v4.35.0` (zero external dependencies; zero Mathlib)
-- **Entry Point:** `lean/MegaAtlasProofs.lean`
-- **Axiom Audit File:** `lean/MegaAtlasProofs/VerifyAxioms.lean`
-- **Modules (8 files, 1,008 lines):**
-  1. `MegaAtlasProofs/Scoring.lean` (159 lines) — 22 theorems (`CSS`, antiquity saturation, `Titan Index`, `Near-Term Leverage`)
-  2. `MegaAtlasProofs/Quadrants.lean` (139 lines) — 11 theorems (4-Quadrant partition & `Q1 ≥ 5.6` leverage, 6-Era monotonicity)
-  3. `MegaAtlasProofs/Taxonomy.lean` (138 lines) — 8 theorems (8×28 surjection, partition `[5,3,3,3,3,4,4,3]` summing to 28, cross-pillar separation)
-  4. `MegaAtlasProofs/GraphInvariants.lean` (173 lines) — 5 theorems (finite Handshaking Lemma, cross-partition edge hierarchy, deduplication cardinality bound)
-  5. `MegaAtlasProofs/AutoResearchInvariants.lean` (115 lines) — 12 theorems (`AQS` bounds & monotonicity, anti-reward-hacking `failed_gates_always_discard`, strict improvement `shouldKeep_iff`, non-regression ratchet, pairwise delta antisymmetry)
-  6. `MegaAtlasProofs/LayerGradients.lean` (173 lines) — 14 theorems (8-Substrate & 7-Layer totality/bounds, `hardnessTractGradient` bounds/monotonicity/zero-iff, `cssTitanMarginBps` bounds, `bridgeMarginBps ≤ 10000`, `adjacent_pillars < 8`, `classifyMarginRole` exhaustiveness & apex-keystone iff)
-  7. `MegaAtlasProofs/VerifyAxioms.lean` (98 lines) — `#print axioms` verification for all 72 theorems
-  8. `MegaAtlasProofs.lean` (13 lines) — root library export
-- **Audit Result:** `Build completed successfully (10 jobs)`; **0 warnings**, **0 `sorry`**, **0 `admit`**, **0 `native_decide`**, **0 `Classical.choice`**, **0 custom axioms**; all 72 audited theorems strictly within `[propext, Quot.sound]` or empty.
-
-## Independent Falsification Commands
-
-```bash
-# 1. Verify all 72 Pure Lean 4.35.0 theorems & print axioms
-cd lean && lake build && cd ..
-
-# 2. Run the full 25-test pytest suite (schema, layer invariants, biconnectivity, RAG, dual-framed MCP, FAIR, checksums)
-pytest -v
-
-# 3. Run the standalone cryptographic/structural auditor, forensic auditor & AutoResearch oracle
-python scripts/audit_atlas.py --check-lean
-python scripts/forensic_audit.py
-python autoresearch/evaluate.py --verify-gates
-```
+See [`docs/statement-fidelity.md`](docs/statement-fidelity.md) for the row-by-row Lean-vs-Python fidelity matrix and [`CLAIMS.md`](CLAIMS.md) for exact verification commands and refutation conditions.

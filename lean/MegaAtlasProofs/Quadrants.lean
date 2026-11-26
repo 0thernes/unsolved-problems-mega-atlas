@@ -1,3 +1,9 @@
+module
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
+
+public import MegaAtlasProofs.Scoring
+
 /-
   MegaAtlasProofs/Quadrants.lean
   Pure Lean 4.35.0 (zero Mathlib, zero sorry) formal invariants for:
@@ -5,12 +11,12 @@
        boundary monotonicity, and Q1 minimum leverage bound >= 5.6)
     2. Historical Era Classifier (totality and exact year-order monotonicity)
 
-  Author: Alexander Stephen Donahue (0thernes LLC, ORCID 0009-0006-8168-9648)
+  Author: Alexander Stephen Donahue (Independent Researcher, ORCID 0009-0006-8168-9648)
 -/
 
-import MegaAtlasProofs.Scoring
-
 namespace MegaAtlasProofs.Quadrants
+
+@[expose] public section
 
 /-- The four strategic quadrants matching `classify_quadrant` in `src/v2_loader.py`. -/
 inductive Quadrant where
@@ -135,5 +141,7 @@ theorem computeEra_ancient_sample : computeEra (-500) = .antiquity := by
 
 theorem computeEra_nov2026_sample : computeEra 2026 = .twentyFirstC := by
   rfl
+
+end
 
 end MegaAtlasProofs.Quadrants

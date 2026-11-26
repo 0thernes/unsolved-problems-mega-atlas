@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """
-Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (0thernes LLC).
+Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (`v2.4.0`).
 
-Option 1 Automation Helper:
   - `--dry-run` (default, zero network/auth required): Validates `.zenodo.json` against
     Zenodo's REST deposit metadata schema, verifies ORCID `0009-0006-8168-9648`, checks
-    `VERSION` parity, and lists the exact SHA-256-verified release bundle ready for deposit.
+    `VERSION` parity, and lists the exact SHA-256-verified tracked release bundle ready for deposit.
   - `--publish` / `--sandbox`: Only executes when the user explicitly exports `ZENODO_TOKEN`
     (or `ZENODO_SANDBOX_TOKEN`). Never fabricates a DOI and never bypasses authentication.
 """
@@ -53,12 +54,13 @@ def main() -> None:
 
     meta = validate_zenodo_metadata()
     artifacts = [
-        "outputs/MegaAtlas_Comprehensive_Report_V2.pdf",
+        "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
+        "dist/arxiv_submission.tar.gz",
         "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
-        "outputs/MegaAtlas_Unsolved_Problems_V2.sqlite",
         "outputs/MegaAtlas_Unsolved_Problems_V2.csv",
-        "outputs/MegaAtlas_Unsolved_Problems_V2.json",
-        "outputs/MegaAtlas_Unsolved_Problems_V2.jsonl",
+        "outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
+        "outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
+        "outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
         "croissant.json",
         "ro-crate-metadata.json",
         "CHECKSUMS.sha256",
@@ -69,7 +71,7 @@ def main() -> None:
         if not p.exists():
             raise FileNotFoundError(f"Required Zenodo deposit artifact missing: {rel}")
         h = hashlib.sha256(p.read_bytes()).hexdigest()[:12]
-        print(f"  [READY] {rel:<52} ({p.stat().st_size:>10,} B | sha256:{h}...)")
+        print(f"  [READY] {rel:<54} ({p.stat().st_size:>10,} B | sha256:{h}...)")
 
     if not args.publish and not args.sandbox:
         print("\nDry-run complete. To mint a persistent DOI automatically on GitHub Releases:")

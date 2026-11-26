@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.4.0)</title>
+<style>
+  :root { --bg:#0B1120; --card:#111827; --card2:#1E293B; --border:#334155; --text:#F1F5F9; --muted:#94A3B8; --accent:#38BDF8; --green:#34D399; --violet:#A78BFA; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:28px; max-width:1380px; margin:0 auto; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  header { background:linear-gradient(135deg,#0B1120 0%,#1E1B4B 55%,#0C4A6E 100%); border:1px solid var(--border); border-radius:14px; padding:24px 28px; margin-bottom:22px; }
+  h1 { font-size:1.55rem; font-weight:800; margin-bottom:6px; }
+  .sub { color:#CBD5E1; font-size:0.9rem; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .pill { background:rgba(56,189,248,0.14); border:1px solid #38BDF8; color:#E0F2FE; padding:4px 10px; border-radius:999px; font-size:0.78rem; font-weight:700; }
+  .pill.ok { background:rgba(52,211,153,0.15); border-color:#34D399; color:#D1FAE5; }
+  .dag-wrap { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin-bottom:22px; overflow-x:auto; }
+  h2 { font-size:1.15rem; color:var(--accent); margin:20px 0 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .card h3 { font-size:0.98rem; color:var(--green); margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; }
+  .tag { font-size:0.72rem; background:var(--card2); border:1px solid var(--border); padding:2px 7px; border-radius:6px; color:#CBD5E1; font-family:ui-monospace,Consolas,monospace; }
+  .card p { font-size:0.84rem; color:#CBD5E1; margin-bottom:8px; }
+  ul { padding-left:18px; font-size:0.81rem; color:var(--muted); }
+  li { margin-bottom:3px; }
+  code { font-family:ui-monospace,Consolas,monospace; color:#E2E8F0; font-size:0.79rem; }
+  .warn-box { background:rgba(251,191,36,0.1); border:1px solid #F59E0B; border-left:5px solid #F59E0B; border-radius:10px; padding:13px 16px; margin-bottom:20px; font-size:0.86rem; color:#FEF3C7; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.4.0)</h1>
+  <div class="sub">Author: <b>Alexander Stephen Donahue</b> (Independent Researcher, Spokane, WA · ORCID <a href="https://orcid.org/0009-0006-8168-9648" target="_blank" rel="noopener noreferrer">0009-0006-8168-9648</a>) · Zero-Mathlib Pure Lean 4.35.0 · 92 Audited Theorems · 6 Independent Proof Kernels via <code>lake comparator --paranoid</code></div>
+  <div class="pills">
+    <span class="pill ok">92 Audited Theorems</span>
+    <span class="pill ok">0 sorry in lean/</span>
+    <span class="pill ok">0 native_decide</span>
+    <span class="pill ok">Axioms ⊆ [propext, Quot.sound]</span>
+    <span class="pill">6 Kernels: lean · leanchecker-paranoid · lean4lean · nanoda · con-leche · con-ron</span>
+    <a class="pill" href="../index.html">← Back to Interactive Atlas</a>
+    <a class="pill" href="https://github.com/0thernes/unsolved-problems-mega-atlas/tree/main/lean" target="_blank" rel="noopener noreferrer">Browse lean/ on GitHub ↗</a>
+  </div>
+</header>
+
+<div class="warn-box">
+  <b>Honest Verification Boundary:</b> This blueprint tracks machine-checked formal invariants of the Mega-Atlas scoring formulas, taxonomic partition, finite graph handshaking, deduplication, AutoResearch keep/discard ratchet, substrate/gradient/margin geometry, and concrete NonVacuity witnesses ONLY. It does <b>NOT</b> prove any of the 1,900 cataloged open scientific or mathematical problems (<code>0 / 1,900</code> retired).
+</div>
+
+<h2>1. Formal Dependency DAG (Module → Challenge Contract → 6-Kernel Palomar Certification)</h2>
+<div class="dag-wrap">
+<svg viewBox="0 0 1240 420" width="100%" role="img" aria-label="Lean 4.35.0 module dependency DAG">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8" />
+    </marker>
+  </defs>
+  <!-- Layer 1: Leaf Base Modules -->
+  <g font-family="Segoe UI, sans-serif" font-size="12" fill="#F1F5F9">
+    <rect x="20" y="20" width="190" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="115" y="45" text-anchor="middle" font-weight="bold">Scoring.lean</text>
+    <text x="115" y="65" text-anchor="middle" fill="#94A3B8" font-size="11">22 thms · CSS/Titan/Age</text>
+
+    <rect x="240" y="20" width="190" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="335" y="45" text-anchor="middle" font-weight="bold">Taxonomy.lean</text>
+    <text x="335" y="65" text-anchor="middle" fill="#94A3B8" font-size="11">8 thms · 8 Pillars × 28 SD</text>
+
+    <rect x="460" y="20" width="220" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="570" y="45" text-anchor="middle" font-weight="bold">AutoResearchInvariants.lean</text>
+    <text x="570" y="65" text-anchor="middle" fill="#94A3B8" font-size="11">12 thms · AQS &amp; Anti-Gaming</text>
+
+    <!-- Layer 2: Derived Modules -->
+    <rect x="20" y="130" width="190" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="115" y="155" text-anchor="middle" font-weight="bold">Quadrants.lean</text>
+    <text x="115" y="175" text-anchor="middle" fill="#94A3B8" font-size="11">11 thms · Q1–Q4 &amp; 6 Eras</text>
+
+    <rect x="240" y="130" width="190" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="335" y="155" text-anchor="middle" font-weight="bold">LayerGradients.lean</text>
+    <text x="335" y="175" text-anchor="middle" fill="#94A3B8" font-size="11">14 thms · 8×7 Stack &amp; Margins</text>
+
+    <rect x="460" y="130" width="220" height="62" rx="10" fill="#1E293B" stroke="#34D399" stroke-width="2"/>
+    <text x="570" y="155" text-anchor="middle" font-weight="bold">GraphInvariants.lean</text>
+    <text x="570" y="175" text-anchor="middle" fill="#94A3B8" font-size="11">5 thms · Handshaking &amp; Dedup</text>
+
+    <!-- NonVacuity -->
+    <rect x="730" y="75" width="220" height="72" rx="10" fill="#1E293B" stroke="#A78BFA" stroke-width="2"/>
+    <text x="840" y="103" text-anchor="middle" font-weight="bold">NonVacuity.lean</text>
+    <text x="840" y="123" text-anchor="middle" fill="#CBD5E1" font-size="11">12 Concrete &amp; Boundary Witnesses</text>
+    <text x="840" y="138" text-anchor="middle" fill="#94A3B8" font-size="10">Inhabits every hypothesis bundle</text>
+
+    <!-- Layer 3: Umbrella & Challenge / Solution / Palomar -->
+    <rect x="190" y="245" width="230" height="58" rx="10" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+    <text x="305" y="270" text-anchor="middle" font-weight="bold">Challenge.lean</text>
+    <text x="305" y="289" text-anchor="middle" fill="#94A3B8" font-size="11">M1–M7 &amp; AllMegaAtlasInvariants</text>
+
+    <rect x="480" y="245" width="230" height="58" rx="10" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
+    <text x="595" y="270" text-anchor="middle" font-weight="bold">Solution.lean</text>
+    <text x="595" y="289" text-anchor="middle" fill="#94A3B8" font-size="11">8 Headline Theorems (0 sorry)</text>
+
+    <rect x="780" y="245" width="210" height="58" rx="10" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
+    <text x="885" y="270" text-anchor="middle" font-weight="bold">PalomarSolution.lean</text>
+    <text x="885" y="289" text-anchor="middle" fill="#94A3B8" font-size="11">Exported Comparator Solution</text>
+
+    <rect x="1020" y="245" width="200" height="58" rx="10" fill="#0F172A" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="1120" y="270" text-anchor="middle" font-weight="bold">palomar/PalomarChallenge</text>
+    <text x="1120" y="289" text-anchor="middle" fill="#FDE68A" font-size="10">sorry Contract (outside lean/)</text>
+
+    <!-- Layer 4: 6-Kernel Certification -->
+    <rect x="260" y="345" width="760" height="58" rx="10" fill="#064E3B" stroke="#34D399" stroke-width="2"/>
+    <text x="640" y="370" text-anchor="middle" font-weight="bold" fill="#ECFDF5">6-Kernel Certification: lake comparator --config comparator.json --paranoid + VerifyAxioms.lean (92 theorems)</text>
+    <text x="640" y="389" text-anchor="middle" fill="#A7F3D0" font-size="11">lean 4.35.0 · leanchecker-paranoid · lean4lean · nanoda_bin · con-leche --verified · con-ron --verified</text>
+  </g>
+  <!-- Arrows -->
+  <g stroke="#38BDF8" stroke-width="1.6" fill="none" marker-end="url(#arr)">
+    <line x1="115" y1="82" x2="115" y2="128"/>
+    <line x1="170" y1="82" x2="290" y2="128"/>
+    <line x1="390" y1="82" x2="520" y2="128"/>
+    <line x1="680" y1="51" x2="728" y2="95"/>
+    <line x1="680" y1="160" x2="728" y2="128"/>
+    <line x1="115" y1="192" x2="260" y2="243"/>
+    <line x1="335" y1="192" x2="310" y2="243"/>
+    <line x1="570" y1="192" x2="370" y2="243"/>
+    <line x1="840" y1="147" x2="395" y2="243"/>
+    <line x1="420" y1="274" x2="478" y2="274"/>
+    <line x1="710" y1="274" x2="778" y2="274"/>
+    <line x1="885" y1="303" x2="730" y2="343"/>
+    <line x1="1120" y1="303" x2="880" y2="343"/>
+  </g>
+</svg>
+</div>
+
+<h2>2. Module-by-Module Formal Inventory (92 Machine-Checked Theorems)</h2>
+<div class="grid">
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/Scoring.lean" target="_blank" rel="noopener noreferrer">M1 · Scoring.lean</a> <span class="tag">22 theorems</span></h3>
+    <p>Exact basis-point / centi-unit scoring bounds, weight sums, monotonicity, and 300-year antiquity saturation.</p>
+    <ul>
+      <li><code>css_weights_sum</code> (40+30+20+10=100), <code>titan_weights_sum</code> (35+35+20+10=100)</li>
+      <li><code>ageScoreCentis_le_cap</code>, <code>ageScoreCentis_saturates_at_300</code>, <code>ageScoreCentis_mono</code></li>
+      <li><code>cssBps_le_max</code>, <code>cssBps_ge_valid_min</code>, <code>cssBps_mono_diff/cent/age</code>, <code>cssBps_anti_tract</code></li>
+      <li><code>titanCentis_bounds</code> [90,1000], <code>leverageTenths_bounds</code> [1,100], <code>leverageTenths_comm</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/Quadrants.lean" target="_blank" rel="noopener noreferrer">M2 · Quadrants.lean</a> <span class="tag">11 theorems</span></h3>
+    <p>Strategic 4-quadrant classifier (exhaustiveness, exact iff characterizations, Q1 leverage floor ≥ 5.6) &amp; monotonic 6-era partition.</p>
+    <ul>
+      <li><code>classify_eq_Q1_iff</code> .. <code>classify_eq_Q4_iff</code>, <code>classify_exhaustive</code></li>
+      <li><code>highImpact_preserved</code>, <code>highTract_preserved</code>, <code>Q1_leverage_ge_56</code></li>
+      <li><code>computeEra_mono</code>, <code>computeEra_ancient_sample</code>, <code>computeEra_nov2026_sample</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/Taxonomy.lean" target="_blank" rel="noopener noreferrer">M3 · Taxonomy.lean</a> <span class="tag">8 theorems</span></h3>
+    <p>Complete inductive partition of 8 Macro-Pillars × 28 Superdomains (`5+3+3+3+3+4+4+3=28`), surjectivity &amp; separation.</p>
+    <ul>
+      <li><code>pillar_count_eq_8</code>, <code>superdomain_count_eq_28</code>, <code>pillar_partition_sizes</code></li>
+      <li><code>allPillars_complete</code>, <code>allSuperdomains_complete</code>, <code>pillarOf_surjective</code></li>
+      <li><code>cross_pillar_implies_cross_superdomain</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/GraphInvariants.lean" target="_blank" rel="noopener noreferrer">M4 · GraphInvariants.lean</a> <span class="tag">5 theorems</span></h3>
+    <p>Finite undirected Handshaking Lemma, cross-partition edge hierarchy, and first-occurrence deduplication bound.</p>
+    <ul>
+      <li><code>handshaking_lemma</code>: ∑ deg(v) = 2|E| for any finite nodup vertex list</li>
+      <li><code>cross_pillar_le_cross_superdomain</code>, <code>cross_superdomain_le_total</code>, <code>edge_hierarchy</code></li>
+      <li><code>dedupBy_length_le</code>: |dedup(xs)| ≤ |xs|</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/AutoResearchInvariants.lean" target="_blank" rel="noopener noreferrer">M5 · AutoResearchInvariants.lean</a> <span class="tag">12 theorems</span></h3>
+    <p>Karpathy-style AutoResearch AQS bounds, anti-reward-hacking keep/discard ratchet, and pairwise delta antisymmetry.</p>
+    <ul>
+      <li><code>aqs_weights_sum</code>, <code>aqsBps_le_max</code>, <code>aqsBps_mono_rag/provenance/formal</code></li>
+      <li><code>failed_gates_always_discard</code>, <code>shouldKeep_iff</code>, <code>updateBest_nondecreasing</code>, <code>updateBest_strict_on_keep</code></li>
+      <li><code>metricDelta_self</code>, <code>metricDelta_antisymm</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/LayerGradients.lean" target="_blank" rel="noopener noreferrer">M6 · LayerGradients.lean</a> <span class="tag">14 theorems</span></h3>
+    <p>8-Substrate × 7-Layer (`L0..L6`) stack, D−T gradient bounds `[-9, +9]`, CSS−Titan margin, bridge ratio &amp; MarginRole partition.</p>
+    <ul>
+      <li><code>substrate_count_eq_8</code>, <code>layer_count_eq_7</code>, <code>layerIndex_le_6</code></li>
+      <li><code>hardnessTractGradient_bounds</code>, <code>hardnessTractGradient_zero_iff</code>, <code>cssTitanMarginBps_bounds</code></li>
+      <li><code>bridgeMarginBps_le_10000</code>, <code>marginRole_exhaustive</code>, <code>apexKeystone_requires_3_adjacent</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/NonVacuity.lean" target="_blank" rel="noopener noreferrer">M7 · NonVacuity.lean</a> <span class="tag">12 theorems</span></h3>
+    <p>Concrete inhabitants &amp; negative boundary witnesses proving ZERO theorems hold vacuously.</p>
+    <ul>
+      <li><code>nonvac_scoring_valid_witness</code>, <code>boundary_age_299_not_saturated</code></li>
+      <li><code>nonvac_all_four_quadrants</code>, <code>boundary_non_Q1_leverage_below_56</code>, <code>nonvac_all_six_eras</code></li>
+      <li><code>nonvac_graph_triangle_witness</code>, <code>nonvac_dedup_strict_shrink</code>, <code>nonvac_autoresearch_keep_and_discard</code></li>
+      <li><code>nonvac_all_four_margin_roles</code>, <code>nonvac_all_hypotheses</code></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/PalomarSolution.lean" target="_blank" rel="noopener noreferrer">Palomar Contract &amp; Audit</a> <span class="tag">8 theorems</span></h3>
+    <p>Clean Palomar comparator specification (`Challenge.lean` / `Solution.lean` / `PalomarSolution.lean` vs. `palomar/PalomarChallenge.lean`).</p>
+    <ul>
+      <li><code>m1_scoring_invariants</code> .. <code>m7_nonvacuity_certificate</code></li>
+      <li><code>prove_all_mega_atlas_invariants</code> (master conjunction)</li>
+      <li>Axiom transcript frozen in <a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/results/lean_axioms.txt" target="_blank" rel="noopener noreferrer">results/lean_axioms.txt</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,13 +1,14 @@
-# Unsolved Problems Mega-Atlas (V2.3.0): A Multi-Layer Substrate/Gradient/Margin Taxonomy, 1,900-Node Biconnected Knowledge Connectome, November 2026 AI Proof-Claim Verification Audit, 100% MRR@5 Hybrid RAG & 9-Tool MCP Server, Karpathy-Style AutoResearch Harness, and 72 Pure Lean 4.35.0 Formal Invariants
+# Unsolved Problems Mega-Atlas (V2.4.0): A Multi-Layer Substrate/Gradient/Margin Taxonomy, 1,900-Node Biconnected Knowledge Connectome, November 25, 2026 AI Proof-Claim Verification Audit, 100% MRR@5 Hybrid RAG & 10-Tool MCP Server, Karpathy-Style AutoResearch Harness, AMS-LaTeX White Paper, and 92 Pure Lean 4.35.0 Formal Invariants Across Six Kernels
 
 **Author / Curator:** Alexander Stephen Donahue (`Alexander S. Donahue`)  
-**Affiliation:** 0thernes LLC, Spokane, WA, USA  
+**Affiliation:** Independent Researcher, Spokane, WA, USA  
 **ORCID:** [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)  
 **Email / Web:** `0_0@0thernes.art` · [https://0thernes.art](https://0thernes.art)  
 **Repository:** [https://github.com/0thernes/unsolved-problems-mega-atlas](https://github.com/0thernes/unsolved-problems-mega-atlas)  
-**Interactive Atlas:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/)  
-**Version / Date:** `v2.3.0` · November 21, 2026  
-**Dual License:** Data/Monograph/Figures `CC BY 4.0` · Code/Schemas/RAG/MCP/Lean `MIT`
+**Interactive Atlas & Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/)  
+**Typeset AMS-LaTeX PDF:** [`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](../dist/Donahue_2026_unsolved_problems_mega_atlas.pdf) (`0.672 MB`, `0` overfull hboxes) · [`dist/arxiv_submission.tar.gz`](../dist/arxiv_submission.tar.gz)  
+**Version / Date:** `v2.4.0` · November 25, 2026  
+**Dual License:** Data/Monograph/Figures `CC-BY-4.0` · Code/Schemas/RAG/MCP/Lean `Apache-2.0`
 
 ---
 
@@ -82,16 +83,18 @@ To establish deterministic mathematical trust in the atlas's analytical machiner
 | `MegaAtlasProofs/GraphInvariants.lean` | 173 | 5 | Finite undirected **Handshaking Lemma** (`∑_{v ∈ V} deg(v) = 2|E|`), cross-partition edge hierarchy (`cross_pillar ≤ cross_superdomain ≤ |E|`), and deduplication cardinality bound (`|dedup| ≤ |raw|`) |
 | `MegaAtlasProofs/AutoResearchInvariants.lean` | 115 | 12 | Immutable `AQS` weight sum & bounds `[0, 10000]`, component monotonicity, **Anti-Reward-Hacking Theorem** (`failed_gates_always_discard`), strict improvement biconditional (`shouldKeep_iff`), non-regression ratchet, and pairwise comparison delta antisymmetry |
 | `MegaAtlasProofs/LayerGradients.lean` | 173 | 14 | 8-Substrate & 7-Layer (`L0–L6`) totality & index bounds, `hardnessTractGradient ∈ [-9, +9]`, strict monotonicity & zero-iff (`d = t`), `cssTitanMarginBps ∈ [-10000, +10000]`, `bridgeMarginBps ≤ 10000`, `adjacent_pillars < 8`, `classifyMarginRole` exhaustiveness & apex-keystone iff (`adj ≥ 3`) |
-| `MegaAtlasProofs/VerifyAxioms.lean` | 98 | — | Explicit `#print axioms` audit for all 72 theorems |
-| `MegaAtlasProofs.lean` | 13 | — | Root module entry point |
-| **Total** | **1,008** | **72** | **`Build completed successfully (10 jobs)` · 0 warnings · All 72 theorems within `[propext, Quot.sound]` or empty** |
+| `MegaAtlasProofs/NonVacuity.lean` | 127 | 12 | Concrete inhabitants & sharp negative boundaries across all 6 modules (`age=299`, all 4 quadrants, all 6 eras, concrete triangle Handshaking, strict dedup shrinkage, keep/discard traces, all 4 margin roles) |
+| `Challenge.lean` / `Solution.lean` / `PalomarSolution.lean` | 309 | 8 | Clean Palomar specification (`M1`–`M7` + `prove_all_mega_atlas_invariants`) verified against `palomar/PalomarChallenge.lean` via `lake comparator --config comparator.json --paranoid` |
+| `MegaAtlasProofs/VerifyAxioms.lean` | 124 | — | Explicit `#print axioms` audit for all **92** theorems frozen in `results/lean_axioms.txt` |
+| `MegaAtlasProofs.lean` | 19 | — | Root module entry point |
+| **Total** | **1,568** | **92** | **`Build completed successfully (16 jobs)` · 0 warnings · 6/6 independent kernels · Strictly `[propext, Quot.sound]` or empty** |
 
 ---
 
-## 4. Verification Boundary & AI-Assistance Disclosure
+## 4. Verification Boundary, Companion Preprints & AI-Assistance Disclosure
 
-- **What IS formally proved:** All 72 discrete invariants of the atlas's scoring formulas, quadrant/era classifiers, 8×28 taxonomy surjection, finite graph handshaking, deduplication bounds, Karpathy-style AutoResearch keep/discard gates, and multi-layer substrate/gradient/margin formulas in `lean/MegaAtlasProofs/` (Pure Lean 4.35.0, zero `sorry`, strictly constructive axioms `[propext, Quot.sound]` or empty), plus deterministic JSON Schema Draft 2020-12 compliance across 48 fields, biconnected graph topology (`0` articulation points, `0` bridges, `0` dangling links), cross-format parity, `100% MRR@5` Hybrid RAG & dual-framed 9-tool MCP stdio tests, FAIR metadata parity, ORCID provenance, and byte-exact SHA-256 integrity across all exported artifacts.
-- **What is NOT proved or claimed:** This work makes **zero claim** to prove, solve, or retire any of the 1,900 open problems cataloged herein (including the Track B Antihydra `BB(6)` finite probe in `research/runs/LOG-002_antihydra_pilot/`). All quantitative 1–10 rubric inputs and derived rankings (`CSS`, `Titan Index`, gradients, spectrum) are transparent, falsifiable, **AI-assisted editorial estimates curated by solo researcher Alexander Stephen Donahue**—not human peer-reviewed measurements. External specialist review is welcomed via `docs/ACADEMIC_REVIEW.md`.
+- **What IS formally proved:** All **92** discrete invariants (`M1`–`M7`, `NonVacuity`, and Palomar contracts) in `lean/` (zero Mathlib, zero `sorry` in `lean/`, zero `native_decide`, strictly constructive axioms `[propext, Quot.sound]` across 6 kernels), plus 50-digit `Decimal` reference-oracle differential parity (`2,000+` cases), 1,000-example Hypothesis property tests, `6/6` (100%) mutation-kill rate, JSON Schema Draft 2020-12 compliance across 48 fields, biconnected graph topology (`0` articulation points, `0` bridges, `0` dangling links), `100% MRR@5` Hybrid RAG & dual-framed 10-tool MCP stdio tests, `0`-overfull-hbox AMS-LaTeX white paper + clean-room `arxiv_submission.tar.gz` (`12/12` live citations), FAIR metadata parity, ORCID provenance, and byte-exact SHA-256 integrity.
+- **What is NOT proved or claimed:** This work makes **zero claim** to prove, solve, or retire any of the 1,900 overarching open problems cataloged herein (`0 / 1,900` retired, including the Track B Antihydra `BB(6)` finite probe and all 7 companion scoped preprints cross-mapped in `paper/main.tex` Section 6 and MCP tool `list_author_frontier_contributions`). All quantitative 1–10 rubric inputs are transparent, falsifiable, **AI-assisted editorial estimates curated by independent researcher Alexander Stephen Donahue**—not peer-reviewed measurements. External specialist review is welcomed via `docs/ACADEMIC_REVIEW.md`.
 
 ---
 
@@ -100,22 +103,23 @@ To establish deterministic mathematical trust in the atlas's analytical machiner
 ```bash
 git clone https://github.com/0thernes/unsolved-problems-mega-atlas.git
 cd unsolved-problems-mega-atlas
-pip install -r requirements.txt
+pip install -e ".[dev]"
 
-# 1. Verify Pure Lean 4.35.0 formal invariant suite & axiom allowlist (72 theorems)
-cd lean && lake build && cd ..
+# 1. Verify Pure Lean 4.35.0 formal invariant suite & 92-theorem axiom allowlist
+cd lean && lake build && lake env lean MegaAtlasProofs/VerifyAxioms.lean && cd ..
+python scripts/check_readme_axioms.py
 
-# 2. Run automated 25-test pytest suite (incl. dual-framed 9-tool MCP, layer invariants & FAIR checks)
-pytest -v
+# 2. Run full verification ladder (pytest + Hypothesis + differential + 6/6 mutation audit)
+pytest tests/ -v
+python scripts/run_mutation_audit.py
 
-# 3. Run cryptographic SHA-256 + forensic + Zenodo dry-run auditors
+# 3. Compile AMS-LaTeX white paper & verify clean-room arXiv tarball + 12 live citations
+python scripts/build_paper.py
+python scripts/check_citations.py
+
+# 4. Run SHA-256 + forensic + Zenodo dry-run + immutable AutoResearch gates (AQS = 97.99, 100% MRR@5)
 python scripts/audit_atlas.py --check-lean
 python scripts/forensic_audit.py
 python scripts/publish_zenodo.py --dry-run
-
-# 4. Run immutable Karpathy-style AutoResearch evaluation oracle (AQS = 97.99, 100% MRR@5)
 python autoresearch/evaluate.py --verify-gates
-
-# 5. Query the offline SQLite FTS5 Hybrid BM25 + PageRank RAG CLI
-python rag/query.py "Riemann Hypothesis zeta zeros" --top 5 --hops 1
 ```

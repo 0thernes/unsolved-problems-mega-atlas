@@ -9,10 +9,6 @@ openpyxl>=3.1.2
 xlwt>=1.3.0
 pillow>=10.0.0
 
-# Formal Schema Validation, Property Testing, Linting & Verification Suite
+# Formal Schema Validation & Verification Test Suite
 jsonschema>=4.23.0
-PyYAML>=6.0.2
 pytest>=8.0.0
-hypothesis>=6.100.0
-ruff>=0.14.0
-mypy>=1.18.0

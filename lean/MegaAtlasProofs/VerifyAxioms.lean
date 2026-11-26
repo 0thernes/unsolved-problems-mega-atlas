@@ -1,8 +1,12 @@
+-- SPDX-License-Identifier: Apache-2.0
+-- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/VerifyAxioms.lean
-  Axiom-allowlist audit across ALL 72 formal theorems in MegaAtlasProofs.
-  Every theorem must depend strictly on standard kernel axioms within
-  [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
+  Axiom-allowlist audit across ALL 92 formal theorems in MegaAtlasProofs
+  (72 core module theorems + 12 concrete NonVacuity & boundary witnesses +
+   8 headline PalomarSolution contract theorems).
+  Every theorem must depend strictly on standard constructive kernel axioms
+  within [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
   zero Classical.choice, zero custom axioms.
 -/
 
@@ -12,6 +16,8 @@ import MegaAtlasProofs.Taxonomy
 import MegaAtlasProofs.GraphInvariants
 import MegaAtlasProofs.AutoResearchInvariants
 import MegaAtlasProofs.LayerGradients
+import MegaAtlasProofs.NonVacuity
+import PalomarSolution
 
 -- Scoring invariants (22 theorems)
 #print axioms MegaAtlasProofs.Scoring.ageScoreCentis_le_cap
@@ -96,3 +102,27 @@ import MegaAtlasProofs.LayerGradients
 #print axioms MegaAtlasProofs.LayerGradients.adjacent_pillars_lt_8
 #print axioms MegaAtlasProofs.LayerGradients.marginRole_exhaustive
 #print axioms MegaAtlasProofs.LayerGradients.apexKeystone_requires_3_adjacent
+
+-- Concrete Non-Vacuity & Negative Boundary Witnesses (12 theorems)
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_scoring_valid_witness
+#print axioms MegaAtlasProofs.NonVacuity.boundary_age_299_not_saturated
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_all_four_quadrants
+#print axioms MegaAtlasProofs.NonVacuity.boundary_non_Q1_leverage_below_56
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_all_six_eras
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_graph_triangle_witness
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_dedup_strict_shrink
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_autoresearch_keep_and_discard
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_all_four_margin_roles
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_gradient_and_margin_extremes
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_taxonomy_cross_pillar_witness
+#print axioms MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses
+
+-- Palomar Comparator Headline Contract Theorems (8 theorems)
+#print axioms MegaAtlasProofs.Palomar.m1_scoring_invariants
+#print axioms MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants
+#print axioms MegaAtlasProofs.Palomar.m3_taxonomy_invariants
+#print axioms MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants
+#print axioms MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants
+#print axioms MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants
+#print axioms MegaAtlasProofs.Palomar.m7_nonvacuity_certificate
+#print axioms MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants
