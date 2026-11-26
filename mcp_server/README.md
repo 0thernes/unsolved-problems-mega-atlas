@@ -15,8 +15,8 @@ Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **11
 6. `get_pillar_summary` — 8-Macro-Pillar quantitative scorecard.
 7. `get_substrate_layer_summary` — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix.
 8. `get_margin_and_gradient_extremes` — Steepest `D−T` chasms, highest tractability margins, CSS–Titan divergences, and Apex Multi-Pillar Keystones.
-9. `list_author_frontier_contributions` — 17 companion archive rows (`0thernes-research-archive`, 43 public entries / 76 repos audited) with explicit COI, non-peer-reviewed status, and `0/1,900` overarching Atlas parents retired.
-10. `get_atlas_provenance` — Author/ORCID, 103-theorem 6-kernel Lean 4.35.0 audit status, dual license, and summary stats.
+9. `list_author_frontier_contributions` — 17 companion archive rows (`0thernes-research-archive`) mapped to atlas IDs, each naming its results and their kind in the archive ledger [RESULTS.md](https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md) (only section A records answers to open questions from the literature), with COI, non-peer-reviewed status, and `0/1,900` atlas problems solved.
+10. `get_atlas_provenance` — Author/ORCID, Lean 4.35.0 audit status and scope (103 audited theorems; the 9 Palomar comparator targets are also checked by six kernel checks, five distinct implementations), dual license, and summary stats.
 11. `simulate_rubric_override` — Community rubric sensitivity simulator returning Spearman `rho`, Kendall `tau`, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers under custom CSS weights or per-problem score overrides.
 
 ## Client Configuration (Claude Code / Antigravity / Cursor / Gemini CLI)

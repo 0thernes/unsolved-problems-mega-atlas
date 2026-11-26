@@ -27,15 +27,18 @@ keywords:
   - "AutoResearch"
   - "FAIR metadata"
 abstract: >-
-  Strictly deduplicated cross-disciplinary open-problem research infrastructure
-  cataloging 1,900 unsolved, open, and hard problems spanning 8 Macro-Pillars,
-  28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into
-  1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0
-  dangling links), paired with 103 zero-Mathlib Pure Lean 4.35.0 formal invariant
-  and adversarial-refutation theorems verified across 6 independent proof kernels,
-  a 10-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5),
-  an 11-tool stdio MCP server, an automated external registry delta auditor,
-  3 reproducible Track B frontier probes, a rubric sensitivity diff engine,
-  and an immutable Karpathy-style AutoResearch harness
-  (AQS = 97.99). Zero (0/1,900) overarching open problems are claimed solved; Lean
-  verifies internal invariants only.
+  A deduplicated cross-disciplinary dataset of 1,900 unsolved, open and hard
+  problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates and
+  7 Abstraction Layers, linked in a 5,808-edge knowledge graph that a Python
+  (NetworkX) audit finds biconnected (0 articulation points, 0 bridges, 0 dangling
+  links). It includes 103 audited Lean 4.35.0 theorems without Mathlib about the
+  atlas scoring software (integer bounds of the scoring formulas, monotonicity of CSS, Titan and leverage,
+  quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking
+  lemma, a dedup bound and the AutoResearch keep/discard rule), kernel-checked by
+  Lean, with the 9 Palomar comparator targets also accepted by six kernel checks
+  (five distinct implementations); no Lean statement refers to the atlas data or its
+  graph. Also included: a 10-page AMS-LaTeX white paper, offline SQLite FTS5 hybrid
+  search (100.0% MRR@5 on 25 benchmark queries), an 11-tool stdio MCP server, a
+  registry delta checker, 3 finite Track B probes, a rubric sensitivity diff tool
+  and an AutoResearch evaluation harness (AQS = 97.99). None of the 1,900 problems
+  is claimed solved.

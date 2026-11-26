@@ -19,8 +19,8 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. list_author_frontier_contributions — 17 companion archive entries (43 public archive entries audited; parent problems remain OPEN)
- 10. get_atlas_provenance             — ORCID, 6-kernel Pure Lean 4.35.0 audit status, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
+  9. list_author_frontier_contributions — 17 companion archive rows mapped to atlas IDs (kinds per the archive ledger RESULTS.md; parent problems remain OPEN)
+ 10. get_atlas_provenance             — ORCID, Lean 4.35.0 audit status and scope, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
  11. simulate_rubric_override         — Community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard, movers & Quadrant shifts)
 """
 
@@ -155,12 +155,12 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_author_frontier_contributions",
-        "description": "List the 17 author-curated Lean-verified companion archive entries (0thernes-research-archive, 43 public entries / 76 public repos audited) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
+        "description": "List 17 author-curated companion rows from 0thernes-research-archive mapped to parent Mega-Atlas IDs. Each row names its results in the archive ledger RESULTS.md and their kind (only section A records answers to open questions from the literature), with conflict-of-interest, non-peer-reviewed status and parent-still-OPEN flags (0/1,900 atlas problems solved).",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
         "name": "get_atlas_provenance",
-        "description": "Return canonical author/ORCID identity, independent researcher affiliation, 6-kernel Pure Lean 4.35.0 Palomar formal audit status, dual-license terms (CC-BY-4.0 / Apache-2.0), and dataset summary stats.",
+        "description": "Return canonical author/ORCID identity, independent researcher affiliation, Lean 4.35.0 audit status and scope (103 audited theorems; 9 Palomar comparator targets also checked by six kernel checks), dual-license terms (CC-BY-4.0 / Apache-2.0), and dataset summary stats.",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -311,6 +311,8 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         contribs = _query_db("SELECT * FROM author_frontier_contributions")
         return {
             "conflict_of_interest_disclosure": "Self-authored independent preprints by Alexander Stephen Donahue (ORCID 0009-0006-8168-9648); none have undergone external journal peer review.",
+            "results_ledger": "https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md",
+            "results_ledger_note": "RESULTS.md is the authoritative list of results and their kinds. Only its section A records answers to open questions stated by other authors (R1 for 0TH-2026-006; R44 and R45 for 0TH-2026-009).",
             "overarching_atlas_problems_retired": 0,
             "scoped_preprints_count": len(contribs),
             "contributions": contribs,
@@ -331,11 +333,12 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             "dual_license": {"data": "CC-BY-4.0", "code": "Apache-2.0"},
             "lean_verification": {
                 "toolchain": "leanprover/lean4:v4.35.0",
-                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry in lean/, zero native_decide, 6 independent proof kernels via scripts/verify_lean_six_kernels.sh)",
+                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry in lean/, zero native_decide). Kernel-checked by Lean (lake build, leanchecker --fresh, leanchecker-paranoid); the 9 Palomar comparator targets were also accepted by six kernel checks (five distinct implementations) via scripts/verify_lean_six_kernels.sh in Ubuntu CI.",
                 "audited_theorems": lean_thms,
                 "kernels": ["lean", "leanchecker-paranoid", "lean4lean", "nanoda_bin", "con-leche", "con-ron"],
                 "axiom_allowlist": ["propext", "Quot.sound"],
-                "boundary": "Certifies exact scoring, quadrant, era, taxonomy, finite graph handshaking, AutoResearch keep/discard ratchet, substrate/layer/gradient/margin invariants, concrete NonVacuity witnesses, and constructive AdversarialTests refutations ONLY; does NOT prove any of the 1,900 open problems.",
+                "axiom_scope": "Each of the 103 audited theorems depends on at most propext and Quot.sound (#print axioms). The whole-environment lake check --paranoid step also reports Classical.choice, which the per-theorem audit does not cover.",
+                "boundary": "Integer and list invariants of the atlas software model only: scoring bounds, monotonicity of CSS, Titan and leverage, quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking lemma, a dedup bound, the AutoResearch keep/discard rule, gradient/margin bounds, NonVacuity witnesses and AdversarialTests refutations. No Lean statement refers to the 1,900-row data, its 5,808-edge graph or biconnectivity (checked in Python). Several counted theorems are literal arithmetic identities or restate a hypothesis. Does NOT prove any of the 1,900 open problems.",
             },
             "ai_disclosure": "Curated by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
             "summary_stats": meta,

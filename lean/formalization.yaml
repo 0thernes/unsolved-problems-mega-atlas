@@ -6,16 +6,20 @@ release_version: "2.8.0"
 project:
   name: "Unsolved Problems Mega-Atlas Formal Invariant Suite (MegaAtlasProofs)"
   description: >-
-    Zero-Mathlib Lean 4.35.0 formalization of 103 audited theorems (72 core module
-    theorems + 12 concrete non-vacuity and negative-boundary witnesses + 10
-    constructive adversarial definition refutations + 9 headline Palomar comparator
-    theorems) certifying the exact scoring functions (0thernes CSS, 300-year
-    antiquity saturation, Titan Index, Near-Term Leverage), 4-quadrant and 6-era
-    classifiers, 8-Macro-Pillar x 28-Superdomain taxonomic partition, finite
-    undirected Handshaking Lemma and cross-partition edge hierarchy, first-occurrence
-    deduplication cardinality bound, Karpathy-style AutoResearch anti-reward-hacking
-    keep/discard ratchet, pairwise comparison antisymmetry, and 8-substrate x 7-layer
-    gradient/margin/bridge invariants for the 1,900-problem Unsolved Problems Mega-Atlas.
+    Zero-Mathlib Lean 4.35.0 formalization of 103 audited theorems (72 in the core
+    modules + 12 non-vacuity and negative-boundary witnesses + 10 refutations of
+    weakened definitions + 9 headline Palomar comparator theorems; 5 private helper
+    lemmas are not in the audit list) about the atlas software model: integer bounds
+    of the CSS, Titan, leverage and AQS formulas for in-range inputs, monotonicity of
+    CSS, Titan and leverage,
+    quadrant iff characterisations and a monotone era map, sizes of the pillar,
+    superdomain, substrate and layer lists (with completeness for the first three), a
+    generic list-multigraph handshaking lemma and cross-partition edge hierarchy, a
+    deduplication length bound, the AutoResearch keep/discard rule, pairwise comparison
+    antisymmetry, and gradient/margin/bridge bounds. No Lean statement refers to the
+    1,900-row atlas data, its 5,808-edge graph or biconnectivity; those are checked in
+    Python. Several counted theorems are literal arithmetic identities or restate a
+    hypothesis.
   authors:
     - name: "Alexander Stephen Donahue"
       orcid: "0009-0006-8168-9648"
@@ -58,7 +62,9 @@ status:
     8x28 taxonomy partition, finite undirected Handshaking Lemma, cross-partition
     edge hierarchy, deduplication monotonicity, AutoResearch keep/discard ratchet,
     substrate/layer/gradient/margin bounds, and concrete NonVacuity witnesses with
-    zero Mathlib and zero Classical.choice (axioms strictly within [propext, Quot.sound]).
+    zero Mathlib. Each of the 103 audited theorems depends on at most propext and
+    Quot.sound (#print axioms); the whole-environment lake check --paranoid output,
+    which also lists Classical.choice, is not covered by this per-theorem statement.
     Explicitly NOT formalized inside Lean: floating-point log(1+degree) terms
     (verified differentially against exact Python Fraction/Decimal oracles) and any
     of the 1,900 open scientific or mathematical problems themselves (0/1,900 retired).
@@ -139,9 +145,11 @@ fidelity:
 review:
   status: "self-assessed"
   notes: >-
-    Not externally peer-reviewed. Machine-checked across all 6 independent Lean 4.35.0
-    proof kernels via `scripts/verify_lean_six_kernels.sh` (Lean default,
-    leanchecker --fresh, leanchecker-paranoid, lean4lean, nanoda_bin, con-leche --verified,
-    con-ron --verified, plus sandboxed Palomar comparator and live negative kernel rejection),
-    with 0 warnings, 0 proof sorries in `lean/`, 0 native_decide, 12 concrete NonVacuity
-    witnesses, and 10 constructive AdversarialTests refutations.
+    Not externally peer-reviewed. Kernel-checked by Lean (lake build, leanchecker --fresh,
+    leanchecker-paranoid) via `scripts/verify_lean_six_kernels.sh`; an export of three
+    headline theorems with their dependency closure is also checked by nanoda_bin,
+    con-leche --verified and con-ron --verified, and the 9 comparator targets were
+    accepted by the sandboxed Palomar comparator (six kernel checks, five distinct
+    implementations, in Ubuntu CI). A deliberately false theorem is rejected. 0 proof
+    sorries in `lean/`, 0 native_decide, 12 NonVacuity witnesses and 10
+    AdversarialTests refutations.

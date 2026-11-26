@@ -1,7 +1,7 @@
 # Quantitative Methodology, Scoring Formulas & Known Limitations
 
 **Release:** `v2.8.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
-**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, finite graph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in Pure Lean 4.35.0 (`lean/`, **103** audited theorems, 0 `sorry` in `lean/`, 6 independent kernels + live negative kernel rejection via `scripts/verify_lean_six_kernels.sh`, `[propext, Quot.sound]`).
+**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, finite graph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in Pure Lean 4.35.0 (`lean/`, **103** audited theorems, 0 `sorry` in `lean/`, per-theorem axioms within `[propext, Quot.sound]`; kernel-checked by Lean, with the 9 Palomar comparator targets also accepted by six kernel checks, five distinct implementations, via `scripts/verify_lean_six_kernels.sh`). These are invariants of the scoring software, not of the 1,900-row data or its graph, which are checked in Python.
 
 ---
 
