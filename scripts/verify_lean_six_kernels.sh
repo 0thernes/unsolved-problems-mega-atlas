@@ -20,11 +20,27 @@ if grep -E "sorryAx|_native|Lean\.ofReduceBool|Lean\.trustCompiler|Classical\.ch
 fi
 diff -u --strip-trailing-cr ../results/lean_axioms.txt /tmp/ci_axioms.txt
 
-# Replay Solution & PalomarSolution through leanchecker & paranoid checker
-lake env leanchecker Solution
-lake env leanchecker PalomarSolution
+# Replay Solution & PalomarSolution through leanchecker (--fresh) & paranoid checker
+lake env leanchecker --fresh Solution
+lake env leanchecker --fresh PalomarSolution
 lake env leanchecker-paranoid Solution
 lake env leanchecker-paranoid PalomarSolution
+
+# Live negative Lean 4.35.0 kernel rejection test (Playbook v1.3 Item 12):
+# prove the active kernel rejects a deliberately false theorem with non-zero exit code.
+NEG_FILE="$(mktemp /tmp/mega_atlas_negative_kernel_XXXXXX.lean)"
+trap 'rm -f "$NEG_FILE"' EXIT
+cat << 'NEGEOF' > "$NEG_FILE"
+import MegaAtlasProofs.Scoring
+theorem deliberately_false_css_bound :
+    MegaAtlasProofs.Scoring.cssBps 100 100 100 0 = 9999 := by
+  rfl
+NEGEOF
+if lake env lean "$NEG_FILE" >/dev/null 2>&1; then
+  echo "FAIL: Lean 4.35.0 kernel accepted a deliberately false theorem!" >&2
+  exit 1
+fi
+echo "PASS: Live negative Lean 4.35.0 kernel rejection test rejected false theorem as expected."
 
 # Export headline PalomarSolution theorems and replay through con-leche, con-ron & nanoda_bin
 lake env leanexport PalomarSolution -- \

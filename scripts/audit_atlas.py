@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.5.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
 
 Checks:
   1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
@@ -99,11 +99,34 @@ def collect_checksum_targets() -> list[Path]:
     return sorted(set(targets), key=lambda p: p.relative_to(ROOT).as_posix())
 
 
+DATA_MANIFEST_TARGETS = [
+    "outputs/MegaAtlas_Unsolved_Problems_V2.csv",
+    "outputs/MegaAtlas_Unsolved_Problems_V2.tsv",
+    "outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
+    "outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
+    "outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
+    "outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls",
+    "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
+    "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
+    "dist/arxiv_submission.tar.gz",
+    "results/lean_axioms.txt",
+    "research/runs/LOG-002_antihydra_pilot/RESULTS.json",
+]
+
+
 def sync_checksums() -> int:
     targets = collect_checksum_targets()
     lines = [f"{sha256_file(p)}  {p.relative_to(ROOT).as_posix()}" for p in targets]
     (ROOT / "CHECKSUMS.sha256").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-    print(f"Synced CHECKSUMS.sha256 with {len(lines)} byte-exact SHA-256 digests.")
+    manifest_dir = ROOT / "data"
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    m_lines = [
+        f"{sha256_file(ROOT / rel)}  ../{rel}"
+        for rel in DATA_MANIFEST_TARGETS
+        if (ROOT / rel).exists()
+    ]
+    (manifest_dir / "MANIFEST.sha256").write_text("\n".join(m_lines) + "\n", encoding="utf-8", newline="\n")
+    print(f"Synced CHECKSUMS.sha256 ({len(lines)} digests) and data/MANIFEST.sha256 ({len(m_lines)} digests).")
     return len(lines)
 
 
@@ -125,7 +148,7 @@ def audit_lean(errors: list[str]) -> None:
             if re.search(rf"\b{forbidden}\b", code):
                 errors.append(f"Forbidden token '{forbidden}' in {lf.relative_to(ROOT)}")
         for line in code.splitlines():
-            if line.strip().startswith("axiom "):
+            if re.match(r"^(?:(?:private|protected|noncomputable|scoped|local|unsafe)\s+)*axiom\b", line.strip()):
                 errors.append(f"Custom axiom declaration in {lf.relative_to(ROOT)}: {line.strip()}")
 
     lake_exe = Path.home() / ".elan" / "bin" / ("lake.exe" if sys.platform == "win32" else "lake")
@@ -148,7 +171,7 @@ def audit_lean(errors: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.5.0).")
+    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.6.0).")
     parser.add_argument("--sync-checksums", action="store_true", help="Regenerate CHECKSUMS.sha256 before auditing")
     parser.add_argument("--check-lean", action="store_true", help="Run Pure Lean 4.35.0 build & axiom audit")
     args = parser.parse_args()
@@ -283,6 +306,22 @@ def main() -> None:
                 if actual != expected:
                     errors.append(f"SHA-256 mismatch for {rel}")
                 chk_count += 1
+
+    # 5b. Verify data/MANIFEST.sha256 parity
+    dm_path = ROOT / "data" / "MANIFEST.sha256"
+    if not dm_path.exists():
+        errors.append("Missing data/MANIFEST.sha256")
+    else:
+        for line in dm_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            expected, rel = line.split(None, 1)
+            target = (dm_path.parent / rel).resolve()
+            if not target.exists():
+                errors.append(f"data/MANIFEST.sha256 references missing file: {rel}")
+            elif sha256_file(target) != expected:
+                errors.append(f"data/MANIFEST.sha256 mismatch for {rel}")
 
     # 6. Optional Lean 4.35.0 formal invariant audit
     if args.check_lean:

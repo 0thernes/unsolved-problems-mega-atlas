@@ -31,7 +31,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
-      - name: Run full pytest suite on clean clone (auto-builds SQLite+FTS5, verifies 59 SHA-256 digests, Hypothesis, differential, metamorphic, MCP, FAIR)
+      - name: Run full pytest suite on clean clone (auto-builds SQLite+FTS5, verifies byte-exact SHA-256 digests, Hypothesis, differential, metamorphic, MCP, FAIR)
         run: |
           pytest tests/ -v
       - name: Run full audit, quickstart demo, forensic audit, Zenodo dry-run, AutoResearch gates & README axiom check
@@ -102,3 +102,4 @@ jobs:
             dist/arxiv_submission.tar.gz
             results/lean_axioms.txt
             CHECKSUMS.sha256
+            CHECKSUMS.sha256.tsr

@@ -1,8 +1,8 @@
 # Research Philosophy & Epistemic Design Principles
 
-The **Unsolved Problems Mega-Atlas (`v2.5.0`)** is built around five non-negotiable engineering and scholarly principles:
+The **Unsolved Problems Mega-Atlas (`v2.6.0`)** is built around five non-negotiable engineering and scholarly principles:
 
-1. **Radical Epistemic Honesty Over Hype:** Never conflate an unrefereed AI proof dump with a community-retired theorem; never conflate machine-checked scoring invariants (`92` Lean 4.35.0 theorems) with proofs of the `1,900` open problems themselves (`0 / 1,900` retired); never conflate solo editorial scores with peer-reviewed ground truth.
+1. **Radical Epistemic Honesty Over Hype:** Never conflate an unrefereed AI proof dump with a community-retired theorem; never conflate machine-checked scoring invariants (`103` Lean 4.35.0 theorems) with proofs of the `1,900` open problems themselves (`0 / 1,900` retired); never conflate solo editorial scores with peer-reviewed ground truth.
 2. **Falsifiability by Construction:** Every quantitative score, taxonomic placement, cross-reference edge, and ranking in `RANKING.md` is generated deterministically from human-readable source files (`src/v2_data/`). Disagree with a rating or link? Edit the record, run `just build`, and argue directly from the diff.
 3. **Layered Defense-in-Depth Verification:** Combine six independent Lean 4.35.0 proof kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`), an independent 50-digit `Decimal`/`Fraction` reference oracle, 1,000-example Hypothesis property testing, 100% (`6/6`) mutation-kill auditing, JSON Schema Draft 2020-12 validation, and an immutable AutoResearch evaluator (`autoresearch/evaluate.py`).
 4. **Offline-First, Zero-Lock-In Preservation:** Zero API keys, zero cloud vendor lock-in, zero binary blobs `>= 5 MB` in git history, deterministic archives (`mtime=0`), FAIR JSON-LD metadata (`croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`), and clean-room reproducible AMS-LaTeX source (`dist/arxiv_submission.tar.gz`).

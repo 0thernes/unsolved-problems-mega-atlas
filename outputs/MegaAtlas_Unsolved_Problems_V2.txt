@@ -1,12 +1,12 @@
 ====================================================================================================================
-  V2.5.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
+  V2.6.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
   Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)
   8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 5,808 Edges (0 Art. Pts) | 103 Pure Lean 4.35.0 Theorems (6 Kernels)
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.5.0
+  atlas_version                       : 2.6.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
@@ -49,7 +49,7 @@
   total_benchmarks                    : 20
   total_contrasts                     : 15
   total_external_registries           : 13
-  total_author_frontier_preprints     : 10
+  total_author_frontier_preprints     : 12
 
 [2] NOVEMBER 25, 2026 AI PROOF-CLAIM VERIFICATION AUDIT
 --------------------------------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@
 | Wikipedia Lists of Unsolved Problems ( | ~1,200+ distinct entries across 20+ li | ~1,100+ open                           | Broadest public cross-disciplinary map |
 | NAE 14 Grand Challenges & DARPA/DOE Ea | ~100+ flagship technology targets      | ~90+ active engineering frontiers      | Dominates Quadrant 1 (Near-Term Civili |
 | PhilPapers Survey & Metaphysics/Ethics | ~100+ enduring philosophical problems  | ~100% actively contested (up to 2,526  | AI alignment & digital sentience turne |
-| This V2.4 Unified Mega-Atlas (A. S. Do | 1,900 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
+| This V2.6.0 Unified Mega-Atlas (A. S.  | 1,900 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 
 [4] 8 MACRO-PILLARS COMPARATIVE SCORECARD

@@ -20,13 +20,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BIB_PATH = ROOT / "paper" / "refs.bib"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.6.0"
 
 
 def check_doi(doi: str, timeout: int = 15) -> tuple[bool, str]:
     """Verify DOI registration via DOI Handle REST API + Crossref retraction check (Playbook Item 16)."""
     clean_doi = doi.strip()
     api_url = f"https://doi.org/api/handles/{urllib.parse.quote(clean_doi, safe='/')}"
-    req = urllib.request.Request(api_url, headers={"User-Agent": "0thernes-CitationVerifier/2.5"}, method="GET")
+    req = urllib.request.Request(api_url, headers={"User-Agent": f"0thernes-CitationVerifier/{ATLAS_VERSION}"}, method="GET")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             if resp.getcode() != 200:
@@ -42,7 +43,7 @@ def check_doi(doi: str, timeout: int = 15) -> tuple[bool, str]:
         cr_url = f"https://api.crossref.org/works/{urllib.parse.quote(clean_doi, safe='/')}"
         cr_req = urllib.request.Request(
             cr_url,
-            headers={"User-Agent": "0thernes-CitationVerifier/2.5 (mailto:0_0@0thernes.art)"},
+            headers={"User-Agent": f"0thernes-CitationVerifier/{ATLAS_VERSION} (mailto:0_0@0thernes.art)"},
             method="GET",
         )
         try:
@@ -65,7 +66,7 @@ def check_doi(doi: str, timeout: int = 15) -> tuple[bool, str]:
 
 
 def check_url(url: str, timeout: int = 15) -> tuple[bool, str]:
-    headers = {"User-Agent": "Mozilla/5.0 (compatible; 0thernes-CitationVerifier/2.4; +https://github.com/0thernes/unsolved-problems-mega-atlas)"}
+    headers = {"User-Agent": f"Mozilla/5.0 (compatible; 0thernes-CitationVerifier/{ATLAS_VERSION}; +https://github.com/0thernes/unsolved-problems-mega-atlas)"}
     for method in ("HEAD", "GET"):
         req = urllib.request.Request(url, headers=headers, method=method)
         try:

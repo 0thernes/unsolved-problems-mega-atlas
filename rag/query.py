@@ -3,13 +3,13 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.5.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
 
 Powered by SQLite FTS5 staged BM25 ranking (Exact phrase + Strict-AND precision pass +
 relaxed OR backfill + hybrid title/bigram/PageRank re-ranker) + multi-hop knowledge-graph
 expansion + pairwise problem comparison over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` —
 zero API keys, zero network calls, sub-30 ms deterministic retrieval. Automatically
-rebuilds the local SQLite FTS5 index on demand on clean git clones.
+rebuilds the local SQLite FTS5 index on demand on clean git clones or version upgrades.
 
 Examples:
     python rag/query.py "turbulence climate sensitivity" --top 8 --hops 1
@@ -34,10 +34,35 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DB = ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.sqlite"
 
 
+def _db_is_fresh(db_path: Path) -> bool:
+    """Return True iff `db_path` exists, is readable, and matches the active VERSION & schema."""
+    if not (db_path.exists() and db_path.stat().st_size > 0):
+        return False
+    ver_file = ROOT / "VERSION"
+    expected_ver = ver_file.read_text(encoding="utf-8").strip() if ver_file.exists() else None
+    try:
+        conn = sqlite3.connect(str(db_path))
+        try:
+            row = conn.execute("SELECT value FROM metadata WHERE key = 'atlas_version'").fetchone()
+            if expected_ver and (row is None or str(row[0]).strip() != expected_ver):
+                return False
+            cnt = conn.execute("SELECT COUNT(*) FROM problems").fetchone()
+            auth_cnt = conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()
+            if cnt is None or int(cnt[0]) != 1900 or auth_cnt is None or int(auth_cnt[0]) < 1:
+                return False
+            return True
+        finally:
+            conn.close()
+    except sqlite3.Error:
+        return False
+
+
 def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
-    """Auto-build the local SQLite FTS5 index deterministically if absent on a fresh clone."""
-    if db_path.exists() and db_path.stat().st_size > 0:
+    """Auto-build the local SQLite FTS5 index deterministically if absent or stale after an upgrade."""
+    if _db_is_fresh(db_path):
         return db_path
+    if db_path.exists():
+        db_path.unlink()
     src_dir = str(ROOT / "src")
     if src_dir not in sys.path:
         sys.path.insert(0, src_dir)

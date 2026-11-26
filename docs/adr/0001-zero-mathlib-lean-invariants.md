@@ -10,5 +10,5 @@ We needed machine-checked guarantees for scoring bounds, weight sums, quadrant/e
 Implement all formal invariants in pure zero-Mathlib **Lean 4.35.0** (`lean/MegaAtlasProofs/*.lean`), using constructive axioms strictly within `[propext, Quot.sound]` (zero `Classical.choice`, zero `sorry` in `lean/`, zero `native_decide`).
 
 ## Consequences
-- **Positive:** Clean cold build takes `< 10 s` on CPU; all 1,753 exported declarations replay cleanly across all 6 independent Lean 4.35.0 proof kernels (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`).
+- **Positive:** Clean cold build takes `< 10 s` on CPU; all 1,769 exported declarations replay cleanly across all 6 independent Lean 4.35.0 proof kernels (`lean`, `leanchecker --fresh` / `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) via `scripts/verify_lean_six_kernels.sh`.
 - **Trade-off:** Transcendental `ln(1 + degree)` terms in CSS/Titan are abstracted as bounded inputs in Lean and differentially verified against our 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), documented explicitly in `docs/statement-fidelity.md`.

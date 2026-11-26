@@ -4,7 +4,7 @@
   - B03: Determinism / repeatability
   - B06: Negative boundary & error handling (MCP, RAG, JSON Schema)
   - B07: Named regression tests for every historical defect
-  - B08: Golden snapshot verification (92-theorem Lean axioms + Top-10 rankings)
+  - B08: Golden snapshot verification (103-theorem Lean axioms + Top-10 rankings)
   - B10: Hypothesis property-based tests (1,000 examples per property)
   - B11/B12: 2,000-case randomized + 1,900-row exhaustive differential audit vs. 50-digit Decimal oracle
   - B14: Metamorphic tests (shuffling invariance, filter subsetting, age saturation plateau)
@@ -441,3 +441,178 @@ def test_b07_regression_lean_adversarial_refutations_and_103_axioms():
     assert any("MegaAtlasProofs.Palomar.m8_adversarial_refutations" in ln for ln in non_empty)
     for bad in ("sorryAx", "Classical.choice", "Lean.ofReduceBool", "_native"):
         assert all(bad not in ln for ln in non_empty), f"Forbidden axiom {bad} in results/lean_axioms.txt"
+
+
+# ==================== 9. ROUND 3 HOSTILE-REFEREE REGRESSION GUARDS (V2.6.0) ====================
+
+
+def test_b06_mcp_clamps_top_hops_and_validates_missing_args():
+    """Verify MCP server clamps top/hops within schema bounds and rejects missing required args cleanly."""
+    payload = "\n".join([
+        json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "search_problems", "arguments": {"query": "Riemann", "top": 9999, "hops": 99}}}),
+        json.dumps({"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "search_problems", "arguments": {"query": "Riemann", "top": -5, "hops": -2}}}),
+        json.dumps({"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "get_problem", "arguments": {}}}),
+        json.dumps({"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "compare_problems", "arguments": {"id_a": "NT-001"}}}),
+    ]) + "\n"
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input=payload,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=True,
+    )
+    resps = [json.loads(ln) for ln in proc.stdout.splitlines() if ln.strip()]
+    assert len(resps) == 4
+    r1 = json.loads(resps[0]["result"]["content"][0]["text"])
+    assert resps[0]["result"]["isError"] is False
+    assert 1 <= r1["count"] <= 50
+    r2 = json.loads(resps[1]["result"]["content"][0]["text"])
+    assert resps[1]["result"]["isError"] is False
+    assert r2["count"] == 1
+    assert resps[2]["result"]["isError"] is True
+    assert "problem_id" in resps[2]["result"]["content"][0]["text"]
+    assert resps[3]["result"]["isError"] is True
+    assert "id_a" in resps[3]["result"]["content"][0]["text"]
+
+
+def test_b07_regression_rag_auto_rebuilds_stale_sqlite_version(tmp_path):
+    """Verify ensure_sqlite_db() detects a stale cached SQLite version and rebuilds automatically."""
+    import sqlite3
+    from query import ensure_sqlite_db
+
+    stale_db = tmp_path / "stale_atlas.sqlite"
+    conn = sqlite3.connect(str(stale_db))
+    conn.execute("CREATE TABLE metadata (key TEXT, value TEXT)")
+    conn.execute("INSERT INTO metadata VALUES ('atlas_version', '0.0.1-stale')")
+    conn.commit()
+    conn.close()
+
+    ensure_sqlite_db(stale_db)
+    conn2 = sqlite3.connect(str(stale_db))
+    try:
+        ver = conn2.execute("SELECT value FROM metadata WHERE key = 'atlas_version'").fetchone()[0]
+        cnt = conn2.execute("SELECT COUNT(*) FROM problems").fetchone()[0]
+        auth = conn2.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0]
+        assert ver == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+        assert cnt == 1900
+        assert auth == 12
+    finally:
+        conn2.close()
+
+
+def test_b07_regression_security_md_self_consistent():
+    """Ensure SECURITY.md supported minor branch matches active VERSION without contradicting itself."""
+    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    major_minor = ".".join(ver.split(".")[:2])
+    sec = (ROOT / "SECURITY.md").read_text(encoding="utf-8")
+    assert f"`{major_minor}.x`" in sec and f"`< {ver}`" in sec
+    assert "`2.4.x`" not in sec
+
+
+def test_b07_regression_formalization_yaml_matches_lean_axioms():
+    """Verify every Palomar theorem axiom list in lean/formalization.yaml matches results/lean_axioms.txt verbatim."""
+    ax_map: dict[str, list[str]] = {}
+    for ln in (ROOT / "results" / "lean_axioms.txt").read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^'([^']+)' depends on axioms: \[([^\]]*)\]", ln.strip())
+        if m:
+            ax_map[m.group(1)] = [tok.strip() for tok in m.group(2).split(",") if tok.strip()]
+    fy = (ROOT / "lean" / "formalization.yaml").read_text(encoding="utf-8")
+    blocks = re.findall(r'declaration:\s*"([^"]+)".*?axioms:\s*\[([^\]]*)\]', fy, flags=re.S)
+    assert len(blocks) == 9
+    for decl, raw_ax in blocks:
+        declared = [tok.strip().strip('"').strip("'") for tok in raw_ax.split(",") if tok.strip()]
+        assert decl in ax_map, f"Missing declaration {decl} in results/lean_axioms.txt"
+        assert declared == ax_map[decl], f"formalization.yaml drift on {decl}: {declared} != {ax_map[decl]}"
+
+
+def test_b07_regression_no_private_local_paths_in_tracked_files():
+    """Ensure zero tracked documentation or code files leak private local drive/user paths."""
+    proc = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True)
+    rx = re.compile(r"[A-Z]:\\(?:Users\\Alexa|unsolved-problems|temp_mega_atlas|\[Vibe Coded)", re.I)
+    hits = []
+    for rel in proc.stdout.splitlines():
+        if rel.startswith("outputs/") or rel.startswith("dist/") or rel.endswith((".png", ".svg", ".pdf", ".gz", ".xlsx", ".xls", ".tsr")):
+            continue
+        if rel == "tests/test_properties_and_differential.py":
+            continue
+        p = ROOT / rel
+        if p.exists() and rx.search(p.read_text(encoding="utf-8", errors="ignore")):
+            hits.append(rel)
+    assert not hits, f"Private workstation paths leaked in tracked files: {hits}"
+
+
+def test_b07_regression_no_stale_counts_or_bare_comparator_in_active_docs():
+    """Prevent regressions to stale 92-theorem, 7-preprint, 18-row, or bare lake-comparator instructions."""
+    active = [
+        "README.md", "AGENTS.md", "CLAIMS.md", "VERIFICATION.md", "EVIDENCE.md",
+        "LIMITATIONS.md", "PHILOSOPHY.md", "ARCHITECTURE.md", "llms.txt",
+        "docs/WHITE_PAPER.md", "docs/METHODOLOGY.md", "docs/faq.md", "docs/glossary.md",
+        "docs/threat-model.md", "docs/operations.md", "lean/README.md", "mcp_server/README.md",
+        "mcp_server/server.py", "lean/formalization.yaml",
+    ]
+    stale = [
+        re.compile(r"\b92\s+(?:Pure\s+)?(?:Lean|audited|theorems|axioms)|lean_theorems=92", re.I),
+        re.compile(r"\b(?:7|seven)\s+(?:companion|author-curated|scoped)", re.I),
+        re.compile(r"\b18-row\b", re.I),
+        re.compile(r"lake comparator --config comparator\.json --paranoid"),
+    ]
+    hits = []
+    for rel in active:
+        txt = (ROOT / rel).read_text(encoding="utf-8")
+        for rx in stale:
+            if rx.search(txt):
+                hits.append((rel, rx.pattern))
+    assert not hits, f"Stale metrics/commands in active files: {hits}"
+
+
+def test_b07_regression_statement_fidelity_19_rows_and_symbols_valid():
+    """Ensure docs/statement-fidelity.md has 19 rows and every file::symbol anchor resolves in source."""
+    txt = (ROOT / "docs" / "statement-fidelity.md").read_text(encoding="utf-8")
+    rows = [ln for ln in txt.splitlines() if ln.startswith("| ") and ln.split("|")[1].strip().isdigit()]
+    assert len(rows) == 19
+    for rel, sym in re.findall(r"`([a-zA-Z0-9_./-]+\.py)::([a-zA-Z0-9_]+)`", txt):
+        src_p = ROOT / rel
+        assert src_p.exists(), f"Missing file cited in statement-fidelity.md: {rel}"
+        src_txt = src_p.read_text(encoding="utf-8")
+        assert re.search(rf"\b(?:def\s+)?{re.escape(sym)}\b", src_txt), f"Missing symbol {sym} in {rel}"
+
+
+def test_b07_regression_live_negative_lean_kernel_rejection(tmp_path):
+    """Playbook Item 12: when Lean is installed, prove the active kernel rejects a deliberately false theorem."""
+    lake_exe = Path.home() / ".elan" / "bin" / ("lake.exe" if sys.platform == "win32" else "lake")
+    lake_bin = str(lake_exe) if lake_exe.exists() else "lake"
+    probe = subprocess.run([lake_bin, "--version"], capture_output=True, text=True, check=False)
+    if probe.returncode != 0:
+        pytest.skip("Lean 4 / lake not installed on this runner")
+    neg = tmp_path / "NegativeKernelTest.lean"
+    neg.write_text(
+        "import MegaAtlasProofs.Scoring\n"
+        "theorem deliberately_false_css : MegaAtlasProofs.Scoring.cssBps 100 100 100 0 = 9999 := by\n"
+        "  rfl\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    res = subprocess.run([lake_bin, "env", "lean", str(neg)], cwd=ROOT / "lean", capture_output=True, text=True, check=False)
+    assert res.returncode != 0, "CRITICAL: Lean 4 kernel accepted a deliberately false theorem!"
+
+
+def test_b07_regression_digicert_rfc3161_tsr_present_and_binds_checksums():
+    """Playbook Item 26: verify CHECKSUMS.sha256.tsr exists and cryptographically embeds SHA256(CHECKSUMS.sha256)."""
+    import hashlib
+
+    tsr_path = ROOT / "CHECKSUMS.sha256.tsr"
+    chk_path = ROOT / "CHECKSUMS.sha256"
+    assert tsr_path.exists() and tsr_path.stat().st_size > 200, "Missing or empty CHECKSUMS.sha256.tsr"
+    tsr_bytes = tsr_path.read_bytes()
+    assert tsr_bytes[0] == 0x30, "CHECKSUMS.sha256.tsr is not a valid DER ASN.1 SEQUENCE"
+    expected_digest = hashlib.sha256(chk_path.read_bytes()).digest()
+    assert expected_digest in tsr_bytes, "CHECKSUMS.sha256.tsr messageImprint does not match current CHECKSUMS.sha256!"
+
+
+def test_b07_regression_wcag_all_6_tabpanels_and_dialogs():
+    """Verify WCAG 2.2 AA ARIA roles on all 6 tabpanels and both modal dialogs in Interactive HTML."""
+    html_txt = (ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html").read_text(encoding="utf-8")
+    assert html_txt.count('role="tabpanel"') == 6
+    assert html_txt.count('role="dialog" aria-modal="true"') == 2

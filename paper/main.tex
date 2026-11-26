@@ -31,7 +31,7 @@
 \newcommand{\tagee}{\textsc{editorial-est.}}
 \newcommand{\tagoc}{\textsc{open-conj.}}
 
-\title[Unsolved Problems Mega-Atlas (V2.5.0)]{Unsolved Problems Mega-Atlas (V2.5.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Formal Invariant Suite, and Deterministic Research Infrastructure Across 1,900 Open Problems}
+\title[Unsolved Problems Mega-Atlas (V2.6.0)]{Unsolved Problems Mega-Atlas (V2.6.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Formal Invariant Suite, and Deterministic Research Infrastructure Across 1,900 Open Problems}
 
 \author{Alexander Stephen Donahue}
 \address{Independent Researcher, Spokane, WA, USA}
@@ -45,9 +45,9 @@
 \begin{document}
 
 \begin{abstract}
-No single fixed count of open scientific or mathematical problems exists, and rapid Fall--November 2026 AI proof announcements have created a sharp divide between machine-checked formal compilation, statement fidelity, human exposition, and community consensus. We present Version~2.5.0 of the \emph{Unsolved Problems Mega-Atlas}, an open-source, strictly deduplicated research infrastructure cataloging $1{,}900$ unsolved, open, and hard problems spanning $8$ Macro-Pillars, $28$ Superdomains, $8$ physical/formal Substrates, $7$ Abstraction Layers ($\text{L0}$--$\text{L6}$), and $1{,}752$ subdomains, wired into a single biconnected $5{,}808$-edge knowledge graph ($0$ articulation points, $0$ bridges, $0$ dangling links, $35.7\%$ cross-superdomain, $18.7\%$ cross-pillar).
+No single fixed count of open scientific or mathematical problems exists, and rapid Fall--November 2026 AI proof announcements have created a sharp divide between machine-checked formal compilation, statement fidelity, human exposition, and community consensus. We present Version~2.6.0 of the \emph{Unsolved Problems Mega-Atlas}, an open-source, strictly deduplicated research infrastructure cataloging $1{,}900$ unsolved, open, and hard problems spanning $8$ Macro-Pillars, $28$ Superdomains, $8$ physical/formal Substrates, $7$ Abstraction Layers ($\text{L0}$--$\text{L6}$), and $1{,}752$ subdomains, wired into a single biconnected $5{,}808$-edge knowledge graph ($0$ articulation points, $0$ bridges, $0$ dangling links, $35.7\%$ cross-superdomain, $18.7\%$ cross-pillar).
 
-To separate exact mathematical invariants from editorial judgment, we pair the dataset with: (i) a zero-Mathlib \emph{Lean~4.35.0} formal invariant suite of $103$ audited theorems ($72$ core module invariants, $12$ concrete non-vacuity and negative-boundary witnesses, $10$ constructive adversarial definition refutations, and $9$ Palomar comparator specifications) verified across six independent proof kernels (\code{lean}, \code{leanchecker-paranoid}, \code{lean4lean}, \code{nanoda_bin}, \code{con-leche}, and \code{con-ron}) using constructive axioms strictly within [\code{propext}, \code{Quot.sound}]; (ii) a $50$-digit \code{Decimal}/\code{Fraction} reference oracle differentially verifying the Python scoring pipeline across $2{,}000+$ cases plus $100\%$ ($6/6$) mutation-kill coverage; (iii) a deterministic offline SQLite FTS5 hybrid BM25 + bigram + PageRank RAG engine achieving $100.0\%$ MRR@5 ($25/25$ top-1) exposed via a zero-dependency $10$-tool Model Context Protocol (MCP) server; and (iv) an immutable Karpathy-style AutoResearch harness (\code{AQS} $= 97.99$) alongside a finite arbitrary-precision Track~B Antihydra probe (\code{LOG-002}).
+To separate exact mathematical invariants from editorial judgment, we pair the dataset with: (i) a zero-Mathlib \emph{Lean~4.35.0} formal invariant suite of $103$ audited theorems ($72$ core module invariants, $12$ concrete non-vacuity and negative-boundary witnesses, $10$ constructive adversarial definition refutations, and $9$ Palomar comparator specifications) verified across six independent proof kernels (\code{lean}, \code{leanchecker --fresh} / \code{leanchecker-paranoid}, \code{lean4lean}, \code{nanoda_bin}, \code{con-leche}, and \code{con-ron}) plus a live negative kernel rejection test, using constructive axioms strictly within [\code{propext}, \code{Quot.sound}]; (ii) a $50$-digit \code{Decimal}/\code{Fraction} reference oracle differentially verifying the Python scoring pipeline across $2{,}000+$ cases plus $100\%$ ($6/6$) mutation-kill coverage; (iii) a deterministic offline SQLite FTS5 hybrid BM25 + bigram + PageRank RAG engine achieving $100.0\%$ MRR@5 ($25/25$ top-1) exposed via a zero-dependency $10$-tool Model Context Protocol (MCP) server; and (iv) an immutable Karpathy-style AutoResearch harness (\code{AQS} $= 97.99$), a finite arbitrary-precision Track~B Antihydra probe (\code{LOG-002}), and DigiCert RFC~3161 cryptographic timestamping (\code{CHECKSUMS.sha256.tsr}).
 
 \emph{Honest verification boundary:} Our Lean~4 theorems verify scoring, taxonomy, graph handshaking, deduplication, AutoResearch ratchet, margin invariants, non-vacuity, and false-variant refutations \emph{only}. Zero ($0 / 1{,}900$) overarching Mega-Atlas open problems are claimed solved or retired. Quantitative rubric inputs are disclosed AI-assisted editorial estimates, not peer-reviewed empirical measurements.
 \end{abstract}
@@ -83,16 +83,16 @@ Every headline claim in this repository is tagged with one of five epistemic tie
 \toprule
 \textbf{ID} & \textbf{Tier} & \textbf{Exact Claim Statement} & \textbf{Primary Artifact} & \textbf{Refutation Condition} \\
 \midrule
-C1 & \tagkc & $103$ Pure Lean~4.35.0 theorems (M1--M8 + NonVacuity + AdversarialTests) compile with $0$ \tcode{sorry} in \tcode{lean/}, axioms $\subseteq$ [\tcode{propext}, \tcode{Quot.sound}], across $6/6$ kernels. & \tcode{lean/}, \tcode{results/lean_axioms.txt} & Any kernel rejects or unpermitted axiom appears. \\
+C1 & \tagkc & $103$ Pure Lean~4.35.0 theorems (M1--M8 + NonVacuity + AdversarialTests) compile with $0$ \tcode{sorry} in \tcode{lean/}, axioms $\subseteq$ [\tcode{propext}, \tcode{Quot.sound}], across $6/6$ kernels + live negative rejection. & \tcode{lean/}, \tcode{results/lean_axioms.txt} & Any kernel rejects, negative test passes, or unpermitted axiom appears. \\
 C2 & \tagpa & $1{,}900$ strictly unique records ($48$ JSON-Schema-valid fields) form $1$ biconnected $5{,}808$-edge graph ($0$ APs, $0$ bridges, $0$ dangling links). & \tcode{src/v2_loader.py}, \tcode{scripts/audit_atlas.py} & Duplicate ID, schema error, AP $>0$, or link error. \\
 C3 & \tagpa & Python scoring matches $50$-digit \tcode{Decimal}/\tcode{Fraction} oracle across $2{,}000+$ cases ($\le 0.01$ rounding) and kills $6/6$ planted mutants. & \tcode{reference/scoring_oracle.py}, \tcode{scripts/run_mutation_audit.py} & Any oracle divergence or surviving mutant. \\
 C4 & \tagpa & Offline FTS5 hybrid BM25+bigram+PageRank RAG achieves $100.0\%$ MRR@5 ($25/25$ top-1) and immutable \tcode{AQS} $= 97.99$. & \tcode{rag/query.py}, \tcode{autoresearch/evaluate.py} & MRR@5 $< 100\%$ or hard gate fails. \\
-C5 & \tagpa & Zero-dependency stdio MCP server speaks both NDJSON and \tcode{Content-Length:} across $10$ tools with structured error handling. & \tcode{mcp_server/server.py}, \tcode{tests/test_mega_atlas.py} & Framing failure, missing tool, or uncaught exception. \\
+C5 & \tagpa & Zero-dependency stdio MCP server speaks both NDJSON and \tcode{Content-Length:} across $10$ tools with clamped \tcode{top}/\tcode{hops} and validated arguments. & \tcode{mcp_server/server.py}, \tcode{tests/test_mega_atlas.py} & Framing failure, missing tool, unclamped DoS, or uncaught exception. \\
 C6 & \tagri & All $12$ Fall/Nov 2026 AI proof claims (\tcode{NT-001}, \tcode{NT-002}, \tcode{ANL-001}, etc.) remain officially unretired at CMI/community registries. & \tcode{src/v2_loader.py} (\tcode{AI_AUDIT}) & Official CMI or journal consensus retirement. \\
 C7 & \tagpa & Track~B Antihydra (\tcode{LOG-002}) canonical orbit ($a_0=8$, $5{,}000$ exact bigint steps) does not halt ($b_{5000}=2{,}599$, $\min b = 0$); $66/99$ seeds in $[2,100]$ halt $\le 2{,}000$ steps. & \tcode{research/runs/LOG-002_antihydra_pilot/} & Independent bigint re-execution disagrees. \\
-C8 & \tagpa & This AMS-LaTeX PDF compiles with $0$ overfull hboxes and $0$ undefined refs; clean-room \tcode{arxiv_submission.tar.gz} compiles; $12/12$ URLs/DOIs resolve with $0$ Crossref retractions. & \tcode{scripts/build_paper.py}, \tcode{scripts/check_citations.py} & TeX warning, broken citation, or retracted DOI. \\
+C8 & \tagpa & This AMS-LaTeX PDF compiles with $0$ overfull hboxes and $0$ undefined refs; clean-room \tcode{arxiv_submission.tar.gz} compiles; $12/12$ URLs/DOIs resolve ($0$ retractions); DigiCert RFC~3161 \tcode{.tsr} binds \tcode{CHECKSUMS.sha256}. & \tcode{scripts/build_paper.py}, \tcode{CHECKSUMS.sha256.tsr} & TeX warning, broken/retracted citation, or RFC~3161 imprint mismatch. \\
 C9 & \tagee & Difficulty, tractability, impact, and interdisciplinarity scores ($1$--$10$) are falsifiable editorial estimates, not peer-reviewed measurements. & \tcode{docs/METHODOLOGY.md}, \tcode{RANKING.md} & N/A (explicitly declared editorial estimate). \\
-C10 & \tagoc & Zero ($0/1{,}900$) overarching Mega-Atlas open problems are retired by this repository or by the author's $10$ scoped companion archive entries. & \tcode{LIMITATIONS.md}, Section~\ref{sec:author_preprints} & Any claim marking an overarching parent ID solved. \\
+C10 & \tagoc & Zero ($0/1{,}900$) overarching Mega-Atlas open problems are retired by this repository or by the author's $12$ scoped companion archive entries. & \tcode{LIMITATIONS.md}, Section~\ref{sec:author_preprints} & Any claim marking an overarching parent ID solved. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -115,7 +115,7 @@ The antiquity term $\min(100, a/3)$ saturates at $300$ years so ancient problems
 
 \begin{table}[t]
 \centering
-\caption{Exact quantitative profile across all $8$ Macro-Pillars ($N = 1{,}900$, $|E| = 5{,}808$ biconnected edges, computed by \code{src/v2_loader.py} v2.5.0).}
+\caption{Exact quantitative profile across all $8$ Macro-Pillars ($N = 1{,}900$, $|E| = 5{,}808$ biconnected edges, computed by \code{src/v2_loader.py} v2.6.0).}
 \label{tab:pillars}
 \scriptsize
 \setlength{\tabcolsep}{4.5pt}
@@ -138,14 +138,14 @@ Philosophy, Social \& Humanities       & 175 &  9.2\% & 3 & 7.75 & 5.77 & 7.83 &
 \end{tabular}
 \end{table}
 
-\begin{figure}[p]
+\begin{figure}[tp]
   \centering
   \includegraphics[width=0.90\textwidth]{figures/fig01_superdomain_landscape.pdf}
   \caption{Coverage across all $28$ Superdomains ($N=1{,}900$) alongside mean Difficulty, 2050 Tractability, and Civilizational Impact.}
   \label{fig:superdomains}
 \end{figure}
 
-\begin{figure}[p]
+\begin{figure}[tp]
   \centering
   \includegraphics[width=0.90\textwidth]{figures/fig02_strategic_quadrant.pdf}
   \caption{Strategic 4-Quadrant landscape plotting Civilizational Impact against 2050 Tractability (bubble size proportional to network degree).}
@@ -168,7 +168,7 @@ Graph topology is audited with NetworkX~\cite{hagberg2008networkx}: all $1{,}900
 To eliminate silent formula drift, off-by-one threshold bugs, and reward-hacking regressions, we formalize all discrete structural invariants in zero-Mathlib \emph{Lean~4.35.0}~\cite{moura2021lean4} under strict compiler options (\code{autoImplicit = false}, \code{relaxedAutoImplicit = false}, \code{linter.unusedVariables = true}, \code{linter.deprecated = true}).
 
 \subsection{Architecture and Six-Kernel Palomar Verification}
-The Lean codebase comprises eight core modules (\code{Scoring}, \code{Quadrants}, \code{Taxonomy}, \code{GraphInvariants}, \code{AutoResearchInvariants}, \code{LayerGradients}, \code{NonVacuity}, and \code{AdversarialTests}) totaling $94$ base theorems, plus a clean challenge/solution boundary (\code{Challenge.lean}, \code{Solution.lean}, \code{PalomarSolution.lean}) matched against a \code{sorry}-only contract in \code{palomar/PalomarChallenge.lean} via our single-source verification script \code{scripts/verify_lean_six_kernels.sh} (executing \code{lake check --paranoid} and \code{lake comparator --paranoid} inside \code{bubblewrap}). Every one of the $103$ audited theorems in \code{MegaAtlasProofs/VerifyAxioms.lean} compiles with $0$ \code{sorry} in \code{lean/}, $0$ \code{native_decide}, $0$ custom axioms, and depends strictly on constructive axioms within [\code{propext}, \code{Quot.sound}] (no \code{Classical.choice}). All exported terms ($1{,}769$ declarations) pass six independent proof checkers: Lean~4.35.0's default kernel, \code{leanchecker-paranoid}, \code{lean4lean}, \code{nanoda_bin}, \code{con-leche --verified}, and \code{con-ron --verified}.
+The Lean codebase comprises eight core modules (\code{Scoring}, \code{Quadrants}, \code{Taxonomy}, \code{GraphInvariants}, \code{AutoResearchInvariants}, \code{LayerGradients}, \code{NonVacuity}, and \code{AdversarialTests}) totaling $94$ base theorems, plus a clean challenge/solution boundary (\code{Challenge.lean}, \code{Solution.lean}, \code{PalomarSolution.lean}) matched against a \code{sorry}-only contract in \code{palomar/PalomarChallenge.lean} via our single-source verification script \code{scripts/verify_lean_six_kernels.sh} (executing \code{leanchecker --fresh}, a live negative kernel rejection test confirming Lean rejects a deliberately false theorem, \code{lake check --paranoid}, and \code{lake comparator --paranoid} inside \code{bubblewrap}). Every one of the $103$ audited theorems in \code{MegaAtlasProofs/VerifyAxioms.lean} compiles with $0$ \code{sorry} in \code{lean/}, $0$ \code{native_decide}, $0$ custom axioms, and depends strictly on constructive axioms within [\code{propext}, \code{Quot.sound}] (no \code{Classical.choice}). All exported terms ($1{,}769$ declarations) pass six independent proof checkers: Lean~4.35.0's default kernel, \code{leanchecker --fresh} / \code{leanchecker-paranoid}, \code{lean4lean}, \code{nanoda_bin}, \code{con-leche --verified}, and \code{con-ron --verified}.
 
 \subsection{Non-Vacuity Witnesses, Adversarial Refutations, and Statement Fidelity}
 A formal theorem $H \to C$ can hold vacuously if $H$ is unsatisfiable, and a weak specification can accidentally pass while missing sharp thresholds. Module \code{MegaAtlasProofs.NonVacuity} ($12$ theorems) therefore constructs explicit concrete inhabitants for \emph{every} hypothesis bundle---including valid CSS/Titan ratings, the sharp non-saturation boundary at $299$ years (\code{ageScoreCentis 299 < 10000}), all $4$ Quadrants, all $6$ Eras, a concrete $3$-vertex cross-pillar triangle inhabiting the Handshaking Lemma, strict deduplication shrinkage, the exact logged \code{autoresearch/results.tsv} keep/discard trace ($8026 \to 8026$ discard, $8026 \to 8193 \to 9559 \to 9799$ keeps, plus failed-gate discard), and all $4$ MarginRole classes at the exact $30\%$ ($3000$\,bps) boundary. Complementarily, \code{MegaAtlasProofs.AdversarialTests} ($10$ theorems) constructively refutes ($\neg P$) deliberately false or off-by-one variants across all six modules.
@@ -214,28 +214,30 @@ The zero-dependency stdio JSON-RPC~2.0 server (\code{mcp_server/server.py}) spea
 \section{Author-Curated Scoped Companion Archive Audit (Non-Retirement)}
 \label{sec:author_preprints}
 
-To answer whether any cataloged Mega-Atlas problems have been solved in companion repositories maintained in \code{0thernes-research-archive}~\cite{donahue2026archive} (all $31$ public entries audited at archive commit \code{5170a63}), Table~\ref{tab:author_preprints} cross-maps the $10$ machine-checked Tier-I preprints and Tier-II formal builds against their parent Atlas IDs. \emph{Conflict-of-interest and scope notice:} these are self-authored independent preprints and engineering builds (not externally peer-reviewed) that resolve narrowly scoped published sub-conjectures or establish discrete model invariants. Every overarching Mega-Atlas parent problem remains explicitly \textbf{OPEN} ($0 / 1{,}900$ retired).
+To answer whether any cataloged Mega-Atlas problems have been solved across all public repositories maintained in \code{0thernes-research-archive}~\cite{donahue2026archive} ($72$ public repositories audited on November~25--26, 2026), Table~\ref{tab:author_preprints} cross-maps the $12$ machine-checked Tier-I preprints and Tier-II formal builds against their parent Atlas IDs. \emph{Conflict-of-interest and scope notice:} these are self-authored independent preprints and engineering builds (not externally peer-reviewed) that resolve narrowly scoped published sub-conjectures, formalize known complexity barriers, or establish discrete model invariants. Every overarching Mega-Atlas parent problem remains explicitly \textbf{OPEN} ($0 / 1{,}900$ retired).
 
 \begin{table}[t]
 \centering
-\caption{Cross-map of companion author preprints and formal builds in \code{0thernes-research-archive}~\cite{donahue2026archive} against parent Mega-Atlas IDs. All overarching Atlas parents remain \textbf{OPEN} ($0/1{,}900$ retired).}
+\caption{Cross-map of $12$ companion author preprints and formal builds in \code{0thernes-research-archive}~\cite{donahue2026archive} against parent Mega-Atlas IDs. All overarching Atlas parents remain \textbf{OPEN} ($0/1{,}900$ retired).}
 \label{tab:author_preprints}
 \scriptsize
-\renewcommand{\arraystretch}{1.13}
-\begin{tabularx}{\textwidth}{@{}P{2.40cm}P{2.10cm}P{2.20cm}YP{1.10cm}@{}}
+\renewcommand{\arraystretch}{1.11}
+\begin{tabularx}{\textwidth}{@{}P{2.25cm}P{2.05cm}P{2.25cm}YP{1.05cm}@{}}
 \toprule
 \textbf{Archive ID} & \textbf{Parent IDs} & \textbf{Verification} & \textbf{Narrowly Scoped Result} & \textbf{Parent} \\
 \midrule
-\tcode{0TH-2026-012} & \tcode{CS-053}, \tcode{CS-026}, \tcode{CS-001}, \tcode{CS-051} & Lean 4.35 ($6/6$, v2.0.0) & Koszul--Veronese syzygy rank ($4/7 \to 10/17$), LFSR domination, Chen Step~9 DFT cancellation, $8/13$ polymatroid, $\mathbb{F}_{11}$ Byzantine witness. & \textbf{OPEN} \\
-\tcode{0TH-2026-011} & $13$ Crypto/QC IDs & Lean 4.35 ($6/6$, v2.3.0) & $27$ algebraic/IT/QGT invariants ($60$ decls) incl.\ $c_{\mathrm{eff}}^2+C^2=1$ and sharp FIPS~203 $|e|\le 831$. & \textbf{OPEN} \\
+\tcode{0TH-2026-012} & \tcode{CS-053}, \tcode{CS-026}, \tcode{CS-004}, \tcode{CS-001}+ & Lean 4.35 ($6/6$, v3.0.0) & $23$ thms: Koszul--Veronese syzygy ($4/7\!\to\!10/17$), LFSR domination, Chen Step~9 DFT, $8/13$ Mat\'u\v{s} defeat, exact $\mathrm{rank}_F(\langle 2,2,2\rangle)=7$ \& Koszul $\ge m^2+2$. & \textbf{OPEN} \\
+\tcode{0TH-2026-011} & $13$ Crypto/QC IDs & Lean 4.35 ($6/6$, v2.4.0) & $27$ algebraic/IT/QGT invariants ($60$ decls) incl.\ $c_{\mathrm{eff}}^2+C^2=1$, Toner CHSH, and sharp FIPS~203 $|e|\le 831$. & \textbf{OPEN} \\
 \tcode{0TH-2026-010} & \tcode{CS-005} & Lean 4.35 ($7$ kernels)~\cite{donahue2026catalytic} & Base-$p$ $2$-register passive catalytic dichotomy and unique optimal $3$-register exponent $\log_{13} 8 \approx 0.8107$. & \textbf{OPEN} \\
-\tcode{0TH-2026-009} & \tcode{QM-011} & Lean 4.35 ($6/6$, v2.8.0) & Jonah Conjecture~E ($9$ vertex cases, $N \ge 4$), disjoint Mermin formulas $(7^k-5^k)/2$, $4$-qubit $C_3$ optima ($2{,}206$ decls). & \textbf{OPEN} \\
-\tcode{0TH-2026-004} & \tcode{QM-011} & Lean 4.35 ($6/6$) + DRUP & Exact minimum KS ray counts inside restricted coordinate pools ($31, 33, 18, 29$). & \textbf{OPEN} \\
-\tcode{0TH-2026-006} & \tcode{STAT-001} (rel.) & Lean 4.35 ($6/6$, v2.0.0) & Resolved Bani\'c--Elezovi\'c Conjecture~7.7 ($a_{\triangle} = 1/32 - 4\sqrt{3}/243$; $576$ theorems); standalone sub-conjecture. & \textbf{N/A} \\
+\tcode{0TH-2026-009} & \tcode{QM-011}, \tcode{QC-037}, \tcode{QC-013} & Lean 4.35 ($6/6$, v2.8.0) & Disjoint Mermin formulas $(7^k-5^k)/2$, Jonah Conjecture~E ($9$ cases, $N\!\ge\!4$), $4$-qubit $C_3$ optima ($2{,}206$ decls). & \textbf{OPEN} \\
+\tcode{0TH-2026-004} & \tcode{QM-011} & Lean 4.35 ($6/6$, v1.9.0) & Exact minimum KS ray counts inside restricted coordinate pools ($31, 33, 18, 29$; $149$ decls + DRUP). & \textbf{OPEN} \\
+\tcode{0TH-2026-006} & \tcode{STAT-001} (rel.) & Lean 4.35 ($6/6$, v2.1.0) & Resolved Bani\'c--Elezovi\'c Conjecture~7.7 ($a_{\triangle} = 1/32 - 4\sqrt{3}/243$; $576$ thms + TSA); standalone sub-conjecture. & \textbf{N/A} \\
+\tcode{0TH-2026-013} & \tcode{CS-001}, \tcode{CS-005}, \tcode{CS-010}, \tcode{CS-012} & Lean 4.35 ($6/6$, v1.1.0) & $14$ unconditional complexity-barrier theorems (relativization, natural proofs, Schaefer, catalytic) + $4$ heuristic refutations. & \textbf{OPEN} \\
 \tcode{0TH-2026-007/8} & \tcode{NEURO-001}, \tcode{NEURO-019} & Lean 4.35 ($6/6$)~\cite{donahue2026synapse} & $18$ biophysical invariants + refuted pre-registered $40$\,Hz ATP sustainability ($f_{\mathrm{crit}}=29.5625$\,Hz). & \textbf{OPEN} \\
-\tcode{0TH-BUILD-003} & \tcode{SUB-032}, \tcode{GR-001} & Lean 4.35 ($6/6$, v1.4.0) & Discrete $p$-adic AdS/CFT multi-edge Gauss--Bonnet and universal graph RT strong subadditivity ($120$ decls). & \textbf{OPEN} \\
+\tcode{0TH-BUILD-003} & \tcode{SUB-032}, \tcode{GR-001..003} & Lean 4.35 ($6/6$, v1.4.1) & Discrete $p$-adic AdS/CFT multi-edge Gauss--Bonnet and universal graph RT strong subadditivity ($120$ decls). & \textbf{OPEN} \\
+\tcode{0TH-BUILD-004} & \tcode{NT-005}, \tcode{NT-066}, \tcode{NT-078}, \tcode{COMB-002} & Lean 4.35 ($6/6$, v0.5.0) & $8$-domain math foundations ($45$ thms + $10$ witnesses + $14$ refutations = $69$ decls; solves $0$ conjectures). & \textbf{OPEN} \\
 \tcode{0TH-BUILD-002} & \tcode{CS-053}, \tcode{SYS-001} & Lean 4.35 ($6/6$, v2.3.0) & Discrete $\mathrm{GF}(256)$ Cauchy/RS MDS, depth-8 Merkle, and $4$-qubit unitarity invariants ($70$ theorems). & \textbf{OPEN} \\
-\tcode{0TH-BUILD-001/8} & \tcode{BIO-001}, \tcode{SUB-001} & Lean 4.35 ($58+61$ thms) & Discrete biophysical/A-Life model invariants (Canham--Helfrich minimax, Chemoton, Hopfield--Ninio, CRNT). & \textbf{OPEN} \\
+\tcode{0TH-BUILD-001/6/8+} & \tcode{BIO-001}, \tcode{SUB-001}, \tcode{GR-001..002} & Lean 4.35 ($226$ thms) & $218$ A-Life Omega discrete biophysical invariants ($5$ repos) + $8$ zero-axiom Schwarzschild rational limits. & \textbf{OPEN} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -250,7 +252,6 @@ To answer whether any cataloged Mega-Atlas problems have been solved in companio
   \item \textbf{No External Peer Review:} Neither this dataset nor this white paper has undergone journal peer review. All FAIR descriptors follow Gebru et al.~\cite{gebru2021datasheets}, MLCommons Croissant~1.0~\cite{akhtar2024croissant}, and RO-Crate~1.1~\cite{soilandreyes2022rocrate} so independent referees can audit every file byte-for-byte.
 \end{enumerate}
 
-\newpage
 \section{Reproducibility, AI-Assistance Disclosure, Governance, and Availability}
 \label{sec:repro}
 
@@ -267,10 +268,10 @@ just lean-kernels
 \end{minipage}
 \smallskip
 
-\noindent Every GitHub push to \code{main} runs a $3$-OS Python matrix (Ubuntu, macOS, Windows), \code{scripts/verify_lean_six_kernels.sh} inside a \code{bubblewrap} sandbox, Tectonic AMS-LaTeX + clean-room \code{arxiv_submission.tar.gz} verification, Crossref retraction checks, SHA-256 manifest checks, and SLSA build-provenance attestation (\code{actions/attest-build-provenance@v2}) covering the frozen PDF, arXiv tarball, \code{results/lean_axioms.txt}, and \code{CHECKSUMS.sha256}. Full clean-clone replication logs appear in \code{REPLICATION.md}.
+\noindent Every GitHub push to \code{main} runs a $3$-OS Python matrix (Ubuntu, macOS, Windows), \code{scripts/verify_lean_six_kernels.sh} inside a \code{bubblewrap} sandbox (including \code{leanchecker --fresh} and live negative kernel rejection), Tectonic AMS-LaTeX + clean-room \code{arxiv_submission.tar.gz} verification, Crossref retraction checks, SHA-256 + DigiCert RFC~3161 timestamp verification (\code{CHECKSUMS.sha256.tsr}), and SLSA build-provenance attestation (\code{actions/attest-build-provenance@v2}) covering the frozen PDF, arXiv tarball, \code{results/lean_axioms.txt}, \code{CHECKSUMS.sha256}, and \code{CHECKSUMS.sha256.tsr}. Full clean-clone replication logs appear in \code{REPLICATION.md}.
 
 \subsection{AI-Assistance Disclosure, CRediT, Export-Control Screen, and Corrections}
-\textbf{Authorship \& CRediT:} Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID \code{0009-0006-8168-9648}) is the sole human author responsible for Conceptualization, Methodology, Formal Audit Direction, Validation, Supervision, and Writing---Review \& Editing. \textbf{Disclosed AI Assistance:} Large language model coding and research agents (\code{Gemini / Antigravity}) assisted with Python pipeline engineering, Lean~4.35.0 tactic proofs, test/oracle authoring, figure generation, and manuscript drafting under direct human supervision and multi-cycle adversarial auditing (venue-specific Zenodo/JOSS/Mathlib disclosures in \code{docs/AI_DISCLOSURE.md} and \code{lean/formalization.yaml}). \textbf{Conflict of Interest:} Section~\ref{sec:author_preprints} references ten companion archive entries authored by A.\,S.~Donahue; none are counted as retiring any overarching Mega-Atlas problem. \textbf{Export-Control Self-Screen \& Corrections Policy:} All content consists strictly of publicly available, open-licensed fundamental mathematical/scientific metadata and formal verification software (15~CFR~734.8 fundamental research scope; zero controlled technical data or cryptographic key material). Post-release corrections are logged transparently in \code{ERRATA.md} rather than silently overwritten; any future external preprint deposit will preserve a dated withdrawal/supersession notice if a substantive error is discovered.
+\textbf{Authorship \& CRediT:} Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA; ORCID \code{0009-0006-8168-9648}) is the sole human author responsible for Conceptualization, Methodology, Formal Audit Direction, Validation, Supervision, and Writing---Review \& Editing. \textbf{Disclosed AI Assistance:} Large language model coding and research agents (\code{Gemini / Antigravity}) assisted with Python pipeline engineering, Lean~4.35.0 tactic proofs, test/oracle authoring, figure generation, and manuscript drafting under direct human supervision and multi-cycle adversarial auditing (venue-specific Zenodo/JOSS/Mathlib disclosures in \code{docs/AI_DISCLOSURE.md} and \code{lean/formalization.yaml}). \textbf{Conflict of Interest:} Section~\ref{sec:author_preprints} references twelve companion archive entries authored by A.\,S.~Donahue; none are counted as retiring any overarching Mega-Atlas problem. \textbf{Export-Control Self-Screen \& Corrections Policy:} All content consists strictly of publicly available, open-licensed fundamental mathematical/scientific metadata and formal verification software (15~CFR~734.8 fundamental research scope; zero controlled technical data or cryptographic key material). Post-release corrections are logged transparently in \code{ERRATA.md} rather than silently overwritten; any future external preprint deposit will preserve a dated withdrawal/supersession notice if a substantive error is discovered.
 
 \subsection{Data, Code, and Archival Availability}
 All source code, Lean~4.35.0 proofs, tests, and scripts are licensed under \textbf{Apache-2.0}; all datasets, figures, documentation, and this manuscript are licensed under \textbf{CC-BY-4.0}.

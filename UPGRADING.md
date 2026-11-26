@@ -2,6 +2,23 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.5.0` to `v2.6.0`
+
+### 1. Live Companion Archive Expansion (`10` → `12` Verified Entries; `0 / 1,900` Parents Retired)
+- Expanded `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` in `src/v2_loader.py` (propagated across JSON, SQLite, 15-sheet XLSX, HTML Tab 2, `RANKING.md`, `paper/main.tex` Table 3, and MCP tool `list_author_frontier_contributions`) from `10` to **`12` live-verified companion entries** — updating `0TH-2026-012` (`v3.0.0`, 23 thms), `0TH-2026-011` (`v2.4.0`), `0TH-2026-006` (`v2.1.0`), `0TH-2026-004` (`v1.9.0`), `0TH-BUILD-003` (`v1.4.1`), and adding `0TH-2026-013` (`p-vs-np-frontier-lab v1.1.0`) and `0TH-BUILD-004` (`unsolved-mathematics v0.5.0`). Every overarching Mega-Atlas parent problem remains **OPEN** (`0 / 1,900` retired).
+
+### 2. SQLite Auto-Rebuild on Upgrade & Hardened MCP Input Clamping
+- `rag/query.py` (`ensure_sqlite_db`) now checks the cached database's `metadata.atlas_version` and `author_frontier_contributions` row count against the active codebase and automatically rebuilds `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on version upgrades — preventing stale local caches.
+- `mcp_server/server.py` now strictly clamps `top ∈ [1, 50]` and `hops ∈ [0, 1]` and validates required arguments (`problem_id`, `id_a`, `id_b`) with structured `isError: true` responses instead of raw `KeyError`.
+
+### 3. Live Negative Lean Kernel Rejection & DigiCert RFC 3161 Timestamp
+- `scripts/verify_lean_six_kernels.sh` now invokes `lake env leanchecker --fresh` and runs a live negative Lean 4.35.0 kernel rejection test asserting that a deliberately false theorem (`1 = 2`) is rejected by the kernel with non-zero exit code (Playbook v1.3 Item 12).
+- Added a real DigiCert RFC 3161 Trusted Timestamp token (`CHECKSUMS.sha256.tsr`) cryptographically binding the SHA-256 imprint of `CHECKSUMS.sha256` to a verifiable third-party clock (Playbook v1.3 Item 26).
+
+## Upgrading from `v2.4.0` to `v2.5.0`
+- Expanded Pure Lean 4.35.0 formal invariants from `92` to **`103` audited theorems** by adding `lean/MegaAtlasProofs/AdversarialTests.lean` (`10` constructive `¬P` refutations bundled into `M8_AdversarialRefutations`, `9` Palomar targets) verified via single-source `scripts/verify_lean_six_kernels.sh`.
+- Added live Crossref retraction checking in `scripts/check_citations.py`, 100% REUSE/SPDX headers across code/Lean/shell files, 1-to-1 `C1`–`C10` parity between `CLAIMS.md` and `paper/main.tex`, and SLSA attestation of `results/lean_axioms.txt`.
+
 ## Upgrading from `v2.3.0` to `v2.4.0`
 
 ### 1. Code License Alignment (`MIT` → `Apache-2.0`)

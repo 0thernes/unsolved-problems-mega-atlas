@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 # SPDX-License-Identifier: Apache-2.0
 version: "v0.4"
-release_version: "2.5.0"
+release_version: "2.6.0"
 
 project:
   name: "Unsolved Problems Mega-Atlas Formal Invariant Suite (MegaAtlasProofs)"
@@ -39,7 +39,7 @@ classification:
     - "05C90"
 
 sources:
-  - title: "Unsolved Problems Mega-Atlas (V2.5.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+  - title: "Unsolved Problems Mega-Atlas (V2.6.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
     authors:
       - "Alexander Stephen Donahue"
     id: "https://github.com/0thernes/unsolved-problems-mega-atlas"
@@ -81,7 +81,7 @@ status:
     - declaration: "MegaAtlasProofs.Palomar.m3_taxonomy_invariants"
       file: "lean/PalomarSolution.lean"
       sorry_count: 0
-      axioms: ["propext", "Quot.sound"]
+      axioms: ["propext"]
       comparator_config: "lean/comparator.json"
     - declaration: "MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants"
       file: "lean/PalomarSolution.lean"
@@ -140,6 +140,8 @@ review:
   status: "self-assessed"
   notes: >-
     Not externally peer-reviewed. Machine-checked across all 6 independent Lean 4.35.0
-    proof kernels via `lake comparator --config comparator.json --paranoid` (Lean default,
-    leanchecker-paranoid, lean4lean, nanoda_bin, con-leche --verified, con-ron --verified),
-    with 0 warnings, 0 proof sorries in `lean/`, 0 native_decide, and concrete NonVacuity witnesses.
+    proof kernels via `scripts/verify_lean_six_kernels.sh` (Lean default,
+    leanchecker --fresh, leanchecker-paranoid, lean4lean, nanoda_bin, con-leche --verified,
+    con-ron --verified, plus sandboxed Palomar comparator and live negative kernel rejection),
+    with 0 warnings, 0 proof sorries in `lean/`, 0 native_decide, 12 concrete NonVacuity
+    witnesses, and 10 constructive AdversarialTests refutations.

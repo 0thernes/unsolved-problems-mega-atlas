@@ -58,6 +58,22 @@ CANONICAL_INDUSTRIES = [
     ("Media, Culture & Academia", ["Media", "Arts", "Education", "Cultural", "Journalism", "Music", "Entertainment", "Heritage", "Academic", "Pure Math", "Fundamental"]),
 ]
 
+def _read_atlas_version() -> str:
+    p = os.path.join(os.path.dirname(os.path.dirname(__file__)), "VERSION")
+    if os.path.exists(p):
+        with open(p, "r", encoding="utf-8") as f:
+            v = f.read().strip()
+            if v:
+                return v
+    return "2.6.0"
+
+
+ATLAS_VERSION = _read_atlas_version()
+REFERENCE_YEAR = 2026
+AUTHOR_NAME = "Alexander Stephen Donahue"
+AUTHOR_ORCID = "0009-0006-8168-9648"
+AFFILIATION = "Independent Researcher, Spokane, WA, USA"
+
 EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "ProofAtlas (proofatlas.ai)", "Scope": "Pure & Applied Mathematics (LLM-ranked + tracked)", "Total_Tracked": "1,100+ eligible (Top-500 edition)", "Open_Count_Nov2026": "243 open in Top-500 (hundreds more in full 1,100+)", "Verification_Standard": "Community + Lean formalization tracking", "Nov2026_Highlight": "Actively tracks AI-targeted conjectures (e.g. #243 APSP subcubic, 3SUM, ETH)."},
     {"Registry": "Erdős Problems DB (erdosproblems.com)", "Scope": "Combinatorics, Number Theory, Discrete Geometry", "Total_Tracked": "~1,221 problems", "Open_Count_Nov2026": "~630+ open (~550+ solved/closed)", "Verification_Standard": "Thomas Bloom curation + Lean 4 formal checks", "Nov2026_Highlight": "Rapid 2025–2026 wave of AI-assisted literature recovery & Lean-checked closures."},
@@ -71,7 +87,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": "This V2.4 Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants, JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256, AutoResearch & Nov 25 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 10-tool MCP server, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
+    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants (103 theorems + live negative rejection), JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256 + RFC 3161 TSA, AutoResearch & Nov 25 2026 AI-claim audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 10-tool MCP server, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -186,108 +202,109 @@ def _norm_name(s: str) -> str:
     return s
 
 
-def _read_atlas_version() -> str:
-    p = os.path.join(os.path.dirname(os.path.dirname(__file__)), "VERSION")
-    if os.path.exists(p):
-        with open(p, "r", encoding="utf-8") as f:
-            v = f.read().strip()
-            if v:
-                return v
-    return "2.5.0"
-
-
-ATLAS_VERSION = _read_atlas_version()
-REFERENCE_YEAR = 2026
-AUTHOR_NAME = "Alexander Stephen Donahue"
-AUTHOR_ORCID = "0009-0006-8168-9648"
-AFFILIATION = "Independent Researcher, Spokane, WA, USA"
-
 # Strictly scoped author-curated preprints & formal builds (Alexander S. Donahue,
 # ORCID 0009-0006-8168-9648) archived in 0thernes/0thernes-research-archive (synced to
-# archive commit 5170a63, 2026-11-25). Disclosed self-reference (NOT peer-reviewed):
-# ZERO (0 / 1,900) overarching Mega-Atlas parent problems are retired as solved; entries
-# document exact kernel-checked sub-conjecture resolutions or discrete invariants while
-# explicitly keeping every overarching parent problem OPEN.
+# live GitHub releases & SOLVED_AND_ATLAS_BRIDGE.json, 2026-11-26 UTC). Disclosed
+# self-reference (NOT peer-reviewed): ZERO (0 / 1,900) overarching Mega-Atlas parent
+# problems are retired as solved; entries document exact kernel-checked sub-conjecture
+# resolutions, barrier formalizations, or discrete invariants while explicitly keeping
+# every overarching parent problem OPEN.
 OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
     {
         "Archive_ID": "0TH-2026-012",
-        "Repo": "0thernes/coded-pir-mlwe-complexity-lab (v2.0.0, 2026-11-25)",
-        "Parent_Atlas_IDs": "CS-053, CS-026, CS-001, CS-051",
-        "Scoped_Result": "Resolved Sun-Tao-Xu-Zhang (arXiv:2603.10769) Schur-product syzygy rank via Koszul-Veronese moment annihilation (4/7 -> 10/17); proved strict LFSR domination over Sun-Zhang (arXiv:2610.37412); refuted Luo (arXiv:2604.15858) via det(B)=q^m; proved ring-universal anti-periodic DFT cancellation explaining Chen ePrint 2024/555 Step 9; certified 8/13 polymatroid & F_11 Byzantine rate-2/5 witness.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 19 theorems T1a-T3f + prove_all + NonVacuity = 21 audited decls, 6/6 independent kernels via lake comparator --paranoid, CI #45722546053)",
-        "Parent_Problem_Status": "STILL OPEN — Non-linear C(2,4,2,2), general M>=3 PIR, worst-case quantum MLWE & P!=NP explicitly remain OPEN; preprint not peer-reviewed.",
+        "Repo": "0thernes/coded-pir-mlwe-complexity-lab (v3.0.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "CS-053, CS-026, QC-042, CS-004, CS-001, CS-010, CS-012, CS-051",
+        "Scoped_Result": "Resolved Sun-Tao-Xu-Zhang (arXiv:2603.10769) Schur-product syzygy rank via Koszul-Veronese moment annihilation (4/7 -> 10/17); proved strict LFSR domination over Sun-Zhang (arXiv:2610.37412); refuted Luo (arXiv:2604.15858) via det(B)=q^m; proved ring-universal anti-periodic DFT cancellation (Chen ePrint 2024/555 Step 9); certified 8/13 polymatroid defeating all infinitely many Matus M_s inequalities; proved characteristic-free Strassen-Winograd rank_F(<2,2,2>)=7 & all-m Koszul rank >= m^2+2.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 23 theorems T1a-T3h / 25 audited decls, 6/6 independent kernels, CI #45741278208, Rekor 4116227116)",
+        "Parent_Problem_Status": "STILL OPEN — General coded-PIR capacity, worst-case quantum MLWE, matrix-mult exponent omega=2, P!=NP & VP!=VNP explicitly remain OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-011",
-        "Repo": "0thernes/secmesh-pqsi (v2.3.0, 2026-11-25)",
+        "Repo": "0thernes/secmesh-pqsi (v2.4.0, 2026-11-26)",
         "Parent_Atlas_IDs": "CS-002, CS-026, CS-028, CS-030, CS-053, CS-061, QC-004, QC-018, QC-021, QC-030, QC-042, STAT-014, SYS-024",
         "Scoped_Result": "Proved 27 cryptographic/IT/QGT invariants including Chern-Concurrence-Entropy Conservation Law (c_eff^2 + C^2 = 1), first-principles Toner CHSH monogamy, exact Hiding-Binding Conservation Law (TV + Overlap = 1), and sharp FIPS 203 Compress_1 margin |e|<=831.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 27 theorems T1a-T7b + NonVacuity + 4 AdversarialTests = 60 audited decls, 6/6 independent kernels, CI #45735952277)",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 27 theorems T1a-T7b + NonVacuity + AdversarialTests = 60 audited decls, 6/6 independent kernels, CI #45740501716)",
         "Parent_Problem_Status": "STILL OPEN — Explicitly separates all 13 referenced Mega-Atlas open conjectures as unresolved; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-010",
         "Repo": "0thernes/catalytic-register-frontiers (v1.0.1, 2026-11-24)",
         "Parent_Atlas_IDs": "CS-005",
-        "Scoped_Result": "Resolved two open questions of Vinciguerra (arXiv:2609.18692): complete base-p digit-sum dichotomy for 2-register passive catalytic programs over F_p and broke 3-register exponent from log_5(4)~0.8614 down to unique minimizer log_13(8)~0.8107.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 20 theorems + NonVacuity = 22 audited decls, 7 kernels, 8/8 CaDiCaL LRAT UNSAT proofs, DOI 10.5281/zenodo.24517198, CI #45500957443)",
+        "Scoped_Result": "Resolved two open questions of Vinciguerra (arXiv:2609.18692, Sec. 6): complete base-p digit-sum dichotomy for 2-register passive catalytic programs over F_p and broke 3-register exponent from log_5(4)~0.8614 down to unique global minimizer log_13(8)~0.8107.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 20 theorems / 22 audited decls, 7 kernels, 8/8 CaDiCaL LRAT UNSAT proofs, DOI 10.5281/zenodo.24517198, CI #45500957443)",
         "Parent_Problem_Status": "STILL OPEN — General L vs. P, P vs. PSPACE & r>=4 catalytic loops remain OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-009",
-        "Repo": "0thernes/pauli-contextuality-lab (v2.8.0, 2026-11-25)",
-        "Parent_Atlas_IDs": "QM-011",
-        "Scoped_Result": "Proved Jonah's Conjecture E across all 9 vertex cases for all N>=4, exact disjoint Mermin copy formulas (7^k-5^k)/2 & (6^k-4^k)/2 answering Muller & Saniga (arXiv:2609.19862v1 Sec. 6), exact 4-qubit C3 binary optima (368 vs 344, gap 24), infinite non-closed |Psi_{3m}> family & sequential bias cap.",
-        "Kernel_Audit": "Lean 4.35.0 / Mathlib (2,206 exhaustively audited decls, 12 comparator targets across 6/6 independent kernels, CI #45722562212)",
-        "Parent_Problem_Status": "STILL OPEN — Overarching QM-011 ontological/contextuality foundations remain OPEN; preprint not peer-reviewed.",
+        "Repo": "0thernes/pauli-contextuality-lab (v2.8.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "QM-011, QC-037, QC-013",
+        "Scoped_Result": "Answered Muller & Saniga (arXiv:2609.19862v1 Sec. 6) with exact disjoint Mermin copy degrees (7^k-5^k)/2 & (6^k-4^k)/2; proved eigenvalue-multiset Jonah Conjecture E across all 9 vertex cases for all N>=4 (modulo cited Theorem B4 outside Lean), exact 4-qubit C3 binary optima (368 vs 344, gap 24), infinite |Psi_{3m}> family & 11/12 sequential bias cap.",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (2,206 exhaustively audited decls, 12 comparator targets across 6/6 independent kernels, CI #45722562212, Rekor 4114410283)",
+        "Parent_Problem_Status": "STILL OPEN — Overarching QM-011/QC-037/QC-013 contextuality foundations remain OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-004",
-        "Repo": "0thernes/kochen-specker-extremal-lab (v1.8.0, 2026-11-24)",
+        "Repo": "0thernes/kochen-specker-extremal-lab (v1.9.0, 2026-11-26)",
         "Parent_Atlas_IDs": "QM-011",
         "Scoped_Result": "Certified exact minimum Kochen-Specker set sizes inside restricted coordinate pools: 31 rays in 3D integer pools (|c|<=2..4), 33 in 3D roots of unity, 18 in 4D {0,+1,-1}^4, and 29 in 5D.",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited decls, 6/6 independent kernels, CI #45516972182) + checked DRUP UNSAT proofs",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 149 audited decls, 6/6 independent kernels + leanchecker --fresh + 3 false-variant rejections, CI #45741815040) + checked DRUP UNSAT proofs",
         "Parent_Problem_Status": "STILL OPEN — Unrestricted general minimal-KS problem in R^3 explicitly remains OPEN; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-2026-006",
-        "Repo": "0thernes/multinomial-tv-conjecture (v2.0.0, 2026-11-25)",
+        "Repo": "0thernes/multinomial-tv-conjecture (v2.1.0, 2026-11-26)",
         "Parent_Atlas_IDs": "STAT-001 (Related Probability / Asymptotic Statistics)",
         "Scoped_Result": "Resolved Conjecture 7.7 (conj:atriangle) of Banic & Elezovic (arXiv:2610.17046v1 / 2611.14735v1) on second-order variance of multinomial discrete total variation (a_triangle = 1/32 - 4*sqrt(3)/243), making linear gamma(n) & cyclic gamma_c(n) unconditional for n>=5.",
-        "Kernel_Audit": "Lean 4.35.0 / Mathlib (5,445 lines, 576 exhaustively audited theorems + 18 NonVacuity witnesses, 6/6 independent kernels, CI #45723630668)",
-        "Parent_Problem_Status": "STANDALONE SUB-CONJECTURE — Not one of the 1,900 overarching atlas IDs; preprint not yet externally peer-reviewed.",
+        "Kernel_Audit": "Lean 4.35.0 / Mathlib (576 exhaustively audited theorems, 6/6 independent kernels + live negative kernel rejection + DigiCert RFC 3161 TSA, CI #45741323731, Rekor 4116347212)",
+        "Parent_Problem_Status": "STANDALONE SUB-CONJECTURE — Adjacent to STAT-001; not one of the 1,900 overarching atlas IDs; preprint not yet externally peer-reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-013",
+        "Repo": "0thernes/p-vs-np-frontier-lab (v1.1.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "CS-001, CS-005, CS-010, CS-012, QM-011",
+        "Scoped_Result": "Machine-checked 14 unconditional complexity-barrier theorems (Baker-Gill-Solovay relativization, Markov/Fischer negation bounds, Razborov-Rudich natural proofs, Schaefer dichotomy, algebraic/catalytic barriers) and empirically/algebraically falsified 4 aggressive P=NP heuristics.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 14 theorems / 15 Palomar comparator targets across 6/6 independent kernels, 15-page AMS-LaTeX preprint, CI #45743257383)",
+        "Parent_Problem_Status": "STILL OPEN — Barrier formalization & heuristic falsification only; P vs. NP (CS-001) and all related complexity separations explicitly remain OPEN.",
     },
     {
         "Archive_ID": "0TH-2026-007 / 008",
         "Repo": "0thernes/human-synapse-bouton-lab (v1.2.0, 2026-11-23)",
         "Parent_Atlas_IDs": "NEURO-001, NEURO-019",
         "Scoped_Result": "Proved 18 positive-domain synaptic biophysical invariants & 2x2 algebraic factorization bounds, and honestly refuted pre-registered 40 Hz mitochondrial ATP sustainability (f_crit = 29.5625 Hz).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 18 theorems + 19 non-vacuity witnesses, 6/6 kernels, DOI 10.5281/zenodo.24484350, CI #45277848703)",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 18 theorems + 20 non-vacuity witnesses, 6/6 kernels, DOI 10.5281/zenodo.24484350, CI #45277848703)",
         "Parent_Problem_Status": "STILL OPEN — Explicitly disclaims solving phenomenal consciousness, sentience, or brain-wide energy coding; preprint not peer-reviewed.",
     },
     {
         "Archive_ID": "0TH-BUILD-003",
-        "Repo": "0thernes/ultrametrica (v1.4.0, 2026-11-25)",
-        "Parent_Atlas_IDs": "SUB-032, GR-001",
+        "Repo": "0thernes/ultrametrica (v1.4.1, 2026-11-26)",
+        "Parent_Atlas_IDs": "SUB-032, GR-001, GR-002, GR-003",
         "Scoped_Result": "Proved discrete p-adic AdS/CFT algebraic invariants (Theorems I-VI), including arbitrary multi-edge curved AdS Gauss-Bonnet curvature and universal weighted-graph holographic RT Strong Subadditivity (SSA).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 120 audited decls + 8 comparator targets, 6/6 independent kernels via lake comparator --paranoid, CI #45726457779)",
-        "Parent_Problem_Status": "STILL OPEN — Explicit 0/1,900 Mega-Atlas cross-check; continuum quantum gravity (GR-001) & physical p-adic holography (SUB-032) remain OPEN.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 120 audited decls + 8 comparator targets across 6/6 independent kernels, 19-page PDF, CI #45740525070)",
+        "Parent_Problem_Status": "STILL OPEN — Explicit 0/1,900 Mega-Atlas cross-check; continuum quantum gravity (GR-001..003) & physical p-adic holography (SUB-032) remain OPEN.",
+    },
+    {
+        "Archive_ID": "0TH-BUILD-004",
+        "Repo": "0thernes/unsolved-mathematics (v0.5.0, 2026-11-26)",
+        "Parent_Atlas_IDs": "NT-005, NT-066, NT-078, COMB-002",
+        "Scoped_Result": "Proved 8-domain mathematical foundation invariants (45 theorems + 10 non-vacuity witnesses + 14 adversarial refutations = 69 decls) covering Collatz, Erdos-Straus, Lonely Runner, Brocard, Primes/Twin Primes, Goldbach, Odd Perfect/Mersenne & Ramsey R(3,3)=6.",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 69 audited decls across 6/6 independent kernels, 10-page monograph, CI #45742871338)",
+        "Parent_Problem_Status": "STILL OPEN — Classical foundations, modular reductions & sharpness bounds only; explicitly solves 0 open conjectures.",
     },
     {
         "Archive_ID": "0TH-BUILD-002",
-        "Repo": "0thernes/planaria (v2.3.0, 2026-11-25)",
+        "Repo": "0thernes/planaria (v2.3.0, 2026-11-26)",
         "Parent_Atlas_IDs": "CS-053, SYS-001",
         "Scoped_Result": "Proved discrete GF(256) Cauchy/RS MDS recovery, 8-level Merkle integrity, caller-windowed anastomosis, 4-qubit complex unitarity, and exact 6,421,059,993,600 reachable discrete state count for .hbin executables.",
         "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 70 audited theorems across 6/6 independent kernels, CI #45732566225)",
         "Parent_Problem_Status": "STILL OPEN — Certifies discrete engineering invariants only; general coding-theory & nonlinear control problems remain OPEN.",
     },
     {
-        "Archive_ID": "0TH-BUILD-001 / 008",
-        "Repo": "0thernes/cellulogonic-mecha (v1.2.1) & cellular-engine-omega (v4.2.0)",
-        "Parent_Atlas_IDs": "BIO-001, SUB-001",
-        "Scoped_Result": "Proved 58 + 61 = 119 discrete biophysical & artificial-life model invariants (Canham-Helfrich elastic minimax, Chemoton stoichiometry, Hopfield-Ninio proofreading, Turing/Feinberg CRNT, TUR speed limits).",
-        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 58 + 61 audited theorems, zero sorry, CI #44903924086 & #44887931871)",
-        "Parent_Problem_Status": "STILL OPEN — Coarse-grained discrete simulation invariants only; abiogenesis (BIO-001) & basal cognition (SUB-001) remain OPEN.",
+        "Archive_ID": "0TH-BUILD-001 / 006 / 008–011",
+        "Repo": "0thernes A-Life Omega Suite (5 repos) & black-hole-simulation-lab",
+        "Parent_Atlas_IDs": "BIO-001, SUB-001, GR-001, GR-002",
+        "Scoped_Result": "Proved 218 combined discrete A-Life/biophysical model invariants (cellulogonic-mecha 58, cellular-engine-omega 61, autophage 31, noetic-organism-omega 48, asmodensius-native 20) plus 8 zero-axiom Schwarzschild rational limits (black-hole-simulation-lab).",
+        "Kernel_Audit": "Lean 4.35.0 (zero Mathlib, 226 combined discrete invariants across 6 public build repos, zero sorry)",
+        "Parent_Problem_Status": "STILL OPEN — Coarse-grained discrete simulation & classical textbook limits only; abiogenesis (BIO-001), basal cognition (SUB-001) & quantum gravity (GR-001..002) remain OPEN.",
     },
 ]
 

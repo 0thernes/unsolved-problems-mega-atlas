@@ -1,4 +1,4 @@
-# Datasheet for the Unsolved Problems Mega-Atlas (`v2.5.0`)
+# Datasheet for the Unsolved Problems Mega-Atlas (`v2.6.0`)
 
 > Structured according to Gebru et al. (2021), *"Datasheets for Datasets"*, Communications of the ACM 64(12).
 
@@ -12,7 +12,7 @@
 ## 2. Composition
 
 - **What do the instances represent?** Each of the **1,900 instances** represents a distinct unsolved, open, hard, or actively contested scientific, mathematical, engineering, or philosophical problem, enriched with **48 typed fields** (taxonomic lineage, formulation year/era/age, originator, status, explicit `verification_flag`, Nov 2026 AI verification notes, formal expression, 4 editorial 1–10 ratings, derived `css_score`, `titan_index`, `near_term_leverage_score`, strategic quadrant, NetworkX centralities, bottlenecks, approaches, 2026 progress, affected industries, cross-problem graph links, plus 8 multi-layer fields: `substrate_class`, `abstraction_layer`, `epistemic_spectrum_score`, `hardness_tractability_gradient`, `css_titan_margin`, `bridge_margin_ratio`, `adjacent_pillars_count`, `margin_role`).
-- **Companion Relational Tables:** `edges` (5,808 biconnected undirected knowledge-graph couplings), `substrate_summary` (8 physical/formal substrates), `ai_audit_nov2026` (6 landmark Fall/Nov 2026 AI verification dossiers), `registries_nov2026` (13 global open-problem trackers), `benchmarks` (20 resolved historical problems 1995–2026 paired with still-open twins), `contrasts` (15 deep pairwise cross-domain contrasts), `pillar_summary` (8 rows), and `superdomain_summary` (28 rows).
+- **Companion Relational Tables:** `edges` (5,808 biconnected undirected knowledge-graph couplings), `substrate_summary` (8 physical/formal substrates), `ai_audit_nov2026` (6 landmark Fall/Nov 2026 AI verification dossiers), `registries_nov2026` (13 global open-problem trackers), `author_frontier_contributions` (12 companion archive entries with explicit COI & parent-OPEN flags), `benchmarks` (20 resolved historical problems 1995–2026 paired with still-open twins), `contrasts` (15 deep pairwise cross-domain contrasts), `pillar_summary` (8 rows), `superdomain_summary` (28 rows), and `metadata` (run/version stats).
 - **Does the dataset contain confidential, personally identifiable, or offensive content?** **No.** All records concern public scientific, mathematical, engineering, and philosophical research questions; person names refer exclusively to public historical and academic originators/researchers.
 - **Are there missing values or known gaps?** Zero nulls in required schema fields (enforced by `schema/problem.schema.json`). Completeness is bounded: no finite list captures every open question in existence; `v2.3.0` closed 9 forensically identified blindspots via `m11_substrates_margins_adjacents.py` (`+52` problems) as an iteratively extensible 1,900-problem baseline.
 
@@ -39,6 +39,6 @@
 
 ## 6. Distribution & Maintenance
 
-- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.5.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 11-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
+- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.6.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 10-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), DigiCert RFC 3161 Trusted Timestamp (`CHECKSUMS.sha256.tsr`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
 - **Licensing:** Dual-licensed — Data/Prose/Charts/White Paper under **CC BY 4.0** (`LICENSE`); Code/Schemas/RAG/MCP/Lean under **Apache-2.0** (`LICENSE-CODE`).
 - **Maintenance:** Maintained by Alexander Stephen Donahue (`0_0@0thernes.art`) via semantic versioning (`CHANGELOG.md`), structured 10-class GitHub Issue templates, and community academic review (`docs/ACADEMIC_REVIEW.md`).

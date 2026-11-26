@@ -6,9 +6,9 @@ public import Challenge
 public import MegaAtlasProofs
 
 /-!
-# Verified Solution Module (`M1`–`M7` + Master Conjunction)
+# Verified Solution Module (`M1`–`M8` + Master Conjunction)
 
-Zero-`sorry`, zero-`native_decide`, zero-Mathlib proofs of all 7 headline
+Zero-`sorry`, zero-`native_decide`, zero-Mathlib proofs of all 8 headline
 specification theorems and the master conjunction `prove_all_mega_atlas_invariants`.
 -/
 

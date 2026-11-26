@@ -198,8 +198,16 @@ def build_croissant(df_cols: list[str], total_problems: int, total_edges: int) -
     }
 
 
+def _fidelity_row_count() -> int:
+    p = ROOT / "docs" / "statement-fidelity.md"
+    if not p.exists():
+        return 19
+    return sum(1 for ln in p.read_text(encoding="utf-8").splitlines() if ln.startswith("| ") and ln.split("|")[1].strip().isdigit())
+
+
 def build_ro_crate(total_problems: int, total_edges: int) -> dict:
     lean_n = _lean_theorem_count()
+    fid_rows = _fidelity_row_count()
     parts = [
         ("outputs/MegaAtlas_Unsolved_Problems_V2.csv", "text/csv", "Master tabular CSV dataset"),
         ("outputs/MegaAtlas_Unsolved_Problems_V2.tsv", "text/tab-separated-values", "Master tabular TSV dataset"),
@@ -207,16 +215,17 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("outputs/MegaAtlas_Unsolved_Problems_V2.json.gz", "application/gzip", "Deterministic gzipped complete JSON dataset & knowledge graph"),
         ("outputs/MegaAtlas_Unsolved_Problems_V2.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "15-sheet live-formula Excel workbook"),
         ("outputs/MegaAtlas_Interactive_Dashboard_V2.html", "text/html", "WCAG 2.2 AA interactive web atlas (<4 MB)"),
-        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
+        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "10-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
         ("dist/arxiv_submission.tar.gz", "application/gzip", "Deterministic clean-room arXiv source tarball"),
         ("blueprint/index.html", "text/html", "Interactive Lean 4.35.0 Proof Blueprint SVG DAG"),
         ("docs/WHITE_PAPER.md", "text/markdown", "Build White Paper & Archival Dossier (0TH-BUILD-007)"),
         ("docs/DATASHEET.md", "text/markdown", "Gebru et al. Datasheet for Datasets"),
-        ("docs/statement-fidelity.md", "text/markdown", "18-row Lean-vs-Python statement fidelity audit"),
+        ("docs/statement-fidelity.md", "text/markdown", f"{fid_rows}-row Lean-vs-Python statement fidelity audit"),
         ("CLAIMS.md", "text/markdown", "Falsifiable Claims Ledger (C1-C10)"),
         ("RANKING.md", "text/markdown", "Master Ranking by 0thernes CSS"),
         ("VERIFICATION.md", "text/markdown", "Five-tier epistemic verification boundaries"),
         ("CHECKSUMS.sha256", "text/plain", "Cryptographic SHA-256 integrity manifest"),
+        ("CHECKSUMS.sha256.tsr", "application/timestamp-reply", "DigiCert RFC 3161 Trusted Timestamp token for CHECKSUMS.sha256"),
         ("croissant.json", "application/ld+json", "MLCommons Croissant 1.0 metadata"),
         ("lean/MegaAtlasProofs.lean", "text/plain", f"Zero-Mathlib Lean 4.35.0 formal invariant suite ({lean_n} audited theorems, 6 kernels)"),
         ("results/lean_axioms.txt", "text/plain", f"Verbatim Lean 4.35.0 #print axioms transcript ({lean_n} theorems)"),
@@ -242,7 +251,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
                 f"8 Substrates, 7 Abstraction Layers, {total_edges:,} biconnected graph edges, {lean_n} Pure Lean 4.35.0 formal invariants "
-                "across 6 kernels, 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop)."
+                "across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop)."
             ),
             "url": PAGES_URL,
             "identifier": REPO_URL,

@@ -13,7 +13,7 @@
 
 In accordance with COPE, arXiv, Zenodo, and the *Defensible Independent AI Research Playbook v1.3*, AI systems are **not** listed as authors and bear zero legal or scholarly responsibility. Disclosed LLM coding and research assistants (`Gemini / Antigravity`) were used under direct human supervision for:
 - Python data-pipeline engineering, chart layout, and test/oracle generation
-- Lean 4.35.0 tactic proof drafting and NonVacuity witness construction (independently verified across 6 proof kernels)
+- Lean 4.35.0 tactic proof drafting, NonVacuity witness construction, and AdversarialTests refutations (independently verified across 6 proof kernels)
 - AMS-LaTeX typesetting and Build Standard v1.2.0 documentation auditing
 
 Full transparency details are documented in [`docs/AI_DISCLOSURE.md`](docs/AI_DISCLOSURE.md) and [`lean/formalization.yaml`](lean/formalization.yaml).

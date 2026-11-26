@@ -14,10 +14,10 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Unsolved Problems Mega-Atlas (V2.5.0)",
-      "version": "2.5.0",
+      "name": "Unsolved Problems Mega-Atlas (V2.6.0)",
+      "version": "2.6.0",
       "datePublished": "2026-11-25",
-      "description": "Unified cross-disciplinary open-problem atlas (1,900 problems, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers, 5,808 biconnected graph edges, 103 Pure Lean 4.35.0 formal invariants across 6 kernels, 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop).",
+      "description": "Unified cross-disciplinary open-problem atlas (1,900 problems, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers, 5,808 biconnected graph edges, 103 Pure Lean 4.35.0 formal invariants across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop).",
       "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
       "identifier": "https://github.com/0thernes/unsolved-problems-mega-atlas",
       "license": {
@@ -74,6 +74,9 @@
         },
         {
           "@id": "CHECKSUMS.sha256"
+        },
+        {
+          "@id": "CHECKSUMS.sha256.tsr"
         },
         {
           "@id": "croissant.json"
@@ -148,8 +151,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.json.gz",
       "description": "Deterministic gzipped complete JSON dataset & knowledge graph",
       "encodingFormat": "application/gzip",
-      "sha256": "6b2c38fbd42ba2b5e2c535f81161b65b5bab2420a7000c27b0de15b02b68e706",
-      "contentSize": 1345360
+      "sha256": "3bb256831c07dbc9e9f0fb5d1839533857d3f6e7bc2e795cf898c3bea8829325",
+      "contentSize": 1346076
     },
     {
       "@id": "outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
@@ -157,8 +160,8 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.xlsx",
       "description": "15-sheet live-formula Excel workbook",
       "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "sha256": "aa24aa73e0bbfe70d0b8e65b93a23d9b275199f4930ca282a89f94a56bbd5af2",
-      "contentSize": 2014074
+      "sha256": "f1b2ef29236feae46fc5c9962994a8f123bb39b145fe44efd65690a55dc880d7",
+      "contentSize": 2014903
     },
     {
       "@id": "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
@@ -166,17 +169,17 @@
       "name": "MegaAtlas_Interactive_Dashboard_V2.html",
       "description": "WCAG 2.2 AA interactive web atlas (<4 MB)",
       "encodingFormat": "text/html",
-      "sha256": "6024e76261cac7f5d334209ffffe75b078301807e1d77c41d091fd60be2c4e46",
-      "contentSize": 3983675
+      "sha256": "b778179def2804948f28a9eb957fdfdbcc0f094ba030c61a071d9f11d5c24bc3",
+      "contentSize": 3985858
     },
     {
       "@id": "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
       "@type": "File",
       "name": "Donahue_2026_unsolved_problems_mega_atlas.pdf",
-      "description": "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)",
+      "description": "10-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)",
       "encodingFormat": "application/pdf",
-      "sha256": "eb8f4306eaf5ce555ec97e5dd108054641fdcb95de7f88eca110f1f4579d82d1",
-      "contentSize": 712362
+      "sha256": "151be06678ceee37dceb9c5baab3a9b53abe60d82d5ca06c894a3be6039fe48a",
+      "contentSize": 714094
     },
     {
       "@id": "dist/arxiv_submission.tar.gz",
@@ -184,8 +187,8 @@
       "name": "arxiv_submission.tar.gz",
       "description": "Deterministic clean-room arXiv source tarball",
       "encodingFormat": "application/gzip",
-      "sha256": "b8bef74398ee2598dfaf1d8923ba8c513d4e1580e34f66dcbeede5b4b3c286f8",
-      "contentSize": 523816
+      "sha256": "ca068263528e857de9411ac1a5ab1ff89ab07bdaf69782bbaba56a17adc8767d",
+      "contentSize": 524239
     },
     {
       "@id": "blueprint/index.html",
@@ -193,8 +196,8 @@
       "name": "index.html",
       "description": "Interactive Lean 4.35.0 Proof Blueprint SVG DAG",
       "encodingFormat": "text/html",
-      "sha256": "67944035b5d63d7d1bbd6f21701ca2c8b8c69b280e336aadfa750ac0a57db12c",
-      "contentSize": 17761
+      "sha256": "21c32a85453ede1bc44697af789c13c9c13be994a0b634065ff67a8598f328f8",
+      "contentSize": 17802
     },
     {
       "@id": "docs/WHITE_PAPER.md",
@@ -202,8 +205,8 @@
       "name": "WHITE_PAPER.md",
       "description": "Build White Paper & Archival Dossier (0TH-BUILD-007)",
       "encodingFormat": "text/markdown",
-      "sha256": "58bbe9bd9a483eb1bb0ce946951fdaee43a9101d28d1600a8b0096bcba8f82db",
-      "contentSize": 16303
+      "sha256": "4841f8ed5d55c25a6b110543e6503a2982899beeb09cba7cfebd2e2df2deb11d",
+      "contentSize": 16624
     },
     {
       "@id": "docs/DATASHEET.md",
@@ -211,17 +214,17 @@
       "name": "DATASHEET.md",
       "description": "Gebru et al. Datasheet for Datasets",
       "encodingFormat": "text/markdown",
-      "sha256": "acc34fb3fe5f6def48d1db4d19a11e4fccae7c906fc9816a252e40e3b710b7ea",
-      "contentSize": 7205
+      "sha256": "69cb844d947c02f15032044044efa5d59c5c818493c2791405c4ebf461056baf",
+      "contentSize": 7401
     },
     {
       "@id": "docs/statement-fidelity.md",
       "@type": "File",
       "name": "statement-fidelity.md",
-      "description": "18-row Lean-vs-Python statement fidelity audit",
+      "description": "19-row Lean-vs-Python statement fidelity audit",
       "encodingFormat": "text/markdown",
-      "sha256": "0c73e35bd429eb98ac510020016eb71704960de9ce43c82d62419aab3a8d1cf8",
-      "contentSize": 6371
+      "sha256": "25900c5b56fb076d4e8e2660b34da525b6ceb02ba626c88527687ce60a7db344",
+      "contentSize": 6763
     },
     {
       "@id": "CLAIMS.md",
@@ -229,8 +232,8 @@
       "name": "CLAIMS.md",
       "description": "Falsifiable Claims Ledger (C1-C10)",
       "encodingFormat": "text/markdown",
-      "sha256": "7f04e01d60b7afd829520c6c6efa09652495a778bc190316794da6a1b3eb1d6d",
-      "contentSize": 6045
+      "sha256": "1ca1c8a5a739c1c01407509f4cd17b395421a0fa0f62d7b1c928ddcd6135006c",
+      "contentSize": 6391
     },
     {
       "@id": "RANKING.md",
@@ -238,8 +241,8 @@
       "name": "RANKING.md",
       "description": "Master Ranking by 0thernes CSS",
       "encodingFormat": "text/markdown",
-      "sha256": "ea544f488fb9692e2f35a226f183305defdb2fd95b1f90155d484f4f32a77179",
-      "contentSize": 75329
+      "sha256": "3866e15c21c47e54a5db4410c559b3c3b1bd9ffa80d829afca777b8a75e2ee7f",
+      "contentSize": 76797
     },
     {
       "@id": "VERIFICATION.md",
@@ -247,8 +250,8 @@
       "name": "VERIFICATION.md",
       "description": "Five-tier epistemic verification boundaries",
       "encodingFormat": "text/markdown",
-      "sha256": "8e36e21e86fdb7eab63da77b04c13a7985e252e26f73faeb772a34f74138e4dd",
-      "contentSize": 3255
+      "sha256": "9a6ad09e55f959159abea0880312854ad542686491c4f8c51b6faadf272822d0",
+      "contentSize": 3387
     },
     {
       "@id": "CHECKSUMS.sha256",
@@ -256,6 +259,13 @@
       "name": "CHECKSUMS.sha256",
       "description": "Cryptographic SHA-256 integrity manifest",
       "encodingFormat": "text/plain"
+    },
+    {
+      "@id": "CHECKSUMS.sha256.tsr",
+      "@type": "File",
+      "name": "CHECKSUMS.sha256.tsr",
+      "description": "DigiCert RFC 3161 Trusted Timestamp token for CHECKSUMS.sha256",
+      "encodingFormat": "application/timestamp-reply"
     },
     {
       "@id": "croissant.json",
@@ -270,7 +280,7 @@
       "name": "MegaAtlasProofs.lean",
       "description": "Zero-Mathlib Lean 4.35.0 formal invariant suite (103 audited theorems, 6 kernels)",
       "encodingFormat": "text/plain",
-      "sha256": "d17584e3ab4c69bad77e03f3ea4c2680025b7d55d024a39fb10279dfac207423",
+      "sha256": "84fc4be096b4b500176f186fbaa6b8c12909835378e95c1528bf47789ac12e5b",
       "contentSize": 623
     },
     {
@@ -315,8 +325,8 @@
       "name": "server.py",
       "description": "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (10 tools)",
       "encodingFormat": "text/x-python",
-      "sha256": "169641db2c0843b964fd3dc12e9db09ad99ef3b3b19871c547ff68155b288bff",
-      "contentSize": 19213
+      "sha256": "ff4e97bf904e00c349e68fd1629474a7ca7259c2fe3aef4c8891e36c33fe8801",
+      "contentSize": 19786
     },
     {
       "@id": "rag/query.py",
@@ -324,8 +334,8 @@
       "name": "query.py",
       "description": "Offline Hybrid BM25 + graph-authority RAG CLI (auto-builds SQLite FTS5)",
       "encodingFormat": "text/x-python",
-      "sha256": "7308ce1ea9416c8d0a03f1b6391054258371fbf9085664c35c52c5b293e996ef",
-      "contentSize": 20283
+      "sha256": "06d8d3ea171dc4269cc49d985e6f5b5f1a984b04033a48c7dc147bf4d2bdac03",
+      "contentSize": 21382
     }
   ]
 }

@@ -4,7 +4,7 @@ The **Unsolved Problems Mega-Atlas** is published openly as a **living, falsifia
 
 ## How to Submit a Domain Audit
 
-1. Open an issue using the **Academic / Specialist Review** template (`.github/ISSUE_TEMPLATE/academic-review.yml`) or open a Pull Request editing `src/v2_data/m*.py`.
+1. Open a GitHub Issue using the **Academic / Specialist Review** template (`.github/ISSUE_TEMPLATE/academic-review.yml`) or **Status Update / Falsification** template (`.github/ISSUE_TEMPLATE/status-update-or-falsification.yml`), attaching your suggested `src/v2_data/m*.py` diff and primary citations (per trunk workflow R2 in `CONTRIBUTING.md`, reviews are conducted via GitHub Issues rather than PRs).
 2. Reference specific Problem IDs (e.g., `NT-001`, `ANL-001`, `GR-001`, `BIO-001`) and evaluate any of the following dimensions:
    - **Statement Fidelity:** Does `core_question` and `formal_expression` accurately represent the open problem without conflating distinct conjectures?
    - **Historical Provenance:** Are `year_formulated`, `originator`, and `registry_source` historically accurate?
@@ -14,6 +14,6 @@ The **Unsolved Problems Mega-Atlas** is published openly as a **living, falsifia
 
 ## Verification Status Promotion Policy
 
-- Records remain flagged `primary-registry-indexed` or `ai-assisted-editorial-synthesis` until an external reviewer provides verifiable primary citations in a merged PR.
+- Records remain flagged `primary-registry-indexed` or `ai-assisted-editorial-synthesis` until an external reviewer provides verifiable primary citations accepted in a logged update commit referencing the review issue.
 - No Fall/Nov 2026 AI proof claim (`ai-claim-under-audit-nov2026`) will be promoted to "Resolved" without **both** independent formal-statement fidelity confirmation and recognized community/institution consensus (e.g., Clay Mathematics Institute, peer-reviewed journal publication, or authoritative registry closure on `ProofAtlas.ai` / `erdosproblems.com`).
 - Reviewers who contribute audited corrections are permanently acknowledged (with optional ORCID) in [`AUTHORS.md`](../AUTHORS.md) and release notes.

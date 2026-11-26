@@ -9,7 +9,7 @@ public import Solution
 # Palomar Comparator Verified Solution (`unsolved-problems-mega-atlas`)
 
 Zero-`sorry`, zero-`native_decide`, zero-Mathlib implementation of every theorem declared
-in `palomar/PalomarChallenge.lean`, verified by `lake comparator --config comparator.json --paranoid`
+in `palomar/PalomarChallenge.lean`, verified by `scripts/verify_lean_six_kernels.sh`
 across all six independent Lean 4.35.0 proof kernels.
 -/
 

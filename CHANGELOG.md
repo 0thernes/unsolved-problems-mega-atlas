@@ -2,6 +2,24 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.6.0] — 2026-11-26
+
+### Added, Fixed & Hardened — Round 3 Deep-Dive 3-Cycle Audit: 12 Companion Archive Entries, Live Negative Lean Kernel Rejection, DigiCert RFC 3161 TSA, Hardened MCP/RAG & 10 New Regression Tests
+- **Live Companion Ecosystem Sync (`10 → 12` Verified Entries; `0 / 1,900` Overarching Parents Retired):**
+  - Audited all 72 public `0thernes` repositories and `0thernes-research-archive` (`SOLVED_AND_ATLAS_BRIDGE.json`). Updated `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` (`src/v2_loader.py`), `paper/main.tex` §6 / Table 4, `RANKING.md`, `CLAIMS.md`, `README.md`, `docs/WHITE_PAPER.md`, `docs/literature-search-log.md`, and MCP tool #9 to **12 live-verified companion entries** — bumping `0TH-2026-012` (`v3.0.0`, 23 thms), `0TH-2026-011` (`v2.4.0`), `0TH-2026-006` (`v2.1.0`), `0TH-2026-004` (`v1.9.0`), `0TH-BUILD-003` (`v1.4.1`), and adding `0TH-2026-013` (`p-vs-np-frontier-lab v1.1.0`) and `0TH-BUILD-004` (`unsolved-mathematics v0.5.0`). Confirmed **`0 / 1,900`** overarching Mega-Atlas parent problems retired.
+- **Live Negative Lean Kernel Rejection, `leanchecker --fresh` & Hardened H46 Lexer (Playbook v1.3 Item 12):**
+  - Added `lake env leanchecker --fresh` and an automated **live negative Lean 4.35.0 kernel rejection test** (compiling a deliberately false theorem and asserting non-zero exit) in `scripts/verify_lean_six_kernels.sh` and `tests/test_properties_and_differential.py`.
+  - Hardened the Lean `axiom` scanner in `scripts/audit_atlas.py` and `tests/test_mega_atlas.py` to catch modifier-prefixed declarations (`private|protected|noncomputable|scoped|local|unsafe axiom`).
+  - Fixed `lean/formalization.yaml` (`m3_taxonomy_invariants` axioms `["propext"]` matching exact `#print axioms` output) and updated stale `M1–M7` / bare `lake comparator` docstrings across `lean/Challenge.lean`, `lean/Solution.lean`, `lean/PalomarSolution.lean`, `palomar/PalomarChallenge.lean`, and all docs.
+- **DigiCert RFC 3161 Trusted Timestamping (Playbook v1.3 Item 26):**
+  - Minted cryptographic RFC 3161 timestamp reply [`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr) via DigiCert TSA binding the exact SHA-256 imprint of `CHECKSUMS.sha256`, registered in `ro-crate-metadata.json`, `llms.txt`, `EVIDENCE.md`, `.github/workflows/ci.yml` (SLSA attested), `.github/workflows/release.yml`, and verified automatically in `pytest`.
+- **Runtime Bugs, Security Clamping, WCAG 2.2 AA & Repo-Wide Parity Fixes (`H-501`–`H-522`):**
+  - Fixed `mcp_server/server.py` to strictly clamp `top ∈ [1, 50]` and `hops ∈ [0, 1]` (matching `docs/threat-model.md`), validate missing required arguments (`problem_id`, `id_a`, `id_b`) cleanly without raw `KeyError`, and fix stale tool #9 description.
+  - Fixed `rag/query.py` (`ensure_sqlite_db`) to detect version/schema staleness in cached SQLite databases and auto-rebuild cleanly after upgrades.
+  - Replaced hardcoded `V2.4` / `V2.0` strings in `src/v2_loader.py` (`EXTERNAL_REGISTRIES_NOV2026`), `src/v2_charts.py` (charts `01`, `07`, `11` & paper PDF figures), `src/v2_export_all.py` (Mermaid diagram, registry counts), and `scripts/check_citations.py` (`User-Agent`) with dynamic `ATLAS_VERSION`.
+  - Fixed `SECURITY.md` supported-version contradiction, `EVIDENCE.md` / `AGENTS.md` / `PHILOSOPHY.md` / `docs/WHITE_PAPER.md` / `docs/METHODOLOGY.md` / `docs/faq.md` / `llms.txt` / `scripts/generate_llms_full.py` stale `92`-theorem / `7`-preprint / `18-row` counts, `docs/statement-fidelity.md` drifted Python line anchors (now symbol-anchored), `UPGRADING.md` missing `v2.5.0`/`v2.6.0` sections, `justfile` causal `reproduce` order, `THIRD_PARTY_NOTICES.md` missing `SciPy`/`PyMuPDF`, `docs/DATASHEET.md` missing `author_frontier_contributions` table, WCAG 2.2 AA `role="tabpanel"`/`role="dialog"` coverage in `src/v2_export_all.py`, UTF-8 BOM + SPDX header on `scripts/Audit-Repo.ps1`, and scrubbed all local workstation `Z:\` path leaks across tracked docs.
+  - Added **10 new permanent B06/B07 regression tests** (`53 → 63` `pytest` checks) guarding every fixed defect.
+
 ## [2.5.0] — 2026-11-25
 
 ### Added, Fixed & Hardened — Hostile-Referee 3-Cycle Audit: 103 Lean 4.35.0 Theorems (AdversarialTests), Crossref Retraction Verifier, Exact Ground-Truth Sync & 100% SPDX
@@ -81,7 +99,7 @@ All notable changes to the **Unsolved Problems Mega-Atlas** are documented in th
 - **Master Archive Registration:** Registered as `0TH-BUILD-007` in `0thernes/0thernes-research-archive`.
 
 ### Changed
-- Made `src/v2_charts.py` and `src/v2_export_all.py` fully self-contained inside `Z:\unsolved-problems-mega-atlas`, outputting directly to `outputs/`.
+- Made `src/v2_charts.py` and `src/v2_export_all.py` fully self-contained inside the repository root, outputting directly to `outputs/`.
 - Updated `EXTERNAL_REGISTRIES_NOV2026` self-benchmark row to exact `1,855 rigorously deduplicated problems`.
 
 ## [2.0.0] — 2026-11-20

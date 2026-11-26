@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.5.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
+"""V2.6.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
 
 import argparse
 import datetime
@@ -35,7 +35,7 @@ os.makedirs(BUILD_DIR, exist_ok=True)
 def _lean_theorem_count() -> int:
     p = os.path.join(BASE_DIR, "lean", "MegaAtlasProofs", "VerifyAxioms.lean")
     if not os.path.exists(p):
-        return 72
+        return 103
     with open(p, "r", encoding="utf-8") as f:
         return sum(1 for line in f if line.strip().startswith("#print axioms "))
 
@@ -272,7 +272,7 @@ def export_master_ranking_md(data):
         "    + 0.10 * (100 - tractability_2050 * 10)",
         "```",
         "",
-        f"- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, {lean_n} audited theorems, zero `sorry` in `lean/`, 6 independent kernels via `lake comparator --paranoid`, axioms strictly within `[propext, Quot.sound]`).",
+        f"- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, {lean_n} audited theorems, zero `sorry` in `lean/`, 6 independent kernels via `scripts/verify_lean_six_kernels.sh`, axioms strictly within `[propext, Quot.sound]`).",
         "- **Epistemic Honesty Clause:** Input scores (`difficulty`, `impact`, `tractability_2050`, `interdisciplinarity`) are **curated AI-assisted editorial estimates**, not peer-reviewed consensus measurements. Treat this ranking as a **falsifiable argument**: disagree with a score? Edit the source entry in `src/v2_data/`, rebuild, and argue from the diff. See [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md), [`CLAIMS.md`](CLAIMS.md), and [`VERIFICATION.md`](VERIFICATION.md).",
         "",
         "## Top 250 Problems Overall (Ranked by 0thernes CSS)",
@@ -342,7 +342,7 @@ def export_master_ranking_md(data):
     print(f"  Saved Master Ranking: {p_rank} ({len(lines)} lines)")
 
 
-# ==================== 2. 13-SHEET XLSX & LEGACY XLS ====================
+# ==================== 2. 15-SHEET XLSX & LEGACY XLS ====================
 def style_ws(ws, end_row: int, end_col: int, header_hex="0F172A", freeze="B2", wrap_idxs=None):
     hdr_font = Font(name="Calibri", size=10, bold=True, color="FFFFFF")
     hdr_fill = PatternFill("solid", fgColor=header_hex)
@@ -506,7 +506,7 @@ def export_excel_files(data):
     ws_d.column_dimensions["F"].width = 14
     ws_d.column_dimensions["G"].width = 14
 
-    # Sheet 2: Master_Catalog (ALL 1,600+ rows!)
+    # Sheet 2: Master_Catalog (ALL 1,900 rows!)
     ws_m = write_sheet(wb, "Master_Catalog", df, header_hex="0F172A",
                        wrap_names=["name", "core_question", "formal_expression", "ai_verification_nov2026", "competing_approaches", "closest_progress_2026", "affected_industries", "contrast_axis"],
                        freeze="C2")
@@ -515,7 +515,7 @@ def export_excel_files(data):
                            (L_CSS, "EFF6FF", "FDE047", "DC2626")]:
         ws_m.conditional_formatting.add(f"{cl}2:{cl}{n_rows}", ColorScaleRule(start_type="min", start_color=lc, mid_type="percentile", mid_value=50, mid_color=mc, end_type="max", end_color=hc))
 
-    # Sheets 3–13
+    # Sheets 3–15
     write_sheet(wb, "Nov2026_AI_Claims_Audit", data["df_ai_audit"], header_hex="B91C1C",
                 wrap_names=["Problem", "Claimant_System", "Artifact_Type", "Machine_Check_Status", "Human_Fidelity_Audit", "Official_Status_Nov2026"])
     write_sheet(wb, "Global_Registries_2026", data["df_registries"], header_hex="1D4ED8",
@@ -635,7 +635,7 @@ def export_md_and_txt(data):
 
     md.append("## 2. Conceptual Models & Mermaid Taxonomies\n")
     md.append("```mermaid\nflowchart TD")
-    md.append(f'    ROOT["V2.0 MEGA-ATLAS OF ALL UNSOLVED PROBLEMS<br/>{s["total_problems"]:,} Problems | 8 Macro-Pillars | 28 Superdomains | {s["total_graph_edges"]:,} Edges"]')
+    md.append(f'    ROOT["V{s["atlas_version"]} MEGA-ATLAS OF ALL UNSOLVED PROBLEMS<br/>{s["total_problems"]:,} Problems | 8 Macro-Pillars | 28 Superdomains | {s["total_graph_edges"]:,} Edges"]')
     for pi, pil in enumerate(MACRO_PILLARS, 1):
         sub_p = data["df_superdomains"][data["df_superdomains"]["Macro_Pillar"] == pil]
         md.append(f'    P{pi}["{pil} (n={int(sub_p["Problem_Count"].sum()):,})"]')
@@ -1008,7 +1008,7 @@ def export_interactive_html(data):
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Audit ID</th><th>Targeted Problem(s)</th><th>Date</th><th>Claimant / System</th><th>Artifact Type</th><th>Machine Check Status</th><th>Human Fidelity &amp; Peer Review</th><th>Official Nov 2026 Verdict</th></tr></thead><tbody id="auditTbody"></tbody></table>
     </div>
-    <h2 style="margin-bottom:10px;">B. Global Open-Problem Registries &amp; Scale Comparison (13 Major Trackers)</h2>
+    <h2 style="margin-bottom:10px;">B. Global Open-Problem Registries &amp; Scale Comparison ({len(data["df_registries"])} Major Trackers)</h2>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Registry / Tracker</th><th>Scope</th><th>Total Tracked</th><th>Open Count (Nov 2026)</th><th>Verification Standard</th><th>November 2026 Context</th></tr></thead><tbody id="regsTbody"></tbody></table>
     </div>
@@ -1020,7 +1020,7 @@ def export_interactive_html(data):
   </section>
 
   <!-- TAB 3: LIVE COMPARATOR -->
-  <section id="tab-comparator" class="panel">
+  <section id="tab-comparator" class="panel" role="tabpanel">
     <h2 style="margin-bottom:6px;">Interactive Any-2-Problems Side-by-Side Comparison &amp; Contrast Engine</h2>
     <p style="color:var(--muted);font-size:0.86rem;margin-bottom:10px;">Compare ANY two of all {s['total_problems']:,} problems (filter each dropdown live or load one of the 15 iconic presets).</p>
     <div class="preset-bar" id="presetBar"></div>
@@ -1041,19 +1041,19 @@ def export_interactive_html(data):
   </section>
 
   <!-- TAB 4: CHARTS GALLERY -->
-  <section id="tab-charts" class="panel">
+  <section id="tab-charts" class="panel" role="tabpanel">
     <h2 style="margin-bottom:8px;">Visual Analytics Gallery — All 15 Publication-Grade Figures (Click to Zoom)</h2>
     <div class="chart-grid">{gallery_html}</div>
   </section>
 
   <!-- TAB 5: MATRICES -->
-  <section id="tab-matrices" class="panel">
+  <section id="tab-matrices" class="panel" role="tabpanel">
     <h2 style="margin-bottom:12px;">Complete Multi-Dimensional Comparison &amp; Industry Exposure Matrices</h2>
     {matrices_html}
   </section>
 
   <!-- TAB 6: CONTRASTS & BENCHMARKS -->
-  <section id="tab-contrasts" class="panel">
+  <section id="tab-contrasts" class="panel" role="tabpanel">
     <h2 style="margin-bottom:12px;">15 Iconic Cross-Domain Pairwise Deep-Dive Contrasts</h2>
     <div class="card-grid" id="contrastsGrid" style="margin-bottom:32px;"></div>
     <h2 style="margin-bottom:12px;">20 Recently Resolved Historical Benchmarks (1995–2026) vs. Open Twins</h2>
@@ -1061,8 +1061,8 @@ def export_interactive_html(data):
   </section>
 </main>
 
-<div class="modal-bg" id="detailModal" onclick="if(event.target===this) closeModal()"><div class="modal-box" id="detailContent"></div></div>
-<div class="modal-bg" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt="Zoom" /></div>
+<div class="modal-bg" id="detailModal" role="dialog" aria-modal="true" aria-label="Problem Details" onclick="if(event.target===this) closeModal()"><div class="modal-box" id="detailContent"></div></div>
+<div class="modal-bg" id="lightbox" role="dialog" aria-modal="true" aria-label="Chart Zoom" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt="Zoom" /></div>
 
 <script>
 const COLS = {cols_json};
@@ -1454,7 +1454,7 @@ def export_pdf_monograph(data):
 </div>
 <h3 class="subsec">1.1 November 25, 2026 AI Proof-Claim Verification Audit Ledger</h3>
 {df_to_html_table(data["df_ai_audit"])}
-<h3 class="subsec">1.2 Global Open-Problem Registries &amp; Trackers Comparison (13 Benchmarks)</h3>
+<h3 class="subsec">1.2 Global Open-Problem Registries &amp; Trackers Comparison ({len(data["df_registries"])} Benchmarks)</h3>
 {df_to_html_table(data["df_registries"])}
 
 <div class="page-break"></div>

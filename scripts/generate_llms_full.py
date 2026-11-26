@@ -17,8 +17,8 @@ SECTIONS = [
     ("VERIFICATION.md", "Epistemic Verification Boundaries"),
     ("LIMITATIONS.md", "Known Limitations & Literal vs. Metaphor Table"),
     ("docs/statement-fidelity.md", "Lean 4.35.0 Statement-Fidelity Audit"),
-    ("lean/Challenge.lean", "Formal Lean 4.35.0 Challenge Specification (M1-M7)"),
-    ("results/lean_axioms.txt", "Verbatim 92-Theorem Lean 4.35.0 Axiom Audit"),
+    ("lean/Challenge.lean", "Formal Lean 4.35.0 Challenge Specification (M1-M8)"),
+    ("results/lean_axioms.txt", "Verbatim 103-Theorem Lean 4.35.0 Axiom Audit"),
     ("REPLICATION.md", "Clean-Clone Replication Protocol & Log"),
 ]
 

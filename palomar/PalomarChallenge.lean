@@ -7,7 +7,7 @@ public import Challenge
 /-!
 # Palomar Comparator Challenge Contract (`unsolved-problems-mega-atlas`)
 
-Statement contract for `lake comparator --config comparator.json --paranoid`.
+Statement contract for `scripts/verify_lean_six_kernels.sh` (`lake comparator --paranoid`).
 This module intentionally omits proofs (`sorry`), lives outside `lean/` (in `palomar/`),
 and is excluded from `defaultTargets` in `lean/lakefile.toml`; every theorem here is
 proved with zero `sorry`, zero `native_decide`, and zero custom axioms in

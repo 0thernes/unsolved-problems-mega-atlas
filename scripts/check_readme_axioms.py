@@ -42,7 +42,7 @@ def main() -> None:
         print("FAIL: README.md axioms block missing ```text fence", file=sys.stderr)
         sys.exit(1)
     readme_axioms = m.group(1).strip()
-    # README shows the 8 Palomar headline theorems verbatim (subset of results/lean_axioms.txt)
+    # README shows the 9 Palomar headline theorems verbatim (subset of results/lean_axioms.txt)
     palomar_lines = [ln for ln in lines if "MegaAtlasProofs.Palomar." in ln]
     expected_block = "\n".join(palomar_lines)
     if readme_axioms != expected_block:

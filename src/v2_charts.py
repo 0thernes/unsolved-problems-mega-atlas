@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.5.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
+"""V2.6.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
 
 import os
 import textwrap
@@ -157,7 +157,8 @@ def chart_01_superdomain_landscape(data):
 
     handles = [mpatches.Patch(color=PILLAR_COLORS[p], label=p) for p in MACRO_PILLARS]
     fig.legend(handles=handles, loc="upper center", ncol=4, bbox_to_anchor=(0.5, 0.99), frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=8.6)
-    fig.suptitle(f"V2.0 Mega-Atlas Taxonomy of Humanity's {n_tot:,} Unsolved, Open & Hard Problems (28 Superdomains × 8 Macro-Pillars)", fontsize=15, fontweight="bold", color="#0F172A", y=1.03)
+    ver = data["summary_stats"]["atlas_version"]
+    fig.suptitle(f"V{ver} Mega-Atlas Taxonomy of Humanity's {n_tot:,} Unsolved, Open & Hard Problems (28 Superdomains × 8 Macro-Pillars)", fontsize=15, fontweight="bold", color="#0F172A", y=1.03)
     plt.tight_layout(rect=[0, 0, 1, 0.935])
     save_fig(fig, "01_superdomain_landscape")
 
@@ -205,10 +206,10 @@ def chart_02_strategic_quadrant(data):
         ("AI-001", "AI Alignment", (-0.85, 0.25)),
         ("BIO-001", "Abiogenesis", (-0.85, -0.58)),
         ("ASTRO-002", "Dark Energy / Λ", (-0.95, -0.55)),
-        ("ENR-001", "Commercial Fusion", (-0.85, -0.42)),
+        ("ENR-001", "Commercial Fusion", (-1.10, 0.72)),
         ("QC-001", "Fault-Tolerant QC", (0.55, -0.32)),
         ("GEO-002", "Climate Sensitivity", (0.52, 0.22)),
-        ("MED-001", "Neurodegeneration", (-1.15, -0.45)),
+        ("MED-001", "Neurodegeneration", (-1.14, -0.22)),
         ("AI-003", "Simulation Hyp.", (0.38, -0.48)),
         ("NT-005", "Collatz (3n+1)", (0.35, 0.38)),
     ]
@@ -216,7 +217,7 @@ def chart_02_strategic_quadrant(data):
         if pid not in id_to_idx:
             continue
         i = id_to_idx[pid]
-        ax.annotate(lbl, xy=(x[i], y[i]), xytext=(max(0.6, min(9.8, x[i] + dx)), max(2.2, min(10.35, y[i] + dy))),
+        ax.annotate(lbl, xy=(x[i], y[i]), xytext=(max(0.6, min(9.8, x[i] + dx)), max(2.2, min(10.48, y[i] + dy))),
                     fontsize=8.0, fontweight="bold", color="#0F172A",
                     bbox=dict(boxstyle="round,pad=0.22", facecolor="white", edgecolor="#475569", alpha=0.92, lw=0.75),
                     arrowprops=dict(arrowstyle="->", color="#334155", lw=0.85, shrinkA=0, shrinkB=4), zorder=8)
@@ -392,7 +393,7 @@ def chart_06_historical_timeline(data):
 
 
 def chart_07_radial_connectome(data):
-    """8-Pillar Radial Connectome Knowledge Graph of ALL 1,600+ Problems & Cross-Pillar Bridges."""
+    """8-Pillar Radial Connectome Knowledge Graph of ALL 1,900 Problems & Cross-Pillar Bridges."""
     G = data["G"]
     df = data["df"].copy()
     df_k = data["df_keystones"]
@@ -493,7 +494,7 @@ def chart_07_radial_connectome(data):
             break
 
     ax.text(0, 0,
-            f"V2.0 UNIFIED CONNECTOME\n{s['total_problems']:,} Open Problems\n{s['total_graph_edges']:,} Coupling Edges\n{s['connected_components']} Connected Component\n{s['cross_pillar_edge_pct']}% Cross-Pillar Bridges",
+            f"V{s['atlas_version']} UNIFIED CONNECTOME\n{s['total_problems']:,} Open Problems\n{s['total_graph_edges']:,} Coupling Edges\n{s['connected_components']} Connected Component\n{s['cross_pillar_edge_pct']}% Cross-Pillar Bridges",
             ha="center", va="center", fontsize=10.5, fontweight="bold", color="#E2E8F0",
             bbox=dict(boxstyle="circle,pad=0.65", facecolor="#0F172A", edgecolor="#38BDF8", lw=1.8, alpha=0.94), zorder=9)
 
@@ -638,9 +639,10 @@ def chart_10_correlations_and_benchmarks(data):
 
 
 def chart_11_nov2026_status_and_registries(data):
-    """Brand-New V2.0 Chart: Nov 20, 2026 Research Status & Global Registry Scale Comparison."""
+    """Nov 25, 2026 Research Status & Global Registry Scale Comparison."""
     df = data["df"]
     n_tot = len(df)
+    ver = data["summary_stats"]["atlas_version"]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18.2, 7.6), gridspec_kw={"width_ratios": [1.1, 1.1]})
 
@@ -660,7 +662,7 @@ def chart_11_nov2026_status_and_registries(data):
 
     # Right: Global Open-Problem Trackers & Nov 2026 Scale Comparison
     regs = [
-        ("This V2.0 Mega-Atlas\n(ALL 28 Superdomains)", n_tot, "#0284C7"),
+        (f"This V{ver} Mega-Atlas\n(ALL 28 Superdomains)", n_tot, "#0284C7"),
         ("Erdős Problems DB\n(Total Tracked; ~630 Open)", 1221, "#1D4ED8"),
         ("Wikipedia Unsolved\nLists (20+ Fields Est.)", 1200, "#0D9488"),
         ("ProofAtlas.ai Full\n(Eligible; 243 Open Top-500)", 1100, "#7C3AED"),
@@ -961,14 +963,16 @@ def generate_social_preview(data):
     ax.text(56, 565, f"0THERNES OPEN-PROBLEM RESEARCH INFRASTRUCTURE  ·  V{ver}  ·  NOV 2026",
             fontsize=11.5, fontweight="bold", color="#38BDF8", family="DejaVu Sans")
     ax.text(56, 495, "Unsolved Problems Mega-Atlas", fontsize=34, fontweight="bold", color="#F8FAFC")
-    ax.text(56, 448, "1,900 Deduplicated Problems · 8 Pillars × 28 Superdomains × 8 Substrates × 7 Layers · 5,808 Biconnected Edges",
+    verify_p = os.path.join(ROOT_DIR, "lean", "MegaAtlasProofs", "VerifyAxioms.lean")
+    lean_n = sum(1 for ln in open(verify_p, encoding="utf-8") if ln.strip().startswith("#print axioms ")) if os.path.exists(verify_p) else 103
+    ax.text(56, 448, f"{s['total_problems']:,} Deduplicated Problems · 8 Pillars × 28 Superdomains × 8 Substrates × 7 Layers · {s['total_graph_edges']:,} Biconnected Edges",
             fontsize=13, color="#CBD5E1")
 
     # 4 KPI Cards
     cards = [
         (f"{s['total_problems']:,}", "OPEN & HARD PROBLEMS", "#38BDF8"),
         (f"{s['total_graph_edges']:,}", "BICONNECTED EDGES (0 APS)", "#34D399"),
-        ("6 / 6 KERNELS", "103 LEAN 4.35.0 THEOREMS", "#A78BFA"),
+        ("6 / 6 KERNELS", f"{lean_n} LEAN 4.35.0 THEOREMS", "#A78BFA"),
         ("100% MRR@5", "HYBRID RAG + 10-TOOL MCP", "#FBBF24"),
     ]
     for i, (val, lbl, col) in enumerate(cards):

@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this dataset, knowledge graph, Lean 4.35.0 formal invariant suite, RAG/MCP server, or white paper, please cite it as below."
-title: "Unsolved Problems Mega-Atlas (V2.5.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
-version: "2.5.0"
-date-released: "2026-11-25"
+title: "Unsolved Problems Mega-Atlas (V2.6.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+version: "2.6.0"
+date-released: "2026-11-26"
 type: dataset
 license:
   - CC-BY-4.0
@@ -33,7 +33,7 @@ abstract: >-
   1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0
   dangling links), paired with 103 zero-Mathlib Pure Lean 4.35.0 formal invariant
   and adversarial-refutation theorems verified across 6 independent proof kernels,
-  an 11-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5),
+  a 10-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5),
   a 10-tool stdio MCP server, and an immutable Karpathy-style AutoResearch harness
   (AQS = 97.99). Zero (0/1,900) overarching open problems are claimed solved; Lean
   verifies internal invariants only.

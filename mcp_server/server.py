@@ -3,11 +3,11 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.5.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.6.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
-(auto-built deterministically on first run if absent on a fresh git clone).
+(auto-built deterministically on first run or version upgrade).
 
 Exposes 10 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
@@ -19,7 +19,7 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. list_author_frontier_contributions — 7 author-curated scoped Lean-verified preprints (explicitly separate from still-OPEN parent problems)
+  9. list_author_frontier_contributions — 12 companion archive entries (0thernes-research-archive; explicitly separate from still-OPEN parent problems)
  10. get_atlas_provenance             — ORCID, 6-kernel Pure Lean 4.35.0 audit status, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
 """
 
@@ -36,7 +36,7 @@ sys.path.insert(0, str(ROOT / "rag"))
 
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.5.0"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.6.0"
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
     "version": ATLAS_VERSION,
@@ -142,7 +142,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_author_frontier_contributions",
-        "description": "List the 7 author-curated Lean-verified scoped sub-conjecture preprints (0thernes-research-archive) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags.",
+        "description": "List the 12 author-curated Lean-verified companion archive entries (0thernes-research-archive) mapped to parent Mega-Atlas IDs, with explicit conflict-of-interest, non-peer-reviewed status, and parent-still-OPEN flags (0/1,900 overarching parents retired).",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -164,22 +164,34 @@ def _query_db(sql: str, params: tuple[Any, ...] = ()) -> List[Dict[str, Any]]:
 
 
 def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(args, dict):
+        raise ValueError("Tool arguments must be a JSON object")
     if name == "search_problems":
+        top = max(1, min(50, int(args.get("top", 8))))
+        hops = max(0, min(1, int(args.get("hops", 1))))
         return search_atlas(
             query=args.get("query"),
             pillar=args.get("pillar"),
             superdomain=args.get("superdomain"),
             flag=args.get("flag"),
-            top=int(args.get("top", 8)),
-            hops=int(args.get("hops", 1)),
+            top=top,
+            hops=hops,
         )
     if name == "get_problem":
-        res = search_atlas(problem_id=str(args["problem_id"]), hops=int(args.get("hops", 1)))
+        pid = args.get("problem_id")
+        if not pid or not isinstance(pid, str):
+            raise ValueError("Missing required string argument: problem_id")
+        hops = max(0, min(1, int(args.get("hops", 1))))
+        res = search_atlas(problem_id=pid, hops=hops)
         if not res["results"]:
-            raise ValueError(f"Problem ID not found: {args['problem_id']}")
+            raise ValueError(f"Problem ID not found: {pid}")
         return res["results"][0]
     if name == "compare_problems":
-        return compare_two_problems(str(args["id_a"]), str(args["id_b"]))
+        id_a = args.get("id_a")
+        id_b = args.get("id_b")
+        if not id_a or not isinstance(id_a, str) or not id_b or not isinstance(id_b, str):
+            raise ValueError("Missing required string arguments: id_a and id_b")
+        return compare_two_problems(id_a, id_b)
     if name == "list_nov2026_ai_claims":
         claims = _query_db(
             "SELECT id, name, macro_pillar, superdomain, status_2026, verification_flag, css_score, titan_index, ai_verification_nov2026 "

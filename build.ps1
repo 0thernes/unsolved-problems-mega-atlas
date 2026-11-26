@@ -48,7 +48,7 @@ if (-not $SkipLean) {
 }
 
 if (-not $SkipPaper) {
-    Write-Host "`n[4/10] Compiling 11-page AMS-LaTeX white paper & clean-room arXiv tarball..." -ForegroundColor Yellow
+    Write-Host "`n[4/10] Compiling 10-page AMS-LaTeX white paper & clean-room arXiv tarball..." -ForegroundColor Yellow
     & $Py scripts\build_paper.py
 }
 
