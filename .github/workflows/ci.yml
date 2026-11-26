@@ -31,20 +31,20 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
-      - name: Regenerate derived SQLite+FTS5 & JSON/JSONL artifacts (--skip-pdf)
-        run: |
-          python src/v2_export_all.py --skip-pdf
-      - name: Run full pytest suite (functional, Hypothesis, differential, metamorphic, MCP, FAIR)
+      - name: Run full pytest suite on clean clone (auto-builds SQLite+FTS5, verifies 59 SHA-256 digests, Hypothesis, differential, metamorphic, MCP, FAIR)
         run: |
           pytest tests/ -v
-      - name: Run runnable quickstart demo, forensic audit, Zenodo dry-run & AutoResearch gates
+      - name: Run full audit, quickstart demo, forensic audit, Zenodo dry-run, AutoResearch gates & README axiom check
         run: |
-          python examples/quickstart_demo.py
           python scripts/audit_atlas.py
+          python examples/quickstart_demo.py
           python scripts/forensic_audit.py
           python scripts/publish_zenodo.py --dry-run
           python autoresearch/evaluate.py --verify-gates
           python scripts/check_readme_axioms.py
+      - name: Verify full 11-format exporter runs cleanly (--skip-pdf)
+        run: |
+          python src/v2_export_all.py --skip-pdf
       - name: Run static lint (ruff), typecheck (mypy) & 6-mutant semantic mutation audit (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -92,6 +92,7 @@ jobs:
           lake check --paranoid
           lake build PalomarChallenge
           lake env leanexport PalomarChallenge -- \
+            Quot Quot.mk Quot.lift Quot.ind propext Quot.sound \
             MegaAtlasProofs.Palomar.m1_scoring_invariants \
             MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants \
             MegaAtlasProofs.Palomar.m3_taxonomy_invariants \
@@ -99,7 +100,11 @@ jobs:
             MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants \
             MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants \
             MegaAtlasProofs.Palomar.m7_nonvacuity_certificate \
-            MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants > /tmp/PalomarChallenge.export
+            MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants \
+            Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble \
+            Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight \
+            String.ofList Char.ofNat List eagerReduce Nat String String.mk Char \
+            optParam autoParam semiOutParam outParam > /tmp/PalomarChallenge.export
           lake comparator --config comparator.json --challenge-from-export=/tmp/PalomarChallenge.export --paranoid
 
   white-paper-and-provenance:

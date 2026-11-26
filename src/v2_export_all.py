@@ -570,6 +570,7 @@ def export_excel_files(data):
                 )
                 data_bytes = xml_txt.encode("utf-8")
             zi = zipfile.ZipInfo(filename=info.filename, date_time=(2026, 11, 25, 0, 0, 0))
+            zi.create_system = 3
             zi.compress_type = zipfile.ZIP_DEFLATED
             zi.external_attr = 0o644 << 16
             zout.writestr(zi, data_bytes)
