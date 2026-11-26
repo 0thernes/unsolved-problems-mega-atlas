@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Canonical command runner for Unsolved Problems Mega-Atlas (V2.4.0)
+# Canonical command runner for Unsolved Problems Mega-Atlas (V2.5.0)
 # Usage: `just` to list recipes, `just reproduce` to rebuild & verify everything.
 
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
@@ -50,10 +50,14 @@ mutate:
 bench:
     {{python}} scripts/benchmark_atlas.py
 
-# Build and audit all 92 Pure Lean 4.35.0 theorems + README verbatim axiom parity
+# Build and audit all 103 Pure Lean 4.35.0 theorems + README verbatim axiom parity
 lean:
     cd lean && lake build && lake env lean MegaAtlasProofs/VerifyAxioms.lean
     {{python}} scripts/check_readme_axioms.py
+
+# Full 6-kernel bubblewrap replay (Linux: lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
+lean-kernels:
+    bash scripts/verify_lean_six_kernels.sh
 
 # Compile AMS-LaTeX white paper, package clean-room arXiv tarball & verify citations
 paper:
@@ -74,7 +78,7 @@ deploy:
 
 # Print rollback instructions for static GitHub Pages / GitHub Releases
 rollback:
-    @echo "Rollback procedure: checkout prior release tag (e.g. git checkout v2.3.0) or revert commit on main; GitHub Pages redeploys automatically via .github/workflows/pages.yml. See docs/operations.md."
+    @echo "Rollback procedure: checkout prior release tag (e.g. git checkout v2.4.0) or revert commit on main; GitHub Pages redeploys automatically via .github/workflows/pages.yml. See docs/operations.md."
 
 # Remove untracked build caches while preserving tracked repository files
 clean:

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 5: Condensed Matter, Solid-State & Quantum Materials (65),
 Fluids, Gases, Plasmas & Non-Equilibrium Matter (60), and
 Chemistry, Catalysis & Molecular Sciences (65).

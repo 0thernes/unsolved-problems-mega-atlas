@@ -1,4 +1,4 @@
-# Cryptographic & Formal Evidence Dossier (`v2.4.0`)
+# Cryptographic & Formal Evidence Dossier (`v2.5.0`)
 
 **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 **Date:** November 25, 2026 · **Archive ID:** `0TH-BUILD-007`
@@ -27,7 +27,7 @@
 | Semantic Mutation Audit (B13) | `python scripts/run_mutation_audit.py` | `6/6` mutants killed (`100.0%` kill rate) |
 | Static Lint & Typecheck | `ruff check` + `mypy` | `0` lint errors, `0` type errors |
 | Immutable AutoResearch Evaluator | `python autoresearch/evaluate.py --verify-gates` | `aqs_score=97.99`, `rag_mrr5=100.00` (`25/25` top-1), `lean_theorems=92`, `hard_gates=PASS` |
-| AMS-LaTeX White Paper & arXiv Tarball | `python scripts/build_paper.py && python scripts/check_citations.py` | 10-page PDF (`0.672 MB`, `0` overfull hboxes, `0` warnings), clean-room `arxiv_submission.tar.gz` (`0.498 MB`), `12/12` live HTTP/DOI 200 |
+| AMS-LaTeX White Paper & arXiv Tarball | `python scripts/build_paper.py && python scripts/check_citations.py` | 11-page PDF (`0.68 MB`, `0` overfull hboxes, `0` warnings), clean-room `arxiv_submission.tar.gz` (`0.50 MB`), `12/12` live HTTP/DOI 200 (`0` Crossref retractions) |
 | Reproducible 10-Run Benchmarks | `python scripts/benchmark_atlas.py` | Recorded in [`docs/benchmarks.md`](docs/benchmarks.md) & [`results/bench-history.csv`](results/bench-history.csv) |
 | Build Standard v1.2.0 Audit | `pwsh scripts/Audit-Repo.ps1` | **100.0%** Structure / **100.0%** Completion / **100.0%** Core (`0` FAILs) |
 

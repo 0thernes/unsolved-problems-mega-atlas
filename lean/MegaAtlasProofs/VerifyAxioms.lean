@@ -2,9 +2,10 @@
 -- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/VerifyAxioms.lean
-  Axiom-allowlist audit across ALL 92 formal theorems in MegaAtlasProofs
+  Axiom-allowlist audit across ALL 103 formal theorems in MegaAtlasProofs
   (72 core module theorems + 12 concrete NonVacuity & boundary witnesses +
-   8 headline PalomarSolution contract theorems).
+   10 constructive AdversarialTests refutations + 9 headline PalomarSolution
+   contract theorems).
   Every theorem must depend strictly on standard constructive kernel axioms
   within [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
   zero Classical.choice, zero custom axioms.
@@ -17,6 +18,7 @@ import MegaAtlasProofs.GraphInvariants
 import MegaAtlasProofs.AutoResearchInvariants
 import MegaAtlasProofs.LayerGradients
 import MegaAtlasProofs.NonVacuity
+import MegaAtlasProofs.AdversarialTests
 import PalomarSolution
 
 -- Scoring invariants (22 theorems)
@@ -117,7 +119,19 @@ import PalomarSolution
 #print axioms MegaAtlasProofs.NonVacuity.nonvac_taxonomy_cross_pillar_witness
 #print axioms MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses
 
--- Palomar Comparator Headline Contract Theorems (8 theorems)
+-- Constructive Adversarial Definition Refutations (10 theorems; Playbook Item 12)
+#print axioms MegaAtlasProofs.AdversarialTests.refute_css_strictly_below_10000
+#print axioms MegaAtlasProofs.AdversarialTests.refute_age_saturates_at_299
+#print axioms MegaAtlasProofs.AdversarialTests.refute_titan_strictly_below_1000
+#print axioms MegaAtlasProofs.AdversarialTests.refute_Q1_leverage_ge_57
+#print axioms MegaAtlasProofs.AdversarialTests.refute_Q2_leverage_ge_56
+#print axioms MegaAtlasProofs.AdversarialTests.refute_superdomain_count_27
+#print axioms MegaAtlasProofs.AdversarialTests.refute_handshaking_factor_3
+#print axioms MegaAtlasProofs.AdversarialTests.refute_autoresearch_keeps_failed_gates
+#print axioms MegaAtlasProofs.AdversarialTests.refute_apex_keystone_at_2_adjacent
+#print axioms MegaAtlasProofs.AdversarialTests.refute_trans_pillar_at_2999_bps
+
+-- Palomar Comparator Headline Contract Theorems (9 theorems)
 #print axioms MegaAtlasProofs.Palomar.m1_scoring_invariants
 #print axioms MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants
 #print axioms MegaAtlasProofs.Palomar.m3_taxonomy_invariants
@@ -125,4 +139,5 @@ import PalomarSolution
 #print axioms MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants
 #print axioms MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants
 #print axioms MegaAtlasProofs.Palomar.m7_nonvacuity_certificate
+#print axioms MegaAtlasProofs.Palomar.m8_adversarial_refutations
 #print axioms MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants

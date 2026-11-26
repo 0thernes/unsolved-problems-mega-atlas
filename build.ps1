@@ -4,7 +4,7 @@
     One-command reproducible build, FAIR metadata sync, 92-theorem Pure Lean 4.35.0 verification,
     AMS-LaTeX white paper + clean-room arXiv tarball build, immutable AutoResearch gate,
     full pytest + Hypothesis + differential + mutation + lint + typecheck suite,
-    forensic audit, Zenodo dry-run, and SHA-256 verification for Mega-Atlas V2.4.0.
+    forensic audit, Zenodo dry-run, and SHA-256 verification for Mega-Atlas V2.5.0.
 #>
 param(
     [switch]$SkipCharts,
@@ -20,7 +20,7 @@ Set-Location -LiteralPath $RepoRoot
 $VenvPy = Join-Path $RepoRoot ".venv\Scripts\python.exe"
 $Py = if (Test-Path -LiteralPath $VenvPy) { $VenvPy } else { "python" }
 
-Write-Host "=== Unsolved Problems Mega-Atlas V2.4.0 Reproducible Build ===" -ForegroundColor Cyan
+Write-Host "=== Unsolved Problems Mega-Atlas V2.5.0 Reproducible Build ===" -ForegroundColor Cyan
 Write-Host "Python: $Py"
 
 if (-not $SkipCharts) {
@@ -34,7 +34,7 @@ if (-not $SkipExport) {
 }
 
 if (-not $SkipLean) {
-    Write-Host "`n[3/10] Building & auditing 92 Pure Lean 4.35.0 formal theorems..." -ForegroundColor Yellow
+    Write-Host "`n[3/10] Building & auditing 103 Pure Lean 4.35.0 formal theorems..." -ForegroundColor Yellow
     $LakeExe = Join-Path $env:USERPROFILE ".elan\bin\lake.exe"
     $Lake = if (Test-Path -LiteralPath $LakeExe) { $LakeExe } else { "lake" }
     Push-Location -LiteralPath (Join-Path $RepoRoot "lean")
@@ -48,7 +48,7 @@ if (-not $SkipLean) {
 }
 
 if (-not $SkipPaper) {
-    Write-Host "`n[4/10] Compiling 10-page AMS-LaTeX white paper & clean-room arXiv tarball..." -ForegroundColor Yellow
+    Write-Host "`n[4/10] Compiling 11-page AMS-LaTeX white paper & clean-room arXiv tarball..." -ForegroundColor Yellow
     & $Py scripts\build_paper.py
 }
 
@@ -79,4 +79,4 @@ Write-Host "`n[9/10] Running ruff lint, mypy typecheck & 6-mutant semantic mutat
 Write-Host "`n[10/10] Running Build Standard v1.2.0 repository audit..." -ForegroundColor Yellow
 & pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\Audit-Repo.ps1
 
-Write-Host "`n=== ALL V2.4.0 BUILD & VERIFICATION GATES PASSED ===" -ForegroundColor Green
+Write-Host "`n=== ALL V2.5.0 BUILD & VERIFICATION GATES PASSED ===" -ForegroundColor Green

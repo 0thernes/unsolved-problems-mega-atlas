@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 6 (V2.0 Mega-Atlas): Biology, Evolution, Origin of Life & Ecology (70),
 Neuroscience, Consciousness & Sentience (65), and Medicine, Pharmacology, Longevity & Bioengineering (65).
 Total: 200 genuine unsolved, open & hard problems (November 20, 2026 Edition).

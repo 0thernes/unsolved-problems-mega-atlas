@@ -99,14 +99,18 @@ theorem nonvac_dedup_strict_shrink :
     (dedupBy (fun x : Nat => x) [] [1, 2, 1, 3, 2]).length < 5 := by
   decide
 
-/-- Concrete AutoResearch keep/discard witnesses (mirrors H-001 keep & H-002/H-004 discard in results.tsv). -/
+/-- Concrete AutoResearch keep/discard witnesses matching the exact `autoresearch/results.tsv`
+trajectory (baseline 8026 -> H-001 discard 8026 -> H-001b keep 8193 -> H-002 keep 9559 ->
+H-003/H-004 keep 9799, plus anti-reward-hacking failed-gate discard). -/
 theorem nonvac_autoresearch_keep_and_discard :
-    shouldKeep true 9169 9649 = true ∧
-    updateBest true 9169 9649 = 9649 ∧
-    shouldKeep true 9649 9520 = false ∧
-    updateBest true 9649 9520 = 9649 ∧
-    shouldKeep false 9649 10000 = false ∧
-    updateBest false 9649 10000 = 9649 := by
+    shouldKeep true 8026 8026 = false ∧
+    updateBest true 8026 8026 = 8026 ∧
+    shouldKeep true 8026 8193 = true ∧
+    updateBest true 8026 8193 = 8193 ∧
+    shouldKeep true 8193 9559 = true ∧
+    shouldKeep true 9559 9799 = true ∧
+    shouldKeep false 9799 10000 = false ∧
+    updateBest false 9799 10000 = 9799 := by
   decide
 
 /-- Concrete witnesses inhabiting all 4 MarginRole classes plus exact 30% (3000 bps) boundary. -/
@@ -139,14 +143,15 @@ theorem nonvac_all_hypotheses :
     (computeEra (-500) = .antiquity ∧ computeEra 2000 = .twentyFirstC) ∧
     (sumNat (sampleVertices.map (fun x => degreeOf x sampleEdges)) = 2 * sampleEdges.length ∧
      crossPillarCount sampleSuperdomain sampleEdges = 2) ∧
-    (shouldKeep true 9169 9649 = true ∧ shouldKeep false 9649 10000 = false) ∧
+    (shouldKeep true 8026 8026 = false ∧ shouldKeep true 8026 8193 = true ∧
+     shouldKeep true 9559 9799 = true ∧ shouldKeep false 9799 10000 = false) ∧
     (classifyMarginRole 3 5 4000 = .apexKeystone ∧
      classifyMarginRole 2 3 3000 = .transPillarMargin ∧
      classifyMarginRole 2 3 2999 = .intraPillarBridge ∧
      classifyMarginRole 0 0 0 = .coreSpecialist) := by
   refine ⟨⟨by decide, boundary_age_299_not_saturated⟩, nonvac_all_four_quadrants,
     ⟨by decide, by decide⟩, ⟨nonvac_graph_triangle_witness.2.2.1, rfl⟩,
-    ⟨by decide, by decide⟩, nonvac_all_four_margin_roles⟩
+    ⟨by decide, by decide, by decide, by decide⟩, nonvac_all_four_margin_roles⟩
 
 end
 

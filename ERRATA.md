@@ -1,11 +1,23 @@
-# Errata & Corrections Log
+# Errata, Corrections & Withdrawal Policy Log
 
-All post-publication factual, typographic, schema, legal-metadata, or proof corrections are logged here chronologically and never silently overwritten.
+All post-publication factual, typographic, schema, legal-metadata, or proof corrections are logged here chronologically and never silently overwritten (Playbook v1.3 Item 39).
+
+## 1. Chronological Errata Ledger
 
 | Date | Version | Severity | Finding Class | Location | Correction & Resolution |
 |---|---|---|---|---|---|
+| 2026-11-25 | `v2.5.0` | High | `error` | `paper/main.tex` (§5), `lean/MegaAtlasProofs/NonVacuity.lean` | Corrected drifted AutoResearch baseline in §5 (`82.22%`, `19/25`, `91.69`, mislabeled discarded `H-002`/`H-004`) and `NonVacuity.lean` (`9169→9649`) to the exact ground truth in `autoresearch/results.tsv` (`89.33%` [`21/25`] → `100.0%` [`25/25`], `AQS` `80.26` → `97.99`, discarded `H-001`, kept `H-001b`/`H-002`/`H-003`/`H-004`). Added automated regression test preventing future drift. |
+| 2026-11-25 | `v2.5.0` | Medium | `conflict` | `paper/main.tex` Table 1 vs. `CLAIMS.md` | Aligned Table 1 (`C1`–`C8` in `v2.4.0`) to exact 1-to-1 ID parity (`C1`–`C10`) with `CLAIMS.md`. |
+| 2026-11-25 | `v2.5.0` | Medium | `error` | `ARCHITECTURE.md`, `docs/WHITE_PAPER.md`, `docs/benchmarks.md`, `scripts/benchmark_atlas.py`, `DEVIATIONS.md`, `repo.yaml` | Updated stale root `ARCHITECTURE.md` (`v2.3.0`/`72` thms/`MIT` → `v2.5.0`/`103` thms/`Apache-2.0`), fixed stale line 19 & Lean line counts in `docs/WHITE_PAPER.md`, replaced inaccurate `< 3.5 MB` dashboard size claim with dynamic measured size (`3.80 MB`, `< 4.0 MB` budget), and fixed mislabeled `B34`/`B33`/`A28`/`A30` labels in `DEVIATIONS.md` & `repo.yaml`. |
+| 2026-11-25 | `v2.5.0` | Medium | `error` | `README.md`, `lean/README.md`, `REPLICATION.md`, `paper/main.tex` | Replaced bare `lake comparator --config comparator.json --paranoid` (which fails inside Linux `bwrap` because `../palomar` is outside `$PWD`) with single-source `bash scripts/verify_lean_six_kernels.sh` (`just lean-kernels`) matching CI verbatim. |
+| 2026-11-25 | `v2.5.0` | Medium | `error` | `src/v2_loader.py` (`OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS`), `ERRATA.md` | Updated companion archive versions/theorem counts/CI runs to live `0thernes-research-archive` commit `5170a63` (expanding from 7 to 10 entries incl. Tier-II 6-kernel builds `ultrametrica v1.4.0` & `planaria v2.3.0`; still `0/1,900` overarching parents retired), and corrected `v2.3.0` errata row (`10→24` dangling links, `94.93%→96.00%`). |
 | 2026-11-25 | `v2.4.0` | High | `problem` | 58 files + GitHub About | Replaced inaccurate legal entity string `"0thernes LLC"` with `"Independent Researcher, Spokane, WA, USA"` matching ORCID `0009-0006-8168-9648` (no LLC entity exists). |
 | 2026-11-25 | `v2.4.0` | Medium | `issue` | `src/v2_data/m01_math_nt_alg.py`, `src/v2_loader.py` | Updated `NT-001` (RH) and `NT-002` (GRH) audit notes to reflect the Nov 21, 2026 Lean FRO / Mathlib Initiative multi-kernel certification of the ~17M-line Alpöge/Claude archive (while keeping both officially unretired pending a complete human-readable paper and CMI review). |
 | 2026-11-25 | `v2.4.0` | Medium | `error` | `LICENSE`, `AUTHORS.md`, `SECURITY.md`, `docs/METHODOLOGY.md`, `scripts/generate_fair_metadata.py` | Fixed stale `v2.1.0`/`v2.2.0`, `1,855`, `5,597`, `58 theorems`, and `7 tools` counts that had drifted behind `v2.3.0`. |
 | 2026-11-25 | `v2.4.0` | Medium | `problem` | `outputs/` | Eliminated 6 committed artifacts exceeding the 5 MB repository hygiene cap by removing base64 PNG bloat from the interactive HTML dashboard (`20.64 MB -> 3.80 MB`), tracking deterministic `.json.gz`/`.jsonl.gz`, and moving heavy derived files to gitignored `build/` + GitHub Releases. |
-| 2026-11-21 | `v2.3.0` | High | `bug` | `src/v2_data/m01..m10` | Resolved 10 dangling `raw_links`, eliminated the `GEOM-038` articulation point (making the graph strictly biconnected), merged 12 cross-field near-duplicates via `EXPLICIT_DUPLICATE_ALIASES`, and fixed `CM-001` & `LOG-001` RAG misses (`94.93% -> 100.0% MRR@5`). |
+| 2026-11-21 | `v2.3.0` | High | `bug` | `src/v2_data/m01..m10` | Resolved 24 dangling `raw_links`, eliminated the `GEOM-038` articulation point (making the graph strictly biconnected), merged 12 cross-field near-duplicates via `EXPLICIT_DUPLICATE_ALIASES`, and fixed `CM-001` & `LOG-001` RAG misses (`96.00% -> 100.0% MRR@5`). |
+
+## 2. Post-Release Correction & Withdrawal Plan (Playbook v1.3 Item 39)
+
+1. **No Silent Rewrites:** Every factual, numerical, schema, citation, or Lean statement defect discovered after a tagged release is logged permanently in Section 1 above and fixed in a new Semantic Versioning release (`vX.Y.Z`) matching `VERSION`, `CITATION.cff`, and the manuscript title page.
+2. **Preprint Supersession & Withdrawal:** If a critical soundness or factual error invalidates a published release or future external deposit (Zenodo / OSF Preprints / arXiv / ai.viXra.org), a dated **Withdrawal / Supersession Notice** will be issued on the affected venue (preserving the historical audit trail rather than deleting records) alongside a new corrected version tag and updated `0thernes-research-archive` entry.

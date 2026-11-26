@@ -2,6 +2,20 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.5.0] — 2026-11-25
+
+### Added, Fixed & Hardened — Hostile-Referee 3-Cycle Audit: 103 Lean 4.35.0 Theorems (AdversarialTests), Crossref Retraction Verifier, Exact Ground-Truth Sync & 100% SPDX
+- **Constructive Adversarial Definition Refutation Suite (`lean/MegaAtlasProofs/AdversarialTests.lean`, `92 → 103` Audited Theorems — Playbook v1.3 Item 12):**
+  - Authored `AdversarialTests.lean` (`10` kernel-checked `¬P` refutations across all 6 core modules: CSS cap, age-299 non-saturation, Titan cap, tight Q1/Q2 leverage floors, superdomain cardinality, Handshaking factor, anti-reward-hacking failed-gate discard, and exact `apexKeystone`/`transPillarMargin` thresholds) bundled into `M8_AdversarialRefutations` (`Challenge.lean`, `Solution.lean`, `PalomarSolution.lean`, `palomar/PalomarChallenge.lean`, `comparator.json`, `formalization.yaml`, `blueprint/index.html`, `results/lean_axioms.txt`).
+  - Audited all **103** theorems (`1,769` exported declarations) strictly within `[propext, Quot.sound]` across all **6 independent proof kernels** via new single-source script [`scripts/verify_lean_six_kernels.sh`](scripts/verify_lean_six_kernels.sh) (`just lean-kernels`), replacing non-working bare `lake comparator` commands across `README.md`, `lean/README.md`, `REPLICATION.md`, and `paper/main.tex`, and attesting `results/lean_axioms.txt` in SLSA build provenance (`ci.yml`, Playbook Item 28).
+- **Hostile-Referee Factual & Parity Corrections (Logged in `ERRATA.md` & `HARDENING_LOG.md`):**
+  - Fixed drifted AutoResearch numbers in `paper/main.tex` §5 (`82.22%`/`19/25`/`91.69`/mislabeled discarded `H-002`/`H-004`) and `NonVacuity.lean` (`9169→9649`) to match exact `autoresearch/results.tsv` ground truth (`89.33%` [`21/25`] → `100.0%` [`25/25`], `AQS` `80.26 → 97.99`, discarded `H-001`, kept `H-001b`/`H-002`/`H-003`/`H-004`).
+  - Aligned `paper/main.tex` Table 1 to exact 1-to-1 `C1`–`C10` parity with `CLAIMS.md`.
+  - Updated stale root `ARCHITECTURE.md` (`v2.3.0`/`72` thms/`MIT` → `v2.5.0`/`103` thms/`Apache-2.0`), fixed stale line 19 & exact 14-file `1,707`-line Lean table in `docs/WHITE_PAPER.md`, fixed inaccurate `< 3.5 MB` HTML dashboard claim in `scripts/benchmark_atlas.py` / `docs/benchmarks.md` to dynamic exact measured size (`3.80 MB`, `< 4.0 MB` budget), and fixed mislabeled `B34`/`B33`/`A28`/`A30` labels in `DEVIATIONS.md` & `repo.yaml`.
+  - Upgraded `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` in `src/v2_loader.py` (now reading `VERSION` dynamically along with `mcp_server/server.py`) to **10 live-verified companion entries** synced from `0thernes-research-archive` commit `5170a63` (7 Tier-I + 3 Tier-II 6-kernel/Lean builds incl. `ultrametrica v1.4.0` & `planaria v2.3.0`), explicitly confirming **`0 / 1,900` overarching Mega-Atlas parent problems retired**.
+- **Playbook v1.3 Gold Standard Completions & 6 New Regression Tests:**
+  - Added live **Crossref API retraction checks** in `scripts/check_citations.py` (`12/12` live, `0` retractions — Item 16), **`docs/literature-search-log.md`** (Item 15), **100% REUSE/SPDX headers** across all remaining source/data/script files (Item 24), **Export-Control Self-Screen (15 CFR 734.8)** & **Zenodo/JOSS/Mathlib venue disclosures** in `docs/AI_DISCLOSURE.md` (Items 37 & 40), **Author Sign-Off** in `docs/statement-fidelity.md` (Item 10), **Withdrawal & Correction Policy** in `ERRATA.md` (Item 39), **Aaronson's 8-Signs audit** in `docs/reviews/2026-11-25-redteam-hardening.md`, and **6 new regression tests** (`53` total `pytest` tests) preventing every caught defect from ever returning.
+
 ## [2.4.0] — 2026-11-25
 
 ### Added & Upgraded — Six-Kernel Lean 4.35.0 Palomar Verification, AMS-LaTeX White Paper, Deep Verification Ladder & 100% Build Standard v1.2.0 Compliance

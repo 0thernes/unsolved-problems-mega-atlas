@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 8 (V2.0 Mega-Atlas): Mechanical/Aerospace/Structural/Civil Engineering, Architecture/Urbanism/Design/Ergonomics, Geology/Geophysics/Earth/Ocean/Climate, and Energy/Environment/Food/Sustainability (190 Problems)."""
 
 try:

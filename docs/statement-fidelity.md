@@ -1,4 +1,4 @@
-# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.4.0`)
+# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.5.0`)
 
 Per the **Defensible Independent AI Research Playbook v1.3 (Pass 4 — Statement-Fidelity Audit)**,
 this document audits every single theorem group in `lean/` against the paper (`paper/main.tex`)
@@ -25,8 +25,9 @@ stating exact fidelity status and any intentional modeling abstraction.
 | 14 | `LayerGradients.substrate_count_eq_8`, `layer_count_eq_7`, `allSubstrates_complete`, `layerIndex_le_6` (4 thms) | `SUBSTRATE_CLASSES` (8), `ABSTRACTION_LAYERS` (7) (`v2_loader.py:273`) | Exact 1-to-1 isomorphism | Zero divergence. |
 | 15 | `LayerGradients.hardnessTractGradient_*`, `cssTitanMarginBps_bounds` (5 thms) | `difficulty_score - tractability_2050`, `css_score - 10 * titan_index` | Exact integer / bps bounds | Exact `[-9, +9]` and `[-10000, +10000]` bounds. |
 | 16 | `LayerGradients.bridgeMarginBps_*`, `adjacent_pillars_lt_8`, `marginRole_exhaustive`, `apexKeystone_requires_3_adjacent` (5 thms) | `bridge_margin_ratio`, `adjacent_pillars_count`, `classify_margin_role` | Exact bps correspondence | `3000 bps` matches `bridge_ratio >= 0.30`. |
-| 17 | `NonVacuity.*` (12 thms) | Concrete inhabitants + sharp negative boundaries | Non-vacuity proof | Proves zero hypothesis bundles across M1–M6 are unsatisfiable. |
-| 18 | `PalomarSolution.m1..m7`, `prove_all_mega_atlas_invariants` (8 thms) | `palomar/PalomarChallenge.lean` contract | Exact comparator identity | Verified via `lake comparator --config comparator.json --paranoid` across 6 kernels. |
+| 17 | `NonVacuity.*` (12 thms) | Concrete inhabitants + exact `autoresearch/results.tsv` trace (`8026→8193→9559→9799`) + sharp negative boundaries | Non-vacuity proof | Proves zero hypothesis bundles across M1–M6 are unsatisfiable. |
+| 18 | `AdversarialTests.*` (10 thms) | Constructive kernel-checked refutations (`¬P`) of deliberately false / off-by-one variants across M1–M6 | Adversarial test (Playbook Item 12) | Complements 6/6 (100%) Python semantic mutation kill rate. |
+| 19 | `PalomarSolution.m1..m8`, `prove_all_mega_atlas_invariants` (9 thms) | `palomar/PalomarChallenge.lean` contract | Exact comparator identity | Verified via `scripts/verify_lean_six_kernels.sh` (`lake check --paranoid` + `lake comparator --paranoid`) across all 6 kernels. |
 
 ## 2. What Is Explicitly NOT Formalized in Lean
 
@@ -34,3 +35,8 @@ stating exact fidelity status and any intentional modeling abstraction.
 2. **Transcendental `ln(1 + degree)` floating-point calls** are verified differentially against 50-digit `Decimal` in `reference/scoring_oracle.py`, not inside Lean.
 3. **NetworkX PageRank, betweenness, modularity, and biconnectivity** are audited programmatically via `tests/test_mega_atlas.py` and `scripts/forensic_audit.py`.
 4. **SQLite FTS5 Porter-stemming BM25 ranking** is audited via the immutable 25-query Gold Benchmark (`100.0% MRR@5`) and negative/metamorphic tests.
+
+## 3. Author Sign-Off (Playbook v1.3 Item 10)
+
+- **Audited & Signed Off By:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
+- **Date:** `2026-11-25` (`v2.5.0`, all 19 rows reviewed against Lean 4.35.0 source, Python runtime, and `paper/main.tex` Table 3)

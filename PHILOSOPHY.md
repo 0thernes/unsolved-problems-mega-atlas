@@ -1,6 +1,6 @@
 # Research Philosophy & Epistemic Design Principles
 
-The **Unsolved Problems Mega-Atlas (`v2.4.0`)** is built around five non-negotiable engineering and scholarly principles:
+The **Unsolved Problems Mega-Atlas (`v2.5.0`)** is built around five non-negotiable engineering and scholarly principles:
 
 1. **Radical Epistemic Honesty Over Hype:** Never conflate an unrefereed AI proof dump with a community-retired theorem; never conflate machine-checked scoring invariants (`92` Lean 4.35.0 theorems) with proofs of the `1,900` open problems themselves (`0 / 1,900` retired); never conflate solo editorial scores with peer-reviewed ground truth.
 2. **Falsifiability by Construction:** Every quantitative score, taxonomic placement, cross-reference edge, and ranking in `RANKING.md` is generated deterministically from human-readable source files (`src/v2_data/`). Disagree with a rating or link? Edit the record, run `just build`, and argue directly from the diff.

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.4.0)."""
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.5.0)."""
 
 from __future__ import annotations
 
@@ -174,7 +174,7 @@ def test_exported_files_parity(master_data):
     assert len(csv_df) == n and csv_df.shape[1] == 48
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
-    assert len(payload["author_frontier_contributions"]) == 7
+    assert len(payload["author_frontier_contributions"]) == 10
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
     assert payload["metadata"]["license_code"] == "Apache-2.0"
@@ -188,7 +188,7 @@ def test_exported_files_parity(master_data):
         assert conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0] == n
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
-        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 7
+        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 10
     finally:
         conn.close()
 
@@ -237,8 +237,9 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
     )
     resps = [json.loads(line) for line in proc.stdout.splitlines() if line.strip()]
     assert len(resps) == len(reqs)
+    expected_ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
     assert resps[0]["result"]["serverInfo"]["name"] == "unsolved-problems-mega-atlas"
-    assert resps[0]["result"]["serverInfo"]["version"] == "2.4.0"
+    assert resps[0]["result"]["serverInfo"]["version"] == expected_ver
     tools = {t["name"] for t in resps[1]["result"]["tools"]}
     assert tools == {
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
@@ -258,11 +259,11 @@ def test_mcp_stdio_server_ndjson_all_10_tools():
     assert len(margins["apex_multi_pillar_keystones"]) == 5
     contribs = json.loads(resps[10]["result"]["content"][0]["text"])
     assert contribs["overarching_atlas_problems_retired"] == 0
-    assert contribs["scoped_preprints_count"] == 7
+    assert contribs["scoped_preprints_count"] == 10
     prov = json.loads(resps[11]["result"]["content"][0]["text"])
     assert prov["orcid"] == EXPECTED_ORCID
     assert prov["dual_license"]["code"] == "Apache-2.0"
-    assert prov["lean_verification"]["audited_theorems"] == 92
+    assert prov["lean_verification"]["audited_theorems"] == 103
 
 
 def test_mcp_stdio_server_content_length_framing():
@@ -281,7 +282,7 @@ def test_mcp_stdio_server_content_length_framing():
     assert len(body) == expected_len
     msg = json.loads(body.decode("utf-8"))
     assert msg["id"] == 99
-    assert msg["result"]["serverInfo"]["version"] == "2.4.0"
+    assert msg["result"]["serverInfo"]["version"] == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 
 
 # ==================== 6. KARPATHY AUTORESEARCH HARNESS & TRACK B PILOT ====================
@@ -293,7 +294,7 @@ def test_autoresearch_evaluator_100pct_rag_and_results_ledger():
     assert m["schema_health"] == 100.0
     assert m["rag_mrr5"] == 100.0
     assert m["rag_top1"] == 25
-    assert m["lean_theorems"] == 92
+    assert m["lean_theorems"] == 103
     assert m["aqs_score"] >= 97.9
 
     tsv_lines = (ROOT / "autoresearch" / "results.tsv").read_text(encoding="utf-8").splitlines()
@@ -398,8 +399,8 @@ def test_governance_and_orcid_files():
         "blueprint/index.html", "results/lean_axioms.txt",
         "docs/METHODOLOGY.md", "docs/AI_DISCLOSURE.md", "docs/ACADEMIC_REVIEW.md",
         "docs/WHITE_PAPER.md", "docs/DATASHEET.md", "docs/FORENSIC_AUDIT_V2.3.md",
-        "docs/PRESERVATION.md", "docs/statement-fidelity.md", "docs/architecture.md",
-        "docs/operations.md", "docs/threat-model.md", "docs/benchmarks.md",
+        "docs/PRESERVATION.md", "docs/statement-fidelity.md", "docs/literature-search-log.md",
+        "docs/architecture.md", "docs/operations.md", "docs/threat-model.md", "docs/benchmarks.md",
         "docs/faq.md", "docs/glossary.md", "docs/configuration.md", "docs/run-log.md",
         "docs/media/social-preview.png",
         "autoresearch/program.md", "autoresearch/evaluate.py", "autoresearch/results.tsv",
@@ -407,6 +408,7 @@ def test_governance_and_orcid_files():
         "mcp_server/server.py", "mcp_server/README.md",
         "scripts/forensic_audit.py", "scripts/publish_zenodo.py", "scripts/build_paper.py",
         "scripts/check_citations.py", "scripts/check_readme_axioms.py", "scripts/run_mutation_audit.py",
+        "scripts/verify_lean_six_kernels.sh",
     ]:
         assert (ROOT / rel).exists(), f"Missing required artifact: {rel}"
 
@@ -419,9 +421,9 @@ def test_governance_and_orcid_files():
         assert EXPECTED_ORCID in (ROOT / rel).read_text(encoding="utf-8"), f"Missing ORCID in {rel}"
 
 
-def test_lean_sources_zero_sorry_and_92_audited_theorems():
+def test_lean_sources_zero_sorry_and_103_audited_theorems():
     lean_files = [p for p in (ROOT / "lean").rglob("*.lean") if ".lake" not in p.parts]
-    assert len(lean_files) == 12
+    assert len(lean_files) == 13
     for lf in lean_files:
         raw = lf.read_text(encoding="utf-8")
         no_blocks = re.sub(r"/-.*?-/", "", raw, flags=re.S)
@@ -431,7 +433,7 @@ def test_lean_sources_zero_sorry_and_92_audited_theorems():
         for line in code.splitlines():
             assert not line.strip().startswith("axiom "), f"Custom axiom in {lf}: {line}"
     aud = (ROOT / "lean" / "MegaAtlasProofs" / "VerifyAxioms.lean").read_text(encoding="utf-8")
-    assert sum(1 for ln in aud.splitlines() if ln.strip().startswith("#print axioms ")) == 92
+    assert sum(1 for ln in aud.splitlines() if ln.strip().startswith("#print axioms ")) == 103
 
 
 def test_sha256_checksums_manifest_exact():

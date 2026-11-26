@@ -22,6 +22,7 @@ open MegaAtlasProofs.GraphInvariants
 open MegaAtlasProofs.AutoResearchInvariants
 open MegaAtlasProofs.LayerGradients
 open MegaAtlasProofs.NonVacuity
+open MegaAtlasProofs.AdversarialTests
 
 @[expose] public section
 
@@ -81,6 +82,18 @@ theorem m6_layer_gradient_margin_invariants : M6_LayerGradientMarginInvariants :
 theorem m7_nonvacuity_certificate : M7_NonVacuityCertificate :=
   nonvac_all_hypotheses
 
+theorem m8_adversarial_refutations : M8_AdversarialRefutations :=
+  ⟨refute_css_strictly_below_10000,
+   refute_age_saturates_at_299,
+   refute_titan_strictly_below_1000,
+   refute_Q1_leverage_ge_57,
+   refute_Q2_leverage_ge_56,
+   refute_superdomain_count_27,
+   refute_handshaking_factor_3,
+   refute_autoresearch_keeps_failed_gates,
+   refute_apex_keystone_at_2_adjacent,
+   refute_trans_pillar_at_2999_bps⟩
+
 theorem prove_all_mega_atlas_invariants : AllMegaAtlasInvariants :=
   ⟨m1_scoring_invariants,
    m2_quadrant_and_era_invariants,
@@ -88,7 +101,8 @@ theorem prove_all_mega_atlas_invariants : AllMegaAtlasInvariants :=
    m4_graph_and_dedup_invariants,
    m5_autoresearch_ratchet_invariants,
    m6_layer_gradient_margin_invariants,
-   m7_nonvacuity_certificate⟩
+   m7_nonvacuity_certificate,
+   m8_adversarial_refutations⟩
 
 end
 

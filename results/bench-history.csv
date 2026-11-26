@@ -1,2 +1,3 @@
 timestamp_utc,version,commit,environment,load_median_s,load_iqr_s,rag_query_median_ms,rag_query_iqr_ms,diff_1900_median_ms,diff_1900_iqr_ms,checksum_pass
 2026-11-25T23:47:51Z,2.4.0,c735b9f,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",1.814,0.0683,4.498,0.457,55.5851,1.7892,PASS
+2026-11-26T02:09:48Z,2.5.0,f838db1,"Windows 11 (AMD64, 24 cores, Python 3.12.10)",2.7079,0.1161,6.7164,0.6216,61.7447,3.1125,PASS

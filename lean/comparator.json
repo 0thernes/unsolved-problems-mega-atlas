@@ -9,6 +9,7 @@
     "MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants",
     "MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants",
     "MegaAtlasProofs.Palomar.m7_nonvacuity_certificate",
+    "MegaAtlasProofs.Palomar.m8_adversarial_refutations",
     "MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants"
   ],
   "definition_names": [],

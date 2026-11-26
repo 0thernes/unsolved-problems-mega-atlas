@@ -42,14 +42,14 @@
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Unsolved Problems Mega-Atlas",
-  "alternateName": "Unsolved Problems Mega-Atlas V2.4.0",
-  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 10-tool MCP server, Karpathy-style AutoResearch harness, and 92 Pure Lean 4.35.0 formal invariant theorems verified across 6 independent kernels.",
-  "version": "2.4.0",
+  "alternateName": "Unsolved Problems Mega-Atlas V2.5.0",
+  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 10-tool MCP server, Karpathy-style AutoResearch harness, and 103 Pure Lean 4.35.0 formal invariant theorems verified across 6 independent kernels.",
+  "version": "2.5.0",
   "datePublished": "2026-11-25",
   "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
   "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.4.0). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.5.0). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
   "creator": {
     "@type": "sc:Person",
     "name": "Alexander Stephen Donahue",
@@ -111,8 +111,8 @@
       "description": "Deterministic gzipped complete JSON payload including problems, 5,808 graph edges, Nov 25, 2026 AI audit, registries, benchmarks & matrices.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
       "encodingFormat": "application/gzip",
-      "sha256": "eb87b463b2d74dbba19562cc4585467864ad3d9966a62b67649a1e60fa28dd97",
-      "contentSize": "1344671 B"
+      "sha256": "6b2c38fbd42ba2b5e2c535f81161b65b5bab2420a7000c27b0de15b02b68e706",
+      "contentSize": "1345360 B"
     }
   ],
   "recordSet": [

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 1: Pure Mathematics — Number Theory & Arithmetic (85) + Algebra, Group & Category Theory (65).
 
 V2.0 Mega-Atlas of Unsolved, Open & Hard Problems (November 20, 2026 Edition).

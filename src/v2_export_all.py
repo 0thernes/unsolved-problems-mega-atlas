@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.4.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
+"""V2.5.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
 
 import argparse
 import datetime
@@ -325,7 +325,7 @@ def export_master_ranking_md(data):
         "",
         "## Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)",
         "",
-        "> **Conflict-of-Interest & Scope Disclosure:** The 7 repositories below are independent preprints by Alexander Stephen Donahue (ORCID `0009-0006-8168-9648`, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving structural invariants. Every overarching Mega-Atlas parent problem remains **OPEN**.",
+        f"> **Conflict-of-Interest & Scope Disclosure:** The {len(data['df_author_contributions'])} companion archive entries below are independent preprints and formal builds by Alexander Stephen Donahue (ORCID `0009-0006-8168-9648`, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving discrete structural invariants. Every overarching Mega-Atlas parent problem remains **OPEN** (`0 / 1,900` retired).",
         "",
         "| Archive ID | Repository | Parent Atlas IDs | Scoped Machine-Checked Result | Parent Status |",
         "|---|---|---|---|---|",
@@ -550,7 +550,7 @@ def export_excel_files(data):
     wb.properties.created = fixed_dt
     wb.properties.modified = fixed_dt
     wb.properties.creator = "Alexander Stephen Donahue (ORCID 0009-0006-8168-9648)"
-    wb.properties.lastModifiedBy = "Mega-Atlas V2.4.0 Deterministic Exporter"
+    wb.properties.lastModifiedBy = f"Mega-Atlas V{s['atlas_version']} Deterministic Exporter"
 
     p_xlsx = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2.xlsx")
     wb.save(p_xlsx)
@@ -1528,8 +1528,9 @@ def main():
     parser.add_argument("--skip-pdf", action="store_true", help="Skip optional Chrome-headless directory PDF build into build/")
     args = parser.parse_args()
 
-    print("Loading V2.4.0 Mega-Atlas (Alexander Stephen Donahue)...")
     data = load_v2_master()
+    ver = data["summary_stats"]["atlas_version"]
+    print(f"Loading V{ver} Mega-Atlas (Alexander Stephen Donahue)...")
     export_csv_tsv_json(data)
     export_master_ranking_md(data)
     export_excel_files(data)
@@ -1537,7 +1538,7 @@ def main():
     export_interactive_html(data)
     if not args.skip_pdf:
         export_pdf_monograph(data)
-    print("\n=== ALL V2.4.0 MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
+    print(f"\n=== ALL V{ver} MEGA-ATLAS EXPORTS COMPLETED SUCCESSFULLY! ===")
 
 
 if __name__ == "__main__":

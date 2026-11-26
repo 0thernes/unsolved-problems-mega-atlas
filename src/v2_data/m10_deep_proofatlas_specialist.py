@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 10 of V2.0 Mega-Atlas: Deep ProofAtlas, Erdős, Kourovka, Kirby & Specialist Interdisciplinary Expansion Pack (195 Zero-Overlap Problems).
 
 Sections (strictly non-overlapping with Modules 1-9):

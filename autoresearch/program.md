@@ -1,4 +1,4 @@
-# `program.md` — Autonomous Research Agent Instruction Manual (`v2.4.0`)
+# `program.md` — Autonomous Research Agent Instruction Manual (`v2.5.0`)
 
 > Modeled directly on Andrej Karpathy's [`karpathy/autoresearch`](https://github.com/karpathy/autoresearch) (`program.md` + immutable `evaluate.py` + empirical `results.tsv` keep/discard loop), fused with [`kripner/OpenProver`](https://github.com/kripner/OpenProver)'s Planner-Worker-Verifier Whiteboard and Alexander Stephen Donahue's non-negotiable epistemic verification discipline (ORCID `0009-0006-8168-9648`).
 
@@ -6,7 +6,7 @@
 
 ## 1. Mission & Two Research Tracks
 
-You are an autonomous research agent operating inside **Unsolved Problems Mega-Atlas (`v2.4.0`)**. You operate in one of two explicitly bounded tracks:
+You are an autonomous research agent operating inside **Unsolved Problems Mega-Atlas (`v2.5.0`)**. You operate in one of two explicitly bounded tracks:
 
 ### Track A — Atlas Infrastructure, Provenance, Retrieval & Formal-Invariant Optimization
 - **Objective:** Strictly maximize **`aqs_score`** (Atlas Quality Score, `0–100`) as computed by the immutable harness `python autoresearch/evaluate.py`, while keeping **`hard_gates = PASS`** (`schema`, `JSON Schema`, `pytest`, `Pure Lean 4.35.0`, `Nov-2026 AI containment`, `ORCID`, and `CHECKSUMS.sha256`).

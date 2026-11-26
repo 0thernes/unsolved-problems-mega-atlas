@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deterministic FAIR Scholarly Metadata Generator (`v2.4.0`):
+Deterministic FAIR Scholarly Metadata Generator (`v2.5.0`):
   1. `croissant.json`         — MLCommons Croissant 1.0 JSON-LD dataset specification
   2. `ro-crate-metadata.json` — W3C / ResearchObject RO-Crate 1.1 JSON-LD descriptor
   3. `data/MANIFEST.sha256`   — Canonical SHA-256 manifest of frozen tracked data & paper artifacts
@@ -27,13 +27,13 @@ REPO_URL = "https://github.com/0thernes/unsolved-problems-mega-atlas"
 PAGES_URL = "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 RAW_BASE = "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/"
 ORCID_URL = "https://orcid.org/0009-0006-8168-9648"
-VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.4.0"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.5.0"
 
 
 def _lean_theorem_count() -> int:
     p = ROOT / "lean" / "MegaAtlasProofs" / "VerifyAxioms.lean"
     if not p.exists():
-        return 92
+        return 103
     return sum(1 for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip().startswith("#print axioms "))
 
 
@@ -207,7 +207,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("outputs/MegaAtlas_Unsolved_Problems_V2.json.gz", "application/gzip", "Deterministic gzipped complete JSON dataset & knowledge graph"),
         ("outputs/MegaAtlas_Unsolved_Problems_V2.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "15-sheet live-formula Excel workbook"),
         ("outputs/MegaAtlas_Interactive_Dashboard_V2.html", "text/html", "WCAG 2.2 AA interactive web atlas (<4 MB)"),
-        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "10-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
+        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
         ("dist/arxiv_submission.tar.gz", "application/gzip", "Deterministic clean-room arXiv source tarball"),
         ("blueprint/index.html", "text/html", "Interactive Lean 4.35.0 Proof Blueprint SVG DAG"),
         ("docs/WHITE_PAPER.md", "text/markdown", "Build White Paper & Archival Dossier (0TH-BUILD-007)"),
@@ -242,7 +242,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
                 f"8 Substrates, 7 Abstraction Layers, {total_edges:,} biconnected graph edges, {lean_n} Pure Lean 4.35.0 formal invariants "
-                "across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop)."
+                "across 6 kernels, 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 10-tool MCP server, and Karpathy-style AutoResearch loop)."
             ),
             "url": PAGES_URL,
             "identifier": REPO_URL,

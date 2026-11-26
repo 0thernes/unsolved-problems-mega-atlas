@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 7: AI/ML/Simulations (55), Quantum Computing & Info (45), Electronics/Photonics/Hardware (45) & Systems/Control/Robotics/Cybernetics (50).
 
 Total: 195 problems (V2.0 Mega-Atlas, November 20, 2026 Edition).

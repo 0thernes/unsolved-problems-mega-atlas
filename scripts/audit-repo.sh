@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 # Score any repository against the Build Standard for LLMs (90 items). Report-only: always exits 0 unless misused.
 # Zero dependencies: bash 3.2+, grep, find, git (optional). Reads scripts/audit-checks.tsv and the repo's repo.yaml.
 # Usage: audit-repo.sh [REPO_DIR] [--json FILE] [--markdown FILE] [--quiet]

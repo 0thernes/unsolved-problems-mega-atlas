@@ -1,6 +1,6 @@
 # Configuration Reference
 
-The **Unsolved Problems Mega-Atlas (`v2.4.0`)** is designed to run **100% offline with zero configuration** for all core workflows (data loading, exporting, RAG search, MCP stdio server, Lean 4.35.0 verification, pytest, mutation testing, and benchmarking).
+The **Unsolved Problems Mega-Atlas (`v2.5.0`)** is designed to run **100% offline with zero configuration** for all core workflows (data loading, exporting, RAG search, MCP stdio server, Lean 4.35.0 verification, pytest, mutation testing, and benchmarking).
 
 ## Environment Variables (All Optional)
 

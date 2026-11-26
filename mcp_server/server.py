@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.4.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.5.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
@@ -36,9 +36,10 @@ sys.path.insert(0, str(ROOT / "rag"))
 
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.5.0"
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
-    "version": "2.4.0",
+    "version": ATLAS_VERSION,
 }
 PROTOCOL_VERSION = "2024-11-05"
 
@@ -266,7 +267,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         meta = {r["key"]: r["value"] for r in meta_rows}
         lean_thms = _count_lean_axioms_audited()
         return {
-            "title": "Unsolved Problems Mega-Atlas (V2.4.0)",
+            "title": f"Unsolved Problems Mega-Atlas (V{ATLAS_VERSION})",
             "author": "Alexander Stephen Donahue",
             "orcid": "0009-0006-8168-9648",
             "orcid_url": "https://orcid.org/0009-0006-8168-9648",
@@ -277,11 +278,11 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             "dual_license": {"data": "CC-BY-4.0", "code": "Apache-2.0"},
             "lean_verification": {
                 "toolchain": "leanprover/lean4:v4.35.0",
-                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry in lean/, zero native_decide, 6 independent proof kernels via lake comparator --paranoid)",
+                "framework": "Pure Lean 4.35.0 (zero Mathlib, zero sorry in lean/, zero native_decide, 6 independent proof kernels via scripts/verify_lean_six_kernels.sh)",
                 "audited_theorems": lean_thms,
                 "kernels": ["lean", "leanchecker-paranoid", "lean4lean", "nanoda_bin", "con-leche", "con-ron"],
                 "axiom_allowlist": ["propext", "Quot.sound"],
-                "boundary": "Certifies exact scoring, quadrant, era, taxonomy, finite graph handshaking, AutoResearch keep/discard ratchet, substrate/layer/gradient/margin invariants, and concrete NonVacuity witnesses ONLY; does NOT prove any of the 1,900 open problems.",
+                "boundary": "Certifies exact scoring, quadrant, era, taxonomy, finite graph handshaking, AutoResearch keep/discard ratchet, substrate/layer/gradient/margin invariants, concrete NonVacuity witnesses, and constructive AdversarialTests refutations ONLY; does NOT prove any of the 1,900 open problems.",
             },
             "ai_disclosure": "Curated by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
             "summary_stats": meta,

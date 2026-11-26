@@ -154,12 +154,12 @@ def test_b07_regression_rag_cm001_and_log001():
 # ==================== B08: GOLDEN SNAPSHOT TESTS ====================
 
 
-def test_b08_golden_lean_axioms_92_theorems():
+def test_b08_golden_lean_axioms_103_theorems():
     ax_path = ROOT / "results" / "lean_axioms.txt"
     assert ax_path.exists()
     txt = ax_path.read_text(encoding="utf-8")
     lines = [ln for ln in txt.splitlines() if ln.strip()]
-    assert len(lines) == 92
+    assert len(lines) == 103
     for forbidden in ("sorryAx", "Classical.choice", "Lean.ofReduceBool", "Lean.trustCompiler"):
         assert forbidden not in txt
 
@@ -356,3 +356,88 @@ def test_legal_identity_cure_no_fake_llc_in_code_or_metadata():
     ]
     hits = [str(p.relative_to(ROOT)) for p in checked_roots if p.exists() and re.search(r"0thernes\s+LLC", p.read_text(encoding="utf-8"), re.I)]
     assert not hits, f"Legacy '0thernes LLC' still present in: {hits}"
+
+
+# ==================== 8. HOSTILE-REFEREE REGRESSION GUARDS (V2.5.0) ====================
+
+
+def test_b07_regression_claims_md_and_paper_tex_id_parity():
+    """Ensure CLAIMS.md and paper/main.tex Table 1 declare the exact same C1..C10 claim IDs."""
+    claims_txt = (ROOT / "CLAIMS.md").read_text(encoding="utf-8")
+    tex_txt = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
+    md_ids = re.findall(r"^\|\s*\*\*(C\d+)\*\*\s*\|", claims_txt, flags=re.M)
+    tex_ids = re.findall(r"^(C\d+)\s*&\s*\\tag", tex_txt, flags=re.M)
+    assert md_ids == [f"C{i}" for i in range(1, 11)]
+    assert tex_ids == md_ids, f"Claim ID drift: CLAIMS.md={md_ids} vs paper/main.tex={tex_ids}"
+
+
+def test_b07_regression_paper_autoresearch_matches_results_tsv():
+    """Ensure paper/main.tex cites exact autoresearch/results.tsv baseline/discarded/kept figures."""
+    tsv = (ROOT / "autoresearch" / "results.tsv").read_text(encoding="utf-8")
+    tex = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
+    assert "80.26\t89.33\t21/25" in tsv
+    assert "H-001:" in tsv and "\tdiscard\t" in tsv
+    assert "89.33\\%" in tex and "80.26" in tex and "97.99" in tex
+    assert "82.22" not in tex and "91.69" not in tex
+
+
+def test_b07_regression_no_stale_v23_or_72_in_active_docs():
+    """Ensure top-level active docs do not regress to stale v2.3.0 / 72-theorem / 9-tool / MIT claims."""
+    active_docs = [
+        "README.md",
+        "ARCHITECTURE.md",
+        "CLAIMS.md",
+        "VERIFICATION.md",
+        "docs/WHITE_PAPER.md",
+        "docs/architecture.md",
+        "lean/README.md",
+        "mcp_server/README.md",
+    ]
+    stale = [
+        re.compile(r"\b72\s+(?:Pure\s+)?Lean|\b72\s+audited|\b72\s+theorems", re.I),
+        re.compile(r"\b9-tool\b", re.I),
+        re.compile(r"\b14-sheet\b", re.I),
+        re.compile(r"V2\.3\.0|v2\.3\.0"),
+    ]
+    hits = []
+    for rel in active_docs:
+        txt = (ROOT / rel).read_text(encoding="utf-8")
+        for rx in stale:
+            if rx.search(txt):
+                hits.append((rel, rx.pattern))
+    assert not hits, f"Stale metrics found in active docs: {hits}"
+
+
+def test_b07_regression_all_code_lean_sh_have_spdx_headers():
+    """Verify 100% REUSE/SPDX header coverage across all tracked .py, .lean, and .sh files (except immutable evaluate.py)."""
+    proc = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True)
+    missing = []
+    for rel in proc.stdout.splitlines():
+        if rel == "autoresearch/evaluate.py":
+            continue
+        p = ROOT / rel
+        if p.suffix in {".py", ".lean", ".sh"} and p.exists():
+            head = "\n".join(p.read_text(encoding="utf-8", errors="replace").splitlines()[:5])
+            if "SPDX-License-Identifier" not in head:
+                missing.append(rel)
+    assert not missing, f"Files missing SPDX-License-Identifier header: {missing}"
+
+
+def test_b07_regression_benchmark_doc_matches_actual_html_size():
+    """Verify docs/benchmarks.md reports an honest size ceiling >= actual HTML dashboard size."""
+    html_mb = (ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html").stat().st_size / 1048576.0
+    bench_md = (ROOT / "docs" / "benchmarks.md").read_text(encoding="utf-8")
+    assert html_mb < 4.0, f"Dashboard exceeded 4.0 MB budget: {html_mb:.2f} MB"
+    assert "< 3.5 MB" not in bench_md, "Stale inaccurate '< 3.5 MB' claim in docs/benchmarks.md"
+
+
+def test_b07_regression_lean_adversarial_refutations_and_103_axioms():
+    """Verify AdversarialTests.lean (Playbook Item 12) and exact 103-line constructive results/lean_axioms.txt."""
+    adv = ROOT / "lean" / "MegaAtlasProofs" / "AdversarialTests.lean"
+    assert adv.exists()
+    axioms = (ROOT / "results" / "lean_axioms.txt").read_text(encoding="utf-8").splitlines()
+    non_empty = [ln for ln in axioms if ln.strip()]
+    assert len(non_empty) == 103
+    assert any("MegaAtlasProofs.Palomar.m8_adversarial_refutations" in ln for ln in non_empty)
+    for bad in ("sorryAx", "Classical.choice", "Lean.ofReduceBool", "_native"):
+        assert all(bad not in ln for ln in non_empty), f"Forbidden axiom {bad} in results/lean_axioms.txt"

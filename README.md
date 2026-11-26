@@ -1,23 +1,23 @@
-# Unsolved Problems Mega-Atlas (`v2.4.0`)
+# Unsolved Problems Mega-Atlas (`v2.5.0`)
 
 [![CI](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Pages](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
-[![Lean 4.35.0](https://img.shields.io/badge/Lean-4.35.0%20%7C%2092%20Thms%20%7C%206%20Kernels-2ea44f)](lean/README.md)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean-4.35.0%20%7C%20103%20Thms%20%7C%206%20Kernels-2ea44f)](lean/README.md)
 [![Data License: CC BY 4.0](https://img.shields.io/badge/Data-CC%20BY%204.0-blue)](LICENSE)
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue)](LICENSE-CODE)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39)](https://orcid.org/0009-0006-8168-9648)
 
 ![Unsolved Problems Mega-Atlas Social Preview](docs/media/social-preview.png)
 
-> **Status:** `active` · **Version:** `2.4.0` (November 25, 2026) · **Master Archive Entry:** `0TH-BUILD-007`
+> **Status:** `active` · **Version:** `2.5.0` (November 25, 2026) · **Master Archive Entry:** `0TH-BUILD-007`
 > **Author / Curator:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 > **Dual License:** Dataset, Charts, White Paper & Prose [`CC-BY-4.0`](LICENSE) · Code, Lean 4.35.0 Proofs, Tests & Tools [`Apache-2.0`](LICENSE-CODE)
 > **Supported locales:** English (`en-US`, UTF-8)
 
 An open-source, cryptographically audited, multi-format cross-disciplinary research infrastructure cataloging **`1,900` strictly deduplicated unsolved, open, and hard problems** spanning **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,752 subdomains**, wired into **1 biconnected `5,808`-edge knowledge graph** (`0` articulation points, `0` bridges, `0` dangling links, `35.7%` cross-superdomain, `18.7%` cross-pillar), paired with:
 
-- **92 Zero-Mathlib Pure Lean 4.35.0 Formal Invariant Theorems** (`72` core module invariants + `12` concrete NonVacuity & boundary witnesses + `8` Palomar contract specifications) verified across **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) with constructive axioms strictly within `[propext, Quot.sound]`.
-- **10-Page Publication-Grade AMS-LaTeX White Paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf), `0` overfull hboxes, `12/12` live-verified citations) + deterministic clean-room [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz).
+- **103 Zero-Mathlib Pure Lean 4.35.0 Formal Invariant & Adversarial-Refutation Theorems** (`72` core module invariants + `12` concrete NonVacuity & boundary witnesses + `10` constructive `AdversarialTests` false-variant refutations + `9` Palomar contract specifications) verified across **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) with constructive axioms strictly within `[propext, Quot.sound]`.
+- **11-Page Publication-Grade AMS-LaTeX White Paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf), `0` overfull hboxes, `12/12` live-verified citations with `0` Crossref retractions) + deterministic clean-room [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz).
 - **Live Interactive Web Atlas & Lean Proof Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) and [Lean 4.35.0 Proof Blueprint DAG](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/) (WCAG 2.2 AA accessible, `< 4 MB`).
 - **Offline SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, `25/25` top-1)** + **Zero-Dependency Dual-Framed 10-Tool MCP Server** (`mcp_server/server.py`) + **Immutable Karpathy-Style AutoResearch Harness** (`AQS = 97.99`) + **Track B Antihydra (`LOG-002`) Finite Bigint Pilot**.
 - **Deep Verification Ladder:** 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic & golden snapshots, and **100% (`6/6`) mutation-kill coverage**.
@@ -26,8 +26,8 @@ An open-source, cryptographically audited, multi-format cross-disciplinary resea
 
 ## Honest Verification Boundary (Read First)
 
-1. **Zero (`0 / 1,900`) overarching Mega-Atlas open problems are claimed solved or retired.** Our 92 Lean 4.35.0 theorems verify the atlas's *internal* scoring, quadrant/era, taxonomy, finite graph handshaking, deduplication, AutoResearch ratchet, and gradient/margin invariants **only**.
-2. **Author-Curated Scoped Preprints (`0thernes-research-archive`):** Seven independent companion preprints resolve narrowly scoped published sub-conjectures or structural invariants (cataloged transparently in `paper/main.tex` Section 6, `RANKING.md`, and MCP tool `list_author_frontier_contributions`); all are self-published (not externally peer-reviewed) and explicitly keep every overarching Mega-Atlas parent problem **OPEN**.
+1. **Zero (`0 / 1,900`) overarching Mega-Atlas open problems are claimed solved or retired.** Our 103 Lean 4.35.0 theorems verify the atlas's *internal* scoring, quadrant/era, taxonomy, finite graph handshaking, deduplication, AutoResearch ratchet, gradient/margin invariants, non-vacuity, and false-variant refutations **only**.
+2. **Author-Curated Companion Archive Entries (`0thernes-research-archive`):** Ten independent companion preprints and formal builds resolve narrowly scoped published sub-conjectures or discrete model invariants (cataloged transparently in `paper/main.tex` Section 6, `RANKING.md`, and MCP tool `list_author_frontier_contributions`); all are self-published (not externally peer-reviewed) and explicitly keep every overarching Mega-Atlas parent problem **OPEN**.
 3. **November 25, 2026 AI Proof Claims:** All `12` Fall/Nov 2026 AI proof-claim targets (`NT-001` Riemann Hypothesis, `NT-002` GRH, `ANL-001` 3D Navier–Stokes, etc.) remain explicitly flagged `ai-claim-under-audit-nov2026` and **officially unretired** pending human-readable exposition and Clay/community consensus.
 4. **Editorial Rubric Disclosure:** Quantitative ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are disclosed AI-assisted editorial estimates — not peer-reviewed consensus measurements. Edit `src/v2_data/`, run `just build`, and argue from the diff!
 
@@ -35,7 +35,7 @@ An open-source, cryptographically audited, multi-format cross-disciplinary resea
 
 ## 5-Second Lean 4.35.0 Formal Verification
 
-Reproduce the full 92-theorem constructive axiom audit locally in under 10 seconds:
+Reproduce the full 103-theorem constructive axiom audit locally in under 10 seconds:
 
 ```bash
 cd lean
@@ -54,14 +54,15 @@ Verbatim Palomar headline theorem audit from [`results/lean_axioms.txt`](results
 'MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m7_nonvacuity_certificate' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m8_adversarial_refutations' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants' depends on axioms: [propext, Quot.sound]
 ```
 <!-- LEAN_AXIOMS_END -->
 
-On Linux with `bubblewrap`, replay all **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) in one sandboxed command:
+On Linux with `bubblewrap`, replay all **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) using the exact single-source CI verification script:
 
 ```bash
-cd lean && lake comparator --config comparator.json --paranoid
+bash scripts/verify_lean_six_kernels.sh   # or: just lean-kernels
 ```
 
 ---
@@ -108,10 +109,11 @@ Connect Claude Code, Antigravity, Cursor, or Gemini CLI directly (zero external 
 ### 4. Full Deterministic Rebuild & Verification (`justfile`)
 
 ```bash
-just reproduce   # Rebuild exports + pytest + 92-thm Lean audit + AMS-LaTeX paper + SHA-256
-just mutate      # 6-mutant semantic mutation testing (100% kill rate)
-just bench       # 10-iteration warmed benchmark harness -> docs/benchmarks.md
-just audit       # Forensic biconnectivity, Zenodo dry-run & immutable AutoResearch gates
+just reproduce     # Rebuild exports + pytest + 103-thm Lean audit + AMS-LaTeX paper + SHA-256
+just lean-kernels  # Full 6-kernel bubblewrap replay on Linux (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
+just mutate        # 6-mutant semantic mutation testing (100% kill rate)
+just bench         # 10-iteration warmed benchmark harness -> docs/benchmarks.md
+just audit         # Forensic biconnectivity, Zenodo dry-run & immutable AutoResearch gates
 ```
 
 ---
@@ -120,14 +122,14 @@ just audit       # Forensic biconnectivity, Zenodo dry-run & immutable AutoResea
 
 | Artifact | Location | Size | Notes |
 |---|---|---|---|
-| **10-Page AMS-LaTeX White Paper PDF** | [`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf) | `0.67 MB` | Tectonic `amsart`, `0` overfull hboxes, `12/12` live citations |
+| **11-Page AMS-LaTeX White Paper PDF** | [`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf) | `0.68 MB` | Tectonic `amsart`, `0` overfull hboxes, `12/12` live citations (`0` retractions) |
 | **Clean-Room arXiv Source Tarball** | [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz) | `0.50 MB` | Deterministic (`mtime=0`), verified clean-room compile |
 | **Interactive Web Atlas (WCAG 2.2 AA)** | [`outputs/MegaAtlas_Interactive_Dashboard_V2.html`](outputs/MegaAtlas_Interactive_Dashboard_V2.html) | `3.80 MB` | Live at [GitHub Pages](https://0thernes.github.io/unsolved-problems-mega-atlas/) |
-| **Interactive Lean 4.35.0 Blueprint** | [`blueprint/index.html`](blueprint/index.html) | `12 KB` | SVG DAG linking all 92 audited theorems |
+| **Interactive Lean 4.35.0 Blueprint** | [`blueprint/index.html`](blueprint/index.html) | `14 KB` | SVG DAG linking all 103 audited theorems |
 | **Tabular & Compressed JSON Exports** | `outputs/*.csv`, `*.tsv`, `*.json.gz`, `*.jsonl.gz`, `*.xlsx` (15 sheets), `*.xls` | `< 5 MB` each | 100% JSON Schema Draft 2020-12 valid; full uncompressed `.sqlite`/`.json`/168p PDF on [GitHub Releases](https://github.com/0thernes/unsolved-problems-mega-atlas/releases) |
 | **15 Analytical Figures (PNG + SVG)** | `outputs/charts/01..15.{png,svg}` + `paper/figures/*.pdf` | `35` vector/raster files | Colorblind-safe 8-pillar palette |
 | **FAIR Metadata & Checksums** | `croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`, `CHECKSUMS.sha256`, `data/MANIFEST.sha256` | Tracked | Cryptographically synced |
-| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`HARDENING_LOG.md`](HARDENING_LOG.md) | Tracked | Full 3-cycle, 10-pass red-team audit |
+| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`docs/literature-search-log.md`](docs/literature-search-log.md), [`HARDENING_LOG.md`](HARDENING_LOG.md) | Tracked | Full multi-cycle, 10-pass red-team audit |
 
 ---
 
@@ -148,10 +150,10 @@ See [`CITATION.cff`](CITATION.cff) and [`CITATION.bib`](CITATION.bib):
 ```bibtex
 @misc{donahue2026megaatlas,
   author  = {Donahue, Alexander Stephen},
-  title   = {Unsolved Problems Mega-Atlas (V2.4.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Formal Invariant Suite, and Deterministic Research Infrastructure Across 1,900 Open Problems},
+  title   = {Unsolved Problems Mega-Atlas (V2.5.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Formal Invariant Suite, and Deterministic Research Infrastructure Across 1,900 Open Problems},
   year    = {2026},
   month   = nov,
-  version = {2.4.0},
+  version = {2.5.0},
   url     = {https://github.com/0thernes/unsolved-problems-mega-atlas},
   note    = {ORCID: 0009-0006-8168-9648. Master Archive ID: 0TH-BUILD-007.}
 }

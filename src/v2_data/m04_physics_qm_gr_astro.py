@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 4 of V2.0 Mega-Atlas: Fundamental Physics & Cosmos (195 Problems).
 
 Superdomains:

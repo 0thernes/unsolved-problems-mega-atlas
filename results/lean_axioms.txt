@@ -82,6 +82,16 @@
 'MegaAtlasProofs.NonVacuity.nonvac_gradient_and_margin_extremes' does not depend on any axioms
 'MegaAtlasProofs.NonVacuity.nonvac_taxonomy_cross_pillar_witness' does not depend on any axioms
 'MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AdversarialTests.refute_css_strictly_below_10000' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_age_saturates_at_299' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_titan_strictly_below_1000' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_Q1_leverage_ge_57' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_Q2_leverage_ge_56' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_superdomain_count_27' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_handshaking_factor_3' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.AdversarialTests.refute_autoresearch_keeps_failed_gates' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_apex_keystone_at_2_adjacent' does not depend on any axioms
+'MegaAtlasProofs.AdversarialTests.refute_trans_pillar_at_2999_bps' does not depend on any axioms
 'MegaAtlasProofs.Palomar.m1_scoring_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m3_taxonomy_invariants' depends on axioms: [propext]
@@ -89,4 +99,5 @@
 'MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.m7_nonvacuity_certificate' depends on axioms: [propext, Quot.sound]
+'MegaAtlasProofs.Palomar.m8_adversarial_refutations' depends on axioms: [propext, Quot.sound]
 'MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants' depends on axioms: [propext, Quot.sound]

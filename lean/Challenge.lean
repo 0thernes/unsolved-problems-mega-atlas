@@ -94,11 +94,27 @@ def M7_NonVacuityCertificate : Prop :=
   (computeEra (-500) = .antiquity ∧ computeEra 2000 = .twentyFirstC) ∧
   (sumNat (sampleVertices.map (fun x => degreeOf x sampleEdges)) = 2 * sampleEdges.length ∧
    crossPillarCount sampleSuperdomain sampleEdges = 2) ∧
-  (shouldKeep true 9169 9649 = true ∧ shouldKeep false 9649 10000 = false) ∧
+  (shouldKeep true 8026 8026 = false ∧ shouldKeep true 8026 8193 = true ∧
+   shouldKeep true 9559 9799 = true ∧ shouldKeep false 9799 10000 = false) ∧
   (classifyMarginRole 3 5 4000 = .apexKeystone ∧
    classifyMarginRole 2 3 3000 = .transPillarMargin ∧
    classifyMarginRole 2 3 2999 = .intraPillarBridge ∧
    classifyMarginRole 0 0 0 = .coreSpecialist)
+
+def M8_AdversarialRefutations : Prop :=
+  (¬ (∀ d c a t : Nat, d ≤ 100 → c ≤ 100 → a ≤ 100 → cssBps d c a t < 10000)) ∧
+  (¬ (∀ age : Nat, 299 ≤ age → ageScoreCentis age = 10000)) ∧
+  (¬ (∀ d i r degT : Nat, 1 ≤ d → d ≤ 10 → 1 ≤ i → i ≤ 10 → 1 ≤ r → r ≤ 10 → degT ≤ 100 →
+      titanCentis d i r degT < 1000)) ∧
+  (¬ (∀ imp tr : Nat, classifyQuadrant imp tr = .Q1 → 57 ≤ leverageTenths imp tr)) ∧
+  (¬ (∀ imp tr : Nat, classifyQuadrant imp tr = .Q2 → 56 ≤ leverageTenths imp tr)) ∧
+  (¬ (allSuperdomains.length = 27)) ∧
+  (¬ (∀ (vs : List Nat), vs.Nodup → ∀ (es : List (Edge Nat)),
+      (∀ e ∈ es, e.u ∈ vs ∧ e.v ∈ vs) →
+      sumNat (vs.map (fun x => degreeOf x es)) = 3 * es.length)) ∧
+  (¬ (∃ best cand : Nat, shouldKeep false best cand = true)) ∧
+  (¬ (∀ adj crossSD bps : Nat, adj ≥ 2 → classifyMarginRole adj crossSD bps = .apexKeystone)) ∧
+  (¬ (∀ adj crossSD bps : Nat, adj ≥ 1 → bps ≥ 2999 → classifyMarginRole adj crossSD bps = .transPillarMargin))
 
 def AllMegaAtlasInvariants : Prop :=
   M1_ScoringInvariants ∧
@@ -107,7 +123,8 @@ def AllMegaAtlasInvariants : Prop :=
   M4_GraphAndDedupInvariants ∧
   M5_AutoResearchRatchetInvariants ∧
   M6_LayerGradientMarginInvariants ∧
-  M7_NonVacuityCertificate
+  M7_NonVacuityCertificate ∧
+  M8_AdversarialRefutations
 
 end
 

@@ -62,50 +62,9 @@ jobs:
           sudo apt-get update && sudo apt-get install -y bubblewrap
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Clean build, 92-theorem axiom audit & 6-kernel replay (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
-        working-directory: lean
+      - name: Clean build, 103-theorem axiom audit & 6-kernel replay (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
         run: |
-          elan show
-          lake build
-          lake env lean MegaAtlasProofs/VerifyAxioms.lean > /tmp/ci_axioms.txt
-          cat /tmp/ci_axioms.txt
-          ! grep -E "sorryAx|_native|Lean\.ofReduceBool|Lean\.trustCompiler|Classical\.choice" /tmp/ci_axioms.txt
-          diff -u --strip-trailing-cr ../results/lean_axioms.txt /tmp/ci_axioms.txt
-          lake env leanchecker Solution
-          lake env leanchecker PalomarSolution
-          lake env leanchecker-paranoid Solution
-          lake env leanchecker-paranoid PalomarSolution
-          lake env leanexport PalomarSolution -- MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants MegaAtlasProofs.NonVacuity.nonvac_all_hypotheses > /tmp/PalomarSolution.export
-          lake env con-leche --verified /tmp/PalomarSolution.export
-          lake env con-ron --verified /tmp/PalomarSolution.export
-          cat << 'EOF' > /tmp/nanoda.json
-          {
-            "export_file_path": "/tmp/PalomarSolution.export",
-            "use_stdin": false,
-            "permitted_axioms": ["propext", "Quot.sound"],
-            "unpermitted_axiom_hard_error": true,
-            "nat_extension": true,
-            "string_extension": true
-          }
-          EOF
-          lake env nanoda_bin /tmp/nanoda.json
-          lake check --paranoid
-          lake build PalomarChallenge
-          lake env leanexport PalomarChallenge -- \
-            Quot Quot.mk Quot.lift Quot.ind propext Quot.sound \
-            MegaAtlasProofs.Palomar.m1_scoring_invariants \
-            MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants \
-            MegaAtlasProofs.Palomar.m3_taxonomy_invariants \
-            MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants \
-            MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants \
-            MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants \
-            MegaAtlasProofs.Palomar.m7_nonvacuity_certificate \
-            MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants \
-            Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble \
-            Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight \
-            String.ofList Char.ofNat List eagerReduce Nat String String.mk Char \
-            optParam autoParam semiOutParam outParam > /tmp/PalomarChallenge.export
-          lake comparator --config comparator.json --challenge-from-export=/tmp/PalomarChallenge.export --paranoid
+          bash scripts/verify_lean_six_kernels.sh
 
   white-paper-and-provenance:
     name: AMS-LaTeX White Paper, Checksums, Secret Audit & SLSA Provenance
@@ -134,11 +93,12 @@ jobs:
           tar -xzf dist/arxiv_submission.tar.gz -C /tmp/arxiv_verify
           (cd /tmp/arxiv_verify && tectonic -X compile main.tex)
           python scripts/check_citations.py
-      - name: Attest frozen white paper PDF, arXiv tarball & CHECKSUMS provenance on main push
+      - name: Attest frozen white paper PDF, arXiv tarball, Lean axiom report & CHECKSUMS provenance on main push
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/attest-build-provenance@v2
         with:
           subject-path: |
             dist/Donahue_2026_unsolved_problems_mega_atlas.pdf
             dist/arxiv_submission.tar.gz
+            results/lean_axioms.txt
             CHECKSUMS.sha256

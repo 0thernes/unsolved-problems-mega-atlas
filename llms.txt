@@ -1,6 +1,6 @@
-# Unsolved Problems Mega-Atlas (v2.4.0)
+# Unsolved Problems Mega-Atlas (v2.5.0)
 
-> Exhaustive, cryptographically audited cross-disciplinary open-problem research infrastructure: 1,900 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0 dangling links), paired with 92 Pure Lean 4.35.0 formal invariant theorems across 6 independent kernels, a 10-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), a 10-tool stdio MCP server, and an immutable Karpathy-style AutoResearch harness (AQS = 97.99).
+> Exhaustive, cryptographically audited cross-disciplinary open-problem research infrastructure: 1,900 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0 dangling links), paired with 103 Pure Lean 4.35.0 formal invariant theorems across 6 independent kernels, an 11-page AMS-LaTeX white paper, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), a 10-tool stdio MCP server, and an immutable Karpathy-style AutoResearch harness (AQS = 97.99).
 
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
 - **Dual License:** Data/Figures/White Paper `CC-BY-4.0` · Code/Lean/RAG/MCP `Apache-2.0`
@@ -19,9 +19,9 @@
 
 ## Formal Proofs, White Paper & Interactive Interfaces
 
-- [AMS-LaTeX White Paper PDF](https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/dist/Donahue_2026_unsolved_problems_mega_atlas.pdf): 10-page publication-grade Tectonic PDF (`0` overfull hboxes)
+- [AMS-LaTeX White Paper PDF](https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/dist/Donahue_2026_unsolved_problems_mega_atlas.pdf): 11-page publication-grade Tectonic PDF (`0` overfull hboxes)
 - [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): WCAG 2.2 AA browser explorer for all 1,900 problems & 15 charts
-- [Interactive Lean 4.35.0 Proof Blueprint](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/): SVG dependency DAG & module inventory for all 92 audited theorems
+- [Interactive Lean 4.35.0 Proof Blueprint](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/): SVG dependency DAG & module inventory for all 103 audited theorems
 - [Verbatim Lean Axiom Audit](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/results/lean_axioms.txt): All 92 `#print axioms` lines (`⊆ [propext, Quot.sound]`)
 - [FAIR Metadata (Croissant 1.0)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/croissant.json): MLCommons Croissant JSON-LD descriptor
 - [FAIR Metadata (RO-Crate 1.1)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/ro-crate-metadata.json): W3C RO-Crate JSON-LD descriptor

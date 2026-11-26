@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 9 (V2.0 Mega-Atlas, Nov 20 2026 Edition):
 Philosophy, Metaphysics, Epistemology & Ethics (PHIL-001..PHIL-060, 60 problems)
 Economics, Game Theory, Finance & Social Systems (ECON-001..ECON-055, 55 problems)

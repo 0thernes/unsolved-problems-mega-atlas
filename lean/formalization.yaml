@@ -1,16 +1,17 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 # SPDX-License-Identifier: Apache-2.0
 version: "v0.4"
-release_version: "2.4.0"
+release_version: "2.5.0"
 
 project:
   name: "Unsolved Problems Mega-Atlas Formal Invariant Suite (MegaAtlasProofs)"
   description: >-
-    Zero-Mathlib Lean 4.35.0 formalization of 92 audited theorems (72 core module
-    theorems + 12 concrete non-vacuity and negative-boundary witnesses + 8 headline
-    Palomar comparator theorems) certifying the exact scoring functions (0thernes CSS,
-    300-year antiquity saturation, Titan Index, Near-Term Leverage), 4-quadrant and
-    6-era classifiers, 8-Macro-Pillar x 28-Superdomain taxonomic partition, finite
+    Zero-Mathlib Lean 4.35.0 formalization of 103 audited theorems (72 core module
+    theorems + 12 concrete non-vacuity and negative-boundary witnesses + 10
+    constructive adversarial definition refutations + 9 headline Palomar comparator
+    theorems) certifying the exact scoring functions (0thernes CSS, 300-year
+    antiquity saturation, Titan Index, Near-Term Leverage), 4-quadrant and 6-era
+    classifiers, 8-Macro-Pillar x 28-Superdomain taxonomic partition, finite
     undirected Handshaking Lemma and cross-partition edge hierarchy, first-occurrence
     deduplication cardinality bound, Karpathy-style AutoResearch anti-reward-hacking
     keep/discard ratchet, pairwise comparison antisymmetry, and 8-substrate x 7-layer
@@ -38,7 +39,7 @@ classification:
     - "05C90"
 
 sources:
-  - title: "Unsolved Problems Mega-Atlas (V2.4.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
+  - title: "Unsolved Problems Mega-Atlas (V2.5.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
     authors:
       - "Alexander Stephen Donahue"
     id: "https://github.com/0thernes/unsolved-problems-mega-atlas"
@@ -98,6 +99,11 @@ status:
       axioms: ["propext", "Quot.sound"]
       comparator_config: "lean/comparator.json"
     - declaration: "MegaAtlasProofs.Palomar.m7_nonvacuity_certificate"
+      file: "lean/PalomarSolution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Quot.sound"]
+      comparator_config: "lean/comparator.json"
+    - declaration: "MegaAtlasProofs.Palomar.m8_adversarial_refutations"
       file: "lean/PalomarSolution.lean"
       sorry_count: 0
       axioms: ["propext", "Quot.sound"]

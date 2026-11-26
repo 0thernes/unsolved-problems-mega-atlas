@@ -1,4 +1,4 @@
-# Model Context Protocol (MCP) Stdio Server (`v2.4.0`)
+# Model Context Protocol (MCP) Stdio Server (`v2.5.0`)
 
 Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **10 grounded scientific research tools** over the 1,900-problem Unsolved Problems Mega-Atlas. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio, and automatically builds `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh git clones.
 
@@ -15,8 +15,8 @@ Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **10
 6. `get_pillar_summary` — 8-Macro-Pillar quantitative scorecard.
 7. `get_substrate_layer_summary` — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix.
 8. `get_margin_and_gradient_extremes` — Steepest `D−T` chasms, highest tractability margins, CSS–Titan divergences, and Apex Multi-Pillar Keystones.
-9. `list_author_frontier_contributions` — 7 companion author preprints (`0thernes-research-archive`) with explicit COI, non-peer-reviewed status, and `0/1,900` overarching Atlas parents retired.
-10. `get_atlas_provenance` — Author/ORCID, 92-theorem 6-kernel Lean 4.35.0 audit status, dual license, and summary stats.
+9. `list_author_frontier_contributions` — 10 companion archive entries (`0thernes-research-archive`) with explicit COI, non-peer-reviewed status, and `0/1,900` overarching Atlas parents retired.
+10. `get_atlas_provenance` — Author/ORCID, 103-theorem 6-kernel Lean 4.35.0 audit status, dual license, and summary stats.
 
 ## Client Configuration (Claude Code / Antigravity / Cursor / Gemini CLI)
 

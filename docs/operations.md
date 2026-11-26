@@ -26,7 +26,7 @@ Because `git` history + source modules deterministically regenerate every derive
 2. **GitHub remote + pinned master archive submodule:** `https://github.com/0thernes/unsolved-problems-mega-atlas` and `https://github.com/0thernes/0thernes-research-archive` (`0TH-BUILD-007`)
 3. **Periodic portable git bundle backup** created via:
    ```bash
-   git bundle create <offsite-dir>/unsolved-problems-mega-atlas-v2.4.0.bundle --all
+   git bundle create <offsite-dir>/unsolved-problems-mega-atlas-v2.5.0.bundle --all
    ```
 
 ### Tested Restore Verification Log

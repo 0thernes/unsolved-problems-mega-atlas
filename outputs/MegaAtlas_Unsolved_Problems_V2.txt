@@ -1,12 +1,12 @@
 ====================================================================================================================
-  V2.4.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
+  V2.5.0 MEGA-ATLAS OF HUMANITY'S 1,900 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
   Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)
-  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 5,808 Edges (0 Art. Pts) | 92 Pure Lean 4.35.0 Theorems (6 Kernels)
+  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 5,808 Edges (0 Art. Pts) | 103 Pure Lean 4.35.0 Theorems (6 Kernels)
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.4.0
+  atlas_version                       : 2.5.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
@@ -49,7 +49,7 @@
   total_benchmarks                    : 20
   total_contrasts                     : 15
   total_external_registries           : 13
-  total_author_frontier_preprints     : 7
+  total_author_frontier_preprints     : 10
 
 [2] NOVEMBER 25, 2026 AI PROOF-CLAIM VERIFICATION AUDIT
 --------------------------------------------------------------------------------------------------------------------

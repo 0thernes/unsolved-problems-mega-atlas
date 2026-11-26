@@ -23,19 +23,45 @@ BIB_PATH = ROOT / "paper" / "refs.bib"
 
 
 def check_doi(doi: str, timeout: int = 15) -> tuple[bool, str]:
-    """Verify DOI registration directly via the authoritative DOI Handle REST API."""
-    api_url = f"https://doi.org/api/handles/{urllib.parse.quote(doi.strip(), safe='/')}"
-    req = urllib.request.Request(api_url, headers={"User-Agent": "0thernes-CitationVerifier/2.4"}, method="GET")
+    """Verify DOI registration via DOI Handle REST API + Crossref retraction check (Playbook Item 16)."""
+    clean_doi = doi.strip()
+    api_url = f"https://doi.org/api/handles/{urllib.parse.quote(clean_doi, safe='/')}"
+    req = urllib.request.Request(api_url, headers={"User-Agent": "0thernes-CitationVerifier/2.5"}, method="GET")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            if resp.getcode() == 200:
-                payload = json.loads(resp.read().decode("utf-8"))
-                if payload.get("responseCode") == 1:
-                    return True, "DOI OK (200)"
+            if resp.getcode() != 200:
+                return False, f"HTTP {resp.getcode()}"
+            payload = json.loads(resp.read().decode("utf-8"))
+            if payload.get("responseCode") != 1:
                 return False, f"DOI code {payload.get('responseCode')}"
-            return False, f"HTTP {resp.getcode()}"
     except Exception as exc:
         return False, str(exc)
+
+    # Crossref retraction check for published journal/proceedings DOIs (non-DataCite/Zenodo)
+    if not clean_doi.lower().startswith("10.5281/zenodo."):
+        cr_url = f"https://api.crossref.org/works/{urllib.parse.quote(clean_doi, safe='/')}"
+        cr_req = urllib.request.Request(
+            cr_url,
+            headers={"User-Agent": "0thernes-CitationVerifier/2.5 (mailto:0_0@0thernes.art)"},
+            method="GET",
+        )
+        try:
+            with urllib.request.urlopen(cr_req, timeout=timeout) as cr_resp:
+                if cr_resp.getcode() == 200:
+                    msg = json.loads(cr_resp.read().decode("utf-8")).get("message", {})
+                    updates = msg.get("update-to", []) or []
+                    rel = msg.get("relation", {}) or {}
+                    retracted = any(
+                        "retract" in str(u.get("type", "")).lower() or "withdraw" in str(u.get("type", "")).lower()
+                        for u in updates
+                    ) or ("is-retracted-by" in rel)
+                    if retracted:
+                        return False, "RETRACTED (Crossref)"
+                    return True, "DOI+CR OK"
+        except Exception:
+            # Handle API succeeded; Crossref transient unavailability should not false-fail valid DOI
+            return True, "DOI OK (200)"
+    return True, "DOI OK (200)"
 
 
 def check_url(url: str, timeout: int = 15) -> tuple[bool, str]:

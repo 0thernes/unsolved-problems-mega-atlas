@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """V2.0 Mega-Atlas Module 3: Mathematical Logic, Set Theory & Computability (55),
 Probability, Stochastic Processes & Statistics (60), and
 Computer Science, Complexity, Crypto & Info Theory (65).

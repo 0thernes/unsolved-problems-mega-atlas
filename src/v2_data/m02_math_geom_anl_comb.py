@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC-BY-4.0
+# Copyright (c) 2026 Alexander Stephen Donahue
 """Module 2 of V2.0 Mega-Atlas: Pure Mathematics — Geometry & Topology (70),
 Analysis, Calculus, PDEs & Dynamics (65), and Combinatorics & Graph Theory (65).
 Total: 200 authentic, non-duplicate unsolved / open / hard mathematical problems (Nov 20, 2026 Edition).

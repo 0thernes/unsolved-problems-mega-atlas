@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.4.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
+"""V2.5.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
 
 import os
 import textwrap
@@ -109,6 +109,10 @@ def save_fig(fig, stem: str, bg="#FFFFFF"):
     svg = os.path.join(OUT_DIR, f"{stem}.svg")
     fig.savefig(png, dpi=220, bbox_inches="tight", facecolor=bg)
     fig.savefig(svg, bbox_inches="tight", facecolor=bg)
+    with open(svg, "rb") as f_svg:
+        svg_bytes = f_svg.read().replace(b"\r\n", b"\n")
+    with open(svg, "wb") as f_svg:
+        f_svg.write(svg_bytes)
     if stem in PAPER_PDF_EXPORTS:
         pdf = os.path.join(PAPER_FIG_DIR, PAPER_PDF_EXPORTS[stem])
         fig.savefig(pdf, bbox_inches="tight", facecolor=bg)
@@ -761,7 +765,8 @@ def chart_13_substrates_and_layers(data):
     ax2.grid(axis="x", linestyle="--", alpha=0.6)
     ax2.set_axisbelow(True)
 
-    fig.suptitle("Multi-Layer Reality Stack: 8 Physical/Formal Substrates × 7 Abstraction Layers (V2.4.0)", fontsize=14.6, fontweight="bold", y=1.01)
+    ver = data["summary_stats"]["atlas_version"]
+    fig.suptitle(f"Multi-Layer Reality Stack: 8 Physical/Formal Substrates × 7 Abstraction Layers (V{ver})", fontsize=14.6, fontweight="bold", y=1.01)
     plt.tight_layout()
     save_fig(fig, "13_substrates_and_abstraction_layers")
 
@@ -932,7 +937,8 @@ def chart_15_spectrum_and_autoresearch(data):
     ax2.legend(loc="lower right", fontsize=8.2, frameon=True, facecolor="white")
     ax2.grid(True, linestyle="--", alpha=0.55)
 
-    fig.suptitle("Epistemic Spectrum Topography & Autonomous Research Verification Trajectory (V2.4.0)", fontsize=14.4, fontweight="bold", y=1.01)
+    ver = data["summary_stats"]["atlas_version"]
+    fig.suptitle(f"Epistemic Spectrum Topography & Autonomous Research Verification Trajectory (V{ver})", fontsize=14.4, fontweight="bold", y=1.01)
     plt.tight_layout()
     save_fig(fig, "15_epistemic_spectrum_and_autoresearch")
 
@@ -940,6 +946,7 @@ def chart_15_spectrum_and_autoresearch(data):
 def generate_social_preview(data):
     """Generate crisp 1280x640 (<1 MB) GitHub OpenGraph social preview card at docs/media/social-preview.png."""
     s = data["summary_stats"]
+    ver = s["atlas_version"]
     df_p = data["df_pillars"]
     fig = plt.figure(figsize=(12.8, 6.4), dpi=100)
     fig.patch.set_facecolor("#0B1120")
@@ -951,7 +958,7 @@ def generate_social_preview(data):
 
     # Subtle accent bar and header
     ax.add_patch(patches.Rectangle((0, 624), 1280, 16, facecolor="#38BDF8", edgecolor="none"))
-    ax.text(56, 565, "0THERNES OPEN-PROBLEM RESEARCH INFRASTRUCTURE  ·  V2.4.0  ·  NOV 2026",
+    ax.text(56, 565, f"0THERNES OPEN-PROBLEM RESEARCH INFRASTRUCTURE  ·  V{ver}  ·  NOV 2026",
             fontsize=11.5, fontweight="bold", color="#38BDF8", family="DejaVu Sans")
     ax.text(56, 495, "Unsolved Problems Mega-Atlas", fontsize=34, fontweight="bold", color="#F8FAFC")
     ax.text(56, 448, "1,900 Deduplicated Problems · 8 Pillars × 28 Superdomains × 8 Substrates × 7 Layers · 5,808 Biconnected Edges",
@@ -961,7 +968,7 @@ def generate_social_preview(data):
     cards = [
         (f"{s['total_problems']:,}", "OPEN & HARD PROBLEMS", "#38BDF8"),
         (f"{s['total_graph_edges']:,}", "BICONNECTED EDGES (0 APS)", "#34D399"),
-        ("6 / 6 KERNELS", "PURE LEAN 4.35.0 PALOMAR", "#A78BFA"),
+        ("6 / 6 KERNELS", "103 LEAN 4.35.0 THEOREMS", "#A78BFA"),
         ("100% MRR@5", "HYBRID RAG + 10-TOOL MCP", "#FBBF24"),
     ]
     for i, (val, lbl, col) in enumerate(cards):
@@ -1007,8 +1014,9 @@ def generate_social_preview(data):
 
 
 def main():
-    print("Loading V2.4.0 Mega-Atlas for 15 publication-grade charts + paper PDFs + social preview...")
     data = load_v2_master()
+    ver = data["summary_stats"]["atlas_version"]
+    print(f"Loading V{ver} Mega-Atlas for 15 publication-grade charts + paper PDFs + social preview...")
     chart_01_superdomain_landscape(data)
     chart_02_strategic_quadrant(data)
     chart_03_coupling_heatmap(data)
@@ -1025,7 +1033,7 @@ def main():
     chart_14_gradients_margins_adjacents(data)
     chart_15_spectrum_and_autoresearch(data)
     generate_social_preview(data)
-    print("All 15 V2.4.0 charts (30 PNG+SVG) + 5 vector PDF paper figures + social preview generated!")
+    print(f"All 15 V{ver} charts (30 PNG+SVG) + 5 vector PDF paper figures + social preview generated!")
 
 
 if __name__ == "__main__":

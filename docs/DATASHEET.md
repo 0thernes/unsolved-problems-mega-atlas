@@ -1,4 +1,4 @@
-# Datasheet for the Unsolved Problems Mega-Atlas (`v2.4.0`)
+# Datasheet for the Unsolved Problems Mega-Atlas (`v2.5.0`)
 
 > Structured according to Gebru et al. (2021), *"Datasheets for Datasets"*, Communications of the ACM 64(12).
 
@@ -25,7 +25,7 @@
 
 - **Deduplication & Alias Redirection:** `src/v2_loader.py` enforces exact `id`, normalized title (`_norm_name`), and explicit cross-field duplicate uniqueness (`1,912 → 1,900`, `12` overlaps merged) while routing every incoming cross-reference through `dedup_alias_map` so **`unresolved_raw_links_count == 0`** and the connectome is strictly **2-vertex-connected (`0` articulation points, `0` bridges)**.
 - **Formal & Automated Checks:**
-  - **92 Pure Lean 4.35.0 theorems** (`lean/`, zero Mathlib, zero `sorry` in `lean/`, `[propext, Quot.sound]`) verified across **6 independent proof kernels** via `lake comparator --paranoid`, including `12` concrete NonVacuity witnesses and `8` Palomar specifications.
+  - **103 Pure Lean 4.35.0 theorems** (`lean/`, zero Mathlib, zero `sorry` in `lean/`, `[propext, Quot.sound]`) verified across **6 independent proof kernels** via `scripts/verify_lean_six_kernels.sh`, including `12` concrete NonVacuity witnesses, `10` constructive AdversarialTests refutations, and `9` Palomar specifications.
   - **JSON Schema Draft 2020-12** (`schema/problem.schema.json`) validated on all 1,900 × 48 records.
   - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `6/6` (100%) mutation-kill audit, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 97.99`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
 
@@ -39,6 +39,6 @@
 
 ## 6. Distribution & Maintenance
 
-- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.4.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 10-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
+- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.5.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 11-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
 - **Licensing:** Dual-licensed — Data/Prose/Charts/White Paper under **CC BY 4.0** (`LICENSE`); Code/Schemas/RAG/MCP/Lean under **Apache-2.0** (`LICENSE-CODE`).
 - **Maintenance:** Maintained by Alexander Stephen Donahue (`0_0@0thernes.art`) via semantic versioning (`CHANGELOG.md`), structured 10-class GitHub Issue templates, and community academic review (`docs/ACADEMIC_REVIEW.md`).

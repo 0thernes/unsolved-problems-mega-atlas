@@ -9,9 +9,10 @@ public import MegaAtlasProofs.GraphInvariants
 public import MegaAtlasProofs.AutoResearchInvariants
 public import MegaAtlasProofs.LayerGradients
 public import MegaAtlasProofs.NonVacuity
+public import MegaAtlasProofs.AdversarialTests
 
 /-!
   MegaAtlasProofs.lean
   Root entry point for the Unsolved Problems Mega-Atlas Pure Lean 4.35.0
-  Formal Invariant Verification Suite (Alexander Stephen Donahue, v2.4.0).
+  Formal Invariant Verification Suite (Alexander Stephen Donahue, v2.5.0).
 -/

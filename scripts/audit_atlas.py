@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.4.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.5.0, Alexander Stephen Donahue).
 
 Checks:
   1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
@@ -148,7 +148,7 @@ def audit_lean(errors: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.4.0).")
+    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.5.0).")
     parser.add_argument("--sync-checksums", action="store_true", help="Regenerate CHECKSUMS.sha256 before auditing")
     parser.add_argument("--check-lean", action="store_true", help="Run Pure Lean 4.35.0 build & axiom audit")
     args = parser.parse_args()
@@ -232,8 +232,9 @@ def main() -> None:
             errors.append(f"SQLite row mismatch: {sql_cnt} vs {len(df)}")
         if sub_cnt != 8:
             errors.append(f"SQLite substrate_summary row mismatch: {sub_cnt} vs 8")
-        if auth_cnt != 7:
-            errors.append(f"SQLite author_frontier_contributions row mismatch: {auth_cnt} vs 7")
+        expected_auth = len(data["df_author_contributions"])
+        if auth_cnt != expected_auth:
+            errors.append(f"SQLite author_frontier_contributions row mismatch: {auth_cnt} vs {expected_auth}")
         if fts_cnt < 1:
             errors.append("SQLite FTS5 query returned 0 matches for 'Riemann'")
     finally:

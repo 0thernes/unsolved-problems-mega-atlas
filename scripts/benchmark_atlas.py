@@ -111,6 +111,8 @@ def main() -> None:
             w.writerow(header)
         w.writerow([ts, ver, sha, env_str, l_med, l_iqr, r_med, r_iqr, d_med, d_iqr, "PASS"])
 
+    html_path = ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html"
+    html_mb = html_path.stat().st_size / 1048576.0 if html_path.exists() else 0.0
     md = f"""# Reproducible Benchmarks — Unsolved Problems Mega-Atlas (`v{ver}`)
 
 Every benchmark executes **10 warmed runs** with explicit output-correctness assertions
@@ -135,7 +137,7 @@ numbers are reported.
 ## Memory & Artifact Size Budget
 
 - All git-tracked artifacts are strictly `< 5.0 MB` (Build Standard A24).
-- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to `< 3.5 MB` (`v2.4.0`) via external `charts/*.png` assets and columnar `COLS`/`ROWS` JSON encoding (~6× faster first paint on GitHub Pages).
+- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to **`{html_mb:.2f} MB`** (`< 4.0 MB` budget in `v{ver}`) via external `charts/*.png` assets and columnar `COLS`/`ROWS` JSON encoding (~5.4× smaller first-paint payload on GitHub Pages).
 """
     (ROOT / "docs" / "benchmarks.md").write_text(md, encoding="utf-8", newline="\n")
     print(f"BENCHMARK PASS: load={l_med:.4f}s (IQR {l_iqr:.4f}s) | rag={r_med:.4f}ms/q (IQR {r_iqr:.4f}ms) | diff1900={d_med:.4f}ms")

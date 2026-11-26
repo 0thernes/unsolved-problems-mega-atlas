@@ -39,6 +39,9 @@ public theorem m6_layer_gradient_margin_invariants : M6_LayerGradientMarginInvar
 public theorem m7_nonvacuity_certificate : M7_NonVacuityCertificate := by
   sorry
 
+public theorem m8_adversarial_refutations : M8_AdversarialRefutations := by
+  sorry
+
 public theorem prove_all_mega_atlas_invariants : AllMegaAtlasInvariants := by
   sorry
 

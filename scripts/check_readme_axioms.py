@@ -22,8 +22,8 @@ def main() -> None:
         sys.exit(1)
     axioms_txt = AXIOMS_PATH.read_text(encoding="utf-8").replace("\r\n", "\n").strip()
     lines = [ln for ln in axioms_txt.splitlines() if ln.strip()]
-    if len(lines) != 92:
-        print(f"FAIL: expected 92 axiom lines in {AXIOMS_PATH}, got {len(lines)}", file=sys.stderr)
+    if len(lines) != 103:
+        print(f"FAIL: expected 103 axiom lines in {AXIOMS_PATH}, got {len(lines)}", file=sys.stderr)
         sys.exit(1)
     for tok in FORBIDDEN:
         if tok in axioms_txt:
