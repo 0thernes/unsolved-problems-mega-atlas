@@ -8,14 +8,14 @@ An internal statement audit of this repository at commit `9e16554` (archive entr
 
 `README.md`, `CITATION.cff`, `lean/formalization.yaml`, `docs/faq.md`, `docs/METHODOLOGY.md`, `docs/AI_DISCLOSURE.md`, `docs/literature-search-log.md`, the companion rows in `src/v2_loader.py` and the MCP tool text were corrected in place. The files below are not edited in place, for one of two reasons. The paper source and PDF are frozen. `CLAIMS.md`, `LIMITATIONS.md`, `RANKING.md`, `docs/WHITE_PAPER.md`, `docs/DATASHEET.md` and the files under `outputs/` are hashed in `CHECKSUMS.sha256`, whose digest is bound by the DigiCert RFC 3161 (`CHECKSUMS.sha256.tsr`) and OpenTimestamps (`CHECKSUMS.sha256.ots`) proofs; changing them requires new timestamps, which is left to the maintainer. Until then the corrections here take precedence.
 
-### A. Unverified RH/GRH certification stated as fact
+### A. RH/GRH certification (re-checked 2026-11-26; the first version of this section was wrong)
 
-| Where | What is wrong | Correction | Affects a theorem statement? |
-|---|---|---|---|
-| `LIMITATIONS.md` §1 item 3 (line 9) | "Even where Lean multi-kernel certification succeeded (Alpöge/Claude RH/GRH archive on Nov 21, 2026)" states an extraordinary third-party claim as fact. No primary source (repository, paper or release) is cited, and none was found; a web search on 2026-11-26 returned only secondary posts about a Lean-checked critical-line zero-proportion result, which those posts say is not a proof of RH. | Read as: "An unverified report describes a Lean archive related to RH/GRH; no primary source has been confirmed. All 12 flagged problems stay unretired." | No |
-| `docs/WHITE_PAPER.md` §2 item 3 (line 30) | Describes a "~17M-line Lean 4 formal archive targeting the Riemann Hypothesis ... multi-kernel certified on November 21 by the Lean FRO & Mathlib Initiative" as fact. | Read as an unverified report with no confirmed primary source. | No |
-| `RANKING.md` rows `NT-001`, `NT-002` (lines 360-361); `outputs/MegaAtlas_Unsolved_Problems_V2.md` lines 13, 26, 28, 696, 700; `src/v2_data/m01_math_nt_alg.py` `NT-001` and `NT-002` notes (lines 151, 155, 170, 174); `src/v2_loader.py` registry row (line 82) and `AI_VERIFICATION_AUDIT_NOV2026` entry `AUDIT-01` (lines 98-101, status "CERTIFIED (Nov 21, 2026)") | The same certification is recorded as fact in the dataset. The dataset also mentions a Lean-checked 67.2% critical-line zero fraction, and the two may be conflated. | Read every such note as "reported, primary source not confirmed". The dataset rows are to be reworded in the next data release. | No |
-| `ERRATA.md` §1, row dated 2026-11-25 (`v2.4.0`, `NT-001`/`NT-002` audit notes) | That row describes the certification as an established event. | Superseded by this entry: the event is unverified. | No |
+The statements in `LIMITATIONS.md` §1 item 3, `docs/WHITE_PAPER.md` §2 item 3, `RANKING.md` (`NT-001`, `NT-002`), `outputs/MegaAtlas_Unsolved_Problems_V2.md`, `src/v2_data/m01_math_nt_alg.py` and `src/v2_loader.py` (`AUDIT-01`) that a Lean proof of the Riemann Hypothesis was released on 20 November 2026 and certified on 21 November 2026 are supported by primary sources:
+
+- the joint statement of the Lean FRO and the Mathlib Initiative of 21 November 2026, which certifies the statement and the proof of the Riemann Hypothesis in Levent Alpöge's Lean library as correct: <https://leanprover-community.github.io/blog/posts/riemann-hypothesis/>;
+- M. Rubinstein's page on the Alpöge/Claude proof of the Generalized Riemann Hypothesis, which reports independent Lean verification checks dated 21 November 2026: <https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/>.
+
+Those files should cite these sources. The first version of this section, written earlier in the same audit pass, called the certification unverified because the audit's search had not found these sources; that was wrong and is withdrawn, and the 2026-11-25 row (`v2.4.0`) below stands. Whether the Atlas marks `NT-001` and `NT-002` as retired is an editorial decision for the maintainer; the dataset keeps both unretired pending a human-readable paper and community review. None of this is a result of the author's own work.
 
 ### B. Scope of the Lean suite
 
