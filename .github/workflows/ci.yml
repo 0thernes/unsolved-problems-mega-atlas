@@ -90,7 +90,17 @@ jobs:
           EOF
           lake env nanoda_bin /tmp/nanoda.json
           lake check --paranoid
-          lake comparator --config comparator.json --paranoid
+          lake build PalomarChallenge
+          lake env leanexport PalomarChallenge -- \
+            MegaAtlasProofs.Palomar.m1_scoring_invariants \
+            MegaAtlasProofs.Palomar.m2_quadrant_and_era_invariants \
+            MegaAtlasProofs.Palomar.m3_taxonomy_invariants \
+            MegaAtlasProofs.Palomar.m4_graph_and_dedup_invariants \
+            MegaAtlasProofs.Palomar.m5_autoresearch_ratchet_invariants \
+            MegaAtlasProofs.Palomar.m6_layer_gradient_margin_invariants \
+            MegaAtlasProofs.Palomar.m7_nonvacuity_certificate \
+            MegaAtlasProofs.Palomar.prove_all_mega_atlas_invariants > /tmp/PalomarChallenge.export
+          lake comparator --config comparator.json --challenge-from-export=/tmp/PalomarChallenge.export --paranoid
 
   white-paper-and-provenance:
     name: AMS-LaTeX White Paper, Checksums, Secret Audit & SLSA Provenance
@@ -100,20 +110,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Verify committed SHA-256 manifests, <5 MB tracked hygiene & secret scan
+        run: |
+          sha256sum -c CHECKSUMS.sha256
+          (cd data && sha256sum -c MANIFEST.sha256)
+          python -c "import subprocess, pathlib, sys; files = subprocess.check_output(['git','ls-files']).decode().splitlines(); big = [(f, pathlib.Path(f).stat().st_size) for f in files if pathlib.Path(f).exists() and pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, f'Tracked files >= 5MB: {big}'; print(f'PASS: All {len(files)} tracked files < 5 MB!')"
+          ! grep -rnE "ghp_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" --exclude-dir=.git --exclude-dir=.lake .
       - name: Install Tectonic
         run: |
           curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
           echo "$PWD" >> "$GITHUB_PATH"
       - name: Compile AMS-LaTeX white paper (0 overfull hboxes), verify clean-room arXiv tarball & live citations
         run: |
-          python scripts/build_paper.py
+          mkdir -p paper/build
+          (cd paper && tectonic -X compile main.tex --outdir build --keep-logs --keep-intermediates)
+          ! grep -E "Overfull \\\\hbox|LaTeX Warning: Reference .* undefined|LaTeX Warning: Citation .* undefined" paper/build/main.log
+          mkdir -p /tmp/arxiv_verify
+          tar -xzf dist/arxiv_submission.tar.gz -C /tmp/arxiv_verify
+          (cd /tmp/arxiv_verify && tectonic -X compile main.tex)
           python scripts/check_citations.py
-      - name: Verify SHA-256 manifests, <5 MB tracked hygiene & secret scan
-        run: |
-          sha256sum -c CHECKSUMS.sha256
-          (cd data && sha256sum -c MANIFEST.sha256)
-          python -c "import subprocess, pathlib, sys; files = subprocess.check_output(['git','ls-files']).decode().splitlines(); big = [(f, pathlib.Path(f).stat().st_size) for f in files if pathlib.Path(f).exists() and pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, f'Tracked files >= 5MB: {big}'; print(f'PASS: All {len(files)} tracked files < 5 MB!')"
-          ! grep -rnE "ghp_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{30,}|AKIA[0-9A-Z]{16}|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" --exclude-dir=.git --exclude-dir=.lake .
       - name: Attest frozen white paper PDF, arXiv tarball & CHECKSUMS provenance on main push
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/attest-build-provenance@v2
