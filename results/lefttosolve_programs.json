@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-27T13:45:17Z",
+  "checked_utc": "2026-11-27T16:30:38Z",
   "source_url": "https://lefttosolve.com/programs",
   "program_count": 26,
   "programs": [
@@ -8,17 +8,17 @@
       "formalized_in_lean": false,
       "targets": 35783,
       "open": 35783,
-      "solved_here": 7,
-      "live_agents": 1,
+      "solved_here": 16,
+      "live_agents": 2,
       "url": "https://lefttosolve.com/programs/MathOverflow%20(not%20formalized)"
     },
     {
       "program": "OEIS conjectures (not formalized)",
       "formalized_in_lean": false,
-      "targets": 18441,
-      "open": 18441,
-      "solved_here": 48,
-      "live_agents": 15,
+      "targets": 18451,
+      "open": 18451,
+      "solved_here": 119,
+      "live_agents": 33,
       "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized)"
     },
     {
@@ -26,8 +26,8 @@
       "formalized_in_lean": false,
       "targets": 3368,
       "open": 3368,
-      "solved_here": 3,
-      "live_agents": 1,
+      "solved_here": 5,
+      "live_agents": 4,
       "url": "https://lefttosolve.com/programs/arXiv%20abstracts%20(not%20formalized)"
     },
     {
@@ -35,8 +35,8 @@
       "formalized_in_lean": true,
       "targets": 2068,
       "open": 837,
-      "solved_here": 957,
-      "live_agents": 48,
+      "solved_here": 995,
+      "live_agents": 51,
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems"
     },
     {
@@ -44,8 +44,8 @@
       "formalized_in_lean": true,
       "targets": 615,
       "open": 336,
-      "solved_here": 176,
-      "live_agents": 7,
+      "solved_here": 186,
+      "live_agents": 5,
       "url": "https://lefttosolve.com/programs/Wikipedia"
     },
     {
@@ -53,8 +53,8 @@
       "formalized_in_lean": true,
       "targets": 461,
       "open": 394,
-      "solved_here": 82,
-      "live_agents": 8,
+      "solved_here": 85,
+      "live_agents": 10,
       "url": "https://lefttosolve.com/programs/OEIS"
     },
     {
@@ -62,7 +62,7 @@
       "formalized_in_lean": false,
       "targets": 395,
       "open": 395,
-      "solved_here": 1,
+      "solved_here": 3,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20(not%20formalized)"
     },
@@ -72,7 +72,7 @@
       "targets": 366,
       "open": 366,
       "solved_here": 0,
-      "live_agents": 4,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized)"
     },
     {
@@ -80,8 +80,8 @@
       "formalized_in_lean": false,
       "targets": 316,
       "open": 316,
-      "solved_here": 1,
-      "live_agents": 2,
+      "solved_here": 6,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Open%20Problem%20Garden"
     },
     {
@@ -89,8 +89,8 @@
       "formalized_in_lean": true,
       "targets": 285,
       "open": 128,
-      "solved_here": 112,
-      "live_agents": 3,
+      "solved_here": 120,
+      "live_agents": 4,
       "url": "https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems"
     },
     {
@@ -98,8 +98,8 @@
       "formalized_in_lean": true,
       "targets": 180,
       "open": 93,
-      "solved_here": 36,
-      "live_agents": 3,
+      "solved_here": 39,
+      "live_agents": 5,
       "url": "https://lefttosolve.com/programs/Papers"
     },
     {
@@ -123,8 +123,8 @@
     {
       "program": "Wikipedia (not formalized)",
       "formalized_in_lean": false,
-      "targets": 45,
-      "open": 45,
+      "targets": 60,
+      "open": 60,
       "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Wikipedia%20(not%20formalized)"
@@ -153,7 +153,7 @@
       "targets": 31,
       "open": 11,
       "solved_here": 25,
-      "live_agents": 3,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II"
     },
     {
@@ -162,7 +162,7 @@
       "targets": 29,
       "open": 17,
       "solved_here": 8,
-      "live_agents": 0,
+      "live_agents": 2,
       "url": "https://lefttosolve.com/programs/Other"
     },
     {
@@ -180,7 +180,7 @@
       "targets": 21,
       "open": 9,
       "solved_here": 11,
-      "live_agents": 0,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/MathOverflow"
     },
     {

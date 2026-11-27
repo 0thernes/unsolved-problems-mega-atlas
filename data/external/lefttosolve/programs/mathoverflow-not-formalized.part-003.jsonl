@@ -1,5 +1,3 @@
-{"difficulty":55,"fields":["Differential Geometry"],"id":"mo-92664","kind":"unformalized","prize":null,"solved":false,"title":"maximum entropy probability distribution on $SO(3)$ given Frechet mean and variance","url":"https://lefttosolve.com/p/mo-92664"}
-{"difficulty":55,"fields":["Uncategorised"],"id":"mo-92679","kind":"unformalized","prize":null,"solved":false,"title":"lifting abelian varieties","url":"https://lefttosolve.com/p/mo-92679"}
 {"difficulty":55,"fields":["Harmonic Analysis"],"id":"mo-92680","kind":"unformalized","prize":null,"solved":false,"title":"approximation of holomorphic functions on a halfplane.","url":"https://lefttosolve.com/p/mo-92680"}
 {"difficulty":55,"fields":["Algebraic Geometry","Harmonic Analysis"],"id":"mo-92685","kind":"unformalized","prize":null,"solved":false,"title":"Hausdorff distance on algebraic curves","url":"https://lefttosolve.com/p/mo-92685"}
 {"difficulty":55,"fields":["Number Theory"],"id":"mo-92710","kind":"unformalized","prize":null,"solved":false,"title":"Alternate Definition(s) for (Ir)regular Primes","url":"https://lefttosolve.com/p/mo-92710"}
@@ -18,7 +16,7 @@
 {"difficulty":55,"fields":["Harmonic Analysis"],"id":"mo-92969","kind":"unformalized","prize":null,"solved":false,"title":"harmonic function and MVP","url":"https://lefttosolve.com/p/mo-92969"}
 {"difficulty":55,"fields":["General Algebra","Group Theory"],"id":"mo-92986","kind":"unformalized","prize":null,"solved":false,"title":"Extensions of $Z/p$ by $Z/p$ and uniqueness of cokernels","url":"https://lefttosolve.com/p/mo-92986"}
 {"difficulty":55,"fields":["Convex & Discrete Geometry"],"id":"mo-93008","kind":"unformalized","prize":null,"solved":false,"title":"The area of the intersection of convex sets with prescribed pairwise intersections","url":"https://lefttosolve.com/p/mo-93008"}
-{"difficulty":55,"fields":["General Algebra"],"id":"mo-93022","kind":"unformalized","prize":null,"solved":false,"title":"connectivity in automata by words of length n-1","url":"https://lefttosolve.com/p/mo-93022"}
+{"difficulty":55,"fields":["General Algebra"],"id":"mo-93022","kind":"open","prize":null,"solved":true,"title":"connectivity in automata by words of length n-1","url":"https://lefttosolve.com/p/mo-93022"}
 {"difficulty":55,"fields":["Probability"],"id":"mo-93031","kind":"unformalized","prize":null,"solved":false,"title":"what books to read to quickly understand adiabatic approximation","url":"https://lefttosolve.com/p/mo-93031"}
 {"difficulty":55,"fields":["Number Theory"],"id":"mo-93059","kind":"unformalized","prize":null,"solved":false,"title":"Structure of the algebra of mod $p$ modular forms","url":"https://lefttosolve.com/p/mo-93059"}
 {"difficulty":55,"fields":["Logic & Foundations"],"id":"mo-93067","kind":"unformalized","prize":null,"solved":false,"title":"A least model contains a given model and a given set","url":"https://lefttosolve.com/p/mo-93067"}

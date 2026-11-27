@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "source": "https://lefttosolve.com/programs",
   "api": "https://lefttosolve.com/api/problems",
-  "retrieved_utc": "2026-11-27T05:42:29Z",
+  "retrieved_utc": "2026-11-27T16:30:33Z",
   "kept_fields": [
     "id",
     "title",
@@ -14,24 +14,24 @@
     "url"
   ],
   "policy": "Metadata mirror only; no statement excerpts; never mutates the frozen Mega-Atlas dataset.",
-  "crosswalk_matches": 290,
+  "crosswalk_matches": 291,
   "solved_by_kind": {
-    "open": 0,
-    "known": 196,
-    "warmup": 13,
+    "open": 228,
+    "known": 1318,
+    "warmup": 160,
     "unformalized": 0
   },
-  "reported_total": 59396,
-  "fetched_total": 59396,
+  "reported_total": 62790,
+  "fetched_total": 62790,
   "upstream": {
     "repo": "https://github.com/google-deepmind/formal-conjectures",
     "commit": "9097e2f90e66d2f6244209cb1c07f7120d17ec53"
   },
   "catalog": {
-    "open": 1939,
+    "open": 2549,
     "known": 1818,
     "warmup": 168,
-    "unformalized": 55471
+    "unformalized": 58255
   },
   "reported_program_totals": {
     "Books": 26,
@@ -47,7 +47,7 @@
     "Mathematics Stack Exchange (not formalized)": 395,
     "Millennium Prize": 21,
     "OEIS": 461,
-    "OEIS conjectures (not formalized)": 18441,
+    "OEIS conjectures (not formalized)": 18451,
     "Open Problem Garden": 316,
     "Open Quantum Problems": 32,
     "Open problems in information theory (gokhanmergen)": 7,
@@ -55,9 +55,10 @@
     "Other": 29,
     "Papers": 180,
     "Wikipedia": 615,
-    "Wikipedia (not formalized)": 44,
+    "Wikipedia (not formalized)": 60,
     "Wikipedia list (not formalized)": 366,
     "Written on the Wall II": 31,
+    "arXiv abstracts (not formalized)": 3368,
     "arXiv papers": 105
   },
   "programs": [
@@ -67,15 +68,15 @@
       "url": "https://lefttosolve.com/programs/MathOverflow%20%28not%20formalized%29",
       "total": 35783,
       "by_kind": {
-        "open": 0,
+        "open": 42,
         "known": 0,
         "warmup": 0,
-        "unformalized": 35783
+        "unformalized": 35741
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 42,
+      "solved": 16,
       "solved_by_kind": {
-        "open": 0,
+        "open": 16,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -99,17 +100,17 @@
       "program": "OEIS conjectures (not formalized)",
       "slug": "oeis-conjectures-not-formalized",
       "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20%28not%20formalized%29",
-      "total": 18441,
+      "total": 18451,
       "by_kind": {
-        "open": 0,
+        "open": 415,
         "known": 0,
         "warmup": 0,
-        "unformalized": 18441
+        "unformalized": 18036
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 415,
+      "solved": 119,
       "solved_by_kind": {
-        "open": 0,
+        "open": 119,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -128,6 +129,38 @@
       ]
     },
     {
+      "program": "arXiv abstracts (not formalized)",
+      "slug": "arxiv-abstracts-not-formalized",
+      "url": "https://lefttosolve.com/programs/arXiv%20abstracts%20%28not%20formalized%29",
+      "total": 3368,
+      "by_kind": {
+        "open": 10,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 3358
+      },
+      "formalized_in_lean": 10,
+      "solved": 5,
+      "solved_by_kind": {
+        "open": 5,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
+      "with_prize": 0,
+      "mean_difficulty": 70.0,
+      "top_fields": [
+        "Combinatorics",
+        "Number Theory",
+        "Probability",
+        "Algebraic Geometry",
+        "Approximation"
+      ],
+      "files": [
+        "programs/arxiv-abstracts-not-formalized.jsonl"
+      ]
+    },
+    {
       "program": "Erdős Problems",
       "slug": "erdos-problems",
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems",
@@ -139,11 +172,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 2068,
-      "solved": 164,
+      "solved": 995,
       "solved_by_kind": {
-        "open": 0,
-        "known": 154,
-        "warmup": 10,
+        "open": 27,
+        "known": 925,
+        "warmup": 43,
         "unformalized": 0
       },
       "with_prize": 211,
@@ -171,11 +204,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 615,
-      "solved": 2,
+      "solved": 186,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
-        "warmup": 2,
+        "open": 11,
+        "known": 140,
+        "warmup": 35,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -203,11 +236,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 461,
-      "solved": 0,
+      "solved": 85,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
-        "warmup": 0,
+        "open": 23,
+        "known": 16,
+        "warmup": 46,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -229,15 +262,15 @@
       "url": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20%28not%20formalized%29",
       "total": 395,
       "by_kind": {
-        "open": 0,
+        "open": 19,
         "known": 0,
         "warmup": 0,
-        "unformalized": 395
+        "unformalized": 376
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 19,
+      "solved": 3,
       "solved_by_kind": {
-        "open": 0,
+        "open": 3,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -261,12 +294,12 @@
       "url": "https://lefttosolve.com/programs/Wikipedia%20list%20%28not%20formalized%29",
       "total": 366,
       "by_kind": {
-        "open": 0,
+        "open": 27,
         "known": 0,
         "warmup": 0,
-        "unformalized": 366
+        "unformalized": 339
       },
-      "formalized_in_lean": 0,
+      "formalized_in_lean": 27,
       "solved": 0,
       "solved_by_kind": {
         "open": 0,
@@ -293,15 +326,15 @@
       "url": "https://lefttosolve.com/programs/Open%20Problem%20Garden",
       "total": 316,
       "by_kind": {
-        "open": 0,
+        "open": 67,
         "known": 0,
         "warmup": 0,
-        "unformalized": 316
+        "unformalized": 249
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 67,
+      "solved": 6,
       "solved_by_kind": {
-        "open": 0,
+        "open": 6,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -331,11 +364,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 285,
-      "solved": 36,
+      "solved": 120,
       "solved_by_kind": {
-        "open": 0,
-        "known": 36,
-        "warmup": 0,
+        "open": 7,
+        "known": 112,
+        "warmup": 1,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -363,11 +396,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 180,
-      "solved": 0,
+      "solved": 39,
       "solved_by_kind": {
         "open": 0,
-        "known": 0,
-        "warmup": 0,
+        "known": 30,
+        "warmup": 9,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -389,15 +422,15 @@
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20%28not%20formalized%29",
       "total": 116,
       "by_kind": {
-        "open": 0,
+        "open": 23,
         "known": 0,
         "warmup": 0,
-        "unformalized": 116
+        "unformalized": 93
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 23,
+      "solved": 1,
       "solved_by_kind": {
-        "open": 0,
+        "open": 1,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -427,11 +460,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 105,
-      "solved": 0,
+      "solved": 50,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
-        "warmup": 0,
+        "open": 2,
+        "known": 41,
+        "warmup": 7,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -451,14 +484,14 @@
       "program": "Wikipedia (not formalized)",
       "slug": "wikipedia-not-formalized",
       "url": "https://lefttosolve.com/programs/Wikipedia%20%28not%20formalized%29",
-      "total": 44,
+      "total": 60,
       "by_kind": {
-        "open": 0,
+        "open": 3,
         "known": 0,
         "warmup": 0,
-        "unformalized": 44
+        "unformalized": 57
       },
-      "formalized_in_lean": 0,
+      "formalized_in_lean": 3,
       "solved": 0,
       "solved_by_kind": {
         "open": 0,
@@ -467,13 +500,13 @@
         "unformalized": 0
       },
       "with_prize": 0,
-      "mean_difficulty": 83.84,
+      "mean_difficulty": 84.4,
       "top_fields": [
         "Computational Complexity",
-        "Combinatorics",
         "Number Theory",
-        "Computer Science",
-        "Differential Geometry"
+        "Combinatorics",
+        "Differential Geometry",
+        "Computer Science"
       ],
       "files": [
         "programs/wikipedia-not-formalized.jsonl"
@@ -491,11 +524,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 32,
-      "solved": 0,
+      "solved": 4,
       "solved_by_kind": {
         "open": 0,
         "known": 0,
-        "warmup": 0,
+        "warmup": 4,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -523,11 +556,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 31,
-      "solved": 0,
+      "solved": 10,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
-        "warmup": 0,
+        "open": 1,
+        "known": 8,
+        "warmup": 1,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -555,11 +588,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 31,
-      "solved": 0,
+      "solved": 25,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
-        "warmup": 0,
+        "open": 5,
+        "known": 13,
+        "warmup": 7,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -583,10 +616,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 29,
-      "solved": 0,
+      "solved": 8,
       "solved_by_kind": {
         "open": 0,
-        "known": 0,
+        "known": 8,
         "warmup": 0,
         "unformalized": 0
       },
@@ -615,10 +648,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 26,
-      "solved": 0,
+      "solved": 14,
       "solved_by_kind": {
-        "open": 0,
-        "known": 0,
+        "open": 1,
+        "known": 13,
         "warmup": 0,
         "unformalized": 0
       },
@@ -645,11 +678,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 21,
-      "solved": 6,
+      "solved": 11,
       "solved_by_kind": {
         "open": 0,
-        "known": 6,
-        "warmup": 0,
+        "known": 7,
+        "warmup": 4,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -677,11 +710,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 21,
-      "solved": 0,
+      "solved": 2,
       "solved_by_kind": {
         "open": 0,
         "known": 0,
-        "warmup": 0,
+        "warmup": 2,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -709,10 +742,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 9,
-      "solved": 0,
+      "solved": 2,
       "solved_by_kind": {
         "open": 0,
-        "known": 0,
+        "known": 2,
         "warmup": 0,
         "unformalized": 0
       },
@@ -738,10 +771,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 8,
-      "solved": 1,
+      "solved": 3,
       "solved_by_kind": {
         "open": 0,
-        "known": 0,
+        "known": 2,
         "warmup": 1,
         "unformalized": 0
       },
@@ -764,12 +797,12 @@
       "url": "https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20%28gokhanmergen%29",
       "total": 7,
       "by_kind": {
-        "open": 0,
+        "open": 1,
         "known": 0,
         "warmup": 0,
-        "unformalized": 7
+        "unformalized": 6
       },
-      "formalized_in_lean": 0,
+      "formalized_in_lean": 1,
       "solved": 0,
       "solved_by_kind": {
         "open": 0,
@@ -795,15 +828,15 @@
       "url": "https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert",
       "total": 3,
       "by_kind": {
-        "open": 0,
+        "open": 3,
         "known": 0,
         "warmup": 0,
-        "unformalized": 3
+        "unformalized": 0
       },
-      "formalized_in_lean": 0,
-      "solved": 0,
+      "formalized_in_lean": 3,
+      "solved": 1,
       "solved_by_kind": {
-        "open": 0,
+        "open": 1,
         "known": 0,
         "warmup": 0,
         "unformalized": 0
@@ -830,10 +863,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 3,
-      "solved": 0,
+      "solved": 1,
       "solved_by_kind": {
         "open": 0,
-        "known": 0,
+        "known": 1,
         "warmup": 0,
         "unformalized": 0
       },

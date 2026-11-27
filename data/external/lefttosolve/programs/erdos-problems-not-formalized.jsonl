@@ -1,16 +1,16 @@
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-1011","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1011","url":"https://lefttosolve.com/p/erdos-1011"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-1016","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1016","url":"https://lefttosolve.com/p/erdos-1016"}
-{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1039","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1039","url":"https://lefttosolve.com/p/erdos-1039"}
+{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1039","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 1039","url":"https://lefttosolve.com/p/erdos-1039"}
 {"difficulty":60,"fields":["Real Functions"],"id":"erdos-1040","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1040","url":"https://lefttosolve.com/p/erdos-1040"}
-{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1045","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1045","url":"https://lefttosolve.com/p/erdos-1045"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-1054","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1054","url":"https://lefttosolve.com/p/erdos-1054"}
+{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1045","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 1045","url":"https://lefttosolve.com/p/erdos-1045"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-1054","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 1054","url":"https://lefttosolve.com/p/erdos-1054"}
 {"difficulty":60,"fields":["Combinatorics","Number Theory"],"id":"erdos-1097","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1097","url":"https://lefttosolve.com/p/erdos-1097"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-1103","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1103","url":"https://lefttosolve.com/p/erdos-1103"}
-{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-1112","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1112","url":"https://lefttosolve.com/p/erdos-1112"}
+{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-1112","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 1112","url":"https://lefttosolve.com/p/erdos-1112"}
 {"difficulty":60,"fields":["Real Functions"],"id":"erdos-1117","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1117","url":"https://lefttosolve.com/p/erdos-1117"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-112","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 112","url":"https://lefttosolve.com/p/erdos-112"}
 {"difficulty":60,"fields":["Real Functions"],"id":"erdos-1120","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1120","url":"https://lefttosolve.com/p/erdos-1120"}
-{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1131","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1131","url":"https://lefttosolve.com/p/erdos-1131"}
+{"difficulty":60,"fields":["Real Functions"],"id":"erdos-1131","kind":"open","prize":null,"solved":true,"title":"Erdős Problem 1131","url":"https://lefttosolve.com/p/erdos-1131"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-1143","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1143","url":"https://lefttosolve.com/p/erdos-1143"}
 {"difficulty":60,"fields":["Number Theory","Probability"],"id":"erdos-1144","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1144","url":"https://lefttosolve.com/p/erdos-1144"}
 {"difficulty":60,"fields":["Real Functions"],"id":"erdos-1150","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1150","url":"https://lefttosolve.com/p/erdos-1150"}
@@ -23,7 +23,7 @@
 {"difficulty":60,"fields":["Combinatorics","Logic & Foundations"],"id":"erdos-1172","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1172","url":"https://lefttosolve.com/p/erdos-1172"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-1181","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1181","url":"https://lefttosolve.com/p/erdos-1181"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-1188","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1188","url":"https://lefttosolve.com/p/erdos-1188"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-1200","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1200","url":"https://lefttosolve.com/p/erdos-1200"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-1200","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 1200","url":"https://lefttosolve.com/p/erdos-1200"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-1208","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1208","url":"https://lefttosolve.com/p/erdos-1208"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-1212","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1212","url":"https://lefttosolve.com/p/erdos-1212"}
 {"difficulty":60,"fields":["Combinatorics","Logic & Foundations"],"id":"erdos-1218","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1218","url":"https://lefttosolve.com/p/erdos-1218"}
@@ -31,12 +31,12 @@
 {"difficulty":60,"fields":["Combinatorics","Logic & Foundations"],"id":"erdos-1220","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 1220","url":"https://lefttosolve.com/p/erdos-1220"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-129","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 129","url":"https://lefttosolve.com/p/erdos-129"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-130","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 130","url":"https://lefttosolve.com/p/erdos-130"}
-{"difficulty":72,"fields":["Combinatorics"],"id":"erdos-132","kind":"unformalized","prize":"$100","solved":false,"title":"Erdős Problem 132","url":"https://lefttosolve.com/p/erdos-132"}
-{"difficulty":50,"fields":["Combinatorics"],"id":"erdos-149","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 149","url":"https://lefttosolve.com/p/erdos-149"}
+{"difficulty":72,"fields":["Combinatorics"],"id":"erdos-132","kind":"open","prize":"$100","solved":false,"title":"Erdős Problem 132","url":"https://lefttosolve.com/p/erdos-132"}
+{"difficulty":50,"fields":["Combinatorics"],"id":"erdos-149","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 149","url":"https://lefttosolve.com/p/erdos-149"}
 {"difficulty":50,"fields":["Combinatorics"],"id":"erdos-167","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 167","url":"https://lefttosolve.com/p/erdos-167"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-169","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 169","url":"https://lefttosolve.com/p/erdos-169"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-172","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 172","url":"https://lefttosolve.com/p/erdos-172"}
-{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-176","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 176","url":"https://lefttosolve.com/p/erdos-176"}
+{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-176","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 176","url":"https://lefttosolve.com/p/erdos-176"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-177","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 177","url":"https://lefttosolve.com/p/erdos-177"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-181","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 181","url":"https://lefttosolve.com/p/erdos-181"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-187","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 187","url":"https://lefttosolve.com/p/erdos-187"}
@@ -48,7 +48,7 @@
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-271","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 271","url":"https://lefttosolve.com/p/erdos-271"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-278","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 278","url":"https://lefttosolve.com/p/erdos-278"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-289","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 289","url":"https://lefttosolve.com/p/erdos-289"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-301","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 301","url":"https://lefttosolve.com/p/erdos-301"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-301","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 301","url":"https://lefttosolve.com/p/erdos-301"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-306","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 306","url":"https://lefttosolve.com/p/erdos-306"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-327","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 327","url":"https://lefttosolve.com/p/erdos-327"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-334","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 334","url":"https://lefttosolve.com/p/erdos-334"}
@@ -63,40 +63,40 @@
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-431","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 431","url":"https://lefttosolve.com/p/erdos-431"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-432","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 432","url":"https://lefttosolve.com/p/erdos-432"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-451","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 451","url":"https://lefttosolve.com/p/erdos-451"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-460","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 460","url":"https://lefttosolve.com/p/erdos-460"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-460","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 460","url":"https://lefttosolve.com/p/erdos-460"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-468","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 468","url":"https://lefttosolve.com/p/erdos-468"}
 {"difficulty":50,"fields":["Combinatorics","Number Theory"],"id":"erdos-475","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 475","url":"https://lefttosolve.com/p/erdos-475"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-486","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 486","url":"https://lefttosolve.com/p/erdos-486"}
-{"difficulty":60,"fields":["Real Functions"],"id":"erdos-514","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 514","url":"https://lefttosolve.com/p/erdos-514"}
+{"difficulty":60,"fields":["Real Functions"],"id":"erdos-514","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 514","url":"https://lefttosolve.com/p/erdos-514"}
 {"difficulty":60,"fields":["Number Theory","Probability"],"id":"erdos-520","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 520","url":"https://lefttosolve.com/p/erdos-520"}
-{"difficulty":60,"fields":["Probability","Real Functions"],"id":"erdos-521","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 521","url":"https://lefttosolve.com/p/erdos-521"}
+{"difficulty":60,"fields":["Probability","Real Functions"],"id":"erdos-521","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 521","url":"https://lefttosolve.com/p/erdos-521"}
 {"difficulty":60,"fields":["Probability","Real Functions"],"id":"erdos-524","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 524","url":"https://lefttosolve.com/p/erdos-524"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-528","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 528","url":"https://lefttosolve.com/p/erdos-528"}
-{"difficulty":60,"fields":["Geometry","Probability"],"id":"erdos-529","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 529","url":"https://lefttosolve.com/p/erdos-529"}
+{"difficulty":60,"fields":["Geometry","Probability"],"id":"erdos-529","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 529","url":"https://lefttosolve.com/p/erdos-529"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-530","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 530","url":"https://lefttosolve.com/p/erdos-530"}
 {"difficulty":60,"fields":["Combinatorics","Number Theory"],"id":"erdos-531","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 531","url":"https://lefttosolve.com/p/erdos-531"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-550","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 550","url":"https://lefttosolve.com/p/erdos-550"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-558","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 558","url":"https://lefttosolve.com/p/erdos-558"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-576","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 576","url":"https://lefttosolve.com/p/erdos-576"}
-{"difficulty":50,"fields":["Combinatorics"],"id":"erdos-580","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 580","url":"https://lefttosolve.com/p/erdos-580"}
+{"difficulty":50,"fields":["Combinatorics"],"id":"erdos-580","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 580","url":"https://lefttosolve.com/p/erdos-580"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-584","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 584","url":"https://lefttosolve.com/p/erdos-584"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-585","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 585","url":"https://lefttosolve.com/p/erdos-585"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-589","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 589","url":"https://lefttosolve.com/p/erdos-589"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-612","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 612","url":"https://lefttosolve.com/p/erdos-612"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-62","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 62","url":"https://lefttosolve.com/p/erdos-62"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-620","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 620","url":"https://lefttosolve.com/p/erdos-620"}
-{"difficulty":68,"fields":["Geometry"],"id":"erdos-634","kind":"unformalized","prize":"$25","solved":false,"title":"Erdős Problem 634","url":"https://lefttosolve.com/p/erdos-634"}
+{"difficulty":68,"fields":["Geometry"],"id":"erdos-634","kind":"open","prize":"$25","solved":false,"title":"Erdős Problem 634","url":"https://lefttosolve.com/p/erdos-634"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-635","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 635","url":"https://lefttosolve.com/p/erdos-635"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-638","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 638","url":"https://lefttosolve.com/p/erdos-638"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-662","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 662","url":"https://lefttosolve.com/p/erdos-662"}
-{"difficulty":74,"fields":["Real Functions"],"id":"erdos-671","kind":"unformalized","prize":"$250","solved":false,"title":"Erdős Problem 671","url":"https://lefttosolve.com/p/erdos-671"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-684","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 684","url":"https://lefttosolve.com/p/erdos-684"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-689","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 689","url":"https://lefttosolve.com/p/erdos-689"}
-{"difficulty":72,"fields":["Number Theory"],"id":"erdos-708","kind":"unformalized","prize":"$100","solved":false,"title":"Erdős Problem 708","url":"https://lefttosolve.com/p/erdos-708"}
-{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-738","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 738","url":"https://lefttosolve.com/p/erdos-738"}
+{"difficulty":74,"fields":["Real Functions"],"id":"erdos-671","kind":"open","prize":"$250","solved":false,"title":"Erdős Problem 671","url":"https://lefttosolve.com/p/erdos-671"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-684","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 684","url":"https://lefttosolve.com/p/erdos-684"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-689","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 689","url":"https://lefttosolve.com/p/erdos-689"}
+{"difficulty":72,"fields":["Number Theory"],"id":"erdos-708","kind":"open","prize":"$100","solved":false,"title":"Erdős Problem 708","url":"https://lefttosolve.com/p/erdos-708"}
+{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-738","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 738","url":"https://lefttosolve.com/p/erdos-738"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-776","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 776","url":"https://lefttosolve.com/p/erdos-776"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-778","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 778","url":"https://lefttosolve.com/p/erdos-778"}
-{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-788","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 788","url":"https://lefttosolve.com/p/erdos-788"}
+{"difficulty":60,"fields":["Combinatorics"],"id":"erdos-788","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 788","url":"https://lefttosolve.com/p/erdos-788"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-791","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 791","url":"https://lefttosolve.com/p/erdos-791"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-796","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 796","url":"https://lefttosolve.com/p/erdos-796"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-809","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 809","url":"https://lefttosolve.com/p/erdos-809"}
@@ -108,7 +108,7 @@
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-879","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 879","url":"https://lefttosolve.com/p/erdos-879"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-892","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 892","url":"https://lefttosolve.com/p/erdos-892"}
 {"difficulty":60,"fields":["Combinatorics"],"id":"erdos-919","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 919","url":"https://lefttosolve.com/p/erdos-919"}
-{"difficulty":60,"fields":["Number Theory"],"id":"erdos-928","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 928","url":"https://lefttosolve.com/p/erdos-928"}
+{"difficulty":60,"fields":["Number Theory"],"id":"erdos-928","kind":"open","prize":null,"solved":false,"title":"Erdős Problem 928","url":"https://lefttosolve.com/p/erdos-928"}
 {"difficulty":60,"fields":["Number Theory"],"id":"erdos-952","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 952","url":"https://lefttosolve.com/p/erdos-952"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-953","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 953","url":"https://lefttosolve.com/p/erdos-953"}
 {"difficulty":60,"fields":["Geometry"],"id":"erdos-956","kind":"unformalized","prize":null,"solved":false,"title":"Erdős Problem 956","url":"https://lefttosolve.com/p/erdos-956"}

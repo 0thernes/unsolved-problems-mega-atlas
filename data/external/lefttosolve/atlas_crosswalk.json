@@ -3,9 +3,229 @@
   "method": "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json",
   "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications).",
   "atlas_problems": 2000,
-  "matched_atlas_problems": 290,
+  "matched_atlas_problems": 291,
   "curated_override_problems": 286,
   "external_solved_signals": [
+    {
+      "atlas_id": "NT-016",
+      "atlas_name": "Elliott-Halberstam Conjecture",
+      "lts_id": "ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville",
+      "lts_title": "Elliott–Halberstam conjecture — friedlander granville",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
+    },
+    {
+      "atlas_id": "NT-074",
+      "atlas_name": "Lehmer's Mahler Measure Problem",
+      "lts_id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.not_reciprocal",
+      "lts_title": "Lehmer's Mahler measure problem — not reciprocal",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.not_reciprocal"
+    },
+    {
+      "atlas_id": "NT-074",
+      "atlas_name": "Lehmer's Mahler Measure Problem",
+      "lts_id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.odd",
+      "lts_title": "Lehmer's Mahler measure problem — odd",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.odd"
+    },
+    {
+      "atlas_id": "ALG-001",
+      "atlas_name": "Inverse Galois Problem",
+      "lts_id": "InverseGalois.inverse_galois_problem.variants.abelian",
+      "lts_title": "Inverse Galois problem — abelian",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
+    },
+    {
+      "atlas_id": "ALG-001",
+      "atlas_name": "Inverse Galois Problem",
+      "lts_id": "InverseGalois.inverse_galois_problem.variants.cyclic",
+      "lts_title": "Inverse Galois problem — cyclic",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
+    },
+    {
+      "atlas_id": "ALG-045",
+      "atlas_name": "Auslander-Reiten Conjecture",
+      "lts_id": "AuslanderReiten.auslander_reiten.variants.regular_local",
+      "lts_title": "The Auslander-Reiten conjecture — regular local",
+      "program": "Papers",
+      "kind": "warmup",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
+    },
+    {
+      "atlas_id": "GEOM-064",
+      "atlas_name": "Moser's Worm Problem",
+      "lts_id": "MoserWorm.convex_mosers_worm_problem_bound_attained",
+      "lts_title": "Moser's Worm — convex mosers worm problem bound attained",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_bound_attained"
+    },
+    {
+      "atlas_id": "GEOM-064",
+      "atlas_name": "Moser's Worm Problem",
+      "lts_id": "MoserWorm.convex_mosers_worm_problem_lower_bound",
+      "lts_title": "Moser's Worm — convex mosers worm problem lower bound",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_lower_bound"
+    },
+    {
+      "atlas_id": "GEOM-069",
+      "atlas_name": "Erdős's Unit Distance Problem and Higher-Dimensional Distinct Distances",
+      "lts_id": "Erdos90.erdos_90",
+      "lts_title": "Erdős Problem 90: The unit distance problem",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Erdos90.erdos_90"
+    },
+    {
+      "atlas_id": "ANL-032",
+      "atlas_name": "Smale's Mean Value Conjecture",
+      "lts_id": "MeanValueProblem.mean_value_problem",
+      "lts_title": "Mean value problem",
+      "program": "Wikipedia",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/MeanValueProblem.mean_value_problem"
+    },
+    {
+      "atlas_id": "COMB-016",
+      "atlas_name": "Seymour's Second Neighborhood Conjecture",
+      "lts_id": "opg-seymours-second-neighbourhood-conjecture",
+      "lts_title": "Seymour's Second Neighbourhood Conjecture",
+      "program": "Open Problem Garden",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/opg-seymours-second-neighbourhood-conjecture"
+    },
+    {
+      "atlas_id": "XNT-003",
+      "atlas_name": "Erdős Problem #11 (Odd Integers as Squarefree Plus a Power of Two)",
+      "lts_id": "Erdos11.erdos_11.variants.finite_bound1",
+      "lts_title": "Erdős Problem 11 — finite bound1",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
+    },
+    {
+      "atlas_id": "XNT-003",
+      "atlas_name": "Erdős Problem #11 (Odd Integers as Squarefree Plus a Power of Two)",
+      "lts_id": "Erdos11.erdos_11.variants.granville_soundararajan",
+      "lts_title": "Erdős Problem 11 — granville soundararajan",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.granville_soundararajan"
+    },
+    {
+      "atlas_id": "XNT-004",
+      "atlas_name": "Erdős Problem #41 (Exact Asymptotic Upper Bound for Higher-Order B_3 Sidon Sets)",
+      "lts_id": "Erdos41.erdos_41.variants.pairwise",
+      "lts_title": "Erdős Problem 41 — pairwise",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.balogh_furedi_roy",
+      "lts_title": "Erdős Problem 30 — balogh furedi roy",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.carter_hunter_obryant",
+      "lts_title": "Erdős Problem 30 — carter hunter obryant",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.erdos_turan",
+      "lts_title": "Erdős Problem 30 — erdos turan",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.isEquivalent_sqrt",
+      "lts_title": "Erdős Problem 30 — isEquivalent sqrt",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.lindstrom",
+      "lts_title": "Erdős Problem 30 — lindstrom",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.obryant",
+      "lts_title": "Erdős Problem 30 — obryant",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.singer",
+      "lts_title": "Erdős Problem 30 — singer",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
+    },
+    {
+      "atlas_id": "XALG-003",
+      "atlas_name": "Köthe's Nil-Ideal Conjecture in Noncommutative Ring Theory",
+      "lts_id": "Koethe.KotheConjecture",
+      "lts_title": "Köthe conjecture — KotheConjecture",
+      "program": "Wikipedia",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Koethe.KotheConjecture"
+    },
     {
       "atlas_id": "XCOMB-026",
       "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
@@ -15,6 +235,116 @@
       "kind": "warmup",
       "relation": "variant",
       "url": "https://lefttosolve.com/p/Erdos23.blowupC5_tight"
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "lts_id": "Erdos23.erdos_23.variants.n1",
+      "lts_title": "Erdős Problem 23 — n1",
+      "program": "Erdős Problems",
+      "kind": "warmup",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "lts_id": "Erdos23.erdos_23.variants.n5_tight",
+      "lts_title": "Erdős Problem 23 — n5 tight",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
+    },
+    {
+      "atlas_id": "LTS-010",
+      "atlas_name": "Equal Halves Conjecture for Even-Order Vertex-Transitive Graphs (Luc Gillibert)",
+      "lts_id": "gillibert-equal-halves",
+      "lts_title": "Equal halves conjecture (vertex-transitive graphs)",
+      "program": "Conjectures of Luc Gillibert",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/gillibert-equal-halves"
+    },
+    {
+      "atlas_id": "LTS-017",
+      "atlas_name": "Written on the Wall II Conjecture 96 (Independence Number vs. Average Eccentricity)",
+      "lts_id": "WrittenOnTheWallII.GraphConjecture96.conjecture96",
+      "lts_title": "Written on the Wall II - Conjecture 96",
+      "program": "Written on the Wall II",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96"
+    },
+    {
+      "atlas_id": "LTS-020",
+      "atlas_name": "Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)",
+      "lts_id": "WrittenOnTheWallII.GraphConjecture372.conjecture372",
+      "lts_title": "Written on the Wall II - Conjecture 372",
+      "program": "Written on the Wall II",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372"
+    },
+    {
+      "atlas_id": "LTS-020",
+      "atlas_name": "Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)",
+      "lts_id": "WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized",
+      "lts_title": "Written on the Wall II - Conjecture 372 — regularized",
+      "program": "Written on the Wall II",
+      "kind": "open",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized"
+    },
+    {
+      "atlas_id": "LTS-020",
+      "atlas_name": "Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)",
+      "lts_id": "WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths",
+      "lts_title": "Written on the Wall II - Conjecture 372 — two paths",
+      "program": "Written on the Wall II",
+      "kind": "open",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths"
+    },
+    {
+      "atlas_id": "LTS-024",
+      "atlas_name": "Ben Green Problem 15: 3-AP-Free Lipschitz Function Graphs in Z^2",
+      "lts_id": "Green15.green_15",
+      "lts_title": "Green's Open Problem 15 — green 15",
+      "program": "Green's 100 Open Problems",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Green15.green_15"
+    },
+    {
+      "atlas_id": "LTS-035",
+      "atlas_name": "Ben Green Problem 35: Sharp L^p Restriction / Additive Constant c(p) on [0,1]",
+      "lts_id": "Green35.green_35.lower",
+      "lts_title": "Ben Green's Open Problem 35 — lower",
+      "program": "Green's 100 Open Problems",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Green35.green_35.lower"
+    },
+    {
+      "atlas_id": "LTS-085",
+      "atlas_name": "Bugeaud Problem 10.6: Explicit Super-Exponential Sequences Everywhere Dense Modulo 1",
+      "lts_id": "Bugeaud06.problem_10_6_variant_1",
+      "lts_title": "Bugeaud Collection of Conjectures and Open Questions: Rapidly Increasing Sequences Dense Modulo One — problem 10 6 variant 1",
+      "program": "Books",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Bugeaud06.problem_10_6_variant_1"
+    },
+    {
+      "atlas_id": "LTS-097",
+      "atlas_name": "Barker Sequence Length <= 13 Conjecture (Aperiodic Binary Autocorrelation)",
+      "lts_id": "Arxiv.2104.00502.barker_conjecture",
+      "lts_title": "Barker sequences",
+      "program": "arXiv papers",
+      "kind": "open",
+      "relation": "primary",
+      "url": "https://lefttosolve.com/p/Arxiv.2104.00502.barker_conjecture"
     }
   ],
   "matches": [
@@ -165,7 +495,7 @@
           "id": "wp-birch-and-swinnerton-dyer-conjecture",
           "title": "Birch and Swinnerton-Dyer conjecture",
           "program": "Wikipedia list (not formalized)",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "normalized-title",
@@ -237,7 +567,7 @@
           "title": "Elliott–Halberstam conjecture — friedlander granville",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
@@ -1019,7 +1349,7 @@
           "title": "Lehmer's Mahler measure problem — not reciprocal",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.not_reciprocal"
@@ -1029,7 +1359,7 @@
           "title": "Lehmer's Mahler measure problem — odd",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.odd"
@@ -1185,7 +1515,7 @@
           "title": "Furstenberg's theorem",
           "program": "Books",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "related",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Bugeaud06.furstenberg_two_three"
@@ -1212,7 +1542,7 @@
           "title": "Inverse Galois problem — abelian",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
@@ -1242,7 +1572,7 @@
           "title": "Inverse Galois problem — cyclic",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
@@ -1276,7 +1606,7 @@
           "title": "Zariski Cancellation — dim one",
           "program": "arXiv papers",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "related",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one"
@@ -1449,7 +1779,7 @@
           "title": "The Auslander-Reiten conjecture — regular local",
           "program": "Papers",
           "kind": "warmup",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
@@ -1713,7 +2043,7 @@
           "id": "wp-yau-s-conjecture-on-the-first-eigenvalue",
           "title": "Yau's conjecture on the first eigenvalue",
           "program": "Wikipedia list (not formalized)",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -1937,7 +2267,7 @@
           "id": "wpc-mahler-conjecture",
           "title": "Mahler's volume-product conjecture",
           "program": "Wikipedia (not formalized)",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -1975,7 +2305,7 @@
           "title": "Moser's Worm — convex mosers worm problem bound attained",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_bound_attained"
@@ -1985,7 +2315,7 @@
           "title": "Moser's Worm — convex mosers worm problem lower bound",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_lower_bound"
@@ -2056,7 +2386,7 @@
           "title": "Erdős Problem 90: The unit distance problem",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Erdos90.erdos_90"
@@ -2167,7 +2497,7 @@
           "id": "wp-bochner-riesz-conjecture",
           "title": "Bochner–Riesz conjecture",
           "program": "Wikipedia list (not formalized)",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -2236,7 +2566,7 @@
           "title": "Sendov's conjecture — le eight",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "related",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Sendov.sendov_conjecture.variants.le_eight"
@@ -2253,7 +2583,7 @@
           "title": "Mean value problem",
           "program": "Wikipedia",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/MeanValueProblem.mean_value_problem"
@@ -2618,8 +2948,8 @@
           "id": "opg-seymours-second-neighbourhood-conjecture",
           "title": "Seymour's Second Neighbourhood Conjecture",
           "program": "Open Problem Garden",
-          "kind": "unformalized",
-          "solved": false,
+          "kind": "open",
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/opg-seymours-second-neighbourhood-conjecture"
@@ -2645,7 +2975,7 @@
           "id": "opg-caccetta-haggkvist-conjecture",
           "title": "Caccetta-Häggkvist Conjecture",
           "program": "Open Problem Garden",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -2757,7 +3087,7 @@
           "id": "opg-frankls-union-closed-sets-conjecture",
           "title": "Frankl's union-closed sets conjecture",
           "program": "Open Problem Garden",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -3282,6 +3612,23 @@
       ]
     },
     {
+      "atlas_id": "QM-002",
+      "atlas_name": "Yang–Mills Existence and Mass Gap",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wpc-yang-mills-existence-and-mass-gap",
+          "title": "Yang–Mills existence and mass gap",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/wpc-yang-mills-existence-and-mass-gap"
+        }
+      ]
+    },
+    {
       "atlas_id": "QC-002",
       "atlas_name": "The Quantum PCP Conjecture (Macroscopic Room-Temperature Entanglement Hardness)",
       "match_type": "curated-override + normalized-title",
@@ -3409,7 +3756,7 @@
           "title": "Erdős Problem 11 — finite bound1",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
@@ -3429,7 +3776,7 @@
           "title": "Erdős Problem 11 — granville soundararajan",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.granville_soundararajan"
@@ -3476,7 +3823,7 @@
           "title": "Erdős Problem 41 — pairwise",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
@@ -3740,7 +4087,7 @@
           "title": "Erdős Problem 30 — balogh furedi roy",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
@@ -3750,7 +4097,7 @@
           "title": "Erdős Problem 30 — carter hunter obryant",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
@@ -3760,7 +4107,7 @@
           "title": "Erdős Problem 30 — erdos turan",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
@@ -3770,7 +4117,7 @@
           "title": "Erdős Problem 30 — isEquivalent sqrt",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
@@ -3780,7 +4127,7 @@
           "title": "Erdős Problem 30 — lindstrom",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
@@ -3790,7 +4137,7 @@
           "title": "Erdős Problem 30 — obryant",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
@@ -3800,7 +4147,7 @@
           "title": "Erdős Problem 30 — singer",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
@@ -3895,7 +4242,7 @@
           "title": "Köthe conjecture — KotheConjecture",
           "program": "Wikipedia",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Koethe.KotheConjecture"
@@ -4034,7 +4381,7 @@
           "title": "Erdős Problem 23 — n1",
           "program": "Erdős Problems",
           "kind": "warmup",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
@@ -4054,7 +4401,7 @@
           "title": "Erdős Problem 23 — n5 tight",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
@@ -4138,7 +4485,7 @@
           "id": "itp-courtade-kumar",
           "title": "Courtade–Kumar conjecture (most informative Boolean function)",
           "program": "Open problems in information theory (gokhanmergen)",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -4223,7 +4570,7 @@
           "id": "gillibert-fair-traversal",
           "title": "Fair traversal conjecture (Hamiltonian paths in vertex-transitive graphs)",
           "program": "Conjectures of Luc Gillibert",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -4240,8 +4587,8 @@
           "id": "gillibert-equal-halves",
           "title": "Equal halves conjecture (vertex-transitive graphs)",
           "program": "Conjectures of Luc Gillibert",
-          "kind": "unformalized",
-          "solved": false,
+          "kind": "open",
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/gillibert-equal-halves"
@@ -4257,7 +4604,7 @@
           "id": "gillibert-geodesic-deletion",
           "title": "Geodesic deletion conjecture (vertex-transitive graphs)",
           "program": "Conjectures of Luc Gillibert",
-          "kind": "unformalized",
+          "kind": "open",
           "solved": false,
           "relation": "primary",
           "via": "curated-override",
@@ -4360,7 +4707,7 @@
           "title": "Written on the Wall II - Conjecture 96",
           "program": "Written on the Wall II",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96"
@@ -4411,7 +4758,7 @@
           "title": "Written on the Wall II - Conjecture 372",
           "program": "Written on the Wall II",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372"
@@ -4421,7 +4768,7 @@
           "title": "Written on the Wall II - Conjecture 372 — regularized",
           "program": "Written on the Wall II",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized"
@@ -4431,7 +4778,7 @@
           "title": "Written on the Wall II - Conjecture 372 — two paths",
           "program": "Written on the Wall II",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths"
@@ -4499,7 +4846,7 @@
           "title": "Green's Open Problem 15 — green 15",
           "program": "Green's 100 Open Problems",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Green15.green_15"
@@ -4686,7 +5033,7 @@
           "title": "Ben Green's Open Problem 35 — lower",
           "program": "Green's 100 Open Problems",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Green35.green_35.lower"
@@ -5536,7 +5883,7 @@
           "title": "Bugeaud Collection of Conjectures and Open Questions: Rapidly Increasing Sequences Dense Modulo One — problem 10 6 variant 1",
           "program": "Books",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Bugeaud06.problem_10_6_variant_1"
@@ -5740,7 +6087,7 @@
           "title": "Barker sequences",
           "program": "arXiv papers",
           "kind": "open",
-          "solved": false,
+          "solved": true,
           "relation": "primary",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Arxiv.2104.00502.barker_conjecture"
