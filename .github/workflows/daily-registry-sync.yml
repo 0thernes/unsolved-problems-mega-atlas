@@ -35,10 +35,11 @@ jobs:
       - name: Mirror all Left to Solve program lists (fails closed on an incomplete crawl)
         run: python scripts/sync_lefttosolve.py --live
       - name: Poll Clay, Erdős and ProofAtlas registries (advisory delta, never retires problems)
-        run: python scripts/sync_external_registries.py --live --write-report
+        run: python scripts/sync_external_registries.py --live --write-report --md-out docs/registry-delta-latest.md
       - name: Verify the refreshed mirror before committing
         run: |
           python scripts/sync_lefttosolve.py --offline
+          python scripts/sync_external_registries.py --offline
           pytest tests/test_external_mirrors.py -v
           python -c "import subprocess, pathlib; files = subprocess.check_output(['git','ls-files','--others','--cached','--exclude-standard','data/external']).decode().splitlines(); big = [f for f in files if pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, big; print(f'PASS: {len(files)} mirror files < 5 MB')"
       - name: Commit and push to main if anything changed
@@ -46,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/external results/lefttosolve_delta.json results/registry_delta.json docs/lefttosolve-programs.md docs/registry-delta-2026-11-26.md
+          git add data/external results/lefttosolve_delta.json results/registry_delta.json docs/lefttosolve-programs.md docs/registry-delta-latest.md
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes."

@@ -34,13 +34,14 @@ jobs:
       - name: Run full pytest suite on clean clone (auto-builds SQLite+FTS5, verifies byte-exact SHA-256 digests, Hypothesis, differential, metamorphic, MCP, FAIR)
         run: |
           pytest tests/ -v
-      - name: Run full audit, quickstart demo, forensic audit, Zenodo dry-run, AutoResearch gates & README axiom check
+      - name: Run full audit, quickstart demo, forensic audit, Zenodo dry-run, AutoResearch gates, external mirror & README axiom check
         run: |
           python scripts/audit_atlas.py
           python examples/quickstart_demo.py
           python scripts/forensic_audit.py
           python scripts/publish_zenodo.py --dry-run
           python autoresearch/evaluate.py --verify-gates
+          python scripts/sync_lefttosolve.py --offline
           python scripts/check_readme_axioms.py
       - name: Verify full 11-format exporter runs cleanly (--skip-pdf)
         run: |

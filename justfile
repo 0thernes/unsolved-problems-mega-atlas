@@ -85,12 +85,19 @@ stamp:
 
 # Poll public external open-problem registries (advisory delta report only; zero auto-retirement)
 sync-registries:
-    {{python}} scripts/sync_external_registries.py --live --write-report
+    {{python}} scripts/sync_external_registries.py --live --write-report --md-out docs/registry-delta-latest.md
 
 # Mirror every Left to Solve program list (also runs daily in .github/workflows/daily-registry-sync.yml)
 sync-lefttosolve:
     {{python}} scripts/sync_lefttosolve.py --live
     {{python}} scripts/sync_lefttosolve.py --offline
+
+# Verify the committed Left to Solve mirror offline without network access
+lefttosolve-check:
+    {{python}} scripts/sync_lefttosolve.py --offline
+
+# Run all daily external registry mirrors (Left to Solve programs + Clay/Erdős/ProofAtlas)
+sync-all-registries: sync-lefttosolve sync-registries
 
 # Run community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 rubric-diff:

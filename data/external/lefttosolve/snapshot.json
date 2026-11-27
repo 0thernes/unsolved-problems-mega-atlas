@@ -15,6 +15,12 @@
   ],
   "policy": "Metadata mirror only; no statement excerpts; never mutates the frozen Mega-Atlas dataset.",
   "crosswalk_matches": 34,
+  "solved_by_kind": {
+    "open": 0,
+    "known": 814,
+    "warmup": 155,
+    "unformalized": 0
+  },
   "reported_total": 59396,
   "fetched_total": 59396,
   "upstream": {
@@ -68,6 +74,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 55.01,
       "top_fields": [
@@ -96,6 +108,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 43.4,
       "top_fields": [
@@ -122,6 +140,12 @@
       },
       "formalized_in_lean": 2068,
       "solved": 624,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 582,
+        "warmup": 42,
+        "unformalized": 0
+      },
       "with_prize": 211,
       "mean_difficulty": 43.09,
       "top_fields": [
@@ -148,6 +172,12 @@
       },
       "formalized_in_lean": 615,
       "solved": 116,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 84,
+        "warmup": 32,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 47.63,
       "top_fields": [
@@ -174,6 +204,12 @@
       },
       "formalized_in_lean": 461,
       "solved": 59,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 13,
+        "warmup": 46,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 47.4,
       "top_fields": [
@@ -200,6 +236,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 53.6,
       "top_fields": [
@@ -226,6 +268,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 60.09,
       "top_fields": [
@@ -252,6 +300,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 74.01,
       "top_fields": [
@@ -278,6 +332,12 @@
       },
       "formalized_in_lean": 285,
       "solved": 70,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 69,
+        "warmup": 1,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 44.8,
       "top_fields": [
@@ -304,6 +364,12 @@
       },
       "formalized_in_lean": 180,
       "solved": 24,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 16,
+        "warmup": 8,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 47.06,
       "top_fields": [
@@ -330,6 +396,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 4,
       "mean_difficulty": 59.97,
       "top_fields": [
@@ -356,6 +428,12 @@
       },
       "formalized_in_lean": 105,
       "solved": 26,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 19,
+        "warmup": 7,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 45.03,
       "top_fields": [
@@ -382,6 +460,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 83.84,
       "top_fields": [
@@ -408,6 +492,12 @@
       },
       "formalized_in_lean": 32,
       "solved": 4,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 4,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 51.72,
       "top_fields": [
@@ -434,6 +524,12 @@
       },
       "formalized_in_lean": 31,
       "solved": 3,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 2,
+        "warmup": 1,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 46.9,
       "top_fields": [
@@ -460,6 +556,12 @@
       },
       "formalized_in_lean": 31,
       "solved": 19,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 12,
+        "warmup": 7,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 39.71,
       "top_fields": [
@@ -482,6 +584,12 @@
       },
       "formalized_in_lean": 29,
       "solved": 6,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 6,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 49.52,
       "top_fields": [
@@ -508,6 +616,12 @@
       },
       "formalized_in_lean": 26,
       "solved": 5,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 5,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 45.58,
       "top_fields": [
@@ -532,6 +646,12 @@
       },
       "formalized_in_lean": 21,
       "solved": 9,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 5,
+        "warmup": 4,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 42.57,
       "top_fields": [
@@ -558,6 +678,12 @@
       },
       "formalized_in_lean": 21,
       "solved": 2,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 2,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 80.1,
       "top_fields": [
@@ -584,6 +710,12 @@
       },
       "formalized_in_lean": 9,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 50.56,
       "top_fields": [
@@ -607,6 +739,12 @@
       },
       "formalized_in_lean": 8,
       "solved": 1,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 1,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 59.25,
       "top_fields": [
@@ -633,6 +771,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 87.29,
       "top_fields": [
@@ -658,6 +802,12 @@
       },
       "formalized_in_lean": 0,
       "solved": 0,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 70.0,
       "top_fields": [
@@ -681,6 +831,12 @@
       },
       "formalized_in_lean": 3,
       "solved": 1,
+      "solved_by_kind": {
+        "open": 0,
+        "known": 1,
+        "warmup": 0,
+        "unformalized": 0
+      },
       "with_prize": 0,
       "mean_difficulty": 42.0,
       "top_fields": [

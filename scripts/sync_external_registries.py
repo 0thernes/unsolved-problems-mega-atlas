@@ -248,7 +248,12 @@ def main() -> None:
     mode_grp = parser.add_mutually_exclusive_group()
     mode_grp.add_argument("--live", action="store_true", help="Poll public registry URLs over HTTPS")
     mode_grp.add_argument("--offline", action="store_true", help="Verify baseline snapshot schema without network calls")
-    parser.add_argument("--write-report", action="store_true", help="Write results/registry_delta.json and docs/registry-delta-2026-11-26.md")
+    parser.add_argument("--write-report", action="store_true", help="Write results/registry_delta.json and the markdown delta report")
+    parser.add_argument(
+        "--md-out",
+        default="docs/registry-delta-latest.md",
+        help="Path (relative to repo root or absolute) for the markdown report when --write-report is set (default: docs/registry-delta-latest.md)",
+    )
     parser.add_argument("--json", action="store_true", help="Print JSON payload to stdout")
     args = parser.parse_args()
 
@@ -259,7 +264,9 @@ def main() -> None:
         out_json = ROOT / "results" / "registry_delta.json"
         out_json.parent.mkdir(parents=True, exist_ok=True)
         out_json.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
-        out_md = ROOT / "docs" / "registry-delta-2026-11-26.md"
+        md_path = Path(args.md_out)
+        out_md = md_path if md_path.is_absolute() else ROOT / md_path
+        out_md.parent.mkdir(parents=True, exist_ok=True)
         out_md.write_text(render_markdown(report), encoding="utf-8", newline="\n")
 
     if args.json:
