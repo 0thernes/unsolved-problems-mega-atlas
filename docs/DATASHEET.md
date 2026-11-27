@@ -27,7 +27,7 @@
 - **Formal & Automated Checks:**
   - **103 audited Lean 4.35.0 software-model theorems** (of `117` declarations in `lean/`, zero Mathlib, `0` `sorry`, per-theorem `#print axioms ⊆ [propext, Quot.sound]`, including `12` concrete NonVacuity witnesses, `10` constructive AdversarialTests refutations, and `9` Palomar targets checked by `6` kernel checks across `5` distinct implementations via `scripts/verify_lean_six_kernels.sh`). No Lean statement references the 2,000-row data or 6,108-edge graph.
   - **JSON Schema Draft 2020-12** (`schema/problem.schema.json`) validated on all 2,000 × 48 records.
-  - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `12/12` (100%) mutation-kill audit, `99` `pytest` checks, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 98.35`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
+  - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `12/12` (100%) mutation-kill audit, `109` `pytest` checks, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 98.35`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
 
 ## 5. Uses & Out-of-Scope Warnings
 

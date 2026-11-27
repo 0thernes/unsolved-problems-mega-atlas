@@ -285,6 +285,8 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
         if atlas_id is not None:
             if not isinstance(atlas_id, str):
                 raise ValueError("Argument 'atlas_id' must be a string")
+            if len(atlas_id) > MAX_QUERY_CHARS:
+                raise ValueError(f"Argument 'atlas_id' exceeds {MAX_QUERY_CHARS} characters")
             aid_u = atlas_id.strip().upper()
             matches = [m for m in matches if str(m.get("atlas_id", "")).upper() == aid_u]
         q_raw = args.get("query")
@@ -313,8 +315,11 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
         }
 
     prog_filter = args.get("program")
-    if prog_filter is not None and not isinstance(prog_filter, str):
-        raise ValueError("Argument 'program' must be a string")
+    if prog_filter is not None:
+        if not isinstance(prog_filter, str):
+            raise ValueError("Argument 'program' must be a string")
+        if len(prog_filter) > MAX_QUERY_CHARS:
+            raise ValueError(f"Argument 'program' exceeds {MAX_QUERY_CHARS} characters")
     q_raw = args.get("query")
     if q_raw is not None:
         if not isinstance(q_raw, str):
@@ -328,8 +333,11 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
     if solved_filter is not None and not isinstance(solved_filter, bool):
         raise ValueError("Argument 'solved' must be a boolean")
     field_filter = args.get("field")
-    if field_filter is not None and not isinstance(field_filter, str):
-        raise ValueError("Argument 'field' must be a string")
+    if field_filter is not None:
+        if not isinstance(field_filter, str):
+            raise ValueError("Argument 'field' must be a string")
+        if len(field_filter) > MAX_QUERY_CHARS:
+            raise ValueError(f"Argument 'field' exceeds {MAX_QUERY_CHARS} characters")
     min_diff = (
         _parse_clamped_int(args.get("min_difficulty"), 0, 0, 100, "min_difficulty")
         if args.get("min_difficulty") is not None

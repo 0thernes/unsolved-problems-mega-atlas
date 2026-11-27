@@ -220,8 +220,8 @@
       "name": "WHITE_PAPER.md",
       "description": "Build White Paper & Archival Dossier (0TH-BUILD-007)",
       "encodingFormat": "text/markdown",
-      "sha256": "8550ed7e05c2f123192ba7adf16cc163f62ae32f7ed707834745d8dd79562d90",
-      "contentSize": 18453
+      "sha256": "69bb945a1f8df224933434f3b3a8219ec0bcaf3c00e9999ea1ee521789af7cbb",
+      "contentSize": 18455
     },
     {
       "@id": "docs/DATASHEET.md",
@@ -229,8 +229,8 @@
       "name": "DATASHEET.md",
       "description": "Gebru et al. Datasheet for Datasets",
       "encodingFormat": "text/markdown",
-      "sha256": "fa6a2c8b7d517ad56309e07312f9a6403c75da9a52dcef9f0123390ce1b3ea9a",
-      "contentSize": 8478
+      "sha256": "31f8eb536b3872dd8709e569620252853a737020fb5c537bd11d8014ede4191b",
+      "contentSize": 8479
     },
     {
       "@id": "docs/statement-fidelity.md",
@@ -265,8 +265,8 @@
       "name": "VERIFICATION.md",
       "description": "Five-tier epistemic verification boundaries",
       "encodingFormat": "text/markdown",
-      "sha256": "2a8d52d2d312c5f3ac843a71e5b70a9f6d4f79c71cab3ad6a30d083034c4593f",
-      "contentSize": 4647
+      "sha256": "9d35ed37aa2f56b97fcb6f1a9549605960b3bd0419b0ab4791621bb599671fa5",
+      "contentSize": 4719
     },
     {
       "@id": "CHECKSUMS.sha256",
@@ -383,8 +383,8 @@
       "name": "server.py",
       "description": "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (13 tools)",
       "encodingFormat": "text/x-python",
-      "sha256": "55a50c79541f5fc30d39dd8794c9b8a4327f50f0aca12a3d66a9250fae3708a6",
-      "contentSize": 39646
+      "sha256": "4c0c32fabeb6955af50892816bc0f97d737546d83d5901929f853dd227469ebf",
+      "contentSize": 40083
     },
     {
       "@id": "rag/query.py",

@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - name: Assemble static site (Interactive Atlas + 30 Charts + Live Daily JSON + Lean Blueprint + FAIR/LLMs metadata)
         run: |
           mkdir -p _site/charts _site/blueprint
@@ -36,7 +36,7 @@ jobs:
           if [ -f results/daily_registry_history.jsonl ]; then cp results/daily_registry_history.jsonl _site/; fi
           if [ -d data/external/lefttosolve ]; then mkdir -p _site/external && cp -r data/external/lefttosolve _site/external/lefttosolve; fi
           touch _site/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
@@ -48,4 +48,4 @@ jobs:
     needs: build
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
