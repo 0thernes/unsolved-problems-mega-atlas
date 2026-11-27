@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.9.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 16-Sheet XLSX, Legacy XLS (build/), MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
+"""V2.10.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 16-Sheet XLSX, Legacy XLS (build/), MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
 
 import argparse
 import datetime
@@ -508,7 +508,7 @@ def export_excel_files(data):
     ws_d.column_dimensions["F"].width = 14
     ws_d.column_dimensions["G"].width = 14
 
-    # Sheet 2: Master_Catalog (ALL 1,900 rows!)
+    # Sheet 2: Master_Catalog (ALL 2,000 rows!)
     ws_m = write_sheet(wb, "Master_Catalog", df, header_hex="0F172A",
                        wrap_names=["name", "core_question", "formal_expression", "ai_verification_nov2026", "competing_approaches", "closest_progress_2026", "affected_industries", "contrast_axis"],
                        freeze="C2")
@@ -950,9 +950,10 @@ def export_interactive_html(data):
   <div class="hdr-top">
     <div>
       <h1>V{s['atlas_version']} Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (Nov 2026)</h1>
-      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Edges (Python/NetworkX) · 0thernes CSS + Titan Index · {lean_n} Audited Lean 4.35.0 Software-Model Theorems · Hybrid RAG (100% MRR@5) + 12-Tool MCP Server + AutoResearch · <b>Daily 16-Registry &amp; 25-Front Left-to-Solve Sync</b> · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements; 0/{s['total_problems']:,} solved by this work.</i></div>
+      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Edges (Python/NetworkX) · 0thernes CSS + Titan Index · {lean_n} Audited Lean 4.35.0 Software-Model Theorems · Hybrid RAG (100% MRR@5) + 13-Tool MCP Server + AutoResearch · <b>Daily 59,396-Target Left-to-Solve Mirror &amp; 16-Registry Sync</b> · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements; 0/{s['total_problems']:,} solved by this work.</i></div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <a class="theme-btn" href="external/lefttosolve/index.html" style="text-decoration:none;">Left to Solve Mirror (59k) ↗</a>
       <a class="theme-btn" href="blueprint/index.html" style="text-decoration:none;">Lean Blueprint ↗</a>
       <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas/releases/latest" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">White Paper PDF ↗</a>
       <a class="theme-btn" href="https://github.com/0thernes/unsolved-problems-mega-atlas" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">GitHub Repo ↗</a>
@@ -1051,7 +1052,7 @@ def export_interactive_html(data):
       <table class="data-table"><thead><tr><th>Registry / Tracker</th><th>Scope</th><th>Total Tracked</th><th>Open Count (Nov 2026)</th><th>Verification Standard</th><th>November 2026 Context</th></tr></thead><tbody id="regsTbody"></tbody></table>
     </div>
     <h2 style="margin-bottom:8px;">C. Left to Solve — All {len(data["df_lefttosolve_programs"])} Live Mathematical Programs (<a href="https://lefttosolve.com/programs" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">lefttosolve.com/programs</a>)</h2>
-    <p id="ltsMeta" style="color:var(--muted);font-size:0.84rem;margin-bottom:10px;">100 strictly non-duplicate open conjectures spanning these 25 fronts are natively indexed in Tab 1 (<code>LTS-001</code>..<code>LTS-100</code>). Counts refresh daily at <code>06:00 UTC</code> via <code>.github/workflows/daily-registry-sync.yml</code>.</p>
+    <p id="ltsMeta" style="color:var(--muted);font-size:0.84rem;margin-bottom:10px;">100 strictly non-duplicate, verbatim-verified open conjectures spanning these 25 fronts are natively indexed in Tab 1 (<code>LTS-001</code>..<code>LTS-100</code>). <a href="external/lefttosolve/index.html" style="color:var(--accent);font-weight:700;">Browse all 59,396 daily-mirrored Left to Solve targets &amp; the 290-problem Mega-Atlas crosswalk →</a> Counts refresh daily at <code>06:00 UTC</code> via <code>.github/workflows/daily-registry-sync.yml</code>.</p>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>#</th><th>Program / Front</th><th>Lean 4 Formalized</th><th>Targets</th><th>Open</th><th>Solved Here</th><th>Live Agents</th></tr></thead><tbody id="ltsTbody"></tbody></table>
     </div>
@@ -1523,7 +1524,7 @@ def export_pdf_monograph(data):
   <div>
     <div class="cover-kicker">Independent Research Monograph · Version {s['atlas_version']} · November 26, 2026</div>
     <h1>Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Fields of Knowledge</h1>
-    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, Pure Lean 4.35.0 Software-Model Invariant Suite ({lean_n} Audited Theorems, 0 sorry in lean/), November 26, 2026 AI Proof-Claim &amp; Daily 16-Registry / 25-Front Left-to-Solve Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 12-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
+    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, Pure Lean 4.35.0 Software-Model Invariant Suite ({lean_n} Audited Theorems, 0 sorry in lean/), November 26, 2026 AI Proof-Claim &amp; Daily 16-Registry / 25-Front Left-to-Solve Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 13-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
     <div class="cover-grid">
       <div class="cover-kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
       <div class="cover-kpi"><div class="v">8 × 28 × 7</div><div class="l">Pillars × SD × Layers</div></div>

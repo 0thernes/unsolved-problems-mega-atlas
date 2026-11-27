@@ -2,6 +2,16 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.9.0` to `v2.10.0`
+
+### 1. 100/100 Verbatim Left to Solve Mirror Parity & Crosswalk Expansion (`199 → 290` Matches)
+- Eliminated 3 genuine duplicates (`LTS-013`, `LTS-096`, `LTS-100`) and 2 partial overlaps (`LTS-098`, `LTS-099`) in `src/v2_data/m12_lefttosolve_programs.py`, replacing them with 5 distinct live-verified open conjectures (`WeighingMatrix.weighing_matrix_conjecture`, `WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture`, `AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two`, `Erdos114.erdos_114`, `Erdos101.erdos_101`).
+- Normalized all 35 non-verbatim `registry_source` IDs in `m12_lefttosolve_programs.py` and wired all 100 `LTS-001`..`LTS-100` into `data/external/lefttosolve/crosswalk_overrides.json`, raising curated crosswalk coverage from `199` to **`290`** matched Mega-Atlas problems across `59,396` mirrored targets. Cached SQLite databases automatically detect the version bump and rebuild cleanly on first query.
+
+### 2. 13-Tool MCP Hardening, Dashboard Mirror Navigation, `12/12` Mutation Audit & `99` Tests
+- Added strict string validation for `action` and `is_relative_to()` path-containment enforcement inside `query_lefttosolve_programs` (`mcp_server/server.py`, 13 tools total). All existing 12 tool signatures remain 100% backwards-compatible.
+- Linked the main Interactive Web Atlas (`outputs/MegaAtlas_Interactive_Dashboard_V2.html`) directly to `external/lefttosolve/index.html`, cured `07:23 UTC` → `06:00 UTC` schedule text in `scripts/sync_lefttosolve.py`, upgraded CI/Pages/Release workflows to Node 24 (`actions/checkout@v7`, `actions/setup-python@v7`), expanded mutation auditing to `12/12` (`100.0%`), and expanded `pytest` to `99` checks.
+
 ## Upgrading from `v2.8.0` to `v2.9.0`
 
 ### 1. Track B Ramsey Pilot Directory & ID Correction (`COMB-001` → `COMB-002`)

@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: Interactive Web Atlas & Lean Proof Blueprint
     url: https://0thernes.github.io/unsolved-problems-mega-atlas/
-    about: Explore all 1,900 problems, 15 analytical charts, and the 92-theorem Lean 4.35.0 Blueprint DAG.
+    about: Explore all 2,000 problems, 25 Left to Solve fronts (59,396-target mirror), 15 analytical charts, and the 103-theorem Lean 4.35.0 Blueprint DAG.
   - name: Security Disclosure Policy
     url: https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/SECURITY.md
     about: Report sensitive security issues privately via 0_0@0thernes.art.

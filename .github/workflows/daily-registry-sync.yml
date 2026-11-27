@@ -49,8 +49,8 @@ jobs:
       - name: Commit & push daily mirror + telemetry straight to main (outside frozen CHECKSUMS.sha256)
         id: commit
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Alexander Stephen Donahue (Daily Sync)"
+          git config user.email "0_0@0thernes.art"
           git add data/external results/lefttosolve_delta.json results/daily_registries.json results/lefttosolve_programs.json results/daily_registry_history.jsonl docs/lefttosolve-programs.md docs/DAILY_REGISTRY_TRACKER.md docs/registry-delta-latest.md
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"

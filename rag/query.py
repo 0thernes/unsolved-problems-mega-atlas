@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.10.0, Alexander Stephen Donahue).
 
 Powered by SQLite FTS5 staged BM25 ranking (Exact phrase + Strict-AND precision pass +
 relaxed OR backfill + hybrid title/bigram/PageRank re-ranker) + multi-hop knowledge-graph
@@ -446,7 +446,7 @@ def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Di
 
 
 def main() -> None:
-    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
+    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.10.0"
     parser = argparse.ArgumentParser(description=f"Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V{ver})")
     parser.add_argument("query", nargs="?", default=None, help="Free-text search query (staged FTS5 BM25)")
     parser.add_argument("--problem", dest="problem_id", default=None, help="Exact Problem ID (e.g., NT-001, CS-001, GR-001)")

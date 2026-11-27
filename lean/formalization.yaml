@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 # SPDX-License-Identifier: Apache-2.0
 version: "v0.4"
-release_version: "2.9.0"
+release_version: "2.10.0"
 
 project:
   name: "Unsolved Problems Mega-Atlas Software-Model Invariant Suite (MegaAtlasProofs)"
@@ -43,7 +43,7 @@ classification:
     - "05C90"
 
 sources:
-  - title: "Unsolved Problems Mega-Atlas (V2.9.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Deterministic Research Infrastructure"
+  - title: "Unsolved Problems Mega-Atlas (V2.10.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Daily-Synced Research Infrastructure"
     authors:
       - "Alexander Stephen Donahue"
     id: "https://github.com/0thernes/unsolved-problems-mega-atlas"

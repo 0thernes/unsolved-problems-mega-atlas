@@ -1,4 +1,4 @@
-# Unsolved Problems Mega-Atlas (`v2.9.0`)
+# Unsolved Problems Mega-Atlas (`v2.10.0`)
 
 [![CI](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Daily Registry Sync](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/daily-registry-sync.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/daily-registry-sync.yml)
@@ -10,19 +10,19 @@
 
 ![Unsolved Problems Mega-Atlas Social Preview](docs/media/social-preview.png)
 
-> **Status:** `active` · **Version:** `2.9.0` (November 26, 2026) · **Master Archive Entry:** `0TH-BUILD-007`
+> **Status:** `active` · **Version:** `2.10.0` (November 26, 2026) · **Master Archive Entry:** `0TH-BUILD-007`
 > **Author / Curator:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 > **Dual License:** Dataset, Charts, White Paper & Prose [`CC-BY-4.0`](LICENSE) · Code, Lean 4.35.0 Proofs, Tests & Tools [`Apache-2.0`](LICENSE-CODE)
 > **Supported locales:** English (`en-US`, UTF-8)
 
-An open dataset and software suite that catalogues **`2,000` deduplicated unsolved, open and hard problems** across **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,852 subdomains** — including `100` strictly non-duplicate open conjectures spanning all **`25` live fronts of [Left to Solve](https://lefttosolve.com/programs)** (`59,396` total targets, `1,939` Lean-4 formalized open) — linked in a **`6,108`-edge knowledge graph** that the Python audit (NetworkX) finds biconnected (`0` articulation points, `0` bridges, `0` dangling links, `36.2%` cross-superdomain, `18.9%` cross-pillar). It comes with:
+An open dataset and software suite that catalogues **`2,000` deduplicated unsolved, open and hard problems** across **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,851 subdomains** — including `100` strictly non-duplicate open conjectures verified verbatim across all **`25` live fronts of [Left to Solve](https://lefttosolve.com/programs)** (backed by a daily-synced `59,396`-target local mirror and `290` curated crosswalk matches; `1,939` Lean-4 formalized open) — linked in a **`6,108`-edge knowledge graph** that the Python audit (NetworkX) finds biconnected (`0` articulation points, `0` bridges, `0` dangling links, `36.3%` cross-superdomain, `18.9%` cross-pillar). It comes with:
 
 - **103 audited Lean 4.35.0 theorems without Mathlib** (of `117` declarations in `lean/`) about the atlas *software model*: `72` in the core modules, `12` NonVacuity witnesses, `10` `AdversarialTests` refutations of weakened variants and `9` Palomar contract theorems (`5` private helper lemmas in `GraphInvariants` and `9` intermediate `Solution` wrappers are not in `#print axioms`). All declarations are kernel-checked by Lean (`lake build`, `leanchecker --fresh`, `leanchecker-paranoid`); the `9` comparator targets in `lean/comparator.json` pass six kernel checks across five distinct implementations in Ubuntu CI (`lean` and `leanchecker-paranoid`, `lean4lean`, `nanoda`, `con-leche`, `con-ron`), alongside a live negative rejection test confirming Lean rejects a deliberately false theorem. Each audited theorem depends on at most `propext` and `Quot.sound` (`#print axioms`); whole-environment `lake check --paranoid` output also lists `Classical.choice` from Lean core. Several counted theorems are literal arithmetic identities or hypothesis restatements.
 - **11-page AMS-LaTeX white paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf); `0` overfull hboxes; `scripts/check_citations.py` reports `15/15` citations reachable with Crossref/Zenodo title-token parity and `0` retractions), a deterministic clean-room source tarball [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz), and structurally verified timestamps of `CHECKSUMS.sha256` from DigiCert RFC 3161 ([`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr), ASN.1 verified) and Bitcoin OpenTimestamps v1 ([`CHECKSUMS.sha256.ots`](CHECKSUMS.sha256.ots), full binary tree parsed across 3 calendars).
 - **Automated Daily Sync of All 16 Open-Problem Lists & 25 Left to Solve Fronts:** [`.github/workflows/daily-registry-sync.yml`](.github/workflows/daily-registry-sync.yml) polls `lefttosolve.com/api/stats`, `lefttosolve.com/programs` (all 25 fronts), `google-deepmind/formal-conjectures`, `teorth/erdosproblems`, Clay CMI, `erdosproblems.com`, `proofatlas.ai`, Open Problem Garden, Wikipedia (math/physics/CS), `bbchallenge.org`, Kourovka (`arXiv:1401.0300`), IQOQI Open Quantum Problems, Lean FRO RH statement, and `0thernes-research-archive` **daily at `06:00 UTC`**, updating [`docs/DAILY_REGISTRY_TRACKER.md`](docs/DAILY_REGISTRY_TRACKER.md), [`results/daily_registries.json`](results/daily_registries.json), [`results/lefttosolve_programs.json`](results/lefttosolve_programs.json), and [`results/daily_registry_history.jsonl`](results/daily_registry_history.jsonl) (advisory telemetry only — zero automatic problem retirement; isolated outside frozen `CHECKSUMS.sha256` timestamps; live-hydrated onto GitHub Pages daily at `06:15 UTC`).
-- **Live Interactive Web Atlas & Lean Proof Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) and [Lean 4.35.0 Proof Blueprint DAG](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/) (strict CSP, WCAG 2.2 AA accessible, `< 4 MB`, auto-hydrates daily registry JSON).
-- **Offline SQLite FTS5 hybrid search** (`100.0%` MRR@5, `25/25` top-1 on the benchmark queries, enforcing filters on exact-ID queries) and a **12-tool MCP server** with no external SDK (`mcp_server/server.py`, `1 MiB` frame cap on both NDJSON and `Content-Length:`, including `simulate_rubric_override` and `get_live_registry_tracker`), a fixed AutoResearch evaluation harness modelled on Karpathy's `autoresearch` (`AQS = 98.35`), and **3 finite Track B probes** (`LOG-002` Antihydra, `NT-005` Collatz, `COMB-002` Ramsey witnesses) whose parent problems stay open.
-- **Python verification ladder:** `83`-test `pytest` suite, 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic and golden snapshots, and a semantic mutation audit that kills all `10/10` planted mutants.
+- **Live Interactive Web Atlas, Left to Solve 59k Mirror & Lean Proof Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/), [Left to Solve 25-Front Mirror (59,396 targets / 290 crosswalk matches)](https://0thernes.github.io/unsolved-problems-mega-atlas/external/lefttosolve/), and [Lean 4.35.0 Proof Blueprint DAG](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/) (strict CSP, WCAG 2.2 AA accessible, `< 4 MB`, auto-hydrates daily registry JSON).
+- **Offline SQLite FTS5 hybrid search** (`100.0%` MRR@5, `25/25` top-1 on the benchmark queries, enforcing filters on exact-ID queries) and a **13-tool MCP server** with no external SDK (`mcp_server/server.py`, `1 MiB` frame cap on both NDJSON and `Content-Length:`, including `simulate_rubric_override`, `get_live_registry_tracker`, and `query_lefttosolve_programs`), a fixed AutoResearch evaluation harness modelled on Karpathy's `autoresearch` (`AQS = 98.35`), and **3 finite Track B probes** (`LOG-002` Antihydra, `NT-005` Collatz, `COMB-002` Ramsey witnesses) whose parent problems stay open.
+- **Python verification ladder:** `99`-test `pytest` suite, 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic and golden snapshots, and a semantic mutation audit that kills all `12/12` planted mutants.
 
 ---
 
@@ -93,7 +93,7 @@ python rag/query.py --compare NT-001 CS-001
 python rag/query.py --flag ai-claim-under-audit-nov2026 --top 15
 ```
 
-### 3. Model Context Protocol (MCP) 12-Tool Stdio Server
+### 3. Model Context Protocol (MCP) 13-Tool Stdio Server
 
 Connect Claude Code, Antigravity, Cursor, or Gemini CLI directly (zero external MCP SDK required):
 
@@ -113,7 +113,7 @@ Connect Claude Code, Antigravity, Cursor, or Gemini CLI directly (zero external 
 ```bash
 just reproduce       # Rebuild exports + pytest + 103-theorem Lean axiom audit + AMS-LaTeX paper + SHA-256
 just lean-kernels    # 6 kernel checks (5 implementations) under bubblewrap on Linux + live negative rejection
-just mutate          # 10-mutant semantic mutation testing (requires 10/10 kill rate)
+just mutate          # 12-mutant semantic mutation testing (requires 12/12 kill rate)
 just bench           # 10-iteration warmed benchmark harness -> docs/benchmarks.md
 just audit           # Python biconnectivity audit, Zenodo dry-run & AutoResearch gates
 just sync-registries # Live advisory delta check across all 16 trackers & 25 Left to Solve fronts
@@ -134,7 +134,7 @@ just rubric-diff     # Sensitivity diff (Spearman rho, Kendall tau, Top-25 Jacca
 | **Tabular & Compressed JSON Exports** | `outputs/*.csv`, `*.tsv`, `*.json.gz`, `*.jsonl.gz`, `*.xlsx` (16 sheets) | `< 5 MB` each | 100% JSON Schema Draft 2020-12 valid; full uncompressed `.sqlite`/`.json`/`build/*_Legacy.xls`/170+p PDF on [GitHub Releases](https://github.com/0thernes/unsolved-problems-mega-atlas/releases) |
 | **15 Analytical Figures (PNG + SVG)** | `outputs/charts/01..15.{png,svg}` + `paper/figures/*.pdf` | `35` vector/raster files | Colorblind-safe 8-pillar palette |
 | **FAIR Metadata, Checksums & Dual Timestamps** | `croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`, `CHECKSUMS.sha256`, `CHECKSUMS.sha256.tsr`, `CHECKSUMS.sha256.ots`, `data/MANIFEST.sha256` | Tracked | `78`-file root SHA-256 manifest + structurally verified DigiCert RFC 3161 `.tsr` & Bitcoin OTS v1 `.ots` |
-| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`docs/literature-search-log.md`](docs/literature-search-log.md), [`HARDENING_LOG.md`](HARDENING_LOG.md), [`ERRATA.md`](ERRATA.md) | Tracked | Internal adversarial audit logs (not external peer review); all 2026-11-26 statement-audit errata resolved at source in `v2.9.0` |
+| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`docs/literature-search-log.md`](docs/literature-search-log.md), [`HARDENING_LOG.md`](HARDENING_LOG.md), [`ERRATA.md`](ERRATA.md) | Tracked | Internal adversarial audit logs (not external peer review); Round 7 `v2.10.0` cured all `LTS-001..LTS-100` mirror duplicates/IDs (`290` crosswalk matches) & expanded mutation/test/MCP hardening |
 
 ---
 
@@ -155,10 +155,10 @@ See [`CITATION.cff`](CITATION.cff) and [`CITATION.bib`](CITATION.bib):
 ```bibtex
 @misc{donahue2026megaatlas,
   author  = {Donahue, Alexander Stephen},
-  title   = {Unsolved Problems Mega-Atlas (V2.9.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariant Suite, and Daily-Synced Research Infrastructure Across 2,000 Open Problems},
+  title   = {Unsolved Problems Mega-Atlas (V2.10.0): A Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariant Suite, and Daily-Synced Research Infrastructure Across 2,000 Open Problems},
   year    = {2026},
   month   = nov,
-  version = {2.9.0},
+  version = {2.10.0},
   url     = {https://github.com/0thernes/unsolved-problems-mega-atlas},
   note    = {ORCID: 0009-0006-8168-9648. Master Archive ID: 0TH-BUILD-007.}
 }

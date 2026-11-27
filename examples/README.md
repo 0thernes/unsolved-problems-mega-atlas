@@ -4,7 +4,7 @@ Every example script in this directory is executed as part of the automated pyte
 
 ## 1. Quickstart End-to-End Demo (`quickstart_demo.py`)
 
-Loads all 1,900 problems and the 5,808-edge biconnected graph, runs an offline Hybrid RAG query with 1-hop graph expansion, compares `NT-001` (Riemann Hypothesis) vs. `CS-001` (P vs. NP), and checks differential parity against the 50-digit `Decimal` reference oracle:
+Loads all 2,000 problems and the 6,108-edge biconnected graph, runs an offline Hybrid RAG query with 1-hop graph expansion, compares `NT-001` (Riemann Hypothesis) vs. `CS-001` (P vs. NP), and checks differential parity against the 50-digit `Decimal` reference oracle:
 
 ```bash
 python examples/quickstart_demo.py

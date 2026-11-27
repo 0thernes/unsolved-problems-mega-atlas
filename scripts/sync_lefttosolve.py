@@ -670,7 +670,7 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
   <p class="subtitle">
     Sidecar metadata index of all <strong>{len(snap["programs"])}</strong> programs at
     <a href="{esc(BASE)}/programs" rel="noopener noreferrer">lefttosolve.com/programs</a>,
-    refreshed daily by GitHub Actions (<code>07:23 UTC</code>).
+    refreshed daily by GitHub Actions (<code>06:00 UTC</code>).
     Retrieved <code>{esc(str(snap["retrieved_utc"]))}</code> ·
     Upstream <a href="{esc(repo_url)}" rel="noopener noreferrer"><code>formal-conjectures</code></a> @ <code>{esc(commit_short)}</code>.
   </p>
@@ -734,7 +734,7 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
   </section>
 
   <section aria-labelledby="crosswalk-heading">
-    <h2 id="crosswalk-heading">Mega-Atlas Crosswalk ({crosswalk.get("matched_atlas_problems", 0)} of {crosswalk.get("atlas_problems", 1900)} Atlas Problems)</h2>
+    <h2 id="crosswalk-heading">Mega-Atlas Crosswalk ({crosswalk.get("matched_atlas_problems", 0)} of {crosswalk.get("atlas_problems", 2000)} Atlas Problems)</h2>
     <p class="subtitle">
       Reviewed curated overrides (<code>{crosswalk.get("curated_override_problems", 0)}</code> problems in <code>crosswalk_overrides.json</code>) plus automatic exact normalized base-title matches across the 22 formal/curated programs (identity-level correspondences, not statement-fidelity certifications).
       <code>{len(signals)}</code> non-<code>related</code> link(s) carry a Left to Solve <code>solved</code> flag; zero Mega-Atlas statuses are changed.

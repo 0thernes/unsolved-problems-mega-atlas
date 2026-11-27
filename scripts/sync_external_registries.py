@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Daily External Open-Problem Registry & Left-to-Solve 25-Program Sync Engine (V2.9.0).
+"""Daily External Open-Problem Registry & Left-to-Solve 25-Program Sync Engine (V2.10.0).
 
 Polite, zero-dependency, read-only daily tracker polling 16 public open-problem
 registries, repositories, and primary verification pages — including all 25 live
@@ -249,7 +249,7 @@ def parse_lefttosolve_programs_html(raw_html: str) -> list[dict[str, Any]]:
             "open": open_cnt,
             "solved_here": solved_cnt,
             "live_agents": live_agents,
-            "url": f"https://lefttosolve.com/programs/{slug}",
+            "url": f"https://lefttosolve.com/programs/{urllib.parse.quote(name, safe='()')}",
         })
     programs.sort(key=lambda r: (-r["targets"], r["program"]))
     return programs
@@ -327,7 +327,7 @@ def _build_headers(url: str) -> dict[str, str]:
     return headers
 
 
-def fetch_target(target: dict[str, Any], timeout: int = 25, retries: int = 2) -> dict[str, Any]:
+def fetch_target(target: dict[str, Any], timeout: int = 20, retries: int = 1) -> dict[str, Any]:
     import time
 
     req = urllib.request.Request(target["url"], headers=_build_headers(target["url"]), method="GET")

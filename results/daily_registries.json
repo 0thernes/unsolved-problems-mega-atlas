@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
-  "atlas_version": "2.9.0",
-  "checked_utc": "2026-11-27T05:42:34Z",
+  "atlas_version": "2.10.0",
+  "checked_utc": "2026-11-27T13:45:17Z",
   "checked_date_utc": "2026-11-27",
   "mode": "live",
   "update_cadence": "Daily at 06:00 UTC via .github/workflows/daily-registry-sync.yml",
@@ -10,7 +10,7 @@
   "committed_ai_audit_entries": 6,
   "unretired_nov2026_ai_claim_targets": 12,
   "live_targets_polled": 16,
-  "lefttosolve_program_count": 25,
+  "lefttosolve_program_count": 26,
   "registries": [
     {
       "key": "lefttosolve_stats",
@@ -19,26 +19,26 @@
       "http_status": 200,
       "fetch_status": "live_checked",
       "metrics": {
-        "total": 59396,
+        "total": 62765,
         "catalog": {
-          "open": 1939,
+          "open": 2208,
           "known": 1818,
           "warmup": 168,
-          "unformalized": 55471
+          "unformalized": 58571
         },
-        "solved_here_total": 1378,
-        "solved_today": 1378,
-        "claims_today": 7149,
-        "live_agents": 119,
-        "live_problems": 107,
+        "solved_here_total": 2356,
+        "solved_today": 2356,
+        "claims_today": 14342,
+        "live_agents": 160,
+        "live_problems": 156,
         "desk_online": true
       },
       "extracted_signals": [
-        "total=59,396",
-        "lean_open=1,939",
-        "unformalized=55,471",
-        "solved_here=1,378",
-        "live_agents=119"
+        "total=62,765",
+        "lean_open=2,208",
+        "unformalized=58,571",
+        "solved_here=2,356",
+        "live_agents=160"
       ],
       "editorial_action": "LIVE_SYNCED: Left to Solve catalog counters updated."
     },
@@ -48,14 +48,14 @@
       "url": "https://lefttosolve.com/programs",
       "http_status": 200,
       "fetch_status": "live_checked",
-      "program_count": 25,
+      "program_count": 26,
       "extracted_signals": [
-        "25 programs",
-        "targets=59,396",
-        "open=57,410",
-        "solved_here=0"
+        "26 programs",
+        "targets=62,765",
+        "open=60,779",
+        "solved_here=1,555"
       ],
-      "editorial_action": "LIVE_SYNCED: Parsed 25 Left to Solve programs."
+      "editorial_action": "LIVE_SYNCED: Parsed 26 Left to Solve programs."
     },
     {
       "key": "deepmind_formal_conjectures",
@@ -64,13 +64,13 @@
       "http_status": 200,
       "fetch_status": "live_checked",
       "metrics": {
-        "head_sha": "ea8e3e198ded",
-        "commit_date_utc": "2026-11-26T15:20:47Z",
-        "commit_subject": "feat(Arxiv): Primes of the form F_n + L_{n+1} (#8156)"
+        "head_sha": "023c8018c82b",
+        "commit_date_utc": "2026-11-27T13:13:35Z",
+        "commit_subject": "feat(WrittenOnTheWallII/GraphConjecture61): mark solved and link Palomar proof (#8304)"
       },
       "extracted_signals": [
-        "sha=ea8e3e198ded",
-        "date=2026-11-26T15:20:47Z"
+        "sha=023c8018c82b",
+        "date=2026-11-27T13:13:35Z"
       ],
       "editorial_action": "LIVE_SYNCED: Upstream commit SHA recorded."
     },
@@ -280,13 +280,13 @@
       "http_status": 200,
       "fetch_status": "live_checked",
       "metrics": {
-        "head_sha": "a5ff68ce8dc1",
-        "commit_date_utc": "2026-11-27T05:24:56Z",
-        "commit_subject": "chore(archive): sync 0TH-2026-012 (coded-pir-mlwe-complexity-lab) to v5.1.0 (d942e537) & r"
+        "head_sha": "5bb57cbf9027",
+        "commit_date_utc": "2026-11-27T13:36:03Z",
+        "commit_subject": "chore(archive): complete 0TH-2026-006 v2.6.0 registry, bridge, docs, tests & RFC 3161 free"
       },
       "extracted_signals": [
-        "sha=a5ff68ce8dc1",
-        "date=2026-11-27T05:24:56Z"
+        "sha=5bb57cbf9027",
+        "date=2026-11-27T13:36:03Z"
       ],
       "editorial_action": "LIVE_SYNCED: Upstream commit SHA recorded."
     }
@@ -297,8 +297,8 @@
       "formalized_in_lean": false,
       "targets": 35783,
       "open": 35783,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 7,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/MathOverflow%20(not%20formalized)"
     },
     {
@@ -306,17 +306,26 @@
       "formalized_in_lean": false,
       "targets": 18441,
       "open": 18441,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 48,
+      "live_agents": 15,
       "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized)"
+    },
+    {
+      "program": "arXiv abstracts (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 3368,
+      "open": 3368,
+      "solved_here": 3,
+      "live_agents": 1,
+      "url": "https://lefttosolve.com/programs/arXiv%20abstracts%20(not%20formalized)"
     },
     {
       "program": "Erdős Problems",
       "formalized_in_lean": true,
       "targets": 2068,
       "open": 837,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 957,
+      "live_agents": 48,
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems"
     },
     {
@@ -324,8 +333,8 @@
       "formalized_in_lean": true,
       "targets": 615,
       "open": 336,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 176,
+      "live_agents": 7,
       "url": "https://lefttosolve.com/programs/Wikipedia"
     },
     {
@@ -333,8 +342,8 @@
       "formalized_in_lean": true,
       "targets": 461,
       "open": 394,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 82,
+      "live_agents": 8,
       "url": "https://lefttosolve.com/programs/OEIS"
     },
     {
@@ -342,7 +351,7 @@
       "formalized_in_lean": false,
       "targets": 395,
       "open": 395,
-      "solved_here": 0,
+      "solved_here": 1,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20(not%20formalized)"
     },
@@ -352,7 +361,7 @@
       "targets": 366,
       "open": 366,
       "solved_here": 0,
-      "live_agents": 0,
+      "live_agents": 4,
       "url": "https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized)"
     },
     {
@@ -360,8 +369,8 @@
       "formalized_in_lean": false,
       "targets": 316,
       "open": 316,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 1,
+      "live_agents": 2,
       "url": "https://lefttosolve.com/programs/Open%20Problem%20Garden"
     },
     {
@@ -369,17 +378,17 @@
       "formalized_in_lean": true,
       "targets": 285,
       "open": 128,
-      "solved_here": 0,
-      "live_agents": 0,
-      "url": "https://lefttosolve.com/programs/Green&#x27;s%20100%20Open%20Problems"
+      "solved_here": 112,
+      "live_agents": 3,
+      "url": "https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems"
     },
     {
       "program": "Papers",
       "formalized_in_lean": true,
       "targets": 180,
       "open": 93,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 36,
+      "live_agents": 3,
       "url": "https://lefttosolve.com/programs/Papers"
     },
     {
@@ -387,7 +396,7 @@
       "formalized_in_lean": false,
       "targets": 116,
       "open": 116,
-      "solved_here": 0,
+      "solved_here": 1,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20(not%20formalized)"
     },
@@ -396,15 +405,15 @@
       "formalized_in_lean": true,
       "targets": 105,
       "open": 43,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 50,
+      "live_agents": 4,
       "url": "https://lefttosolve.com/programs/arXiv%20papers"
     },
     {
       "program": "Wikipedia (not formalized)",
       "formalized_in_lean": false,
-      "targets": 44,
-      "open": 44,
+      "targets": 45,
+      "open": 45,
       "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Wikipedia%20(not%20formalized)"
@@ -414,8 +423,8 @@
       "formalized_in_lean": true,
       "targets": 32,
       "open": 28,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 4,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Open%20Quantum%20Problems"
     },
     {
@@ -423,8 +432,8 @@
       "formalized_in_lean": true,
       "targets": 31,
       "open": 11,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 10,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Optimization%20Constants"
     },
     {
@@ -432,8 +441,8 @@
       "formalized_in_lean": true,
       "targets": 31,
       "open": 11,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 25,
+      "live_agents": 3,
       "url": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II"
     },
     {
@@ -441,7 +450,7 @@
       "formalized_in_lean": true,
       "targets": 29,
       "open": 17,
-      "solved_here": 0,
+      "solved_here": 8,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Other"
     },
@@ -450,7 +459,7 @@
       "formalized_in_lean": true,
       "targets": 26,
       "open": 11,
-      "solved_here": 0,
+      "solved_here": 14,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Books"
     },
@@ -459,7 +468,7 @@
       "formalized_in_lean": true,
       "targets": 21,
       "open": 9,
-      "solved_here": 0,
+      "solved_here": 11,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/MathOverflow"
     },
@@ -468,8 +477,8 @@
       "formalized_in_lean": true,
       "targets": 21,
       "open": 12,
-      "solved_here": 0,
-      "live_agents": 0,
+      "solved_here": 2,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Millennium%20Prize"
     },
     {
@@ -477,7 +486,7 @@
       "formalized_in_lean": true,
       "targets": 9,
       "open": 5,
-      "solved_here": 0,
+      "solved_here": 2,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Kourovka%20Notebook"
     },
@@ -486,9 +495,9 @@
       "formalized_in_lean": true,
       "targets": 8,
       "open": 2,
-      "solved_here": 0,
+      "solved_here": 3,
       "live_agents": 0,
-      "url": "https://lefttosolve.com/programs/Hilbert&#x27;s%20Problems"
+      "url": "https://lefttosolve.com/programs/Hilbert%27s%20Problems"
     },
     {
       "program": "Open problems in information theory (gokhanmergen)",
@@ -496,7 +505,7 @@
       "targets": 7,
       "open": 7,
       "solved_here": 0,
-      "live_agents": 0,
+      "live_agents": 1,
       "url": "https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20(gokhanmergen)"
     },
     {
@@ -504,7 +513,7 @@
       "formalized_in_lean": true,
       "targets": 3,
       "open": 3,
-      "solved_here": 0,
+      "solved_here": 1,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert"
     },
@@ -513,28 +522,13 @@
       "formalized_in_lean": true,
       "targets": 3,
       "open": 2,
-      "solved_here": 0,
+      "solved_here": 1,
       "live_agents": 0,
-      "url": "https://lefttosolve.com/programs/Litt&#x27;s%20Problems"
+      "url": "https://lefttosolve.com/programs/Litt%27s%20Problems"
     }
   ],
   "daily_deltas": [
-    "lefttosolve_stats.solved_here_total: 1,322 -> 1,378 (+56)",
-    "PROGRAM_DELTA [Erdős Problems]: targets 2068->2068, open 837->837, solved_here 720->0",
-    "PROGRAM_DELTA [Wikipedia]: targets 615->615, open 336->336, solved_here 135->0",
-    "PROGRAM_DELTA [OEIS]: targets 461->461, open 394->394, solved_here 60->0",
-    "PROGRAM_DELTA [Green's 100 Open Problems]: targets 285->285, open 128->128, solved_here 74->0",
-    "PROGRAM_DELTA [Papers]: targets 180->180, open 93->93, solved_here 29->0",
-    "PROGRAM_DELTA [arXiv papers]: targets 105->105, open 43->43, solved_here 30->0",
-    "PROGRAM_DELTA [Open Quantum Problems]: targets 32->32, open 28->28, solved_here 4->0",
-    "PROGRAM_DELTA [Optimization Constants]: targets 31->31, open 11->11, solved_here 5->0",
-    "PROGRAM_DELTA [Written on the Wall II]: targets 31->31, open 11->11, solved_here 20->0",
-    "PROGRAM_DELTA [Other]: targets 29->29, open 17->17, solved_here 6->0",
-    "PROGRAM_DELTA [Books]: targets 26->26, open 11->11, solved_here 6->0",
-    "PROGRAM_DELTA [MathOverflow]: targets 21->21, open 9->9, solved_here 10->0",
-    "PROGRAM_DELTA [Millennium Prize]: targets 21->21, open 12->12, solved_here 2->0",
-    "PROGRAM_DELTA [Kourovka Notebook]: targets 9->9, open 5->5, solved_here 1->0",
-    "PROGRAM_DELTA [Hilbert's Problems]: targets 8->8, open 2->2, solved_here 1->0",
-    "PROGRAM_DELTA [Litt's Problems]: targets 3->3, open 2->2, solved_here 1->0"
+    "deepmind_formal_conjectures HEAD updated: ea8e3e198ded -> 023c8018c82b (2026-11-27T13:13:35Z)",
+    "0thernes_research_archive HEAD updated: 21dc159328be -> 5bb57cbf9027 (2026-11-27T13:36:03Z)"
   ]
 }

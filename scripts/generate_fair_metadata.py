@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deterministic FAIR Scholarly Metadata Generator (`v2.9.0`):
+Deterministic FAIR Scholarly Metadata Generator (`v2.10.0`):
   1. `croissant.json`         — MLCommons Croissant 1.0 JSON-LD dataset specification
   2. `ro-crate-metadata.json` — W3C / ResearchObject RO-Crate 1.1 JSON-LD descriptor
   3. `data/MANIFEST.sha256`   — Canonical SHA-256 manifest of frozen tracked data & paper artifacts
@@ -27,7 +27,7 @@ REPO_URL = "https://github.com/0thernes/unsolved-problems-mega-atlas"
 PAGES_URL = "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 RAW_BASE = "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/"
 ORCID_URL = "https://orcid.org/0009-0006-8168-9648"
-VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.10.0"
 
 
 def _lean_theorem_count() -> int:
@@ -119,7 +119,7 @@ def build_croissant(df_cols: list[str], total_problems: int, total_edges: int) -
             "across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers, "
             f"wired into a {total_edges:,}-edge knowledge graph that Python/NetworkX audits as biconnected (0 articulation points, 0 dangling links), "
             "with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 26, 2026 "
-            f"AI proof-claim audit & automated daily sync across 16 global registries + all 25 Left to Solve fronts (lefttosolve.com/programs), Hybrid RAG (100% MRR@5 on 25 benchmark queries), 12-tool MCP server, 3 finite Track B probes (LOG-002, NT-005, COMB-002), "
+            f"AI proof-claim audit & automated daily sync across 16 global registries + all 25 Left to Solve fronts (lefttosolve.com/programs, 59,396-target local mirror, 290 curated crosswalk matches), Hybrid RAG (100% MRR@5 on 25 benchmark queries), 13-tool MCP server, 12/12 mutation audit, 3 finite Track B probes (LOG-002, NT-005, COMB-002), "
             f"AutoResearch harness, and {lean_n} audited zero-Mathlib Lean 4.35.0 software-model invariant theorems "
             f"(kernel-checked by Lean; 9 Palomar comparator targets accepted by six kernel checks across five distinct implementations). None of the {total_problems:,} problems is solved by this work."
         ),
@@ -238,7 +238,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("autoresearch/program.md", "text/markdown", "Karpathy-style autonomous research instruction manual"),
         ("autoresearch/evaluate.py", "text/x-python", "Immutable AutoResearch evaluation oracle"),
         ("autoresearch/results.tsv", "text/tab-separated-values", "Empirical AutoResearch experiment audit trail"),
-        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (12 tools)"),
+        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (13 tools)"),
         ("rag/query.py", "text/x-python", "Offline Hybrid BM25 + graph-authority RAG CLI (auto-builds SQLite FTS5)"),
     ]
     graph = [
@@ -257,7 +257,7 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
                 f"8 Substrates, 7 Abstraction Layers, {total_edges:,} edges audited biconnected in Python/NetworkX, {lean_n} audited Lean 4.35.0 software-model theorems "
-                "(9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations), 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 12-tool MCP server, daily 16-registry & 25-front Left to Solve sync, 3 finite Track B probes, and AutoResearch harness). "
+                "(9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations), 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 13-tool MCP server, 12/12 mutation audit, daily 16-registry & 25-front Left to Solve sync (59,396-target mirror, 290 crosswalk matches), 3 finite Track B probes, and AutoResearch harness). "
                 f"0/{total_problems:,} solved by this work."
             ),
             "url": PAGES_URL,

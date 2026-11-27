@@ -36,17 +36,17 @@
   },
   {
     "id": "ANL-001",
-    "css_score": 83.21,
-    "titan_index": 9.32
-  },
-  {
-    "id": "GEOM-003",
-    "css_score": 82.88,
-    "titan_index": 7.51
+    "css_score": 83.32,
+    "titan_index": 9.33
   },
   {
     "id": "ANL-002",
     "css_score": 82.83,
     "titan_index": 8.56
+  },
+  {
+    "id": "GEOM-003",
+    "css_score": 82.75,
+    "titan_index": 7.5
   }
 ]

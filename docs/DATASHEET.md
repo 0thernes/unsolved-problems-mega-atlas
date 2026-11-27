@@ -1,4 +1,4 @@
-# Datasheet for the Unsolved Problems Mega-Atlas (`v2.9.0`)
+# Datasheet for the Unsolved Problems Mega-Atlas (`v2.10.0`)
 
 > Structured according to Gebru et al. (2021), *"Datasheets for Datasets"*, Communications of the ACM 64(12).
 
@@ -6,7 +6,7 @@
 
 ## 1. Motivation
 
-- **For what purpose was the dataset created?** To unify humanity's fragmented open-problem lists (spanning pure mathematics, logic/CS, fundamental physics, matter/chemistry, biology/neuroscience/medicine, AI/quantum/hardware/systems, engineering/design/earth/energy, and philosophy/economics/humanities — plus all 25 mathematical fronts on `https://lefttosolve.com/programs`) into a single schema-validated, biconnected, cross-linked multi-layer knowledge graph with transparent dual ranking (`0thernes CSS` + `Titan Index`), quantitative substrate/layer/gradient/margin/spectrum layers, `100% MRR@5` offline RAG & 12-tool MCP tooling (incl. rubric sensitivity diffing & live registry tracker), a Lean 4.35.0 software-model invariant suite, 3 exact finite Track B probes (`LOG-002`, `NT-005`, `COMB-002`), and automated daily syncing across 16 global trackers & 25 Left to Solve fronts.
+- **For what purpose was the dataset created?** To unify humanity's fragmented open-problem lists (spanning pure mathematics, logic/CS, fundamental physics, matter/chemistry, biology/neuroscience/medicine, AI/quantum/hardware/systems, engineering/design/earth/energy, and philosophy/economics/humanities — plus all 25 mathematical fronts on `https://lefttosolve.com/programs` backed by a daily-synced `59,396`-target mirror and `290` curated crosswalk matches) into a single schema-validated, biconnected, cross-linked multi-layer knowledge graph with transparent dual ranking (`0thernes CSS` + `Titan Index`), quantitative substrate/layer/gradient/margin/spectrum layers, `100% MRR@5` offline RAG & 13-tool MCP tooling (incl. rubric sensitivity diffing, live registry tracker & Left to Solve mirror explorer), a Lean 4.35.0 software-model invariant suite, 3 exact finite Track B probes (`LOG-002`, `NT-005`, `COMB-002`), and automated daily syncing across 16 global trackers & 25 Left to Solve fronts.
 - **Who created and funded the dataset?** Independent researcher **Alexander Stephen Donahue** (`Independent Researcher, Spokane, WA, USA`; ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)), self-funded with zero external corporate or government sponsorship, utilizing disclosed frontier AI assistance under continuous human architectural direction and automated verification gates.
 
 ## 2. Composition
@@ -27,7 +27,7 @@
 - **Formal & Automated Checks:**
   - **103 audited Lean 4.35.0 software-model theorems** (of `117` declarations in `lean/`, zero Mathlib, `0` `sorry`, per-theorem `#print axioms ⊆ [propext, Quot.sound]`, including `12` concrete NonVacuity witnesses, `10` constructive AdversarialTests refutations, and `9` Palomar targets checked by `6` kernel checks across `5` distinct implementations via `scripts/verify_lean_six_kernels.sh`). No Lean statement references the 2,000-row data or 6,108-edge graph.
   - **JSON Schema Draft 2020-12** (`schema/problem.schema.json`) validated on all 2,000 × 48 records.
-  - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `10/10` (100%) mutation-kill audit, `83` `pytest` checks, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 98.35`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
+  - **Deep Verification Ladder:** 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000+ differential cases, `12/12` (100%) mutation-kill audit, `99` `pytest` checks, forensic auditor (`scripts/forensic_audit.py`), immutable **AutoResearch evaluator (`autoresearch/evaluate.py`, `AQS = 98.35`, `100% MRR@5`)**, and byte-exact **SHA-256 manifests (`CHECKSUMS.sha256`, `data/MANIFEST.sha256`, `croissant.json`, `ro-crate-metadata.json`)**.
 
 ## 5. Uses & Out-of-Scope Warnings
 
@@ -39,6 +39,6 @@
 
 ## 6. Distribution & Maintenance
 
-- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.9.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 11-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), structurally verified DigiCert RFC 3161 (`CHECKSUMS.sha256.tsr`) + 3-calendar Bitcoin OpenTimestamps v1 (`CHECKSUMS.sha256.ots`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
+- **Distribution:** GitHub (`https://github.com/0thernes/unsolved-problems-mega-atlas`), GitHub Releases (`v2.10.0`), Live GitHub Pages (`https://0thernes.github.io/unsolved-problems-mega-atlas/`), 11-page AMS-LaTeX White Paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`), structurally verified DigiCert RFC 3161 (`CHECKSUMS.sha256.tsr`) + 3-calendar Bitcoin OpenTimestamps v1 (`CHECKSUMS.sha256.ots`), Master Archive (`0TH-BUILD-007` in `0thernes/0thernes-research-archive`), plus Zenodo (`.zenodo.json` + `scripts/publish_zenodo.py`), MLCommons Croissant (`croissant.json`), W3C RO-Crate (`ro-crate-metadata.json`), and Software Heritage manual preservation (`docs/PRESERVATION.md`).
 - **Licensing:** Dual-licensed — Data/Prose/Charts/White Paper under **CC BY 4.0** (`LICENSE`); Code/Schemas/RAG/MCP/Lean under **Apache-2.0** (`LICENSE-CODE`).
 - **Maintenance:** Maintained by Alexander Stephen Donahue (`0_0@0thernes.art`) via semantic versioning (`CHANGELOG.md`), structured 10-class GitHub Issue templates, and community academic review (`docs/ACADEMIC_REVIEW.md`).

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""V2.9.0 Mega-Atlas Master Loader: merges all 12 parallel modules (incl. Left to Solve programs), strictly deduplicates with alias redirection, resolves HUB:* links, computes biconnected NetworkX analytics & multi-layer matrices."""
+"""V2.10.0 Mega-Atlas Master Loader: merges all 12 parallel modules (incl. Left to Solve programs), strictly deduplicates with alias redirection, resolves HUB:* links, computes biconnected NetworkX analytics & multi-layer matrices."""
 
 import os
 import re
@@ -66,7 +66,7 @@ def _read_atlas_version() -> str:
             v = f.read().strip()
             if v:
                 return v
-    return "2.9.0"
+    return "2.10.0"
 
 
 ATLAS_VERSION = _read_atlas_version()
@@ -91,7 +91,7 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "2,000 strictly deduplicated biconnected problems (12 modules incl. Left to Solve)", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks (0/2,000 solved by this work)", "Verification_Standard": "Lean 4.35.0 software-model invariant suite (103 audited theorems; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations + live negative rejection), Python NetworkX biconnectivity audit, JSON Schema, Hypothesis, 50-digit oracle, 10-mutant audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 finite Track B probes (LOG-002, NT-005, COMB-002) & automated daily 16-registry + 25-program sync", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 12-tool MCP server, daily auto-updated global registry tracker, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
+    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "2,000 strictly deduplicated biconnected problems (12 modules incl. Left to Solve)", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks (0/2,000 solved by this work)", "Verification_Standard": "Lean 4.35.0 software-model invariant suite (103 audited theorems; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations + live negative rejection), Python NetworkX biconnectivity audit, JSON Schema, Hypothesis, 50-digit oracle, 12-mutant audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 finite Track B probes (LOG-002, NT-005, COMB-002) & automated daily 16-registry + 25-program sync (59,396-target mirror, 290 crosswalk matches)", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 13-tool MCP server (incl. 59,396-target Left to Solve mirror explorer), daily auto-updated global registry tracker, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
 ]
 
 # Baseline snapshot of all 25 live fronts on https://lefttosolve.com/programs (2026-11-26 UTC;
@@ -242,7 +242,7 @@ def _norm_name(s: str) -> str:
 # (https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md, statement
 # audit of 2026-11-26). Only its section A records answers to open questions stated by
 # other authors: R1 (0TH-2026-006) and R44, R45 (0TH-2026-009). Self-published, not peer
-# reviewed. None of the 1,900 Mega-Atlas problems is solved by these entries.
+# reviewed. None of the 2,000 Mega-Atlas problems is solved by these entries.
 RESULTS_LEDGER_URL = "https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md"
 
 OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
@@ -292,7 +292,7 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
         "Parent_Atlas_IDs": "STAT-001 (Related Probability / Asymptotic Statistics)",
         "Scoped_Result": "Answer to a conjecture stated by other authors (RESULTS.md R1, section A): the closed form a_triangle = 1/32 - 4*sqrt(3)/243 in Conjecture 7.7 of Banic and Elezovic (arXiv:2610.17046). Lean proves the three limits, not the O(l^-2) remainder of the source's Lemma 7.3, and the step to the variance of the total-variation statistic is not formalized. Also known results R15 (section E).",
         "Kernel_Audit": "Lean kernel with Mathlib (R1, R15); see RESULTS.md.",
-        "Parent_Problem_Status": "STANDALONE QUESTION: adjacent to STAT-001 and not one of the 1,900 atlas IDs. Source and proof are unreviewed preprints.",
+        "Parent_Problem_Status": "STANDALONE QUESTION: adjacent to STAT-001 and not one of the 2,000 atlas IDs. Source and proof are unreviewed preprints.",
     },
     {
         "Archive_ID": "0TH-2026-013",

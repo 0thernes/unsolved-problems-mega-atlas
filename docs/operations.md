@@ -4,13 +4,13 @@ Per **Build Standard for LLMs v1.2.0 (A35, A36)**, this runbook documents how th
 
 ## 1. Deployment (GitHub Pages & Releases)
 
-- **Live Web Atlas, Daily Registry Feeds & Lean Proof Blueprint:** Automatically deployed on every push to `main` AND daily at `06:15 UTC` via `.github/workflows/pages.yml` to `https://0thernes.github.io/unsolved-problems-mega-atlas/` (serving `outputs/MegaAtlas_Interactive_Dashboard_V2.html` as `index.html`, all 30 files in `outputs/charts/`, `blueprint/index.html`, live daily JSON feeds `daily_registries.json`, `lefttosolve_programs.json`, `daily_registry_history.jsonl`, plus `llms.txt`, `llms-full.txt`, `croissant.json`, and `ro-crate-metadata.json`).
+- **Live Web Atlas, Left to Solve 59k Mirror, Daily Registry Feeds & Lean Proof Blueprint:** Automatically deployed on every push to `main` AND daily at `06:15 UTC` via `.github/workflows/pages.yml` to `https://0thernes.github.io/unsolved-problems-mega-atlas/` (serving `outputs/MegaAtlas_Interactive_Dashboard_V2.html` as `index.html`, all 30 files in `outputs/charts/`, `blueprint/index.html`, `external/lefttosolve/index.html` (`59,396`-target mirror & `290` curated crosswalk matches), live daily JSON feeds `daily_registries.json`, `lefttosolve_programs.json`, `daily_registry_history.jsonl`, plus `llms.txt`, `llms-full.txt`, `croissant.json`, and `ro-crate-metadata.json`).
 - **Automated Daily External Registry Sync:** `.github/workflows/daily-registry-sync.yml` runs daily at `06:00 UTC` (`cron: "0 6 * * *"` + `workflow_dispatch`), polling all **16** live open-problem trackers and all **25** Left to Solve fronts (`lefttosolve.com/programs`), writing `results/daily_registries.json`, `results/lefttosolve_programs.json`, `results/daily_registry_history.jsonl`, and `docs/DAILY_REGISTRY_TRACKER.md` straight to `main` strictly outside frozen `CHECKSUMS.sha256` timestamps.
 - **Release Bundles:** Pushing an annotated or lightweight tag `v*` triggers `.github/workflows/release.yml`, packaging deterministic archives and attaching verified build outputs (including `build/MegaAtlas_Unsolved_Problems_V2_Legacy.xls` and daily JSON feeds) alongside `SHA256SUMS`.
 
 ## 2. Rollback Procedure
 
-1. Identify the last known-good release tag (e.g., `v2.8.0`) via `git tag -l`.
+1. Identify the last known-good release tag (e.g., `v2.9.0`) via `git tag -l`.
 2. To roll back `main` cleanly without rewriting history:
    ```bash
    git revert --no-commit <bad-commit>..HEAD
@@ -18,7 +18,7 @@ Per **Build Standard for LLMs v1.2.0 (A35, A36)**, this runbook documents how th
    git push origin main
    ```
 3. `.github/workflows/pages.yml` automatically redeploys the reverted static site within ~60 seconds.
-4. For release downloads, previous GitHub Release assets (`v2.8.0`, `v2.7.0`, `v2.6.0`, `v2.5.0`, `v2.4.0`, `v2.3.1`, `v2.3.0`) remain permanently immutable and downloadable.
+4. For release downloads, previous GitHub Release assets (`v2.9.0`, `v2.8.0`, `v2.7.0`, `v2.6.0`, `v2.5.0`, `v2.4.0`, `v2.3.1`, `v2.3.0`) remain permanently immutable and downloadable.
 
 ## 3. Offsite Backup & Tested Restore Procedure (A35)
 
@@ -27,7 +27,7 @@ Because `git` history + source modules deterministically regenerate every derive
 2. **GitHub remote + pinned master archive submodule:** `https://github.com/0thernes/unsolved-problems-mega-atlas` and `https://github.com/0thernes/0thernes-research-archive` (`0TH-BUILD-007`)
 3. **Periodic portable git bundle backup** created via:
    ```bash
-   git bundle create <offsite-dir>/unsolved-problems-mega-atlas-v2.9.0.bundle --all
+   git bundle create <offsite-dir>/unsolved-problems-mega-atlas-v2.10.0.bundle --all
    ```
 
 ### Tested Restore Verification Log

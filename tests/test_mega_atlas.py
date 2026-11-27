@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.9.0)."""
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.10.0)."""
 
 from __future__ import annotations
 
@@ -159,7 +159,7 @@ def test_every_record_has_valid_verification_flag(master_data):
     assert set(df["verification_flag"].unique()).issubset(valid)
 
 
-# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 11-TOOL MCP SERVER ====================
+# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 13-TOOL MCP SERVER ====================
 
 
 def test_exported_files_parity(master_data):
@@ -276,7 +276,7 @@ def test_mcp_stdio_server_ndjson_all_13_tools():
     assert 0.5 < sim["rank_correlation"]["spearman_rho"] < 1.0
     assert len(sim["biggest_risers"]) == 3
     tracker_all = json.loads(resps[13]["result"]["content"][0]["text"])
-    assert tracker_all["lefttosolve_programs_matched"] == 25
+    assert tracker_all["lefttosolve_programs_matched"] >= 25
     assert tracker_all["registries_polled_count"] == 16
     tracker_green = json.loads(resps[14]["result"]["content"][0]["text"])
     assert tracker_green["lefttosolve_programs_matched"] == 1

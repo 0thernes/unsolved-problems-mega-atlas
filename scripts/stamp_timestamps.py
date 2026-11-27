@@ -22,7 +22,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.10.0"
 CHECKSUMS_PATH = ROOT / "CHECKSUMS.sha256"
 TSR_PATH = ROOT / "CHECKSUMS.sha256.tsr"
 OTS_PATH = ROOT / "CHECKSUMS.sha256.ots"

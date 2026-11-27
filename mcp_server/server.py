@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.10.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
@@ -41,7 +41,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 from rubric_override_diff import DEFAULT_CSS_WEIGHTS, evaluate_rubric_override  # noqa: E402
 
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.10.0"
 MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on both Content-Length and NDJSON frames
 MAX_QUERY_CHARS = 4096
 
@@ -240,11 +240,15 @@ TOOLS: List[Dict[str, Any]] = [
 
 def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
     lts_dir = ROOT / "data" / "external" / "lefttosolve"
+    lts_root = lts_dir.resolve()
     snap_path = lts_dir / "snapshot.json"
     if not snap_path.exists():
         raise ValueError("Left to Solve mirror not found (run: python scripts/sync_lefttosolve.py --live)")
     snap = json.loads(snap_path.read_text(encoding="utf-8"))
-    action = str(args.get("action", "summary")).strip().lower()
+    action_raw = args.get("action", "summary")
+    if not isinstance(action_raw, str):
+        raise ValueError("Argument 'action' must be a string")
+    action = action_raw.strip().lower()
     if action not in {"summary", "search", "crosswalk"}:
         raise ValueError(f"Unsupported action '{action}'; expected 'summary', 'search', or 'crosswalk'")
 
@@ -346,8 +350,8 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
     for prog in selected_programs:
         pname = prog["program"]
         for rel in prog.get("files", []):
-            fpath = lts_dir / rel
-            if not fpath.exists():
+            fpath = (lts_dir / rel).resolve()
+            if not fpath.is_relative_to(lts_root) or not fpath.exists():
                 continue
             with fpath.open("r", encoding="utf-8") as fh:
                 for line in fh:

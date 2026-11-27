@@ -6,7 +6,7 @@
   - B07: Named regression tests for every historical defect
   - B08: Golden snapshot verification (103-theorem Lean axioms + Top-10 rankings)
   - B10: Hypothesis property-based tests (1,000 examples per property)
-  - B11/B12: 2,000-case randomized + 1,900-row exhaustive differential audit vs. 50-digit Decimal oracle
+  - B11/B12: 2,000-case randomized + 2,000-row exhaustive differential audit vs. 50-digit Decimal oracle
   - B14: Metamorphic tests (shuffling invariance, filter subsetting, age saturation plateau)
   - B20: Floating-point precision & rounding edge checks
   - A08: Single-source version consistency across all manifests
@@ -764,11 +764,16 @@ def test_b07_regression_external_registry_delta_offline_and_gate_parser():
     assert clean["fetch_status"] == "live_checked"
     assert any("1221 problems" in s for s in clean["extracted_signals"])
 
-    sample_lts_html = '<a href="/programs/Open%20Quantum%20Problems"><span>2 live</span> Open Quantum Problems 32 targets · 32 open · 0 solved here</a>'
+    sample_lts_html = (
+        '<a href="/programs/Open%20Quantum%20Problems"><span>2 live</span> Open Quantum Problems 32 targets · 32 open · 0 solved here</a>'
+        '<a href="/programs/Green&#x27;s%20100%20Open%20Problems">Green&#x27;s 100 Open Problems 285 targets · 128 open · 112 solved here</a>'
+    )
     parsed_progs = ser.parse_lefttosolve_programs_html(sample_lts_html)
-    assert len(parsed_progs) == 1
-    assert parsed_progs[0]["program"] == "Open Quantum Problems"
-    assert parsed_progs[0]["targets"] == 32 and parsed_progs[0]["live_agents"] == 2
+    assert len(parsed_progs) == 2
+    by_name = {p["program"]: p for p in parsed_progs}
+    assert by_name["Open Quantum Problems"]["targets"] == 32 and by_name["Open Quantum Problems"]["live_agents"] == 2
+    assert by_name["Green's 100 Open Problems"]["url"] == "https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems"
+    assert "&#x27;" not in by_name["Green's 100 Open Problems"]["url"]
 
     assert (ROOT / "docs" / "registry-delta-2026-11-26.md").exists()
     assert (ROOT / "results" / "registry_delta.json").exists()
@@ -868,7 +873,7 @@ def test_b07_regression_roadmap_no_duplicate_current_and_planned_version():
     assert f"`v{ver}`" not in planned, f"Current release v{ver} still listed under Planned Next Releases!"
 
 
-# ==================== 10. V2.9.0 HOSTILE-REFEREE REGRESSION GUARDS ====================
+# ==================== 10. V2.9.0 / V2.10.0 HOSTILE-REFEREE REGRESSION GUARDS ====================
 
 
 def test_b07_regression_track_b_probe_ids_match_dataset_names(master_data):
@@ -957,7 +962,7 @@ def test_b07_regression_no_withdrawn_rh_claim_or_false_14files_in_active_docs():
 
 
 def test_b07_regression_no_overstated_lean_kernel_or_comb001_ramsey_in_active_docs():
-    """Guard H-802/H-803/H-809: active docs and paper must not overstate kernel independence, COMB-001 Ramsey, or stale 10-tool MCP."""
+    """Guard H-802/H-803/H-809/H-903/H-904: active docs and paper must not overstate kernel independence, COMB-001 Ramsey, or stale MCP/test/schedule counts."""
     active = [
         "README.md", "CLAIMS.md", "VERIFICATION.md", "EVIDENCE.md", "LIMITATIONS.md",
         "ARCHITECTURE.md", "AGENTS.md", "llms.txt", "paper/main.tex", "blueprint/index.html",
@@ -966,7 +971,9 @@ def test_b07_regression_no_overstated_lean_kernel_or_comb001_ramsey_in_active_do
     forbidden = [
         re.compile(r"six independent proof kernels|6 independent proof kernels", re.I),
         re.compile(r"COMB-001_ramsey|COMB-001.*Ramsey", re.I),
-        re.compile(r"\b10-tool\s+MCP", re.I),
+        re.compile(r"\b10-tool\s+MCP|\b12-tool\s+MCP", re.I),
+        re.compile(r"\b83\s+pytest\b|\b83`?\s+automated\s+`?pytest", re.I),
+        re.compile(r"07:23\s+UTC", re.I),
     ]
     hits = []
     for rel in active:
@@ -1004,3 +1011,74 @@ def test_b07_regression_lefttosolve_100_problems_and_25_programs(master_data):
     assert len(lts_df) == 100
     assert (lts_df["verification_flag"] == "primary-registry-indexed").all()
     assert len(master_data["df_lefttosolve_programs"]) == 25
+
+
+def test_b07_regression_all_100_lts_ids_exist_verbatim_in_lefttosolve_mirror(master_data):
+    """Guard H-901/H-902: every LTS-001..LTS-100 maps verbatim to a unique open/unformalized (solved=False) Left to Solve mirror ID and >= 280 crosswalk matches."""
+    mirror_dir = ROOT / "data" / "external" / "lefttosolve" / "programs"
+    mirror_by_id: dict[str, dict] = {}
+    for jl in sorted(mirror_dir.glob("*.jsonl")):
+        for ln in jl.read_text(encoding="utf-8").splitlines():
+            if ln.strip():
+                rec = json.loads(ln)
+                mirror_by_id[rec["id"]] = rec
+    assert len(mirror_by_id) >= 59_000
+
+    overrides = json.loads(
+        (ROOT / "data" / "external" / "lefttosolve" / "crosswalk_overrides.json").read_text(encoding="utf-8")
+    )["include"]
+    cw = json.loads(
+        (ROOT / "data" / "external" / "lefttosolve" / "atlas_crosswalk.json").read_text(encoding="utf-8")
+    )
+    assert cw["matched_atlas_problems"] >= 280
+
+    lts_df = master_data["df"][master_data["df"]["id"].str.startswith("LTS-")]
+    assert len(lts_df) == 100
+    seen_primary: set[str] = set()
+    for r in lts_df.itertuples():
+        assert r.id in overrides, f"{r.id} missing from crosswalk_overrides.json"
+        primaries = [e["id"] for e in overrides[r.id] if e.get("relation") == "primary"]
+        assert primaries, f"{r.id} has no primary override entry"
+        pid = primaries[0]
+        assert pid not in seen_primary, f"Duplicate primary Left to Solve ID {pid} on {r.id}"
+        seen_primary.add(pid)
+        assert pid in mirror_by_id, f"{r.id} primary ID {pid!r} missing from Left to Solve mirror"
+        mrec = mirror_by_id[pid]
+        assert mrec["kind"] in {"open", "unformalized"}, f"{r.id} ({pid}) has non-open kind={mrec['kind']}"
+        assert mrec["solved"] is False, f"{r.id} ({pid}) is already marked solved=True in mirror"
+        assert pid in r.registry_source, f"{r.id} registry_source does not contain verbatim ID {pid!r}"
+
+
+def test_b06_mcp_query_lefttosolve_rejects_non_string_action_and_bad_args():
+    """Guard H-909: MCP query_lefttosolve_programs cleanly rejects non-string action, bad action, bool limit, and bad query."""
+    reqs = [
+        {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": 123}}},
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": ["summary"]}}},
+        {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": "drop_table"}}},
+        {"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": "search", "limit": True}}},
+        {"jsonrpc": "2.0", "id": 5, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": "search", "query": 999}}},
+    ]
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input="\n".join(json.dumps(r) for r in reqs) + "\n",
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=True,
+    )
+    resps = [json.loads(ln) for ln in proc.stdout.splitlines() if ln.strip()]
+    assert len(resps) == 5
+    for resp in resps:
+        assert resp["result"]["isError"] is True
+
+
+def test_b07_regression_dashboard_links_to_lefttosolve_mirror_and_0600_utc():
+    """Guard H-903/H-906: Interactive Dashboard links directly to external/lefttosolve/index.html (13-Tool MCP), and mirror reports 06:00 UTC."""
+    dash = (ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html").read_text(encoding="utf-8")
+    assert "external/lefttosolve/index.html" in dash
+    assert "13-Tool MCP Server" in dash
+    lts_html = (ROOT / "data" / "external" / "lefttosolve" / "index.html").read_text(encoding="utf-8")
+    lts_md = (ROOT / "docs" / "lefttosolve-programs.md").read_text(encoding="utf-8")
+    assert "06:00 UTC" in lts_html and "07:23 UTC" not in lts_html
+    assert "07:23 UTC" not in lts_md and "290 Mega-Atlas problems" in lts_md

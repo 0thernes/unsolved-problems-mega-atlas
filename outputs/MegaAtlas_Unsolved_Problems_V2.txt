@@ -1,12 +1,12 @@
 ====================================================================================================================
-  V2.9.0 MEGA-ATLAS OF HUMANITY'S 2,000 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
+  V2.10.0 MEGA-ATLAS OF HUMANITY'S 2,000 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
   Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)
   8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 6,108 Edges (0 Art. Pts, Python) | 103 Audited Lean 4.35.0 Model Theorems
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.9.0
+  atlas_version                       : 2.10.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
@@ -16,11 +16,11 @@
   duplicates_merged                   : 12
   total_macro_pillars                 : 8
   total_superdomains                  : 28
-  total_subdomains                    : 1852
+  total_subdomains                    : 1851
   total_graph_edges                   : 6108
-  cross_superdomain_edges             : 2212
-  cross_superdomain_edge_pct          : 36.2
-  cross_pillar_edges                  : 1153
+  cross_superdomain_edges             : 2215
+  cross_superdomain_edge_pct          : 36.3
+  cross_pillar_edges                  : 1152
   cross_pillar_edge_pct               : 18.9
   connected_components                : 1
   largest_component_size              : 2000
@@ -28,17 +28,17 @@
   graph_bridges                       : 0
   unresolved_raw_links_count          : 0
   avg_degree                          : 6.11
-  num_communities                     : 10
+  num_communities                     : 14
   ai_claims_nov2026_count             : 12
   verification_flag_counts            : {'primary-registry-indexed': 1035, 'ai-assisted-editorial-synthesis': 942, 'ai-claim-under-audit-nov2026': 12, 'disputed-human-claim': 11}
-  margin_role_counts                  : {'Intra-Pillar Bridge (Cross-Superdomain)': 1132, 'Core Intra-Pillar Specialist': 509, 'Trans-Pillar Boundary Interface': 290, 'Apex Multi-Pillar Keystone (3+ Adjacent Pillars)': 69}
+  margin_role_counts                  : {'Intra-Pillar Bridge (Cross-Superdomain)': 1133, 'Core Intra-Pillar Specialist': 509, 'Trans-Pillar Boundary Interface': 289, 'Apex Multi-Pillar Keystone (3+ Adjacent Pillars)': 69}
   mean_difficulty                     : 8.13
-  mean_tractability                   : 6.77
+  mean_tractability                   : 6.78
   mean_impact                         : 7.13
-  mean_interdisciplinarity            : 7.28
-  mean_titan_index                    : 7.26
-  mean_css_score                      : 57.06
-  mean_hardness_tractability_gradient : 1.36
+  mean_interdisciplinarity            : 7.27
+  mean_titan_index                    : 7.25
+  mean_css_score                      : 57.05
+  mean_hardness_tractability_gradient : 1.35
   mean_css_titan_margin               : -15.5
   mean_bridge_margin_ratio            : 0.135
   mean_adjacent_pillars               : 0.61
@@ -110,7 +110,7 @@
 | Wikipedia Lists of Unsolved Problems ( | ~1,200+ distinct entries across 20+ li | ~1,100+ open                           | Broadest public cross-disciplinary map |
 | NAE 14 Grand Challenges & DARPA/DOE Ea | ~100+ flagship technology targets      | ~90+ active engineering frontiers      | Dominates Quadrant 1 (Near-Term Civili |
 | PhilPapers Survey & Metaphysics/Ethics | ~100+ enduring philosophical problems  | ~100% actively contested (up to 2,526  | AI alignment & digital sentience turne |
-| This V2.9.0 Unified Mega-Atlas (A. S.  | 2,000 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
+| This V2.10.0 Unified Mega-Atlas (A. S. | 2,000 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 
 [4] 8 MACRO-PILLARS COMPARATIVE SCORECARD
@@ -118,7 +118,7 @@
 +----------------------------------+---------------+-----------+-----------------+------------------------+-------------+------------------+-------------+----------------------------------+
 | Macro_Pillar                     | Problem_Count | Share_Pct | Mean_Difficulty | Mean_Tractability_2050 | Mean_Impact | Mean_Titan_Index | Median_Year | Dominant_Bottleneck              |
 +==================================+===============+===========+=================+========================+=============+==================+=============+==================================+
-| Pure Mathematics                 | 596           | 29.8      | 8.77            | 5.11                   | 5.4         | 6.47             | 1971        | Mathematical Tools Missing       |
+| Pure Mathematics                 | 596           | 29.8      | 8.77            | 5.12                   | 5.39        | 6.47             | 1971        | Mathematical Tools Missing       |
 | Logic, Statistics & Computing    | 199           | 9.9       | 8.46            | 6.29                   | 6.46        | 7.07             | 1986        | Mathematical Tools Missing       |
 | Fundamental Physics & Cosmos     | 201           | 10.1      | 8.11            | 7.18                   | 7.33        | 7.4              | 1983        | Measurement / Instrumentation Li |
 | Matter, Materials & Chemistry    | 196           | 9.8       | 7.79            | 8.06                   | 7.82        | 7.51             | 1980        | Multiscale Coupling Complexity   |
@@ -130,10 +130,10 @@
 
 [5] 28 SUPERDOMAINS ASCII DISTRIBUTION HISTOGRAM
 --------------------------------------------------------------------------------------------------------------------
-  Number Theory & Arithmetic                       | ############################ 165 ( 8.2%) | D:8.8 T:4.3 I:5.5
-  Algebra, Group & Category Theory                 | ##################.......... 108 ( 5.4%) | D:8.8 T:5.1 I:6.2
-  Geometry & Topology                              | ##################.......... 107 ( 5.3%) | D:8.8 T:5.2 I:4.9
-  Analysis, Calculus, PDEs & Dynamics              | ################............  97 ( 4.8%) | D:9.0 T:5.5 I:5.5
+  Number Theory & Arithmetic                       | ############################ 164 ( 8.2%) | D:8.7 T:4.3 I:5.5
+  Algebra, Group & Category Theory                 | ###################......... 109 ( 5.5%) | D:8.8 T:5.1 I:6.2
+  Geometry & Topology                              | ##################.......... 106 ( 5.3%) | D:8.8 T:5.2 I:4.8
+  Analysis, Calculus, PDEs & Dynamics              | #################...........  98 ( 4.9%) | D:9.0 T:5.5 I:5.5
   Combinatorics & Graph Theory                     | ####################........ 119 ( 6.0%) | D:8.6 T:5.9 I:4.9
   Mathematical Logic, Set Theory & Computability   | ##########..................  59 ( 3.0%) | D:8.6 T:5.6 I:5.1
   Probability, Stochastic Processes & Statistics   | ###########.................  64 ( 3.2%) | D:8.3 T:6.7 I:6.5
@@ -182,21 +182,21 @@
 +------+-----------+--------------------------------------+--------------------------------------+------------------+-------------------+-----------------------+-------------+--------------+--------------------+
 | Rank | id        | name                                 | macro_pillar                         | difficulty_score | tractability_2050 | civilizational_impact | titan_index | graph_degree | cross_pillar_links |
 +======+===========+======================================+======================================+==================+===================+=======================+=============+==============+====================+
-| 1    | CS-001    | P versus NP Problem                  | Logic, Statistics & Computing        | 10               | 2                 | 10                    | 10.0        | 96           | 61                 |
+| 1    | CS-001    | P versus NP Problem                  | Logic, Statistics & Computing        | 10               | 2                 | 10                    | 10.0        | 97           | 62                 |
 | 2    | NT-001    | Riemann Hypothesis                   | Pure Mathematics                     | 10               | 6                 | 9                     | 9.45        | 69           | 12                 |
 | 3    | FLD-001   | Universal Statistical Theory of Flui | Matter, Materials & Chemistry        | 10               | 5                 | 9                     | 9.45        | 73           | 51                 |
-| 4    | COMB-002  | Exact Ramsey Numbers (R(5, 5) and Di | Pure Mathematics                     | 10               | 5                 | 6                     | 8.0         | 57           | 14                 |
+| 4    | COMB-002  | Exact Ramsey Numbers (R(5, 5) and Di | Pure Mathematics                     | 10               | 5                 | 6                     | 8.0         | 58           | 14                 |
 | 5    | NT-008    | Arithmetic Langlands Program (Global | Pure Mathematics                     | 10               | 5                 | 9                     | 9.64        | 52           | 7                  |
 | 6    | GR-001    | Quantum Gravity (Unification of Gene | Fundamental Physics & Cosmos         | 10               | 3                 | 10                    | 10.0        | 58           | 25                 |
 | 7    | STAT-001  | 3D Percolation Critical Behavior & C | Logic, Statistics & Computing        | 9                | 5                 | 5                     | 7.29        | 52           | 38                 |
 | 8    | GEO-002   | Equilibrium Climate Sensitivity (ECS | Engineering, Design, Earth & Energy  | 9                | 9                 | 10                    | 9.45        | 53           | 31                 |
 | 9    | SYS-001   | High-Dimensional Nonlinear & Stochas | AI, Quantum Tech, Hardware & Systems | 9                | 7                 | 9                     | 9.08        | 49           | 35                 |
-| 10   | QM-001    | Quantum Measurement Problem & Wavefu | Fundamental Physics & Cosmos         | 10               | 4                 | 9                     | 9.62        | 47           | 32                 |
-| 11   | CS-002    | Unconditional Existence of One-Way F | Logic, Statistics & Computing        | 10               | 3                 | 10                    | 9.56        | 45           | 27                 |
-| 12   | COMB-001  | Hadwiger's Conjecture (Graph Colorin | Pure Mathematics                     | 10               | 5                 | 6                     | 7.72        | 39           | 9                  |
+| 10   | CS-002    | Unconditional Existence of One-Way F | Logic, Statistics & Computing        | 10               | 3                 | 10                    | 9.56        | 45           | 27                 |
+| 11   | QM-001    | Quantum Measurement Problem & Wavefu | Fundamental Physics & Cosmos         | 10               | 4                 | 9                     | 9.61        | 45           | 30                 |
+| 12   | COMB-001  | Hadwiger's Conjecture (Graph Colorin | Pure Mathematics                     | 10               | 5                 | 6                     | 7.72        | 38           | 9                  |
 | 13   | QC-001    | Scalable Fault-Tolerant Quantum Comp | AI, Quantum Tech, Hardware & Systems | 9                | 9                 | 10                    | 9.4         | 44           | 24                 |
-| 14   | ECON-003  | Global Collective Action & Tragedy o | Philosophy, Social & Humanities      | 9                | 6                 | 10                    | 9.61        | 45           | 32                 |
-| 15   | NT-007    | abc Conjecture (Oesterlé-Masser)     | Pure Mathematics                     | 10               | 4                 | 8                     | 8.6         | 35           | 2                  |
+| 14   | NT-007    | abc Conjecture (Oesterlé-Masser)     | Pure Mathematics                     | 10               | 4                 | 8                     | 8.6         | 36           | 2                  |
+| 15   | ECON-003  | Global Collective Action & Tragedy o | Philosophy, Social & Humanities      | 9                | 6                 | 10                    | 9.61        | 45           | 32                 |
 | 16   | MED-002   | Zero-Failure In Silico Drug Design & | Life, Mind & Medicine                | 9                | 8                 | 10                    | 9.39        | 42           | 19                 |
 | 17   | HW-001    | Post-Moore Computing Paradigm Beyond | AI, Quantum Tech, Hardware & Systems | 8                | 9                 | 10                    | 9.02        | 39           | 19                 |
 | 18   | AI-002    | True Out-of-Distribution Causal Reas | AI, Quantum Tech, Hardware & Systems | 9                | 8                 | 10                    | 9.39        | 42           | 30                 |
@@ -205,23 +205,23 @@
 | 21   | NEURO-002 | The Neural Code & Compositional Repr | Life, Mind & Medicine                | 9                | 8                 | 9                     | 9.03        | 40           | 20                 |
 | 22   | BIO-001   | Abiogenesis: Origin of Life & RNA-to | Life, Mind & Medicine                | 10               | 6                 | 9                     | 9.55        | 35           | 23                 |
 | 23   | SYS-002   | Formal Runtime Safety & Zero-Fatalit | AI, Quantum Tech, Hardware & Systems | 9                | 8                 | 10                    | 9.35        | 35           | 18                 |
-| 24   | GEOM-001  | Hodge Conjecture                     | Pure Mathematics                     | 10               | 2                 | 6                     | 7.86        | 30           | 3                  |
-| 25   | GEOM-003  | Sphere Packing Optimal Density in Ge | Pure Mathematics                     | 9                | 5                 | 6                     | 7.51        | 30           | 9                  |
-| 26   | GEO-003   | Exact Thresholds & Early Warnings of | Engineering, Design, Earth & Energy  | 9                | 8                 | 10                    | 9.54        | 34           | 19                 |
-| 27   | NT-003    | Goldbach's Strong Conjecture         | Pure Mathematics                     | 9                | 4                 | 5                     | 6.54        | 28           | 0                  |
-| 28   | GEOM-002  | Smooth 4-Dimensional Poincaré Conjec | Pure Mathematics                     | 10               | 4                 | 6                     | 7.84        | 28           | 8                  |
-| 29   | BIO-004   | Quantitative Genotype-to-Phenotype M | Life, Mind & Medicine                | 9                | 8                 | 10                    | 9.33        | 33           | 11                 |
-| 30   | BIO-005   | Complete Predictive Whole-Cell Simul | Life, Mind & Medicine                | 9                | 8                 | 10                    | 9.53        | 33           | 15                 |
-| 31   | BIO-003   | Dynamic Protein Folding Pathways, In | Life, Mind & Medicine                | 8                | 9                 | 9                     | 8.63        | 33           | 13                 |
-| 32   | SYS-003   | Predicting & Preventing Cascading Fa | AI, Quantum Tech, Hardware & Systems | 8                | 8                 | 10                    | 9.17        | 32           | 22                 |
-| 33   | NT-006    | Birch and Swinnerton-Dyer Conjecture | Pure Mathematics                     | 10               | 4                 | 8                     | 8.74        | 28           | 1                  |
-| 34   | NT-004    | Twin Prime & Polignac's Conjectures  | Pure Mathematics                     | 9                | 4                 | 5                     | 6.53        | 27           | 0                  |
-| 35   | ANL-001   | 3D Navier–Stokes Existence and Smoot | Pure Mathematics                     | 10               | 7                 | 9                     | 9.32        | 32           | 17                 |
+| 24   | GEOM-001  | Hodge Conjecture                     | Pure Mathematics                     | 10               | 2                 | 6                     | 7.85        | 29           | 3                  |
+| 25   | GEO-003   | Exact Thresholds & Early Warnings of | Engineering, Design, Earth & Energy  | 9                | 8                 | 10                    | 9.54        | 34           | 19                 |
+| 26   | ANL-001   | 3D Navier–Stokes Existence and Smoot | Pure Mathematics                     | 10               | 7                 | 9                     | 9.33        | 33           | 17                 |
+| 27   | GEOM-003  | Sphere Packing Optimal Density in Ge | Pure Mathematics                     | 9                | 5                 | 6                     | 7.5         | 29           | 9                  |
+| 28   | NT-003    | Goldbach's Strong Conjecture         | Pure Mathematics                     | 9                | 4                 | 5                     | 6.54        | 28           | 0                  |
+| 29   | GEOM-002  | Smooth 4-Dimensional Poincaré Conjec | Pure Mathematics                     | 10               | 4                 | 6                     | 7.84        | 28           | 8                  |
+| 30   | BIO-004   | Quantitative Genotype-to-Phenotype M | Life, Mind & Medicine                | 9                | 8                 | 10                    | 9.33        | 33           | 11                 |
+| 31   | BIO-005   | Complete Predictive Whole-Cell Simul | Life, Mind & Medicine                | 9                | 8                 | 10                    | 9.53        | 33           | 15                 |
+| 32   | BIO-003   | Dynamic Protein Folding Pathways, In | Life, Mind & Medicine                | 8                | 9                 | 9                     | 8.63        | 33           | 13                 |
+| 33   | SYS-003   | Predicting & Preventing Cascading Fa | AI, Quantum Tech, Hardware & Systems | 8                | 8                 | 10                    | 9.17        | 32           | 22                 |
+| 34   | NT-006    | Birch and Swinnerton-Dyer Conjecture | Pure Mathematics                     | 10               | 4                 | 8                     | 8.74        | 28           | 1                  |
+| 35   | NT-004    | Twin Prime & Polignac's Conjectures  | Pure Mathematics                     | 9                | 4                 | 5                     | 6.53        | 27           | 0                  |
 | 36   | NEURO-001 | The Hard Problem of Consciousness (E | Life, Mind & Medicine                | 10               | 2                 | 10                    | 9.88        | 33           | 20                 |
 | 37   | STAT-002  | High-Dimensional Causal Discovery wi | Logic, Statistics & Computing        | 8                | 7                 | 9                     | 8.82        | 31           | 23                 |
-| 38   | QM-006    | Thermodynamic Arrow of Time & Origin | Fundamental Physics & Cosmos         | 10               | 3                 | 8                     | 9.16        | 30           | 20                 |
-| 39   | ENG-002   | High-Thrust Non-Chemical Space Propu | Engineering, Design, Earth & Energy  | 9                | 7                 | 9                     | 8.95        | 29           | 20                 |
-| 40   | QM-002    | Yang–Mills Existence and Mass Gap    | Fundamental Physics & Cosmos         | 10               | 3                 | 8                     | 8.73        | 27           | 19                 |
+| 38   | ANL-003   | Higher-Dimensional Kakeya Conjecture | Pure Mathematics                     | 9                | 7                 | 6                     | 7.47        | 26           | 1                  |
+| 39   | QM-006    | Thermodynamic Arrow of Time & Origin | Fundamental Physics & Cosmos         | 10               | 3                 | 8                     | 9.16        | 30           | 20                 |
+| 40   | ENG-002   | High-Thrust Non-Chemical Space Propu | Engineering, Design, Earth & Energy  | 9                | 7                 | 9                     | 8.95        | 29           | 20                 |
 +------+-----------+--------------------------------------+--------------------------------------+------------------+-------------------+-----------------------+-------------+--------------+--------------------+
 
 [8] 15 ICONIC PAIRWISE CONTRASTS
@@ -291,7 +291,7 @@
 
 ==================== PILLAR 1: PURE MATHEMATICS ====================
 
---- SUPERDOMAIN: Number Theory & Arithmetic (165 Problems) ---
+--- SUPERDOMAIN: Number Theory & Arithmetic (164 Problems) ---
 [NT-001] Riemann Hypothesis
   Subdomain : Analytic Number Theory | Conjecture | Formal-Deductive | 1859 (167y) | Bernhard Riemann | Registry: Clay Mathematics Institute Millennium Prize; Hilbert #8; ProofAtlas
   Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20–25, 2026: Alpöge/Claude ~17M-line Lean 4 archive (175,187 files) certified by Lean FRO & Mathlib Initiative (Nov 21; leanprover-community.github.io/blog/posts/riemann-hypothesis/) and M. Rubinstein (nanoda replay; math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/), with Nov 25 compact rewrite (~76k lines), but NO complete human-readable paper exists yet; rival Masullo 940-page human draft facing gap objections; Clay CMI officially unretired
@@ -306,7 +306,7 @@
 [NT-002] Generalized & Grand Riemann Hypotheses (GRH)
   Subdomain : Analytic Number Theory | Conjecture | Formal-Deductive | 1884 (142y) | Adolf Piltz / Extended to Automorphic L-functions | Registry: Hilbert #8 Extension; Langlands Program; ProofAtlas
   Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: Nov 20–25, 2026: Dirichlet-L GRH covered in Alpöge/Claude ~17M-line Lean 4 archive (175,187 files; Nov 21 certified by Lean FRO & independently checked by M. Rubinstein at math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/; no complete human paper yet) & rival Masullo 940-page human draft (under gap critique); Grand Automorphic RH & formal peer consensus pending
-  Scores    : CSS=77.51/100 | Titan=8.64 | Diff=10 Tract=5 Impact=8 Interdisc=8 Deg=18 (XP=2)
+  Scores    : CSS=77.31/100 | Titan=8.62 | Diff=10 Tract=5 Impact=8 Interdisc=8 Deg=17 (XP=2)
   Question  : Do all non-trivial zeros of every Dirichlet L-function, Dedekind zeta function, and global automorphic L-function lie on the critical line Re(s) = 1/2?
   Formula   : L(s, π) = 0, 0 < Re(s) < 1  ==>  Re(s) = 1/2
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -361,7 +361,7 @@
 [NT-007] abc Conjecture (Oesterlé-Masser)
   Subdomain : Diophantine Geometry | Conjecture | Formal-Deductive | 1985 (41y) | Joseph Oesterlé & David Masser | Registry: Oesterlé-Masser Problem; ProofAtlas; PRIMS Dispute
   Status    : Disputed Human Claim / Under Peer Review | Flag: disputed-human-claim | AI Nov2026: Disputed human IUT claim (Mochizuki vs. Scholze-Stix); no complete Lean 4 formalization resolving Corollary 3.12 exists
-  Scores    : CSS=74.17/100 | Titan=8.6 | Diff=10 Tract=4 Impact=8 Interdisc=7 Deg=35 (XP=2)
+  Scores    : CSS=74.27/100 | Titan=8.6 | Diff=10 Tract=4 Impact=8 Interdisc=7 Deg=36 (XP=2)
   Question  : For every ε > 0, are there only finitely many coprime positive integer triples (a, b, c) with a + b = c such that c > rad(abc)^(1+ε)?
   Formula   : ∀ε > 0, ∃K_ε > 0: a + b = c, gcd(a,b,c)=1  ==>  c < K_ε · rad(abc)^{1+ε}
   Bottleneck: Conceptual / Paradigmatic Gap | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -1734,7 +1734,7 @@
   Links/Ind : NT-001,NT-007,NT-006,NT-008 | Industries: Pure Mathematics, Symbolic Computation, Arbitrary-Precision Numerics | Axis: Elementary Explicit Constant Definitions vs. Deep Transcendence & Period Barriers
 ------------------------------------------------------------------------------------------------
 [LTS-015] Sharp Irrationality Measure of Gamma(1/4) (Tao Optimization Constant 7b)
-  Subdomain : Transcendence & Diophantine Approximation | Conjecture | Formal-Deductive | 1976 (50y) | G. V. Chudnovsky / Terence Tao (Optimization Constant 7b) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Optimization Constants (Constant7b)
+  Subdomain : Transcendence & Diophantine Approximation | Conjecture | Formal-Deductive | 1976 (50y) | G. V. Chudnovsky / Terence Tao (Optimization Constant 7b) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Optimization Constants (Constant7b.c7b_upper_bound_improved)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=58.03/100 | Titan=6.45 | Diff=9 Tract=4 Impact=5 Interdisc=6 Deg=3 (XP=0)
   Question  : What is the exact irrationality measure mu(Gamma(1/4)) (conjectured equal to 2 by standard normality/Diophantine heuristics, while effective upper bounds remain astronomical)?
@@ -1745,7 +1745,7 @@
   Links/Ind : NT-001,NT-006,NT-007 | Industries: Transcendence Theory, Computational Number Theory, Special Functions | Axis: Qualitative Transcendence vs. Quantitative Diophantine Irrationality Measure
 ------------------------------------------------------------------------------------------------
 [LTS-030] Ben Green Problem 27: Upper Bounds for Arithmetic Progression-Free Subsets of the Primes
-  Subdomain : Primes & Additive Structure | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green (Problem 27) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green27.green_27)
+  Subdomain : Primes & Additive Structure | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green (Problem 27) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green27.green_27.upper)
   Status    : Active Breakthroughs / Frontier | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=54.33/100 | Titan=7.0 | Diff=9 Tract=6 Impact=6 Interdisc=7 Deg=3 (XP=0)
   Question  : What is the sharpest quantitative upper bound on the relative density of a subset of the primes <= N containing no non-trivial 3-term arithmetic progression (beyond Kelley-Meka / Green-Tao transference)?
@@ -1822,7 +1822,7 @@
   Links/Ind : NT-001,NT-004,NT-003 | Industries: Analytic Number Theory, Explicit Prime Bounds | Axis: Asymptotic Prime Density Decay vs. Exact Local Fluctuation Control
 ------------------------------------------------------------------------------------------------
 [LTS-043] OEIS A038552 Conjecture: Largest Even vs. Odd Imaginary Quadratic Discriminants of Fixed Class Number
-  Subdomain : Class Numbers of Imaginary Quadratic Fields | Conjecture | Formal-Deductive | 2004 (22y) | Mark Watkins / OEIS A038552 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: OEIS (OeisA38552)
+  Subdomain : Class Numbers of Imaginary Quadratic Fields | Conjecture | Formal-Deductive | 2004 (22y) | Mark Watkins / OEIS A038552 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: OEIS (OeisA38552.largestEven_lt_largestOdd_negFundDisc)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=51.17/100 | Titan=5.9 | Diff=8 Tract=5 Impact=5 Interdisc=5 Deg=3 (XP=0)
   Question  : For every even class number h = 2m, is the largest odd |D| with h(-D) = h always strictly larger than the largest even |D| with h(-D) = h?
@@ -1954,7 +1954,7 @@
   Links/Ind : NT-003,NT-004,NT-001 | Industries: Analytic Number Theory, Experimental Mathematics | Axis: Standard Prime Density vs. Iterated Prime-Index Sparsity
 ------------------------------------------------------------------------------------------------
 [LTS-055] Four-Exponentials-Type Integrality Conjecture: 2^x and 3^x Integers Imply x Integer (MO 17560)
-  Subdomain : Transcendence & Exponential Integrality | Conjecture | Formal-Deductive | 1966 (60y) | Siegel / Lang / MathOverflow #17560 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow17560)
+  Subdomain : Transcendence & Exponential Integrality | Conjecture | Formal-Deductive | 1966 (60y) | Siegel / Lang / MathOverflow #17560 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow17560.mathoverflow_17560)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=59.20/100 | Titan=6.8 | Diff=9 Tract=5 Impact=6 Interdisc=6 Deg=3 (XP=0)
   Question  : If x is a real number such that both 2^x and 3^x are integers, must x necessarily be an integer (known if 2^x, 3^x, 5^x are all integers via Six Exponentials)?
@@ -1965,7 +1965,7 @@
   Links/Ind : NT-001,NT-007,NT-008 | Industries: Transcendence Theory, Diophantine Approximation | Axis: Six-Exponentials Three-Prime Rigidity vs. Four-Exponentials Two-Prime Barrier
 ------------------------------------------------------------------------------------------------
 [LTS-060] Restricted Prime Number Theorem Among Partial Sums of Consecutive Primes (MO 434111)
-  Subdomain : Prime Partial Sums & Sparser PNT | Conjecture | Formal-Deductive | 2022 (4y) | MathOverflow #434111 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (MathOverflow434111)
+  Subdomain : Prime Partial Sums & Sparser PNT | Conjecture | Formal-Deductive | 2022 (4y) | MathOverflow #434111 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (MathOverflow434111.restricted_prime_number_theorem)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=48.47/100 | Titan=5.35 | Diff=8 Tract=5 Impact=4 Interdisc=4 Deg=3 (XP=0)
   Question  : Let S_n = sum_{k=1}^n p_k be the n-th partial sum of primes. Does the count of primes among {S_1, ..., S_n} satisfy the asymptotic law pi_S(n) ~ n / (2 ln n)?
@@ -1976,7 +1976,7 @@
   Links/Ind : NT-001,NT-003,NT-004 | Industries: Analytic Number Theory, Experimental Mathematics | Axis: Random-Density Cramér Predictions vs. Deterministic Sparse-Sequence Primes
 ------------------------------------------------------------------------------------------------
 [LTS-061] Integer Complexity of Powers of Two: ||2^n|| = 2n (Selfridge / MO 75792)
-  Subdomain : Integer Complexity & Addition-Multiplication Chains | Conjecture | Formal-Deductive | 1953 (73y) | Kurt Mahler, Jan Popken & John Selfridge (MO #75792) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow75792)
+  Subdomain : Integer Complexity & Addition-Multiplication Chains | Conjecture | Formal-Deductive | 1953 (73y) | Kurt Mahler, Jan Popken & John Selfridge (MO #75792) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow75792.complexity_two_pow)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=53.57/100 | Titan=6.1 | Diff=8 Tract=6 Impact=5 Interdisc=6 Deg=3 (XP=2)
   Question  : Let ||m|| denote the minimum number of 1s needed to express m using only +, *, and parentheses. Does ||2^n|| = 2n hold for every positive integer n >= 1 (whereas ||5^6|| = 29 < 30 fails for base 5)?
@@ -1987,7 +1987,7 @@
   Links/Ind : CS-001,NT-005,LOG-002 | Industries: Arithmetic Circuit Complexity, Number Theory, Program Synthesis | Axis: Greedy Multiplicative Upper Bounds vs. Unexpected Additive-Shortcut Collapses
 ------------------------------------------------------------------------------------------------
 [LTS-066] Jones's Conjecture on Infinitely Many Exact-Length Cunningham Prime Chains
-  Subdomain : Prime Chains & Hardy-Littlewood Tuples | Conjecture | Formal-Deductive | 1995 (31y) | Lenny Jones / Cunningham Chain Conjecture | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (CunninghamChain)
+  Subdomain : Prime Chains & Hardy-Littlewood Tuples | Conjecture | Formal-Deductive | 1995 (31y) | Lenny Jones / Cunningham Chain Conjecture | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (CunninghamChain.infinitely_many_firstKind_chains)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=56.77/100 | Titan=6.25 | Diff=9 Tract=4 Impact=5 Interdisc=5 Deg=3 (XP=1)
   Question  : For every positive integer k, do there exist infinitely many primes p starting a first-kind Cunningham chain p, 2p+1, 4p+3, ..., 2^{k-1}p + 2^{k-1} - 1 of exact length k (generalizing Sophie Germain primes at k=2)?
@@ -2053,7 +2053,7 @@
   Links/Ind : NT-001,NT-007,NT-005 | Industries: Diophantine Approximation, Number Theory | Axis: Generic Equidistribution of Powers vs. Persistent Small-Arc Confinement
 ------------------------------------------------------------------------------------------------
 [LTS-085] Bugeaud Problem 10.6: Explicit Super-Exponential Sequences Everywhere Dense Modulo 1
-  Subdomain : Metric Diophantine Distribution | Conjecture | Formal-Deductive | 1967 (59y) | Hillel Furstenberg / Yann Bugeaud (Problem 10.6) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Books (Bugeaud06.problem_10_6)
+  Subdomain : Metric Diophantine Distribution | Conjecture | Formal-Deductive | 1967 (59y) | Hillel Furstenberg / Yann Bugeaud (Problem 10.6) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Books (Bugeaud06.problem_10_6_variant_1)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=51.13/100 | Titan=5.55 | Diff=8 Tract=6 Impact=4 Interdisc=5 Deg=3 (XP=1)
   Question  : Construct an explicit very rapidly increasing integer sequence (m_n) (e.g., growing faster than any fixed polynomial, contrasting with Furstenberg's {2^a 3^b}) such that {xi * m_n} is dense in [0,1] for every irrational xi.
@@ -2085,30 +2085,19 @@
   2026 State: Hourglass and 7-of-8-line near-misses exist (e.g., Parker Square), and exhaustive searches push the center square beyond 10^{14}, yet existence or impossibility remains open.
   Links/Ind : NT-006,NT-007,GEOM-001 | Industries: Diophantine Geometry, Recreational & Experimental Number Theory | Axis: Elementary 3x3 Linear Constraints vs. High-Genus Diophantine Obstructions
 ------------------------------------------------------------------------------------------------
-[LTS-096] Montgomery's GUE Pair Correlation Conjecture for Riemann Zeta Zeros
-  Subdomain : Random Matrix Theory & L-Function Statistics | Conjecture | Formal-Deductive | 1973 (53y) | Hugh L. Montgomery & Freeman Dyson | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (MontgomeryPairCorrelationConjecture)
-  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
-  Scores    : CSS=66.73/100 | Titan=8.45 | Diff=10 Tract=4 Impact=8 Interdisc=9 Deg=3 (XP=1)
-  Question  : Assuming the Riemann Hypothesis, does the normalized pair-correlation density of critical-line zeros of zeta(s) converge to the GUE random-matrix sine kernel 1 - (sin(pi u)/(pi u))^2 for all 0 < alpha < beta?
-  Formula   : N(T)^{-1} #{ 0 < gamma, gamma' <= T : alpha <= (gamma-gamma') log(T)/(2pi) <= beta } -> int_alpha^beta (1 - (sin(pi u)/(pi u))^2) du
-  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
-  Approaches: Montgomery's Fourier test-function range |xi| < 1 (extended conditionally via prime-tuple heuristics), Keating-Snaith random-matrix moments, Hilbert-Pólya spectral operator search
-  2026 State: Montgomery proved the exact Fourier transform for test functions supported in (-1, 1); breaking past support |xi| = 1 unconditionally or under RH remains wide open.
-  Links/Ind : NT-001,NT-002,QM-001 | Industries: Analytic Number Theory, Quantum Chaos, Random Matrix Theory | Axis: Band-Limited Fourier Verification (|xi|<1) vs. Full GUE Quantum-Chaos Spectrum
-------------------------------------------------------------------------------------------------
-[LTS-098] Wall–Sun–Sun Primes & Non-Power-of-2 Almost Perfect Numbers Conjectures
-  Subdomain : Fibonacci Divisibility & Divisor-Sum Extremes | Conjecture | Formal-Deductive | 1960 (66y) | D. D. Wall, Z. H. Sun & Z. W. Sun / Antalan | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (WallSunSun / AlmostPerfectNumbers)
+[LTS-098] Non-Power-of-2 Almost Perfect Numbers Conjecture (sigma(n) = 2n - 1)
+  Subdomain : Divisor-Sum Functions & Elementary Number Theory | Conjecture | Formal-Deductive | 1973 (53y) | J. T. Cross / Antalan & Tagle | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
-  Scores    : CSS=53.60/100 | Titan=5.35 | Diff=8 Tract=4 Impact=4 Interdisc=4 Deg=3 (XP=0)
-  Question  : Do infinitely many (or even a single) Wall-Sun-Sun primes exist (primes p with p^2 dividing the Fibonacci number F_{p-(p/5)}), and does any almost-perfect number (sigma(n) = 2n - 1) exist that is not a power of 2?
-  Formula   : p^2 | F_{p - (p/5)}  (none < 9.7*10^{14});  sigma(n) = 2n - 1 with n != 2^k ?
+  Scores    : CSS=51.73/100 | Titan=5.35 | Diff=8 Tract=5 Impact=4 Interdisc=4 Deg=3 (XP=0)
+  Question  : Does there exist any positive integer n that is NOT a power of 2 satisfying sigma(n) = 2n - 1 (an almost-perfect number with deficiency 1)?
+  Formula   : sigma(n) = 2n - 1  with  n != 2^k ?   (every known solution is n = 2^k; any other must be an odd square > 10^{35})
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
-  Approaches: Wieferich-type p-adic regulator heuristics (predicting O(log log x) primes), PrimeGrid distributed GPU search (> 9.7*10^{14}), odd divisor-sum congruence exclusions
-  2026 State: Both classic divisor/Fibonacci divisibility questions remain wide open with zero counterexamples/witnesses across astronomical search ranges.
-  Links/Ind : NT-007,NT-001,NT-005 | Industries: Computational Number Theory, Distributed Sieving | Axis: Log-Log Heuristic Existence vs. Complete Empirical Absence
+  Approaches: Euler-type odd-square prime-factorization constraints (must have >= 6 distinct odd prime factors), Kishore / Antalan divisor-sum congruence exclusions, computational search beyond 10^{35}
+  2026 State: Closely allied to the Odd Perfect Number Problem; any non-power-of-2 almost-perfect number must be an odd square with at least 6 distinct prime factors, yet non-existence remains unproved.
+  Links/Ind : NT-007,NT-001,NT-005 | Industries: Computational Number Theory, Multiplicative Divisor Theory | Axis: Trivial Binary Powers 2^k vs. Unruled Odd-Square Divisor Identities
 ------------------------------------------------------------------------------------------------
 
---- SUPERDOMAIN: Algebra, Group & Category Theory (108 Problems) ---
+--- SUPERDOMAIN: Algebra, Group & Category Theory (109 Problems) ---
 [ALG-001] Inverse Galois Problem
   Subdomain : Field & Galois Theory | Conjecture | Formal-Deductive | 1892 (134y) | David Hilbert & Emmy Noether | Registry: Hilbert-Noether Inverse Galois Problem; ProofAtlas
   Status    : Active Breakthroughs / Frontier | Flag: primary-registry-indexed | AI Nov2026: Aug 2026: AI-assisted explicit realization of M_23 over Q completed all 26 sporadic simple groups; general finite group realization remains open
@@ -3155,7 +3144,7 @@
   Links/Ind : XALG-028,XALG-029,XALG-025,NT-008 | Industries: Academic Mathematics, Quantum Field Theory Feynman Periods, Operadic Topology | Axis: Purely Combinatorial Braid/Pentagon Relations vs. Complete Absolute Galois Arithmetic
 ------------------------------------------------------------------------------------------------
 [LTS-012] Lam–Litt Conjecture on Omega-Integrality Implying Algebraicity of Power Series
-  Subdomain : Arithmetic Geometry & Local Systems | Conjecture | Formal-Deductive | 2024 (2y) | Yeuk Hay Joshua Lam & Daniel Litt | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Litt's Problems (LamLitt.lam_litt)
+  Subdomain : Arithmetic Geometry & Local Systems | Conjecture | Formal-Deductive | 2024 (2y) | Yeuk Hay Joshua Lam & Daniel Litt | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Litt's Problems (LamLitt.lam_litt.variants.omega_integrality_implies_algebraicity)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=55.33/100 | Titan=7.0 | Diff=9 Tract=5 Impact=6 Interdisc=7 Deg=3 (XP=0)
   Question  : If a formal power series f(t) = sum a_n t^n satisfies a superlinear omega-integrality condition on denominators of its coefficients (under a finite-monodromy/arithmetic ODE setting), must f(t) be algebraic over Q(t)?
@@ -3177,7 +3166,7 @@
   Links/Ind : NT-008,COMB-002,CS-001 | Industries: Group Theory, Additive Combinatorics, Expander Graphs | Axis: Ultraproduct Qualitative Classification vs. Effective Polynomial Bounds
 ------------------------------------------------------------------------------------------------
 [LTS-056] Existence of a Polynomial Bijection Q x Q -> Q (Harvey Friedman / MO 21003)
-  Subdomain : Rational Points & Diophantine Surfaces | Conjecture | Formal-Deductive | 2000 (26y) | Harvey Friedman / Bjorn Poonen (MathOverflow #21003) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow21003)
+  Subdomain : Rational Points & Diophantine Surfaces | Conjecture | Formal-Deductive | 2000 (26y) | Harvey Friedman / Bjorn Poonen (MathOverflow #21003) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow21003.mathoverflow_21003)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=56.93/100 | Titan=7.0 | Diff=9 Tract=5 Impact=6 Interdisc=7 Deg=3 (XP=0)
   Question  : Does there exist a bivariate polynomial f(x, y) in Q[x, y] defining a bijection Q x Q -> Q (unlike Cantor's quadratic pairing on N x N -> N)?
@@ -3188,7 +3177,7 @@
   Links/Ind : NT-006,GEOM-001,NT-007 | Industries: Arithmetic Geometry, Computability, Algebraic Geometry | Axis: Cantor Integer Pairing vs. Rational-Point Algebraic Surface Obstructions
 ------------------------------------------------------------------------------------------------
 [LTS-058] 0,1-Polynomial Factorization Rigidity Over Non-Negative Real Polynomials (MO 339137)
-  Subdomain : Polynomial Factorization & Positivity | Conjecture | Formal-Deductive | 2019 (7y) | MathOverflow #339137 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow339137)
+  Subdomain : Polynomial Factorization & Positivity | Conjecture | Formal-Deductive | 2019 (7y) | MathOverflow #339137 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow339137.mathoverflow_339137)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=44.17/100 | Titan=5.75 | Diff=7 Tract=7 Impact=5 Interdisc=6 Deg=3 (XP=1)
   Question  : If P(x), Q(x) in R[x] are monic polynomials with non-negative real coefficients whose product R(x) = P(x) Q(x) has all coefficients in {0, 1}, must P(x) and Q(x) also have all coefficients in {0, 1}?
@@ -3199,7 +3188,7 @@
   Links/Ind : STAT-001,COMB-002,NT-001 | Industries: Algebra, Coding Theory, Probability, Combinatorics | Axis: Continuous Non-Negative Factor Spaces vs. Binary Coefficient Rigidity
 ------------------------------------------------------------------------------------------------
 [LTS-062] Kourovka Problem 1.40: Product of Two Normal Nilsubgroups (Plotkin)
-  Subdomain : Infinite Group Theory & Engel Elements | Conjecture | Formal-Deductive | 1965 (61y) | B. I. Plotkin (Kourovka Notebook 1.40) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Kourovka Notebook (Kourovka.1.40)
+  Subdomain : Infinite Group Theory & Engel Elements | Conjecture | Formal-Deductive | 1965 (61y) | B. I. Plotkin (Kourovka Notebook 1.40) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Kourovka Notebook (Kourovka.1.40.kourovka_1_40)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=57.77/100 | Titan=6.25 | Diff=9 Tract=5 Impact=5 Interdisc=5 Deg=3 (XP=1)
   Question  : Is every group G = HK that is the product of two normal nilsubgroups (every 2-generator subgroup is nilpotent / Engel-type) necessarily itself a nilgroup?
@@ -3210,7 +3199,7 @@
   Links/Ind : NT-008,GEOM-001,CS-001 | Industries: Infinite Group Theory, Lie Algebras, Formal Algebra | Axis: Finite Fitting-Theorem Closure vs. Infinite Engel-Group Pathology
 ------------------------------------------------------------------------------------------------
 [LTS-063] Kourovka Problem 1.74: Minimal Hausdorff Topological Groups & Compactness (Doïtchinov)
-  Subdomain : Topological Groups & Minimality | Conjecture | Formal-Deductive | 1965 (61y) | Kourovka Notebook 1.74 (Minimal Topological Groups) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Kourovka Notebook (Kourovka.1.74)
+  Subdomain : Topological Groups & Minimality | Conjecture | Formal-Deductive | 1965 (61y) | Kourovka Notebook 1.74 (Minimal Topological Groups) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Kourovka Notebook (Kourovka.1.74.kourovka_1_74)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=52.77/100 | Titan=6.1 | Diff=8 Tract=6 Impact=5 Interdisc=6 Deg=3 (XP=1)
   Question  : Under what exact algebraic/topological conditions must a minimal Hausdorff topological group (admitting no strictly coarser Hausdorff group topology) be precompact or totally minimal?
@@ -3221,7 +3210,7 @@
   Links/Ind : NT-008,GEOM-002,LOG-001 | Industries: Topological Groups, Functional Analysis, Dynamical Systems | Axis: Abelian Precompactness Rigidity vs. Non-Abelian Minimal Topologies
 ------------------------------------------------------------------------------------------------
 [LTS-067] Etingof–Ostrik Finite Generation Conjecture for Hopf Algebra Cohomology
-  Subdomain : Hopf Algebras & Tensor Categories | Conjecture | Formal-Deductive | 2004 (22y) | Pavel Etingof & Viktor Ostrik (Conjecture 2.18) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (HopfAlgebraCohomology)
+  Subdomain : Hopf Algebras & Tensor Categories | Conjecture | Formal-Deductive | 2004 (22y) | Pavel Etingof & Viktor Ostrik (Conjecture 2.18) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (HopfAlgebraCohomology.cohomology_finite)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=57.17/100 | Titan=7.35 | Diff=9 Tract=6 Impact=7 Interdisc=7 Deg=3 (XP=1)
   Question  : For every finite-dimensional Hopf algebra A over a field k and every finite-dimensional A-module M, is the cohomology ring H*(A, k) finitely generated and H*(A, M) a finitely generated H*(A, k)-module?
@@ -3243,7 +3232,7 @@
   Links/Ind : NT-008,GEOM-001,COMB-002 | Industries: Finite Group Theory, Formal Algebra | Axis: Solvable Group Rigidity vs. Almost-Simple Conjugacy Class Arithmetic
 ------------------------------------------------------------------------------------------------
 [LTS-080] Optimal Annihilating Exponent of Finite Locally Free Group Schemes (Deligne / Oort–Tate)
-  Subdomain : Group Schemes & Commutative Algebra | Classification / Structural Problem | Formal-Deductive | 1970 (56y) | Pierre Deligne / Frans Oort & John Tate | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (FiniteLocallyFreeGroupSchemeExponent)
+  Subdomain : Group Schemes & Commutative Algebra | Classification / Structural Problem | Formal-Deductive | 1970 (56y) | Pierre Deligne / Frans Oort & John Tate | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (FiniteLocallyFreeGroupSchemeExponent.optimal_exponent)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=52.43/100 | Titan=5.9 | Diff=8 Tract=6 Impact=5 Interdisc=5 Deg=3 (XP=0)
   Question  : What is the exact least positive integer m(n) such that every finite locally free commutative group scheme of rank n over an arbitrary commutative ring is annihilated by multiplication by m(n) (Deligne proved m(n)=n)?
@@ -3254,7 +3243,7 @@
   Links/Ind : NT-008,GEOM-001,NT-006 | Industries: Algebraic Geometry, Arithmetic Schemes, Representation Theory | Axis: Classical Lagrange Order Annihilation vs. Non-Commutative Group-Scheme Exponents
 ------------------------------------------------------------------------------------------------
 [LTS-087] Equational Theories Project Problem 8.1: Finite Magma Implication Eq677 => Eq255
-  Subdomain : Universal Algebra & Finite Magmas | Conjecture | Formal-Deductive | 2024 (2y) | Terence Tao & Equational Theories Project | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (EquationalTheories_677_255)
+  Subdomain : Universal Algebra & Finite Magmas | Conjecture | Formal-Deductive | 2024 (2y) | Terence Tao & Equational Theories Project | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (EquationalTheories_677_255.Finite.Equation677_implies_Equation255)
   Status    : Active Breakthroughs / Frontier | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=46.83/100 | Titan=6.3 | Diff=8 Tract=8 Impact=5 Interdisc=7 Deg=3 (XP=2)
   Question  : Does Magma Equation 677 imply Equation 255 in every *finite* magma (one of the final remaining finite-model holdouts of the 22-million-implication Equational Theories Project)?
@@ -3276,7 +3265,7 @@
   Links/Ind : CS-004,GEOM-001,NT-008 | Industries: Linear Algebra, Algebraic Geometry, Quantum Commuting Observables | Axis: 2-Matrix Irreducible Commuting Variety vs. 3-Matrix Hilbert-Scheme Singularities
 ------------------------------------------------------------------------------------------------
 [LTS-090] Symbol Length Problem in Mod-p Milnor K-Theory & Brauer Groups (Krashen / Becher–Hoffmann)
-  Subdomain : Galois Cohomology & Milnor K-Theory | Classification / Structural Problem | Formal-Deductive | 2004 (22y) | Daniel Krashen / Karim Johannes Becher & Detlev Hoffmann | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (SymbolLengthMilnorKTheory)
+  Subdomain : Galois Cohomology & Milnor K-Theory | Classification / Structural Problem | Formal-Deductive | 2004 (22y) | Daniel Krashen / Karim Johannes Becher & Detlev Hoffmann | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (SymbolLengthMilnorKTheory.symbol_length_problem.variants.uniform)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=56.67/100 | Titan=6.8 | Diff=9 Tract=5 Impact=6 Interdisc=6 Deg=3 (XP=0)
   Question  : What is the exact symbol length (minimum number of pure symbols {a_1,...,a_n} needed to express any class) in mod-p Milnor K-theory K_n^M(C(x_1,...,x_m))/p as a function of m, n, and prime p (and is it uniform in p)?
@@ -3287,7 +3276,7 @@
   Links/Ind : GEOM-001,NT-008,NT-006 | Industries: Algebraic K-Theory, Central Simple Algebras, Arithmetic Geometry | Axis: Voevodsky Existence of Symbol Generators vs. Quantitative Symbol-Length Complexity
 ------------------------------------------------------------------------------------------------
 [LTS-093] Marcus–de Oliveira Determinantal Conjecture for Sums of Normal Matrices
-  Subdomain : Matrix Analysis & Spectral Geometry | Conjecture | Formal-Deductive | 1973 (53y) | Marvin Marcus & Graciano Neves de Oliveira | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (DeterminantalConjecture)
+  Subdomain : Matrix Analysis & Spectral Geometry | Conjecture | Formal-Deductive | 1973 (53y) | Marvin Marcus & Graciano Neves de Oliveira | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (DeterminantalConjecture.determinantal_conjecture)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=52.23/100 | Titan=6.1 | Diff=8 Tract=6 Impact=5 Interdisc=6 Deg=3 (XP=2)
   Question  : For any two n x n complex normal matrices A and B with eigenvalues lambda_i and mu_i, must det(A + B) always lie in the convex hull of the n! permutation products prod_{i=1}^n (lambda_i + mu_{sigma(i)})?
@@ -3297,12 +3286,23 @@
   2026 State: Proved for Hermitian matrices, unitary matrices (in part), and n <= 3, yet general complex normal matrices for n >= 4 remain unresolved after 50+ years.
   Links/Ind : CS-004,QM-001,GEOM-001 | Industries: Numerical Linear Algebra, Quantum Mechanics, Matrix Analysis | Axis: Hermitian Eigenvalue Majorization vs. Complex Normal Unitary Orbits
 ------------------------------------------------------------------------------------------------
+[LTS-096] Wilf's Conjecture on Numerical Semigroups (Conductor vs. Embedding Dimension)
+  Subdomain : Numerical Semigroups & Commutative Monoids | Conjecture | Formal-Deductive | 1978 (48y) | Herbert S. Wilf | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture)
+  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
+  Scores    : CSS=50.90/100 | Titan=5.9 | Diff=8 Tract=7 Impact=5 Interdisc=5 Deg=3 (XP=1)
+  Question  : For every numerical semigroup S subseteq N with finite complement (genus g, Frobenius number F = c - 1, conductor c, embedding dimension e, and n = |S intersect [0, c)| sporadic elements), does the inequality c <= e * n always hold?
+  Formula   : c(S) <= e(S) * |S intersect [0, c(S))|   equivalently   g(S) <= (1 - 1/e(S)) * c(S)
+  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
+  Approaches: Eliahou's Wilf-number criterion (proved for c <= 3m and large ratios), Zhai's asymptotic proof as genus g -> inf, Fromentin-Hivert tree verification up to genus g <= 60
+  2026 State: Verified exhaustively for all numerical semigroups of genus <= 60 (over 10^13 semigroups) and asymptotically for almost all semigroups (Zhai), yet an unconditional proof for all finite numerical semigroups remains open.
+  Links/Ind : NT-007,COMB-002,CS-001 | Industries: Algebraic Geometry Codes (Weierstrass Semigroups), Commutative Algebra, Combinatorics | Axis: Asymptotic & Low-Genus Exhaustion vs. Arbitrary-Conductor Additive Monoids
+------------------------------------------------------------------------------------------------
 
---- SUPERDOMAIN: Geometry & Topology (107 Problems) ---
+--- SUPERDOMAIN: Geometry & Topology (106 Problems) ---
 [GEOM-001] Hodge Conjecture
   Subdomain : Algebraic Geometry | Conjecture | Formal-Deductive | 1950 (76y) | W. V. D. Hodge | Registry: Clay Mathematics Institute Millennium Prize Problems (2000)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: No credible AI proof claim; partial Hodge-theoretic foundations formalized in Lean 4 Mathlib, while algebraic-cycle existence remains far beyond current ATP/LLM reach.
-  Scores    : CSS=74.94/100 | Titan=7.86 | Diff=10 Tract=2 Impact=6 Interdisc=7 Deg=30 (XP=3)
+  Scores    : CSS=74.82/100 | Titan=7.85 | Diff=10 Tract=2 Impact=6 Interdisc=7 Deg=29 (XP=3)
   Question  : On any smooth projective complex algebraic variety, is every rational Hodge cohomology class of type (k, k) a rational linear combination of fundamental classes of algebraic subvarieties?
   Formula   : Hdg^k(X) = H^{2k}(X, ℚ) ∩ H^{k,k}(X) = span_ℚ([Z] : Z ⊂ X algebraic)?
   Bottleneck: Conceptual / Paradigmatic Gap | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -3324,7 +3324,7 @@
 [GEOM-003] Sphere Packing Optimal Density in General Dimensions (d ≠ 1, 2, 3, 8, 24)
   Subdomain : Discrete & Metric Geometry | Design / Optimization Frontier | Formal-Deductive | 1611 (415y) | Johannes Kepler / Carl Friedrich Gauss / Henry Cohn & Noam Elkies | Registry: Hilbert's 18th Problem (Part III) / Fields Medal Lineage (Viazovska 2022)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: No general AI proof; Lean 4 formalization of Viazovska's 8D proof actively underway (SpherePacking Lean project 2024-2026) and evolutionary/AI searches test non-lattice packings in d=10..20.
-  Scores    : CSS=82.88/100 | Titan=7.51 | Diff=9 Tract=5 Impact=6 Interdisc=7 Deg=30 (XP=9)
+  Scores    : CSS=82.75/100 | Titan=7.5 | Diff=9 Tract=5 Impact=6 Interdisc=7 Deg=29 (XP=9)
   Question  : What is the maximum possible packing density Δ_d of non-overlapping congruent spheres in Euclidean space R^d for general dimensions d (including d=4, 5, 6, 7 and asymptotic exponential decay as d→∞)?
   Formula   : Δ_d = sup { density(P) : P sphere packing in ℝ^d },  d ∉ {1, 2, 3, 8, 24}
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -4432,19 +4432,8 @@
   2026 State: Single-fold Huzita–Justin axioms capture degree 2^a 3^b extensions (solving angle trisection and cube doubling), while the exact constructible field hierarchy for simultaneous k-fold origami remains open.
   Links/Ind : GEOM-003,NT-008,GEOM-001,ARC-001 | Industries: Pure Mathematics, Deployable Aerospace Structures, Metamaterial Origami, CAD | Axis: Ancient Euclidean 2-Tower Limits vs. Modern Higher-Order Folding & Neusis Algebra
 ------------------------------------------------------------------------------------------------
-[LTS-013] Atiyah–Sutcliffe Conjecture 1 on Linear Independence of Configuration Polynomials in R^3
-  Subdomain : Configuration Spaces & Geometric Spin-Statistics | Conjecture | Formal-Deductive | 2001 (25y) | Michael Atiyah & Paul Sutcliffe | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (AtiyahSutcliffe.conjecture_one)
-  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
-  Scores    : CSS=55.87/100 | Titan=7.0 | Diff=9 Tract=6 Impact=6 Interdisc=7 Deg=3 (XP=1)
-  Question  : For any n distinct points x_1,...,x_n in R^3, are the n associated degree-(n-1) projective configuration polynomials p_1,...,p_n (constructed via stereographic directions on CP^1) always linearly independent?
-  Formula   : det(p_1, ..., p_n) != 0  for all distinct x_1, ..., x_n in R^3  (proved n <= 4; open n >= 5)
-  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
-  Approaches: Eastwood-Norbury explicit determinant formulas (n=4), hyperbolic/Euclidean volume inequalities (Conjectures 2 & 3), Berry-Robbins quantum spin-statistics equivariant maps
-  2026 State: Proved analytically for n=3 and n=4 (Eastwood-Norbury) and verified numerically to high precision for larger n, yet a general proof for n >= 5 remains open and is formalized in Lean 4 on Left to Solve.
-  Links/Ind : GEOM-001,QM-001,GEOM-003 | Industries: Mathematical Physics, Geometric Algebra, Quantum Foundations | Axis: Low-n Algebraic Determinant Identities vs. Universal n-Point Equivariant Non-Vanishing
-------------------------------------------------------------------------------------------------
 [LTS-057] Inverse Connectedness of Connected-Preserving Bijections on R^n (MO 235893)
-  Subdomain : General Topology & Darboux Maps in R^n | Conjecture | Formal-Deductive | 2016 (10y) | MathOverflow #235893 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow235893)
+  Subdomain : General Topology & Darboux Maps in R^n | Conjecture | Formal-Deductive | 2016 (10y) | MathOverflow #235893 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow235893.mathoverflow_235893)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=49.37/100 | Titan=5.9 | Diff=8 Tract=6 Impact=5 Interdisc=5 Deg=3 (XP=1)
   Question  : For n > 1, if f: R^n -> R^n is a bijection sending every connected subset of R^n to a connected subset, must its inverse f^{-1} also send every connected subset to a connected subset (hence be a homeomorphism)?
@@ -4455,7 +4444,7 @@
   Links/Ind : GEOM-002,LOG-001,ANL-003 | Industries: General Topology, Real Analysis, Set Theory | Axis: 1D Order-Forced Continuity vs. Higher-Dimensional Connectivity Pathologies
 ------------------------------------------------------------------------------------------------
 [LTS-059] Covering the Unit Square by 1/(n+1) x 1/(n+2) Rectangles (Moser / Paulhus / MO 34145)
-  Subdomain : Discrete Packing & Covering Geometry | Conjecture | Formal-Deductive | 1966 (60y) | Leo Moser / MathOverflow #34145 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow34145)
+  Subdomain : Discrete Packing & Covering Geometry | Conjecture | Formal-Deductive | 1966 (60y) | Leo Moser / MathOverflow #34145 | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: MathOverflow (Mathoverflow34145.rectangles_cover_unit_square)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=51.70/100 | Titan=5.9 | Diff=8 Tract=7 Impact=5 Interdisc=5 Deg=3 (XP=0)
   Question  : Can the closed unit square [0,1]^2 be packed/covered by disjoint (or overlapping) rectangles of dimensions 1/(n+1) x 1/(n+2) for n = 1, 2, 3, ... (whose areas sum to 1/2, or starting at n=0 summing to 1)?
@@ -4477,11 +4466,11 @@
   Links/Ind : QM-001,GEOM-001,QM-002 | Industries: Mathematical Physics, Spin-Statistics Geometry, Real Algebraic Geometry | Axis: Geometric Spin-Statistics Construction vs. High-Degree Determinant Positivity
 ------------------------------------------------------------------------------------------------
 
---- SUPERDOMAIN: Analysis, Calculus, PDEs & Dynamics (97 Problems) ---
+--- SUPERDOMAIN: Analysis, Calculus, PDEs & Dynamics (98 Problems) ---
 [ANL-001] 3D Navier–Stokes Existence and Smoothness
   Subdomain : Partial Differential Equations & Fluid Mechanics | Existence/Uniqueness Proof | Hybrid Formal-Empirical | 1822 (204y) | Claude-Louis Navier & George Gabriel Stokes (Clay Formulation: Charles Fefferman, 2000) | Registry: Clay Mathematics Institute Millennium Prize Problems (2000)
   Status    : AI Proof Claim (Fall/Nov 2026) — Under Verification | Flag: ai-claim-under-audit-nov2026 | AI Nov2026: HIGH-ALERT NOV 2026 AUDIT: On Sept 8, 2026, OpenAI announced an AI-generated finite-time blowup proof claim produced across ~10,000 parallel reasoning instances over 88 hours. The announcement triggered intense attribution controversy over uncredited human PDE blowup frameworks, a public joint statement by 28 Fields Medalists demanding rigorous peer review and attribution norms, and ongoing Cambridge & King's College London (KCL) Lean-to-prose verification audits inspecting subtle statement-fidelity and analytic-estimate gaps. As of Nov 20, 2026, the Clay Mathematics Institute (CMI) officially lists 3D Navier–Stokes as UNRESOLVED pending formal peer-reviewed publication and the mandatory two-year refereeing window.
-  Scores    : CSS=83.21/100 | Titan=9.32 | Diff=10 Tract=7 Impact=9 Interdisc=9 Deg=32 (XP=17)
+  Scores    : CSS=83.32/100 | Titan=9.33 | Diff=10 Tract=7 Impact=9 Interdisc=9 Deg=33 (XP=17)
   Question  : Given smooth, divergence-free, rapidly decaying initial velocity data in ℝ³ (or on 𝕋³) with zero external force, do smooth globally defined solutions of the 3D incompressible Navier–Stokes equations always exist for all time, or can finite-time singularity blowup occur?
   Formula   : ∂u/∂t + (u·∇)u = -∇p + νΔu,  ∇·u = 0,  u(x, 0) = u_0 ∈ C^∞_c(ℝ³)  ==>  u ∈ C^∞(ℝ³ × [0, ∞)) ?
   Bottleneck: Mathematical Tools Missing | Scale: Macroscopic / Human | Verify: Formal Mathematical Proof
@@ -4503,7 +4492,7 @@
 [ANL-003] Higher-Dimensional Kakeya Conjecture (n ≥ 4)
   Subdomain : Harmonic Analysis & Geometric Measure Theory | Conjecture | Formal-Deductive | 1917 (109y) | Sōichi Kakeya / Abram Besicovitch / Charles Fefferman | Registry: Fefferman-Bourgain-Tao Harmonic Analysis Hierarchy
   Status    : Active Breakthroughs / Frontier | Flag: ai-assisted-editorial-synthesis | AI Nov2026: No credible AI proof claim; Hong Wang & Joshua Zahl's landmark February 2025 proof of the 3D Kakeya conjecture is undergoing ongoing community verification and Lean 4 formalization discussions, while n ≥ 4 stays open.
-  Scores    : CSS=67.34/100 | Titan=7.45 | Diff=9 Tract=7 Impact=6 Interdisc=7 Deg=24 (XP=1)
+  Scores    : CSS=67.63/100 | Titan=7.47 | Diff=9 Tract=7 Impact=6 Interdisc=7 Deg=26 (XP=1)
   Question  : Must every Besicovitch (Kakeya) set K ⊂ ℝ^n in dimension n ≥ 4—containing a unit line segment in every direction ω ∈ S^{n-1}—necessarily have full Hausdorff and Minkowski dimension n?
   Formula   : K ⊂ ℝ^n contains unit segment in every ω ∈ S^{n-1}  ==>  dim_H(K) = n  (n ≥ 4)?
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -5502,7 +5491,7 @@
   Links/Ind : ANL-003,COMB-002,NT-001 | Industries: Signal Processing, Additive Combinatorics, Non-Convex Optimization | Axis: Continuous Self-Convolution Minimization vs. Discrete Sidon Density
 ------------------------------------------------------------------------------------------------
 [LTS-035] Ben Green Problem 35: Sharp L^p Restriction / Additive Constant c(p) on [0,1]
-  Subdomain : Harmonic Analysis & Extremal Convolution Inequalities | Design / Optimization Frontier | Formal-Deductive | 2024 (2y) | Ben Green (Problem 35) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green35.green_35)
+  Subdomain : Harmonic Analysis & Extremal Convolution Inequalities | Design / Optimization Frontier | Formal-Deductive | 2024 (2y) | Ben Green (Problem 35) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green35.green_35.lower)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=47.83/100 | Titan=6.1 | Diff=8 Tract=7 Impact=5 Interdisc=6 Deg=3 (XP=0)
   Question  : For 1 < p <= infinity, what is the sharp extremal constant c(p) improving known bounds sqrt(4/7) at p=2 and 0.64 at p=infinity in Green's Problem 35?
@@ -5524,7 +5513,7 @@
   Links/Ind : NT-001,NT-008,NT-007 | Industries: Ergodic Theory, Homogeneous Dynamics, Diophantine Approximation | Axis: Unipotent Ratner Rigidity vs. Higher-Rank Diagonal Measure/Orbit Rigidity
 ------------------------------------------------------------------------------------------------
 [LTS-069] Existence of Nowhere-Dense Spectral Sets & Convex-Product Spectrality (KLM2023)
-  Subdomain : Harmonic Analysis & Weak Tiling | Conjecture | Formal-Deductive | 2023 (3y) | Mihail Kolountzakis, Nir Lev & Máté Matolcsi (Problems 7.1 & 7.2) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (NowhereDenseSpectralSet / SpectralSetProduct)
+  Subdomain : Harmonic Analysis & Weak Tiling | Conjecture | Formal-Deductive | 2023 (3y) | Mihail Kolountzakis, Nir Lev & Máté Matolcsi (Problems 7.1 & 7.2) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: arXiv papers (NowhereDenseSpectralSet.exists_nowhereDense_spectralSet)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=47.90/100 | Titan=6.1 | Diff=8 Tract=7 Impact=5 Interdisc=6 Deg=3 (XP=0)
   Question  : Can a bounded, measurable, nowhere-dense subset Omega subset R^d (d >= 2) of positive measure be spectral (admit an orthogonal exponential basis), and does spectrality of A x B (A convex body) always imply spectrality of B?
@@ -5545,12 +5534,23 @@
   2026 State: Connects Mahler's classic question on normal numbers in Cantor's middle-thirds set to Pisot-base dynamical systems.
   Links/Ind : ANL-003,NT-001,STAT-001 | Industries: Fractal Geometry, Ergodic Theory, Number Theory | Axis: Generic Normality vs. Algebraic Pisot Resonance on Fractals
 ------------------------------------------------------------------------------------------------
+[LTS-099] Erdős–Herzog–Piranian Lemniscate Length Conjecture (Erdős #114, $250 Prize)
+  Subdomain : Complex Analysis & Geometric Function Theory | Conjecture | Formal-Deductive | 1958 (68y) | Paul Erdős, Fritz Herzog & George Piranian ($250 Prize, Erdős #114) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Erdős Problems (Erdos114.erdos_114)
+  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
+  Scores    : CSS=53.73/100 | Titan=6.45 | Diff=8 Tract=7 Impact=6 Interdisc=6 Deg=3 (XP=0)
+  Question  : Among all monic complex polynomials p(z) of degree n >= 1, is the arc length of the unit lemniscate L(p) = { z in C : |p(z)| = 1 } maximized uniquely (up to rigid motion) by p(z) = z^n - 1?
+  Formula   : max_{deg(p)=n, monic} length({ z in C : |p(z)| = 1 }) = length({ |z^n - 1| = 1 }) = 2n + O(1) ?
+  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
+  Approaches: Fryntov-Nazarov (2009) local extremality & sharp large-n asymptotics, Eremenko-Hayman upper bounds, Tao (2025) exact proof for all sufficiently large n >= n_0, remaining finite low-degree gap
+  2026 State: Resolved for n = 2 and for all sufficiently large n >= n_0, yet the exact global statement for every finite degree n >= 3 remains open for the $250 Erdős prize and is formalized in Lean 4 on Left to Solve.
+  Links/Ind : ANL-003,NT-001,ANL-001 | Industries: Complex Analysis, Potential Theory, Polynomial Dynamics, Numerical Conformal Mapping | Axis: Asymptotic Large-n Extremality vs. Exact All-Degree Lemniscate Length Bound
+------------------------------------------------------------------------------------------------
 
 --- SUPERDOMAIN: Combinatorics & Graph Theory (119 Problems) ---
 [COMB-001] Hadwiger's Conjecture (Graph Coloring and Clique Minors)
   Subdomain : Structural Graph Theory & Coloring | Conjecture | Formal-Deductive | 1943 (83y) | Hugo Hadwiger | Registry: Bondy-Murty Graph Theory / Seymour Hadwiger Survey
   Status    : Active Breakthroughs / Frontier | Flag: ai-assisted-editorial-synthesis | AI Nov2026: No credible AI proof claim; Delcourt-Postle's breakthrough O(k log log k) upper bound (2021-2025) remains purely human extremal graph theory.
-  Scores    : CSS=73.37/100 | Titan=7.72 | Diff=10 Tract=5 Impact=6 Interdisc=6 Deg=39 (XP=9)
+  Scores    : CSS=73.27/100 | Titan=7.72 | Diff=10 Tract=5 Impact=6 Interdisc=6 Deg=38 (XP=9)
   Question  : Does every finite loopless graph G with chromatic number χ(G) ≥ k necessarily contain the complete graph K_k as a graph minor (generalizing the Four Color Theorem to all k ≥ 1)?
   Formula   : χ(G) ≥ k  ==>  K_k ≼_{minor} G   (open for all k ≥ 7)
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -5561,7 +5561,7 @@
 [COMB-002] Exact Ramsey Numbers (R(5, 5) and Diagonal Asymptotic Growth Rate)
   Subdomain : Ramsey Theory | Classification / Structural Problem | Formal-Deductive | 1930 (96y) | Frank P. Ramsey / Paul Erdős & George Szekeres | Registry: Erdős Problems Registry ($100/$250/$10,000) / Radziszowski Dynamic Survey
   Status    : Active Breakthroughs / Frontier | Flag: primary-registry-indexed | AI Nov2026: No exact R(5,5) proof; Angeltveit & McKay's 2024 SAT/flag-algebra computation lowered the upper bound to R(5,5) ≤ 46, and Campos-Griffiths-Morris-Sahasrabudhe (2023) broke the 88-year 4^k asymptotic barrier.
-  Scores    : CSS=75.40/100 | Titan=8.0 | Diff=10 Tract=5 Impact=6 Interdisc=7 Deg=57 (XP=14)
+  Scores    : CSS=75.40/100 | Titan=8.0 | Diff=10 Tract=5 Impact=6 Interdisc=7 Deg=58 (XP=14)
   Question  : What is the exact value of the diagonal Ramsey number R(5, 5) ∈ {43, 44, 45, 46}, and what is the exact exponential base c = lim_{k→∞} R(k, k)^{1/k} ∈ [√2, 4 - ε]?
   Formula   : R(5, 5) = ?   and   c = lim_{k→∞} R(k, k)^{1/k} ∈ [√2, 3.999...]
   Bottleneck: Computational Complexity Barrier | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -6603,8 +6603,19 @@
   2026 State: Open even for high-girth Cayley graphs where geodesic lengths approach the diameter and interact subtly with small vertex cutsets.
   Links/Ind : COMB-001,SYS-003,COMB-002 | Industries: Fault-Tolerant Network Topologies, Metric Graph Theory | Axis: Shortest-Path Metric Cuts vs. Homogeneous Graph Resilience
 ------------------------------------------------------------------------------------------------
+[LTS-013] Weighing Matrix Conjecture for Orders n ≡ 0 (mod 4)
+  Subdomain : Combinatorial Designs & Orthogonal Matrices | Conjecture | Formal-Deductive | 1973 (53y) | Jennifer Seberry & W. D. Wallis | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Wikipedia (WeighingMatrix.weighing_matrix_conjecture)
+  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
+  Scores    : CSS=52.23/100 | Titan=6.1 | Diff=8 Tract=6 Impact=5 Interdisc=6 Deg=3 (XP=1)
+  Question  : For every positive integer n divisible by 4 and every weight k in {0, 1, ..., n}, does there exist an n x n weighing matrix W(n, k) with entries in {-1, 0, +1} satisfying W W^T = k I_n?
+  Formula   : For all n = 4m and 0 <= k <= n: exists W in {-1, 0, 1}^{n x n} with W W^T = k I_n
+  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
+  Approaches: Circulant and two-circulant Golay-pair constructions, orthogonal designs OD(n; s_1,...,s_u), algebraic number-field norm obstructions, SAT/ILP finite-order constructions
+  2026 State: Extends the Hadamard Matrix Conjecture (k = n) to all intermediate weights k <= n; resolved for small 4m orders and many sparse weights, yet open in general and formalized in Lean 4 on Left to Solve.
+  Links/Ind : COMB-002,COMB-001,CS-001 | Industries: Error-Correcting Codes, Optical Multiplexing, Experimental Design | Axis: Golay-Sequence Algebraic Constructions vs. Arbitrary Composite Orders n = 4m
+------------------------------------------------------------------------------------------------
 [LTS-016] Written on the Wall II Conjecture 133 (Path Number vs. Radius & Average Leaf Distance)
-  Subdomain : Automated Graph Conjecturing (Graffiti / WOWII) | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña & Siemion Fajtlowicz (WOWII #133) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture133)
+  Subdomain : Automated Graph Conjecturing (Graffiti / WOWII) | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña & Siemion Fajtlowicz (WOWII #133) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture133.conjecture133)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=42.60/100 | Titan=5.2 | Diff=7 Tract=8 Impact=4 Interdisc=5 Deg=3 (XP=1)
   Question  : For every simple connected graph G, does the longest-path order path(G) satisfy path(G) >= rad(G) + (avg_v l(v))^{c_{C_4}(G)}, coupling path length to radius and C_4-structure?
@@ -6615,7 +6626,7 @@
   Links/Ind : COMB-001,COMB-002,CS-001 | Industries: Automated Conjecturing, Network Topology Analysis, Graph Algorithms | Axis: Automated Heuristic Graph Bounds vs. Extremal Counterexample Engineering
 ------------------------------------------------------------------------------------------------
 [LTS-017] Written on the Wall II Conjecture 96 (Independence Number vs. Average Eccentricity)
-  Subdomain : Graph Independence & Metric Invariants | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña (WOWII #96) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture96)
+  Subdomain : Graph Independence & Metric Invariants | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña (WOWII #96) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture96.conjecture96)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=42.60/100 | Titan=5.2 | Diff=7 Tract=8 Impact=4 Interdisc=5 Deg=3 (XP=1)
   Question  : For every simple connected graph G on at least two vertices, does the independence number alpha(G) satisfy the WOWII #96 metric lower bound relating alpha(G) to eccentricity and degree invariants?
@@ -6626,7 +6637,7 @@
   Links/Ind : COMB-001,COMB-002,SYS-003 | Industries: Combinatorial Optimization, Wireless Scheduling, Graph Theory | Axis: Local Neighborhood Packing vs. Global Eccentricity Geometry
 ------------------------------------------------------------------------------------------------
 [LTS-018] Written on the Wall II Conjecture 189 (Graph Domination & Radius Inequality)
-  Subdomain : Graph Domination & Spectral/Metric Bounds | Conjecture | Formal-Deductive | 2006 (20y) | Ermelinda DeLaViña (WOWII #189) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture189)
+  Subdomain : Graph Domination & Spectral/Metric Bounds | Conjecture | Formal-Deductive | 2006 (20y) | Ermelinda DeLaViña (WOWII #189) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture189.conjecture189)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=42.53/100 | Titan=5.2 | Diff=7 Tract=8 Impact=4 Interdisc=5 Deg=3 (XP=1)
   Question  : For simple connected graphs satisfying the WOWII #189 structural threshold, does the conjectured domination-versus-radius/matching inequality hold unconditionally without extremal counterexamples?
@@ -6637,7 +6648,7 @@
   Links/Ind : COMB-001,COMB-002,SYS-001 | Industries: Facility Location, Sensor Coverage, Graph Algorithms | Axis: Metric Radius Constraints vs. Combinatorial Domination Numbers
 ------------------------------------------------------------------------------------------------
 [LTS-019] Written on the Wall II Conjecture 199 (Tree Number, Connectivity & Hamiltonicity)
-  Subdomain : Spanning Subtrees & Vertex Connectivity | Conjecture | Formal-Deductive | 2006 (20y) | Ermelinda DeLaViña (WOWII #199) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture199)
+  Subdomain : Spanning Subtrees & Vertex Connectivity | Conjecture | Formal-Deductive | 2006 (20y) | Ermelinda DeLaViña (WOWII #199) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture199.conjecture199)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=44.03/100 | Titan=5.55 | Diff=7 Tract=8 Impact=5 Interdisc=5 Deg=3 (XP=1)
   Question  : If a simple connected graph G satisfies tree(G) - 2 <= kappa(G) (where tree(G) is the largest induced tree order and kappa(G) is vertex connectivity), must G satisfy the WOWII #199 Hamiltonian/cycle property?
@@ -6648,7 +6659,7 @@
   Links/Ind : COMB-001,COMB-002,CS-001 | Industries: Graph Theory, Fault-Tolerant Routing, Combinatorics | Axis: Induced Acyclic Substructure vs. Global Vertex-Connectivity Cycles
 ------------------------------------------------------------------------------------------------
 [LTS-020] Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)
-  Subdomain : Tree Invariants & Path Cover Theory | Conjecture | Formal-Deductive | 2008 (18y) | Ermelinda DeLaViña (WOWII #372) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture372)
+  Subdomain : Tree Invariants & Path Cover Theory | Conjecture | Formal-Deductive | 2008 (18y) | Ermelinda DeLaViña (WOWII #372) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture372.conjecture372)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=42.40/100 | Titan=5.0 | Diff=7 Tract=8 Impact=4 Interdisc=4 Deg=3 (XP=1)
   Question  : For every tree T of order at least two, does its vertex-cover / transversal invariant satisfy tau(T) <= gamma_t(T) * max(1, p(T) - 1), where gamma_t(T) is total domination and p(T) is path cover number?
@@ -6659,7 +6670,7 @@
   Links/Ind : COMB-001,COMB-002,SYS-001 | Industries: Tree Algorithms, Network Monitoring, Graph Theory | Axis: Total Domination Coverage vs. Minimum Path-Cover Fragmentation
 ------------------------------------------------------------------------------------------------
 [LTS-021] Written on the Wall II Conjecture 40 (Largest Induced Forest Order Bounds)
-  Subdomain : Decycling Number & Induced Forests | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña (WOWII #40 & #61) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (GraphConjecture40 / 61)
+  Subdomain : Decycling Number & Induced Forests | Conjecture | Formal-Deductive | 2005 (21y) | Ermelinda DeLaViña (WOWII #40 & #61) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Written on the Wall II (WrittenOnTheWallII.GraphConjecture40.conjecture40)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=44.10/100 | Titan=5.55 | Diff=7 Tract=8 Impact=5 Interdisc=5 Deg=3 (XP=2)
   Question  : What are the sharp universal lower bounds on the largest induced forest order f(G) (equivalently upper bounds on feedback vertex set n - f(G)) in terms of connected graph degree and distance invariants?
@@ -6758,7 +6769,7 @@
   Links/Ind : COMB-002,ANL-003,GEOM-003 | Industries: Additive Combinatorics, Coding Theory, Extremal Graph Theory | Axis: Polynomial-Method Upper Bounds vs. Behrend-Type Constructions
 ------------------------------------------------------------------------------------------------
 [LTS-033] Ben Green Problem 31: Tight Additive-Energy Lower Bound Exceeding N^{1/2} + O(1)
-  Subdomain : Additive Bases & Sidon Extremal Gaps | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green (Problem 31) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green31.green_31)
+  Subdomain : Additive Bases & Sidon Extremal Gaps | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green (Problem 31) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green31.green_31.lower)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=47.33/100 | Titan=5.55 | Diff=8 Tract=6 Impact=4 Interdisc=5 Deg=3 (XP=0)
   Question  : Can the classical N^{1/2} + O(1) lower bound in Green's Problem 31 (maximal structured additive subsets of [N]) be strictly beaten for infinitely many N?
@@ -6780,7 +6791,7 @@
   Links/Ind : CS-004,COMB-002,CS-001 | Industries: Fast Matrix Multiplication, Communication Complexity, Additive Combinatorics | Axis: Disjoint Additive Sumset Packing vs. Matrix Multiplication Tensor Rank
 ------------------------------------------------------------------------------------------------
 [LTS-038] Ben Green Problem 53 & 55: Bounded-Codimension Coset in Partition Sumsets & Diagonal Inverse Gowers
-  Subdomain : Finite-Field Additive Combinatorics & Gowers Norms | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green & Tim Austin (Problems 53 & 55) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green53 / Green55)
+  Subdomain : Finite-Field Additive Combinatorics & Gowers Norms | Conjecture | Formal-Deductive | 2024 (2y) | Ben Green & Tim Austin (Problems 53 & 55) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Green's 100 Open Problems (Green55.green_55; Green53.green_53)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=54.33/100 | Titan=7.0 | Diff=9 Tract=6 Impact=6 Interdisc=7 Deg=3 (XP=1)
   Question  : If F_2^n is partitioned into K sets A_1..A_K, must some sumset 2A_i contain a coset of codimension O_K(1) (Problem 53); and what is the inverse characterization for diagonal-direction Gowers averages on F_p^n x F_p^n (Problem 55)?
@@ -6802,7 +6813,7 @@
   Links/Ind : COMB-001,COMB-002,CS-001 | Industries: Network Routing, Fault-Tolerant Topology, Graph Theory | Axis: 5/3 & 8/5 Flow-Based Cycle Covers vs. Exact Petersen-Tight 7/5 Threshold
 ------------------------------------------------------------------------------------------------
 [LTS-074] Graph Burning Number Conjecture (b(G) <= ceil(sqrt(n)))
-  Subdomain : Graph Contagion & Information Spreading | Conjecture | Formal-Deductive | 2016 (10y) | Anthony Bonato, Jeannette Janssen & Elham Roshanbin | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (BurningNumberConjecture)
+  Subdomain : Graph Contagion & Information Spreading | Conjecture | Formal-Deductive | 2016 (10y) | Anthony Bonato, Jeannette Janssen & Elham Roshanbin | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (BurningNumberConjecture.burning_number_conjecture)
   Status    : Active Breakthroughs / Frontier | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=48.87/100 | Titan=6.45 | Diff=8 Tract=8 Impact=6 Interdisc=6 Deg=3 (XP=2)
   Question  : Can every connected graph G on n vertices be burned in at most ceil(sqrt(n)) rounds (where each round existing fires spread to all neighbors and one new vertex is ignited)?
@@ -6813,7 +6824,7 @@
   Links/Ind : SYS-003,COMB-001,STAT-001 | Industries: Epidemic Modeling, Social Network Diffusion, Graph Algorithms | Axis: Asymptotic (1+o(1))sqrt(n) Spreading vs. Exact Finite-n Ceil(sqrt(n)) Rigidity
 ------------------------------------------------------------------------------------------------
 [LTS-091] Higher-Order VC_n Dimension of Convex Sets in R^{n+1} (Combinatorial Geometry)
-  Subdomain : Higher-Order VC Theory & Convex Geometry | Conjecture | Formal-Deductive | 2023 (3y) | Terry / Wolf / Formal-Conjectures Contributors | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (VCDimConvex)
+  Subdomain : Higher-Order VC Theory & Convex Geometry | Conjecture | Formal-Deductive | 2023 (3y) | Terry / Wolf / Formal-Conjectures Contributors | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Other (VCDimConvex.hasAddVCNDimAtMost_n_two_of_convex_rn_add_one)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=49.40/100 | Titan=6.65 | Diff=8 Tract=7 Impact=6 Interdisc=7 Deg=3 (XP=1)
   Question  : Is the n-th order Vapnik-Chervonenkis dimension VC_n of the family of all convex sets in R^{n+1} bounded above by an exponential c^n (or even uniformly <= 3; and <= 2 for convex sets in R^3 at n=2)?
@@ -6834,27 +6845,16 @@
   2026 State: Thomason's 1978 parity argument settled all odd regular degrees >= 3, making 4-regular graphs the crucial smallest even-degree holdout.
   Links/Ind : COMB-001,COMB-002,CS-001 | Industries: Graph Theory, Combinatorial Optimization | Axis: Odd-Degree Lollipop Parity vs. Even-Degree 4-Regular Uniqueness
 ------------------------------------------------------------------------------------------------
-[LTS-099] Erdős–Faber–Lovász Hypergraph/Clique-Union & Erdős #64 Power-of-2 Cycle Conjectures
-  Subdomain : Graph Coloring & Cycle Lengths | Conjecture | Formal-Deductive | 1975 (51y) | Paul Erdős, Vance Faber, László Lovász & Gyárfás (Erdős #19 & #64) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Erdős Problems (Erdos19 / Erdos64)
-  Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
-  Scores    : CSS=52.60/100 | Titan=6.45 | Diff=8 Tract=7 Impact=6 Interdisc=6 Deg=3 (XP=1)
-  Question  : For all finite n (not just sufficiently large n where Kang-Kelly-Kühn-Methuku-Osthus proved EFL in 2021), does every union of n edge-disjoint K_n cliques have chromatic number n (Erdős #19); and does every graph of min degree >= 3 contain a cycle of length 2^k (Erdős #64)?
-  Formula   : EFL: chi(Union_{i=1}^n K_n) = n for ALL n;  Erdős #64: delta(G) >= 3 ==> exists C_{2^k} subset G?
-  Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
-  Approaches: Iterative absorption (settled EFL for all large n >= n_0), Liu-Montgomery cycle-length spectrum theorems (proved for average degree >= C), finite-n SAT/combinatorial gap closure
-  2026 State: EFL was solved for all large n in 2021 (leaving the exact all-n Lean proof open), while Erdős #64 ($1,000 prize) for delta(G) >= 3 remains open (Liu-Montgomery needed large constant degree).
-  Links/Ind : COMB-001,COMB-002,CS-001 | Industries: Graph Coloring, Combinatorics, Automated Verification | Axis: Asymptotic Absorption / High-Degree Cycles vs. Exact Low-Degree Thresholds
-------------------------------------------------------------------------------------------------
-[LTS-100] Turán Hypergraph Density ex_3(n, K_4^3) & Higher Uniform Hypergraph Turán Limits (Erdős #500 & #712)
-  Subdomain : Hypergraph Turán Theory | Conjecture | Formal-Deductive | 1941 (85y) | Pál Turán & Paul Erdős ($500 / $1,000 Prizes, Erdős #500 & #712) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Erdős Problems (Erdos500 / Erdos712)
+[LTS-100] Erdős Problem #101: Four-Point Lines in Planar Sets With No Five Collinear ($100 Prize)
+  Subdomain : Discrete & Incidence Geometry | Conjecture | Formal-Deductive | 1962 (64y) | Paul Erdős ($100 Prize, Erdős #101) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Erdős Problems (Erdos101.erdos_101)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
-  Scores    : CSS=66.37/100 | Titan=7.7 | Diff=10 Tract=5 Impact=7 Interdisc=7 Deg=3 (XP=1)
-  Question  : What is the exact Turán density lim_{n->inf} ex_3(n, K_4^3) / C(n,3) of the complete 3-uniform tetrahedron K_4^3 (conjectured by Turán to equal 5/9, with Razborov flag-algebra upper bound 0.561666)?
-  Formula   : pi(K_4^3) = lim_{n->inf} ex_3(n, K_4^3) / C(n,3) = 5/9 = 0.5555... ?  (known in [0.5555..., 0.56167])
+  Scores    : CSS=58.47/100 | Titan=6.8 | Diff=9 Tract=6 Impact=6 Interdisc=6 Deg=3 (XP=1)
+  Question  : Given n points in the Euclidean plane R^2 with no five points collinear, is the maximum number of lines containing exactly four points strictly o(n^2) (as opposed to Theta(n^2))?
+  Formula   : max { |L_4(P)| : P subset R^2, |P| = n, no 5 collinear } = o(n^2) ?
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
-  Approaches: Razborov flag-algebra semidefinite hierarchies, Kostochka/Fon-der-Flaass exponentially many non-isomorphic extremal 5/9 constructions, hypergraph stability barriers
-  2026 State: The single most famous open problem in extremal hypergraph theory: unlike graphs (Turán's theorem), K_4^3 admits exponentially many distinct asymptotically extremal constructions, defeating standard stability proofs.
-  Links/Ind : COMB-002,COMB-001,CS-001 | Industries: Extremal Combinatorics, Coding Theory, Semidefinite Optimization | Axis: Unique Graph Turán Extremizers vs. Exponentially Degenerate Hypergraph Extremizers
+  Approaches: Szemerédi-Trotter incidence bounds (giving O(n^2) only), Solymosi-Stojaković / Grünbaum constructions yielding n^{2 - O(1/sqrt(log n))} 4-point lines, polynomial partitioning & algebraic curve incidence methods
+  2026 State: Solymosi and Stojaković constructed no-5-collinear sets with n^{2 - c/sqrt(log n)} four-point lines (tantalizingly close to quadratic), leaving the exact o(n^2) vs. c n^2 dichotomy open for the $100 Erdős prize.
+  Links/Ind : ANL-003,COMB-002,CS-001 | Industries: Incidence Geometry, Computational Geometry, Additive Combinatorics | Axis: Near-Quadratic Behrend-Type Constructions vs. Sub-Quadratic Incidence Obstructions
 ------------------------------------------------------------------------------------------------
 
 ==================== PILLAR 2: LOGIC, STATISTICS & COMPUTING ====================
@@ -7477,7 +7477,7 @@
   Links/Ind : LOG-002,LOG-001,NT-005 | Industries: Proof Theory, Ordinal Analysis, Formal Logic | Axis: Elementary Arithmetic Generation vs. Peano-Independent Ordinal Complexity
 ------------------------------------------------------------------------------------------------
 [LTS-075] Arhangel'skii Cardinality Bound for Lindelöf Tychonoff Spaces with G_delta-Singletons
-  Subdomain : Set-Theoretic Topology & Cardinal Invariants | Conjecture | Formal-Deductive | 1969 (57y) | Alexander V. Arhangel'skii / Juhász | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (CardinalityLindelof / Homogeneous)
+  Subdomain : Set-Theoretic Topology & Cardinal Invariants | Conjecture | Formal-Deductive | 1969 (57y) | Alexander V. Arhangel'skii / Juhász | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Papers (CardinalityLindelof.HasG-Singletons.lindelof_card)
   Status    : Independent / Undecidable Suspected | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=58.50/100 | Titan=6.45 | Diff=9 Tract=4 Impact=5 Interdisc=6 Deg=3 (XP=1)
   Question  : Can a Lindelöf Tychonoff space in which every singleton is a G_delta set (or every homogeneous omega-monolithic compact Hausdorff space) have cardinality strictly exceeding the continuum c = 2^{aleph_0}?
@@ -8220,7 +8220,7 @@
 [CS-001] P versus NP Problem
   Subdomain : Computational Complexity Theory | Computational Complexity Separation | Formal-Deductive | 1971 (55y) | Stephen Cook, Leonid Levin & Richard Karp (Kurt Gödel 1956 letter) | Registry: Clay Millennium Prize Problems (2000)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: None — no credible AI proof claim; formalization of Cook–Levin & meta-barriers underway in Lean
-  Scores    : CSS=81.67/100 | Titan=10.0 | Diff=10 Tract=2 Impact=10 Interdisc=10 Deg=96 (XP=61)
+  Scores    : CSS=81.67/100 | Titan=10.0 | Diff=10 Tract=2 Impact=10 Interdisc=10 Deg=97 (XP=62)
   Question  : Can every computational problem whose solution can be verified in deterministic polynomial time also be solved from scratch in deterministic polynomial time?
   Formula   : P =? NP   (3-SAT ∈ P ?   vs.   superpolynomial worst-case lower bound for NP)
   Bottleneck: Mathematical Tools Missing | Scale: Scale-Invariant / Abstract Formal | Verify: Formal Mathematical Proof
@@ -9060,7 +9060,7 @@
 [QM-001] Quantum Measurement Problem & Wavefunction Collapse
   Subdomain : Foundations of Quantum Mechanics | Paradox / Foundational Apory | Hybrid Formal-Empirical | 1927 (99y) | Niels Bohr, Erwin Schrödinger, John von Neumann, Albert Einstein | Registry: Solvay 1927 Canon / FQXi Foundations / Wikipedia Unsolved Physics
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: No AI proof or resolution; foundational interpretive and experimental boundary remains wide open
-  Scores    : CSS=80.62/100 | Titan=9.62 | Diff=10 Tract=4 Impact=9 Interdisc=10 Deg=47 (XP=32)
+  Scores    : CSS=80.46/100 | Titan=9.61 | Diff=10 Tract=4 Impact=9 Interdisc=10 Deg=45 (XP=30)
   Question  : How and why does linear, deterministic unitary Schrödinger evolution yield a single definite probabilistic measurement outcome (the Born rule) rather than persisting macroscopic superpositions?
   Formula   : iℏ ∂|ψ⟩/∂t = H|ψ⟩ (unitary)  vs.  |ψ⟩ → |φ_k⟩ with P_k = |⟨φ_k|ψ⟩|^2
   Bottleneck: Conceptual / Paradigmatic Gap | Scale: Atomic / Molecular | Verify: Reproducible Laboratory Experiment
@@ -17048,7 +17048,7 @@
   Links/Ind : QC-005,QC-007,HW-019,CS-001,CS-003 | Industries: Logistics, Finance Portfolio Optimization, Power Grid Dispatch, Telecommunications, Manufacturing | Axis: Overlap-Gap Local-Optima Obstructions vs. Structured Quantum Interference Speedups (DQI)
 ------------------------------------------------------------------------------------------------
 [LTS-001] Maximal Number of Mutually Unbiased Bases in Composite Dimensions (OQP #13)
-  Subdomain : Mutually Unbiased Bases & Quantum Tomography | Classification / Structural Problem | Formal-Deductive | 1981 (45y) | Ivanović / Wootters & Fields (IQOQI OQP #13) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Open Quantum Problems (OpenQuantumProblem13)
+  Subdomain : Mutually Unbiased Bases & Quantum Tomography | Classification / Structural Problem | Formal-Deductive | 1981 (45y) | Ivanović / Wootters & Fields (IQOQI OQP #13) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Open Quantum Problems (OpenQuantumProblem13.mutuallyUnbiasedBases_dim6)
   Status    : Completely Open | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=58.70/100 | Titan=7.55 | Diff=9 Tract=6 Impact=7 Interdisc=8 Deg=3 (XP=2)
   Question  : What is the maximum number M(d) of mutually unbiased orthonormal bases in C^d for non-prime-power dimensions d >= 6 (starting with d = 6, where 3 <= M(6) <= 7)?
@@ -17059,7 +17059,7 @@
   Links/Ind : QC-001,QM-001,COMB-001 | Industries: Quantum Cryptography, Quantum State Tomography, Coding Theory | Axis: Prime-Power Projective Geometry vs. Composite-Dimension Hilbert Orthogonality
 ------------------------------------------------------------------------------------------------
 [LTS-002] Existence Classification of Absolutely Maximally Entangled States AME(n,d) (OQP #35)
-  Subdomain : Multipartite Entanglement & Quantum MDS Codes | Classification / Structural Problem | Formal-Deductive | 2012 (14y) | Helwig, Cui, Latorre, Riera & Lo (IQOQI OQP #35) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Open Quantum Problems (OpenQuantumProblem35)
+  Subdomain : Multipartite Entanglement & Quantum MDS Codes | Classification / Structural Problem | Formal-Deductive | 2012 (14y) | Helwig, Cui, Latorre, Riera & Lo (IQOQI OQP #35) | Registry: Left to Solve (lefttosolve.com/programs; google-deepmind/formal-conjectures) — Program: Open Quantum Problems (OpenQuantumProblem35.oqp_35)
   Status    : Partially Solved / Special Cases | Flag: primary-registry-indexed | AI Nov2026: Tracked live on lefttosolve.com/programs (google-deepmind/formal-conjectures); no consensus resolution as of Nov 26, 2026.
   Scores    : CSS=51.63/100 | Titan=7.2 | Diff=8 Tract=7 Impact=7 Interdisc=8 Deg=3 (XP=1)
   Question  : For which pairs (n, d) of n parties of local dimension d >= 2 does an Absolutely Maximally Entangled pure state AME(n,d) exist (maximally mixed across every floor(n/2)-party bipartition)?

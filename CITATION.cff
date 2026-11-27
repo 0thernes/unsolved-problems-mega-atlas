@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this dataset, knowledge graph, Lean 4.35.0 software-model invariant suite, RAG/MCP server, or white paper, please cite it as below."
-title: "Unsolved Problems Mega-Atlas (V2.9.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Deterministic Research Infrastructure"
-version: "2.9.0"
-date-released: "2026-11-26"
+title: "Unsolved Problems Mega-Atlas (V2.10.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Deterministic Research Infrastructure"
+version: "2.10.0"
+date-released: "2026-11-27"
 type: dataset
 license:
   - CC-BY-4.0
@@ -43,7 +43,7 @@ abstract: >-
   included: an 11-page AMS-LaTeX white paper (15/15 title-verified citations),
   automated daily sync of 16 public open-problem trackers & 25 Left to Solve fronts,
   offline SQLite FTS5 hybrid search (100.0% MRR@5 on 25 benchmark queries), a
-  12-tool stdio MCP server, 3 finite Track B probes (LOG-002, NT-005, COMB-002),
-  a rubric sensitivity diff tool, 10/10 mutation testing, structurally verified
+  13-tool stdio MCP server (incl. 59,396-target daily Left to Solve mirror & 290-problem crosswalk), 3 finite Track B probes (LOG-002, NT-005, COMB-002),
+  a rubric sensitivity diff tool, 12/12 mutation testing, structurally verified
   DigiCert RFC 3161 and Bitcoin OTS v1 timestamps, and an AutoResearch evaluation
   harness (AQS = 98.35). Zero (0/2,000) problems are claimed solved.

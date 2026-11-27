@@ -1,6 +1,6 @@
 # Quantitative Methodology, Scoring Formulas & Known Limitations
 
-**Release:** `v2.9.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
+**Release:** `v2.10.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
 **Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, generic list-multigraph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in zero-Mathlib Lean 4.35.0 (`lean/`, **103** audited declarations of `117` in `lean/`, 0 `sorry`, per-theorem axioms within `[propext, Quot.sound]`; kernel-checked by Lean, with the `9` Palomar comparator targets also accepted by `6` kernel checks across `5` distinct implementations via `scripts/verify_lean_six_kernels.sh`). These are invariants of the scoring software model, not of the 2,000-row data or its graph, which are checked in Python.
 
 ---
@@ -11,14 +11,14 @@ Every entry is assigned to an exact multi-layer hierarchy enforced by `src/v2_sc
 - **8 Macro-Pillars** (surjective partition proven in `MegaAtlasProofs.Taxonomy.pillarOf_surjective`),
 - **28 Superdomains** (`5 + 3 + 3 + 3 + 3 + 4 + 4 + 3 = 28`, proven in `pillar_partition_sum_28`),
 - **8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)**,
-- **1,852 fine-grained Subdomains**,
+- **1,851 fine-grained Subdomains**,
 - **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m12`.
 
 ## 2. Deduplication & Knowledge-Graph Construction
 
 1. **Strict Deduplication (`src/v2_loader.py`):** 2,012 raw authored entries are scanned in canonical priority order (`m01`–`m12`). Collisions by exact `id`, normalized title (`_norm_name`), or `EXPLICIT_DUPLICATE_ALIASES` preserve the primary record and redirect every incoming link via `dedup_alias_map` so zero edges are lost (`12` overlaps cleanly merged → **`2,000` unique problems**, `0` unresolved raw links). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
-2. **Biconnected Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Resulting graph: **`2,000` nodes, `6,108` edges, `1` connected component, `0` articulation points, `0` bridges (`nx.is_biconnected(G) == True`), `10` greedy modularity communities**.
-3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links (`2,212`, `36.2%`), and cross-pillar bridge links (`1,153`, `18.9%`; `cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
+2. **Biconnected Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Resulting graph: **`2,000` nodes, `6,108` edges, `1` connected component, `0` articulation points, `0` bridges (`nx.is_biconnected(G) == True`), `14` greedy modularity communities**.
+3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links (`2,215`, `36.3%`), and cross-pillar bridge links (`1,152`, `18.9%`; `cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
 
 ## 3. Dual Ranking Formulas (`0thernes CSS` & `Titan Index`)
 

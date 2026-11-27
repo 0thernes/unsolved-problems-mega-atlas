@@ -3,8 +3,8 @@
   "method": "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json",
   "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications).",
   "atlas_problems": 2000,
-  "matched_atlas_problems": 199,
-  "curated_override_problems": 186,
+  "matched_atlas_problems": 290,
+  "curated_override_problems": 286,
   "external_solved_signals": [
     {
       "atlas_id": "XCOMB-026",
@@ -4079,9 +4079,60 @@
       ]
     },
     {
+      "atlas_id": "LTS-001",
+      "atlas_name": "Maximal Number of Mutually Unbiased Bases in Composite Dimensions (OQP #13)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OpenQuantumProblem13.mutuallyUnbiasedBases_dim6",
+          "title": "Open Quantum Problem 13: Mutually unbiased bases — mutuallyUnbiasedBases dim6",
+          "program": "Open Quantum Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OpenQuantumProblem13.mutuallyUnbiasedBases_dim6"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-002",
+      "atlas_name": "Existence Classification of Absolutely Maximally Entangled States AME(n,d) (OQP #35)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OpenQuantumProblem35.oqp_35",
+          "title": "Open Quantum Problem 35: existence of absolutely maximally entangled pure states — oqp 35",
+          "program": "Open Quantum Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OpenQuantumProblem35.oqp_35"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-003",
+      "atlas_name": "Single-Letter Capacity Region of the General Two-Receiver Broadcast Channel",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "itp-broadcast-channel",
+          "title": "Capacity region of the two-receiver broadcast channel",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/itp-broadcast-channel"
+        }
+      ]
+    },
+    {
       "atlas_id": "LTS-004",
       "atlas_name": "Courtade–Kumar Conjecture (Most Informative Boolean Function)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "itp-courtade-kumar",
@@ -4090,15 +4141,202 @@
           "kind": "unformalized",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/itp-courtade-kumar"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-005",
+      "atlas_name": "Characterization of the Entropic Region Gamma*_n for Four or More Random Variables",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "itp-entropy-region",
+          "title": "Entropy region of four or more random variables",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/itp-entropy-region"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-006",
+      "atlas_name": "Exact Capacity of the Binary Deletion Channel",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "itp-deletion-channel",
+          "title": "Capacity of the binary deletion channel",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/itp-deletion-channel"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-007",
+      "atlas_name": "Capacity Region of the General Two-User Gaussian Interference Channel",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "itp-gaussian-interference-channel",
+          "title": "Capacity region of the two-user Gaussian interference channel",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/itp-gaussian-interference-channel"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-008",
+      "atlas_name": "Single-Letter Capacity of the General Three-Node Relay Channel",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "itp-relay-channel",
+          "title": "Capacity of the relay channel",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/itp-relay-channel"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-009",
+      "atlas_name": "Fair Traversal Conjecture for Vertex-Transitive Graphs (Luc Gillibert)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "gillibert-fair-traversal",
+          "title": "Fair traversal conjecture (Hamiltonian paths in vertex-transitive graphs)",
+          "program": "Conjectures of Luc Gillibert",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/gillibert-fair-traversal"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-010",
+      "atlas_name": "Equal Halves Conjecture for Even-Order Vertex-Transitive Graphs (Luc Gillibert)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "gillibert-equal-halves",
+          "title": "Equal halves conjecture (vertex-transitive graphs)",
+          "program": "Conjectures of Luc Gillibert",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/gillibert-equal-halves"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-011",
+      "atlas_name": "Geodesic Deletion Connectivity Conjecture for Vertex-Transitive Graphs (Luc Gillibert)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "gillibert-geodesic-deletion",
+          "title": "Geodesic deletion conjecture (vertex-transitive graphs)",
+          "program": "Conjectures of Luc Gillibert",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/gillibert-geodesic-deletion"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-012",
+      "atlas_name": "Lam–Litt Conjecture on Omega-Integrality Implying Algebraicity of Power Series",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "LamLitt.lam_litt.variants.omega_integrality_implies_algebraicity",
+          "title": "Lam--Litt conjecture — omega integrality implies algebraicity",
+          "program": "Litt's Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LamLitt.lam_litt.variants.omega_integrality_implies_algebraicity"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-013",
+      "atlas_name": "Weighing Matrix Conjecture for Orders n ≡ 0 (mod 4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "WeighingMatrix.weighing_matrix_conjecture",
+          "title": "Weighing matrix conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WeighingMatrix.weighing_matrix_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-014",
+      "atlas_name": "Exact Value of the Sidon-Set Autocorrelation Constant (Tao Optimization Constant 1a)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Constant1a.c1a_eq",
+          "title": "Tao's Optimization constant 1a / An autocorrelation constant related to Sidon sets — c1a eq",
+          "program": "Optimization Constants",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Constant1a.c1a_eq"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-015",
+      "atlas_name": "Sharp Irrationality Measure of Gamma(1/4) (Tao Optimization Constant 7b)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Constant7b.c7b_upper_bound_improved",
+          "title": "Tao's Optimization Constant 7b / The Irrationality Measure of $\\Gamma(1/4)$ — c7b upper bound improved",
+          "program": "Optimization Constants",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Constant7b.c7b_upper_bound_improved"
         }
       ]
     },
     {
       "atlas_id": "LTS-016",
       "atlas_name": "Written on the Wall II Conjecture 133 (Path Number vs. Radius & Average Leaf Distance)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture133.conjecture133",
@@ -4107,7 +4345,7 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture133.conjecture133"
         }
       ]
@@ -4115,7 +4353,7 @@
     {
       "atlas_id": "LTS-017",
       "atlas_name": "Written on the Wall II Conjecture 96 (Independence Number vs. Average Eccentricity)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture96.conjecture96",
@@ -4124,7 +4362,7 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96"
         }
       ]
@@ -4132,7 +4370,7 @@
     {
       "atlas_id": "LTS-018",
       "atlas_name": "Written on the Wall II Conjecture 189 (Graph Domination & Radius Inequality)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture189.conjecture189",
@@ -4141,7 +4379,7 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture189.conjecture189"
         }
       ]
@@ -4149,7 +4387,7 @@
     {
       "atlas_id": "LTS-019",
       "atlas_name": "Written on the Wall II Conjecture 199 (Tree Number, Connectivity & Hamiltonicity)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture199.conjecture199",
@@ -4158,7 +4396,7 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture199.conjecture199"
         }
       ]
@@ -4166,7 +4404,7 @@
     {
       "atlas_id": "LTS-020",
       "atlas_name": "Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture372.conjecture372",
@@ -4175,7 +4413,7 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372"
         },
         {
@@ -4203,7 +4441,7 @@
     {
       "atlas_id": "LTS-021",
       "atlas_name": "Written on the Wall II Conjecture 40 (Largest Induced Forest Order Bounds)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "WrittenOnTheWallII.GraphConjecture40.conjecture40",
@@ -4212,15 +4450,729 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture40.conjecture40"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-022",
+      "atlas_name": "Ben Green Problem 2: Polylogarithmic Restricted-Sumset Disjoint Subset",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green2.green_2",
+          "title": "Ben Green's Open Problem 2 — green 2",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green2.green_2"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-023",
+      "atlas_name": "Ben Green Problem 12: Abelian 5x5 Sum-Matrix Density Lower Bound",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green12.green_12",
+          "title": "Green's Open Problem 12",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green12.green_12"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-024",
+      "atlas_name": "Ben Green Problem 15: 3-AP-Free Lipschitz Function Graphs in Z^2",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green15.green_15",
+          "title": "Green's Open Problem 15 — green 15",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green15.green_15"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-025",
+      "atlas_name": "Ben Green Problem 16: Maximum Subset Avoiding x + 3y = 2z + 2w",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green16.green_16",
+          "title": "Ben Green's Open Problem 16 — green 16",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green16.green_16"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-026",
+      "atlas_name": "Ben Green Problem 18: Non-Abelian Corners Density in Finite Groups G x G",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green18.green_18",
+          "title": "Ben Green's Open Problem 18",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green18.green_18"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-027",
+      "atlas_name": "Ben Green Problem 21: Partition Regularity Chromatic Bounds for Non-Rado Equations",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green21.green_21",
+          "title": "Ben Green's Open Problem 21",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green21.green_21"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-028",
+      "atlas_name": "Ben Green Problem 22: Quantitative Bounds for Monochromatic {x+y, xy} (Hindman/Moreira)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green22.green_22",
+          "title": "Green's Open Problem 22",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green22.green_22"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-029",
+      "atlas_name": "Ben Green Problem 25: Exact Growth Rate of Maximal Subset Without x+y = 2z Mod-Restricted Patterns",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green25.green_25",
+          "title": "Green's Open Problem 25",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green25.green_25"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-030",
+      "atlas_name": "Ben Green Problem 27: Upper Bounds for Arithmetic Progression-Free Subsets of the Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green27.green_27.upper",
+          "title": "Green's Open Problem 27 — upper",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green27.green_27.upper"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-031",
+      "atlas_name": "Ben Green Problem 28: Uniform Sum of Two Independent Integer Random Variables",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green28.green_28",
+          "title": "Green's Open Problem 28",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green28.green_28"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-032",
+      "atlas_name": "Ben Green Problem 29 (Breuillard 6.6): Polynomial Covering of Non-Abelian K-Approximate Groups",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green29.green_29",
+          "title": "Ben Green's Open Problem 29 / [Br13, Problem 6.6].",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green29.green_29"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-033",
+      "atlas_name": "Ben Green Problem 31: Tight Additive-Energy Lower Bound Exceeding N^{1/2} + O(1)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green31.green_31.lower",
+          "title": "Ben Green's Open Problem 31 — lower",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green31.green_31.lower"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-034",
+      "atlas_name": "Ben Green Problem 33: Minimal Asymptotic Order-2 Additive Bases in Z/qZ",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green33.green_33",
+          "title": "Ben Green's Open Problem 33",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green33.green_33"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-035",
+      "atlas_name": "Ben Green Problem 35: Sharp L^p Restriction / Additive Constant c(p) on [0,1]",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green35.green_35.lower",
+          "title": "Ben Green's Open Problem 35 — lower",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green35.green_35.lower"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-036",
+      "atlas_name": "Ben Green Problem 36: Ruzsa–Szemerédi Induced-Matching Sumset Families in Abelian Groups",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green36.green_36",
+          "title": "Green's Open Problem 36",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green36.green_36"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-037",
+      "atlas_name": "Ben Green Problem 44: Half-Residue Sieve Density Bound Across 1,000 Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green44.green_44",
+          "title": "Green's Open Problem 44",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green44.green_44"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-038",
+      "atlas_name": "Ben Green Problem 53 & 55: Bounded-Codimension Coset in Partition Sumsets & Diagonal Inverse Gowers",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Green55.green_55",
+          "title": "Ben Green's Open Problem 55",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green55.green_55"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-039",
+      "atlas_name": "OEIS A153330 Conjecture: Asymptotic Sign Symmetry of Consecutive Collatz Stopping Differences",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA153330.conjecture4",
+          "title": "Collatz step differences — conjecture4",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA153330.conjecture4"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-040",
+      "atlas_name": "OEIS A179537 Supercongruence: Zhi-Wei Sun Central Binomial Sum Mod p^2",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA179537.conjecture1",
+          "title": "Central binomial sum $a(n) = \\sum_{k=0}^n \\binom{n}{k}^2 \\binom{n-k}{k}^2 (-16)^k$ — conjecture1",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA179537.conjecture1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-041",
+      "atlas_name": "OEIS A238281 Conjecture: Equal Prime Counts Across Three Consecutive (kn, (k+1)n) Intervals",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA238281.conjecture_3",
+          "title": "Equal prime counts in adjacent intervals $(kn, (k+1)n)$ and $((k+1)n, (k+2)n)$ — conjecture 3",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA238281.conjecture_3"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-042",
+      "atlas_name": "OEIS A038098 Conjecture: Strict Monotonicity & Distinctness of pi(n^2)/n^2",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA38098.conjecture2",
+          "title": "Number of primes $< n^3$ — conjecture2",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA38098.conjecture2"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-043",
+      "atlas_name": "OEIS A038552 Conjecture: Largest Even vs. Odd Imaginary Quadratic Discriminants of Fixed Class Number",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA38552.largestEven_lt_largestOdd_negFundDisc",
+          "title": "Conjectures associated with A038552 — largestEven lt largestOdd negFundDisc",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA38552.largestEven_lt_largestOdd_negFundDisc"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-044",
+      "atlas_name": "OEIS A108866 Primality Characterization via Harmonic 2^k/k Numerator Mod n^2",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA108866.conjecture",
+          "title": "Numerator of $\\sum_{k=1}^n 2^k/k$.",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA108866.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-045",
+      "atlas_name": "OEIS A113213 Conjecture: Cubic Gap Bound O(n^3) for Prime Pairs 2^n +/- m",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA113213.conjecture",
+          "title": "Smallest number $m$ such that $2^n - m$ and $2^n + m$ are primes",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA113213.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-046",
+      "atlas_name": "OEIS A113609 Conjecture: Existence of Non-Prime Prime-Power Twins (q, q+2) Beyond (25, 27)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA113609.conjecture",
+          "title": "Number of prime powers $q<=n$ such that also $q+2$ is a prime power",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA113609.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-047",
+      "atlas_name": "OEIS A114362 Conjecture: Irrationality of zeta(2n) / zeta(n)^2 for All Odd n > 1",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA114362.conjecture1",
+          "title": "Numerator of $\\zeta(4n)/\\zeta(2n)^2$ (with $a(0)=2$ instead of $-2$)",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA114362.conjecture1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-048",
+      "atlas_name": "OEIS A001146 Conjecture: Exact Characterization of Integers Satisfying (n^4 - 1) | (2^n - 1)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA1146.conjecture",
+          "title": "$a(n) = 2^(2^n)$",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA1146.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-049",
+      "atlas_name": "OEIS A115366 Conjecture: Prime Density Constant for sqrt(k(k+1)(k+2)(k+3)+1) = k^2 + 3k + 1",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA115366.conjecture",
+          "title": "$a(n)$ = the number of values of $k <= 10^n$ such that $\\sqrt{k(k+1)(k+2)(k+3)+1}$ is prime",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA115366.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-050",
+      "atlas_name": "OEIS A001157 Conjecture: Pairwise Distinct Fractional Parts of sigma_k(n) / n^k",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA1157.conjecture",
+          "title": "Sum of squares of divisors of $n$",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA1157.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-051",
+      "atlas_name": "OEIS A262403 Conjecture: Uniqueness of Fractional Parts of Reciprocal Prime-Triangular Sums",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA262403.conjecture_4",
+          "title": "Additive decompositions of $\\pi(T(n))$ — conjecture 4",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA262403.conjecture_4"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-052",
+      "atlas_name": "OEIS A105020 Conjecture: Antidiagonal Semiprime Guarantee Between Consecutive Odd Integers",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA105020.conjecture",
+          "title": "Array read by upward antidiagonals",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA105020.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-053",
+      "atlas_name": "OEIS A110475 Conjecture: Finite Exceptional Set for Sums of Two Prime-Factorization-Length-1 Indices",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA110475.conjecture",
+          "title": "Number of symbols '*' and '^' to write the canonical prime factorization of n",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA110475.conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-054",
+      "atlas_name": "OEIS A237348 Conjecture: Prime-Index Nested-Prime Additive Representation of All Integers",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA237348.conjecture_2",
+          "title": "Ordered ways to write $n = k + m$ with $p_k + 4$ and $p_{p_m} + 4$ both prime — conjecture 2",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA237348.conjecture_2"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-055",
+      "atlas_name": "Four-Exponentials-Type Integrality Conjecture: 2^x and 3^x Integers Imply x Integer (MO 17560)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow17560.mathoverflow_17560",
+          "title": "Mathoverflow17560",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow17560.mathoverflow_17560"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-056",
+      "atlas_name": "Existence of a Polynomial Bijection Q x Q -> Q (Harvey Friedman / MO 21003)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow21003.mathoverflow_21003",
+          "title": "Mathoverflow 21003",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow21003.mathoverflow_21003"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-057",
+      "atlas_name": "Inverse Connectedness of Connected-Preserving Bijections on R^n (MO 235893)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow235893.mathoverflow_235893",
+          "title": "Mathoverflow 235893",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow235893.mathoverflow_235893"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-058",
+      "atlas_name": "0,1-Polynomial Factorization Rigidity Over Non-Negative Real Polynomials (MO 339137)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow339137.mathoverflow_339137",
+          "title": "Mathoverflow 339137",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow339137.mathoverflow_339137"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-059",
+      "atlas_name": "Covering the Unit Square by 1/(n+1) x 1/(n+2) Rectangles (Moser / Paulhus / MO 34145)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow34145.rectangles_cover_unit_square",
+          "title": "Mathoverflow 34145 — rectangles cover unit square",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow34145.rectangles_cover_unit_square"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-060",
+      "atlas_name": "Restricted Prime Number Theorem Among Partial Sums of Consecutive Primes (MO 434111)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "MathOverflow434111.restricted_prime_number_theorem",
+          "title": "Are prime numbers among sums of prime numbers distributed as $\\frac n{2\\ln(n)}$?",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/MathOverflow434111.restricted_prime_number_theorem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-061",
+      "atlas_name": "Integer Complexity of Powers of Two: ||2^n|| = 2n (Selfridge / MO 75792)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mathoverflow75792.complexity_two_pow",
+          "title": "Mathoverflow 75792 — complexity two pow",
+          "program": "MathOverflow",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mathoverflow75792.complexity_two_pow"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-062",
+      "atlas_name": "Kourovka Problem 1.40: Product of Two Normal Nilsubgroups (Plotkin)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Kourovka.1.40.kourovka_1_40",
+          "title": "Conjecture 1.40",
+          "program": "Kourovka Notebook",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Kourovka.1.40.kourovka_1_40"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-063",
+      "atlas_name": "Kourovka Problem 1.74: Minimal Hausdorff Topological Groups & Compactness (Doïtchinov)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Kourovka.1.74.kourovka_1_74",
+          "title": "Conjecture 1.74 (Minimal topological groups)",
+          "program": "Kourovka Notebook",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Kourovka.1.74.kourovka_1_74"
         }
       ]
     },
     {
       "atlas_id": "LTS-064",
       "atlas_name": "Pittel's Stable-Matching Hyperbola Threshold Conjecture (arXiv:2406.10319)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Arxiv.2406.10319.pittel_hyperbola_threshold",
@@ -4229,15 +5181,474 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Arxiv.2406.10319.pittel_hyperbola_threshold"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-065",
+      "atlas_name": "First Atiyah–Sutcliffe Conjecture on Configuration Space Polynomials",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "AtiyahSutcliffe.conjecture_one",
+          "title": "The first Atiyah--Sutcliffe conjecture",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/AtiyahSutcliffe.conjecture_one"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-066",
+      "atlas_name": "Jones's Conjecture on Infinitely Many Exact-Length Cunningham Prime Chains",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CunninghamChain.infinitely_many_firstKind_chains",
+          "title": "Cunningham chains — Jones's conjecture — infinitely many firstKind chains",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CunninghamChain.infinitely_many_firstKind_chains"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-067",
+      "atlas_name": "Etingof–Ostrik Finite Generation Conjecture for Hopf Algebra Cohomology",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "HopfAlgebraCohomology.cohomology_finite",
+          "title": "Finite generation conjecture — cohomology finite",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/HopfAlgebraCohomology.cohomology_finite"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-068",
+      "atlas_name": "Margulis Conjecture on Closedness of Relatively Compact Diagonal Orbits in SL_n(R)/SL_n(Z)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Margulis.conjecture_1_1",
+          "title": "A conjecture by Margulis on matrix groups",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Margulis.conjecture_1_1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-069",
+      "atlas_name": "Existence of Nowhere-Dense Spectral Sets & Convex-Product Spectrality (KLM2023)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "NowhereDenseSpectralSet.exists_nowhereDense_spectralSet",
+          "title": "Spectral sets and weak tiling — exists nowhereDense spectralSet",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/NowhereDenseSpectralSet.exists_nowhereDense_spectralSet"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-070",
+      "atlas_name": "Main Conjecture on Fusible Numbers & Ordinal Well-Ordering Complexity (Erickson–Nivasch–Xu)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "FusibleNumber.conj_7_1",
+          "title": "Main conjecture on fusible numbers",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/FusibleNumber.conj_7_1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-071",
+      "atlas_name": "Lennon–Pittel Conjecture on Fluctuations of the Number of Stable Matchings",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "LennonPittel.lennon_pittel_conjecture",
+          "title": "Lennon–Pittel conjecture on random stable matchings",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LennonPittel.lennon_pittel_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-072",
+      "atlas_name": "Ono's Polynomial Parity Conjecture for Integer Partition Numbers p(g(n))",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "PartitionParity.ono.polynomial",
+          "title": "Parities of partition numbers — polynomial",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/PartitionParity.ono.polynomial"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-073",
+      "atlas_name": "Alon–Tarsi Short Cycle Cover Conjecture (7/5 |E(G)| Bound)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.2607.06396.alon_tarsi_short_cycle_cover",
+          "title": "Conjecture 4 (Alon-Tarsi, 1985), simple-graph specialization.",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Arxiv.2607.06396.alon_tarsi_short_cycle_cover"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-074",
+      "atlas_name": "Graph Burning Number Conjecture (b(G) <= ceil(sqrt(n)))",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BurningNumberConjecture.burning_number_conjecture",
+          "title": "The burning number conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BurningNumberConjecture.burning_number_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-075",
+      "atlas_name": "Arhangel'skii Cardinality Bound for Lindelöf Tychonoff Spaces with G_delta-Singletons",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CardinalityLindelof.HasG-Singletons.lindelof_card",
+          "title": "Conjecture about cardinality of Lindelöf spaces — lindelof card",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CardinalityLindelof.HasG-Singletons.lindelof_card"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-076",
+      "atlas_name": "Catch-Up Combinatorial Number Game Draw Conjecture (Isaksen–Stockman–Traves)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CatchUp.value_of_even_mul_succ_self_div_two",
+          "title": "The Catch-Up game and conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CatchUp.value_of_even_mul_succ_self_div_two"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-077",
+      "atlas_name": "Markel's S_3-Conjecture on Finite Groups Determined by Conjugacy Class Sizes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ConjugacyClassSizes.conjClassSizes_iff_sym_three",
+          "title": "Markel's $S_3$-conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ConjugacyClassSizes.conjClassSizes_iff_sym_three"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-078",
+      "atlas_name": "Dubner's Twin-Prime Goldbach Conjecture (Every Even n > 4,208)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "DubnerConjecture.dubner_conjecture",
+          "title": "Dubner's conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/DubnerConjecture.dubner_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-079",
+      "atlas_name": "Fanelli–Moscardelli Conjecture on Approximate Stable Roommates Threshold",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "FanelliMoscardelli.stability_threshold_tight",
+          "title": "Fanelli–Moscardelli conjecture on approximate roommates stability",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/FanelliMoscardelli.stability_threshold_tight"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-080",
+      "atlas_name": "Optimal Annihilating Exponent of Finite Locally Free Group Schemes (Deligne / Oort–Tate)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "FiniteLocallyFreeGroupSchemeExponent.optimal_exponent",
+          "title": "Is a finite locally free group scheme killed by its order?",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/FiniteLocallyFreeGroupSchemeExponent.optimal_exponent"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-081",
+      "atlas_name": "Proportion of Simple Zeros of Zeta & Dirichlet L-Functions Beyond Montgomery–Taylor",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "riemannZeta.simple_prop_lt",
+          "title": "Simple zeros of the Riemann zeta function on the critical line — simple prop lt",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/riemannZeta.simple_prop_lt"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-082",
+      "atlas_name": "Bugeaud Problem 10.1: Transcendental Bases Whose Powers Converge Modulo 1 (Pisot–Vijayaraghavan)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bugeaud01.problem_10_1",
+          "title": "Bugeaud Collection of Conjectures and Open Questions: Fractional Parts of Powers — problem 10 1",
+          "program": "Books",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bugeaud01.problem_10_1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-083",
+      "atlas_name": "Bugeaud Problem 10.7: Confined Fractional Parts of Non-Pisot Powers {alpha^n}",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bugeaud07.problem_10_7",
+          "title": "Bugeaud Collection of Conjectures and Open Questions: Confined Powers of Non-Pisot Numbers",
+          "program": "Books",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bugeaud07.problem_10_7"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-084",
+      "atlas_name": "Bugeaud Problem 10.61: Non-Equidistribution of Pisot Orbits on Cantor Sets",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bugeaud61.problem_10_61",
+          "title": "Bugeaud Collection of Conjectures and Open Questions: Pisot orbits on the Cantor set",
+          "program": "Books",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bugeaud61.problem_10_61"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-085",
+      "atlas_name": "Bugeaud Problem 10.6: Explicit Super-Exponential Sequences Everywhere Dense Modulo 1",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bugeaud06.problem_10_6_variant_1",
+          "title": "Bugeaud Collection of Conjectures and Open Questions: Rapidly Increasing Sequences Dense Modulo One — problem 10 6 variant 1",
+          "program": "Books",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bugeaud06.problem_10_6_variant_1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-086",
+      "atlas_name": "Beaver Math Olympiad #1 (BB(6) Collatz-Like Cryptid Recurrence)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BeaverMathOlympiad.beaver_math_olympiad_problem_1",
+          "title": "Beaver Math Olympiad (BMO) — beaver math olympiad problem 1",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BeaverMathOlympiad.beaver_math_olympiad_problem_1"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-087",
+      "atlas_name": "Equational Theories Project Problem 8.1: Finite Magma Implication Eq677 => Eq255",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "EquationalTheories_677_255.Finite.Equation677_implies_Equation255",
+          "title": "Equational Theories, Problem 8.1.",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/EquationalTheories_677_255.Finite.Equation677_implies_Equation255"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-088",
+      "atlas_name": "Gerstenhaber Problem for Three Pairwise Commuting n x n Matrices",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Gerstenhaber.finrank_adjoin_triple_le",
+          "title": "The Gerstenhaber problem",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Gerstenhaber.finrank_adjoin_triple_le"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-089",
+      "atlas_name": "Wolfram Rule 30 Prize Problems 1 & 2: Non-Periodicity & Equal Bit Frequency of the Center Column",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Rule30.centerColumn_not_eventually_periodic",
+          "title": "Rule 30 Prize, Problem 1 (non-periodicity).",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Rule30.centerColumn_not_eventually_periodic"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-090",
+      "atlas_name": "Symbol Length Problem in Mod-p Milnor K-Theory & Brauer Groups (Krashen / Becher–Hoffmann)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "SymbolLengthMilnorKTheory.symbol_length_problem.variants.uniform",
+          "title": "The symbol length of $K^M_n(\\mathbb{C}(x_1, \\dots, x_m))/p$ — uniform",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/SymbolLengthMilnorKTheory.symbol_length_problem.variants.uniform"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-091",
+      "atlas_name": "Higher-Order VC_n Dimension of Convex Sets in R^{n+1} (Combinatorial Geometry)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "VCDimConvex.hasAddVCNDimAtMost_n_two_of_convex_rn_add_one",
+          "title": "VCₙ dimension of convex sets in ℝⁿ, ℝⁿ⁺¹, ℝⁿ⁺² — hasAddVCNDimAtMost n two of convex rn add one",
+          "program": "Other",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/VCDimConvex.hasAddVCNDimAtMost_n_two_of_convex_rn_add_one"
         }
       ]
     },
     {
       "atlas_id": "LTS-092",
       "atlas_name": "Agrawal's Primality Conjecture (Strengthening AKS Deterministic Primality)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "AgrawalConjecture.agrawal_conjecture",
@@ -4246,8 +5657,144 @@
           "kind": "open",
           "solved": false,
           "relation": "primary",
-          "via": "normalized-title",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/AgrawalConjecture.agrawal_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-093",
+      "atlas_name": "Marcus–de Oliveira Determinantal Conjecture for Sums of Normal Matrices",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "DeterminantalConjecture.determinantal_conjecture",
+          "title": "Determinantal conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/DeterminantalConjecture.determinantal_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-094",
+      "atlas_name": "Sheehan's Second Hamiltonian Cycle Conjecture for 4-Regular Graphs",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "LovaszPlummerConjecture.sheehan_conjecture",
+          "title": "Sheehan's conjecture (1977).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LovaszPlummerConjecture.sheehan_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-095",
+      "atlas_name": "Existence of a 3x3 Magic Square of Distinct Squares (Martin Gardner Prize)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "MagicSquares.exists_magic_square_squares",
+          "title": "Magic Squares — exists magic square squares",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/MagicSquares.exists_magic_square_squares"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-096",
+      "atlas_name": "Wilf's Conjecture on Numerical Semigroups (Conductor vs. Embedding Dimension)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture",
+          "title": "Wilf's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-097",
+      "atlas_name": "Barker Sequence Length <= 13 Conjecture (Aperiodic Binary Autocorrelation)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.2104.00502.barker_conjecture",
+          "title": "Barker sequences",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Arxiv.2104.00502.barker_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-098",
+      "atlas_name": "Non-Power-of-2 Almost Perfect Numbers Conjecture (sigma(n) = 2n - 1)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two",
+          "title": "Non-Power-of-2 Almost Perfect Numbers Conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-099",
+      "atlas_name": "Erdős–Herzog–Piranian Lemniscate Length Conjecture (Erdős #114, $250 Prize)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos114.erdos_114",
+          "title": "Erdős Problem 114",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos114.erdos_114"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-100",
+      "atlas_name": "Erdős Problem #101: Four-Point Lines in Planar Sets With No Five Collinear ($100 Prize)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos101.erdos_101",
+          "title": "Erdős Problem 101",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos101.erdos_101"
         }
       ]
     }

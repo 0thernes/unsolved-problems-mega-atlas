@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.9.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
+"""V2.10.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
 
 import os
 import textwrap
@@ -393,7 +393,7 @@ def chart_06_historical_timeline(data):
 
 
 def chart_07_radial_connectome(data):
-    """8-Pillar Radial Connectome Knowledge Graph of ALL 1,900 Problems & Cross-Pillar Bridges."""
+    """8-Pillar Radial Connectome Knowledge Graph of ALL 2,000 Problems & Cross-Pillar Bridges."""
     G = data["G"]
     df = data["df"].copy()
     df_k = data["df_keystones"]
@@ -974,7 +974,7 @@ def generate_social_preview(data):
         (f"{s['total_problems']:,}", "OPEN & HARD PROBLEMS", "#38BDF8"),
         (f"{s['total_graph_edges']:,}", "BICONNECTED EDGES (0 APS)", "#34D399"),
         (f"{lean_n} THEOREMS", "LEAN 4.35.0 MODEL SUITE", "#A78BFA"),
-        ("100% MRR@5", "HYBRID RAG + 12-TOOL MCP", "#FBBF24"),
+        ("100% MRR@5", "HYBRID RAG + 13-TOOL MCP", "#FBBF24"),
     ]
     for i, (val, lbl, col) in enumerate(cards):
         x0 = 56 + i * 296

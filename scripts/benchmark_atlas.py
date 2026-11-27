@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """Reproducible Benchmark Harness (Build Standard B26 / B27 / A37):
 Runs 10 warmed timing iterations of:
-  1. `load_v2_master()` (1,900 problems + NetworkX biconnectivity/PageRank/modularity)
+  1. `load_v2_master()` (2,000 problems + NetworkX biconnectivity/PageRank/modularity)
   2. 25-query Hybrid RAG Gold Benchmark (`rag/query.py`)
   3. 2,000-record reference-oracle differential scoring throughput
 Records hardware info, commit SHA, checksum validation, median, and IQR into
@@ -78,7 +78,7 @@ def main() -> None:
         assert hits == 25, f"RAG checksum gate failed: {hits}/25"
         rag_ms.append((time.perf_counter() - t0) * 1000.0 / len(GOLD_RAG_BENCHMARK))
 
-    # 3. 1,900-problem differential CSS throughput (10 runs, ms total)
+    # 3. 2,000-problem differential CSS throughput (10 runs, ms total)
     rows = [
         (int(r.difficulty_score), int(r.civilizational_impact), int(r.graph_degree), int(r.age_years_2026), int(r.tractability_2050))
         for r in d0["df"].itertuples()

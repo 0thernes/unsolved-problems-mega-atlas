@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.9.0 Mega-Atlas Canonical Schema (8 Macro-Pillars × 28 Superdomains, 2,000 Problems, Nov 26, 2026 Edition)."""
+"""V2.10.0 Mega-Atlas Canonical Schema (8 Macro-Pillars × 28 Superdomains, 2,000 Problems, Nov 26, 2026 Edition)."""
 
 from typing import Dict, List, Any
 

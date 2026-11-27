@@ -4,7 +4,7 @@
 """Mutation Testing Audit (Build Standard B13):
 Applies 10 targeted semantic mutations across core scoring, quadrant, margin-role,
 RAG comparator, rubric-override validation, and all three Track B frontier probes,
-verifying that the pytest suite kills 100% (10/10) of planted mutants. Restores
+verifying that the pytest suite kills 100% (12/12) of planted mutants. Restores
 every file cleanly in a `finally` block.
 """
 
@@ -86,6 +86,20 @@ MUTANTS = [
         "            if uv != vu:",
         "            if uv == vu:",
         "tests/test_properties_and_differential.py::test_b07_regression_track_b_ramsey_witnesses_reproducible",
+    ),
+    (
+        "M11_mcp_frame_cap_bypass",
+        ROOT / "mcp_server" / "server.py",
+        "MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on both Content-Length and NDJSON frames",
+        "MAX_FRAME_BYTES = 100_000_000  # MUTATED: disable 1 MiB ceiling",
+        "tests/test_properties_and_differential.py::test_b06_mcp_rejects_non_object_json_bad_filter_and_oversized_ndjson",
+    ),
+    (
+        "M12_lefttosolve_manifest_tamper_bypass",
+        ROOT / "scripts" / "sync_lefttosolve.py",
+        "        if actual != digest:",
+        "        if False and actual != digest:",
+        "tests/test_external_mirrors.py::test_tampered_manifest_is_rejected",
     ),
 ]
 

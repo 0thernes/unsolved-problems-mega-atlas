@@ -5,7 +5,7 @@
 
 Makes Claim C9 (editorial subjectivity of 1-10 rubric inputs and CSS weights)
 quantitatively falsifiable in one command: accepts custom CSS weight vectors
-and/or structured per-problem rating overrides, recomputes all 1,900 ranks
+and/or structured per-problem rating overrides, recomputes all 2,000 ranks
 deterministically, and reports Spearman rho, Kendall tau, Top-25 Jaccard
 overlap, Quadrant migration counts, and Top-10 rank risers & fallers.
 
@@ -81,7 +81,7 @@ def evaluate_rubric_override(
     label: str = "custom-override",
     top_movers: int = 10,
 ) -> dict[str, Any]:
-    """Apply alternative CSS weights and/or per-problem (d,t,i,r) overrides and diff all 1,900 ranks."""
+    """Apply alternative CSS weights and/or per-problem (d,t,i,r) overrides and diff all 2,000 ranks."""
     weights = validate_weights(css_weights)
     overrides = problem_overrides or {}
     master = load_v2_master()
@@ -199,7 +199,7 @@ def evaluate_rubric_override(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Simulate community rubric overrides & sensitivity diffs on all 1,900 Mega-Atlas problems.")
+    parser = argparse.ArgumentParser(description="Simulate community rubric overrides & sensitivity diffs on all 2,000 Mega-Atlas problems.")
     parser.add_argument("--override", type=Path, help="Path to JSON override specification file")
     parser.add_argument("--weights", type=str, help="Comma-separated CSS weights w_diff,w_cent,w_age,w_tract (sum=1.0)")
     parser.add_argument("--json", action="store_true", help="Emit JSON output")

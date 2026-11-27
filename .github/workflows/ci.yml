@@ -23,8 +23,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install package & dev verification dependencies
@@ -46,7 +46,7 @@ jobs:
       - name: Verify full 11-format exporter runs cleanly (--skip-pdf)
         run: |
           python src/v2_export_all.py --skip-pdf
-      - name: Run static lint (ruff), typecheck (mypy) & 10-mutant semantic mutation audit (Linux)
+      - name: Run static lint (ruff), typecheck (mypy) & 12-mutant semantic mutation audit (Linux)
         if: runner.os == 'Linux'
         run: |
           ruff check src rag mcp_server reference scripts examples tests research
@@ -57,7 +57,7 @@ jobs:
     name: Zero-Mathlib Lean 4.35.0 Six-Kernel & Palomar Comparator Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install bubblewrap and Elan (Lean 4.35.0)
         run: |
           sudo apt-get update && sudo apt-get install -y bubblewrap
@@ -71,8 +71,8 @@ jobs:
     name: AMS-LaTeX White Paper, Checksums, Secret Audit & SLSA Provenance
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Verify committed SHA-256 manifests, <5 MB tracked hygiene & secret scan

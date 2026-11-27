@@ -1,4 +1,4 @@
-# Cryptographic & Formal Evidence Dossier (`v2.9.0`)
+# Cryptographic & Formal Evidence Dossier (`v2.10.0`)
 
 **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA` · ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648))
 **Date:** November 25–26, 2026 · **Archive ID:** `0TH-BUILD-007`
@@ -23,14 +23,14 @@
 |---|---|---|
 | Structural, JSON Schema, Parity & Checksums | `python scripts/audit_atlas.py --check-lean` | `2,000` unique rows, `48` cols, `6,108` edges, `0` APs, `0` bridges, `0` dangling links, 100% SHA-256 parity across `78` root files & `13` data manifest files |
 | Forensic Biconnectivity & RAG Audit | `python scripts/forensic_audit.py` | `nx.is_biconnected(G) == True`, `0` dangling links, `0/25` RAG top-1 misses |
-| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all **83** tests (incl. 100 Left to Solve problems & 25 fronts, daily sync workflow & checksum isolation, 3 Track B probes with dataset ID parity, filter-enforced exact-ID RAG, 12-tool MCP dual-framing DoS/type guards, rubric tie-break parity, external registry delta sync, live negative Lean kernel rejection, dual `.tsr`+`.ots` binding, strict CSP, zero-CRLF/BOM & zero broken links) |
-| Semantic Mutation Audit (B13) | `python scripts/run_mutation_audit.py` | **`10/10` mutants killed (`100.0%` kill rate)** across scoring, RAG, rubric diff, and all 3 Track B probes |
+| Functional, Hypothesis (1,000 ex.), Differential (2,000+ cases), Metamorphic, Golden, Negative & Regression Tests | `pytest tests/ -v` | 100% PASS across all **99** tests (incl. 100/100 verbatim Left to Solve mirror parity, 25-front 59,396-target mirror & 290 crosswalk matches, daily sync workflow & checksum isolation, 3 Track B probes with dataset ID parity, filter-enforced exact-ID RAG, 13-tool MCP dual-framing DoS/type/path guards, rubric tie-break parity, external registry delta sync, live negative Lean kernel rejection, dual `.tsr`+`.ots` binding, strict CSP, zero-CRLF/BOM & zero broken links) |
+| Semantic Mutation Audit (B13) | `python scripts/run_mutation_audit.py` | **`12/12` mutants killed (`100.0%` kill rate)** across scoring, RAG, rubric diff, MCP frame cap, Left to Solve manifest integrity, and all 3 Track B probes |
 | Static Lint & Typecheck | `ruff check` + `mypy` (incl. `research/`) | `0` lint errors, `0` type errors |
 | Immutable AutoResearch Evaluator | `python autoresearch/evaluate.py --verify-gates` | `aqs_score=98.35`, `rag_mrr5=100.00` (`25/25` top-1), `lean_theorems=103`, `hard_gates=PASS` |
 | AMS-LaTeX White Paper & arXiv Tarball | `python scripts/build_paper.py && python scripts/check_citations.py` | 11-page PDF (`0` overfull hboxes, `0` warnings), clean-room `arxiv_submission.tar.gz`, **`15/15` live HTTP/DOI 200 with Crossref/Zenodo title-token parity (`0` retractions)** |
 | Daily Open-Problem Registry Sync | `python scripts/sync_external_registries.py --live --write-daily` | `16/16` live HTTP 200 across global trackers + all `25` Left to Solve fronts (`06:00 UTC` daily via `.github/workflows/daily-registry-sync.yml`, isolated from frozen checksums) |
 | Reproducible 10-Run Benchmarks | `python scripts/benchmark_atlas.py` | Recorded in [`docs/benchmarks.md`](docs/benchmarks.md) & [`results/bench-history.csv`](results/bench-history.csv) |
-| Build Standard v1.2.0 Audit | `pwsh scripts/Audit-Repo.ps1` | **100.0%** Structure / **100.0%** Completion / **100.0%** Core (`0` FAILs) |
+| Build Standard v1.2.0 Audit | `pwsh scripts/Audit-Repo.ps1` | **98.6%** (`72/73`, `29/30` Core) — sole FAIL is `A23` flagging 2 immutable historical `github-actions[bot]` daily-sync commits (`4688cf8`, `af0a850`); workflow cured for all future commits and exception declared transparently in [`DEVIATIONS.md`](DEVIATIONS.md) (`H-913`) |
 
 ## 3. Cryptographic Integrity Manifests, Structurally Verified Dual Timestamping & Provenance
 

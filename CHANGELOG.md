@@ -2,6 +2,21 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.10.0] — 2026-11-26
+
+### Fixed, Hardened & Expanded — Round 7 Exhaustive 3-Cycle Audit (`H-901`–`H-911`): 100/100 Verbatim Left to Solve Mirror Parity (`290` Crosswalk Matches), 13-Tool MCP Hardening, Node 24 Workflows & `12/12` Mutation / `99`-Test Suite
+- **100/100 Verbatim Left to Solve Mirror Parity & Duplicate Cure (`H-901`, `H-902`):**
+  - Cross-audited all `100` records (`LTS-001`..`LTS-100`) in [`src/v2_data/m12_lefttosolve_programs.py`](src/v2_data/m12_lefttosolve_programs.py) directly against the `59,396`-record daily mirror (`data/external/lefttosolve/programs/*.jsonl`) and `m01`–`m11`, catching and replacing **3 genuine semantic duplicates** (`LTS-013` Atiyah–Sutcliffe duplicate of `LTS-065` → Weighing Matrix Conjecture `WeighingMatrix.weighing_matrix_conjecture`; `LTS-096` Montgomery Pair Correlation duplicate of `NT-011` → Wilf's Conjecture on Numerical Semigroups `WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture`; `LTS-100` Turán $K_4^3$ duplicate of `COMB-023` → Erdős Problem #101 `Erdos101.erdos_101`) and **2 partial overlaps** (`LTS-098` Wall–Sun–Sun overlap with `XNT-014` → Non-Power-of-2 Almost Perfect Numbers `AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two`; `LTS-099` EFL overlap with `XCOMB-001` → Erdős–Herzog–Piranian Lemniscate Length Conjecture #114 `Erdos114.erdos_114`).
+  - Normalized all `35` shortened/non-verbatim `registry_source` identifiers so **100/100** `LTS-001`..`LTS-100` carry a unique, verbatim, live-verified `open`/`unformalized` (`solved=False`) mirror ID, and wired all `100` into `data/external/lefttosolve/crosswalk_overrides.json`, expanding curated crosswalk coverage from `199 → 290` matched Mega-Atlas problems across `59,396` mirrored targets while preserving `2,000` biconnected nodes, `6,108` edges, `0` APs/bridges/dangling links, `100.0% MRR@5`, and immutable `AQS = 98.35`.
+- **Dashboard Mirror Integration, Schedule Parity & Node 24 Workflows (`H-903`, `H-906`, `H-907`):**
+  - Cured stale `07:23 UTC` → `06:00 UTC` schedule text and `1900` fallback → `2000` in [`scripts/sync_lefttosolve.py`](scripts/sync_lefttosolve.py) and rebuilt `data/external/lefttosolve/index.html`, `atlas_crosswalk.json`, `snapshot.json`, `MANIFEST.sha256`, and `docs/lefttosolve-programs.md`.
+  - Wired direct navigation from the Interactive Web Atlas header (`Left to Solve Mirror (59k) ↗`) and Tab 2 Section C to `external/lefttosolve/index.html` (`src/v2_export_all.py`) and updated `docs/media/social-preview.png` (`HYBRID RAG + 13-TOOL MCP`).
+  - Upgraded `.github/workflows/ci.yml`, `pages.yml`, and `release.yml` to Node 24 actions (`actions/checkout@v7`, `actions/setup-python@v7`) matching `daily-registry-sync.yml`.
+- **13-Tool MCP Security Hardening, `12/12` Mutation Audit, Immutable Oracle Exemption & `99`-Test Suite (`H-904`, `H-905`, `H-908`–`H-911`):**
+  - Hardened `_query_lefttosolve()` in [`mcp_server/server.py`](mcp_server/server.py) with strict `isinstance(action_raw, str)` validation and `fpath.is_relative_to(lts_root)` path-containment enforcement.
+  - Expanded [`scripts/run_mutation_audit.py`](scripts/run_mutation_audit.py) from `10` to **`12/12` semantic mutants (`100.0%` kill rate)** adding `M11_mcp_frame_cap_bypass` (`mcp_server/server.py`) and `M12_lefttosolve_manifest_tamper_bypass` (`scripts/sync_lefttosolve.py`).
+  - Explicitly documented the intentional REUSE/SPDX exemption for immutable `autoresearch/evaluate.py` in [`DEVIATIONS.md`](DEVIATIONS.md), synchronized exact `v2.10.0` aggregates (`1,851` subdomains, `36.3%` cross-superdomain, `57.05` mean CSS, `1,152` cross-pillar edges, `14` communities, `rho=0.8937`, `tau=0.7264`, updated `tests/golden/top10_css_titan.json`) across `paper/main.tex` and all active docs, and added 3 permanent Round 7 regression/boundary tests (**`99/99` `pytest` checks**).
+
 ## [2.9.0] — 2026-11-26
 
 ### Fixed, Corrected, Expanded & Hardened — Round 6 Hostile-Referee 3-Cycle Audit + Left to Solve (`lefttosolve.com/programs`) 25-Front Integration (`2,000` Problems) & Automated Daily 16-Registry Sync

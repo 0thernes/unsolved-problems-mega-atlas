@@ -1,304 +1,1891 @@
 {
   "schema_version": "1.0.0",
-  "description": "Reviewed, curated Atlas <-> Left to Solve crosswalk overrides for unsolved-problems-mega-atlas (1,900 macro problems). Every atlas_id is validated against the 1,900-problem Mega-Atlas and every Left to Solve id is validated against the committed 59,396-item mirror by scripts/sync_lefttosolve.py. Links are title/identity-level correspondences (not statement-fidelity certifications) and never alter any Mega-Atlas status.",
+  "description": "Reviewed, curated Atlas <-> Left to Solve crosswalk overrides for unsolved-problems-mega-atlas (2,000 macro problems). Every atlas_id is validated against the 2,000-problem Mega-Atlas and every Left to Solve id is validated against the committed 59,396-item mirror by scripts/sync_lefttosolve.py. Links are title/identity-level correspondences (not statement-fidelity certifications) and never alter any Mega-Atlas status.",
   "include": {
     "NT-002": [
-      {"id": "wp-grand-riemann-hypothesis", "relation": "primary"},
-      {"id": "ERH.extended_riemann_hypothesis", "relation": "related"}
+      {
+        "id": "wp-grand-riemann-hypothesis",
+        "relation": "primary"
+      },
+      {
+        "id": "ERH.extended_riemann_hypothesis",
+        "relation": "related"
+      }
     ],
-    "NT-003": [{"id": "GoldbachConjecture.goldbach", "relation": "primary"}],
+    "NT-003": [
+      {
+        "id": "GoldbachConjecture.goldbach",
+        "relation": "primary"
+      }
+    ],
     "NT-004": [
-      {"id": "TwinPrimes.twin_primes", "relation": "primary"},
-      {"id": "wp-polignac-s-conjecture", "relation": "primary"},
-      {"id": "Dickson.generalized_twin_primes", "relation": "variant"}
+      {
+        "id": "TwinPrimes.twin_primes",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-polignac-s-conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "Dickson.generalized_twin_primes",
+        "relation": "variant"
+      }
     ],
-    "NT-005": [{"id": "CollatzConjecture.collatz_conjecture", "relation": "primary"}],
+    "NT-005": [
+      {
+        "id": "CollatzConjecture.collatz_conjecture",
+        "relation": "primary"
+      }
+    ],
     "NT-006": [
-      {"id": "WeierstrassCurve.Affine.Rat.weakBSD", "relation": "primary"},
-      {"id": "WeierstrassCurve.Affine.Rat.strongBSD", "relation": "primary"},
-      {"id": "WeierstrassCurve.Affine.NumberField.weakBSD", "relation": "variant"},
-      {"id": "WeierstrassCurve.Affine.NumberField.strongBSD", "relation": "variant"}
+      {
+        "id": "WeierstrassCurve.Affine.Rat.weakBSD",
+        "relation": "primary"
+      },
+      {
+        "id": "WeierstrassCurve.Affine.Rat.strongBSD",
+        "relation": "primary"
+      },
+      {
+        "id": "WeierstrassCurve.Affine.NumberField.weakBSD",
+        "relation": "variant"
+      },
+      {
+        "id": "WeierstrassCurve.Affine.NumberField.strongBSD",
+        "relation": "variant"
+      }
     ],
-    "NT-007": [{"id": "ABC.abc", "relation": "primary"}],
-    "NT-011": [{"id": "MontgomeryPairCorrelationConjecture.montgomery_pair_correlation_conjecture", "relation": "primary"}],
-    "NT-016": [{"id": "ElliottHalberstamConjecture.elliott_halberstam", "relation": "primary"}],
+    "NT-007": [
+      {
+        "id": "ABC.abc",
+        "relation": "primary"
+      }
+    ],
+    "NT-011": [
+      {
+        "id": "MontgomeryPairCorrelationConjecture.montgomery_pair_correlation_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-016": [
+      {
+        "id": "ElliottHalberstamConjecture.elliott_halberstam",
+        "relation": "primary"
+      }
+    ],
     "NT-017": [
-      {"id": "HardyLittlewood.first_hardy_littlewood_conjecture", "relation": "primary"},
-      {"id": "PrimeTuplesConjecture.prime_tuples_conjecture", "relation": "related"},
-      {"id": "Dickson.dickson_conjecture", "relation": "related"}
+      {
+        "id": "HardyLittlewood.first_hardy_littlewood_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "PrimeTuplesConjecture.prime_tuples_conjecture",
+        "relation": "related"
+      },
+      {
+        "id": "Dickson.dickson_conjecture",
+        "relation": "related"
+      }
     ],
-    "NT-018": [{"id": "LegendreConjecture.legendre_conjecture", "relation": "primary"}],
-    "NT-019": [{"id": "CramerConjecture.cramer_conjecture", "relation": "primary"}],
-    "NT-020": [{"id": "Bunyakovsky.bunyakovsky_conjecture", "relation": "primary"}],
+    "NT-018": [
+      {
+        "id": "LegendreConjecture.legendre_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-019": [
+      {
+        "id": "CramerConjecture.cramer_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-020": [
+      {
+        "id": "Bunyakovsky.bunyakovsky_conjecture",
+        "relation": "primary"
+      }
+    ],
     "NT-021": [
-      {"id": "Schinzel.schinzel_conjecture", "relation": "primary"},
-      {"id": "BatemanHornConjecture.bateman_horn_conjecture", "relation": "primary"}
+      {
+        "id": "Schinzel.schinzel_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "BatemanHornConjecture.bateman_horn_conjecture",
+        "relation": "primary"
+      }
     ],
-    "NT-023": [{"id": "ChowlaLiouvilleConjecture.chowla_liouville_conjecture", "relation": "primary"}],
-    "NT-024": [{"id": "wp-sarnak-conjecture", "relation": "primary"}],
-    "NT-028": [{"id": "RamanujanTau.lehmer_ramanujan_tau", "relation": "primary"}],
-    "NT-031": [{"id": "wp-bloch-kato-conjecture", "relation": "primary"}],
-    "NT-032": [{"id": "wp-beilinson-s-conjectures-about-special-values-of-l-functions", "relation": "primary"}],
-    "NT-034": [{"id": "SatoTateConjecture.satoTate_conjecture", "relation": "related"}],
-    "NT-036": [{"id": "wpc-sha-finite", "relation": "primary"}],
-    "NT-041": [{"id": "CongruentNumber.Tunnell_even", "relation": "related"}],
-    "NT-042": [{"id": "wp-vojta-s-conjecture", "relation": "primary"}],
-    "NT-043": [{"id": "wp-bombieri-lang-conjecture", "relation": "primary"}],
-    "NT-045": [{"id": "wp-tate-conjecture", "relation": "primary"}],
-    "NT-046": [{"id": "wp-fontaine-mazur-conjecture", "relation": "primary"}],
-    "NT-047": [{"id": "wp-zilber-pink-conjecture", "relation": "primary"}],
-    "NT-050": [{"id": "wp-section-conjecture", "relation": "primary"}],
+    "NT-023": [
+      {
+        "id": "ChowlaLiouvilleConjecture.chowla_liouville_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-024": [
+      {
+        "id": "wp-sarnak-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-028": [
+      {
+        "id": "RamanujanTau.lehmer_ramanujan_tau",
+        "relation": "primary"
+      }
+    ],
+    "NT-031": [
+      {
+        "id": "wp-bloch-kato-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-032": [
+      {
+        "id": "wp-beilinson-s-conjectures-about-special-values-of-l-functions",
+        "relation": "primary"
+      }
+    ],
+    "NT-034": [
+      {
+        "id": "SatoTateConjecture.satoTate_conjecture",
+        "relation": "related"
+      }
+    ],
+    "NT-036": [
+      {
+        "id": "wpc-sha-finite",
+        "relation": "primary"
+      }
+    ],
+    "NT-041": [
+      {
+        "id": "CongruentNumber.Tunnell_even",
+        "relation": "related"
+      }
+    ],
+    "NT-042": [
+      {
+        "id": "wp-vojta-s-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-043": [
+      {
+        "id": "wp-bombieri-lang-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-045": [
+      {
+        "id": "wp-tate-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-046": [
+      {
+        "id": "wp-fontaine-mazur-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-047": [
+      {
+        "id": "wp-zilber-pink-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-050": [
+      {
+        "id": "wp-section-conjecture",
+        "relation": "primary"
+      }
+    ],
     "NT-051": [
-      {"id": "wp-szpiro-s-conjecture", "relation": "primary"},
-      {"id": "Hall.hall_conjecture", "relation": "primary"},
-      {"id": "Hall.weak_hall_conjecture", "relation": "variant"}
+      {
+        "id": "wp-szpiro-s-conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "Hall.hall_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "Hall.weak_hall_conjecture",
+        "relation": "variant"
+      }
     ],
-    "NT-052": [{"id": "ClassNumberProblem.class_number_problem", "relation": "primary"}],
-    "NT-053": [{"id": "KummerVandiver.kummer_vandiver", "relation": "primary"}],
-    "NT-054": [{"id": "wp-hilbert-s-12th-problem", "relation": "primary"}],
-    "NT-056": [{"id": "wp-greenberg-s-conjectures", "relation": "primary"}],
+    "NT-052": [
+      {
+        "id": "ClassNumberProblem.class_number_problem",
+        "relation": "primary"
+      }
+    ],
+    "NT-053": [
+      {
+        "id": "KummerVandiver.kummer_vandiver",
+        "relation": "primary"
+      }
+    ],
+    "NT-054": [
+      {
+        "id": "wp-hilbert-s-12th-problem",
+        "relation": "primary"
+      }
+    ],
+    "NT-056": [
+      {
+        "id": "wp-greenberg-s-conjectures",
+        "relation": "primary"
+      }
+    ],
     "NT-057": [
-      {"id": "CohenLenstraHeuristics.cohen_lenstra_imaginary_quadratic_p_sylow_conjecture", "relation": "primary"},
-      {"id": "CohenLenstraHeuristics.cohen_lenstra_real_quadratic_p_sylow_conjecture", "relation": "primary"}
+      {
+        "id": "CohenLenstraHeuristics.cohen_lenstra_imaginary_quadratic_p_sylow_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "CohenLenstraHeuristics.cohen_lenstra_real_quadratic_p_sylow_conjecture",
+        "relation": "primary"
+      }
     ],
     "NT-060": [
-      {"id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.i", "relation": "primary"},
-      {"id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.ii", "relation": "variant"}
+      {
+        "id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.i",
+        "relation": "primary"
+      },
+      {
+        "id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.ii",
+        "relation": "variant"
+      }
     ],
-    "NT-061": [{"id": "wp-for-which-number-fields-does-hilbert-s-tenth-problem-hold", "relation": "related"}],
+    "NT-061": [
+      {
+        "id": "wp-for-which-number-fields-does-hilbert-s-tenth-problem-hold",
+        "relation": "related"
+      }
+    ],
     "NT-062": [
-      {"id": "BealConjecture.beal_conjecture", "relation": "primary"},
-      {"id": "FermatCatalanConjecture.fermat_catalan", "relation": "primary"}
+      {
+        "id": "BealConjecture.beal_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "FermatCatalanConjecture.fermat_catalan",
+        "relation": "primary"
+      }
     ],
-    "NT-063": [{"id": "Catalan.pillais_conjecture", "relation": "primary"}],
-    "NT-065": [{"id": "wp-existence-of-perfect-cuboids-and-associated-cuboid-conjectures", "relation": "primary"}],
+    "NT-063": [
+      {
+        "id": "Catalan.pillais_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-065": [
+      {
+        "id": "wp-existence-of-perfect-cuboids-and-associated-cuboid-conjectures",
+        "relation": "primary"
+      }
+    ],
     "NT-066": [
-      {"id": "Erdos398.erdos_398", "relation": "primary"},
-      {"id": "Brocard.brocard_conjecture", "relation": "related"}
+      {
+        "id": "Erdos398.erdos_398",
+        "relation": "primary"
+      },
+      {
+        "id": "Brocard.brocard_conjecture",
+        "relation": "related"
+      }
     ],
-    "NT-068": [{"id": "Schanuel.schanuel_conjecture", "relation": "primary"}],
-    "NT-069": [{"id": "Exponentials.four_exponentials_conjecture", "relation": "primary"}],
-    "NT-070": [{"id": "wp-euler-s-constant", "relation": "primary"}],
+    "NT-068": [
+      {
+        "id": "Schanuel.schanuel_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-069": [
+      {
+        "id": "Exponentials.four_exponentials_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "NT-070": [
+      {
+        "id": "wp-euler-s-constant",
+        "relation": "primary"
+      }
+    ],
     "NT-073": [
-      {"id": "LittlewoodConjecture.littlewood_conjecture", "relation": "primary"},
-      {"id": "LittlewoodConjecture.padic_littlewood_conjecture", "relation": "primary"}
+      {
+        "id": "LittlewoodConjecture.littlewood_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "LittlewoodConjecture.padic_littlewood_conjecture",
+        "relation": "primary"
+      }
     ],
-    "NT-074": [{"id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem", "relation": "primary"}],
-    "NT-077": [{"id": "Erdos28.erdos_28", "relation": "primary"}],
-    "NT-078": [{"id": "Erdos242.erdos_242", "relation": "primary"}],
-    "NT-079": [{"id": "Mahler32.mahler_conjecture", "relation": "primary"}],
+    "NT-074": [
+      {
+        "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem",
+        "relation": "primary"
+      }
+    ],
+    "NT-077": [
+      {
+        "id": "Erdos28.erdos_28",
+        "relation": "primary"
+      }
+    ],
+    "NT-078": [
+      {
+        "id": "Erdos242.erdos_242",
+        "relation": "primary"
+      }
+    ],
+    "NT-079": [
+      {
+        "id": "Mahler32.mahler_conjecture",
+        "relation": "primary"
+      }
+    ],
     "NT-080": [
-      {"id": "PerfectNumbers.odd_perfect_number_conjecture", "relation": "primary"},
-      {"id": "Mersenne.infinitely_many_mersenne_primes", "relation": "primary"}
+      {
+        "id": "PerfectNumbers.odd_perfect_number_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "Mersenne.infinitely_many_mersenne_primes",
+        "relation": "primary"
+      }
     ],
-    "NT-081": [{"id": "Dickson.infinite_safe_primes", "relation": "related"}],
+    "NT-081": [
+      {
+        "id": "Dickson.infinite_safe_primes",
+        "relation": "related"
+      }
+    ],
     "NT-082": [
-      {"id": "LehmerTotient.lehmer_totient", "relation": "primary"},
-      {"id": "CarmichaelTotient.charmichaelTotient", "relation": "primary"}
+      {
+        "id": "LehmerTotient.lehmer_totient",
+        "relation": "primary"
+      },
+      {
+        "id": "CarmichaelTotient.charmichaelTotient",
+        "relation": "primary"
+      }
     ],
-    "NT-083": [{"id": "wp-uniqueness-conjecture-for-markov-numbers", "relation": "primary"}],
-    "NT-085": [{"id": "Bugeaud06.furstenberg_two_three", "relation": "related"}],
-    "ALG-001": [{"id": "InverseGalois.inverse_galois_problem", "relation": "primary"}],
-    "ALG-002": [{"id": "JacobianConjecture.jacobian_conjecture_two_variables", "relation": "primary"}],
-    "ALG-003": [{"id": "Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one", "relation": "related"}],
-    "ALG-004": [{"id": "Arxiv.math.0608009.dixmier_conjecture.variants.dimension_one", "relation": "primary"}],
-    "ALG-008": [{"id": "wp-grothendieck-katz-p-curvature-conjecture", "relation": "primary"}],
-    "ALG-022": [{"id": "BoundedBurnsideProblem.bounded_burnside_problem", "relation": "related"}],
-    "ALG-023": [{"id": "AndrewsCurtis.andrews_curtis_conjecture", "relation": "primary"}],
-    "ALG-025": [{"id": "wp-whitehead-conjecture", "relation": "primary"}],
-    "ALG-026": [{"id": "wp-eilenberg-ganea-conjecture", "relation": "primary"}],
-    "ALG-027": [{"id": "HyperbolicGroupsResiduallyFinite.hyperbolic_exists_finiteIndex_ne_top", "relation": "primary"}],
-    "ALG-031": [{"id": "wp-baum-connes-conjecture", "relation": "primary"}],
-    "ALG-045": [{"id": "AuslanderReiten.auslander_reiten.variants.local_free", "relation": "variant"}],
-    "ALG-047": [{"id": "wp-bass-quillen-conjecture", "relation": "primary"}],
-    "ALG-050": [{"id": "EisenbudGreenHarris.eisenbud_green_harris", "relation": "primary"}],
-    "ALG-051": [{"id": "SerreMultiplicityConjectures.intersectionMultiplicity_pos_of_equalCharacteristic", "relation": "related"}],
-    "ALG-052": [{"id": "SmallCohenMacaulayModules.exists_isSmallCohenMacaulay", "relation": "primary"}],
-    "ALG-061": [{"id": "wp-standard-conjectures-on-algebraic-cycles", "relation": "primary"}],
-    "ALG-062": [{"id": "wp-bloch-beilinson-conjectures", "relation": "primary"}],
-    "GEOM-001": [{"id": "wp-hodge-conjecture", "relation": "primary"}],
+    "NT-083": [
+      {
+        "id": "wp-uniqueness-conjecture-for-markov-numbers",
+        "relation": "primary"
+      }
+    ],
+    "NT-085": [
+      {
+        "id": "Bugeaud06.furstenberg_two_three",
+        "relation": "related"
+      }
+    ],
+    "ALG-001": [
+      {
+        "id": "InverseGalois.inverse_galois_problem",
+        "relation": "primary"
+      }
+    ],
+    "ALG-002": [
+      {
+        "id": "JacobianConjecture.jacobian_conjecture_two_variables",
+        "relation": "primary"
+      }
+    ],
+    "ALG-003": [
+      {
+        "id": "Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one",
+        "relation": "related"
+      }
+    ],
+    "ALG-004": [
+      {
+        "id": "Arxiv.math.0608009.dixmier_conjecture.variants.dimension_one",
+        "relation": "primary"
+      }
+    ],
+    "ALG-008": [
+      {
+        "id": "wp-grothendieck-katz-p-curvature-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-022": [
+      {
+        "id": "BoundedBurnsideProblem.bounded_burnside_problem",
+        "relation": "related"
+      }
+    ],
+    "ALG-023": [
+      {
+        "id": "AndrewsCurtis.andrews_curtis_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-025": [
+      {
+        "id": "wp-whitehead-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-026": [
+      {
+        "id": "wp-eilenberg-ganea-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-027": [
+      {
+        "id": "HyperbolicGroupsResiduallyFinite.hyperbolic_exists_finiteIndex_ne_top",
+        "relation": "primary"
+      }
+    ],
+    "ALG-031": [
+      {
+        "id": "wp-baum-connes-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-045": [
+      {
+        "id": "AuslanderReiten.auslander_reiten.variants.local_free",
+        "relation": "variant"
+      }
+    ],
+    "ALG-047": [
+      {
+        "id": "wp-bass-quillen-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ALG-050": [
+      {
+        "id": "EisenbudGreenHarris.eisenbud_green_harris",
+        "relation": "primary"
+      }
+    ],
+    "ALG-051": [
+      {
+        "id": "SerreMultiplicityConjectures.intersectionMultiplicity_pos_of_equalCharacteristic",
+        "relation": "related"
+      }
+    ],
+    "ALG-052": [
+      {
+        "id": "SmallCohenMacaulayModules.exists_isSmallCohenMacaulay",
+        "relation": "primary"
+      }
+    ],
+    "ALG-061": [
+      {
+        "id": "wp-standard-conjectures-on-algebraic-cycles",
+        "relation": "primary"
+      }
+    ],
+    "ALG-062": [
+      {
+        "id": "wp-bloch-beilinson-conjectures",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-001": [
+      {
+        "id": "wp-hodge-conjecture",
+        "relation": "primary"
+      }
+    ],
     "GEOM-002": [
-      {"id": "PoincareConjecture.poincare_conjecture.variants.smooth_dimension_four", "relation": "primary"},
-      {"id": "opg-smooth-4-dimensional-poincare-conjecture", "relation": "primary"}
+      {
+        "id": "PoincareConjecture.poincare_conjecture.variants.smooth_dimension_four",
+        "relation": "primary"
+      },
+      {
+        "id": "opg-smooth-4-dimensional-poincare-conjecture",
+        "relation": "primary"
+      }
     ],
-    "GEOM-003": [{"id": "wp-sphere-packing", "relation": "related"}],
-    "GEOM-006": [{"id": "AlgebraicGeometry.resolution_of_singularities", "relation": "primary"}],
-    "GEOM-011": [{"id": "wp-bloch-beilinson-conjectures", "relation": "primary"}],
-    "GEOM-014": [{"id": "wpc-homological-mirror-symmetry", "relation": "primary"}],
-    "GEOM-015": [{"id": "wpc-syz-conjecture", "relation": "primary"}],
-    "GEOM-017": [{"id": "wp-nagata-s-conjecture-on-curves", "relation": "primary"}],
-    "GEOM-021": [{"id": "wp-yau-s-conjecture-on-the-first-eigenvalue", "relation": "primary"}],
-    "GEOM-029": [{"id": "wp-nearby-lagrangian-conjecture", "relation": "primary"}],
-    "GEOM-030": [{"id": "wp-weinstein-conjecture", "relation": "primary"}],
-    "GEOM-032": [{"id": "wp-filling-area-conjecture", "relation": "primary"}],
-    "GEOM-034": [{"id": "opg-smooth-4-dimensional-schoenflies-problem", "relation": "primary"}],
-    "GEOM-038": [{"id": "opg-slice-ribbon-problem-0", "relation": "primary"}],
-    "GEOM-040": [{"id": "wp-volume-conjecture", "relation": "primary"}],
-    "GEOM-047": [{"id": "AndrewsCurtis.andrews_curtis_conjecture", "relation": "primary"}],
+    "GEOM-003": [
+      {
+        "id": "wp-sphere-packing",
+        "relation": "related"
+      }
+    ],
+    "GEOM-006": [
+      {
+        "id": "AlgebraicGeometry.resolution_of_singularities",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-011": [
+      {
+        "id": "wp-bloch-beilinson-conjectures",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-014": [
+      {
+        "id": "wpc-homological-mirror-symmetry",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-015": [
+      {
+        "id": "wpc-syz-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-017": [
+      {
+        "id": "wp-nagata-s-conjecture-on-curves",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-021": [
+      {
+        "id": "wp-yau-s-conjecture-on-the-first-eigenvalue",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-029": [
+      {
+        "id": "wp-nearby-lagrangian-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-030": [
+      {
+        "id": "wp-weinstein-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-032": [
+      {
+        "id": "wp-filling-area-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-034": [
+      {
+        "id": "opg-smooth-4-dimensional-schoenflies-problem",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-038": [
+      {
+        "id": "opg-slice-ribbon-problem-0",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-040": [
+      {
+        "id": "wp-volume-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-047": [
+      {
+        "id": "AndrewsCurtis.andrews_curtis_conjecture",
+        "relation": "primary"
+      }
+    ],
     "GEOM-048": [
-      {"id": "wp-novikov-conjecture", "relation": "primary"},
-      {"id": "wp-borel-conjecture", "relation": "primary"}
+      {
+        "id": "wp-novikov-conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-borel-conjecture",
+        "relation": "primary"
+      }
     ],
-    "GEOM-050": [{"id": "wp-zeeman-conjecture", "relation": "primary"}],
+    "GEOM-050": [
+      {
+        "id": "wp-zeeman-conjecture",
+        "relation": "primary"
+      }
+    ],
     "GEOM-052": [
-      {"id": "Hilbert5.hilbert_smith_conjecture", "relation": "primary"},
-      {"id": "Hilbert5.hilbert_smith_padic_formulation", "relation": "variant"}
+      {
+        "id": "Hilbert5.hilbert_smith_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "Hilbert5.hilbert_smith_padic_formulation",
+        "relation": "variant"
+      }
     ],
-    "GEOM-056": [{"id": "InscribedSquare.inscribed_square_problem", "relation": "primary"}],
-    "GEOM-057": [{"id": "wpc-mahler-conjecture", "relation": "primary"}],
-    "GEOM-064": [{"id": "MoserWorm.convex_mosers_worm_problem", "relation": "variant"}],
-    "GEOM-065": [{"id": "wp-bellman-s-lost-in-a-forest-problem", "relation": "primary"}],
-    "GEOM-067": [{"id": "wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle-problem", "relation": "primary"}],
-    "GEOM-069": [{"id": "Erdos90.erdos_90", "relation": "primary"}],
-    "GEOM-070": [{"id": "Erdos508.HadwigerNelsonProblem", "relation": "primary"}],
+    "GEOM-056": [
+      {
+        "id": "InscribedSquare.inscribed_square_problem",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-057": [
+      {
+        "id": "wpc-mahler-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-064": [
+      {
+        "id": "MoserWorm.convex_mosers_worm_problem",
+        "relation": "variant"
+      }
+    ],
+    "GEOM-065": [
+      {
+        "id": "wp-bellman-s-lost-in-a-forest-problem",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-067": [
+      {
+        "id": "wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle-problem",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-069": [
+      {
+        "id": "Erdos90.erdos_90",
+        "relation": "primary"
+      }
+    ],
+    "GEOM-070": [
+      {
+        "id": "Erdos508.HadwigerNelsonProblem",
+        "relation": "primary"
+      }
+    ],
     "ANL-001": [
-      {"id": "NavierStokes.navier_stokes_existence_and_smoothness_R3", "relation": "primary"},
-      {"id": "NavierStokes.navier_stokes_existence_and_smoothness_periodic", "relation": "primary"}
+      {
+        "id": "NavierStokes.navier_stokes_existence_and_smoothness_R3",
+        "relation": "primary"
+      },
+      {
+        "id": "NavierStokes.navier_stokes_existence_and_smoothness_periodic",
+        "relation": "primary"
+      }
     ],
-    "ANL-003": [{"id": "Kakeya.kakeya_set_conjecture", "relation": "primary"}],
-    "ANL-014": [{"id": "wpc-strong-cosmic-censorship", "relation": "primary"}],
-    "ANL-024": [{"id": "wpc-restriction-conjecture", "relation": "primary"}],
-    "ANL-025": [{"id": "wp-bochner-riesz-conjecture", "relation": "primary"}],
-    "ANL-026": [{"id": "wpc-local-smoothing-conjecture", "relation": "primary"}],
-    "ANL-028": [{"id": "wp-falconer-s-conjecture", "relation": "primary"}],
-    "ANL-030": [{"id": "BrennanConjecture.brennan_universalSpectrumBounded", "relation": "primary"}],
-    "ANL-031": [{"id": "Sendov.sendov_conjecture.variants.le_eight", "relation": "related"}],
-    "ANL-032": [{"id": "MeanValueProblem.mean_value_problem", "relation": "primary"}],
-    "ANL-033": [{"id": "Bloch.blochConstant_exact_value", "relation": "primary"}],
+    "ANL-003": [
+      {
+        "id": "Kakeya.kakeya_set_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-014": [
+      {
+        "id": "wpc-strong-cosmic-censorship",
+        "relation": "primary"
+      }
+    ],
+    "ANL-024": [
+      {
+        "id": "wpc-restriction-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-025": [
+      {
+        "id": "wp-bochner-riesz-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-026": [
+      {
+        "id": "wpc-local-smoothing-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-028": [
+      {
+        "id": "wp-falconer-s-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-030": [
+      {
+        "id": "BrennanConjecture.brennan_universalSpectrumBounded",
+        "relation": "primary"
+      }
+    ],
+    "ANL-031": [
+      {
+        "id": "Sendov.sendov_conjecture.variants.le_eight",
+        "relation": "related"
+      }
+    ],
+    "ANL-032": [
+      {
+        "id": "MeanValueProblem.mean_value_problem",
+        "relation": "primary"
+      }
+    ],
+    "ANL-033": [
+      {
+        "id": "Bloch.blochConstant_exact_value",
+        "relation": "primary"
+      }
+    ],
     "ANL-036": [
-      {"id": "Mandelbrot.MLC", "relation": "primary"},
-      {"id": "wp-mlc-conjecture-is-the-mandelbrot-set-locally-connected", "relation": "primary"}
+      {
+        "id": "Mandelbrot.MLC",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-mlc-conjecture-is-the-mandelbrot-set-locally-connected",
+        "relation": "primary"
+      }
     ],
-    "ANL-038": [{"id": "InvariantSubspaceProblem.Invariant_subspace_problem", "relation": "primary"}],
-    "ANL-041": [{"id": "wpc-dixmier-unitarizability", "relation": "primary"}],
-    "ANL-045": [{"id": "Arxiv.math.0110202.banach_mazur_rotation_problem", "relation": "primary"}],
-    "ANL-050": [{"id": "wp-hilbert-s-sixteenth-problem", "relation": "primary"}],
-    "ANL-064": [{"id": "wp-quantum-unique-ergodicity-conjecture", "relation": "primary"}],
-    "ANL-065": [{"id": "wp-berry-tabor-conjecture-in-quantum-chaos", "relation": "primary"}],
-    "COMB-001": [{"id": "wp-hadwiger-conjecture", "relation": "primary"}],
+    "ANL-038": [
+      {
+        "id": "InvariantSubspaceProblem.Invariant_subspace_problem",
+        "relation": "primary"
+      }
+    ],
+    "ANL-041": [
+      {
+        "id": "wpc-dixmier-unitarizability",
+        "relation": "primary"
+      }
+    ],
+    "ANL-045": [
+      {
+        "id": "Arxiv.math.0110202.banach_mazur_rotation_problem",
+        "relation": "primary"
+      }
+    ],
+    "ANL-050": [
+      {
+        "id": "wp-hilbert-s-sixteenth-problem",
+        "relation": "primary"
+      }
+    ],
+    "ANL-064": [
+      {
+        "id": "wp-quantum-unique-ergodicity-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "ANL-065": [
+      {
+        "id": "wp-berry-tabor-conjecture-in-quantum-chaos",
+        "relation": "primary"
+      }
+    ],
+    "COMB-001": [
+      {
+        "id": "wp-hadwiger-conjecture",
+        "relation": "primary"
+      }
+    ],
     "COMB-002": [
-      {"id": "RamseyNumbers.ramsey_number_five_five", "relation": "primary"},
-      {"id": "RamseyNumbers.ramsey_number_six_six", "relation": "variant"},
-      {"id": "opg-diagonal-ramsey-numbers", "relation": "primary"}
+      {
+        "id": "RamseyNumbers.ramsey_number_five_five",
+        "relation": "primary"
+      },
+      {
+        "id": "RamseyNumbers.ramsey_number_six_six",
+        "relation": "variant"
+      },
+      {
+        "id": "opg-diagonal-ramsey-numbers",
+        "relation": "primary"
+      }
     ],
-    "COMB-003": [{"id": "Erdos61.erdos_61", "relation": "primary"}],
+    "COMB-003": [
+      {
+        "id": "Erdos61.erdos_61",
+        "relation": "primary"
+      }
+    ],
     "COMB-004": [
-      {"id": "TotalColoringConjecture.total_coloring_conjecture", "relation": "primary"},
-      {"id": "opg-behzads-conjecture", "relation": "primary"}
+      {
+        "id": "TotalColoringConjecture.total_coloring_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "opg-behzads-conjecture",
+        "relation": "primary"
+      }
     ],
-    "COMB-006": [{"id": "GyarfasSumnerConjecture.gyarfas_sumner_conjecture", "relation": "primary"}],
+    "COMB-006": [
+      {
+        "id": "GyarfasSumnerConjecture.gyarfas_sumner_conjecture",
+        "relation": "primary"
+      }
+    ],
     "COMB-009": [
-      {"id": "wp-cycle-double-cover-conjecture", "relation": "primary"},
-      {"id": "opg-strong-5-cycle-double-cover-conjecture", "relation": "variant"}
+      {
+        "id": "wp-cycle-double-cover-conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "opg-strong-5-cycle-double-cover-conjecture",
+        "relation": "variant"
+      }
     ],
-    "COMB-011": [{"id": "BergeFulkersonConjecture.berge_fulkerson_conjecture", "relation": "primary"}],
+    "COMB-011": [
+      {
+        "id": "BergeFulkersonConjecture.berge_fulkerson_conjecture",
+        "relation": "primary"
+      }
+    ],
     "COMB-013": [
-      {"id": "ReconstructionConjecture.reconstruction_conjecture", "relation": "primary"},
-      {"id": "ReconstructionConjecture.edge_reconstruction_conjecture", "relation": "primary"}
+      {
+        "id": "ReconstructionConjecture.reconstruction_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "ReconstructionConjecture.edge_reconstruction_conjecture",
+        "relation": "primary"
+      }
     ],
-    "COMB-015": [{"id": "opg-hamiltonian-paths-and-cycles-in-vertex-transitive-graphs", "relation": "primary"}],
+    "COMB-015": [
+      {
+        "id": "opg-hamiltonian-paths-and-cycles-in-vertex-transitive-graphs",
+        "relation": "primary"
+      }
+    ],
     "COMB-016": [
-      {"id": "opg-seymours-second-neighbourhood-conjecture", "relation": "primary"},
-      {"id": "wp-second-neighborhood-problem", "relation": "primary"}
+      {
+        "id": "opg-seymours-second-neighbourhood-conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-second-neighborhood-problem",
+        "relation": "primary"
+      }
     ],
-    "COMB-017": [{"id": "opg-caccetta-haggkvist-conjecture", "relation": "primary"}],
-    "COMB-019": [{"id": "wp-erdos-gyarfas-conjecture-on-cycles-with-power-of-two-lengths-in-cubic-graphs", "relation": "primary"}],
-    "COMB-020": [{"id": "GracefulLabeling.graceful_tree_conjecture", "relation": "primary"}],
-    "COMB-021": [{"id": "wp-conway-s-thrackle-conjecture-that-thrackles-cannot-have-more-edges-than-vertices", "relation": "primary"}],
-    "COMB-025": [{"id": "wp-zarankiewicz-problem", "relation": "primary"}],
-    "COMB-028": [{"id": "wp-ryser-s-conjecture", "relation": "primary"}],
+    "COMB-017": [
+      {
+        "id": "opg-caccetta-haggkvist-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-019": [
+      {
+        "id": "wp-erdos-gyarfas-conjecture-on-cycles-with-power-of-two-lengths-in-cubic-graphs",
+        "relation": "primary"
+      }
+    ],
+    "COMB-020": [
+      {
+        "id": "GracefulLabeling.graceful_tree_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-021": [
+      {
+        "id": "wp-conway-s-thrackle-conjecture-that-thrackles-cannot-have-more-edges-than-vertices",
+        "relation": "primary"
+      }
+    ],
+    "COMB-025": [
+      {
+        "id": "wp-zarankiewicz-problem",
+        "relation": "primary"
+      }
+    ],
+    "COMB-028": [
+      {
+        "id": "wp-ryser-s-conjecture",
+        "relation": "primary"
+      }
+    ],
     "COMB-032": [
-      {"id": "UnionClosed.union_closed", "relation": "primary"},
-      {"id": "opg-frankls-union-closed-sets-conjecture", "relation": "primary"}
+      {
+        "id": "UnionClosed.union_closed",
+        "relation": "primary"
+      },
+      {
+        "id": "opg-frankls-union-closed-sets-conjecture",
+        "relation": "primary"
+      }
     ],
     "COMB-033": [
-      {"id": "Erdos20.erdos_20", "relation": "primary"},
-      {"id": "wp-sunflower-conjecture", "relation": "primary"}
+      {
+        "id": "Erdos20.erdos_20",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-sunflower-conjecture",
+        "relation": "primary"
+      }
     ],
-    "COMB-034": [{"id": "Erdos107.erdos_107", "relation": "primary"}],
+    "COMB-034": [
+      {
+        "id": "Erdos107.erdos_107",
+        "relation": "primary"
+      }
+    ],
     "COMB-039": [
-      {"id": "Erdos142.erdos_142", "relation": "primary"},
-      {"id": "wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem", "relation": "primary"}
+      {
+        "id": "Erdos142.erdos_142",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem",
+        "relation": "primary"
+      }
     ],
-    "COMB-040": [{"id": "Hadamard.HadamardConjecture", "relation": "primary"}],
-    "COMB-043": [{"id": "wp-rota-s-basis-conjecture", "relation": "primary"}],
-    "COMB-045": [{"id": "wp-1-3-2-3-conjecture", "relation": "primary"}],
-    "COMB-046": [{"id": "LonelyRunnerConjecture.lonely_runner_conjecture", "relation": "primary"}],
-    "COMB-050": [{"id": "Conway99Graph.conway99Graph", "relation": "primary"}],
-    "COMB-052": [{"id": "wp-degree-diameter-problem", "relation": "primary"}],
-    "COMB-053": [{"id": "wp-give-a-combinatorial-interpretation-of-the-kronecker-coefficients", "relation": "primary"}],
-    "COMB-056": [{"id": "wp-finding-a-function-to-model-n-step-self-avoiding-walks", "relation": "related"}],
+    "COMB-040": [
+      {
+        "id": "Hadamard.HadamardConjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-043": [
+      {
+        "id": "wp-rota-s-basis-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-045": [
+      {
+        "id": "wp-1-3-2-3-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-046": [
+      {
+        "id": "LonelyRunnerConjecture.lonely_runner_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "COMB-050": [
+      {
+        "id": "Conway99Graph.conway99Graph",
+        "relation": "primary"
+      }
+    ],
+    "COMB-052": [
+      {
+        "id": "wp-degree-diameter-problem",
+        "relation": "primary"
+      }
+    ],
+    "COMB-053": [
+      {
+        "id": "wp-give-a-combinatorial-interpretation-of-the-kronecker-coefficients",
+        "relation": "primary"
+      }
+    ],
+    "COMB-056": [
+      {
+        "id": "wp-finding-a-function-to-model-n-step-self-avoiding-walks",
+        "relation": "related"
+      }
+    ],
     "COMB-061": [
-      {"id": "Green72.green_72", "relation": "primary"},
-      {"id": "wp-no-three-in-line-problem", "relation": "primary"}
+      {
+        "id": "Green72.green_72",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-no-three-in-line-problem",
+        "relation": "primary"
+      }
     ],
-    "COMB-062": [{"id": "Singmaster.singmaster", "relation": "primary"}],
+    "COMB-062": [
+      {
+        "id": "Singmaster.singmaster",
+        "relation": "primary"
+      }
+    ],
     "COMB-065": [
-      {"id": "VizingConjecture.vizing_conjecture", "relation": "primary"},
-      {"id": "wp-vizing-s-conjecture-on-the-domination-number-of-cartesian-products-of-graphs", "relation": "primary"}
+      {
+        "id": "VizingConjecture.vizing_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-vizing-s-conjecture-on-the-domination-number-of-cartesian-products-of-graphs",
+        "relation": "primary"
+      }
     ],
-    "LOG-001": [{"id": "wp-generalized-continuum-hypothesis", "relation": "related"}],
-    "LOG-013": [{"id": "VaughtConjecture.vaught_conjecture", "relation": "primary"}],
-    "LOG-014": [{"id": "TarskiExponentialFunctionProblem.tarski_exponential_function_problem", "relation": "primary"}],
-    "LOG-019": [{"id": "wp-cherlin-zilber-conjecture", "relation": "primary"}],
-    "CS-001": [{"id": "ComplexityTheory.P_ne_NP", "relation": "primary"}],
-    "CS-004": [{"id": "wpc-omega-equals-two", "relation": "primary"}],
-    "CS-006": [{"id": "ComplexityTheory.P_eq_BPP", "relation": "primary"}],
-    "CS-007": [{"id": "ComplexityTheory.NP_ne_coNP", "relation": "primary"}],
-    "CS-008": [{"id": "wpc-graph-isomorphism-in-p", "relation": "primary"}],
-    "CS-009": [{"id": "PolyTime.isPolyTime_primeFactorsList", "relation": "primary"}],
-    "CS-012": [{"id": "opg-the-permanent-conjecture", "relation": "related"}],
-    "CS-016": [{"id": "wp-unique-games-conjecture", "relation": "primary"}],
-    "CS-023": [{"id": "wpc-log-rank-conjecture", "relation": "primary"}],
-    "CS-034": [{"id": "wpc-dynamic-optimality", "relation": "primary"}],
-    "QC-002": [{"id": "wp-quantum-pcp-conjecture", "relation": "primary"}],
+    "LOG-001": [
+      {
+        "id": "wp-generalized-continuum-hypothesis",
+        "relation": "related"
+      }
+    ],
+    "LOG-013": [
+      {
+        "id": "VaughtConjecture.vaught_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LOG-014": [
+      {
+        "id": "TarskiExponentialFunctionProblem.tarski_exponential_function_problem",
+        "relation": "primary"
+      }
+    ],
+    "LOG-019": [
+      {
+        "id": "wp-cherlin-zilber-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "CS-001": [
+      {
+        "id": "ComplexityTheory.P_ne_NP",
+        "relation": "primary"
+      }
+    ],
+    "CS-004": [
+      {
+        "id": "wpc-omega-equals-two",
+        "relation": "primary"
+      }
+    ],
+    "CS-006": [
+      {
+        "id": "ComplexityTheory.P_eq_BPP",
+        "relation": "primary"
+      }
+    ],
+    "CS-007": [
+      {
+        "id": "ComplexityTheory.NP_ne_coNP",
+        "relation": "primary"
+      }
+    ],
+    "CS-008": [
+      {
+        "id": "wpc-graph-isomorphism-in-p",
+        "relation": "primary"
+      }
+    ],
+    "CS-009": [
+      {
+        "id": "PolyTime.isPolyTime_primeFactorsList",
+        "relation": "primary"
+      }
+    ],
+    "CS-012": [
+      {
+        "id": "opg-the-permanent-conjecture",
+        "relation": "related"
+      }
+    ],
+    "CS-016": [
+      {
+        "id": "wp-unique-games-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "CS-023": [
+      {
+        "id": "wpc-log-rank-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "CS-034": [
+      {
+        "id": "wpc-dynamic-optimality",
+        "relation": "primary"
+      }
+    ],
+    "QC-002": [
+      {
+        "id": "wp-quantum-pcp-conjecture",
+        "relation": "primary"
+      }
+    ],
     "QC-037": [
-      {"id": "OpenQuantumProblem23.sicPOVMs", "relation": "primary"},
-      {"id": "wp-sic-povm", "relation": "primary"}
+      {
+        "id": "OpenQuantumProblem23.sicPOVMs",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-sic-povm",
+        "relation": "primary"
+      }
     ],
-    "XNT-004": [{"id": "Erdos41.erdos_41", "relation": "primary"}],
+    "XNT-004": [
+      {
+        "id": "Erdos41.erdos_41",
+        "relation": "primary"
+      }
+    ],
     "XNT-005": [
-      {"id": "Erdos36.erdos_36", "relation": "primary"},
-      {"id": "wp-minimum-overlap-problem", "relation": "primary"}
+      {
+        "id": "Erdos36.erdos_36",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-minimum-overlap-problem",
+        "relation": "primary"
+      }
     ],
     "XNT-007": [
-      {"id": "AgohGiuga.agoh_giuga.variants.giuga", "relation": "primary"},
-      {"id": "opg-giugas-conjecture-on-primality", "relation": "primary"}
+      {
+        "id": "AgohGiuga.agoh_giuga.variants.giuga",
+        "relation": "primary"
+      },
+      {
+        "id": "opg-giugas-conjecture-on-primality",
+        "relation": "primary"
+      }
     ],
-    "XNT-011": [{"id": "wp-catalan-dickson-conjecture-on-aliquot-sequences", "relation": "primary"}],
-    "XNT-012": [{"id": "ScholzConjecture.scholz_conjecture", "relation": "primary"}],
+    "XNT-011": [
+      {
+        "id": "wp-catalan-dickson-conjecture-on-aliquot-sequences",
+        "relation": "primary"
+      }
+    ],
+    "XNT-012": [
+      {
+        "id": "ScholzConjecture.scholz_conjecture",
+        "relation": "primary"
+      }
+    ],
     "XNT-014": [
-      {"id": "WallSunSun.exists_isWallSunSunPrime", "relation": "primary"},
-      {"id": "WallSunSun.infinite_isWallSunSunPrime", "relation": "primary"}
+      {
+        "id": "WallSunSun.exists_isWallSunSunPrime",
+        "relation": "primary"
+      },
+      {
+        "id": "WallSunSun.infinite_isWallSunSunPrime",
+        "relation": "primary"
+      }
     ],
-    "XNT-015": [{"id": "CasasAlvero.casas_alvero_conjecture", "relation": "primary"}],
-    "XNT-017": [{"id": "Gilbreath.gilbreath_conjecture", "relation": "primary"}],
+    "XNT-015": [
+      {
+        "id": "CasasAlvero.casas_alvero_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "XNT-017": [
+      {
+        "id": "Gilbreath.gilbreath_conjecture",
+        "relation": "primary"
+      }
+    ],
     "XNT-021": [
-      {"id": "FeitThompsonPrimeConjecture.feit_thompson_primes", "relation": "primary"},
-      {"id": "wp-feit-thompson-conjecture", "relation": "primary"}
+      {
+        "id": "FeitThompsonPrimeConjecture.feit_thompson_primes",
+        "relation": "primary"
+      },
+      {
+        "id": "wp-feit-thompson-conjecture",
+        "relation": "primary"
+      }
     ],
-    "XNT-024": [{"id": "LanderParkinSelfridge.lander_parkin_selfridge", "relation": "primary"}],
-    "XNT-026": [{"id": "GaussCircleProblem.error_isBigO", "relation": "primary"}],
-    "XNT-027": [{"id": "DirichletDivisorProblem.dirichlet_divisor_problem", "relation": "primary"}],
-    "XNT-036": [{"id": "Erdos30.erdos_30", "relation": "primary"}],
+    "XNT-024": [
+      {
+        "id": "LanderParkinSelfridge.lander_parkin_selfridge",
+        "relation": "primary"
+      }
+    ],
+    "XNT-026": [
+      {
+        "id": "GaussCircleProblem.error_isBigO",
+        "relation": "primary"
+      }
+    ],
+    "XNT-027": [
+      {
+        "id": "DirichletDivisorProblem.dirichlet_divisor_problem",
+        "relation": "primary"
+      }
+    ],
+    "XNT-036": [
+      {
+        "id": "Erdos30.erdos_30",
+        "relation": "primary"
+      }
+    ],
     "XNT-037": [
-      {"id": "SierpinskiNumber.selfridge_conjecture", "relation": "primary"},
-      {"id": "OeisA108129.conjecture", "relation": "primary"}
+      {
+        "id": "SierpinskiNumber.selfridge_conjecture",
+        "relation": "primary"
+      },
+      {
+        "id": "OeisA108129.conjecture",
+        "relation": "primary"
+      }
     ],
-    "XNT-039": [{"id": "WilsonPrime.infinitely_many_wilson_primes", "relation": "primary"}],
-    "XNT-041": [{"id": "Grimm.grimm_conjecture", "relation": "primary"}],
-    "XNT-043": [{"id": "ChebyshevBias.rubinstein_sarnak_unconditional_chebyshev_bias", "relation": "primary"}],
-    "XALG-003": [{"id": "Koethe.KotheConjecture", "relation": "primary"}],
-    "XGEOM-015": [{"id": "wp-lebesgue-s-universal-covering-problem", "relation": "primary"}],
-    "XGEOM-035": [{"id": "ErdosUlamProblem.erdos_ulam_problem", "relation": "primary"}],
-    "XCOMB-001": [{"id": "wp-erdos-faber-lovasz-conjecture-on-coloring-unions-of-cliques", "relation": "primary"}],
-    "XCOMB-002": [{"id": "opg-the-borodin-kostochka-conjecture", "relation": "primary"}],
-    "XCOMB-005": [{"id": "wp-chvatal-s-toughness-conjecture", "relation": "primary"}],
-    "XCOMB-011": [{"id": "BollobasEldridgeCatlinConjecture.bollobas_eldridge_catlin_conjecture", "relation": "primary"}],
-    "XCOMB-029": [{"id": "wp-earth-moon-problem", "relation": "primary"}]
+    "XNT-039": [
+      {
+        "id": "WilsonPrime.infinitely_many_wilson_primes",
+        "relation": "primary"
+      }
+    ],
+    "XNT-041": [
+      {
+        "id": "Grimm.grimm_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "XNT-043": [
+      {
+        "id": "ChebyshevBias.rubinstein_sarnak_unconditional_chebyshev_bias",
+        "relation": "primary"
+      }
+    ],
+    "XALG-003": [
+      {
+        "id": "Koethe.KotheConjecture",
+        "relation": "primary"
+      }
+    ],
+    "XGEOM-015": [
+      {
+        "id": "wp-lebesgue-s-universal-covering-problem",
+        "relation": "primary"
+      }
+    ],
+    "XGEOM-035": [
+      {
+        "id": "ErdosUlamProblem.erdos_ulam_problem",
+        "relation": "primary"
+      }
+    ],
+    "XCOMB-001": [
+      {
+        "id": "wp-erdos-faber-lovasz-conjecture-on-coloring-unions-of-cliques",
+        "relation": "primary"
+      }
+    ],
+    "XCOMB-002": [
+      {
+        "id": "opg-the-borodin-kostochka-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "XCOMB-005": [
+      {
+        "id": "wp-chvatal-s-toughness-conjecture",
+        "relation": "primary"
+      }
+    ],
+    "XCOMB-011": [
+      {
+        "id": "BollobasEldridgeCatlinConjecture.bollobas_eldridge_catlin_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "XCOMB-029": [
+      {
+        "id": "wp-earth-moon-problem",
+        "relation": "primary"
+      }
+    ],
+    "LTS-001": [
+      {
+        "id": "OpenQuantumProblem13.mutuallyUnbiasedBases_dim6",
+        "relation": "primary"
+      }
+    ],
+    "LTS-002": [
+      {
+        "id": "OpenQuantumProblem35.oqp_35",
+        "relation": "primary"
+      }
+    ],
+    "LTS-003": [
+      {
+        "id": "itp-broadcast-channel",
+        "relation": "primary"
+      }
+    ],
+    "LTS-004": [
+      {
+        "id": "itp-courtade-kumar",
+        "relation": "primary"
+      }
+    ],
+    "LTS-005": [
+      {
+        "id": "itp-entropy-region",
+        "relation": "primary"
+      }
+    ],
+    "LTS-006": [
+      {
+        "id": "itp-deletion-channel",
+        "relation": "primary"
+      }
+    ],
+    "LTS-007": [
+      {
+        "id": "itp-gaussian-interference-channel",
+        "relation": "primary"
+      }
+    ],
+    "LTS-008": [
+      {
+        "id": "itp-relay-channel",
+        "relation": "primary"
+      }
+    ],
+    "LTS-009": [
+      {
+        "id": "gillibert-fair-traversal",
+        "relation": "primary"
+      }
+    ],
+    "LTS-010": [
+      {
+        "id": "gillibert-equal-halves",
+        "relation": "primary"
+      }
+    ],
+    "LTS-011": [
+      {
+        "id": "gillibert-geodesic-deletion",
+        "relation": "primary"
+      }
+    ],
+    "LTS-012": [
+      {
+        "id": "LamLitt.lam_litt.variants.omega_integrality_implies_algebraicity",
+        "relation": "primary"
+      }
+    ],
+    "LTS-013": [
+      {
+        "id": "WeighingMatrix.weighing_matrix_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-014": [
+      {
+        "id": "Constant1a.c1a_eq",
+        "relation": "primary"
+      }
+    ],
+    "LTS-015": [
+      {
+        "id": "Constant7b.c7b_upper_bound_improved",
+        "relation": "primary"
+      }
+    ],
+    "LTS-016": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture133.conjecture133",
+        "relation": "primary"
+      }
+    ],
+    "LTS-017": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture96.conjecture96",
+        "relation": "primary"
+      }
+    ],
+    "LTS-018": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture189.conjecture189",
+        "relation": "primary"
+      }
+    ],
+    "LTS-019": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture199.conjecture199",
+        "relation": "primary"
+      }
+    ],
+    "LTS-020": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture372.conjecture372",
+        "relation": "primary"
+      }
+    ],
+    "LTS-021": [
+      {
+        "id": "WrittenOnTheWallII.GraphConjecture40.conjecture40",
+        "relation": "primary"
+      }
+    ],
+    "LTS-022": [
+      {
+        "id": "Green2.green_2",
+        "relation": "primary"
+      }
+    ],
+    "LTS-023": [
+      {
+        "id": "Green12.green_12",
+        "relation": "primary"
+      }
+    ],
+    "LTS-024": [
+      {
+        "id": "Green15.green_15",
+        "relation": "primary"
+      }
+    ],
+    "LTS-025": [
+      {
+        "id": "Green16.green_16",
+        "relation": "primary"
+      }
+    ],
+    "LTS-026": [
+      {
+        "id": "Green18.green_18",
+        "relation": "primary"
+      }
+    ],
+    "LTS-027": [
+      {
+        "id": "Green21.green_21",
+        "relation": "primary"
+      }
+    ],
+    "LTS-028": [
+      {
+        "id": "Green22.green_22",
+        "relation": "primary"
+      }
+    ],
+    "LTS-029": [
+      {
+        "id": "Green25.green_25",
+        "relation": "primary"
+      }
+    ],
+    "LTS-030": [
+      {
+        "id": "Green27.green_27.upper",
+        "relation": "primary"
+      }
+    ],
+    "LTS-031": [
+      {
+        "id": "Green28.green_28",
+        "relation": "primary"
+      }
+    ],
+    "LTS-032": [
+      {
+        "id": "Green29.green_29",
+        "relation": "primary"
+      }
+    ],
+    "LTS-033": [
+      {
+        "id": "Green31.green_31.lower",
+        "relation": "primary"
+      }
+    ],
+    "LTS-034": [
+      {
+        "id": "Green33.green_33",
+        "relation": "primary"
+      }
+    ],
+    "LTS-035": [
+      {
+        "id": "Green35.green_35.lower",
+        "relation": "primary"
+      }
+    ],
+    "LTS-036": [
+      {
+        "id": "Green36.green_36",
+        "relation": "primary"
+      }
+    ],
+    "LTS-037": [
+      {
+        "id": "Green44.green_44",
+        "relation": "primary"
+      }
+    ],
+    "LTS-038": [
+      {
+        "id": "Green55.green_55",
+        "relation": "primary"
+      }
+    ],
+    "LTS-039": [
+      {
+        "id": "OeisA153330.conjecture4",
+        "relation": "primary"
+      }
+    ],
+    "LTS-040": [
+      {
+        "id": "OeisA179537.conjecture1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-041": [
+      {
+        "id": "OeisA238281.conjecture_3",
+        "relation": "primary"
+      }
+    ],
+    "LTS-042": [
+      {
+        "id": "OeisA38098.conjecture2",
+        "relation": "primary"
+      }
+    ],
+    "LTS-043": [
+      {
+        "id": "OeisA38552.largestEven_lt_largestOdd_negFundDisc",
+        "relation": "primary"
+      }
+    ],
+    "LTS-044": [
+      {
+        "id": "OeisA108866.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-045": [
+      {
+        "id": "OeisA113213.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-046": [
+      {
+        "id": "OeisA113609.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-047": [
+      {
+        "id": "OeisA114362.conjecture1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-048": [
+      {
+        "id": "OeisA1146.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-049": [
+      {
+        "id": "OeisA115366.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-050": [
+      {
+        "id": "OeisA1157.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-051": [
+      {
+        "id": "OeisA262403.conjecture_4",
+        "relation": "primary"
+      }
+    ],
+    "LTS-052": [
+      {
+        "id": "OeisA105020.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-053": [
+      {
+        "id": "OeisA110475.conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-054": [
+      {
+        "id": "OeisA237348.conjecture_2",
+        "relation": "primary"
+      }
+    ],
+    "LTS-055": [
+      {
+        "id": "Mathoverflow17560.mathoverflow_17560",
+        "relation": "primary"
+      }
+    ],
+    "LTS-056": [
+      {
+        "id": "Mathoverflow21003.mathoverflow_21003",
+        "relation": "primary"
+      }
+    ],
+    "LTS-057": [
+      {
+        "id": "Mathoverflow235893.mathoverflow_235893",
+        "relation": "primary"
+      }
+    ],
+    "LTS-058": [
+      {
+        "id": "Mathoverflow339137.mathoverflow_339137",
+        "relation": "primary"
+      }
+    ],
+    "LTS-059": [
+      {
+        "id": "Mathoverflow34145.rectangles_cover_unit_square",
+        "relation": "primary"
+      }
+    ],
+    "LTS-060": [
+      {
+        "id": "MathOverflow434111.restricted_prime_number_theorem",
+        "relation": "primary"
+      }
+    ],
+    "LTS-061": [
+      {
+        "id": "Mathoverflow75792.complexity_two_pow",
+        "relation": "primary"
+      }
+    ],
+    "LTS-062": [
+      {
+        "id": "Kourovka.1.40.kourovka_1_40",
+        "relation": "primary"
+      }
+    ],
+    "LTS-063": [
+      {
+        "id": "Kourovka.1.74.kourovka_1_74",
+        "relation": "primary"
+      }
+    ],
+    "LTS-064": [
+      {
+        "id": "Arxiv.2406.10319.pittel_hyperbola_threshold",
+        "relation": "primary"
+      }
+    ],
+    "LTS-065": [
+      {
+        "id": "AtiyahSutcliffe.conjecture_one",
+        "relation": "primary"
+      }
+    ],
+    "LTS-066": [
+      {
+        "id": "CunninghamChain.infinitely_many_firstKind_chains",
+        "relation": "primary"
+      }
+    ],
+    "LTS-067": [
+      {
+        "id": "HopfAlgebraCohomology.cohomology_finite",
+        "relation": "primary"
+      }
+    ],
+    "LTS-068": [
+      {
+        "id": "Margulis.conjecture_1_1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-069": [
+      {
+        "id": "NowhereDenseSpectralSet.exists_nowhereDense_spectralSet",
+        "relation": "primary"
+      }
+    ],
+    "LTS-070": [
+      {
+        "id": "FusibleNumber.conj_7_1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-071": [
+      {
+        "id": "LennonPittel.lennon_pittel_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-072": [
+      {
+        "id": "PartitionParity.ono.polynomial",
+        "relation": "primary"
+      }
+    ],
+    "LTS-073": [
+      {
+        "id": "Arxiv.2607.06396.alon_tarsi_short_cycle_cover",
+        "relation": "primary"
+      }
+    ],
+    "LTS-074": [
+      {
+        "id": "BurningNumberConjecture.burning_number_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-075": [
+      {
+        "id": "CardinalityLindelof.HasG-Singletons.lindelof_card",
+        "relation": "primary"
+      }
+    ],
+    "LTS-076": [
+      {
+        "id": "CatchUp.value_of_even_mul_succ_self_div_two",
+        "relation": "primary"
+      }
+    ],
+    "LTS-077": [
+      {
+        "id": "ConjugacyClassSizes.conjClassSizes_iff_sym_three",
+        "relation": "primary"
+      }
+    ],
+    "LTS-078": [
+      {
+        "id": "DubnerConjecture.dubner_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-079": [
+      {
+        "id": "FanelliMoscardelli.stability_threshold_tight",
+        "relation": "primary"
+      }
+    ],
+    "LTS-080": [
+      {
+        "id": "FiniteLocallyFreeGroupSchemeExponent.optimal_exponent",
+        "relation": "primary"
+      }
+    ],
+    "LTS-081": [
+      {
+        "id": "riemannZeta.simple_prop_lt",
+        "relation": "primary"
+      }
+    ],
+    "LTS-082": [
+      {
+        "id": "Bugeaud01.problem_10_1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-083": [
+      {
+        "id": "Bugeaud07.problem_10_7",
+        "relation": "primary"
+      }
+    ],
+    "LTS-084": [
+      {
+        "id": "Bugeaud61.problem_10_61",
+        "relation": "primary"
+      }
+    ],
+    "LTS-085": [
+      {
+        "id": "Bugeaud06.problem_10_6_variant_1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-086": [
+      {
+        "id": "BeaverMathOlympiad.beaver_math_olympiad_problem_1",
+        "relation": "primary"
+      }
+    ],
+    "LTS-087": [
+      {
+        "id": "EquationalTheories_677_255.Finite.Equation677_implies_Equation255",
+        "relation": "primary"
+      }
+    ],
+    "LTS-088": [
+      {
+        "id": "Gerstenhaber.finrank_adjoin_triple_le",
+        "relation": "primary"
+      }
+    ],
+    "LTS-089": [
+      {
+        "id": "Rule30.centerColumn_not_eventually_periodic",
+        "relation": "primary"
+      }
+    ],
+    "LTS-090": [
+      {
+        "id": "SymbolLengthMilnorKTheory.symbol_length_problem.variants.uniform",
+        "relation": "primary"
+      }
+    ],
+    "LTS-091": [
+      {
+        "id": "VCDimConvex.hasAddVCNDimAtMost_n_two_of_convex_rn_add_one",
+        "relation": "primary"
+      }
+    ],
+    "LTS-092": [
+      {
+        "id": "AgrawalConjecture.agrawal_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-093": [
+      {
+        "id": "DeterminantalConjecture.determinantal_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-094": [
+      {
+        "id": "LovaszPlummerConjecture.sheehan_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-095": [
+      {
+        "id": "MagicSquares.exists_magic_square_squares",
+        "relation": "primary"
+      }
+    ],
+    "LTS-096": [
+      {
+        "id": "WilfNumericalSemigroupConjecture.wilf_numerical_semigroup_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-097": [
+      {
+        "id": "Arxiv.2104.00502.barker_conjecture",
+        "relation": "primary"
+      }
+    ],
+    "LTS-098": [
+      {
+        "id": "AlmostPerfectNumbers.exists_almost_perfect_not_power_of_two",
+        "relation": "primary"
+      }
+    ],
+    "LTS-099": [
+      {
+        "id": "Erdos114.erdos_114",
+        "relation": "primary"
+      }
+    ],
+    "LTS-100": [
+      {
+        "id": "Erdos101.erdos_101",
+        "relation": "primary"
+      }
+    ]
   },
   "exclude": {
-    "GEO-039": ["wp-earth-moon-problem"],
-    "GR-018": ["AlgebraicGeometry.resolution_of_singularities", "AlgebraicGeometry.resolution_of_singularities_of_topologicalKrullDim_le_three"]
+    "GEO-039": [
+      "wp-earth-moon-problem"
+    ],
+    "GR-018": [
+      "AlgebraicGeometry.resolution_of_singularities",
+      "AlgebraicGeometry.resolution_of_singularities_of_topologicalKrullDim_le_three"
+    ]
   }
 }

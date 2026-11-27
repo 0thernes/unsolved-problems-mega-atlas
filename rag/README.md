@@ -1,6 +1,6 @@
 # Offline Deterministic Hybrid RAG & Knowledge-Graph Query Engine (`rag/`)
 
-Zero-API, deterministic **Hybrid BM25 + Contiguous Title Bigram + Unique-Token Coverage + NetworkX PageRank Graph-Authority** retrieval (**`100.00% MRR@5`, `25/25` top-1** on the immutable cross-pillar benchmark) over all **1,900 problems (48 fields)** and **5,808 biconnected knowledge-graph edges** in `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` (SQLite 3 + FTS5 Porter tokenizer).
+Zero-API, deterministic **Hybrid BM25 + Contiguous Title Bigram + Unique-Token Coverage + NetworkX PageRank Graph-Authority** retrieval (**`100.00% MRR@5`, `25/25` top-1** on the immutable cross-pillar benchmark) over all **2,000 problems (48 fields)** and **6,108 biconnected knowledge-graph edges** in `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` (SQLite 3 + FTS5 Porter tokenizer).
 
 ## Usage Examples
 

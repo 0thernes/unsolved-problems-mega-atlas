@@ -11,5 +11,5 @@ Early forensic audits (`v2.2.0`) uncovered 24 dangling `raw_links`, 12 cross-fie
 2. Enforce `unresolved_raw_links_count == 0`, `articulation_points == 0`, `graph_bridges == 0`, and `nx.is_biconnected(G) == True` as hard gates in `scripts/audit_atlas.py`, `scripts/forensic_audit.py`, and `tests/test_mega_atlas.py`.
 
 ## Consequences
-- **Positive:** Zero silent link drops, zero duplicate problems (`1,900` unique), and resilient 2-vertex-connected cross-domain graph topology (`5,808` edges).
+- **Positive:** Zero silent link drops, zero duplicate problems (`2,000` unique), and resilient 2-vertex-connected cross-domain graph topology (`6,108` edges).
 - **Trade-off:** Any newly authored record must supply at least two valid cross-references into the existing graph to preserve biconnectivity.

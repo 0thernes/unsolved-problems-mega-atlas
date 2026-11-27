@@ -3,14 +3,14 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.10.0, Alexander Stephen Donahue).
 
 Checks:
-  1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
+  1. Source dataset schema (48 typed fields), strict deduplication (2,000 unique problems),
      0 unresolved raw links, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers,
      88 Canonical Hubs, 1 connected component, 0 articulation points, 0 bridges (biconnected),
      Handshaking Lemma, and CSS/Titan/Gradient/Margin bounds.
-  2. JSON Schema Draft 2020-12 compliance on all 1,900 records (`schema/problem.schema.json`).
+  2. JSON Schema Draft 2020-12 compliance on all 2,000 records (`schema/problem.schema.json`).
   3. Cross-format parity across CSV, TSV, JSON.gz, JSONL.gz, SQLite (+FTS5 + substrate_summary +
      author_frontier_contributions), and 15-sheet XLSX.
   4. Canonical author & ORCID (`0009-0006-8168-9648`) presence across metadata/governance files.
@@ -196,7 +196,7 @@ def audit_lean(errors: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.9.0).")
+    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.10.0).")
     parser.add_argument("--sync-checksums", action="store_true", help="Regenerate CHECKSUMS.sha256 before auditing")
     parser.add_argument("--check-lean", action="store_true", help="Run Pure Lean 4.35.0 build & axiom audit")
     args = parser.parse_args()
@@ -240,7 +240,7 @@ def main() -> None:
     if not (s["cross_pillar_edges"] <= s["cross_superdomain_edges"] <= s["total_graph_edges"]):
         errors.append("Edge hierarchy invariant violated")
 
-    # 2. JSON Schema Draft 2020-12 check on all 1,900 records
+    # 2. JSON Schema Draft 2020-12 check on all 2,000 records
     prob_schema = json.loads((ROOT / "schema" / "problem.schema.json").read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(prob_schema)
     for rec in df.to_dict(orient="records"):
