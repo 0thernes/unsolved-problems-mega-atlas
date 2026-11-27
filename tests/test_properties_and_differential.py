@@ -1045,8 +1045,15 @@ def test_b07_regression_all_100_lts_ids_exist_verbatim_in_lefttosolve_mirror(mas
         assert pid in mirror_by_id, f"{r.id} primary ID {pid!r} missing from Left to Solve mirror"
         mrec = mirror_by_id[pid]
         assert mrec["kind"] in {"open", "unformalized"}, f"{r.id} ({pid}) has non-open kind={mrec['kind']}"
-        assert isinstance(mrec["solved"], bool)
+        # Daily live Left to Solve syncs can newly flag an open problem as solved upstream
+        # (e.g., LTS-010 gillibert-equal-halves on 2026-11-27) without retiring the frozen Atlas entry.
+        assert isinstance(mrec["solved"], bool), f"{r.id} ({pid}) missing boolean solved flag"
         assert pid in r.registry_source, f"{r.id} registry_source does not contain verbatim ID {pid!r}"
+    unsolved_lts = sum(
+        1 for r in lts_df.itertuples()
+        if mirror_by_id[[e["id"] for e in overrides[r.id] if e.get("relation") == "primary"][0]]["solved"] is False
+    )
+    assert unsolved_lts >= 90, f"Too many LTS-001..LTS-100 primary entries flagged solved upstream: {100 - unsolved_lts}/100"
 
 
 def test_b06_mcp_query_lefttosolve_rejects_non_string_action_and_bad_args():
@@ -1080,8 +1087,12 @@ def test_b07_regression_dashboard_links_to_lefttosolve_mirror_and_0600_utc():
     assert "13-Tool MCP Server" in dash
     lts_html = (ROOT / "data" / "external" / "lefttosolve" / "index.html").read_text(encoding="utf-8")
     lts_md = (ROOT / "docs" / "lefttosolve-programs.md").read_text(encoding="utf-8")
+    cw = json.loads(
+        (ROOT / "data" / "external" / "lefttosolve" / "atlas_crosswalk.json").read_text(encoding="utf-8")
+    )
     assert "06:00 UTC" in lts_html and "07:23 UTC" not in lts_html
     assert "07:23 UTC" not in lts_md
+    assert f"{cw['matched_atlas_problems']} Mega-Atlas problems" in lts_md
     m = re.search(r"(\d+)\s+Mega-Atlas problems linked", lts_md)
     assert m is not None and int(m.group(1)) >= 280
 

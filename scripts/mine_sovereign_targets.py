@@ -125,11 +125,16 @@ def load_lean_stated_targets(mirror_dir: Path = MIRROR_DIR) -> list[dict[str, An
             continue
         prog_name = file_to_program.get(entry.name, entry.stem)
         with entry.open(encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
+            for line_no, raw_line in enumerate(fh, start=1):
+                line = raw_line.strip()
                 if not line:
                     continue
-                rec = json.loads(line)
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError as exc:
+                    raise ValueError(f"Malformed JSON in {entry.name}:{line_no}: {exc}") from exc
+                if not isinstance(rec, dict) or "id" not in rec:
+                    raise ValueError(f"Invalid target record in {entry.name}:{line_no}: missing 'id'")
                 if rec.get("kind") == "unformalized":
                     continue
                 rec["program"] = prog_name
@@ -211,6 +216,18 @@ def mine_targets(
     include_solved: bool = False,
     limit: int = 25,
 ) -> dict[str, Any]:
+    if kind not in {"open", "known", "warmup", "any"}:
+        raise ValueError(f"Unsupported kind '{kind}'; expected one of open, known, warmup, any")
+    if limit < 0:
+        raise ValueError(f"limit must be non-negative, got {limit}")
+    if domains_filter:
+        unknown_doms = sorted(set(domains_filter) - set(DOMAIN_KEYWORDS))
+        if unknown_doms:
+            raise ValueError(
+                f"Unknown domain filter(s): {', '.join(unknown_doms)}; "
+                f"valid domains: {', '.join(sorted(DOMAIN_KEYWORDS))}"
+            )
+
     snap = load_snapshot(mirror_dir)
     cw_index = load_crosswalk_index(mirror_dir)
     all_lean = load_lean_stated_targets(mirror_dir)
