@@ -1,0 +1,671 @@
+{
+  "status": "ok",
+  "method": "exact match after NFKD, lowercase, parenthetical and stop-word removal",
+  "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review.",
+  "atlas_problems": 2000,
+  "matched_atlas_problems": 43,
+  "external_solved_signals": [],
+  "matches": [
+    {
+      "atlas_id": "NT-005",
+      "atlas_name": "Collatz Conjecture (3n + 1)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "CollatzConjecture.collatz_conjecture",
+          "title": "Collatz conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/CollatzConjecture.collatz_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-006",
+      "atlas_name": "Birch and Swinnerton-Dyer Conjecture (BSD)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-birch-and-swinnerton-dyer-conjecture",
+          "title": "Birch and Swinnerton-Dyer conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-birch-and-swinnerton-dyer-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-018",
+      "atlas_name": "Legendre's Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "LegendreConjecture.legendre_conjecture",
+          "title": "Legendre's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/LegendreConjecture.legendre_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-042",
+      "atlas_name": "Vojta's Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-vojta-s-conjecture",
+          "title": "Vojta's conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-vojta-s-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-043",
+      "atlas_name": "Bombieri-Lang Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "mo-391170",
+          "title": "A question on the Bombieri-Lang conjecture",
+          "program": "MathOverflow (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/mo-391170"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-054",
+      "atlas_name": "Hilbert's 12th Problem (Explicit Class Field Theory & General Stark Conjectures)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-hilbert-s-12th-problem",
+          "title": "Hilbert's 12th problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-hilbert-s-12th-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-066",
+      "atlas_name": "Brocard's Problem (n! + 1 = m^2)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Brocard.brocard_conjecture",
+          "title": "Brocard's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Brocard.brocard_conjecture"
+        },
+        {
+          "id": "Erdos398.erdos_398",
+          "title": "Brocard's Problem",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos398.erdos_398"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-068",
+      "atlas_name": "Schanuel's Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Schanuel.schanuel_conjecture",
+          "title": "Schanuel's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Schanuel.schanuel_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-069",
+      "atlas_name": "Four Exponentials Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Exponentials.four_exponentials_conjecture",
+          "title": "Four exponentials conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Exponentials.four_exponentials_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-074",
+      "atlas_name": "Lehmer's Mahler Measure Problem",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem",
+          "title": "Lehmer's Mahler measure problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-001",
+      "atlas_name": "Inverse Galois Problem",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "InverseGalois.inverse_galois_problem",
+          "title": "Inverse Galois problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-023",
+      "atlas_name": "Andrews-Curtis Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "AndrewsCurtis.andrews_curtis_conjecture",
+          "title": "The Andrews-Curtis conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/AndrewsCurtis.andrews_curtis_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-002",
+      "atlas_name": "Smooth 4-Dimensional Poincaré Conjecture (SPC4)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "opg-smooth-4-dimensional-poincare-conjecture",
+          "title": "Smooth 4-dimensional Poincare conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/opg-smooth-4-dimensional-poincare-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-006",
+      "atlas_name": "Resolution of Singularities in Positive Characteristic (dim ≥ 4)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "AlgebraicGeometry.resolution_of_singularities",
+          "title": "Resolution of singularities in positive characteristic.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/AlgebraicGeometry.resolution_of_singularities"
+        },
+        {
+          "id": "mo-78436",
+          "title": "Resolution of singularities in positive characteristic",
+          "program": "MathOverflow (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/mo-78436"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-029",
+      "atlas_name": "Nearby Lagrangian Conjecture (Arnold)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-nearby-lagrangian-conjecture",
+          "title": "Nearby Lagrangian conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-nearby-lagrangian-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-034",
+      "atlas_name": "Smooth 4-Dimensional Schoenflies Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "opg-smooth-4-dimensional-schoenflies-problem",
+          "title": "Smooth 4-dimensional Schoenflies problem",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/opg-smooth-4-dimensional-schoenflies-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-064",
+      "atlas_name": "Moser's Worm Problem",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "MoserWorm.mosers_worm_problem",
+          "title": "Moser's Worm Problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/MoserWorm.mosers_worm_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-065",
+      "atlas_name": "Bellman's Lost in a Forest Problem",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-bellman-s-lost-in-a-forest-problem",
+          "title": "Bellman's lost-in-a-forest problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-bellman-s-lost-in-a-forest-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-009",
+      "atlas_name": "Cycle Double Cover Conjecture (Seymour–Szekeres)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-cycle-double-cover-conjecture",
+          "title": "Cycle double cover conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-cycle-double-cover-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-020",
+      "atlas_name": "Graceful Tree Conjecture (Ringel–Kotzig)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "GracefulLabeling.graceful_tree_conjecture",
+          "title": "Graceful Tree Conjecture (Ringel–Kotzig conjecture)",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/GracefulLabeling.graceful_tree_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-025",
+      "atlas_name": "Zarankiewicz Problem (Exact Extremal Numbers for Complete Bipartite Graphs K_{s,t})",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-zarankiewicz-problem",
+          "title": "Zarankiewicz problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-zarankiewicz-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-032",
+      "atlas_name": "Frankl's Union-Closed Sets Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "opg-frankls-union-closed-sets-conjecture",
+          "title": "Frankl's union-closed sets conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/opg-frankls-union-closed-sets-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-043",
+      "atlas_name": "Rota's Basis Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-rota-s-basis-conjecture",
+          "title": "Rota's basis conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-rota-s-basis-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-046",
+      "atlas_name": "Lonely Runner Conjecture (Wills–Cusick)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "LonelyRunnerConjecture.lonely_runner_conjecture",
+          "title": "Lonely runner conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/LonelyRunnerConjecture.lonely_runner_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-050",
+      "atlas_name": "Conway's 99-Graph Problem",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Conway99Graph.conway99Graph",
+          "title": "Conway's 99-graph problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Conway99Graph.conway99Graph"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-061",
+      "atlas_name": "No-Three-in-Line Problem (Dudeney / Erdős–Roth)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-no-three-in-line-problem",
+          "title": "No-three-in-line problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-no-three-in-line-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LOG-014",
+      "atlas_name": "Tarski's Exponential Function Problem (Decidability of ℝ_exp)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "TarskiExponentialFunctionProblem.tarski_exponential_function_problem",
+          "title": "Tarski's exponential function problem.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/TarskiExponentialFunctionProblem.tarski_exponential_function_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "QC-002",
+      "atlas_name": "The Quantum PCP Conjecture (Macroscopic Room-Temperature Entanglement Hardness)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "wp-quantum-pcp-conjecture",
+          "title": "Quantum PCP conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/wp-quantum-pcp-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-001",
+      "atlas_name": "Erdős Problem #10 (All Integers as a Prime Plus a Bounded Number of Powers of Two)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos10.erdos_10",
+          "title": "Erdős Problem 10",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos10.erdos_10"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-002",
+      "atlas_name": "Erdős Problem #9 (Upper Density of Odd Integers Not p + 2^k + 2^l)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos9.erdos_9",
+          "title": "Erdős Problem 9",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos9.erdos_9"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-003",
+      "atlas_name": "Erdős Problem #11 (Odd Integers as Squarefree Plus a Power of Two)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos11.erdos_11",
+          "title": "Erdős Problem 11",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-004",
+      "atlas_name": "Erdős Problem #41 (Exact Asymptotic Upper Bound for Higher-Order B_3 Sidon Sets)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos41.erdos_41",
+          "title": "Erdős Problem 41",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos41.erdos_41"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-007",
+      "atlas_name": "Giuga's Primality Conjecture",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "opg-giugas-conjecture-on-primality",
+          "title": "Giuga's Conjecture on Primality",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/opg-giugas-conjecture-on-primality"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos30.erdos_30",
+          "title": "Erdős Problem 30",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-004",
+      "atlas_name": "Courtade–Kumar Conjecture (Most Informative Boolean Function)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "itp-courtade-kumar",
+          "title": "Courtade–Kumar conjecture (most informative Boolean function)",
+          "program": "Open problems in information theory (gokhanmergen)",
+          "kind": "unformalized",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/itp-courtade-kumar"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-016",
+      "atlas_name": "Written on the Wall II Conjecture 133 (Path Number vs. Radius & Average Leaf Distance)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture133.conjecture133",
+          "title": "Written on the Wall II - Conjecture 133",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture133.conjecture133"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-017",
+      "atlas_name": "Written on the Wall II Conjecture 96 (Independence Number vs. Average Eccentricity)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture96.conjecture96",
+          "title": "Written on the Wall II - Conjecture 96",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-018",
+      "atlas_name": "Written on the Wall II Conjecture 189 (Graph Domination & Radius Inequality)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture189.conjecture189",
+          "title": "Written on the Wall II - Conjecture 189",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture189.conjecture189"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-019",
+      "atlas_name": "Written on the Wall II Conjecture 199 (Tree Number, Connectivity & Hamiltonicity)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture199.conjecture199",
+          "title": "Written on the Wall II - Conjecture 199",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture199.conjecture199"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-020",
+      "atlas_name": "Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture372.conjecture372",
+          "title": "Written on the Wall II - Conjecture 372",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-021",
+      "atlas_name": "Written on the Wall II Conjecture 40 (Largest Induced Forest Order Bounds)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture40.conjecture40",
+          "title": "Written on the Wall II - Conjecture 40",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture40.conjecture40"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-064",
+      "atlas_name": "Pittel's Stable-Matching Hyperbola Threshold Conjecture (arXiv:2406.10319)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.2406.10319.pittel_hyperbola_threshold",
+          "title": "Pittel's stable-matching hyperbola threshold conjecture",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/Arxiv.2406.10319.pittel_hyperbola_threshold"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LTS-092",
+      "atlas_name": "Agrawal's Primality Conjecture (Strengthening AKS Deterministic Primality)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "AgrawalConjecture.agrawal_conjecture",
+          "title": "Agrawal's Primality Conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "url": "https://lefttosolve.com/p/AgrawalConjecture.agrawal_conjecture"
+        }
+      ]
+    }
+  ]
+}

@@ -41,6 +41,7 @@ jobs:
           python scripts/forensic_audit.py
           python scripts/publish_zenodo.py --dry-run
           python autoresearch/evaluate.py --verify-gates
+          python scripts/sync_lefttosolve.py --offline
           python scripts/check_readme_axioms.py
       - name: Verify full 11-format exporter runs cleanly (--skip-pdf)
         run: |

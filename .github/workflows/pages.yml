@@ -34,6 +34,7 @@ jobs:
           if [ -f results/daily_registries.json ]; then cp results/daily_registries.json _site/; fi
           if [ -f results/lefttosolve_programs.json ]; then cp results/lefttosolve_programs.json _site/; fi
           if [ -f results/daily_registry_history.jsonl ]; then cp results/daily_registry_history.jsonl _site/; fi
+          if [ -d data/external/lefttosolve ]; then mkdir -p _site/external && cp -r data/external/lefttosolve _site/external/lefttosolve; fi
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

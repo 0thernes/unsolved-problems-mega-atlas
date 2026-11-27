@@ -212,7 +212,7 @@ def test_offline_rag_hybrid_bm25_pagerank_and_graph_hops():
     assert len(exact["results"][0]["graph_neighbors"]) >= 1
 
 
-def test_mcp_stdio_server_ndjson_all_12_tools():
+def test_mcp_stdio_server_ndjson_all_13_tools():
     reqs = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
@@ -229,6 +229,7 @@ def test_mcp_stdio_server_ndjson_all_12_tools():
         {"jsonrpc": "2.0", "id": 13, "method": "tools/call", "params": {"name": "simulate_rubric_override", "arguments": {"css_weights": [0.40, 0.45, 0.05, 0.10], "problem_overrides": {"AI-001": {"tractability_2050": 5}}, "top_movers": 3}}},
         {"jsonrpc": "2.0", "id": 14, "method": "tools/call", "params": {"name": "get_live_registry_tracker", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 15, "method": "tools/call", "params": {"name": "get_live_registry_tracker", "arguments": {"program_filter": "Green", "formalized_only": True}}},
+        {"jsonrpc": "2.0", "id": 16, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": "summary"}}},
     ]
     stdin_payload = "\n".join(json.dumps(r) for r in reqs) + "\n"
     proc = subprocess.run(
@@ -250,7 +251,7 @@ def test_mcp_stdio_server_ndjson_all_12_tools():
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
         "get_top_ranked", "get_pillar_summary", "get_substrate_layer_summary",
         "get_margin_and_gradient_extremes", "list_author_frontier_contributions", "get_atlas_provenance",
-        "simulate_rubric_override", "get_live_registry_tracker",
+        "simulate_rubric_override", "get_live_registry_tracker", "query_lefttosolve_programs",
     }
     p_nt001 = json.loads(resps[3]["result"]["content"][0]["text"])
     assert p_nt001["id"] == "NT-001"
@@ -280,6 +281,9 @@ def test_mcp_stdio_server_ndjson_all_12_tools():
     tracker_green = json.loads(resps[14]["result"]["content"][0]["text"])
     assert tracker_green["lefttosolve_programs_matched"] == 1
     assert "Green" in tracker_green["lefttosolve_programs"][0]["program"]
+    lts_mirror = json.loads(resps[15]["result"]["content"][0]["text"])
+    assert lts_mirror["program_count"] == 25
+    assert lts_mirror["fetched_total"] >= 59000
 
 
 def test_mcp_stdio_server_content_length_framing():

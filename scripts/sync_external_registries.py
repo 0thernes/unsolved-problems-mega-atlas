@@ -730,7 +730,9 @@ def main() -> None:
             newline="\n",
         )
         _update_daily_history(ROOT / "results" / "daily_registry_history.jsonl", report)
-        (ROOT / "docs" / "DAILY_REGISTRY_TRACKER.md").write_text(render_markdown(report), encoding="utf-8", newline="\n")
+        md_text = render_markdown(report)
+        (ROOT / "docs" / "DAILY_REGISTRY_TRACKER.md").write_text(md_text, encoding="utf-8", newline="\n")
+        (ROOT / "docs" / "registry-delta-latest.md").write_text(md_text, encoding="utf-8", newline="\n")
 
     if args.write_report:
         out_json = ROOT / "results" / "registry_delta.json"

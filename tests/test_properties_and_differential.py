@@ -988,7 +988,11 @@ def test_b07_regression_daily_sync_workflow_and_checksum_isolation():
         "results/daily_registries.json",
         "results/lefttosolve_programs.json",
         "results/daily_registry_history.jsonl",
+        "results/lefttosolve_delta.json",
         "docs/DAILY_REGISTRY_TRACKER.md",
+        "docs/lefttosolve-programs.md",
+        "docs/registry-delta-latest.md",
+        "data/external/lefttosolve/snapshot.json",
     ):
         assert volatile_rel not in chk, f"Volatile daily file {volatile_rel} must NOT be in release-frozen CHECKSUMS.sha256!"
 

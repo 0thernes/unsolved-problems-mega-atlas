@@ -1,11 +1,11 @@
 # Model Context Protocol (MCP) Stdio Server (`v2.9.0`)
 
-Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **12 grounded scientific research tools** over the 2,000-problem Unsolved Problems Mega-Atlas. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio (enforcing a strict `1 MiB` frame cap, truncated-frame rejection, JSON-object `-32600` validation, and string-filter type checks on both framings), automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
+Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **13 grounded scientific research tools** over the 2,000-problem Unsolved Problems Mega-Atlas and the 59,396-problem daily Left to Solve sidecar mirror. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio (enforcing a strict `1 MiB` frame cap, truncated-frame rejection, JSON-object `-32600` validation, and string-filter type checks on both framings), automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
 
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
 - **License:** `Apache-2.0` (`../LICENSE-CODE`)
 
-## Exposed Tools (12)
+## Exposed Tools (13)
 
 1. `search_problems` — Hybrid BM25 + Title-Bigram + PageRank RAG search with pillar/superdomain/flag filters (enforced even on exact-ID queries) & 1-hop graph expansion.
 2. `get_problem` — Complete 48-field structured dossier by exact Problem ID + 1-hop graph neighbors.
@@ -19,6 +19,7 @@ Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **12
 10. `get_atlas_provenance` — Author/ORCID, Lean 4.35.0 software-model audit status and scope (`103` audited of `117` declarations in `lean/`; the `9` Palomar comparator targets pass `6` kernel checks across `5` distinct implementations), dual license, and summary stats.
 11. `simulate_rubric_override` — Community rubric sensitivity simulator returning Spearman `rho`, Kendall `tau`, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers under custom CSS weights or per-problem score overrides (canonical `(-css, -titan, -deg, id)` tie-break).
 12. `get_live_registry_tracker` — Returns the daily-synced tracker (`06:00 UTC` via `.github/workflows/daily-registry-sync.yml`) covering all `16` global open-problem registries and all `25` mathematical programs on Left to Solve (`https://lefttosolve.com/programs`), with optional `program_filter` and `formalized_only` filters.
+13. `query_lefttosolve_programs` — Offline explorer over the full daily-mirrored `59,396`-problem Left to Solve 25-program JSONL catalog (`data/external/lefttosolve/`): returns `solved_by_kind` summaries and daily deltas (`action="summary"`), filters mirrored metadata (`action="search"`), or inspects exact-normalised-title candidate matches against all `2,000` Mega-Atlas problems (`action="crosswalk"`).
 
 ## Client Configuration (Claude Code / Antigravity / Cursor / Gemini CLI)
 

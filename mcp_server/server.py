@@ -9,7 +9,7 @@ Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC st
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
 (auto-built deterministically on first run or version upgrade).
 
-Exposes 12 grounded scientific research tools to Claude Code, Antigravity,
+Exposes 13 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
   1. search_problems                  — Hybrid BM25 + bigram + PageRank RAG + 1-hop neighbors
   2. get_problem                      — Full problem dossier by exact Problem ID
@@ -23,6 +23,7 @@ Cursor, Gemini CLI, and autonomous research agents:
  10. get_atlas_provenance             — ORCID, Lean 4.35.0 audit status and scope, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
  11. simulate_rubric_override         — Community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard, movers & Quadrant shifts)
  12. get_live_registry_tracker        — Daily-synced 16 public open-problem trackers & all 25 Left to Solve mathematical fronts (`lefttosolve.com/programs`)
+ 13. query_lefttosolve_programs       — Offline explorer over the full daily-mirrored 59,396-problem Left to Solve 25-program JSONL catalog (`data/external/lefttosolve/`) & candidate Atlas crosswalk
 """
 
 from __future__ import annotations
@@ -207,7 +208,179 @@ TOOLS: List[Dict[str, Any]] = [
             },
         },
     },
+    {
+        "name": "query_lefttosolve_programs",
+        "description": "Query the full daily-synced offline JSONL metadata mirror of all 25 Left to Solve program lists (59,396 problems in data/external/lefttosolve/): returns program summary with solved_by_kind disaggregation + daily delta, searches mirrored problem metadata by program/query/kind/solved/field/difficulty, or inspects exact-normalised-title candidate matches against the 2,000 Mega-Atlas problems.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "enum": ["summary", "search", "crosswalk"],
+                    "default": "summary",
+                    "description": "'summary' for all 25 programs & daily delta, 'search' to filter problems across program JSONL files, 'crosswalk' for candidate Atlas matches.",
+                },
+                "program": {"type": "string", "description": "Optional program name or slug substring filter (for 'search')"},
+                "query": {"type": "string", "description": "Optional case-insensitive title/id substring filter (for 'search' or 'crosswalk')"},
+                "kind": {
+                    "type": "string",
+                    "enum": ["open", "known", "warmup", "unformalized"],
+                    "description": "Optional Left to Solve kind filter (for 'search')",
+                },
+                "solved": {"type": "boolean", "description": "Optional upstream solved flag filter (for 'search')"},
+                "field": {"type": "string", "description": "Optional mathematical field substring filter (for 'search')"},
+                "min_difficulty": {"type": "integer", "minimum": 0, "maximum": 100, "description": "Optional minimum difficulty score filter (for 'search')"},
+                "atlas_id": {"type": "string", "description": "Optional exact Mega-Atlas Problem ID filter (for 'crosswalk', e.g. NT-005)"},
+                "limit": {"type": "integer", "minimum": 1, "maximum": 100, "default": 20},
+            },
+        },
+    },
 ]
+
+
+def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
+    lts_dir = ROOT / "data" / "external" / "lefttosolve"
+    snap_path = lts_dir / "snapshot.json"
+    if not snap_path.exists():
+        raise ValueError("Left to Solve mirror not found (run: python scripts/sync_lefttosolve.py --live)")
+    snap = json.loads(snap_path.read_text(encoding="utf-8"))
+    action = str(args.get("action", "summary")).strip().lower()
+    if action not in {"summary", "search", "crosswalk"}:
+        raise ValueError(f"Unsupported action '{action}'; expected 'summary', 'search', or 'crosswalk'")
+
+    if action == "summary":
+        delta_path = ROOT / "results" / "lefttosolve_delta.json"
+        delta = json.loads(delta_path.read_text(encoding="utf-8")) if delta_path.exists() else None
+        changes_path = lts_dir / "CHANGES.jsonl"
+        recent_changes: List[Dict[str, Any]] = []
+        if changes_path.exists():
+            lines = [ln for ln in changes_path.read_text(encoding="utf-8").splitlines() if ln.strip()]
+            recent_changes = [json.loads(ln) for ln in lines[-10:]]
+        return {
+            "source": snap["source"],
+            "retrieved_utc": snap["retrieved_utc"],
+            "reported_total": snap["reported_total"],
+            "fetched_total": snap["fetched_total"],
+            "program_count": len(snap["programs"]),
+            "catalog": snap.get("catalog", {}),
+            "solved_by_kind": snap.get("solved_by_kind", {}),
+            "upstream": snap.get("upstream", {}),
+            "crosswalk_matches": snap.get("crosswalk_matches", 0),
+            "policy": snap.get("policy", ""),
+            "note": "Sidecar daily metadata mirror only; 'solved' (disaggregated in solved_by_kind) and 'Lean-stated' flags are Left to Solve's own and are not re-verified here; never mutates the frozen 2,000-problem Mega-Atlas.",
+            "latest_delta": delta,
+            "recent_daily_runs": recent_changes,
+            "programs": snap["programs"],
+        }
+
+    if action == "crosswalk":
+        cw_path = lts_dir / "atlas_crosswalk.json"
+        cw = json.loads(cw_path.read_text(encoding="utf-8")) if cw_path.exists() else {"matches": []}
+        matches = list(cw.get("matches", []))
+        atlas_id = args.get("atlas_id")
+        if atlas_id is not None:
+            if not isinstance(atlas_id, str):
+                raise ValueError("Argument 'atlas_id' must be a string")
+            aid_u = atlas_id.strip().upper()
+            matches = [m for m in matches if str(m.get("atlas_id", "")).upper() == aid_u]
+        q_raw = args.get("query")
+        if q_raw is not None:
+            if not isinstance(q_raw, str):
+                raise ValueError("Argument 'query' must be a string")
+            if len(q_raw) > MAX_QUERY_CHARS:
+                raise ValueError(f"Argument 'query' exceeds {MAX_QUERY_CHARS} characters")
+            q_low = q_raw.strip().lower()
+            if q_low:
+                matches = [
+                    m for m in matches
+                    if q_low in str(m.get("atlas_name", "")).lower()
+                    or q_low in str(m.get("atlas_id", "")).lower()
+                    or any(q_low in str(x.get("title", "")).lower() or q_low in str(x.get("program", "")).lower() for x in m.get("lefttosolve", []))
+                ]
+        limit = _parse_clamped_int(args.get("limit"), 50, 1, 100, "limit")
+        return {
+            "retrieved_utc": snap["retrieved_utc"],
+            "method": cw.get("method", ""),
+            "policy": cw.get("policy", "Advisory only; automatic exact-normalised-title candidates."),
+            "external_solved_signals": cw.get("external_solved_signals", []),
+            "total_matched": len(matches),
+            "returned": min(len(matches), limit),
+            "matches": matches[:limit],
+        }
+
+    prog_filter = args.get("program")
+    if prog_filter is not None and not isinstance(prog_filter, str):
+        raise ValueError("Argument 'program' must be a string")
+    q_raw = args.get("query")
+    if q_raw is not None:
+        if not isinstance(q_raw, str):
+            raise ValueError("Argument 'query' must be a string")
+        if len(q_raw) > MAX_QUERY_CHARS:
+            raise ValueError(f"Argument 'query' exceeds {MAX_QUERY_CHARS} characters")
+    kind_filter = args.get("kind")
+    if kind_filter is not None and kind_filter not in {"open", "known", "warmup", "unformalized"}:
+        raise ValueError(f"Unsupported kind '{kind_filter}'")
+    solved_filter = args.get("solved")
+    if solved_filter is not None and not isinstance(solved_filter, bool):
+        raise ValueError("Argument 'solved' must be a boolean")
+    field_filter = args.get("field")
+    if field_filter is not None and not isinstance(field_filter, str):
+        raise ValueError("Argument 'field' must be a string")
+    min_diff = (
+        _parse_clamped_int(args.get("min_difficulty"), 0, 0, 100, "min_difficulty")
+        if args.get("min_difficulty") is not None
+        else None
+    )
+    limit = _parse_clamped_int(args.get("limit"), 20, 1, 100, "limit")
+
+    p_low = prog_filter.strip().lower() if prog_filter else ""
+    q_low = q_raw.strip().lower() if q_raw else ""
+    f_low = field_filter.strip().lower() if field_filter else ""
+
+    selected_programs = [
+        p for p in snap["programs"]
+        if not p_low or p_low in p["program"].lower() or p_low in p["slug"].lower()
+    ]
+    results: List[Dict[str, Any]] = []
+    total_matches = 0
+    for prog in selected_programs:
+        pname = prog["program"]
+        for rel in prog.get("files", []):
+            fpath = lts_dir / rel
+            if not fpath.exists():
+                continue
+            with fpath.open("r", encoding="utf-8") as fh:
+                for line in fh:
+                    if not line.strip():
+                        continue
+                    row = json.loads(line)
+                    if kind_filter is not None and row.get("kind") != kind_filter:
+                        continue
+                    if solved_filter is not None and bool(row.get("solved")) is not solved_filter:
+                        continue
+                    if min_diff is not None:
+                        diff_val = row.get("difficulty")
+                        if not isinstance(diff_val, (int, float)) or diff_val < min_diff:
+                            continue
+                    if f_low:
+                        fields = row.get("fields") or []
+                        if not any(f_low in str(fl).lower() for fl in fields):
+                            continue
+                    if q_low:
+                        if q_low not in str(row.get("title", "")).lower() and q_low not in str(row.get("id", "")).lower():
+                            continue
+                    total_matches += 1
+                    if len(results) < limit:
+                        item = dict(row)
+                        item["program"] = pname
+                        results.append(item)
+    return {
+        "retrieved_utc": snap["retrieved_utc"],
+        "programs_searched": len(selected_programs),
+        "total_matches": total_matches,
+        "returned": len(results),
+        "results": results,
+    }
 
 
 def _query_db(sql: str, params: tuple[Any, ...] = ()) -> List[Dict[str, Any]]:
@@ -442,6 +615,8 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             "lefttosolve_programs": progs,
             "registries": regs,
         }
+    if name == "query_lefttosolve_programs":
+        return _query_lefttosolve(args)
     raise ValueError(f"Unknown tool: {name}")
 
 
