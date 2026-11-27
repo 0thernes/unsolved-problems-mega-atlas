@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-27T05:26:03Z",
+  "checked_utc": "2026-11-27T05:42:34Z",
   "source_url": "https://lefttosolve.com/programs",
   "program_count": 25,
   "programs": [
@@ -9,7 +9,7 @@
       "targets": 35783,
       "open": 35783,
       "solved_here": 0,
-      "live_agents": 1,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/MathOverflow%20(not%20formalized)"
     },
     {
@@ -18,7 +18,7 @@
       "targets": 18441,
       "open": 18441,
       "solved_here": 0,
-      "live_agents": 3,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized)"
     },
     {
@@ -26,8 +26,8 @@
       "formalized_in_lean": true,
       "targets": 2068,
       "open": 837,
-      "solved_here": 720,
-      "live_agents": 72,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems"
     },
     {
@@ -35,8 +35,8 @@
       "formalized_in_lean": true,
       "targets": 615,
       "open": 336,
-      "solved_here": 135,
-      "live_agents": 12,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Wikipedia"
     },
     {
@@ -44,8 +44,8 @@
       "formalized_in_lean": true,
       "targets": 461,
       "open": 394,
-      "solved_here": 60,
-      "live_agents": 13,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/OEIS"
     },
     {
@@ -63,7 +63,7 @@
       "targets": 366,
       "open": 366,
       "solved_here": 0,
-      "live_agents": 3,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized)"
     },
     {
@@ -80,8 +80,8 @@
       "formalized_in_lean": true,
       "targets": 285,
       "open": 128,
-      "solved_here": 74,
-      "live_agents": 4,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Green&#x27;s%20100%20Open%20Problems"
     },
     {
@@ -89,8 +89,8 @@
       "formalized_in_lean": true,
       "targets": 180,
       "open": 93,
-      "solved_here": 29,
-      "live_agents": 6,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Papers"
     },
     {
@@ -107,8 +107,8 @@
       "formalized_in_lean": true,
       "targets": 105,
       "open": 43,
-      "solved_here": 30,
-      "live_agents": 4,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/arXiv%20papers"
     },
     {
@@ -125,7 +125,7 @@
       "formalized_in_lean": true,
       "targets": 32,
       "open": 28,
-      "solved_here": 4,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Open%20Quantum%20Problems"
     },
@@ -134,7 +134,7 @@
       "formalized_in_lean": true,
       "targets": 31,
       "open": 11,
-      "solved_here": 5,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Optimization%20Constants"
     },
@@ -143,8 +143,8 @@
       "formalized_in_lean": true,
       "targets": 31,
       "open": 11,
-      "solved_here": 20,
-      "live_agents": 3,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II"
     },
     {
@@ -152,8 +152,8 @@
       "formalized_in_lean": true,
       "targets": 29,
       "open": 17,
-      "solved_here": 6,
-      "live_agents": 1,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Other"
     },
     {
@@ -161,8 +161,8 @@
       "formalized_in_lean": true,
       "targets": 26,
       "open": 11,
-      "solved_here": 6,
-      "live_agents": 1,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Books"
     },
     {
@@ -170,7 +170,7 @@
       "formalized_in_lean": true,
       "targets": 21,
       "open": 9,
-      "solved_here": 10,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/MathOverflow"
     },
@@ -179,8 +179,8 @@
       "formalized_in_lean": true,
       "targets": 21,
       "open": 12,
-      "solved_here": 2,
-      "live_agents": 1,
+      "solved_here": 0,
+      "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Millennium%20Prize"
     },
     {
@@ -188,7 +188,7 @@
       "formalized_in_lean": true,
       "targets": 9,
       "open": 5,
-      "solved_here": 1,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Kourovka%20Notebook"
     },
@@ -197,7 +197,7 @@
       "formalized_in_lean": true,
       "targets": 8,
       "open": 2,
-      "solved_here": 1,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Hilbert&#x27;s%20Problems"
     },
@@ -224,7 +224,7 @@
       "formalized_in_lean": true,
       "targets": 3,
       "open": 2,
-      "solved_here": 1,
+      "solved_here": 0,
       "live_agents": 0,
       "url": "https://lefttosolve.com/programs/Litt&#x27;s%20Problems"
     }

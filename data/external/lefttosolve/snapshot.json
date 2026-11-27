@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "source": "https://lefttosolve.com/programs",
   "api": "https://lefttosolve.com/api/problems",
-  "retrieved_utc": "2026-11-27T03:42:15Z",
+  "retrieved_utc": "2026-11-27T05:42:29Z",
   "kept_fields": [
     "id",
     "title",
@@ -17,8 +17,8 @@
   "crosswalk_matches": 199,
   "solved_by_kind": {
     "open": 0,
-    "known": 814,
-    "warmup": 155,
+    "known": 196,
+    "warmup": 13,
     "unformalized": 0
   },
   "reported_total": 59396,
@@ -139,11 +139,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 2068,
-      "solved": 624,
+      "solved": 164,
       "solved_by_kind": {
         "open": 0,
-        "known": 582,
-        "warmup": 42,
+        "known": 154,
+        "warmup": 10,
         "unformalized": 0
       },
       "with_prize": 211,
@@ -171,11 +171,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 615,
-      "solved": 116,
+      "solved": 2,
       "solved_by_kind": {
         "open": 0,
-        "known": 84,
-        "warmup": 32,
+        "known": 0,
+        "warmup": 2,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -203,11 +203,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 461,
-      "solved": 59,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 13,
-        "warmup": 46,
+        "known": 0,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -331,11 +331,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 285,
-      "solved": 70,
+      "solved": 36,
       "solved_by_kind": {
         "open": 0,
-        "known": 69,
-        "warmup": 1,
+        "known": 36,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -363,11 +363,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 180,
-      "solved": 24,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 16,
-        "warmup": 8,
+        "known": 0,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -427,11 +427,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 105,
-      "solved": 26,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 19,
-        "warmup": 7,
+        "known": 0,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -491,11 +491,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 32,
-      "solved": 4,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
         "known": 0,
-        "warmup": 4,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -523,11 +523,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 31,
-      "solved": 3,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 2,
-        "warmup": 1,
+        "known": 0,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -555,11 +555,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 31,
-      "solved": 19,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 12,
-        "warmup": 7,
+        "known": 0,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -583,10 +583,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 29,
-      "solved": 6,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 6,
+        "known": 0,
         "warmup": 0,
         "unformalized": 0
       },
@@ -615,10 +615,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 26,
-      "solved": 5,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 5,
+        "known": 0,
         "warmup": 0,
         "unformalized": 0
       },
@@ -645,11 +645,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 21,
-      "solved": 9,
+      "solved": 6,
       "solved_by_kind": {
         "open": 0,
-        "known": 5,
-        "warmup": 4,
+        "known": 6,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -677,11 +677,11 @@
         "unformalized": 0
       },
       "formalized_in_lean": 21,
-      "solved": 2,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
         "known": 0,
-        "warmup": 2,
+        "warmup": 0,
         "unformalized": 0
       },
       "with_prize": 0,
@@ -830,10 +830,10 @@
         "unformalized": 0
       },
       "formalized_in_lean": 3,
-      "solved": 1,
+      "solved": 0,
       "solved_by_kind": {
         "open": 0,
-        "known": 1,
+        "known": 0,
         "warmup": 0,
         "unformalized": 0
       },

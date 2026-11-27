@@ -7,136 +7,6 @@
   "curated_override_problems": 186,
   "external_solved_signals": [
     {
-      "atlas_id": "NT-016",
-      "atlas_name": "Elliott-Halberstam Conjecture",
-      "lts_id": "ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville",
-      "lts_title": "Elliott–Halberstam conjecture — friedlander granville",
-      "program": "Wikipedia",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
-    },
-    {
-      "atlas_id": "ALG-001",
-      "atlas_name": "Inverse Galois Problem",
-      "lts_id": "InverseGalois.inverse_galois_problem.variants.abelian",
-      "lts_title": "Inverse Galois problem — abelian",
-      "program": "Wikipedia",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
-    },
-    {
-      "atlas_id": "ALG-001",
-      "atlas_name": "Inverse Galois Problem",
-      "lts_id": "InverseGalois.inverse_galois_problem.variants.cyclic",
-      "lts_title": "Inverse Galois problem — cyclic",
-      "program": "Wikipedia",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
-    },
-    {
-      "atlas_id": "ALG-045",
-      "atlas_name": "Auslander-Reiten Conjecture",
-      "lts_id": "AuslanderReiten.auslander_reiten.variants.regular_local",
-      "lts_title": "The Auslander-Reiten conjecture — regular local",
-      "program": "Papers",
-      "kind": "warmup",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
-    },
-    {
-      "atlas_id": "XNT-003",
-      "atlas_name": "Erdős Problem #11 (Odd Integers as Squarefree Plus a Power of Two)",
-      "lts_id": "Erdos11.erdos_11.variants.finite_bound1",
-      "lts_title": "Erdős Problem 11 — finite bound1",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
-    },
-    {
-      "atlas_id": "XNT-004",
-      "atlas_name": "Erdős Problem #41 (Exact Asymptotic Upper Bound for Higher-Order B_3 Sidon Sets)",
-      "lts_id": "Erdos41.erdos_41.variants.pairwise",
-      "lts_title": "Erdős Problem 41 — pairwise",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.balogh_furedi_roy",
-      "lts_title": "Erdős Problem 30 — balogh furedi roy",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.carter_hunter_obryant",
-      "lts_title": "Erdős Problem 30 — carter hunter obryant",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.erdos_turan",
-      "lts_title": "Erdős Problem 30 — erdos turan",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.isEquivalent_sqrt",
-      "lts_title": "Erdős Problem 30 — isEquivalent sqrt",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.lindstrom",
-      "lts_title": "Erdős Problem 30 — lindstrom",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.obryant",
-      "lts_title": "Erdős Problem 30 — obryant",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
-    },
-    {
-      "atlas_id": "XNT-036",
-      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "lts_id": "Erdos30.erdos_30.variants.singer",
-      "lts_title": "Erdős Problem 30 — singer",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
-    },
-    {
       "atlas_id": "XCOMB-026",
       "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
       "lts_id": "Erdos23.blowupC5_tight",
@@ -145,26 +15,6 @@
       "kind": "warmup",
       "relation": "variant",
       "url": "https://lefttosolve.com/p/Erdos23.blowupC5_tight"
-    },
-    {
-      "atlas_id": "XCOMB-026",
-      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
-      "lts_id": "Erdos23.erdos_23.variants.n1",
-      "lts_title": "Erdős Problem 23 — n1",
-      "program": "Erdős Problems",
-      "kind": "warmup",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
-    },
-    {
-      "atlas_id": "XCOMB-026",
-      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
-      "lts_id": "Erdos23.erdos_23.variants.n5_tight",
-      "lts_title": "Erdős Problem 23 — n5 tight",
-      "program": "Erdős Problems",
-      "kind": "known",
-      "relation": "variant",
-      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
     }
   ],
   "matches": [
@@ -387,7 +237,7 @@
           "title": "Elliott–Halberstam conjecture — friedlander granville",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
@@ -1362,7 +1212,7 @@
           "title": "Inverse Galois problem — abelian",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
@@ -1392,7 +1242,7 @@
           "title": "Inverse Galois problem — cyclic",
           "program": "Wikipedia",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
@@ -1426,7 +1276,7 @@
           "title": "Zariski Cancellation — dim one",
           "program": "arXiv papers",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "related",
           "via": "curated-override",
           "url": "https://lefttosolve.com/p/Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one"
@@ -1599,7 +1449,7 @@
           "title": "The Auslander-Reiten conjecture — regular local",
           "program": "Papers",
           "kind": "warmup",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
@@ -3559,7 +3409,7 @@
           "title": "Erdős Problem 11 — finite bound1",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
@@ -3626,7 +3476,7 @@
           "title": "Erdős Problem 41 — pairwise",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
@@ -3890,7 +3740,7 @@
           "title": "Erdős Problem 30 — balogh furedi roy",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
@@ -3900,7 +3750,7 @@
           "title": "Erdős Problem 30 — carter hunter obryant",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
@@ -3910,7 +3760,7 @@
           "title": "Erdős Problem 30 — erdos turan",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
@@ -3920,7 +3770,7 @@
           "title": "Erdős Problem 30 — isEquivalent sqrt",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
@@ -3930,7 +3780,7 @@
           "title": "Erdős Problem 30 — lindstrom",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
@@ -3940,7 +3790,7 @@
           "title": "Erdős Problem 30 — obryant",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
@@ -3950,7 +3800,7 @@
           "title": "Erdős Problem 30 — singer",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
@@ -4184,7 +4034,7 @@
           "title": "Erdős Problem 23 — n1",
           "program": "Erdős Problems",
           "kind": "warmup",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
@@ -4204,7 +4054,7 @@
           "title": "Erdős Problem 23 — n5 tight",
           "program": "Erdős Problems",
           "kind": "known",
-          "solved": true,
+          "solved": false,
           "relation": "variant",
           "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
