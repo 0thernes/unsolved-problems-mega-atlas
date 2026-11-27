@@ -1,11 +1,11 @@
 # Model Context Protocol (MCP) Stdio Server (`v2.8.0`)
 
-Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **11 grounded scientific research tools** over the 1,900-problem Unsolved Problems Mega-Atlas. Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio (`1 MiB` frame ceiling), automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
+Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **12 grounded scientific research tools** over the 1,900-problem Unsolved Problems Mega-Atlas and the daily-synced Left to Solve 25-program metadata mirror (`59,396` problems). Speaks both **newline-delimited JSON-RPC (NDJSON)** and **`Content-Length:` framed** MCP/LSP stdio (`1 MiB` frame ceiling), automatically builds/refreshes `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite` on demand on fresh clones or version upgrades, clamps `top`/`hops`/`limit` bounds, and validates all required arguments.
 
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
 - **License:** `Apache-2.0` (`../LICENSE-CODE`)
 
-## Exposed Tools (11)
+## Exposed Tools (12)
 
 1. `search_problems` — Hybrid BM25 + Title-Bigram + PageRank RAG search with pillar/superdomain/flag filters & 1-hop graph expansion.
 2. `get_problem` — Complete 48-field structured dossier by exact Problem ID + 1-hop graph neighbors.
@@ -18,6 +18,7 @@ Zero-dependency JSON-RPC 2.0 stdio server (`mcp_server/server.py`) exposing **11
 9. `list_author_frontier_contributions` — 17 companion archive rows (`0thernes-research-archive`) mapped to atlas IDs, each naming its results and their kind in the archive ledger [RESULTS.md](https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md) (only section A records answers to open questions from the literature), with COI, non-peer-reviewed status, and `0/1,900` atlas problems solved.
 10. `get_atlas_provenance` — Author/ORCID, Lean 4.35.0 audit status and scope (103 audited theorems; the 9 Palomar comparator targets are also checked by six kernel checks, five distinct implementations), dual license, and summary stats.
 11. `simulate_rubric_override` — Community rubric sensitivity simulator returning Spearman `rho`, Kendall `tau`, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers under custom CSS weights or per-problem score overrides.
+12. `query_lefttosolve_programs` — Offline explorer over the daily-synced Left to Solve 25-program metadata mirror (`data/external/lefttosolve/`): `action="summary"` (all 25 programs + `solved_by_kind` + daily delta + `CHANGES.jsonl`), `action="search"` (filter by `program`, `query`, `kind`, `solved`, `field`, `min_difficulty`, `limit`), and `action="crosswalk"` (advisory exact-normalised-title candidate matches against the 1,900 Mega-Atlas problems).
 
 ## Client Configuration (Claude Code / Antigravity / Cursor / Gemini CLI)
 

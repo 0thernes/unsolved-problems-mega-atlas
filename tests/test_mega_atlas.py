@@ -210,7 +210,7 @@ def test_offline_rag_hybrid_bm25_pagerank_and_graph_hops():
     assert len(exact["results"][0]["graph_neighbors"]) >= 1
 
 
-def test_mcp_stdio_server_ndjson_all_11_tools():
+def test_mcp_stdio_server_ndjson_all_12_tools():
     reqs = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
@@ -225,6 +225,7 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
         {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "list_author_frontier_contributions", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 12, "method": "tools/call", "params": {"name": "get_atlas_provenance", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 13, "method": "tools/call", "params": {"name": "simulate_rubric_override", "arguments": {"css_weights": [0.40, 0.45, 0.05, 0.10], "problem_overrides": {"AI-001": {"tractability_2050": 5}}, "top_movers": 3}}},
+        {"jsonrpc": "2.0", "id": 14, "method": "tools/call", "params": {"name": "query_lefttosolve_programs", "arguments": {"action": "summary"}}},
     ]
     stdin_payload = "\n".join(json.dumps(r) for r in reqs) + "\n"
     proc = subprocess.run(
@@ -246,7 +247,7 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
         "get_top_ranked", "get_pillar_summary", "get_substrate_layer_summary",
         "get_margin_and_gradient_extremes", "list_author_frontier_contributions", "get_atlas_provenance",
-        "simulate_rubric_override",
+        "simulate_rubric_override", "query_lefttosolve_programs",
     }
     p_nt001 = json.loads(resps[3]["result"]["content"][0]["text"])
     assert p_nt001["id"] == "NT-001"
@@ -270,6 +271,9 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
     assert sim["problems_evaluated"] == 1900
     assert 0.5 < sim["rank_correlation"]["spearman_rho"] < 1.0
     assert len(sim["biggest_risers"]) == 3
+    lts_sum = json.loads(resps[13]["result"]["content"][0]["text"])
+    assert lts_sum["program_count"] >= 20
+    assert lts_sum["fetched_total"] >= 50000
 
 
 def test_mcp_stdio_server_content_length_framing():

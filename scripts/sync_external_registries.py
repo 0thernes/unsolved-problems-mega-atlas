@@ -77,6 +77,129 @@ TARGETS: tuple[dict[str, Any], ...] = (
             r"proofatlas",
         ],
     },
+    {
+        "key": "lefttosolve_api",
+        "name": "Left to Solve Programs API (lefttosolve.com/programs)",
+        "url": "https://lefttosolve.com/api/stats",
+        "format": "json",
+        "baseline_tracked_count": 59396,
+        "count_patterns": [],
+    },
+    {
+        "key": "deepmind_formal_conjectures",
+        "name": "Google DeepMind formal-conjectures (GitHub)",
+        "url": "https://github.com/google-deepmind/formal-conjectures",
+        "count_patterns": [
+            r"formal[- ]conjectures",
+            r"lean\s*4",
+            r"(?P<count>\d{1,3}(?:,\d{3})+|\d{3,5})\s+(?:commits?|problems?|conjectures?)",
+        ],
+    },
+    {
+        "key": "kourovka_notebook",
+        "name": "Kourovka Notebook — Unsolved Problems in Group Theory (arXiv:1401.0300)",
+        "url": "https://arxiv.org/abs/1401.0300",
+        "baseline_tracked_count": 1000,
+        "count_patterns": [
+            r"kourovka\s+notebook",
+            r"(?P<count>\d+(?:st|nd|rd|th))\s+edition",
+            r"v\d+\s*\([^)]+\)",
+        ],
+    },
+    {
+        "key": "kirby_list",
+        "name": "Kirby's Problem List (Low-Dimensional Topology)",
+        "url": "https://en.wikipedia.org/wiki/Kirby%27s_problem_list",
+        "baseline_tracked_count": 360,
+        "count_patterns": [
+            r"kirby'?s\s+problem\s+list",
+            r"low[- ]dimensional\s+topology",
+            r"robion\s+kirby",
+        ],
+    },
+    {
+        "key": "open_problem_garden",
+        "name": "Open Problem Garden",
+        "url": "http://www.openproblemgarden.org/",
+        "baseline_tracked_count": 650,
+        "count_patterns": [
+            r"open\s+problem\s+garden",
+            r"(?P<count>\d{3,4})\s+(?:open\s+)?problems?",
+        ],
+    },
+    {
+        "key": "wikipedia_unsolved_math",
+        "name": "Wikipedia — List of Unsolved Problems in Mathematics",
+        "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+        "count_patterns": [
+            r"unsolved\s+problems\s+in\s+mathematics",
+            r"millennium\s+prize\s+problems",
+            r"problems\s+solved\s+since\s+1995",
+        ],
+    },
+    {
+        "key": "wikipedia_unsolved_physics",
+        "name": "Wikipedia — List of Unsolved Problems in Physics",
+        "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+        "count_patterns": [
+            r"unsolved\s+problems\s+in\s+physics",
+            r"quantum\s+gravity",
+            r"dark\s+matter",
+        ],
+    },
+    {
+        "key": "wikipedia_unsolved_cs",
+        "name": "Wikipedia — List of Unsolved Problems in Computer Science",
+        "url": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science",
+        "count_patterns": [
+            r"unsolved\s+problems\s+in\s+computer\s+science",
+            r"p\s+versus\s+np",
+            r"unique\s+games",
+        ],
+    },
+    {
+        "key": "wikipedia_hilbert_problems",
+        "name": "Wikipedia — Hilbert's Problems (1900)",
+        "url": "https://en.wikipedia.org/wiki/Hilbert%27s_problems",
+        "baseline_tracked_count": 23,
+        "count_patterns": [
+            r"hilbert'?s\s+problems",
+            r"riemann\s+hypothesis",
+            r"(?:unresolved|open|partially\s+resolved)",
+        ],
+    },
+    {
+        "key": "wikipedia_smale_problems",
+        "name": "Wikipedia — Smale's Problems (1998)",
+        "url": "https://en.wikipedia.org/wiki/Smale%27s_problems",
+        "baseline_tracked_count": 18,
+        "count_patterns": [
+            r"smale'?s\s+problems",
+            r"poincar[eé]\s+conjecture",
+            r"navier[–-]stokes",
+        ],
+    },
+    {
+        "key": "nae_grand_challenges",
+        "name": "National Academy of Engineering (NAE Grand Challenges)",
+        "url": "https://www.nae.edu/",
+        "baseline_tracked_count": 14,
+        "count_patterns": [
+            r"national\s+academy\s+of\s+engineering",
+            r"grand\s+challenges",
+            r"engineering",
+        ],
+    },
+    {
+        "key": "philpapers_survey",
+        "name": "PhilPapers Survey (Philosophy Open Questions)",
+        "url": "https://survey2020.philpeople.org/",
+        "baseline_tracked_count": 100,
+        "count_patterns": [
+            r"philpapers\s+survey",
+            r"(?P<count>\d{2,4})\s+(?:questions?|philosophers?)",
+        ],
+    },
 )
 
 GATE_TITLE_MARKERS = (
@@ -149,15 +272,65 @@ def parse_registry_html(target: dict[str, Any], html: str, http_status: int) -> 
     }
 
 
+def parse_registry_json(target: dict[str, Any], raw: str, http_status: int) -> dict[str, Any]:
+    """Extract verifiable public count signals from JSON registry APIs without bypassing gates."""
+    try:
+        data = json.loads(raw)
+    except Exception:
+        return parse_registry_html(target, raw, http_status)
+    if not isinstance(data, dict):
+        return {
+            "key": target["key"],
+            "name": target["name"],
+            "url": target["url"],
+            "http_status": http_status,
+            "fetch_status": "js_rendered_or_minimal",
+            "page_title": "JSON API",
+            "extracted_signals": [],
+            "editorial_action": "Unexpected JSON shape; keep committed baseline unchanged.",
+        }
+    signals: list[str] = []
+    if "catalog" in data and isinstance(data["catalog"], dict):
+        cat = data["catalog"]
+        total = sum(int(v) for v in cat.values() if isinstance(v, (int, float)))
+        signals.append(f"total={total}")
+        for k in ("open", "known", "warmup", "unformalized"):
+            if k in cat:
+                signals.append(f"{k}={cat[k]}")
+    if "solved" in data:
+        signals.append(f"solved={data['solved']}")
+    if not signals:
+        for k, v in list(data.items())[:8]:
+            if isinstance(v, (int, float, str)):
+                signals.append(f"{k}={v}")
+    return {
+        "key": target["key"],
+        "name": target["name"],
+        "url": target["url"],
+        "http_status": http_status,
+        "fetch_status": "live_checked" if http_status == 200 else "http_error_or_gated",
+        "page_title": "JSON API",
+        "text_bytes": len(raw),
+        "extracted_signals": signals[:10],
+        "potential_retirement_keywords": [],
+        "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent.",
+    }
+
+
 def fetch_target(target: dict[str, Any], timeout: int = 20) -> dict[str, Any]:
     req = urllib.request.Request(
         target["url"],
-        headers={"User-Agent": f"UnsolvedProblemsMegaAtlas/{ATLAS_VERSION} (ResearchRegistryAudit; +https://github.com/0thernes/unsolved-problems-mega-atlas)"},
+        headers={
+            "User-Agent": f"UnsolvedProblemsMegaAtlas/{ATLAS_VERSION} (ResearchRegistryAudit; +https://github.com/0thernes/unsolved-problems-mega-atlas)",
+            "Accept": "application/json" if target.get("format") == "json" else "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
+        },
         method="GET",
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read(512_000).decode("utf-8", errors="ignore")
+            if target.get("format") == "json":
+                return parse_registry_json(target, raw, int(resp.status))
             return parse_registry_html(target, raw, int(resp.status))
     except urllib.error.HTTPError as exc:
         return {

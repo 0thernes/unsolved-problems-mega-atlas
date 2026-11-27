@@ -754,7 +754,7 @@ def test_b07_regression_external_registry_delta_offline_and_gate_parser():
     rep = ser.build_delta_report(live=False)
     assert rep["mode"] == "offline"
     assert rep["committed_registries_indexed"] == 13
-    assert len(rep["registries"]) == 3
+    assert len(rep["registries"]) == len(ser.TARGETS) >= 15
 
     gated = ser.parse_registry_html(ser.TARGETS[0], "<html><title>Just a moment...</title><body>Verify you are human</body></html>", 403)
     assert gated["fetch_status"] == "js_rendered_or_gated"

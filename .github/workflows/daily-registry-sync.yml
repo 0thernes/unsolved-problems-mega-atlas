@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-name: Daily External Registry Sync (Left to Solve programs, Clay, Erdős, ProofAtlas)
+name: Daily External Registry Sync (All 25 Left to Solve Programs + 15 Public Registries)
 
 on:
   schedule:
@@ -34,7 +34,7 @@ jobs:
           pip install -e ".[dev]"
       - name: Mirror all Left to Solve program lists (fails closed on an incomplete crawl)
         run: python scripts/sync_lefttosolve.py --live
-      - name: Poll Clay, Erdős and ProofAtlas registries (advisory delta, never retires problems)
+      - name: Poll all 15 public open-problem registries (advisory delta, never retires problems)
         run: python scripts/sync_external_registries.py --live --write-report --md-out docs/registry-delta-latest.md
       - name: Verify the refreshed mirror before committing
         run: |

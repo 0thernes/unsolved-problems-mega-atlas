@@ -164,4 +164,39 @@ def test_registry_delta_latest_exists_and_baseline_preserved():
     assert "2026-11-26T13:35:56Z" in baseline
     assert "External Open-Problem Registry Delta Report" in latest
     rep = ser.build_delta_report(live=False)
-    assert rep["mode"] == "offline" and len(rep["registries"]) == 3
+    assert rep["mode"] == "offline" and len(rep["registries"]) == len(ser.TARGETS) >= 15
+
+
+def test_mcp_tool_query_lefttosolve_summary_search_and_crosswalk():
+    sys.path.insert(0, str(ROOT / "mcp_server"))
+    import server as mcp
+
+    summary = mcp.dispatch_tool("query_lefttosolve_programs", {"action": "summary"})
+    assert summary["program_count"] >= 20
+    assert summary["fetched_total"] == summary["reported_total"]
+    assert isinstance(summary["solved_by_kind"], dict)
+    assert summary["crosswalk_matches"] >= 30
+
+    search = mcp.dispatch_tool(
+        "query_lefttosolve_programs",
+        {"action": "search", "program": "Millennium", "query": "Riemann", "limit": 10},
+    )
+    assert search["programs_searched"] == 1
+    assert search["total_matches"] >= 1
+    assert all(r["url"].startswith("https://lefttosolve.com/p/") for r in search["results"])
+
+    cw = mcp.dispatch_tool("query_lefttosolve_programs", {"action": "crosswalk", "atlas_id": "NT-005"})
+    assert cw["total_matched"] == 1
+    assert cw["matches"][0]["atlas_id"] == "NT-005"
+
+
+def test_expanded_external_registry_json_parser():
+    lts_target = next(t for t in ser.TARGETS if t["key"] == "lefttosolve_api")
+    parsed = ser.parse_registry_json(
+        lts_target,
+        json.dumps({"catalog": {"open": 1939, "known": 1818, "warmup": 168, "unformalized": 55471}, "solved": 950}),
+        200,
+    )
+    assert parsed["fetch_status"] == "live_checked"
+    assert "total=59396" in parsed["extracted_signals"]
+    assert "solved=950" in parsed["extracted_signals"]
