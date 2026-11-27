@@ -132,3 +132,29 @@ def test_scaffold_escapes_quotes_and_sanitizes_project_name(tmp_path: Path):
     assert r'title: "The \"Quoted\" \\ Conjecture — Sovereign Formalization"' in fyaml
     ch = (dest / "lean" / "Challenge.lean").read_text(encoding="utf-8")
     assert "public def TargetStatement" in ch and "public theorem target_main" in ch
+
+
+def test_mine_targets_rejects_negative_limit_and_invalid_filters(tmp_path: Path):
+    with pytest.raises(ValueError, match="limit must be non-negative"):
+        mst.mine_targets(limit=-1)
+    with pytest.raises(ValueError, match="Unsupported kind"):
+        mst.mine_targets(kind="bogus")
+    with pytest.raises(ValueError, match="Unknown domain filter"):
+        mst.mine_targets(domains_filter=["quantum", "nonexistent_domain"])
+    rep_zero = mst.mine_targets(kind="open", limit=0)
+    assert rep_zero["targets"] == [] and rep_zero["total_matching"] >= 1900
+
+
+def test_load_lean_stated_targets_reports_malformed_jsonl_with_location(tmp_path: Path):
+    mirror = tmp_path / "mirror"
+    (mirror / "programs").mkdir(parents=True)
+    snap = {
+        "retrieved_utc": "2026-11-27T00:00:00Z",
+        "upstream": {"commit": "abcdef12" * 5},
+        "programs": [{"program": "Demo", "files": ["programs/bad.jsonl"]}],
+    }
+    (mirror / "snapshot.json").write_text(json.dumps(snap), encoding="utf-8")
+    (mirror / "programs" / "bad.jsonl").write_text('{"id": "ok", "kind": "open"}\n{not valid json\n', encoding="utf-8")
+    with pytest.raises(ValueError, match=r"Malformed JSON in bad\.jsonl:2"):
+        mst.load_lean_stated_targets(mirror)
+
