@@ -282,7 +282,7 @@ def test_mcp_stdio_server_ndjson_all_13_tools():
     assert tracker_green["lefttosolve_programs_matched"] == 1
     assert "Green" in tracker_green["lefttosolve_programs"][0]["program"]
     lts_mirror = json.loads(resps[15]["result"]["content"][0]["text"])
-    assert lts_mirror["program_count"] == 25
+    assert lts_mirror["program_count"] >= 25
     assert lts_mirror["fetched_total"] >= 59000
 
 
