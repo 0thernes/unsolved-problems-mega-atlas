@@ -143,7 +143,7 @@ numbers are reported.
 ## Memory & Artifact Size Budget
 
 - All git-tracked artifacts are strictly `< 5.0 MB` (Build Standard A24).
-- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to **`{html_mb:.2f} MB`** (`< 4.0 MB` budget in `v{ver}`, even at {n_rows:,} rows + 25 Left to Solve fronts) via external `charts/*.png` assets, columnar `COLS`/`ROWS` JSON, and enum dictionary encoding.
+- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to **`{html_mb:.2f} MB`** (`< 4.0 MB` budget in `v{ver}`, even at {n_rows:,} rows + live Left to Solve fronts) via external `charts/*.png` assets, columnar `COLS`/`ROWS` JSON, and enum dictionary encoding.
 """
     (ROOT / "docs" / "benchmarks.md").write_text(md, encoding="utf-8", newline="\n")
     print(f"BENCHMARK PASS: load={l_med:.4f}s (IQR {l_iqr:.4f}s) | rag={r_med:.4f}ms/q (IQR {r_iqr:.4f}ms) | diff{n_rows}={d_med:.4f}ms")

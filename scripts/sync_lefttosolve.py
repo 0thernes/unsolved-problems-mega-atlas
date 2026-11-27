@@ -84,6 +84,7 @@ CROSSWALK_EXCLUDED_PROGRAMS = {
     "MathOverflow (not formalized)",
     "Mathematics Stack Exchange (not formalized)",
     "OEIS conjectures (not formalized)",
+    "arXiv abstracts (not formalized)",
 }
 CROSSWALK_RELATIONS = {"primary", "variant", "related"}
 COMPANION_UM_URL = "https://github.com/0thernes/unsolved-mathematics"
@@ -446,10 +447,11 @@ def build_crosswalk(programs: dict[str, list[dict[str, Any]]]) -> dict[str, Any]
                         "relation": c["relation"],
                         "url": c["url"],
                     })
+    curated_progs_n = len(programs) - len(CROSSWALK_EXCLUDED_PROGRAMS & set(programs))
     return {
         "status": "ok",
         "method": (
-            "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), "
+            f"Across the {curated_progs_n} formal/curated programs (excluding raw unformalized Q&A/OEIS/arXiv-abstract streams), "
             "exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) "
             "combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json"
         ),
@@ -459,6 +461,7 @@ def build_crosswalk(programs: dict[str, list[dict[str, Any]]]) -> dict[str, Any]
             "external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications)."
         ),
         "atlas_problems": len(atlas),
+        "curated_programs_scanned": curated_progs_n,
         "matched_atlas_problems": len(matches),
         "curated_override_problems": curated_count,
         "external_solved_signals": solved_signals,
@@ -507,7 +510,7 @@ def render_report(snap: dict[str, Any], delta: dict[str, Any], crosswalk: dict[s
         f"- **Atlas crosswalk:** {snap.get('crosswalk_matches', 0)} Mega-Atlas problems linked to Left to Solve targets "
         f"({crosswalk.get('curated_override_problems', 0)} via reviewed `crosswalk_overrides.json` + exact normalized base-title matches; "
         f"`data/external/lefttosolve/atlas_crosswalk.json`; {len(signals)} non-`related` link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)",
-        f"- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics]({COMPANION_UM_URL}) (`v0.8.0`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all 25 Left to Solve programs)",
+        f"- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics]({COMPANION_UM_URL}) (`v0.8.1`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all live Left to Solve programs)",
         "",
         "| Program | Total | `open` | Lean-stated | Unformalized | Solved (by kind) | Mean difficulty | Top fields |",
         "|---|---:|---:|---:|---:|---|---:|---|",
@@ -520,6 +523,23 @@ def render_report(snap: dict[str, Any], delta: dict[str, Any], crosswalk: dict[s
             f"{p['formalized_in_lean']:,} | {p['by_kind'].get('unformalized', 0):,} | "
             f"{psbk} | {md} | {', '.join(p['top_fields']) or '—'} |"
         )
+    open_signals = [s for s in signals if s.get("kind") == "open"]
+    if open_signals:
+        out += [
+            "",
+            f"## Advisory Upstream `solved` Flags on Crosswalked `open` Targets ({len(open_signals)} — Unverified, Zero Auto-Retirement)",
+            "",
+            "Left to Solve's external automated Lean-checker flagged the following crosswalked `open` targets as `solved=true`. "
+            "These flags are **unverified third-party claims** (which can reflect formalization-statement bugs, AI prover claims, or non-peer-reviewed proofs) "
+            "and **never** retire any frozen Mega-Atlas problem without independent human and multi-kernel verification.",
+            "",
+            "| Atlas ID | Mega-Atlas Problem | Left to Solve ID | Program | Relation |",
+            "|---|---|---|---|---|",
+        ]
+        for s in open_signals:
+            out.append(
+                f"| `{s['atlas_id']}` | {s['atlas_name']} | [`{s['lts_id']}`]({s['url']}) | {s['program']} | `{s['relation']}` |"
+            )
     out += [
         "",
         "## Field semantics",
@@ -736,8 +756,8 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
   <section aria-labelledby="crosswalk-heading">
     <h2 id="crosswalk-heading">Mega-Atlas Crosswalk ({crosswalk.get("matched_atlas_problems", 0)} of {crosswalk.get("atlas_problems", 2000)} Atlas Problems)</h2>
     <p class="subtitle">
-      Reviewed curated overrides (<code>{crosswalk.get("curated_override_problems", 0)}</code> problems in <code>crosswalk_overrides.json</code>) plus automatic exact normalized base-title matches across the 22 formal/curated programs (identity-level correspondences, not statement-fidelity certifications).
-      <code>{len(signals)}</code> non-<code>related</code> link(s) carry a Left to Solve <code>solved</code> flag; zero Mega-Atlas statuses are changed.
+      Reviewed curated overrides (<code>{crosswalk.get("curated_override_problems", 0)}</code> problems in <code>crosswalk_overrides.json</code>) plus automatic exact normalized base-title matches across the {crosswalk.get("curated_programs_scanned", 22)} formal/curated programs (identity-level correspondences, not statement-fidelity certifications).
+      <code>{len(signals)}</code> non-<code>related</code> link(s) ({sum(1 for s in signals if s.get("kind") == "open")} <code>open</code>-kind) carry an unverified Left to Solve <code>solved</code> flag; zero Mega-Atlas statuses are changed.
     </p>
     <div class="controls">
       <label for="cw-filter">Filter crosswalk by Atlas ID, problem, or Lean ID:</label>

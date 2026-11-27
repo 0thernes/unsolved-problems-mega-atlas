@@ -3,11 +3,11 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.10.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.11.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
-(auto-built deterministically on first run or version upgrade).
+(auto-built atomically on first run or version upgrade).
 
 Exposes 13 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
@@ -22,8 +22,8 @@ Cursor, Gemini CLI, and autonomous research agents:
   9. list_author_frontier_contributions — 20 companion archive rows covering all 27 other audited archive entries in RESULTS.md (parent problems remain OPEN)
  10. get_atlas_provenance             — ORCID, Lean 4.35.0 audit status and scope, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
  11. simulate_rubric_override         — Community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard, movers & Quadrant shifts)
- 12. get_live_registry_tracker        — Daily-synced 16 public open-problem trackers & all 25 Left to Solve mathematical fronts (`lefttosolve.com/programs`)
- 13. query_lefttosolve_programs       — Offline explorer over the full daily-mirrored 59,396-problem Left to Solve 25-program JSONL catalog (`data/external/lefttosolve/`) & candidate Atlas crosswalk
+ 12. get_live_registry_tracker        — Daily-synced 16 public open-problem trackers & all live Left to Solve mathematical fronts (`lefttosolve.com/programs`)
+ 13. query_lefttosolve_programs       — Offline explorer over the full daily-mirrored Left to Solve JSONL catalog (`data/external/lefttosolve/`, 26 live programs / 62,790+ targets) & candidate Atlas crosswalk
 """
 
 from __future__ import annotations
@@ -199,7 +199,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "get_live_registry_tracker",
-        "description": "Return the daily-synced tracker covering all 16 global open-problem registries and all 25 mathematical programs on Left to Solve (https://lefttosolve.com/programs, 59,396 total targets / 1,939 Lean-4 open), with optional program substring and Lean-formalized-only filters.",
+        "description": "Return the daily-synced tracker covering all 16 global open-problem registries and all live mathematical programs on Left to Solve (https://lefttosolve.com/programs, 26 live fronts / 62,790+ targets / 2,549+ Lean-4 open), with optional program substring and Lean-formalized-only filters.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -210,7 +210,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "query_lefttosolve_programs",
-        "description": "Query the full daily-synced offline JSONL metadata mirror of all 25 Left to Solve program lists (59,396 problems in data/external/lefttosolve/): returns program summary with solved_by_kind disaggregation + daily delta, searches mirrored problem metadata by program/query/kind/solved/field/difficulty, or inspects exact-normalised-title candidate matches against the 2,000 Mega-Atlas problems.",
+        "description": "Query the full daily-synced offline JSONL metadata mirror of all live Left to Solve program lists (26 programs / 62,790+ problems in data/external/lefttosolve/): returns program summary with solved_by_kind disaggregation + daily delta + advisory external_solved_signals count, searches mirrored problem metadata by program/query/kind/solved/field/difficulty, or inspects exact-normalised-title & curated candidate matches against the 2,000 Mega-Atlas problems.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -218,7 +218,7 @@ TOOLS: List[Dict[str, Any]] = [
                     "type": "string",
                     "enum": ["summary", "search", "crosswalk"],
                     "default": "summary",
-                    "description": "'summary' for all 25 programs & daily delta, 'search' to filter problems across program JSONL files, 'crosswalk' for candidate Atlas matches.",
+                    "description": "'summary' for all live programs & daily delta, 'search' to filter problems across program JSONL files, 'crosswalk' for candidate Atlas matches.",
                 },
                 "program": {"type": "string", "description": "Optional program name or slug substring filter (for 'search')"},
                 "query": {"type": "string", "description": "Optional case-insensitive title/id substring filter (for 'search' or 'crosswalk')"},
@@ -255,6 +255,12 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
     if action == "summary":
         delta_path = ROOT / "results" / "lefttosolve_delta.json"
         delta = json.loads(delta_path.read_text(encoding="utf-8")) if delta_path.exists() else None
+        cw_path = lts_dir / "atlas_crosswalk.json"
+        cw_signals = (
+            json.loads(cw_path.read_text(encoding="utf-8")).get("external_solved_signals", [])
+            if cw_path.exists()
+            else []
+        )
         changes_path = lts_dir / "CHANGES.jsonl"
         recent_changes: List[Dict[str, Any]] = []
         if changes_path.exists():
@@ -270,6 +276,7 @@ def _query_lefttosolve(args: Dict[str, Any]) -> Dict[str, Any]:
             "solved_by_kind": snap.get("solved_by_kind", {}),
             "upstream": snap.get("upstream", {}),
             "crosswalk_matches": snap.get("crosswalk_matches", 0),
+            "external_solved_signals_count": len(cw_signals),
             "policy": snap.get("policy", ""),
             "note": "Sidecar daily metadata mirror only; 'solved' (disaggregated in solved_by_kind) and 'Lean-stated' flags are Left to Solve's own and are not re-verified here; never mutates the frozen 2,000-problem Mega-Atlas.",
             "latest_delta": delta,
@@ -426,8 +433,8 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             hops=hops,
         )
     if name == "get_problem":
-        pid = args.get("problem_id")
-        if not pid or not isinstance(pid, str):
+        pid = _parse_opt_str(args.get("problem_id"), "problem_id", max_len=128)
+        if not pid:
             raise ValueError("Missing required string argument: problem_id")
         hops = _parse_clamped_int(args.get("hops"), 1, 0, 1, "hops")
         res = search_atlas(problem_id=pid, hops=hops)
@@ -435,9 +442,9 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             raise ValueError(f"Problem ID not found: {pid}")
         return res["results"][0]
     if name == "compare_problems":
-        id_a = args.get("id_a")
-        id_b = args.get("id_b")
-        if not id_a or not isinstance(id_a, str) or not id_b or not isinstance(id_b, str):
+        id_a = _parse_opt_str(args.get("id_a"), "id_a", max_len=128)
+        id_b = _parse_opt_str(args.get("id_b"), "id_b", max_len=128)
+        if not id_a or not id_b:
             raise ValueError("Missing required string arguments: id_a and id_b")
         return compare_two_problems(id_a, id_b)
     if name == "list_nov2026_ai_claims":
@@ -551,7 +558,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
                     "Integer and list invariants of the atlas software model only: scoring bounds, monotonicity of CSS, Titan and leverage, "
                     "quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking lemma, a dedup bound, the AutoResearch keep/discard rule, "
                     "gradient/margin bounds, NonVacuity witnesses and AdversarialTests refutations. "
-                    f"No Lean statement refers to the {int(meta.get('total_problems', 2000)):,}-row data, its {int(meta.get('total_graph_edges', 6111)):,}-edge graph or biconnectivity (checked in Python). "
+                    f"No Lean statement refers to the {int(meta.get('total_problems', 2000)):,}-row data, its {int(meta.get('total_graph_edges', 6108)):,}-edge graph or biconnectivity (checked in Python). "
                     f"Several counted theorems are literal arithmetic identities or restate a hypothesis. Does NOT prove any of the {int(meta.get('total_problems', 2000)):,} open problems."
                 ),
             },
@@ -569,7 +576,7 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         overrides = args.get("problem_overrides")
         if overrides is not None and not isinstance(overrides, dict):
             raise ValueError("Argument 'problem_overrides' must be a JSON object")
-        label = str(args.get("label", "mcp-rubric-override"))[:120]
+        label = _parse_opt_str(args.get("label"), "label", max_len=120) or "mcp-rubric-override"
         top_movers = _parse_clamped_int(args.get("top_movers"), 5, 1, 25, "top_movers")
         return evaluate_rubric_override(
             css_weights=weights,
@@ -635,7 +642,19 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
 def handle_request(req: Dict[str, Any]) -> Dict[str, Any] | None:
     req_id = req.get("id")
     method = req.get("method", "")
-    params = req.get("params") or {}
+    raw_params = req.get("params")
+    if raw_params is None:
+        params: Dict[str, Any] = {}
+    elif isinstance(raw_params, dict):
+        params = raw_params
+    else:
+        if req_id is None:
+            return None
+        return {
+            "jsonrpc": "2.0",
+            "id": req_id,
+            "error": {"code": -32602, "message": "Invalid params: expected JSON object"},
+        }
 
     if method == "notifications/initialized":
         return None
@@ -655,7 +674,13 @@ def handle_request(req: Dict[str, Any]) -> Dict[str, Any] | None:
         return {"jsonrpc": "2.0", "id": req_id, "result": {"tools": TOOLS}}
     if method == "tools/call":
         tname = params.get("name", "")
-        targs = params.get("arguments") or {}
+        if not isinstance(tname, str) or not tname:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {"code": -32602, "message": "Invalid params: tool 'name' must be a non-empty string"},
+            }
+        targs = {} if params.get("arguments") is None else params["arguments"]
         try:
             payload = dispatch_tool(tname, targs)
             return {

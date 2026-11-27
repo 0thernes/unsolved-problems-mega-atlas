@@ -56,11 +56,12 @@ def main() -> None:
         print(res.stderr, file=sys.stderr)
         sys.exit(res.returncode)
 
+    log_pattern = re.compile(
+        r"Overfull \\hbox|Overfull \\vbox|Float too large for page|LaTeX Warning: Reference|"
+        r"LaTeX Warning: Citation|LaTeX Warning: Label .* multiply defined|Missing character"
+    )
     log_txt = (build_dir / "main.log").read_text(encoding="utf-8", errors="replace")
-    bad_lines = [
-        ln for ln in log_txt.splitlines()
-        if re.search(r"Overfull \\hbox|LaTeX Warning: Reference|LaTeX Warning: Citation|Missing character", ln)
-    ]
+    bad_lines = [ln for ln in log_txt.splitlines() if log_pattern.search(ln)]
     if bad_lines:
         print(f"WARNING: Found {len(bad_lines)} TeX log issues:", file=sys.stderr)
         for ln in bad_lines:
@@ -69,7 +70,7 @@ def main() -> None:
 
     frozen_pdf = DIST_DIR / "Donahue_2026_unsolved_problems_mega_atlas.pdf"
     shutil.copy2(build_dir / "main.pdf", frozen_pdf)
-    print(f"PASS: Compiled {frozen_pdf.name} ({frozen_pdf.stat().st_size / 1048576:.3f} MB) with 0 overfull hboxes & 0 undefined refs!")
+    print(f"PASS: Compiled {frozen_pdf.name} ({frozen_pdf.stat().st_size / 1048576:.3f} MB) with 0 overfull hboxes/vboxes & 0 undefined refs!")
 
     # Package deterministic arXiv tarball (mtime=0, uid=0, gid=0, USTAR)
     tar_buf = io.BytesIO()
@@ -98,16 +99,29 @@ def main() -> None:
             gz.write(tar_buf.getvalue())
     print(f"PASS: Packaged deterministic {arxiv_gz.name} ({arxiv_gz.stat().st_size / 1048576:.3f} MB)")
 
-    # Clean-room arXiv compilation verification
+    # Clean-room arXiv compilation verification (exit code + zero-warning log parity)
     tmp = Path(tempfile.mkdtemp(prefix="arxiv_clean_"))
     try:
         with tarfile.open(arxiv_gz, "r:gz") as tf:
             tf.extractall(tmp, filter="data")
-        cres = subprocess.run([tectonic, "-X", "compile", "main.tex"], cwd=tmp, capture_output=True, text=True, check=False)
+        cres = subprocess.run(
+            [tectonic, "-X", "compile", "main.tex", "--keep-logs"],
+            cwd=tmp,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
         if cres.returncode != 0:
             print("FAIL: Clean-room arXiv compilation failed:\n" + cres.stderr, file=sys.stderr)
             sys.exit(cres.returncode)
-        print("PASS: Clean-room arXiv tarball compilation succeeded!")
+        clog = (tmp / "main.log").read_text(encoding="utf-8", errors="replace") if (tmp / "main.log").exists() else ""
+        cbad = [ln for ln in clog.splitlines() if log_pattern.search(ln)]
+        if cbad:
+            print(f"FAIL: Clean-room arXiv tarball had {len(cbad)} TeX log issues:", file=sys.stderr)
+            for ln in cbad:
+                print("  " + ln, file=sys.stderr)
+            sys.exit(1)
+        print("PASS: Clean-room arXiv tarball compilation succeeded with 0 warnings!")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

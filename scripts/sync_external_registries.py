@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Daily External Open-Problem Registry & Left-to-Solve 25-Program Sync Engine (V2.10.0).
+"""Daily External Open-Problem Registry & Left-to-Solve Program Sync Engine (V2.11.0).
 
 Polite, zero-dependency, read-only daily tracker polling 16 public open-problem
-registries, repositories, and primary verification pages — including all 25 live
+registries, repositories, and primary verification pages — including all live
 mathematical fronts on https://lefttosolve.com/programs and its public JSON API
 (/api/stats) — and writing structured daily snapshots, day-over-day diffs, an
 append-only UTC history log, and a human-readable Markdown tracker.
 
 Tracked Live Public Sources (16):
   1.  lefttosolve_stats            — https://lefttosolve.com/api/stats (JSON)
-  2.  lefttosolve_programs         — https://lefttosolve.com/programs (all 25 fronts)
+  2.  lefttosolve_programs         — https://lefttosolve.com/programs (all live fronts)
   3.  deepmind_formal_conjectures  — GitHub API (google-deepmind/formal-conjectures)
   4.  teorth_erdosproblems_gh      — GitHub API (teorth/erdosproblems)
   5.  clay_millennium              — https://www.claymath.org/millennium-problems/
@@ -79,7 +79,7 @@ TARGETS: tuple[dict[str, Any], ...] = (
     },
     {
         "key": "lefttosolve_programs",
-        "name": "Left to Solve — All 25 Mathematical Programs",
+        "name": "Left to Solve — All Live Mathematical Programs",
         "url": "https://lefttosolve.com/programs",
         "kind": "lefttosolve_programs",
         "count_patterns": [],
@@ -493,7 +493,7 @@ def _baseline_programs_normalized() -> list[dict[str, Any]]:
 def compute_deltas(prev: dict[str, Any] | None, curr: dict[str, Any]) -> list[str]:
     """Compute concise human-readable day-over-day delta alerts against prior daily snapshot."""
     if not prev:
-        return ["Initial daily snapshot recorded across all 16 public registries & 25 Left to Solve programs."]
+        return ["Initial daily snapshot recorded across all 16 public registries & live Left to Solve programs."]
     alerts: list[str] = []
     prev_map = {r["key"]: r for r in prev.get("registries", [])}
     for r in curr.get("registries", []):

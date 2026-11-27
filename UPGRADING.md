@@ -2,6 +2,17 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.10.0` to `v2.11.0`
+
+### 1. Live 26-Front Left to Solve Sync, XLSX Sheet Rename & Advisory `external_solved_signals`
+- Renamed the 16th Excel workbook sheet from `LeftToSolve_25_Programs` to **`LeftToSolve_Programs`** and updated the embedded offline baseline in `src/v2_loader.py` to all **26** live fronts (`62,790` targets, `2,549` Lean-4 open as of `2026-11-27T16:30Z`, `291` crosswalk matches).
+- Excluded raw unformalized `arXiv abstracts (not formalized)` scrapes from auto-title crosswalk matching in `scripts/sync_lefttosolve.py`, surfaced unverified external `open`-kind `solved` flags explicitly in `docs/lefttosolve-programs.md`, `data/external/lefttosolve/index.html`, and MCP `query_lefttosolve_programs(action="summary")` (`external_solved_signals_count`) with zero auto-retirement, and upgraded `.github/workflows/daily-registry-sync.yml` to run full `pytest tests/` before pushing.
+
+### 2. MCP `-32602` Strict JSON-RPC Validation, Atomic SQLite FTS5 & Strict `mypy`
+- `mcp_server/server.py` now returns JSON-RPC `-32602` for non-object `params` (instead of raising `AttributeError`), rejects non-object `arguments` (`[]`/`""`), bounds `problem_id`/`id_a`/`id_b` lengths, and validates `label` as string. All valid tool payloads remain 100% backwards-compatible.
+- `rag/query.py::ensure_sqlite_db()` now builds atomically via a PID-scoped temp file + `os.replace()`.
+- Added SPDX headers to all 7 `.github/ISSUE_TEMPLATE/*.yml` files & `paper/main.tex`, fixed all 5 `mypy --check-untyped-defs` errors in `src/v2_charts.py`, expanded mutation auditing to `14/14` (`100.0%`), and expanded `pytest` to `115` checks.
+
 ## Upgrading from `v2.9.0` to `v2.10.0`
 
 ### 1. 100/100 Verbatim Left to Solve Mirror Parity & Crosswalk Expansion (`199 → 290` Matches)

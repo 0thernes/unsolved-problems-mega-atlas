@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """Mutation Testing Audit (Build Standard B13):
-Applies 10 targeted semantic mutations across core scoring, quadrant, margin-role,
-RAG comparator, rubric-override validation, and all three Track B frontier probes,
-verifying that the pytest suite kills 100% (12/12) of planted mutants. Restores
+Applies 14 targeted semantic mutations across core scoring, quadrant, margin-role,
+RAG comparator, rubric-override validation, MCP security/framing guards, Left to Solve
+manifest verification, sovereign radar solved-exclusion, and all three Track B probes,
+verifying that the pytest suite kills 100% (14/14) of planted mutants. Restores
 every file cleanly in a `finally` block.
 """
 
@@ -100,6 +101,20 @@ MUTANTS = [
         "        if actual != digest:",
         "        if False and actual != digest:",
         "tests/test_external_mirrors.py::test_tampered_manifest_is_rejected",
+    ),
+    (
+        "M13_mcp_params_dict_guard",
+        ROOT / "mcp_server" / "server.py",
+        "    elif isinstance(raw_params, dict):",
+        "    elif True:",
+        "tests/test_properties_and_differential.py::test_b06_mcp_rejects_non_object_params_and_arguments",
+    ),
+    (
+        "M14_sovereign_radar_solved_filter_bypass",
+        ROOT / "scripts" / "mine_sovereign_targets.py",
+        "        if not include_solved and rec.get(\"solved\"):",
+        "        if False and not include_solved and rec.get(\"solved\"):",
+        "tests/test_sovereign_targets.py::test_mine_known_targets_excludes_solved_by_default",
     ),
 ]
 

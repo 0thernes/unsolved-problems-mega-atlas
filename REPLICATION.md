@@ -1,4 +1,4 @@
-# Independent Clean-Clone Replication Protocol & Log (`v2.10.0`)
+# Independent Clean-Clone Replication Protocol & Log (`v2.11.0`)
 
 Per **Build Standard for LLMs v1.2.0 (B43, B44)**, this document provides step-by-step instructions to independently replicate every quantitative result, formal proof, chart, white paper PDF, and benchmark from a fresh git clone — plus the recorded verification log of an actual clean-directory replication run.
 
@@ -50,12 +50,12 @@ bash scripts/verify_lean_six_kernels.sh
 
 ## 3. Expected Exact Tolerances
 
-- **Dataset cardinality & topology:** Exact (`2,000` problems across `12` source modules including `25` live Left to Solve fronts, `48` columns, `6,108` edges, `0` articulation points, `0` bridges, `0` dangling links).
+- **Dataset cardinality & topology:** Exact (`2,000` problems across `12` source modules including `100` verbatim Left to Solve conjectures, `48` columns, `6,108` edges, `0` articulation points, `0` bridges, `0` dangling links).
 - **Lean 4.35.0 axioms:** Byte-exact match against `results/lean_axioms.txt` (`103` lines, per-theorem axioms `⊆ [propext, Quot.sound]`, zero `Classical.choice` in those `103` audited software-model theorems; whole-env `lake check --paranoid` also lists core `Classical.choice`).
 - **Differential scoring oracle:** `<= 0.01` rounding tolerance across all `2,000` atlas records + `2,000` randomized inputs.
 - **RAG & AutoResearch:** Exact `100.00% MRR@5` (`25/25` top-1), `AQS = 98.35`, `hard_gates = PASS`.
-- **Mutation kill rate:** Exact `100.0%` (`12/12` semantic mutants killed).
-- **Daily registry tracker & mirror:** `16/16` live trackers + `25` Left to Solve fronts (`59,396`-target mirror, `290` curated crosswalk matches, `100/100` verbatim `LTS-001..LTS-100` parity, `0` silent retirements, `0 / 2,000` overarching parents solved).
+- **Mutation kill rate:** Exact `100.0%` (`14/14` semantic mutants killed).
+- **Daily registry tracker & mirror:** `16/16` live trackers + `26` live Left to Solve fronts (`62,790`-target mirror, `291` curated crosswalk matches, `100/100` verbatim `LTS-001..LTS-100` ID parity, `0` silent retirements, `0 / 2,000` overarching parents solved).
 - **AMS-LaTeX PDF:** `0` overfull hboxes, `0` undefined references/citations, `15/15` live citations (`0` Crossref retractions, title-token parity verified).
 
 ## 4. Recorded Independent Replication Runs (B44)

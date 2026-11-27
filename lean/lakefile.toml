@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 name = "MegaAtlasProofs"
-version = "2.10.0"
+version = "2.11.0"
 defaultTargets = ["MegaAtlasProofs", "Challenge", "Solution", "PalomarSolution"]
 
 [leanOptions]

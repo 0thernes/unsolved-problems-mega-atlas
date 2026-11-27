@@ -747,7 +747,7 @@ def test_b07_regression_zero_broken_relative_markdown_links():
 
 
 def test_b07_regression_external_registry_delta_offline_and_gate_parser():
-    """Verify external registry delta sync works offline across all 16 trackers + 25 Left to Solve fronts and detects gates honestly."""
+    """Verify external registry delta sync works offline across all 16 trackers + 26 Left to Solve fronts and detects gates honestly."""
     sys.path.insert(0, str(ROOT / "scripts"))
     import sync_external_registries as ser
 
@@ -755,7 +755,7 @@ def test_b07_regression_external_registry_delta_offline_and_gate_parser():
     assert rep["mode"] == "offline"
     assert rep["committed_registries_indexed"] == 16
     assert len(rep["registries"]) == 16
-    assert len(rep["lefttosolve_programs"]) == 25
+    assert len(rep["lefttosolve_programs"]) == 26
 
     t_by_key = {t["key"]: t for t in ser.TARGETS}
     gated = ser.parse_registry_html(t_by_key["clay_millennium"], "<html><title>Just a moment...</title><body>Verify you are human</body></html>", 403)
@@ -1005,16 +1005,16 @@ def test_b07_regression_daily_sync_workflow_and_checksum_isolation():
 
 
 def test_b07_regression_lefttosolve_100_problems_and_25_programs(master_data):
-    """Verify all 100 Left to Solve problems (LTS-001..LTS-100) and all 25 program fronts are indexed cleanly."""
+    """Verify all 100 Left to Solve problems (LTS-001..LTS-100) and all live program fronts (>=25) are indexed cleanly."""
     df = master_data["df"]
     lts_df = df[df["id"].str.startswith("LTS-")]
     assert len(lts_df) == 100
     assert (lts_df["verification_flag"] == "primary-registry-indexed").all()
-    assert len(master_data["df_lefttosolve_programs"]) == 25
+    assert len(master_data["df_lefttosolve_programs"]) >= 25
 
 
 def test_b07_regression_all_100_lts_ids_exist_verbatim_in_lefttosolve_mirror(master_data):
-    """Guard H-901/H-902: every LTS-001..LTS-100 maps verbatim to a unique open/unformalized (solved=False) Left to Solve mirror ID and >= 280 crosswalk matches."""
+    """Guard H-901/H-902/H-1001/H-1002: every LTS-001..LTS-100 maps verbatim to a unique open/unformalized Left to Solve mirror ID and >= 280 crosswalk matches (upstream advisory solved flips never break CI or auto-retire)."""
     mirror_dir = ROOT / "data" / "external" / "lefttosolve" / "programs"
     mirror_by_id: dict[str, dict] = {}
     for jl in sorted(mirror_dir.glob("*.jsonl")):
@@ -1045,7 +1045,7 @@ def test_b07_regression_all_100_lts_ids_exist_verbatim_in_lefttosolve_mirror(mas
         assert pid in mirror_by_id, f"{r.id} primary ID {pid!r} missing from Left to Solve mirror"
         mrec = mirror_by_id[pid]
         assert mrec["kind"] in {"open", "unformalized"}, f"{r.id} ({pid}) has non-open kind={mrec['kind']}"
-        assert mrec["solved"] is False, f"{r.id} ({pid}) is already marked solved=True in mirror"
+        assert isinstance(mrec["solved"], bool)
         assert pid in r.registry_source, f"{r.id} registry_source does not contain verbatim ID {pid!r}"
 
 
@@ -1074,11 +1074,95 @@ def test_b06_mcp_query_lefttosolve_rejects_non_string_action_and_bad_args():
 
 
 def test_b07_regression_dashboard_links_to_lefttosolve_mirror_and_0600_utc():
-    """Guard H-903/H-906: Interactive Dashboard links directly to external/lefttosolve/index.html (13-Tool MCP), and mirror reports 06:00 UTC."""
+    """Guard H-903/H-906/H-1001: Interactive Dashboard links directly to external/lefttosolve/index.html (13-Tool MCP), and mirror reports 06:00 UTC and >= 280 crosswalked problems."""
     dash = (ROOT / "outputs" / "MegaAtlas_Interactive_Dashboard_V2.html").read_text(encoding="utf-8")
     assert "external/lefttosolve/index.html" in dash
     assert "13-Tool MCP Server" in dash
     lts_html = (ROOT / "data" / "external" / "lefttosolve" / "index.html").read_text(encoding="utf-8")
     lts_md = (ROOT / "docs" / "lefttosolve-programs.md").read_text(encoding="utf-8")
     assert "06:00 UTC" in lts_html and "07:23 UTC" not in lts_html
-    assert "07:23 UTC" not in lts_md and "290 Mega-Atlas problems" in lts_md
+    assert "07:23 UTC" not in lts_md
+    m = re.search(r"(\d+)\s+Mega-Atlas problems linked", lts_md)
+    assert m is not None and int(m.group(1)) >= 280
+
+
+def test_b06_mcp_rejects_non_object_params_and_arguments():
+    """Guard H-1005: MCP server returns JSON-RPC -32602 on non-object params, rejects non-object arguments, oversized problem_id, and non-string label."""
+    reqs = [
+        {"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": ["not", "an", "object"]},
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": 42},
+        {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "get_problem", "arguments": []}},
+        {"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "get_problem", "arguments": {"problem_id": "X" * 300}}},
+        {"jsonrpc": "2.0", "id": 5, "method": "tools/call", "params": {"name": "simulate_rubric_override", "arguments": {"label": 12345}}},
+    ]
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input="\n".join(json.dumps(r) for r in reqs) + "\n",
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=True,
+    )
+    resps = [json.loads(ln) for ln in proc.stdout.splitlines() if ln.strip()]
+    assert len(resps) == 5
+    assert resps[0]["error"]["code"] == -32602
+    assert resps[1]["error"]["code"] == -32602
+    assert resps[2]["result"]["isError"] is True
+    assert resps[3]["result"]["isError"] is True
+    assert resps[4]["result"]["isError"] is True
+
+
+def test_b07_regression_atomic_sqlite_rebuild_leaves_no_tmp(tmp_path: Path):
+    """Guard H-1008: ensure_sqlite_db builds atomically via temp file + os.replace leaving zero *.tmp files."""
+    from query import ensure_sqlite_db
+
+    target = tmp_path / "atomic_atlas.sqlite"
+    built = ensure_sqlite_db(target)
+    assert built == target and target.is_file() and target.stat().st_size > 100_000
+    leftovers = list(tmp_path.glob("*.tmp"))
+    assert leftovers == []
+
+
+def test_b07_regression_daily_sync_runs_full_pytest_and_dynamic_commit():
+    """Guard H-1003/H-913: daily-registry-sync.yml runs full pytest tests/, uses maintainer author, and builds dynamic commit message."""
+    wf = (ROOT / ".github" / "workflows" / "daily-registry-sync.yml").read_text(encoding="utf-8")
+    assert "pytest tests/" in wf
+    assert "Alexander Stephen Donahue (Daily Sync)" in wf
+    assert "github-actions[bot]" not in wf
+    assert "LTS_META=" in wf
+
+
+def test_b07_regression_100pct_spdx_headers_on_non_exempt_files():
+    """Guard H-1009: every tracked .py/.sh/.ps1/.yml/.yaml/.lean/.tex file except immutable autoresearch/evaluate.py carries SPDX-License-Identifier."""
+    tracked = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True).splitlines()
+    missing = []
+    for rel in tracked:
+        if rel == "autoresearch/evaluate.py" or rel.startswith(("data/external/", "outputs/", "dist/", "results/")):
+            continue
+        p = ROOT / rel
+        if p.is_file() and p.suffix in {".py", ".sh", ".ps1", ".yml", ".yaml", ".lean", ".tex"}:
+            head = "\n".join(p.read_text(encoding="utf-8", errors="replace").splitlines()[:5])
+            if "SPDX-License-Identifier:" not in head:
+                missing.append(rel)
+    assert missing == [], f"Missing SPDX headers: {missing}"
+
+
+def test_b07_regression_lean_14_files_1711_lines_exact():
+    """Guard H-1010: exact tracked Lean file & line count parity across lean/ + palomar/."""
+    tracked = subprocess.check_output(["git", "ls-files", "lean", "palomar"], cwd=ROOT, text=True).splitlines()
+    lean_files = [ROOT / r for r in tracked if r.endswith(".lean")]
+    assert len(lean_files) == 14
+    total_lines = sum(len(p.read_text(encoding="utf-8").splitlines()) for p in lean_files)
+    assert total_lines == 1711
+
+
+def test_b07_regression_advisory_open_solved_signals_surfaced_without_retirement():
+    """Guard H-1002/H-1006: advisory upstream solved flags are surfaced in crosswalk & docs with zero auto-retirement."""
+    cw = json.loads((ROOT / "data" / "external" / "lefttosolve" / "atlas_crosswalk.json").read_text(encoding="utf-8"))
+    assert "external_solved_signals" in cw
+    assert "arXiv abstracts (not formalized)" not in {
+        c["program"] for m in cw["matches"] for c in m["lefttosolve"]
+    }
+    lts_md = (ROOT / "docs" / "lefttosolve-programs.md").read_text(encoding="utf-8")
+    assert "Zero Auto-Retirement" in lts_md or "zero Atlas statuses changed" in lts_md

@@ -2,6 +2,22 @@
 
 All notable changes to the **Unsolved Problems Mega-Atlas** are documented in this file following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [2.11.0] — 2026-11-27
+
+### Fixed, Hardened & Upgraded — Round 8 Exhaustive 3-Cycle Audit (`H-1001`–`H-1015`): Live 26-Front Daily-Sync Resilience (`62,790` Targets / `291` Crosswalk), MCP `-32602` & Atomic SQLite Hardening, Strict `mypy --check-untyped-defs`, `100%` Non-Exempt SPDX & `14/14` Mutation / `115`-Test Suite
+- **Live Daily-Sync Resilience & Epistemic Transparency (`H-1001`, `H-1002`, `H-1003`, `H-1006`):**
+  - Cured all **4 live `pytest` regressions** triggered when scheduled daily sync `9c543fc` (`2026-11-27T16:30Z`) expanded the Left to Solve mirror from `25 → 26` fronts (`+3,368` `arXiv abstracts (not formalized)`, `59,396 → 62,790` total targets, `1,939 → 2,549` Lean-4 open, `290 → 291` crosswalk matches, `1,492` newly upstream-flagged `solved=True` targets) by replacing brittle exact live-count assertions with forward-compatible invariants (`program_count >= 25`, crosswalk `>= 280`, `include_solved=True > include_solved=False`, and verbatim ID + `open`/`unformalized` kind checks independent of volatile external `solved` flags).
+  - Kept **zero automatic problem retirement** (`0 / 2,000` retired) while explicitly surfacing unverified upstream `open`-kind `external_solved_signals` in a dedicated advisory audit table inside `docs/lefttosolve-programs.md`, `data/external/lefttosolve/index.html`, and MCP `query_lefttosolve_programs(action="summary")`.
+  - Added `"arXiv abstracts (not formalized)"` to `CROSSWALK_EXCLUDED_PROGRAMS` in [`scripts/sync_lefttosolve.py`](scripts/sync_lefttosolve.py), computed curated program counts dynamically, updated `.github/workflows/daily-registry-sync.yml` to run full `pytest tests/ -q` before pushing and emit dynamic program/target counts in commit messages, and synced the 26-front baseline & `LeftToSolve_Programs` XLSX sheet (`src/v2_loader.py`, `src/v2_export_all.py`, `src/v2_charts.py`).
+- **MCP JSON-RPC Crash Cure, Atomic SQLite FTS5 Rebuild & Strict Typechecking (`H-1004`, `H-1005`, `H-1007`, `H-1008`):**
+  - Hardened [`mcp_server/server.py`](mcp_server/server.py) `handle_request()` to reject non-object JSON-RPC `params` with structured `-32602` instead of crashing with `AttributeError`, reject non-object `arguments` (`[]`/`""`), enforce `MAX_QUERY_CHARS` bounds on `problem_id`/`id_a`/`id_b` and string validation on `label`, and fix stale fallback `6111 → 6108`.
+  - Upgraded `ensure_sqlite_db()` in [`rag/query.py`](rag/query.py) to build into a PID-scoped temp file and atomically swap via `os.replace()`, eliminating half-built/corrupt DB races.
+  - Fixed all **5 `mypy --check-untyped-defs` errors** in [`src/v2_charts.py`](src/v2_charts.py), upgraded `.github/workflows/ci.yml` & `justfile` to run `mypy --check-untyped-defs` across all source and test packages (`0` errors across `44` files), and fixed stale `1,900`/`55,471` docstrings in [`scripts/mine_sovereign_targets.py`](scripts/mine_sovereign_targets.py).
+- **100% Non-Exempt SPDX, Paper/Visual QA/Provenance Parity & `14/14` Mutation / `115`-Test Suite (`H-1009`–`H-1015`):**
+  - Added SPDX headers to all `7` `.github/ISSUE_TEMPLATE/*.yml` files and `paper/main.tex` (100% SPDX coverage across every non-exempt tracked source/workflow/LaTeX file; only immutable `autoresearch/evaluate.py` remains intentionally exempt in `DEVIATIONS.md`).
+  - Cured factual drifts in `paper/main.tex`, `paper/refs.bib`, `EVIDENCE.md`, `docs/AI_DISCLOSURE.md`, and Chart 11 suptitle (`actions/attest-build-provenance@v2 → @v4`, `1,707 → 1,711` exact Lean lines across `14` files, `0TH-BUILD-003` `v1.5.0 → v1.7.0`, live 26-front/`62,790`-target mirror & Nov 27, 2026 labels), tightened `scripts/build_paper.py` to also audit `Overfull \vbox`, multiply-defined labels, and clean-room `arxiv_submission.tar.gz` TeX logs (`11` balanced pages, `0` warnings).
+  - Expanded [`scripts/run_mutation_audit.py`](scripts/run_mutation_audit.py) to **`14/14` (`100.0%` kill rate)** (`M13_mcp_params_dict_guard`, `M14_sovereign_radar_solved_filter_bypass`) and expanded `pytest` to **`115/115`** checks (`+6` permanent Round 8 guards).
+
 ## [2.10.0] — 2026-11-26
 
 ### Fixed, Hardened & Expanded — Round 7 Exhaustive 3-Cycle Audit (`H-901`–`H-911`): 100/100 Verbatim Left to Solve Mirror Parity (`290` Crosswalk Matches), 13-Tool MCP Hardening, Node 24 Workflows & `12/12` Mutation / `99`-Test Suite

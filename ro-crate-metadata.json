@@ -14,10 +14,10 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "name": "Unsolved Problems Mega-Atlas (V2.10.0)",
-      "version": "2.10.0",
-      "datePublished": "2026-11-26",
-      "description": "Unified cross-disciplinary open-problem atlas (2,000 problems, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers, 6,108 edges audited biconnected in Python/NetworkX, 103 audited Lean 4.35.0 software-model theorems (9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations), 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 13-tool MCP server, 12/12 mutation audit, daily 16-registry & 25-front Left to Solve sync (59,396-target mirror, 290 crosswalk matches), 3 finite Track B probes, and AutoResearch harness). 0/2,000 solved by this work.",
+      "name": "Unsolved Problems Mega-Atlas (V2.11.0)",
+      "version": "2.11.0",
+      "datePublished": "2026-11-27",
+      "description": "Unified cross-disciplinary open-problem atlas (2,000 problems, 8 Macro-Pillars, 28 Superdomains, 8 Substrates, 7 Abstraction Layers, 6,108 edges audited biconnected in Python/NetworkX, 103 audited Lean 4.35.0 software-model theorems (9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations), 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 13-tool MCP server, 14/14 mutation audit, daily 16-registry & 26-front Left to Solve sync (62,790-target mirror, 291 crosswalk matches), sovereign target radar, 3 finite Track B probes, and AutoResearch harness). 0/2,000 solved by this work.",
       "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
       "identifier": "https://github.com/0thernes/unsolved-problems-mega-atlas",
       "license": {
@@ -166,17 +166,17 @@
       "name": "MegaAtlas_Unsolved_Problems_V2.json.gz",
       "description": "Deterministic gzipped complete JSON dataset & knowledge graph",
       "encodingFormat": "application/gzip",
-      "sha256": "a9f038dea83634832a53412eea6af0fb18d22b38ccfe3f8c0f63e9ca6cce3a23",
-      "contentSize": 1397742
+      "sha256": "6fa91a3192539d8f7c65eadbc3fc30c9435bccc1dc0b06136ec7600c7218903e",
+      "contentSize": 1397826
     },
     {
       "@id": "outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
       "@type": "File",
       "name": "MegaAtlas_Unsolved_Problems_V2.xlsx",
-      "description": "16-sheet live-formula Excel workbook (incl. LeftToSolve_25_Programs)",
+      "description": "16-sheet live-formula Excel workbook (incl. LeftToSolve_Programs)",
       "encodingFormat": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "sha256": "afc97233c1d75b3ad3cdc2263351a5a2a9df128a904ea3d9ad06c836a892d82f",
-      "contentSize": 2098682
+      "sha256": "7b6434d4671f1d7b506be9354cb4a24a86e576150c116da296ac03637d363ff1",
+      "contentSize": 2098766
     },
     {
       "@id": "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
@@ -184,8 +184,8 @@
       "name": "MegaAtlas_Interactive_Dashboard_V2.html",
       "description": "WCAG 2.2 AA interactive web atlas (<4 MB, auto-hydrates daily registry JSON)",
       "encodingFormat": "text/html",
-      "sha256": "79b9b445a94e4c5bcdf57ac00d9d58a66a760509a6c9d4b4791116fb264f4264",
-      "contentSize": 3265342
+      "sha256": "3aee081de945b9e63f682120a7c54857d35106a5697526353168986217d6a365",
+      "contentSize": 3265684
     },
     {
       "@id": "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
@@ -193,8 +193,8 @@
       "name": "Donahue_2026_unsolved_problems_mega_atlas.pdf",
       "description": "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)",
       "encodingFormat": "application/pdf",
-      "sha256": "ba227b6295e6b6f5ad417f87ba5c4951df43609db9044d0226663727f31f0fab",
-      "contentSize": 743890
+      "sha256": "e629384197fdd6f52a7452e8d325370f0e00f3e9ca346b279f784ece5c1a6833",
+      "contentSize": 745757
     },
     {
       "@id": "dist/arxiv_submission.tar.gz",
@@ -202,8 +202,8 @@
       "name": "arxiv_submission.tar.gz",
       "description": "Deterministic clean-room arXiv source tarball",
       "encodingFormat": "application/gzip",
-      "sha256": "c3156a231ed3bd890b5326ede5a5bd7154923efa2c54a034c5a4f3dd104fab3b",
-      "contentSize": 546518
+      "sha256": "a05b238935261902c960dd26235706ddc4db05dad33e9a17f11a0f90a78710c9",
+      "contentSize": 547069
     },
     {
       "@id": "blueprint/index.html",
@@ -211,7 +211,7 @@
       "name": "index.html",
       "description": "Interactive Lean 4.35.0 Proof Blueprint SVG DAG",
       "encodingFormat": "text/html",
-      "sha256": "385ccbaa1c69a17e174adc050f1db9d464fd3883467bf4884fb979b65edd3e88",
+      "sha256": "b550f5908026a5d93a1a15225fb1c50d95daa69cf0d8824a30d1fe210307f5a7",
       "contentSize": 19154
     },
     {
@@ -220,8 +220,8 @@
       "name": "WHITE_PAPER.md",
       "description": "Build White Paper & Archival Dossier (0TH-BUILD-007)",
       "encodingFormat": "text/markdown",
-      "sha256": "69bb945a1f8df224933434f3b3a8219ec0bcaf3c00e9999ea1ee521789af7cbb",
-      "contentSize": 18455
+      "sha256": "6ee8f04585bebdb6bd1ef256c8f7aa476f4372763d5a4f82d91276ff47ea6c63",
+      "contentSize": 18744
     },
     {
       "@id": "docs/DATASHEET.md",
@@ -229,8 +229,8 @@
       "name": "DATASHEET.md",
       "description": "Gebru et al. Datasheet for Datasets",
       "encodingFormat": "text/markdown",
-      "sha256": "31f8eb536b3872dd8709e569620252853a737020fb5c537bd11d8014ede4191b",
-      "contentSize": 8479
+      "sha256": "24d1829f997d4201984da778885edf5e9c67aa2c0ea074a307c03c38d828fdee",
+      "contentSize": 8552
     },
     {
       "@id": "docs/statement-fidelity.md",
@@ -238,8 +238,8 @@
       "name": "statement-fidelity.md",
       "description": "19-row Lean-vs-Python statement fidelity audit",
       "encodingFormat": "text/markdown",
-      "sha256": "e4491d65d4923c725cb9a56e43a7821072431119625654780c00f7b0fb1ee90f",
-      "contentSize": 6860
+      "sha256": "2f4e5e086ffa7b6bcb79886c450505ba6352ec4cf23e0dfd0511891786d999e1",
+      "contentSize": 6889
     },
     {
       "@id": "CLAIMS.md",
@@ -247,8 +247,8 @@
       "name": "CLAIMS.md",
       "description": "Falsifiable Claims Ledger (C1-C10)",
       "encodingFormat": "text/markdown",
-      "sha256": "ee85b17364a9ca84c17935b70cb4d95cf4bd004305ff22feeba24cc43081cac2",
-      "contentSize": 8484
+      "sha256": "1a12f8714eb6455b96720d0e2de97a56eee5f5bd08f75662cd75509cd758897b",
+      "contentSize": 8692
     },
     {
       "@id": "RANKING.md",
@@ -256,7 +256,7 @@
       "name": "RANKING.md",
       "description": "Master Ranking by 0thernes CSS",
       "encodingFormat": "text/markdown",
-      "sha256": "bc4924afc3eeec7f2b85bc046618de238aaa59d61a8195b13b32b1b231edb32b",
+      "sha256": "33e8bce3416a012a0cb0b23a849a31c664549000b2e827dd56d019bad11cec15",
       "contentSize": 83476
     },
     {
@@ -265,8 +265,8 @@
       "name": "VERIFICATION.md",
       "description": "Five-tier epistemic verification boundaries",
       "encodingFormat": "text/markdown",
-      "sha256": "9d35ed37aa2f56b97fcb6f1a9549605960b3bd0419b0ab4791621bb599671fa5",
-      "contentSize": 4719
+      "sha256": "00c481c7d43bb5c4cb3fe547f20770f87f3be9555b2cce6ebc29aa325e475b41",
+      "contentSize": 4965
     },
     {
       "@id": "CHECKSUMS.sha256",
@@ -383,8 +383,8 @@
       "name": "server.py",
       "description": "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (13 tools)",
       "encodingFormat": "text/x-python",
-      "sha256": "4c0c32fabeb6955af50892816bc0f97d737546d83d5901929f853dd227469ebf",
-      "contentSize": 40083
+      "sha256": "2bea703ad6a84460f6704c9cda9ba4e8aa3d824951d7d9f2f7cf5aba8431e796",
+      "contentSize": 41184
     },
     {
       "@id": "rag/query.py",
@@ -392,8 +392,8 @@
       "name": "query.py",
       "description": "Offline Hybrid BM25 + graph-authority RAG CLI (auto-builds SQLite FTS5)",
       "encodingFormat": "text/x-python",
-      "sha256": "53520a9044dacf2c2dbb97ac00894f389067041c5fffa18c8540a77e1f808b6f",
-      "contentSize": 23008
+      "sha256": "9b56c7fb8c96613fcfa6228e4b2496b8676609c818f8a2a805b80b310525fbcf",
+      "contentSize": 23231
     }
   ]
 }

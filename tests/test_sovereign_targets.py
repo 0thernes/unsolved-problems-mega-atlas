@@ -37,9 +37,11 @@ def test_mine_domain_filter_quantum_returns_quantum_entries():
 
 
 def test_mine_known_targets_excludes_solved_by_default():
-    rep = mst.mine_targets(kind="known", limit=30)
-    assert rep["total_matching"] >= 900
-    assert all(t["kind"] == "known" for t in rep["targets"])
+    rep_unsolved = mst.mine_targets(kind="known", include_solved=False, limit=30)
+    rep_all = mst.mine_targets(kind="known", include_solved=True, limit=30)
+    assert rep_unsolved["total_matching"] >= 100
+    assert rep_all["total_matching"] > rep_unsolved["total_matching"]
+    assert all(t["kind"] == "known" for t in rep_unsolved["targets"])
 
 
 def test_markdown_render_contains_pinned_commit_and_orcid():

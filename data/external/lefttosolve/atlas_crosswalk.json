@@ -1,8 +1,9 @@
 {
   "status": "ok",
-  "method": "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json",
+  "method": "Across the 22 formal/curated programs (excluding raw unformalized Q&A/OEIS/arXiv-abstract streams), exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json",
   "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications).",
   "atlas_problems": 2000,
+  "curated_programs_scanned": 22,
   "matched_atlas_problems": 291,
   "curated_override_problems": 286,
   "external_solved_signals": [

@@ -1,4 +1,4 @@
-# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.10.0`)
+# Lean 4.35.0 Statement-Fidelity Audit Matrix (`v2.11.0`)
 
 Per the **Defensible Independent AI Research Playbook v1.3 (Pass 4 — Statement-Fidelity Audit)**,
 this document audits every single theorem group in `lean/` against the paper (`paper/main.tex`)
@@ -26,7 +26,7 @@ stating exact fidelity status and any intentional modeling abstraction.
 | 15 | `LayerGradients.hardnessTractGradient_*`, `cssTitanMarginBps_bounds` (5 thms) | `difficulty_score - tractability_2050`, `css_score - 10 * titan_index` (`src/v2_loader.py::load_v2_master`) | Exact integer / bps bounds | Exact `[-9, +9]` and `[-10000, +10000]` bounds. |
 | 16 | `LayerGradients.bridgeMarginBps_*`, `adjacent_pillars_lt_8`, `marginRole_exhaustive`, `apexKeystone_requires_3_adjacent` (5 thms) | `bridge_margin_ratio`, `adjacent_pillars_count`, `classify_margin_role` (`src/v2_loader.py::classify_margin_role`) | Exact bps correspondence | `3000 bps` matches `bridge_ratio >= 0.30`. |
 | 17 | `NonVacuity.*` (12 thms) | Concrete inhabitants + exact `autoresearch/results.tsv` trace (`8026→8193→9559→9799`) + sharp negative boundaries | Non-vacuity proof | Proves zero hypothesis bundles across M1–M6 are unsatisfiable. |
-| 18 | `AdversarialTests.*` (10 thms) | Constructive kernel-checked refutations (`¬P`) of deliberately false / off-by-one variants across M1–M6 + live negative kernel rejection | Adversarial test (Playbook Item 12) | Complements `12/12` (100%) Python semantic mutation kill rate. |
+| 18 | `AdversarialTests.*` (10 thms) | Constructive kernel-checked refutations (`¬P`) of deliberately false / off-by-one variants across M1–M6 + live negative kernel rejection | Adversarial test (Playbook Item 12) | Complements `14/14` (100%) Python semantic mutation kill rate. |
 | 19 | `PalomarSolution.m1..m8`, `prove_all_mega_atlas_invariants` (9 thms) | `palomar/PalomarChallenge.lean` contract | Exact comparator identity | Verified via `scripts/verify_lean_six_kernels.sh` (`leanchecker --fresh`, `lake check --paranoid`, `lake comparator --paranoid`): `6` kernel checks across `5` distinct implementations. |
 
 ## 2. What Is Explicitly NOT Formalized in Lean
@@ -39,4 +39,4 @@ stating exact fidelity status and any intentional modeling abstraction.
 ## 3. Author Sign-Off (Playbook v1.3 Item 10)
 
 - **Audited & Signed Off By:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`)
-- **Date:** `2026-11-26` (`v2.10.0`, all 19 rows reviewed against Lean 4.35.0 source, Python runtime symbols, and `paper/main.tex` Table 3)
+- **Date:** `2026-11-27` (`v2.11.0`, all 19 rows reviewed against Lean 4.35.0 source (`14` files / `1,711` lines), Python runtime symbols, and `paper/main.tex` Table 3)

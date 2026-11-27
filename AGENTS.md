@@ -1,19 +1,19 @@
 # AGENTS.md — Canonical Agent Instructions (`unsolved-problems-mega-atlas`)
 
-> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.10.0`
+> **Build Standard:** `v1.2.0` (`docs/build-standard.md`) · **Atlas Version:** `v2.11.0`
 > **Author / Maintainer:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
 > **Dual License:** Data/Figures/White Paper `CC-BY-4.0` (`LICENSE`) · Code/Lean/Tests `Apache-2.0` (`LICENSE-CODE`)
 
 ## 1. Repository Map
 
-- `src/v2_schema.py`, `src/v2_data/m01..m12.py` — 2,012 raw authored records deduplicated into `2,000` unique open problems across 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers (including `m12_lefttosolve_programs.py` covering all 25 fronts on `lefttosolve.com/programs`).
-- `src/v2_loader.py` — Deterministic loader, alias redirection, NetworkX biconnectivity/PageRank/betweenness (`seed=42`, `REFERENCE_YEAR=2026`), scoring (`CSS`, `Titan`, `Leverage`, `Gradients`, `Margins`), `16`-registry + `25`-front Left to Solve baselines, and `20`-row Cycle-3 companion archive cross-map.
+- `src/v2_schema.py`, `src/v2_data/m01..m12.py` — 2,012 raw authored records deduplicated into `2,000` unique open problems across 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers (including `m12_lefttosolve_programs.py` indexing 100 verbatim conjectures from `lefttosolve.com/programs`).
+- `src/v2_loader.py` — Deterministic loader, alias redirection, NetworkX biconnectivity/PageRank/betweenness (`seed=42`, `REFERENCE_YEAR=2026`), scoring (`CSS`, `Titan`, `Leverage`, `Gradients`, `Margins`), `16`-registry + `26`-front Left to Solve baselines, and `20`-row Cycle-3 companion archive cross-map.
 - `src/v2_charts.py`, `src/v2_export_all.py` — Generates 15 PNG/SVG charts, 5 vector PDF paper figures, 1280×640 social preview, `<4 MB` WCAG 2.2 AA Interactive HTML (enum-dictionary encoded + same-origin `./daily_registries.json` live hydration), CSV/TSV/16-sheet XLSX/MD/TXT, deterministic `.json.gz`/`.jsonl.gz`, `RANKING.md`, and gitignored `.sqlite`/`.json`/`.jsonl`/`build/*_Legacy.xls`/`build/` directory PDF.
 - `rag/query.py`, `mcp_server/server.py` — Offline Porter-stemmed SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, filter-enforced exact-ID lookup, auto-builds DB on fresh clones) and zero-dependency dual-framed **13-tool** stdio MCP server (`1 MiB` cap on both NDJSON and `Content-Length:`, incl. `simulate_rubric_override`, `get_live_registry_tracker`, and `query_lefttosolve_programs`).
-- `data/external/lefttosolve/`, `scripts/sync_lefttosolve.py`, `scripts/mine_sovereign_targets.py` — Daily advisory sidecar metadata mirror of all 25 Left to Solve program lists (`59,396` targets, `290` curated Mega-Atlas crosswalk matches, strict-CSP GitHub Pages dashboard at `/external/lefttosolve/`) plus offline read-only sovereign target radar and Palomar bridge scaffolder (`just sovereign-radar`).
+- `data/external/lefttosolve/`, `scripts/sync_lefttosolve.py`, `scripts/mine_sovereign_targets.py` — Daily advisory sidecar metadata mirror of all live Left to Solve program lists (`26` fronts / `62,790` targets, `291` Mega-Atlas crosswalk matches, strict-CSP GitHub Pages dashboard at `/external/lefttosolve/`) plus offline read-only sovereign target radar and Palomar bridge scaffolder (`just sovereign-radar`).
 - `lean/`, `palomar/PalomarChallenge.lean` — Zero-Mathlib Lean 4.35.0 software-model invariant suite (**103 audited theorems** of `117` declarations in `lean/`, `0` `sorry`, per-theorem axioms `⊆ [propext, Quot.sound]`; `9` Palomar targets checked by `6` kernel checks across `5` distinct implementations + live negative kernel rejection via `scripts/verify_lean_six_kernels.sh`).
 - `paper/main.tex`, `paper/refs.bib`, `scripts/build_paper.py` — 11-page Tectonic AMS-LaTeX white paper (`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`) + deterministic clean-room `dist/arxiv_submission.tar.gz` (`15/15` title-verified citations, `0` retractions).
-- `reference/scoring_oracle.py`, `tests/`, `scripts/run_mutation_audit.py`, `scripts/benchmark_atlas.py`, `.github/workflows/daily-registry-sync.yml` — 50-digit Decimal/Fraction oracle, `109`-test `pytest` suite (Hypothesis, differential, metamorphic, golden, negative, regressions, external mirrors & sovereign radar), `12`-mutant semantic mutation audit (`12/12`), 10-iteration warmed benchmarks, and automated daily 16-registry + 25-front Left to Solve sync (`06:00 UTC`).
+- `reference/scoring_oracle.py`, `tests/`, `scripts/run_mutation_audit.py`, `scripts/benchmark_atlas.py`, `.github/workflows/daily-registry-sync.yml` — 50-digit Decimal/Fraction oracle, `115`-test `pytest` suite (Hypothesis, differential, metamorphic, golden, negative, regressions, external mirrors & sovereign radar), `14`-mutant semantic mutation audit (`14/14`), 10-iteration warmed benchmarks, and automated daily 16-registry + 26-front Left to Solve sync (`06:00 UTC`).
 - `research/runs/` — Three reproducible exact finite Track B probes (`LOG-002` Antihydra, `NT-005` Collatz, `COMB-002` Ramsey witnesses; all parents remain **OPEN**).
 - `autoresearch/evaluate.py` — **STRICTLY IMMUTABLE** Karpathy-style evaluation oracle (`AQS = 98.35`). **NEVER MODIFY THIS FILE.**
 
@@ -22,15 +22,15 @@
 ```bash
 just setup            # Create .venv and install editable + dev deps
 just build            # Run Track B probes; regenerate charts, exports, FAIR JSONs, llms-full.txt & checksums
-just test             # Run full 109-test pytest suite (functional, Hypothesis, differential, MCP, FAIR, mirrors, radar)
+just test             # Run full 115-test pytest suite (functional, Hypothesis, differential, MCP, FAIR, mirrors, radar)
 just lint             # Run ruff check (incl. research/)
-just typecheck        # Run mypy (incl. research/)
-just mutate           # Run 12-mutant semantic mutation audit (requires 12/12 = 100% kill rate)
+just typecheck        # Run strict mypy --check-untyped-defs (incl. tests/ & research/)
+just mutate           # Run 14-mutant semantic mutation audit (requires 14/14 = 100% kill rate)
 just bench            # Run 10-iteration warmed benchmarks -> docs/benchmarks.md
 just lean             # Build Lean 4.35.0 suite, audit all 103 axioms & verify README parity
 just paper            # Compile AMS-LaTeX PDF (0 overfull), clean-room arXiv tarball & verify 15 citations
-just sync-registries  # Live poll all 16 public trackers & 25 Left to Solve fronts -> daily telemetry
-just sync-lefttosolve # Crawl & offline-verify all 25 Left to Solve program JSONL shards
+just sync-registries  # Live poll all 16 public trackers & live Left to Solve fronts -> daily telemetry
+just sync-lefttosolve # Crawl & offline-verify all live Left to Solve program JSONL shards
 just sovereign-radar  # Rank offline Lean-stated targets from data/external/lefttosolve/
 just audit            # Run audit_atlas.py, forensic_audit.py, publish_zenodo.py --dry-run & evaluate.py
 just reproduce        # End-to-end build + test + lean + paper + checksum & timestamp verification

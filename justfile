@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Canonical command runner for Unsolved Problems Mega-Atlas (V2.10.0)
+# Canonical command runner for Unsolved Problems Mega-Atlas (V2.11.0)
 # Usage: `just` to list recipes, `just reproduce` to rebuild & verify everything.
 
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
@@ -41,9 +41,9 @@ test:
 lint:
     {{python}} -m ruff check src rag mcp_server reference scripts examples tests research
 
-# Run static type checking (mypy)
+# Run static type checking (strict mypy)
 typecheck:
-    {{python}} -m mypy src rag mcp_server reference scripts examples research --ignore-missing-imports
+    {{python}} -m mypy --check-untyped-defs src rag mcp_server reference scripts examples tests research --ignore-missing-imports
 
 # Run mutation testing audit (assert 100% kill rate across planted mutants)
 mutate:
@@ -83,7 +83,7 @@ deploy:
 stamp:
     {{python}} scripts/stamp_timestamps.py --verify
 
-# Poll all 16 public external open-problem registries & 25 Left to Solve fronts (advisory telemetry only; zero auto-retirement)
+# Poll all 16 public external open-problem registries & live Left to Solve fronts (advisory telemetry only; zero auto-retirement)
 sync-registries:
     {{python}} scripts/sync_external_registries.py --live --write-daily --write-report
 

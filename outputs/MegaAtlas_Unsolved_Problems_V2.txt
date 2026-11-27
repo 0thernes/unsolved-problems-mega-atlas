@@ -1,12 +1,12 @@
 ====================================================================================================================
-  V2.10.0 MEGA-ATLAS OF HUMANITY'S 2,000 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
+  V2.11.0 MEGA-ATLAS OF HUMANITY'S 2,000 UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)
   Author: Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA | ORCID: 0009-0006-8168-9648) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)
   8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | 6,108 Edges (0 Art. Pts, Python) | 103 Audited Lean 4.35.0 Model Theorems
 ====================================================================================================================
 
 [1] EXECUTIVE SUMMARY METRICS
 --------------------------------------------------------------------------------------------------------------------
-  atlas_version                       : 2.10.0
+  atlas_version                       : 2.11.0
   reference_year                      : 2026
   author                              : Alexander Stephen Donahue
   orcid                               : 0009-0006-8168-9648
@@ -49,7 +49,7 @@
   total_benchmarks                    : 20
   total_contrasts                     : 15
   total_external_registries           : 16
-  total_lefttosolve_programs          : 25
+  total_lefttosolve_programs          : 26
   total_author_frontier_preprints     : 20
 
 [2] NOVEMBER 25, 2026 AI PROOF-CLAIM VERIFICATION AUDIT
@@ -95,7 +95,7 @@
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 | Registry                               | Total_Tracked                          | Open_Count_Nov2026                     | Nov2026_Highlight                      |
 +========================================+========================================+========================================+========================================+
-| Left to Solve (lefttosolve.com/program | 59,396 targets (1,939 Lean 4 open + 55 | 57,410 open (1,939 Lean-formalized ope | Daily-polled live benchmark aggregatin |
+| Left to Solve (lefttosolve.com/program | 62,790 targets (2,549 Lean 4 open + 58 | 60,804 open (2,549 Lean-formalized ope | Daily-polled live benchmark aggregatin |
 | OEIS Conjectures Catalog (oeis.org)    | ~18,902 open conjectures (18,441 unfor | ~18,835 open (59 solved in Left to Sol | Massive computationally testable reser |
 | Ben Green's 100 & Open Quantum Problem | 285 Green Lean targets + 32 OQP Lean t | 128 Green open (71 solved-here) + 28 O | Bridges additive combinatorics (sumset |
 | ProofAtlas (proofatlas.ai)             | 1,100+ eligible (Top-500 edition)      | 243 open in Top-500 (hundreds more in  | Actively tracks AI-targeted conjecture |
@@ -110,7 +110,7 @@
 | Wikipedia Lists of Unsolved Problems ( | ~1,200+ distinct entries across 20+ li | ~1,100+ open                           | Broadest public cross-disciplinary map |
 | NAE 14 Grand Challenges & DARPA/DOE Ea | ~100+ flagship technology targets      | ~90+ active engineering frontiers      | Dominates Quadrant 1 (Near-Term Civili |
 | PhilPapers Survey & Metaphysics/Ethics | ~100+ enduring philosophical problems  | ~100% actively contested (up to 2,526  | AI alignment & digital sentience turne |
-| This V2.10.0 Unified Mega-Atlas (A. S. | 2,000 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
+| This V2.11.0 Unified Mega-Atlas (A. S. | 2,000 strictly deduplicated biconnecte | 100% active open/hard/unverified front | Unified biconnected cross-disciplinary |
 +----------------------------------------+----------------------------------------+----------------------------------------+----------------------------------------+
 
 [4] 8 MACRO-PILLARS COMPARATIVE SCORECARD

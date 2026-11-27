@@ -11,7 +11,7 @@ Problem statements live on Left to Solve and in [google-deepmind/formal-conjectu
 - **Upstream formal-conjectures commit:** `9097e2f90e66d2f6244209cb1c07f7120d17ec53`
 - **Change since previous snapshot:** +3,395 added, −1 removed, 1,492 newly solved, 600 kind changes
 - **Atlas crosswalk:** 291 Mega-Atlas problems linked to Left to Solve targets (286 via reviewed `crosswalk_overrides.json` + exact normalized base-title matches; `data/external/lefttosolve/atlas_crosswalk.json`; 34 non-`related` link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)
-- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics](https://github.com/0thernes/unsolved-mathematics) (`v0.8.0`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all 25 Left to Solve programs)
+- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics](https://github.com/0thernes/unsolved-mathematics) (`v0.8.1`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all live Left to Solve programs)
 
 | Program | Total | `open` | Lean-stated | Unformalized | Solved (by kind) | Mean difficulty | Top fields |
 |---|---:|---:|---:|---:|---|---:|---|
@@ -41,6 +41,25 @@ Problem statements live on Left to Solve and in [google-deepmind/formal-conjectu
 | [Open problems in information theory (gokhanmergen)](https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20%28gokhanmergen%29) | 7 | 1 | 1 | 6 | 0 | 87.29 | Information & Communication, Combinatorics, Convex & Discrete Geometry, Probability |
 | [Conjectures of Luc Gillibert](https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert) | 3 | 3 | 3 | 0 | open: 1 | 70.0 | Combinatorics, Group Theory |
 | [Litt's Problems](https://lefttosolve.com/programs/Litt%27s%20Problems) | 3 | 2 | 3 | 0 | known: 1 | 42.0 | Algebraic Geometry, Number Theory, Commutative Algebra, Field Theory |
+
+## Advisory Upstream `solved` Flags on Crosswalked `open` Targets (12 — Unverified, Zero Auto-Retirement)
+
+Left to Solve's external automated Lean-checker flagged the following crosswalked `open` targets as `solved=true`. These flags are **unverified third-party claims** (which can reflect formalization-statement bugs, AI prover claims, or non-peer-reviewed proofs) and **never** retire any frozen Mega-Atlas problem without independent human and multi-kernel verification.
+
+| Atlas ID | Mega-Atlas Problem | Left to Solve ID | Program | Relation |
+|---|---|---|---|---|
+| `ANL-032` | Smale's Mean Value Conjecture | [`MeanValueProblem.mean_value_problem`](https://lefttosolve.com/p/MeanValueProblem.mean_value_problem) | Wikipedia | `primary` |
+| `COMB-016` | Seymour's Second Neighborhood Conjecture | [`opg-seymours-second-neighbourhood-conjecture`](https://lefttosolve.com/p/opg-seymours-second-neighbourhood-conjecture) | Open Problem Garden | `primary` |
+| `XALG-003` | Köthe's Nil-Ideal Conjecture in Noncommutative Ring Theory | [`Koethe.KotheConjecture`](https://lefttosolve.com/p/Koethe.KotheConjecture) | Wikipedia | `primary` |
+| `LTS-010` | Equal Halves Conjecture for Even-Order Vertex-Transitive Graphs (Luc Gillibert) | [`gillibert-equal-halves`](https://lefttosolve.com/p/gillibert-equal-halves) | Conjectures of Luc Gillibert | `primary` |
+| `LTS-017` | Written on the Wall II Conjecture 96 (Independence Number vs. Average Eccentricity) | [`WrittenOnTheWallII.GraphConjecture96.conjecture96`](https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96) | Written on the Wall II | `primary` |
+| `LTS-020` | Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover) | [`WrittenOnTheWallII.GraphConjecture372.conjecture372`](https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372) | Written on the Wall II | `primary` |
+| `LTS-020` | Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover) | [`WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized`](https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized) | Written on the Wall II | `variant` |
+| `LTS-020` | Written on the Wall II Conjecture 372 (Tree Matching Number vs. Total Domination & Path Cover) | [`WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths`](https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths) | Written on the Wall II | `variant` |
+| `LTS-024` | Ben Green Problem 15: 3-AP-Free Lipschitz Function Graphs in Z^2 | [`Green15.green_15`](https://lefttosolve.com/p/Green15.green_15) | Green's 100 Open Problems | `primary` |
+| `LTS-035` | Ben Green Problem 35: Sharp L^p Restriction / Additive Constant c(p) on [0,1] | [`Green35.green_35.lower`](https://lefttosolve.com/p/Green35.green_35.lower) | Green's 100 Open Problems | `primary` |
+| `LTS-085` | Bugeaud Problem 10.6: Explicit Super-Exponential Sequences Everywhere Dense Modulo 1 | [`Bugeaud06.problem_10_6_variant_1`](https://lefttosolve.com/p/Bugeaud06.problem_10_6_variant_1) | Books | `primary` |
+| `LTS-097` | Barker Sequence Length <= 13 Conjecture (Aperiodic Binary Autocorrelation) | [`Arxiv.2104.00502.barker_conjecture`](https://lefttosolve.com/p/Arxiv.2104.00502.barker_conjecture) | arXiv papers | `primary` |
 
 ## Field semantics
 

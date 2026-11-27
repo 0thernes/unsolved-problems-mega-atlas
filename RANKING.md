@@ -1,6 +1,6 @@
-# Master Ranking — Unsolved Problems Mega-Atlas (V2.10.0)
+# Master Ranking — Unsolved Problems Mega-Atlas (V2.11.0)
 
-> **Atlas `v2.10.0`** · **2,000 deduplicated problems** across **8 Macro-Pillars × 28 Superdomains** · Ranked hardest + most central + oldest + least tractable by the **0thernes Composite Severity Score (`CSS`, 0–100)**, alongside the **Composite Titan Index (0–10)**.
+> **Atlas `v2.11.0`** · **2,000 deduplicated problems** across **8 Macro-Pillars × 28 Superdomains** · Ranked hardest + most central + oldest + least tractable by the **0thernes Composite Severity Score (`CSS`, 0–100)**, alongside the **Composite Titan Index (0–10)**.
 > **Author / Curator:** Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)) · **Reference Year:** `2026` (frozen for deterministic reproducibility).
 
 ## Formula & Honesty Clause

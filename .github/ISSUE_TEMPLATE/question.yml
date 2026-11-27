@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 name: Question / Discussion
 description: Ask a question about methodology, Lean invariants, RAG/MCP usage, or citations
 title: "[question]: "

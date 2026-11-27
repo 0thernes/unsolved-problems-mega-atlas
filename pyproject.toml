@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "unsolved-problems-mega-atlas"
-version = "2.10.0"
-description = "2,000 deduplicated unsolved, open & hard problems across 8 Pillars, 28 Superdomains, 8 Substrates & 7 Layers (6,108 edges audited biconnected in Python; 290 curated Left to Solve crosswalk matches across 59,396 mirrored targets), 103 audited Lean 4.35.0 software-model theorems, offline Hybrid RAG (100% MRR@5), 13-tool MCP server, 12/12 mutation audit, 3 Track B probes & AMS-LaTeX white paper."
+version = "2.11.0"
+description = "2,000 deduplicated unsolved, open & hard problems across 8 Pillars, 28 Superdomains, 8 Substrates & 7 Layers (6,108 edges audited biconnected in Python; 291 curated Left to Solve crosswalk matches across 62,790 mirrored targets), 103 audited Lean 4.35.0 software-model theorems, offline Hybrid RAG (100% MRR@5), 13-tool MCP server, 14/14 mutation audit, 3 Track B probes & AMS-LaTeX white paper."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }

@@ -159,7 +159,7 @@ def chart_01_superdomain_landscape(data):
     fig.legend(handles=handles, loc="upper center", ncol=4, bbox_to_anchor=(0.5, 0.99), frameon=True, facecolor="#F8FAFC", edgecolor="#CBD5E1", fontsize=8.6)
     ver = data["summary_stats"]["atlas_version"]
     fig.suptitle(f"V{ver} Mega-Atlas Taxonomy of Humanity's {n_tot:,} Unsolved, Open & Hard Problems (28 Superdomains × 8 Macro-Pillars)", fontsize=15, fontweight="bold", color="#0F172A", y=1.03)
-    plt.tight_layout(rect=[0, 0, 1, 0.935])
+    plt.tight_layout(rect=(0.0, 0.0, 1.0, 0.935))
     save_fig(fig, "01_superdomain_landscape")
 
 
@@ -230,7 +230,8 @@ def chart_02_strategic_quadrant(data):
     ax.grid(True, linestyle=":", alpha=0.55)
     leg = ax.legend(loc="lower center", bbox_to_anchor=(0.5, -0.155), ncol=4, frameon=True, facecolor="#F8FAFC", fontsize=8.8)
     for lh in leg.legend_handles:
-        lh._sizes = [65]
+        if lh is not None and hasattr(lh, "set_sizes"):
+            lh.set_sizes([65])
     plt.tight_layout()
     save_fig(fig, "02_strategic_impact_tractability_quadrant")
 
@@ -472,7 +473,7 @@ def chart_07_radial_connectome(data):
     ax.scatter(xs, ys, s=sz, c=cs, edgecolors="#F8FAFC", lw=0.35, alpha=0.92, zorder=4)
 
     # Radially label Top 28 Keystone Hubs with strict angular separation
-    placed = []
+    placed: list[float] = []
     for _, row in df_k.head(90).iterrows():
         pid = row["id"]
         th = angles[pid]
@@ -639,7 +640,7 @@ def chart_10_correlations_and_benchmarks(data):
 
 
 def chart_11_nov2026_status_and_registries(data):
-    """Nov 26, 2026 Research Status & Global Registry Scale Comparison."""
+    """Nov 27, 2026 Research Status & Global Registry Scale Comparison."""
     df = data["df"]
     n_tot = len(df)
     ver = data["summary_stats"]["atlas_version"]
@@ -656,14 +657,14 @@ def chart_11_nov2026_status_and_registries(data):
     ax1.set_xlim(0, max_x * 1.24)
     ax1.set_xlabel("Number of Problems", fontweight="bold")
     ax1.set_ylabel("")
-    ax1.set_title("A. Nov 26, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
+    ax1.set_title("A. Nov 27, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
     ax1.grid(axis="x", linestyle="--", alpha=0.6)
     ax1.set_axisbelow(True)
 
     # Right: Global Open-Problem Trackers & Nov 2026 Scale Comparison
     regs = [
         (f"This V{ver} Mega-Atlas\n(ALL 28 Superdomains)", n_tot, "#0284C7"),
-        ("Left to Solve (Lean 4 Open;\n59,396 Total / 25 Fronts)", 1939, "#0EA5E9"),
+        ("Left to Solve (Lean 4 Open;\n62,790 Total / 26 Fronts)", 2549, "#0EA5E9"),
         ("Erdős Problems DB\n(Total Tracked; ~630 Open)", 1221, "#1D4ED8"),
         ("Wikipedia Unsolved\nLists (20+ Fields Est.)", 1200, "#0D9488"),
         ("ProofAtlas.ai Full\n(Eligible; 243 Open Top-500)", 1100, "#7C3AED"),
@@ -688,7 +689,7 @@ def chart_11_nov2026_status_and_registries(data):
 
     handles = [mpatches.Patch(color=PILLAR_COLORS[p], label=p) for p in MACRO_PILLARS]
     fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.30, -0.09), frameon=True, facecolor="#F8FAFC", fontsize=8.0)
-    fig.suptitle("November 26, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
+    fig.suptitle("November 27, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
     plt.tight_layout()
     save_fig(fig, "11_nov2026_status_and_registries")
 
@@ -953,7 +954,7 @@ def generate_social_preview(data):
     df_p = data["df_pillars"]
     fig = plt.figure(figsize=(12.8, 6.4), dpi=100)
     fig.patch.set_facecolor("#0B1120")
-    ax = fig.add_axes([0, 0, 1, 1])
+    ax = fig.add_axes((0.0, 0.0, 1.0, 1.0))
     ax.set_facecolor("#0B1120")
     ax.set_xlim(0, 1280)
     ax.set_ylim(0, 640)

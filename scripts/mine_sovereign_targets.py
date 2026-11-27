@@ -5,12 +5,12 @@
 
 Reads the local daily Left to Solve mirror (`data/external/lefttosolve/`) strictly
 offline and read-only (never calls `/api/desk/` or `/api/verdict`, never opens
-external PRs or holds leases, and never mutates the frozen 1,900-problem
+external PRs or holds leases, and never mutates the frozen 2,000-problem
 Mega-Atlas dataset).
 
 Capabilities
   1. `rank`: Mines all Lean-stated unsolved targets (`open` and `known`, excluding
-     the 55,471 unformalized scrapes) against 0thernes frontier domains and the
+     unformalized scrapes) against 0thernes frontier domains and the
      Mega-Atlas crosswalk, emitting a deterministic Markdown/JSON target radar.
   2. `scaffold`: Generates a Palomar-ready, Build Standard v1.2.0 sovereign
      bridge & reduction starter pack (`Challenge.lean`, `FormalConjecturesBridge.lean`,

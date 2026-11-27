@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 import sqlite3
 import sys
@@ -66,12 +67,10 @@ def _db_is_fresh(db_path: Path) -> bool:
 
 
 def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
-    """Auto-build the local SQLite FTS5 index deterministically if absent or stale after an upgrade."""
+    """Auto-build the local SQLite FTS5 index atomically if absent or stale after an upgrade."""
     if _db_is_fresh(db_path):
         return db_path
     _FRESH_CACHE.pop(str(db_path.resolve()), None)
-    if db_path.exists():
-        db_path.unlink()
     src_dir = str(ROOT / "src")
     if src_dir not in sys.path:
         sys.path.insert(0, src_dir)
@@ -79,9 +78,12 @@ def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
     from v2_loader import load_v2_master  # noqa: PLC0415
 
     db_path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = db_path.parent / f".{db_path.name}.{os.getpid()}.tmp"
+    if tmp_path.exists():
+        tmp_path.unlink()
     data = load_v2_master()
     df = data["df"]
-    conn = sqlite3.connect(str(db_path))
+    conn = sqlite3.connect(str(tmp_path))
     try:
         df.to_sql("problems", conn, index=False, if_exists="replace")
         pd.DataFrame(
@@ -132,8 +134,14 @@ def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
             FROM problems
         """)
         conn.commit()
-    finally:
+    except Exception:
         conn.close()
+        if tmp_path.exists():
+            tmp_path.unlink()
+        raise
+    else:
+        conn.close()
+    os.replace(tmp_path, db_path)
     return db_path
 
 STOPWORDS = {

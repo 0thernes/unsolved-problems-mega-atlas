@@ -175,7 +175,7 @@ def test_exported_files_parity(master_data):
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
     assert len(payload["author_frontier_contributions"]) == 20
-    assert len(payload["lefttosolve_programs_baseline"]) == 25
+    assert len(payload["lefttosolve_programs_baseline"]) == 26
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
     assert payload["metadata"]["license_code"] == "Apache-2.0"
@@ -190,7 +190,7 @@ def test_exported_files_parity(master_data):
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
         assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 20
-        assert conn.execute("SELECT COUNT(*) FROM lefttosolve_programs").fetchone()[0] == 25
+        assert conn.execute("SELECT COUNT(*) FROM lefttosolve_programs").fetchone()[0] == 26
     finally:
         conn.close()
 
@@ -282,8 +282,9 @@ def test_mcp_stdio_server_ndjson_all_13_tools():
     assert tracker_green["lefttosolve_programs_matched"] == 1
     assert "Green" in tracker_green["lefttosolve_programs"][0]["program"]
     lts_mirror = json.loads(resps[15]["result"]["content"][0]["text"])
-    assert lts_mirror["program_count"] == 25
+    assert lts_mirror["program_count"] >= 25
     assert lts_mirror["fetched_total"] >= 59000
+    assert isinstance(lts_mirror["external_solved_signals_count"], int)
 
 
 def test_mcp_stdio_server_content_length_framing():

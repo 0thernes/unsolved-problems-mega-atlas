@@ -1,12 +1,12 @@
-# V2.10.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's 2,000 Unsolved, Open & Hard Problems (November 2026)
+# V2.11.0 Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's 2,000 Unsolved, Open & Hard Problems (November 2026)
 
-> **Author / Curator:** Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)) · **Version:** `v2.10.0` · **Dual License:** Data CC BY 4.0 / Code Apache-2.0
+> **Author / Curator:** Alexander Stephen Donahue (Independent Researcher, Spokane, WA, USA, ORCID [`0009-0006-8168-9648`](https://orcid.org/0009-0006-8168-9648)) · **Version:** `v2.11.0` · **Dual License:** Data CC BY 4.0 / Code Apache-2.0
 
-> **Scale & Verification:** **2,000** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × 1,851 subdomains**, wired into **1 biconnected 6,108-edge** cross-disciplinary graph audited in Python/NetworkX (**0 articulation points**, **36.3%** cross-superdomain, **18.9%** cross-pillar) · **Mean 0thernes CSS:** `57.05/100` · **Pure Lean 4.35.0 Software-Model Suite:** 103 audited theorems (0 `sorry` in `lean/`, per-theorem `#print axioms` `⊆ [propext, Quot.sound]`; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations) · **Daily Automated Registry Sync:** 16 public trackers + all 25 Left to Solve (`lefttosolve.com/programs`) fronts synced daily via GitHub Actions (`docs/DAILY_REGISTRY_TRACKER.md`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; 0/2,000 Atlas problems are solved by this work; all 12 Fall/Nov 2026 AI proof claims remain officially unretired at CMI pending complete human exposition and peer review.
+> **Scale & Verification:** **2,000** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × 1,851 subdomains**, wired into **1 biconnected 6,108-edge** cross-disciplinary graph audited in Python/NetworkX (**0 articulation points**, **36.3%** cross-superdomain, **18.9%** cross-pillar) · **Mean 0thernes CSS:** `57.05/100` · **Pure Lean 4.35.0 Software-Model Suite:** 103 audited theorems (0 `sorry` in `lean/`, per-theorem `#print axioms` `⊆ [propext, Quot.sound]`; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations) · **Daily Automated Registry Sync:** 16 public trackers + all 26 Left to Solve (`lefttosolve.com/programs`) fronts synced daily via GitHub Actions (`docs/DAILY_REGISTRY_TRACKER.md`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; 0/2,000 Atlas problems are solved by this work; all 12 Fall/Nov 2026 AI proof claims remain officially unretired at CMI pending complete human exposition and peer review.
 
-## 1. November 25–26, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now
+## 1. November 27, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now
 
-No fixed finite count of open human problems exists—active mathematical registries alone track tens of thousands of open questions (`Left to Solve`: 59,396 total targets across 25 live mathematical fronts, 1,939 Lean-4 formalized open; `ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:
+No fixed finite count of open human problems exists—active mathematical registries alone track tens of thousands of open questions (`Left to Solve`: 62,790 total targets across 26 live mathematical fronts, 2,549 Lean-4 formalized open; `ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:
 
 | Claim_ID | Problem | Date | Claimant_System | Artifact_Type | Machine_Check_Status | Human_Fidelity_Audit | Official_Status_Nov2026 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ No fixed finite count of open human problems exists—active mathematical regist
 
 | Registry | Scope | Total_Tracked | Open_Count_Nov2026 | Verification_Standard | Nov2026_Highlight |
 | --- | --- | --- | --- | --- | --- |
-| Left to Solve (lefttosolve.com/programs) | 25 Live Mathematical Fronts (google-deepmind/formal-conjectures + OEIS + MathOverflow + Erdős + Green + OQP + WOWII) | 59,396 targets (1,939 Lean 4 open + 55,471 unformalized) | 57,410 open (1,939 Lean-formalized open; 1,198 solved-here) | Automated Lean 4 proof checker over google-deepmind/formal-conjectures (Apache-2.0) + live agent board | Daily-polled live benchmark aggregating 25 mathematical fronts with exact Lean 4 target statements; 100 deduplicated problems integrated in m12_lefttosolve_programs.py. |
+| Left to Solve (lefttosolve.com/programs) | 26 Live Mathematical Fronts (google-deepmind/formal-conjectures + OEIS + MathOverflow + arXiv abstracts + Erdős + Green + OQP + WOWII) | 62,790 targets (2,549 Lean 4 open + 58,255 unformalized) | 60,804 open (2,549 Lean-formalized open; 1,706 upstream solved flags, unverified here) | Automated Lean 4 proof checker over google-deepmind/formal-conjectures (Apache-2.0) + live agent board | Daily-polled live benchmark aggregating 26 mathematical fronts with exact Lean 4 target statements; 100 deduplicated problems integrated in m12_lefttosolve_programs.py and 291 crosswalked. |
 | OEIS Conjectures Catalog (oeis.org) | Integer Sequences, Number Theory & Combinatorics | ~18,902 open conjectures (18,441 unformalized + 461 Lean 4) | ~18,835 open (59 solved in Left to Solve Lean front) | OEIS editorial curation + computational testing + Lean 4 formalizations | Massive computationally testable reservoir of supercongruences, prime-gap conjectures, and divisibility sequences. |
 | Ben Green's 100 & Open Quantum Problems (IQOQI) | Additive Combinatorics & Quantum Information Theory | 285 Green Lean targets + 32 OQP Lean targets | 128 Green open (71 solved-here) + 28 OQP open (4 solved-here) | Specialist curated lists formalized in google-deepmind/formal-conjectures | Bridges additive combinatorics (sumsets, approximate groups, Rado equations) and quantum foundations (MUBs, AME states, SIC-POVMs). |
 | ProofAtlas (proofatlas.ai) | Pure & Applied Mathematics (LLM-ranked + tracked) | 1,100+ eligible (Top-500 edition) | 243 open in Top-500 (hundreds more in full 1,100+) | Community + Lean formalization tracking | Actively tracks AI-targeted conjectures (e.g. #243 APSP subcubic, 3SUM, ETH). |
@@ -36,36 +36,37 @@ No fixed finite count of open human problems exists—active mathematical regist
 | Wikipedia Lists of Unsolved Problems (20+ Fields) | Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats | ~1,200+ distinct entries across 20+ lists | ~1,100+ open | Secondary academic consensus | Broadest public cross-disciplinary map outside specialized trackers. |
 | NAE 14 Grand Challenges & DARPA/DOE Earthshots | Engineering, Energy, Fusion, Clean Water, Health, AI Safety | ~100+ flagship technology targets | ~90+ active engineering frontiers | Commercial prototypes, LCOE/cost targets, safety benchmarks | Dominates Quadrant 1 (Near-Term Civilizational Levers). |
 | PhilPapers Survey & Metaphysics/Ethics Canon | Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics | ~100+ enduring philosophical problems | ~100% actively contested (up to 2,526 yrs old) | Reflective philosophical consensus & formal impossibility theorems | AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks. |
-| This V2.10.0 Unified Mega-Atlas (A. S. Donahue, 2026) | ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers | 2,000 strictly deduplicated biconnected problems (12 modules incl. Left to Solve) | 100% active open/hard/unverified frontiers + 20 resolved benchmarks (0/2,000 solved by this work) | Lean 4.35.0 software-model invariant suite (103 audited theorems; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations + live negative rejection), Python NetworkX biconnectivity audit, JSON Schema, Hypothesis, 50-digit oracle, 12-mutant audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 finite Track B probes (LOG-002, NT-005, COMB-002) & automated daily 16-registry + 25-program sync (59,396-target mirror, 290 crosswalk matches) | Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 13-tool MCP server (incl. 59,396-target Left to Solve mirror explorer), daily auto-updated global registry tracker, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance. |
+| This V2.11.0 Unified Mega-Atlas (A. S. Donahue, 2026) | ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers | 2,000 strictly deduplicated biconnected problems (12 modules incl. Left to Solve) | 100% active open/hard/unverified frontiers + 20 resolved benchmarks (0/2,000 solved by this work) | Lean 4.35.0 software-model invariant suite (103 audited theorems; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations + live negative rejection), Python NetworkX biconnectivity audit, JSON Schema, Hypothesis, 50-digit oracle, 14-mutant audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 finite Track B probes (LOG-002, NT-005, COMB-002) & automated daily 16-registry + 26-program sync (62,790-target mirror, 291 crosswalk matches) | Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 13-tool MCP server (incl. 62,790-target Left to Solve mirror explorer), daily auto-updated global registry tracker, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance. |
 
-### Left to Solve — All 25 Live Mathematical Programs (`https://lefttosolve.com/programs`)
+### Left to Solve — All 26 Live Mathematical Programs (`https://lefttosolve.com/programs`)
 
 | Program | Formalized_In_Lean | Targets | Open | Solved_Here | URL |
 | --- | --- | --- | --- | --- | --- |
-| MathOverflow (not formalized) | No | 35783 | 35783 | 0 | https://lefttosolve.com/programs/MathOverflow%20(not%20formalized) |
-| OEIS conjectures (not formalized) | No | 18441 | 18441 | 0 | https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized) |
-| Erdős Problems | Yes | 2068 | 837 | 660 | https://lefttosolve.com/programs/Erd%C5%91s%20Problems |
-| Wikipedia | Yes | 615 | 336 | 124 | https://lefttosolve.com/programs/Wikipedia |
-| OEIS | Yes | 461 | 394 | 59 | https://lefttosolve.com/programs/OEIS |
-| Mathematics Stack Exchange (not formalized) | No | 395 | 395 | 0 | https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20(not%20formalized) |
-| Wikipedia list (not formalized) | No | 366 | 366 | 0 | https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized) |
-| Open Problem Garden | No | 316 | 316 | 0 | https://lefttosolve.com/programs/Open%20Problem%20Garden |
-| Green's 100 Open Problems | Yes | 285 | 128 | 71 | https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems |
-| Papers | Yes | 180 | 93 | 25 | https://lefttosolve.com/programs/Papers |
-| Erdős Problems (not formalized) | No | 116 | 116 | 0 | https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20(not%20formalized) |
-| arXiv papers | Yes | 105 | 43 | 26 | https://lefttosolve.com/programs/arXiv%20papers |
-| Wikipedia (not formalized) | No | 44 | 44 | 0 | https://lefttosolve.com/programs/Wikipedia%20(not%20formalized) |
+| MathOverflow (not formalized) | No | 35783 | 35783 | 16 | https://lefttosolve.com/programs/MathOverflow%20%28not%20formalized%29 |
+| OEIS conjectures (not formalized) | No | 18451 | 18451 | 119 | https://lefttosolve.com/programs/OEIS%20conjectures%20%28not%20formalized%29 |
+| arXiv abstracts (not formalized) | No | 3368 | 3368 | 5 | https://lefttosolve.com/programs/arXiv%20abstracts%20%28not%20formalized%29 |
+| Erdős Problems | Yes | 2068 | 837 | 995 | https://lefttosolve.com/programs/Erd%C5%91s%20Problems |
+| Wikipedia | Yes | 615 | 336 | 186 | https://lefttosolve.com/programs/Wikipedia |
+| OEIS | Yes | 461 | 394 | 85 | https://lefttosolve.com/programs/OEIS |
+| Mathematics Stack Exchange (not formalized) | No | 395 | 395 | 3 | https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20%28not%20formalized%29 |
+| Wikipedia list (not formalized) | No | 366 | 366 | 0 | https://lefttosolve.com/programs/Wikipedia%20list%20%28not%20formalized%29 |
+| Open Problem Garden | No | 316 | 316 | 6 | https://lefttosolve.com/programs/Open%20Problem%20Garden |
+| Green's 100 Open Problems | Yes | 285 | 128 | 120 | https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems |
+| Papers | Yes | 180 | 93 | 39 | https://lefttosolve.com/programs/Papers |
+| Erdős Problems (not formalized) | No | 116 | 116 | 1 | https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20%28not%20formalized%29 |
+| arXiv papers | Yes | 105 | 43 | 50 | https://lefttosolve.com/programs/arXiv%20papers |
+| Wikipedia (not formalized) | No | 60 | 60 | 0 | https://lefttosolve.com/programs/Wikipedia%20%28not%20formalized%29 |
 | Open Quantum Problems | Yes | 32 | 28 | 4 | https://lefttosolve.com/programs/Open%20Quantum%20Problems |
-| Optimization Constants | Yes | 31 | 11 | 3 | https://lefttosolve.com/programs/Optimization%20Constants |
-| Written on the Wall II | Yes | 31 | 11 | 19 | https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II |
-| Other | Yes | 29 | 17 | 6 | https://lefttosolve.com/programs/Other |
-| Books | Yes | 26 | 11 | 5 | https://lefttosolve.com/programs/Books |
-| MathOverflow | Yes | 21 | 9 | 10 | https://lefttosolve.com/programs/MathOverflow |
+| Optimization Constants | Yes | 31 | 11 | 10 | https://lefttosolve.com/programs/Optimization%20Constants |
+| Written on the Wall II | Yes | 31 | 11 | 25 | https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II |
+| Other | Yes | 29 | 17 | 8 | https://lefttosolve.com/programs/Other |
+| Books | Yes | 26 | 11 | 14 | https://lefttosolve.com/programs/Books |
+| MathOverflow | Yes | 21 | 9 | 11 | https://lefttosolve.com/programs/MathOverflow |
 | Millennium Prize | Yes | 21 | 12 | 2 | https://lefttosolve.com/programs/Millennium%20Prize |
-| Kourovka Notebook | Yes | 9 | 5 | 0 | https://lefttosolve.com/programs/Kourovka%20Notebook |
-| Hilbert's Problems | Yes | 8 | 2 | 1 | https://lefttosolve.com/programs/Hilbert%27s%20Problems |
-| Open problems in information theory (gokhanmergen) | Yes | 7 | 7 | 0 | https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20(gokhanmergen) |
-| Conjectures of Luc Gillibert | Yes | 3 | 3 | 0 | https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert |
+| Kourovka Notebook | Yes | 9 | 5 | 2 | https://lefttosolve.com/programs/Kourovka%20Notebook |
+| Hilbert's Problems | Yes | 8 | 2 | 3 | https://lefttosolve.com/programs/Hilbert%27s%20Problems |
+| Open problems in information theory (gokhanmergen) | Yes | 7 | 1 | 0 | https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20%28gokhanmergen%29 |
+| Conjectures of Luc Gillibert | Yes | 3 | 3 | 1 | https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert |
 | Litt's Problems | Yes | 3 | 2 | 1 | https://lefttosolve.com/programs/Litt%27s%20Problems |
 
 ### Author-Curated Scoped Frontier Preprints (0 / 2,000 Overarching Atlas Parents Retired)
@@ -101,7 +102,7 @@ No fixed finite count of open human problems exists—active mathematical regist
 
 ```mermaid
 flowchart TD
-    ROOT["V2.10.0 MEGA-ATLAS OF ALL UNSOLVED PROBLEMS<br/>2,000 Problems | 8 Macro-Pillars | 28 Superdomains | 6,108 Edges"]
+    ROOT["V2.11.0 MEGA-ATLAS OF ALL UNSOLVED PROBLEMS<br/>2,000 Problems | 8 Macro-Pillars | 28 Superdomains | 6,108 Edges"]
     P1["Pure Mathematics (n=596)"]
     ROOT --> P1
     P1S1["Number Theory & Arithmetic (164)"]

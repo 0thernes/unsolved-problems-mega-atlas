@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 name: Status Update, Proof Claim or Falsification
 description: Report a problem resolution, counterexample, AI proof-claim audit update, or factual error in the Mega-Atlas
 title: "[Status / Falsification]: "
