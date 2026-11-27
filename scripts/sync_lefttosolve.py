@@ -80,6 +80,13 @@ KEEP_FIELDS = ("id", "title", "kind", "fields", "difficulty", "prize", "solved")
 KINDS = ("open", "known", "warmup", "unformalized")
 SCHEMA_VERSION = "1.0.0"
 MIN_COMPLETENESS = 0.995
+CROSSWALK_EXCLUDED_PROGRAMS = {
+    "MathOverflow (not formalized)",
+    "Mathematics Stack Exchange (not formalized)",
+    "OEIS conjectures (not formalized)",
+}
+CROSSWALK_RELATIONS = {"primary", "variant", "related"}
+COMPANION_UM_URL = "https://github.com/0thernes/unsolved-mathematics"
 
 
 class SyncError(RuntimeError):
@@ -311,10 +318,20 @@ _STOP = {"the", "a", "an", "of", "on", "for", "and", "conjecture", "problem", "h
 
 
 def norm_title(text: str) -> str:
-    text = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode("ascii").lower()
+    text = re.sub(r"[\u2010-\u2015\u2212]", " ", str(text))
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii").lower()
     text = re.sub(r"\([^)]*\)", " ", text)
+    text = text.replace("'s ", " ").replace("'", "")
     words = [w for w in re.findall(r"[a-z0-9]+", text) if w not in _STOP]
     return " ".join(words)
+
+
+def _load_crosswalk_overrides() -> dict[str, Any]:
+    path = OUT_DIR / "crosswalk_overrides.json"
+    if not path.exists():
+        return {"include": {}, "exclude": {}}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {"include": data.get("include") or {}, "exclude": data.get("exclude") or {}}
 
 
 def _load_atlas_titles() -> list[tuple[str, str]]:
@@ -337,39 +354,88 @@ def build_crosswalk(programs: dict[str, list[dict[str, Any]]]) -> dict[str, Any]
         atlas = _load_atlas_titles()
     except Exception as exc:  # pragma: no cover - environment without atlas data
         return {"status": "skipped", "reason": f"atlas loader unavailable: {exc}", "matches": []}
+    overrides = _load_crosswalk_overrides()
+    atlas_ids = {aid for aid, _ in atlas}
+    for section in ("include", "exclude"):
+        unknown = sorted(set(overrides[section]) - atlas_ids)
+        if unknown:
+            raise SyncError(f"crosswalk_overrides.json {section}: unknown Mega-Atlas id(s) {unknown}")
+
+    by_id: dict[str, tuple[str, str, str, str, bool]] = {}
     index: dict[str, list[tuple[str, str, str, str, bool]]] = {}
     for name, items in programs.items():
         for it in items:
-            key = norm_title(it["title"] or "")
-            if len(key) >= 6:
-                index.setdefault(key, []).append(
-                    (str(it["id"]), str(it["title"]), name, str(it["kind"]), bool(it["solved"]))
-                )
+            rec = (str(it["id"]), str(it["title"]), name, str(it["kind"]), bool(it["solved"]))
+            by_id[rec[0]] = rec
+            if name in CROSSWALK_EXCLUDED_PROGRAMS:
+                continue
+            base = str(it["title"] or "").split(" — ")[0].rstrip(".")
+            for key in {norm_title(it["title"] or ""), norm_title(base)}:
+                if len(key) >= 6:
+                    index.setdefault(key, []).append(rec)
+
     matches = []
     solved_signals: list[dict[str, Any]] = []
+    curated_count = 0
     for aid, aname in atlas:
-        key = norm_title(aname)
-        hits = index.get(key, [])
-        if hits and len(key) >= 6:
-            cands = [
-                {
-                    "id": h[0],
-                    "title": h[1],
-                    "program": h[2],
-                    "kind": h[3],
-                    "solved": h[4],
-                    "url": problem_url(h[0]),
-                }
-                for h in sorted(hits)[:10]
-            ]
+        base_a = aname.split(" — ")[0].split(" - ")[0].split(":")[0]
+        akeys = {norm_title(aname), norm_title(base_a)}
+        found: dict[str, dict[str, Any]] = {}
+        for k in sorted(akeys):
+            if len(k) < 6:
+                continue
+            for h in index.get(k, []):
+                if h[0] not in found:
+                    primary = (".variants." not in h[0]) and (" — " not in h[1])
+                    found[h[0]] = {
+                        "id": h[0],
+                        "title": h[1],
+                        "program": h[2],
+                        "kind": h[3],
+                        "solved": h[4],
+                        "relation": "primary" if primary else "variant",
+                        "via": "normalized-title",
+                        "url": problem_url(h[0]),
+                    }
+        has_curated = False
+        for entry in overrides["include"].get(aid) or []:
+            iid = entry if isinstance(entry, str) else str(entry["id"])
+            if iid not in by_id:
+                raise SyncError(f"crosswalk_overrides.json include[{aid}]: id {iid!r} not in mirrored catalogue")
+            rel = "primary" if isinstance(entry, str) else str(entry.get("relation") or "primary")
+            if rel not in CROSSWALK_RELATIONS:
+                raise SyncError(f"crosswalk_overrides.json include[{aid}][{iid}]: invalid relation {rel!r}")
+            h = by_id[iid]
+            found[iid] = {
+                "id": h[0],
+                "title": h[1],
+                "program": h[2],
+                "kind": h[3],
+                "solved": h[4],
+                "relation": rel,
+                "via": "curated-override",
+                "url": problem_url(h[0]),
+            }
+            has_curated = True
+        for drop_id in overrides["exclude"].get(aid) or []:
+            found.pop(str(drop_id), None)
+
+        if found:
+            if has_curated:
+                curated_count += 1
+            cands = sorted(
+                found.values(),
+                key=lambda c: (0 if c["via"] == "curated-override" else 1, 0 if c["relation"] == "primary" else 1, c["id"]),
+            )[:12]
+            match_type = "curated-override + normalized-title" if has_curated else "exact-normalised-title (candidate)"
             matches.append({
                 "atlas_id": aid,
                 "atlas_name": aname,
-                "match_type": "exact-normalised-title (candidate)",
+                "match_type": match_type,
                 "lefttosolve": cands,
             })
             for c in cands:
-                if c["solved"]:
+                if c["solved"] and c["relation"] != "related":
                     solved_signals.append({
                         "atlas_id": aid,
                         "atlas_name": aname,
@@ -377,18 +443,24 @@ def build_crosswalk(programs: dict[str, list[dict[str, Any]]]) -> dict[str, Any]
                         "lts_title": c["title"],
                         "program": c["program"],
                         "kind": c["kind"],
+                        "relation": c["relation"],
                         "url": c["url"],
                     })
     return {
         "status": "ok",
-        "method": "exact match after NFKD, lowercase, parenthetical and stop-word removal",
+        "method": (
+            "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), "
+            "exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) "
+            "combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json"
+        ),
         "policy": (
             "Advisory only. A Left to Solve 'solved' flag never modifies the status of any "
             "curated Mega-Atlas problem; matching solved flags are listed under "
-            "external_solved_signals for human review."
+            "external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications)."
         ),
         "atlas_problems": len(atlas),
         "matched_atlas_problems": len(matches),
+        "curated_override_problems": curated_count,
         "external_solved_signals": solved_signals,
         "matches": matches,
     }
@@ -432,8 +504,10 @@ def render_report(snap: dict[str, Any], delta: dict[str, Any], crosswalk: dict[s
         f"- **Upstream formal-conjectures commit:** `{(snap.get('upstream') or {}).get('commit')}`",
         f"- **Change since previous snapshot:** +{delta['added']:,} added, −{delta['removed']:,} removed, {delta['newly_solved']:,} newly solved, {delta['kind_changes']:,} kind changes"
         + ("" if delta.get("baseline_present", True) else " (first snapshot)"),
-        f"- **Candidate Atlas crosswalk:** {snap.get('crosswalk_matches', 0)} Mega-Atlas problems share an exact normalised title with a Left to Solve problem "
-        f"(`data/external/lefttosolve/atlas_crosswalk.json`; automatic, not curated; {len(signals)} candidate link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)",
+        f"- **Atlas crosswalk:** {snap.get('crosswalk_matches', 0)} Mega-Atlas problems linked to Left to Solve targets "
+        f"({crosswalk.get('curated_override_problems', 0)} via reviewed `crosswalk_overrides.json` + exact normalized base-title matches; "
+        f"`data/external/lefttosolve/atlas_crosswalk.json`; {len(signals)} non-`related` link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)",
+        f"- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics]({COMPANION_UM_URL}) (`v0.8.0`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all 25 Left to Solve programs)",
         "",
         "| Program | Total | `open` | Lean-stated | Unformalized | Solved (by kind) | Mean difficulty | Top fields |",
         "|---|---:|---:|---:|---:|---|---:|---|",
@@ -458,7 +532,7 @@ def render_report(snap: dict[str, Any], delta: dict[str, Any], crosswalk: dict[s
         "- **Source & crawl etiquette:** Public endpoints `/api/problems` and `/api/stats` at <https://lefttosolve.com>, allowed by its `robots.txt`. Disallowed paths `/api/desk/` and `/api/verdict` are never requested. Requests are sequential with fixed delay and back-off.",
         "- **Upstream sources & licensing:** Left to Solve draws Lean statements from `google-deepmind/formal-conjectures` (`Apache-2.0`), Erdős metadata from `teorth/erdosproblems`, descriptions from Wikipedia (`CC BY-SA 4.0`) and links from Open Problem Garden; MathOverflow, Mathematics Stack Exchange and OEIS titles are `CC BY-SA 4.0`. Left to Solve publishes no licence for its aggregate catalogue.",
         "- **Scope & carve-out:** `data/external/lefttosolve/` stores identifiers, titles, program membership, status flags and links only — no statement excerpts are copied. Third-party titles remain under their upstream sources' licences; `data/external/lefttosolve/` is **not** covered by this repository's `CC-BY-4.0` data licence (see [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)). Entries are removed on request.",
-        "- **Non-affiliation:** Not affiliated with Left to Solve or any of its upstream sources. This sidecar never modifies the frozen 1,900-problem Mega-Atlas dataset or retires any problem.",
+        "- **Non-affiliation:** Not affiliated with Left to Solve or any of its upstream sources. This sidecar never modifies the frozen 2,000-problem Mega-Atlas dataset or retires any problem.",
         "",
         "## Reproduction",
         "",
@@ -589,6 +663,7 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
     <a href="../../">Interactive Web Atlas (2,000 Problems)</a>
     <a href="../../blueprint/">Lean 4.35.0 Proof Blueprint</a>
     <a href="https://github.com/0thernes/unsolved-problems-mega-atlas" rel="noopener noreferrer">GitHub Repository</a>
+    <a href="{esc(COMPANION_UM_URL)}" rel="noopener noreferrer">Companion Math Atlas (120 Dossiers)</a>
     <a href="{esc(BASE)}/programs" rel="noopener noreferrer">Left to Solve Upstream</a>
   </nav>
   <h1>Left to Solve Program Lists — Daily Mirror</h1>
@@ -622,6 +697,7 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
     <p>
       <a href="snapshot.json"><code>snapshot.json</code></a> ·
       <a href="atlas_crosswalk.json"><code>atlas_crosswalk.json</code></a> ·
+      <a href="crosswalk_overrides.json"><code>crosswalk_overrides.json</code></a> ·
       <a href="CHANGES.jsonl"><code>CHANGES.jsonl</code></a> ·
       <a href="MANIFEST.sha256"><code>MANIFEST.sha256</code></a> ·
       Per-program JSONL shards linked in the table below (each &lt; 4 MB).
@@ -658,13 +734,18 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
   </section>
 
   <section aria-labelledby="crosswalk-heading">
-    <h2 id="crosswalk-heading">Candidate Mega-Atlas Crosswalk ({crosswalk.get("matched_atlas_problems", 0)} of {crosswalk.get("atlas_problems", 1900)} Atlas Problems)</h2>
+    <h2 id="crosswalk-heading">Mega-Atlas Crosswalk ({crosswalk.get("matched_atlas_problems", 0)} of {crosswalk.get("atlas_problems", 1900)} Atlas Problems)</h2>
     <p class="subtitle">
-      Automatic exact normalised-title candidates only (not curated identifications).
-      <code>{len(signals)}</code> candidate link(s) carry a Left to Solve <code>solved</code> flag; zero Mega-Atlas statuses are changed.
+      Reviewed curated overrides (<code>{crosswalk.get("curated_override_problems", 0)}</code> problems in <code>crosswalk_overrides.json</code>) plus automatic exact normalized base-title matches across the 22 formal/curated programs (identity-level correspondences, not statement-fidelity certifications).
+      <code>{len(signals)}</code> non-<code>related</code> link(s) carry a Left to Solve <code>solved</code> flag; zero Mega-Atlas statuses are changed.
     </p>
+    <div class="controls">
+      <label for="cw-filter">Filter crosswalk by Atlas ID, problem, or Lean ID:</label>
+      <input id="cw-filter" type="search" placeholder="e.g. NT-005, Collatz, QC-037, Erdos…" autocomplete="off">
+      <span id="cw-count" class="meta"></span>
+    </div>
     <div class="table-wrap">
-      <table>
+      <table id="cw-table">
         <thead>
           <tr>
             <th scope="col">Atlas ID</th>
@@ -711,23 +792,27 @@ footer {{ border-top: 1px solid var(--border); color: var(--muted); font-size: 0
 </footer>
 <script>
 (function () {{
-  var input = document.getElementById("prog-filter");
-  var tbody = document.querySelector("#prog-table tbody");
-  var counter = document.getElementById("prog-count");
-  if (!input || !tbody) return;
-  var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
-  function update() {{
-    var q = input.value.trim().toLowerCase();
-    var shown = 0;
-    rows.forEach(function (tr) {{
-      var match = !q || tr.textContent.toLowerCase().indexOf(q) !== -1;
-      tr.style.display = match ? "" : "none";
-      if (match) shown += 1;
-    }});
-    if (counter) counter.textContent = "Showing " + shown + " of " + rows.length + " programs";
+  function bindFilter(inputId, tableId, counterId, noun) {{
+    var input = document.getElementById(inputId);
+    var tbody = document.querySelector("#" + tableId + " tbody");
+    var counter = document.getElementById(counterId);
+    if (!input || !tbody) return;
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+    function update() {{
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      rows.forEach(function (tr) {{
+        var match = !q || tr.textContent.toLowerCase().indexOf(q) !== -1;
+        tr.style.display = match ? "" : "none";
+        if (match) shown += 1;
+      }});
+      if (counter) counter.textContent = "Showing " + shown + " of " + rows.length + " " + noun;
+    }}
+    input.addEventListener("input", update);
+    update();
   }}
-  input.addEventListener("input", update);
-  update();
+  bindFilter("prog-filter", "prog-table", "prog-count", "programs");
+  bindFilter("cw-filter", "cw-table", "cw-count", "matched problems");
 }})();
 </script>
 </body>

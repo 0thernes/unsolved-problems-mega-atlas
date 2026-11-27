@@ -1,15 +1,258 @@
 {
   "status": "ok",
-  "method": "exact match after NFKD, lowercase, parenthetical and stop-word removal",
-  "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review.",
+  "method": "Across the 22 formal/curated programs (excluding raw Q&A/OEIS-unformalized streams), exact normalized base-title matching (NFKD, lowercase, parenthetical/possessive/stop-word removal) combined with reviewed curated overrides in data/external/lefttosolve/crosswalk_overrides.json",
+  "policy": "Advisory only. A Left to Solve 'solved' flag never modifies the status of any curated Mega-Atlas problem; matching solved flags are listed under external_solved_signals for human review (links are title/identity-level, not statement-fidelity certifications).",
   "atlas_problems": 2000,
-  "matched_atlas_problems": 43,
-  "external_solved_signals": [],
+  "matched_atlas_problems": 199,
+  "curated_override_problems": 186,
+  "external_solved_signals": [
+    {
+      "atlas_id": "NT-016",
+      "atlas_name": "Elliott-Halberstam Conjecture",
+      "lts_id": "ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville",
+      "lts_title": "Elliott–Halberstam conjecture — friedlander granville",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
+    },
+    {
+      "atlas_id": "ALG-001",
+      "atlas_name": "Inverse Galois Problem",
+      "lts_id": "InverseGalois.inverse_galois_problem.variants.abelian",
+      "lts_title": "Inverse Galois problem — abelian",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
+    },
+    {
+      "atlas_id": "ALG-001",
+      "atlas_name": "Inverse Galois Problem",
+      "lts_id": "InverseGalois.inverse_galois_problem.variants.cyclic",
+      "lts_title": "Inverse Galois problem — cyclic",
+      "program": "Wikipedia",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
+    },
+    {
+      "atlas_id": "ALG-045",
+      "atlas_name": "Auslander-Reiten Conjecture",
+      "lts_id": "AuslanderReiten.auslander_reiten.variants.regular_local",
+      "lts_title": "The Auslander-Reiten conjecture — regular local",
+      "program": "Papers",
+      "kind": "warmup",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
+    },
+    {
+      "atlas_id": "XNT-003",
+      "atlas_name": "Erdős Problem #11 (Odd Integers as Squarefree Plus a Power of Two)",
+      "lts_id": "Erdos11.erdos_11.variants.finite_bound1",
+      "lts_title": "Erdős Problem 11 — finite bound1",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
+    },
+    {
+      "atlas_id": "XNT-004",
+      "atlas_name": "Erdős Problem #41 (Exact Asymptotic Upper Bound for Higher-Order B_3 Sidon Sets)",
+      "lts_id": "Erdos41.erdos_41.variants.pairwise",
+      "lts_title": "Erdős Problem 41 — pairwise",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.balogh_furedi_roy",
+      "lts_title": "Erdős Problem 30 — balogh furedi roy",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.carter_hunter_obryant",
+      "lts_title": "Erdős Problem 30 — carter hunter obryant",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.erdos_turan",
+      "lts_title": "Erdős Problem 30 — erdos turan",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.isEquivalent_sqrt",
+      "lts_title": "Erdős Problem 30 — isEquivalent sqrt",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.lindstrom",
+      "lts_title": "Erdős Problem 30 — lindstrom",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.obryant",
+      "lts_title": "Erdős Problem 30 — obryant",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
+    },
+    {
+      "atlas_id": "XNT-036",
+      "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
+      "lts_id": "Erdos30.erdos_30.variants.singer",
+      "lts_title": "Erdős Problem 30 — singer",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "lts_id": "Erdos23.blowupC5_tight",
+      "lts_title": "Erdős Problem 23 — blowupC5 tight",
+      "program": "Erdős Problems",
+      "kind": "warmup",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos23.blowupC5_tight"
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "lts_id": "Erdos23.erdos_23.variants.n1",
+      "lts_title": "Erdős Problem 23 — n1",
+      "program": "Erdős Problems",
+      "kind": "warmup",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "lts_id": "Erdos23.erdos_23.variants.n5_tight",
+      "lts_title": "Erdős Problem 23 — n5 tight",
+      "program": "Erdős Problems",
+      "kind": "known",
+      "relation": "variant",
+      "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
+    }
+  ],
   "matches": [
+    {
+      "atlas_id": "NT-002",
+      "atlas_name": "Generalized & Grand Riemann Hypotheses (GRH)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-grand-riemann-hypothesis",
+          "title": "Grand Riemann hypothesis",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-grand-riemann-hypothesis"
+        },
+        {
+          "id": "ERH.extended_riemann_hypothesis",
+          "title": "Extended Riemann Hypothesis (Dedekind zeta functions)",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ERH.extended_riemann_hypothesis"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-003",
+      "atlas_name": "Goldbach's Strong Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "GoldbachConjecture.goldbach",
+          "title": "Goldbach's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/GoldbachConjecture.goldbach"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-004",
+      "atlas_name": "Twin Prime & Polignac's Conjectures",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "TwinPrimes.twin_primes",
+          "title": "Twin prime conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/TwinPrimes.twin_primes"
+        },
+        {
+          "id": "wp-polignac-s-conjecture",
+          "title": "Polignac's conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-polignac-s-conjecture"
+        },
+        {
+          "id": "Dickson.generalized_twin_primes",
+          "title": "The generalized twin-prime conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Dickson.generalized_twin_primes"
+        }
+      ]
+    },
     {
       "atlas_id": "NT-005",
       "atlas_name": "Collatz Conjecture (3n + 1)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "CollatzConjecture.collatz_conjecture",
@@ -17,6 +260,8 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/CollatzConjecture.collatz_conjecture"
         }
       ]
@@ -24,22 +269,172 @@
     {
       "atlas_id": "NT-006",
       "atlas_name": "Birch and Swinnerton-Dyer Conjecture (BSD)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "WeierstrassCurve.Affine.Rat.strongBSD",
+          "title": "The Birch and Swinnerton-Dyer (BSD) Conjecture — strongBSD",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WeierstrassCurve.Affine.Rat.strongBSD"
+        },
+        {
+          "id": "WeierstrassCurve.Affine.Rat.weakBSD",
+          "title": "The Birch and Swinnerton-Dyer (BSD) Conjecture — weakBSD",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WeierstrassCurve.Affine.Rat.weakBSD"
+        },
+        {
+          "id": "WeierstrassCurve.Affine.NumberField.strongBSD",
+          "title": "The Birch and Swinnerton-Dyer (BSD) Conjecture — strongBSD",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WeierstrassCurve.Affine.NumberField.strongBSD"
+        },
+        {
+          "id": "WeierstrassCurve.Affine.NumberField.weakBSD",
+          "title": "The Birch and Swinnerton-Dyer (BSD) Conjecture — weakBSD",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WeierstrassCurve.Affine.NumberField.weakBSD"
+        },
         {
           "id": "wp-birch-and-swinnerton-dyer-conjecture",
           "title": "Birch and Swinnerton-Dyer conjecture",
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/wp-birch-and-swinnerton-dyer-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-007",
+      "atlas_name": "abc Conjecture (Oesterlé-Masser)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ABC.abc",
+          "title": "*abc* conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ABC.abc"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-011",
+      "atlas_name": "Montgomery's Pair Correlation Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "MontgomeryPairCorrelationConjecture.montgomery_pair_correlation_conjecture",
+          "title": "Montgomery's GUE pair correlation conjecture for zeta zeros",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/MontgomeryPairCorrelationConjecture.montgomery_pair_correlation_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-016",
+      "atlas_name": "Elliott-Halberstam Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ElliottHalberstamConjecture.elliott_halberstam",
+          "title": "Elliott–Halberstam conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam"
+        },
+        {
+          "id": "ElliottHalberstamConjecture.elliott_halberstam.variants.bombieri_vinogradov",
+          "title": "Elliott–Halberstam conjecture — bombieri vinogradov",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.bombieri_vinogradov"
+        },
+        {
+          "id": "ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville",
+          "title": "Elliott–Halberstam conjecture — friedlander granville",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/ElliottHalberstamConjecture.elliott_halberstam.variants.friedlander_granville"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-017",
+      "atlas_name": "Hardy-Littlewood Prime k-Tuples Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "HardyLittlewood.first_hardy_littlewood_conjecture",
+          "title": "First Hardy–Littlewood conjecture — first hardy littlewood conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/HardyLittlewood.first_hardy_littlewood_conjecture"
+        },
+        {
+          "id": "Dickson.dickson_conjecture",
+          "title": "Dickson's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Dickson.dickson_conjecture"
+        },
+        {
+          "id": "PrimeTuplesConjecture.prime_tuples_conjecture",
+          "title": "Prime Tuples Conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/PrimeTuplesConjecture.prime_tuples_conjecture"
         }
       ]
     },
     {
       "atlas_id": "NT-018",
       "atlas_name": "Legendre's Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "LegendreConjecture.legendre_conjecture",
@@ -47,14 +442,253 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/LegendreConjecture.legendre_conjecture"
+        },
+        {
+          "id": "LegendreConjecture.legendre_conjecture.ferreira_large_n",
+          "title": "Legendre's conjecture — ferreira large n",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/LegendreConjecture.legendre_conjecture.ferreira_large_n"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-019",
+      "atlas_name": "Cramér's Conjecture on Maximal Prime Gaps",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CramerConjecture.cramer_conjecture",
+          "title": "Cramér's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CramerConjecture.cramer_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-020",
+      "atlas_name": "Landau's Fourth Problem & Bunyakovsky Conjecture (n^2 + 1 Primes)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bunyakovsky.bunyakovsky_conjecture",
+          "title": "Bunyakovsky conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bunyakovsky.bunyakovsky_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-021",
+      "atlas_name": "Schinzel's Hypothesis H & Bateman-Horn Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BatemanHornConjecture.bateman_horn_conjecture",
+          "title": "The Bateman-Horn Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BatemanHornConjecture.bateman_horn_conjecture"
+        },
+        {
+          "id": "Schinzel.schinzel_conjecture",
+          "title": "Schinzel conjecture (H hypothesis)",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Schinzel.schinzel_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-023",
+      "atlas_name": "Chowla's Conjecture on Möbius Autocorrelations",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ChowlaLiouvilleConjecture.chowla_liouville_conjecture",
+          "title": "Chowla's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ChowlaLiouvilleConjecture.chowla_liouville_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-024",
+      "atlas_name": "Sarnak's Möbius Disjointness Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-sarnak-conjecture",
+          "title": "Sarnak conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-sarnak-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-028",
+      "atlas_name": "Lehmer's Conjecture on Ramanujan's Tau Function",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "RamanujanTau.lehmer_ramanujan_tau",
+          "title": "Ramanujan τ-function — lehmer ramanujan tau",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/RamanujanTau.lehmer_ramanujan_tau"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-031",
+      "atlas_name": "Bloch-Kato Tamagawa Number Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-bloch-kato-conjecture",
+          "title": "Bloch–Kato conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bloch-kato-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-032",
+      "atlas_name": "Beilinson's Conjectures on Special Values of L-Functions",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-beilinson-s-conjectures-about-special-values-of-l-functions",
+          "title": "Beilinson's conjectures about special values of L-functions.",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-beilinson-s-conjectures-about-special-values-of-l-functions"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-034",
+      "atlas_name": "Generalized Sato-Tate Conjecture for Abelian Varieties & Motives",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "SatoTateConjecture.satoTate_conjecture",
+          "title": "The Sato–Tate conjecture",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/SatoTateConjecture.satoTate_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-036",
+      "atlas_name": "Finiteness of Tate-Shafarevich Groups (Sha Conjecture)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-sha-finite",
+          "title": "Finiteness of the Tate–Shafarevich group",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-sha-finite"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-041",
+      "atlas_name": "Congruent Number Problem (Unconditional Effective Characterization)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CongruentNumber.Tunnell_even",
+          "title": "Congruent Number — Tunnell even",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CongruentNumber.Tunnell_even"
+        },
+        {
+          "id": "CongruentNumber.Tunnell_even_converse",
+          "title": "Congruent Number — Tunnell even converse",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/CongruentNumber.Tunnell_even_converse"
+        },
+        {
+          "id": "CongruentNumber.Tunnell_odd",
+          "title": "Congruent Number — Tunnell odd",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/CongruentNumber.Tunnell_odd"
+        },
+        {
+          "id": "CongruentNumber.Tunnell_odd_converse",
+          "title": "Congruent Number — Tunnell odd converse",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/CongruentNumber.Tunnell_odd_converse"
         }
       ]
     },
     {
       "atlas_id": "NT-042",
       "atlas_name": "Vojta's Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-vojta-s-conjecture",
@@ -62,6 +696,8 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-vojta-s-conjecture"
         }
       ]
@@ -69,22 +705,163 @@
     {
       "atlas_id": "NT-043",
       "atlas_name": "Bombieri-Lang Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
-          "id": "mo-391170",
-          "title": "A question on the Bombieri-Lang conjecture",
-          "program": "MathOverflow (not formalized)",
+          "id": "wp-bombieri-lang-conjecture",
+          "title": "Bombieri–Lang conjecture",
+          "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
-          "url": "https://lefttosolve.com/p/mo-391170"
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bombieri-lang-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-045",
+      "atlas_name": "Tate Conjecture on Algebraic Cycles",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-tate-conjecture",
+          "title": "Tate conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-tate-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-046",
+      "atlas_name": "Fontaine-Mazur Conjecture (Higher Dimension & General Number Fields)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-fontaine-mazur-conjecture",
+          "title": "Fontaine–Mazur conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-fontaine-mazur-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-047",
+      "atlas_name": "Zilber-Pink Conjecture (Unlikely Intersections)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-zilber-pink-conjecture",
+          "title": "Zilber–Pink conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-zilber-pink-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-050",
+      "atlas_name": "Grothendieck's Section Conjecture (Anabelian Geometry)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-section-conjecture",
+          "title": "Section conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-section-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-051",
+      "atlas_name": "Szpiro's Conjecture & Hall's Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Hall.hall_conjecture",
+          "title": "Hall's conjecture — hall conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Hall.hall_conjecture"
+        },
+        {
+          "id": "wp-szpiro-s-conjecture",
+          "title": "Szpiro's conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-szpiro-s-conjecture"
+        },
+        {
+          "id": "Hall.weak_hall_conjecture",
+          "title": "Hall's conjecture — weak hall conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Hall.weak_hall_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-052",
+      "atlas_name": "Gauss's Class Number Problem for Real Quadratic Fields",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ClassNumberProblem.class_number_problem",
+          "title": "Class number problem for real quadratic fields",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ClassNumberProblem.class_number_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-053",
+      "atlas_name": "Kummer-Vandiver Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "KummerVandiver.kummer_vandiver",
+          "title": "Kummer–Vandiver conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/KummerVandiver.kummer_vandiver"
         }
       ]
     },
     {
       "atlas_id": "NT-054",
       "atlas_name": "Hilbert's 12th Problem (Explicit Class Field Theory & General Stark Conjectures)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-hilbert-s-12th-problem",
@@ -92,37 +869,202 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-hilbert-s-12th-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-056",
+      "atlas_name": "Greenberg's Conjecture in Iwasawa Theory",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-greenberg-s-conjectures",
+          "title": "Greenberg's conjectures",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-greenberg-s-conjectures"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-057",
+      "atlas_name": "Cohen-Lenstra-Martinet Heuristics on Class Groups",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CohenLenstraHeuristics.cohen_lenstra_imaginary_quadratic_p_sylow_conjecture",
+          "title": "Cohen–Lenstra Heuristic (Imaginary Quadratic Case, $u = 0$)",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CohenLenstraHeuristics.cohen_lenstra_imaginary_quadratic_p_sylow_conjecture"
+        },
+        {
+          "id": "CohenLenstraHeuristics.cohen_lenstra_real_quadratic_p_sylow_conjecture",
+          "title": "Cohen–Lenstra Heuristic (Real Quadratic Case, $u = 1$)",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CohenLenstraHeuristics.cohen_lenstra_real_quadratic_p_sylow_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-060",
+      "atlas_name": "Artin's Primitive Root Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.i",
+          "title": "Artin's Conjecture on Primitive Roots",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.i"
+        },
+        {
+          "id": "ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.ii",
+          "title": "Artin's Conjecture on Primitive Roots — ii",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ArtinPrimitiveRootsConjecture.artin_primitive_roots.parts.ii"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-061",
+      "atlas_name": "Hilbert's 10th Problem over the Rational Numbers Q",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-for-which-number-fields-does-hilbert-s-tenth-problem-hold",
+          "title": "For which number fields does Hilbert's tenth problem hold?",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-for-which-number-fields-does-hilbert-s-tenth-problem-hold"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-062",
+      "atlas_name": "Beal's Conjecture & Fermat-Catalan Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BealConjecture.beal_conjecture",
+          "title": "Beal conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BealConjecture.beal_conjecture"
+        },
+        {
+          "id": "FermatCatalanConjecture.fermat_catalan",
+          "title": "Fermat-Catalan conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/FermatCatalanConjecture.fermat_catalan"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-063",
+      "atlas_name": "Pillai's Conjecture on Differences of Perfect Powers",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Catalan.pillais_conjecture",
+          "title": "Catalan's conjecture and related Diophantine equations",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Catalan.pillais_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-065",
+      "atlas_name": "Perfect Cuboid (Perfect Euler Brick) Problem",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-existence-of-perfect-cuboids-and-associated-cuboid-conjectures",
+          "title": "Existence of perfect cuboids and associated cuboid conjectures",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-existence-of-perfect-cuboids-and-associated-cuboid-conjectures"
         }
       ]
     },
     {
       "atlas_id": "NT-066",
       "atlas_name": "Brocard's Problem (n! + 1 = m^2)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
-        {
-          "id": "Brocard.brocard_conjecture",
-          "title": "Brocard's Conjecture",
-          "program": "Wikipedia",
-          "kind": "open",
-          "solved": false,
-          "url": "https://lefttosolve.com/p/Brocard.brocard_conjecture"
-        },
         {
           "id": "Erdos398.erdos_398",
           "title": "Brocard's Problem",
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Erdos398.erdos_398"
+        },
+        {
+          "id": "Brocard.brocard_conjecture",
+          "title": "Brocard's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Brocard.brocard_conjecture"
+        },
+        {
+          "id": "Brocard.brocard_conjecture.ferreira_large_n",
+          "title": "Brocard's Conjecture — ferreira large n",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Brocard.brocard_conjecture.ferreira_large_n"
         }
       ]
     },
     {
       "atlas_id": "NT-068",
       "atlas_name": "Schanuel's Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Schanuel.schanuel_conjecture",
@@ -130,6 +1072,8 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Schanuel.schanuel_conjecture"
         }
       ]
@@ -137,7 +1081,7 @@
     {
       "atlas_id": "NT-069",
       "atlas_name": "Four Exponentials Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Exponentials.four_exponentials_conjecture",
@@ -145,14 +1089,60 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Exponentials.four_exponentials_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-070",
+      "atlas_name": "Irrationality & Transcendence of the Euler-Mascheroni Constant (gamma)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-euler-s-constant",
+          "title": "Euler's constant",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-euler-s-constant"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-073",
+      "atlas_name": "Littlewood's Conjecture & p-adic Littlewood Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "LittlewoodConjecture.littlewood_conjecture",
+          "title": "Littlewood conjectures",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LittlewoodConjecture.littlewood_conjecture"
+        },
+        {
+          "id": "LittlewoodConjecture.padic_littlewood_conjecture",
+          "title": "Littlewood conjectures — padic littlewood conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LittlewoodConjecture.padic_littlewood_conjecture"
         }
       ]
     },
     {
       "atlas_id": "NT-074",
       "atlas_name": "Lehmer's Mahler Measure Problem",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem",
@@ -160,14 +1150,202 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem"
+        },
+        {
+          "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.best",
+          "title": "Lehmer's Mahler measure problem — best",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.best"
+        },
+        {
+          "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.not_reciprocal",
+          "title": "Lehmer's Mahler measure problem — not reciprocal",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.not_reciprocal"
+        },
+        {
+          "id": "LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.odd",
+          "title": "Lehmer's Mahler measure problem — odd",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/LehmerMahlerMeasureProblem.lehmer_mahler_measure_problem.variants.odd"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-077",
+      "atlas_name": "Erdős-Turán Conjecture on Additive Bases",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos28.erdos_28",
+          "title": "Erdős Problem 28",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos28.erdos_28"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-078",
+      "atlas_name": "Erdős-Straus Conjecture (4/n Egyptian Fractions)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos242.erdos_242",
+          "title": "Erdős Problem 242",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos242.erdos_242"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-079",
+      "atlas_name": "Waring's Problem Exact Thresholds G(k), Ideal g(k) & Mahler's 3/2 Problem",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mahler32.mahler_conjecture",
+          "title": "Mahler's 3/2 Problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mahler32.mahler_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-080",
+      "atlas_name": "Existence of Odd Perfect Numbers & Infinitude of Mersenne Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mersenne.infinitely_many_mersenne_primes",
+          "title": "Conjectures about Mersenne primes — infinitely many mersenne primes",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mersenne.infinitely_many_mersenne_primes"
+        },
+        {
+          "id": "PerfectNumbers.odd_perfect_number_conjecture",
+          "title": "Odd Perfect Number Conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/PerfectNumbers.odd_perfect_number_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-081",
+      "atlas_name": "Infinitude of Kummer-Regular, Sophie Germain, Fermat & Non-Wieferich Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Dickson.infinite_safe_primes",
+          "title": "The infinitude of Sophie Germain primes",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Dickson.infinite_safe_primes"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-082",
+      "atlas_name": "Lehmer's Totient Problem & Carmichael's Totient Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CarmichaelTotient.charmichaelTotient",
+          "title": "Carmichael's totient function conjecture — charmichaelTotient",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CarmichaelTotient.charmichaelTotient"
+        },
+        {
+          "id": "LehmerTotient.lehmer_totient",
+          "title": "Lehmer's totient problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LehmerTotient.lehmer_totient"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-083",
+      "atlas_name": "Markov Uniqueness Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-uniqueness-conjecture-for-markov-numbers",
+          "title": "Uniqueness conjecture for Markov numbers",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-uniqueness-conjecture-for-markov-numbers"
+        }
+      ]
+    },
+    {
+      "atlas_id": "NT-085",
+      "atlas_name": "Furstenberg's ×2, ×3 Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bugeaud06.furstenberg_two_three",
+          "title": "Furstenberg's theorem",
+          "program": "Books",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bugeaud06.furstenberg_two_three"
         }
       ]
     },
     {
       "atlas_id": "ALG-001",
       "atlas_name": "Inverse Galois Problem",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "InverseGalois.inverse_galois_problem",
@@ -175,14 +1353,141 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem"
+        },
+        {
+          "id": "InverseGalois.inverse_galois_problem.variants.abelian",
+          "title": "Inverse Galois problem — abelian",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.abelian"
+        },
+        {
+          "id": "InverseGalois.inverse_galois_problem.variants.complex_function_field",
+          "title": "Inverse Galois problem — complex function field",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.complex_function_field"
+        },
+        {
+          "id": "InverseGalois.inverse_galois_problem.variants.complex_rational_functions",
+          "title": "Inverse Galois problem — complex rational functions",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.complex_rational_functions"
+        },
+        {
+          "id": "InverseGalois.inverse_galois_problem.variants.cyclic",
+          "title": "Inverse Galois problem — cyclic",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/InverseGalois.inverse_galois_problem.variants.cyclic"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-002",
+      "atlas_name": "Planar Jacobian Conjecture (n = 2)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "JacobianConjecture.jacobian_conjecture_two_variables",
+          "title": "Jacobian conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/JacobianConjecture.jacobian_conjecture_two_variables"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-003",
+      "atlas_name": "Zariski Cancellation Problem in Characteristic Zero (n >= 3)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one",
+          "title": "Zariski Cancellation — dim one",
+          "program": "arXiv papers",
+          "kind": "known",
+          "solved": true,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Arxiv.2208.14736.zariski_cancellation_problem.variants.dim_one"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-004",
+      "atlas_name": "Dixmier Conjecture for the First Weyl Algebra A_1",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.math.0608009.dixmier_conjecture.variants.dimension_one",
+          "title": "The Dixmier Conjecture — dimension one",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Arxiv.math.0608009.dixmier_conjecture.variants.dimension_one"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-008",
+      "atlas_name": "Grothendieck-Katz p-Curvature Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-grothendieck-katz-p-curvature-conjecture",
+          "title": "Grothendieck–Katz p-curvature conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-grothendieck-katz-p-curvature-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-022",
+      "atlas_name": "Bounded Burnside Problem for Small Exponents (B(2, 5) & B(2, 8))",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BoundedBurnsideProblem.bounded_burnside_problem",
+          "title": "Bounded Burnside problem",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BoundedBurnsideProblem.bounded_burnside_problem"
         }
       ]
     },
     {
       "atlas_id": "ALG-023",
       "atlas_name": "Andrews-Curtis Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "AndrewsCurtis.andrews_curtis_conjecture",
@@ -190,29 +1495,284 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/AndrewsCurtis.andrews_curtis_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-025",
+      "atlas_name": "Whitehead's Asphericity Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-whitehead-conjecture",
+          "title": "Whitehead conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-whitehead-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-026",
+      "atlas_name": "Eilenberg-Ganea Conjecture (Cohomological vs. Geometric Dimension 2)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-eilenberg-ganea-conjecture",
+          "title": "Eilenberg–Ganea conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-eilenberg-ganea-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-027",
+      "atlas_name": "Gromov's Residual Finiteness Problem for Hyperbolic Groups",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "HyperbolicGroupsResiduallyFinite.hyperbolic_exists_finiteIndex_ne_top",
+          "title": "Residual finiteness of hyperbolic groups — hyperbolic exists finiteIndex ne top",
+          "program": "Other",
+          "kind": "known",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/HyperbolicGroupsResiduallyFinite.hyperbolic_exists_finiteIndex_ne_top"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-031",
+      "atlas_name": "Baum-Connes Conjecture (Without Coefficients)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-baum-connes-conjecture",
+          "title": "Baum–Connes conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-baum-connes-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-045",
+      "atlas_name": "Auslander-Reiten Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "AuslanderReiten.auslander_reiten.variants.local_free",
+          "title": "The Auslander-Reiten conjecture — local free",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.local_free"
+        },
+        {
+          "id": "AuslanderReiten.auslander_reiten.variants.normal",
+          "title": "The Auslander-Reiten conjecture — normal",
+          "program": "Papers",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.normal"
+        },
+        {
+          "id": "AuslanderReiten.auslander_reiten.variants.regular_local",
+          "title": "The Auslander-Reiten conjecture — regular local",
+          "program": "Papers",
+          "kind": "warmup",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/AuslanderReiten.auslander_reiten.variants.regular_local"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-047",
+      "atlas_name": "Bass-Quillen Conjecture on Projective Modules over Regular Rings (Mixed Characteristic)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-bass-quillen-conjecture",
+          "title": "Bass–Quillen conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bass-quillen-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-050",
+      "atlas_name": "Eisenbud-Green-Harris Conjecture on Hilbert Functions",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "EisenbudGreenHarris.eisenbud_green_harris",
+          "title": "The Eisenbud-Green-Harris conjecture.",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/EisenbudGreenHarris.eisenbud_green_harris"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-051",
+      "atlas_name": "Serre's Intersection Multiplicity Positivity Conjecture (Mixed Characteristic)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "SerreMultiplicityConjectures.intersectionMultiplicity_pos_of_equalCharacteristic",
+          "title": "Serre's multiplicity conjectures — intersectionMultiplicity pos of equalCharacteristic",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/SerreMultiplicityConjectures.intersectionMultiplicity_pos_of_equalCharacteristic"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-052",
+      "atlas_name": "Hochster's Small Cohen-Macaulay Modules Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "SmallCohenMacaulayModules.exists_isSmallCohenMacaulay",
+          "title": "The small Cohen-Macaulay modules conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/SmallCohenMacaulayModules.exists_isSmallCohenMacaulay"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-061",
+      "atlas_name": "Grothendieck's Standard Conjectures on Algebraic Cycles",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-standard-conjectures-on-algebraic-cycles",
+          "title": "Standard conjectures on algebraic cycles",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-standard-conjectures-on-algebraic-cycles"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ALG-062",
+      "atlas_name": "Bloch-Beilinson Conjecture on Mixed Motives & Chow Filtration",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-bloch-beilinson-conjectures",
+          "title": "Bloch–Beilinson conjectures",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bloch-beilinson-conjectures"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-001",
+      "atlas_name": "Hodge Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-hodge-conjecture",
+          "title": "Hodge conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-hodge-conjecture"
         }
       ]
     },
     {
       "atlas_id": "GEOM-002",
       "atlas_name": "Smooth 4-Dimensional Poincaré Conjecture (SPC4)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "PoincareConjecture.poincare_conjecture.variants.smooth_dimension_four",
+          "title": "PoincareConjecture — smooth dimension four",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/PoincareConjecture.poincare_conjecture.variants.smooth_dimension_four"
+        },
         {
           "id": "opg-smooth-4-dimensional-poincare-conjecture",
           "title": "Smooth 4-dimensional Poincare conjecture",
           "program": "Open Problem Garden",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/opg-smooth-4-dimensional-poincare-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-003",
+      "atlas_name": "Sphere Packing Optimal Density in General Dimensions (d ≠ 1, 2, 3, 8, 24)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-sphere-packing",
+          "title": "Sphere packing",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-sphere-packing"
         }
       ]
     },
     {
       "atlas_id": "GEOM-006",
       "atlas_name": "Resolution of Singularities in Positive Characteristic (dim ≥ 4)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "AlgebraicGeometry.resolution_of_singularities",
@@ -220,22 +1780,101 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/AlgebraicGeometry.resolution_of_singularities"
-        },
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-011",
+      "atlas_name": "Bloch–Beilinson Conjectures on Chow Groups and Motives",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
         {
-          "id": "mo-78436",
-          "title": "Resolution of singularities in positive characteristic",
-          "program": "MathOverflow (not formalized)",
+          "id": "wp-bloch-beilinson-conjectures",
+          "title": "Bloch–Beilinson conjectures",
+          "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
-          "url": "https://lefttosolve.com/p/mo-78436"
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bloch-beilinson-conjectures"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-014",
+      "atlas_name": "Homological Mirror Symmetry Conjecture (General Calabi–Yau & Fano Varieties)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-homological-mirror-symmetry",
+          "title": "Kontsevich's homological mirror symmetry conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-homological-mirror-symmetry"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-015",
+      "atlas_name": "Strominger–Yau–Zaslow (SYZ) Special Lagrangian Fibration Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-syz-conjecture",
+          "title": "Strominger–Yau–Zaslow (SYZ) conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-syz-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-017",
+      "atlas_name": "Nagata's Conjecture on Plane Curves Through General Points",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-nagata-s-conjecture-on-curves",
+          "title": "Nagata's conjecture on curves",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-nagata-s-conjecture-on-curves"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-021",
+      "atlas_name": "Yau's First Eigenvalue Conjecture for Minimal Hypersurfaces in Spheres",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-yau-s-conjecture-on-the-first-eigenvalue",
+          "title": "Yau's conjecture on the first eigenvalue",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-yau-s-conjecture-on-the-first-eigenvalue"
         }
       ]
     },
     {
       "atlas_id": "GEOM-029",
       "atlas_name": "Nearby Lagrangian Conjecture (Arnold)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-nearby-lagrangian-conjecture",
@@ -243,14 +1882,50 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-nearby-lagrangian-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-030",
+      "atlas_name": "Higher-Dimensional Weinstein Conjecture (dim ≥ 5)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-weinstein-conjecture",
+          "title": "Weinstein conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-weinstein-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-032",
+      "atlas_name": "Gromov's Filling Area Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-filling-area-conjecture",
+          "title": "Filling area conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-filling-area-conjecture"
         }
       ]
     },
     {
       "atlas_id": "GEOM-034",
       "atlas_name": "Smooth 4-Dimensional Schoenflies Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "opg-smooth-4-dimensional-schoenflies-problem",
@@ -258,29 +1933,239 @@
           "program": "Open Problem Garden",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/opg-smooth-4-dimensional-schoenflies-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-038",
+      "atlas_name": "Slice–Ribbon Conjecture (Fox)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-slice-ribbon-problem-0",
+          "title": "Slice-ribbon problem",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-slice-ribbon-problem-0"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-040",
+      "atlas_name": "Kashaev–Murakami–Murakami Volume Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-volume-conjecture",
+          "title": "Volume conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-volume-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-047",
+      "atlas_name": "Andrews–Curtis Conjecture on Balanced Presentations and 4-Manifold Spines",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "AndrewsCurtis.andrews_curtis_conjecture",
+          "title": "The Andrews-Curtis conjecture.",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/AndrewsCurtis.andrews_curtis_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-048",
+      "atlas_name": "Novikov and Borel Rigidity Conjectures for Aspherical Manifolds",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-borel-conjecture",
+          "title": "Borel conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-borel-conjecture"
+        },
+        {
+          "id": "wp-novikov-conjecture",
+          "title": "Novikov conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-novikov-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-050",
+      "atlas_name": "Zeeman's Collapsibility Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-zeeman-conjecture",
+          "title": "Zeeman conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-zeeman-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-052",
+      "atlas_name": "Hilbert–Smith Conjecture for Topological Manifolds (dim ≥ 4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Hilbert5.hilbert_smith_conjecture",
+          "title": "Hilbert–Smith conjecture",
+          "program": "Hilbert's Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Hilbert5.hilbert_smith_conjecture"
+        },
+        {
+          "id": "Hilbert5.hilbert_smith_padic_formulation",
+          "title": "p-adic formulation",
+          "program": "Hilbert's Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Hilbert5.hilbert_smith_padic_formulation"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-056",
+      "atlas_name": "Toeplitz's Inscribed Square Problem (Square Peg Problem)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "InscribedSquare.inscribed_square_problem",
+          "title": "Inscribed square problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/InscribedSquare.inscribed_square_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-057",
+      "atlas_name": "Mahler's Conjecture on the Volume Product of Centrally Symmetric Convex Bodies (d ≥ 4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-mahler-conjecture",
+          "title": "Mahler's volume-product conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-mahler-conjecture"
         }
       ]
     },
     {
       "atlas_id": "GEOM-064",
       "atlas_name": "Moser's Worm Problem",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "MoserWorm.convex_mosers_worm_problem",
+          "title": "Convex Moser's Worm Problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem"
+        },
         {
           "id": "MoserWorm.mosers_worm_problem",
           "title": "Moser's Worm Problem",
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/MoserWorm.mosers_worm_problem"
+        },
+        {
+          "id": "MoserWorm.convex_mosers_worm_problem_bound_attained",
+          "title": "Moser's Worm — convex mosers worm problem bound attained",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_bound_attained"
+        },
+        {
+          "id": "MoserWorm.convex_mosers_worm_problem_lower_bound",
+          "title": "Moser's Worm — convex mosers worm problem lower bound",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_lower_bound"
+        },
+        {
+          "id": "MoserWorm.convex_mosers_worm_problem_upper_bound",
+          "title": "Moser's Worm — convex mosers worm problem upper bound",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/MoserWorm.convex_mosers_worm_problem_upper_bound"
+        },
+        {
+          "id": "MoserWorm.mosers_worm_problem_upper_bound",
+          "title": "Moser's Worm — mosers worm problem upper bound",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/MoserWorm.mosers_worm_problem_upper_bound"
         }
       ]
     },
     {
       "atlas_id": "GEOM-065",
       "atlas_name": "Bellman's Lost in a Forest Problem",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-bellman-s-lost-in-a-forest-problem",
@@ -288,14 +2173,508 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-bellman-s-lost-in-a-forest-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-067",
+      "atlas_name": "Heilbronn Triangle Problem",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle-problem",
+          "title": "Improving lower and upper bounds for the Heilbronn triangle problem.",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-069",
+      "atlas_name": "Erdős's Unit Distance Problem and Higher-Dimensional Distinct Distances",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos90.erdos_90",
+          "title": "Erdős Problem 90: The unit distance problem",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos90.erdos_90"
+        }
+      ]
+    },
+    {
+      "atlas_id": "GEOM-070",
+      "atlas_name": "Hadwiger–Nelson Problem (Chromatic Number of the Euclidean Plane)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos508.HadwigerNelsonProblem",
+          "title": "Erdős Problem 508 — HadwigerNelsonProblem",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos508.HadwigerNelsonProblem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-001",
+      "atlas_name": "3D Navier–Stokes Existence and Smoothness",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "NavierStokes.navier_stokes_existence_and_smoothness_R3",
+          "title": "Existence And Smoothness Of The Navier–Stokes Equation — navier stokes existence and smoothness R3",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/NavierStokes.navier_stokes_existence_and_smoothness_R3"
+        },
+        {
+          "id": "NavierStokes.navier_stokes_existence_and_smoothness_periodic",
+          "title": "Existence And Smoothness Of The Navier–Stokes Equation — navier stokes existence and smoothness periodic",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/NavierStokes.navier_stokes_existence_and_smoothness_periodic"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-003",
+      "atlas_name": "Higher-Dimensional Kakeya Conjecture (n ≥ 4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Kakeya.kakeya_set_conjecture",
+          "title": "Kakeya problem — kakeya set conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Kakeya.kakeya_set_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-014",
+      "atlas_name": "Strong and Weak Cosmic Censorship Conjectures (PDE Formulation of Einstein's Equations)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-strong-cosmic-censorship",
+          "title": "Strong cosmic censorship conjecture (Christodoulou's formulation)",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-strong-cosmic-censorship"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-024",
+      "atlas_name": "Fourier Restriction Conjecture (n ≥ 3)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-restriction-conjecture",
+          "title": "Stein's Fourier restriction conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-restriction-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-025",
+      "atlas_name": "Bochner–Riesz Multiplier Conjecture (n ≥ 3)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-bochner-riesz-conjecture",
+          "title": "Bochner–Riesz conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-bochner-riesz-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-026",
+      "atlas_name": "Sogge's Local Smoothing Conjecture for Wave Equations in Higher Dimensions (n ≥ 3)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-local-smoothing-conjecture",
+          "title": "Sogge's local smoothing conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-local-smoothing-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-028",
+      "atlas_name": "Falconer's Distance Set Conjecture (n ≥ 2)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-falconer-s-conjecture",
+          "title": "Falconer's conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-falconer-s-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-030",
+      "atlas_name": "Brennan's Conjecture on Integrability of Conformal Map Derivatives",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BrennanConjecture.brennan_universalSpectrumBounded",
+          "title": "Brennan's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BrennanConjecture.brennan_universalSpectrumBounded"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-031",
+      "atlas_name": "Sendov's Conjecture on Critical Points of Complex Polynomials",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Sendov.sendov_conjecture.variants.le_eight",
+          "title": "Sendov's conjecture — le eight",
+          "program": "Wikipedia",
+          "kind": "known",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Sendov.sendov_conjecture.variants.le_eight"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-032",
+      "atlas_name": "Smale's Mean Value Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "MeanValueProblem.mean_value_problem",
+          "title": "Mean value problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/MeanValueProblem.mean_value_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-033",
+      "atlas_name": "Exact Values of Bloch's and Landau's Constants",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Bloch.blochConstant_exact_value",
+          "title": "Bloch and Landau constants — blochConstant exact value",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Bloch.blochConstant_exact_value"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-036",
+      "atlas_name": "MLC Conjecture (Local Connectivity of the Mandelbrot Set)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Mandelbrot.MLC",
+          "title": "Conjectures about the Mandelbrot and Multibrot sets — MLC",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Mandelbrot.MLC"
+        },
+        {
+          "id": "wp-mlc-conjecture-is-the-mandelbrot-set-locally-connected",
+          "title": "MLC conjecture – is the Mandelbrot set locally connected?",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-mlc-conjecture-is-the-mandelbrot-set-locally-connected"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-038",
+      "atlas_name": "Invariant Subspace Problem for Separable Hilbert Spaces",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "InvariantSubspaceProblem.Invariant_subspace_problem",
+          "title": "Invariant Subspace Problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/InvariantSubspaceProblem.Invariant_subspace_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-041",
+      "atlas_name": "Dixmier's Unitizability Problem for Amenable Groups",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-dixmier-unitarizability",
+          "title": "Dixmier's unitarizability problem",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-dixmier-unitarizability"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-045",
+      "atlas_name": "Banach–Mazur Rotation Problem for Separable Banach Spaces",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Arxiv.math.0110202.banach_mazur_rotation_problem",
+          "title": "Banach-Mazur Rotation Problem",
+          "program": "arXiv papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Arxiv.math.0110202.banach_mazur_rotation_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-050",
+      "atlas_name": "Hilbert's 16th Problem (Part II: Limit Cycles of Planar Polynomial Vector Fields)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-hilbert-s-sixteenth-problem",
+          "title": "Hilbert's sixteenth problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-hilbert-s-sixteenth-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-064",
+      "atlas_name": "Quantum Unique Ergodicity (QUE) for General Negatively Curved Manifolds",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-quantum-unique-ergodicity-conjecture",
+          "title": "Quantum unique ergodicity conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-quantum-unique-ergodicity-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "ANL-065",
+      "atlas_name": "Berry–Tabor and Bohigas–Giannoni–Schmit (BGS) Quantum Chaos Spectral Conjectures",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-berry-tabor-conjecture-in-quantum-chaos",
+          "title": "Berry–Tabor conjecture in quantum chaos",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-berry-tabor-conjecture-in-quantum-chaos"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-001",
+      "atlas_name": "Hadwiger's Conjecture (Graph Coloring and Clique Minors)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-hadwiger-conjecture",
+          "title": "Hadwiger conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-hadwiger-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-002",
+      "atlas_name": "Exact Ramsey Numbers (R(5, 5) and Diagonal Asymptotic Growth Rate)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "RamseyNumbers.ramsey_number_five_five",
+          "title": "Ramsey numbers — ramsey number five five",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/RamseyNumbers.ramsey_number_five_five"
+        },
+        {
+          "id": "opg-diagonal-ramsey-numbers",
+          "title": "Diagonal Ramsey numbers",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-diagonal-ramsey-numbers"
+        },
+        {
+          "id": "RamseyNumbers.ramsey_number_six_six",
+          "title": "Ramsey numbers — ramsey number six six",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/RamseyNumbers.ramsey_number_six_six"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-003",
+      "atlas_name": "Erdős–Hajnal Conjecture on Homogeneous Sets in Hereditary Graph Families",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos61.erdos_61",
+          "title": "Erdős Problem 61 -- Erdős–Hajnal Conjecture",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos61.erdos_61"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-004",
+      "atlas_name": "Total Coloring Conjecture (Behzad–Vizing)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "TotalColoringConjecture.total_coloring_conjecture",
+          "title": "The total colouring conjecture (Behzad 1965, Vizing 1968).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/TotalColoringConjecture.total_coloring_conjecture"
+        },
+        {
+          "id": "opg-behzads-conjecture",
+          "title": "Total Colouring Conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-behzads-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-006",
+      "atlas_name": "Gyárfás–Sumner Conjecture on χ-Boundedness of Tree-Free Graphs",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "GyarfasSumnerConjecture.gyarfas_sumner_conjecture",
+          "title": "The Gyárfás–Sumner conjecture (Gyárfás 1975, Sumner 1981).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/GyarfasSumnerConjecture.gyarfas_sumner_conjecture"
         }
       ]
     },
     {
       "atlas_id": "COMB-009",
       "atlas_name": "Cycle Double Cover Conjecture (Seymour–Szekeres)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-cycle-double-cover-conjecture",
@@ -303,14 +2682,148 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-cycle-double-cover-conjecture"
+        },
+        {
+          "id": "opg-strong-5-cycle-double-cover-conjecture",
+          "title": "Strong 5-cycle double cover conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "variant",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-strong-5-cycle-double-cover-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-011",
+      "atlas_name": "Berge–Fulkerson Conjecture on Cubic Graphs",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BergeFulkersonConjecture.berge_fulkerson_conjecture",
+          "title": "The Berge–Fulkerson conjecture (Fulkerson 1971).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BergeFulkersonConjecture.berge_fulkerson_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-013",
+      "atlas_name": "Graph Reconstruction Conjecture (Kelly–Ulam) and Edge-Reconstruction Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ReconstructionConjecture.edge_reconstruction_conjecture",
+          "title": "The edge reconstruction conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ReconstructionConjecture.edge_reconstruction_conjecture"
+        },
+        {
+          "id": "ReconstructionConjecture.reconstruction_conjecture",
+          "title": "The reconstruction conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ReconstructionConjecture.reconstruction_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-015",
+      "atlas_name": "Lovász Conjecture on Hamiltonian Paths in Vertex-Transitive Graphs",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-hamiltonian-paths-and-cycles-in-vertex-transitive-graphs",
+          "title": "Hamiltonian paths and cycles in vertex transitive graphs",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-hamiltonian-paths-and-cycles-in-vertex-transitive-graphs"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-016",
+      "atlas_name": "Seymour's Second Neighborhood Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-seymours-second-neighbourhood-conjecture",
+          "title": "Seymour's Second Neighbourhood Conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-seymours-second-neighbourhood-conjecture"
+        },
+        {
+          "id": "wp-second-neighborhood-problem",
+          "title": "Second neighborhood problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-second-neighborhood-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-017",
+      "atlas_name": "Caccetta–Häggkvist Conjecture on Short Directed Cycles",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-caccetta-haggkvist-conjecture",
+          "title": "Caccetta-Häggkvist Conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-caccetta-haggkvist-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-019",
+      "atlas_name": "Erdős–Gyárfás Conjecture on Power-of-Two Cycle Lengths",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-erdos-gyarfas-conjecture-on-cycles-with-power-of-two-lengths-in-cubic-graphs",
+          "title": "Erdős–Gyárfás conjecture on cycles with power-of-two lengths in cubic graphs",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-erdos-gyarfas-conjecture-on-cycles-with-power-of-two-lengths-in-cubic-graphs"
         }
       ]
     },
     {
       "atlas_id": "COMB-020",
       "atlas_name": "Graceful Tree Conjecture (Ringel–Kotzig)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "GracefulLabeling.graceful_tree_conjecture",
@@ -318,14 +2831,33 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/GracefulLabeling.graceful_tree_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-021",
+      "atlas_name": "Conway's Thrackle Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-conway-s-thrackle-conjecture-that-thrackles-cannot-have-more-edges-than-vertices",
+          "title": "Conway's thrackle conjecture that thrackles cannot have more edges than vertices",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-conway-s-thrackle-conjecture-that-thrackles-cannot-have-more-edges-than-vertices"
         }
       ]
     },
     {
       "atlas_id": "COMB-025",
       "atlas_name": "Zarankiewicz Problem (Exact Extremal Numbers for Complete Bipartite Graphs K_{s,t})",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-zarankiewicz-problem",
@@ -333,29 +2865,148 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-zarankiewicz-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-028",
+      "atlas_name": "Ryser's Conjecture on r-Partite Hypergraph Matchings and Covers (r ≥ 4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-ryser-s-conjecture",
+          "title": "Ryser's conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-ryser-s-conjecture"
         }
       ]
     },
     {
       "atlas_id": "COMB-032",
       "atlas_name": "Frankl's Union-Closed Sets Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "UnionClosed.union_closed",
+          "title": "Union-closed sets conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/UnionClosed.union_closed"
+        },
         {
           "id": "opg-frankls-union-closed-sets-conjecture",
           "title": "Frankl's union-closed sets conjecture",
           "program": "Open Problem Garden",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/opg-frankls-union-closed-sets-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-033",
+      "atlas_name": "Erdős–Rado Sunflower Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos20.erdos_20",
+          "title": "Erdős Problem 20",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos20.erdos_20"
+        },
+        {
+          "id": "wp-sunflower-conjecture",
+          "title": "Sunflower conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-sunflower-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-034",
+      "atlas_name": "Erdős–Szekeres Happy Ending Exact Formula (2^{n-2} + 1 for n ≥ 7)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos107.erdos_107",
+          "title": "Erdős Problem 107",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos107.erdos_107"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-039",
+      "atlas_name": "Sharp Quantitative Density Bounds for Szemerédi's Theorem (k ≥ 4 Arithmetic Progressions)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos142.erdos_142",
+          "title": "Erdős Problem 142",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos142.erdos_142"
+        },
+        {
+          "id": "wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem",
+          "title": "Determine growth rate of rk(N) (see Szemerédi's theorem)",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-040",
+      "atlas_name": "Hadamard Matrix Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Hadamard.HadamardConjecture",
+          "title": "Hadamard's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Hadamard.HadamardConjecture"
         }
       ]
     },
     {
       "atlas_id": "COMB-043",
       "atlas_name": "Rota's Basis Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-rota-s-basis-conjecture",
@@ -363,14 +3014,33 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-rota-s-basis-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-045",
+      "atlas_name": "1/3–2/3 Conjecture for Finite Posets (Kislitsyn–Fredman–Linial)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-1-3-2-3-conjecture",
+          "title": "1/3–2/3 conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-1-3-2-3-conjecture"
         }
       ]
     },
     {
       "atlas_id": "COMB-046",
       "atlas_name": "Lonely Runner Conjecture (Wills–Cusick)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "LonelyRunnerConjecture.lonely_runner_conjecture",
@@ -378,6 +3048,8 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/LonelyRunnerConjecture.lonely_runner_conjecture"
         }
       ]
@@ -385,7 +3057,7 @@
     {
       "atlas_id": "COMB-050",
       "atlas_name": "Conway's 99-Graph Problem",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Conway99Graph.conway99Graph",
@@ -393,29 +3065,172 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Conway99Graph.conway99Graph"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-052",
+      "atlas_name": "Degree–Diameter Problem for Graphs Beyond Moore Bounds",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-degree-diameter-problem",
+          "title": "Degree diameter problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-degree-diameter-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-053",
+      "atlas_name": "Combinatorial Interpretation of Kronecker Coefficients (Murnaghan–Stanley Problem)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-give-a-combinatorial-interpretation-of-the-kronecker-coefficients",
+          "title": "Give a combinatorial interpretation of the Kronecker coefficients",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-give-a-combinatorial-interpretation-of-the-kronecker-coefficients"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-056",
+      "atlas_name": "Exact Connective Constant and Scaling Limit of Self-Avoiding Walks on ℤ² and ℤ³",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-finding-a-function-to-model-n-step-self-avoiding-walks",
+          "title": "Finding a function to model n-step self-avoiding walks",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-finding-a-function-to-model-n-step-self-avoiding-walks"
         }
       ]
     },
     {
       "atlas_id": "COMB-061",
       "atlas_name": "No-Three-in-Line Problem (Dudeney / Erdős–Roth)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "Green72.green_72",
+          "title": "Green's Open Problem 72 / No-three-in-line problem",
+          "program": "Green's 100 Open Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Green72.green_72"
+        },
         {
           "id": "wp-no-three-in-line-problem",
           "title": "No-three-in-line problem",
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-no-three-in-line-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-062",
+      "atlas_name": "Singmaster's Conjecture on Multiplicities in Pascal's Triangle",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Singmaster.singmaster",
+          "title": "Singmaster's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Singmaster.singmaster"
+        }
+      ]
+    },
+    {
+      "atlas_id": "COMB-065",
+      "atlas_name": "Vizing's Conjecture on the Domination Number of Cartesian Graph Products",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "VizingConjecture.vizing_conjecture",
+          "title": "Vizing's conjecture (1968).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/VizingConjecture.vizing_conjecture"
+        },
+        {
+          "id": "wp-vizing-s-conjecture-on-the-domination-number-of-cartesian-products-of-graphs",
+          "title": "Vizing's conjecture on the domination number of cartesian products of graphs",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-vizing-s-conjecture-on-the-domination-number-of-cartesian-products-of-graphs"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LOG-001",
+      "atlas_name": "Continuum Hypothesis (CH) & Ultimate Foundations of Set Theory",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-generalized-continuum-hypothesis",
+          "title": "Generalized continuum hypothesis",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-generalized-continuum-hypothesis"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LOG-013",
+      "atlas_name": "Vaught's Conjecture on the Number of Countable Models",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "VaughtConjecture.vaught_conjecture",
+          "title": "Vaught conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/VaughtConjecture.vaught_conjecture"
         }
       ]
     },
     {
       "atlas_id": "LOG-014",
       "atlas_name": "Tarski's Exponential Function Problem (Decidability of ℝ_exp)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "TarskiExponentialFunctionProblem.tarski_exponential_function_problem",
@@ -423,14 +3238,203 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/TarskiExponentialFunctionProblem.tarski_exponential_function_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "LOG-019",
+      "atlas_name": "Cherlin–Zilber Algebraicity Conjecture for Simple Groups of Finite Morley Rank",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-cherlin-zilber-conjecture",
+          "title": "Cherlin–Zilber conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-cherlin-zilber-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-001",
+      "atlas_name": "P versus NP Problem",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ComplexityTheory.P_ne_NP",
+          "title": "P ≠ NP",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ComplexityTheory.P_ne_NP"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-004",
+      "atlas_name": "Matrix Multiplication Exponent (Is ω = 2?)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-omega-equals-two",
+          "title": "Is the exponent of matrix multiplication ω equal to 2?",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-omega-equals-two"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-006",
+      "atlas_name": "Complete Derandomization: Does P = BPP and L = RL?",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ComplexityTheory.P_eq_BPP",
+          "title": "P = BPP",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ComplexityTheory.P_eq_BPP"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-007",
+      "atlas_name": "NP vs. coNP & Infinite Strictness of the Polynomial Hierarchy (PH)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ComplexityTheory.NP_ne_coNP",
+          "title": "NP ≠ coNP",
+          "program": "Millennium Prize",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ComplexityTheory.NP_ne_coNP"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-008",
+      "atlas_name": "Graph Isomorphism Problem: Is GI in P?",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-graph-isomorphism-in-p",
+          "title": "Is graph isomorphism in P?",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-graph-isomorphism-in-p"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-009",
+      "atlas_name": "Classical Complexity of Integer Factorization & Discrete Logarithm",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "PolyTime.isPolyTime_primeFactorsList",
+          "title": "The integer factorization problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/PolyTime.isPolyTime_primeFactorsList"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-012",
+      "atlas_name": "Valiant's Algebraic Complexity Conjecture: VP vs. VNP (Permanent vs. Determinant)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-the-permanent-conjecture",
+          "title": "The permanent conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "related",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-the-permanent-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-016",
+      "atlas_name": "Unique Games Conjecture (UGC) & Optimal Approximation Thresholds",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-unique-games-conjecture",
+          "title": "Unique games conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-unique-games-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-023",
+      "atlas_name": "Log-Rank Conjecture in Deterministic Communication Complexity",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-log-rank-conjecture",
+          "title": "Log-rank conjecture",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-log-rank-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "CS-034",
+      "atlas_name": "Dynamic Optimality Conjecture (Splay Trees & Online Self-Adjusting BSTs)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wpc-dynamic-optimality",
+          "title": "Dynamic optimality conjecture for splay trees",
+          "program": "Wikipedia (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wpc-dynamic-optimality"
         }
       ]
     },
     {
       "atlas_id": "QC-002",
       "atlas_name": "The Quantum PCP Conjecture (Macroscopic Room-Temperature Entanglement Hardness)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "wp-quantum-pcp-conjecture",
@@ -438,7 +3442,36 @@
           "program": "Wikipedia list (not formalized)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/wp-quantum-pcp-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "QC-037",
+      "atlas_name": "SIC-POVM Existence in All Finite Hilbert-Space Dimensions (Zauner's Conjecture)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OpenQuantumProblem23.sicPOVMs",
+          "title": "Open Quantum Problem 23: SIC-POVMs — sicPOVMs",
+          "program": "Open Quantum Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OpenQuantumProblem23.sicPOVMs"
+        },
+        {
+          "id": "wp-sic-povm",
+          "title": "SIC-POVM",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-sic-povm"
         }
       ]
     },
@@ -453,7 +3486,29 @@
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos10.erdos_10"
+        },
+        {
+          "id": "Erdos10.erdos_10.variants.gallagher",
+          "title": "Erdős Problem 10 — gallagher",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos10.erdos_10.variants.gallagher"
+        },
+        {
+          "id": "Erdos10.erdos_10.variants.granville_soundararajan_odd",
+          "title": "Erdős Problem 10 — granville soundararajan odd",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos10.erdos_10.variants.granville_soundararajan_odd"
         }
       ]
     },
@@ -468,6 +3523,8 @@
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos9.erdos_9"
         }
       ]
@@ -483,14 +3540,76 @@
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Erdos11.erdos_11"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.all_odd",
+          "title": "Erdős Problem 11 — all odd",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.all_odd"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.finite_bound1",
+          "title": "Erdős Problem 11 — finite bound1",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound1"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.finite_bound2",
+          "title": "Erdős Problem 11 — finite bound2",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.finite_bound2"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.granville_soundararajan",
+          "title": "Erdős Problem 11 — granville soundararajan",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.granville_soundararajan"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.not_four_dvd",
+          "title": "Erdős Problem 11 — not four dvd",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.not_four_dvd"
+        },
+        {
+          "id": "Erdos11.erdos_11.variants.two_pow_two",
+          "title": "Erdős Problem 11 — two pow two",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos11.erdos_11.variants.two_pow_two"
         }
       ]
     },
     {
       "atlas_id": "XNT-004",
       "atlas_name": "Erdős Problem #41 (Exact Asymptotic Upper Bound for Higher-Order B_3 Sidon Sets)",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Erdos41.erdos_41",
@@ -498,29 +3617,253 @@
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Erdos41.erdos_41"
+        },
+        {
+          "id": "Erdos41.erdos_41.variants.pairwise",
+          "title": "Erdős Problem 41 — pairwise",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos41.erdos_41.variants.pairwise"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-005",
+      "atlas_name": "Erdős Minimum Overlap Problem (Erdős #36)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Erdos36.erdos_36",
+          "title": "Erdős Problem 36",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Erdos36.erdos_36"
+        },
+        {
+          "id": "wp-minimum-overlap-problem",
+          "title": "Minimum overlap problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-minimum-overlap-problem"
         }
       ]
     },
     {
       "atlas_id": "XNT-007",
       "atlas_name": "Giuga's Primality Conjecture",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
+        {
+          "id": "AgohGiuga.agoh_giuga.variants.giuga",
+          "title": "Agoh-Giuga conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/AgohGiuga.agoh_giuga.variants.giuga"
+        },
         {
           "id": "opg-giugas-conjecture-on-primality",
           "title": "Giuga's Conjecture on Primality",
           "program": "Open Problem Garden",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/opg-giugas-conjecture-on-primality"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-011",
+      "atlas_name": "Catalan–Dickson Conjecture on Aliquot Sequence Termination",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-catalan-dickson-conjecture-on-aliquot-sequences",
+          "title": "Catalan–Dickson conjecture on aliquot sequences",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-catalan-dickson-conjecture-on-aliquot-sequences"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-012",
+      "atlas_name": "Scholz–Brauer Conjecture on Shortest Addition Chains",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ScholzConjecture.scholz_conjecture",
+          "title": "Scholz conjecture on addition chains",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ScholzConjecture.scholz_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-014",
+      "atlas_name": "Existence and Infinitude of Wall–Sun–Sun (Fibonacci–Wieferich) Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "WallSunSun.exists_isWallSunSunPrime",
+          "title": "Infinitude of Wall–Sun–Sun primes — exists isWallSunSunPrime",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WallSunSun.exists_isWallSunSunPrime"
+        },
+        {
+          "id": "WallSunSun.infinite_isWallSunSunPrime",
+          "title": "Infinitude of Wall–Sun–Sun primes — infinite isWallSunSunPrime",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WallSunSun.infinite_isWallSunSunPrime"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-015",
+      "atlas_name": "Casas-Alvero Polynomial Root-Sharing Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "CasasAlvero.casas_alvero_conjecture",
+          "title": "Casas-Alvero Conjecture",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/CasasAlvero.casas_alvero_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-017",
+      "atlas_name": "Gilbreath's Conjecture on Iterated Prime Differences",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Gilbreath.gilbreath_conjecture",
+          "title": "Gilbreath's conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Gilbreath.gilbreath_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-021",
+      "atlas_name": "Feit–Thompson Number Theory Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "FeitThompsonPrimeConjecture.feit_thompson_primes",
+          "title": "Feit-Thompson conjecture on primes",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/FeitThompsonPrimeConjecture.feit_thompson_primes"
+        },
+        {
+          "id": "wp-feit-thompson-conjecture",
+          "title": "Feit–Thompson conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-feit-thompson-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-024",
+      "atlas_name": "Lander–Parkin–Selfridge Conjecture on Equal Sums of Like Powers",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "LanderParkinSelfridge.lander_parkin_selfridge",
+          "title": "Lander, Parkin, and Selfridge Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/LanderParkinSelfridge.lander_parkin_selfridge"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-026",
+      "atlas_name": "Gauss Circle Problem Exact Error Exponent (θ = 1/4)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "GaussCircleProblem.error_isBigO",
+          "title": "Gauss circle problem — error isBigO",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/GaussCircleProblem.error_isBigO"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-027",
+      "atlas_name": "Dirichlet Divisor Problem Exact Error Exponent (Δ(x) = O(x^{1/4 + ε}))",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "DirichletDivisorProblem.dirichlet_divisor_problem",
+          "title": "Dirichlet divisor problem",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/DirichletDivisorProblem.dirichlet_divisor_problem"
         }
       ]
     },
     {
       "atlas_id": "XNT-036",
       "atlas_name": "Erdős Problem #30 (Exact Error Term for Maximum Sidon Sets h(N))",
-      "match_type": "exact-normalised-title (candidate)",
+      "match_type": "curated-override + normalized-title",
       "lefttosolve": [
         {
           "id": "Erdos30.erdos_30",
@@ -528,7 +3871,360 @@
           "program": "Erdős Problems",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
           "url": "https://lefttosolve.com/p/Erdos30.erdos_30"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.O_one",
+          "title": "Erdős Problem 30 — O one",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.O_one"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.balogh_furedi_roy",
+          "title": "Erdős Problem 30 — balogh furedi roy",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.balogh_furedi_roy"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.carter_hunter_obryant",
+          "title": "Erdős Problem 30 — carter hunter obryant",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.carter_hunter_obryant"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.erdos_turan",
+          "title": "Erdős Problem 30 — erdos turan",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.erdos_turan"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.isEquivalent_sqrt",
+          "title": "Erdős Problem 30 — isEquivalent sqrt",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.isEquivalent_sqrt"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.lindstrom",
+          "title": "Erdős Problem 30 — lindstrom",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.lindstrom"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.obryant",
+          "title": "Erdős Problem 30 — obryant",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.obryant"
+        },
+        {
+          "id": "Erdos30.erdos_30.variants.singer",
+          "title": "Erdős Problem 30 — singer",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos30.erdos_30.variants.singer"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-037",
+      "atlas_name": "Smallest Sierpiński Number (k = 78,557) & Smallest Riesel Number (k = 509,203)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "OeisA108129.conjecture",
+          "title": "Riesel Problem",
+          "program": "OEIS",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/OeisA108129.conjecture"
+        },
+        {
+          "id": "SierpinskiNumber.selfridge_conjecture",
+          "title": "The Sierpiński problem (Selfridge's conjecture).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/SierpinskiNumber.selfridge_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-039",
+      "atlas_name": "Infinitude of Wilson Primes",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "WilsonPrime.infinitely_many_wilson_primes",
+          "title": "Wilson primes",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/WilsonPrime.infinitely_many_wilson_primes"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-041",
+      "atlas_name": "Grimm's Conjecture on Distinct Prime Divisors of Consecutive Composites",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Grimm.grimm_conjecture",
+          "title": "Grimm's Conjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Grimm.grimm_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XNT-043",
+      "atlas_name": "Unconditional Rubinstein–Sarnak Prime Number Races & Chebyshev Bias Density",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ChebyshevBias.rubinstein_sarnak_unconditional_chebyshev_bias",
+          "title": "Chebyshev's bias — rubinstein sarnak unconditional chebyshev bias",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ChebyshevBias.rubinstein_sarnak_unconditional_chebyshev_bias"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XALG-003",
+      "atlas_name": "Köthe's Nil-Ideal Conjecture in Noncommutative Ring Theory",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "Koethe.KotheConjecture",
+          "title": "Köthe conjecture — KotheConjecture",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/Koethe.KotheConjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XGEOM-015",
+      "atlas_name": "Lebesgue's Universal Covering Problem for Unit-Diameter Planar Sets",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-lebesgue-s-universal-covering-problem",
+          "title": "Lebesgue's universal covering problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-lebesgue-s-universal-covering-problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XGEOM-035",
+      "atlas_name": "Erdős–Ulam Dense Rational-Distance Point Set Conjecture in ℝ^2",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "ErdosUlamProblem.erdos_ulam_problem",
+          "title": "The Erdős–Ulam problem (Ulam 1945).",
+          "program": "Wikipedia",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/ErdosUlamProblem.erdos_ulam_problem"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-001",
+      "atlas_name": "Erdős–Faber–Lovász Conjecture for All Finite Orders (n < n_0)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-erdos-faber-lovasz-conjecture-on-coloring-unions-of-cliques",
+          "title": "Erdős–Faber–Lovász conjecture on coloring unions of cliques",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-erdos-faber-lovasz-conjecture-on-coloring-unions-of-cliques"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-002",
+      "atlas_name": "Borodin–Kostochka Conjecture on Δ-Coloring Graphs Without Δ-Cliques",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "opg-the-borodin-kostochka-conjecture",
+          "title": "The Borodin-Kostochka Conjecture",
+          "program": "Open Problem Garden",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/opg-the-borodin-kostochka-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-005",
+      "atlas_name": "Chvátal's Toughness Conjecture on Hamiltonian Graphs",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-chvatal-s-toughness-conjecture",
+          "title": "Chvátal's toughness conjecture",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-chvatal-s-toughness-conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-011",
+      "atlas_name": "Bollobás–Eldridge–Catlin Graph Packing Conjecture",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "BollobasEldridgeCatlinConjecture.bollobas_eldridge_catlin_conjecture",
+          "title": "The Bollobás–Eldridge–Catlin conjecture (1978).",
+          "program": "Papers",
+          "kind": "open",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/BollobasEldridgeCatlinConjecture.bollobas_eldridge_catlin_conjecture"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-026",
+      "atlas_name": "Erdős Problem #23 (Making Triangle-Free Graphs Bipartite by Deleting ≤ n^2/25 Edges)",
+      "match_type": "exact-normalised-title (candidate)",
+      "lefttosolve": [
+        {
+          "id": "Erdos23.blowupC5_tight",
+          "title": "Erdős Problem 23 — blowupC5 tight",
+          "program": "Erdős Problems",
+          "kind": "warmup",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos23.blowupC5_tight"
+        },
+        {
+          "id": "Erdos23.erdos_23",
+          "title": "Erdős Problem 23 — erdos 23",
+          "program": "Erdős Problems",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos23.erdos_23"
+        },
+        {
+          "id": "Erdos23.erdos_23.variants.n1",
+          "title": "Erdős Problem 23 — n1",
+          "program": "Erdős Problems",
+          "kind": "warmup",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n1"
+        },
+        {
+          "id": "Erdos23.erdos_23.variants.n5",
+          "title": "Erdős Problem 23 — n5",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5"
+        },
+        {
+          "id": "Erdos23.erdos_23.variants.n5_tight",
+          "title": "Erdős Problem 23 — n5 tight",
+          "program": "Erdős Problems",
+          "kind": "known",
+          "solved": true,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/Erdos23.erdos_23.variants.n5_tight"
+        }
+      ]
+    },
+    {
+      "atlas_id": "XCOMB-029",
+      "atlas_name": "Ringel's Earth–Moon Coloring Problem (Chromatic Number of Thickness-2 Graphs)",
+      "match_type": "curated-override + normalized-title",
+      "lefttosolve": [
+        {
+          "id": "wp-earth-moon-problem",
+          "title": "Earth–Moon problem",
+          "program": "Wikipedia list (not formalized)",
+          "kind": "unformalized",
+          "solved": false,
+          "relation": "primary",
+          "via": "curated-override",
+          "url": "https://lefttosolve.com/p/wp-earth-moon-problem"
         }
       ]
     },
@@ -543,6 +4239,8 @@
           "program": "Open problems in information theory (gokhanmergen)",
           "kind": "unformalized",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/itp-courtade-kumar"
         }
       ]
@@ -558,6 +4256,8 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture133.conjecture133"
         }
       ]
@@ -573,6 +4273,8 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture96.conjecture96"
         }
       ]
@@ -588,6 +4290,8 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture189.conjecture189"
         }
       ]
@@ -603,6 +4307,8 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture199.conjecture199"
         }
       ]
@@ -618,7 +4324,29 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372"
+        },
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized",
+          "title": "Written on the Wall II - Conjecture 372 — regularized",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.regularized"
+        },
+        {
+          "id": "WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths",
+          "title": "Written on the Wall II - Conjecture 372 — two paths",
+          "program": "Written on the Wall II",
+          "kind": "open",
+          "solved": false,
+          "relation": "variant",
+          "via": "normalized-title",
+          "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture372.conjecture372.variants.two_paths"
         }
       ]
     },
@@ -633,6 +4361,8 @@
           "program": "Written on the Wall II",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/WrittenOnTheWallII.GraphConjecture40.conjecture40"
         }
       ]
@@ -648,6 +4378,8 @@
           "program": "arXiv papers",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/Arxiv.2406.10319.pittel_hyperbola_threshold"
         }
       ]
@@ -663,6 +4395,8 @@
           "program": "Wikipedia",
           "kind": "open",
           "solved": false,
+          "relation": "primary",
+          "via": "normalized-title",
           "url": "https://lefttosolve.com/p/AgrawalConjecture.agrawal_conjecture"
         }
       ]

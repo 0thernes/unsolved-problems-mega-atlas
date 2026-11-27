@@ -10,7 +10,8 @@ Problem statements live on Left to Solve and in [google-deepmind/formal-conjectu
 - **Flagged `solved` on Left to Solve (969 total):** known: 814, warmup: 155 (Left to Solve's own Lean checker flag; mostly `known`/`warmup` theorems, not re-verified here)
 - **Upstream formal-conjectures commit:** `9097e2f90e66d2f6244209cb1c07f7120d17ec53`
 - **Change since previous snapshot:** +0 added, −0 removed, 26 newly solved, 0 kind changes
-- **Candidate Atlas crosswalk:** 43 Mega-Atlas problems share an exact normalised title with a Left to Solve problem (`data/external/lefttosolve/atlas_crosswalk.json`; automatic, not curated; 0 candidate link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)
+- **Atlas crosswalk:** 199 Mega-Atlas problems linked to Left to Solve targets (186 via reviewed `crosswalk_overrides.json` + exact normalized base-title matches; `data/external/lefttosolve/atlas_crosswalk.json`; 16 non-`related` link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)
+- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics](https://github.com/0thernes/unsolved-mathematics) (`v0.8.0`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all 25 Left to Solve programs)
 
 | Program | Total | `open` | Lean-stated | Unformalized | Solved (by kind) | Mean difficulty | Top fields |
 |---|---:|---:|---:|---:|---|---:|---|
@@ -50,7 +51,7 @@ Problem statements live on Left to Solve and in [google-deepmind/formal-conjectu
 - **Source & crawl etiquette:** Public endpoints `/api/problems` and `/api/stats` at <https://lefttosolve.com>, allowed by its `robots.txt`. Disallowed paths `/api/desk/` and `/api/verdict` are never requested. Requests are sequential with fixed delay and back-off.
 - **Upstream sources & licensing:** Left to Solve draws Lean statements from `google-deepmind/formal-conjectures` (`Apache-2.0`), Erdős metadata from `teorth/erdosproblems`, descriptions from Wikipedia (`CC BY-SA 4.0`) and links from Open Problem Garden; MathOverflow, Mathematics Stack Exchange and OEIS titles are `CC BY-SA 4.0`. Left to Solve publishes no licence for its aggregate catalogue.
 - **Scope & carve-out:** `data/external/lefttosolve/` stores identifiers, titles, program membership, status flags and links only — no statement excerpts are copied. Third-party titles remain under their upstream sources' licences; `data/external/lefttosolve/` is **not** covered by this repository's `CC-BY-4.0` data licence (see [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)). Entries are removed on request.
-- **Non-affiliation:** Not affiliated with Left to Solve or any of its upstream sources. This sidecar never modifies the frozen 1,900-problem Mega-Atlas dataset or retires any problem.
+- **Non-affiliation:** Not affiliated with Left to Solve or any of its upstream sources. This sidecar never modifies the frozen 2,000-problem Mega-Atlas dataset or retires any problem.
 
 ## Reproduction
 
