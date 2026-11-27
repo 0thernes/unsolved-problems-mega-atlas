@@ -39,4 +39,4 @@ body:
     id: environment
     attributes:
       label: OS, Python & Lean versions
-      placeholder: "Ubuntu 24.04 / Python 3.12 / Lean 4.35.0"
+      placeholder: "Ubuntu 26.04 / Windows 11 / macOS · Python 3.12 · Lean 4.35.0"

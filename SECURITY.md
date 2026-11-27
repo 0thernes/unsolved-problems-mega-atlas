@@ -4,8 +4,8 @@
 
 | Version | Supported |
 |---|---|
-| `2.8.x` (`main`) | Yes |
-| `< 2.8.0` | No — upgrade to `2.8.0` (`UPGRADING.md`) |
+| `2.9.x` (`main`) | Yes |
+| `< 2.9.0` | No — upgrade to `2.9.0` (`UPGRADING.md`) |
 
 ## Reporting a Vulnerability
 
@@ -25,4 +25,4 @@ You will receive an acknowledgement within 72 hours and a coordinated resolution
 
 See [`docs/threat-model.md`](docs/threat-model.md) for the complete STRIDE + OWASP LLM
 security analysis (parameterized SQLite queries, FTS5 token sanitization, HTML/JSON XSS
-escaping, zero hardcoded secrets, zero runtime network calls, and CI secret scanning).
+escaping, dual-framing `1 MiB` MCP DoS bounds, zero hardcoded secrets, zero runtime network calls, and CI secret scanning).

@@ -4,3 +4,4 @@ timestamp_utc	commit	aqs_score	rag_mrr5	rag_top1	provenance	graph_coupling	forma
 2026-11-21T10:23:54Z	bc34a86	81.93	96.00	23/25	29.63	100.00	80.00	58	PASS	keep	H-001b: hybrid BM25 + unique-token title/body coverage + log-degree graph authority reranker
 2026-11-21T10:31:30Z	bc34a86	95.59	96.00	23/25	82.96	100.00	100.00	58	PASS	keep	H-002 (v2.2.0): FAIR metadata triad + 7-tool MCP stdio server + AGENTS/llms.txt + 58 Lean 4.35.0 thms
 2026-11-21T12:24:42Z	5983f45	97.99	100.00	25/25	89.94	100.00	100.00	72	PASS	keep	H-003/H-004 (v2.3.0): 100% MRR@5 RAG + 1900 biconnected atlas + 0 dangling links + 8 substrates/7 layers + 72 Lean thms + 9-tool MCP
+2026-11-27T04:57:05Z	ad3d5ed	98.35	100.00	25/25	91.74	100.00	100.00	103	PASS	keep	H-005 (v2.9.0): Left to Solve 25-front integration (2,000 biconnected problems, +100 primary-registry-indexed, 12-tool MCP, daily sync)

@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Offline Deterministic RAG & Knowledge-Graph Query Engine for the
-Unsolved Problems Mega-Atlas (V2.7.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
 
 Powered by SQLite FTS5 staged BM25 ranking (Exact phrase + Strict-AND precision pass +
 relaxed OR backfill + hybrid title/bigram/PageRank re-ranker) + multi-hop knowledge-graph
@@ -54,7 +54,8 @@ def _db_is_fresh(db_path: Path) -> bool:
                 return False
             cnt = conn.execute("SELECT COUNT(*) FROM problems").fetchone()
             auth_cnt = conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()
-            if cnt is None or int(cnt[0]) != 1900 or auth_cnt is None or int(auth_cnt[0]) < 1:
+            lts_cnt = conn.execute("SELECT COUNT(*) FROM lefttosolve_programs").fetchone()
+            if cnt is None or int(cnt[0]) != 2000 or auth_cnt is None or int(auth_cnt[0]) < 1 or lts_cnt is None or int(lts_cnt[0]) < 25:
                 return False
             _FRESH_CACHE[cache_key] = sig
             return True
@@ -88,6 +89,7 @@ def ensure_sqlite_db(db_path: Path = DEFAULT_DB) -> Path:
         ).to_sql("edges", conn, index=False, if_exists="replace")
         data["df_ai_audit"].to_sql("ai_audit_nov2026", conn, index=False, if_exists="replace")
         data["df_registries"].to_sql("registries_nov2026", conn, index=False, if_exists="replace")
+        data["df_lefttosolve_programs"].to_sql("lefttosolve_programs", conn, index=False, if_exists="replace")
         data["df_author_contributions"].to_sql("author_frontier_contributions", conn, index=False, if_exists="replace")
         data["df_benchmarks"].to_sql("benchmarks", conn, index=False, if_exists="replace")
         data["df_contrasts"].to_sql("contrasts", conn, index=False, if_exists="replace")
@@ -307,51 +309,66 @@ def search_atlas(
             rows = cur.execute("SELECT *, 0.0 AS bm25_score FROM problems WHERE id = ?", (problem_id.upper(),)).fetchall()
             results = [dict(r) for r in rows]
         elif query:
-            # Direct Problem ID lookup shortcut if query looks like an exact ID
+            # Direct Problem ID lookup shortcut if query is an existing Atlas ID (strictly respecting active filters)
             q_trim = query.strip().upper()
-            if re.fullmatch(r"[A-Z0-9]+-[0-9]{3,4}", q_trim):
-                exact_rows = cur.execute("SELECT *, -2000.0 AS bm25_score FROM problems WHERE id = ?", (q_trim,)).fetchall()
-                results.extend(dict(r) for r in exact_rows)
-
-            seen_ids = {r["id"] for r in results}
-            q_tokens = tokenize_query(query)
-            stages = build_fts_stages(query)
-            if not stages and not results:
-                return {"query": query, "count": 0, "results": []}
-
-            pool_limit = max(40, top * 5)
-            pool: List[Dict[str, Any]] = []
-            for fts_q, _stage_bonus in stages:
-                if len(pool) >= pool_limit:
-                    break
-                sql = f"""
-                    SELECT p.*, bm25(problems_fts, {BM25_WEIGHTS}) AS bm25_score
-                    FROM problems_fts
-                    JOIN problems p ON p.id = problems_fts.id
-                    WHERE problems_fts MATCH ?
-                """
-                params: List[Any] = [fts_q]
+            is_known_id = bool(
+                re.fullmatch(r"[A-Z0-9]+-[0-9]{3,4}", q_trim)
+                and cur.execute("SELECT 1 FROM problems WHERE id = ?", (q_trim,)).fetchone()
+            )
+            if is_known_id:
+                ex_sql = "SELECT *, -2000.0 AS bm25_score FROM problems WHERE id = ?"
+                ex_params: List[Any] = [q_trim]
                 if pillar:
-                    sql += " AND p.macro_pillar = ?"
-                    params.append(pillar)
+                    ex_sql += " AND macro_pillar = ?"
+                    ex_params.append(pillar)
                 if superdomain:
-                    sql += " AND p.superdomain = ?"
-                    params.append(superdomain)
+                    ex_sql += " AND superdomain = ?"
+                    ex_params.append(superdomain)
                 if flag:
-                    sql += " AND p.verification_flag = ?"
-                    params.append(flag)
-                sql += " ORDER BY bm25_score ASC, p.css_score DESC LIMIT ?"
-                params.append(pool_limit)
-                for row in cur.execute(sql, params).fetchall():
-                    rid = row["id"]
-                    if rid not in seen_ids:
-                        seen_ids.add(rid)
-                        pool.append(dict(row))
-                        if len(pool) >= pool_limit:
-                            break
+                    ex_sql += " AND verification_flag = ?"
+                    ex_params.append(flag)
+                exact_rows = cur.execute(ex_sql, ex_params).fetchall()
+                results.extend(dict(r) for r in exact_rows)
+            else:
+                seen_ids = {r["id"] for r in results}
+                q_tokens = tokenize_query(query)
+                stages = build_fts_stages(query)
+                if not stages and not results:
+                    return {"query": query, "count": 0, "results": []}
 
-            reranked = rerank_hybrid(pool, q_tokens)
-            results.extend(reranked[: max(0, top - len(results))])
+                pool_limit = max(40, top * 5)
+                pool: List[Dict[str, Any]] = []
+                for fts_q, _stage_bonus in stages:
+                    if len(pool) >= pool_limit:
+                        break
+                    sql = f"""
+                        SELECT p.*, bm25(problems_fts, {BM25_WEIGHTS}) AS bm25_score
+                        FROM problems_fts
+                        JOIN problems p ON p.id = problems_fts.id
+                        WHERE problems_fts MATCH ?
+                    """
+                    params: List[Any] = [fts_q]
+                    if pillar:
+                        sql += " AND p.macro_pillar = ?"
+                        params.append(pillar)
+                    if superdomain:
+                        sql += " AND p.superdomain = ?"
+                        params.append(superdomain)
+                    if flag:
+                        sql += " AND p.verification_flag = ?"
+                        params.append(flag)
+                    sql += " ORDER BY bm25_score ASC, p.css_score DESC LIMIT ?"
+                    params.append(pool_limit)
+                    for row in cur.execute(sql, params).fetchall():
+                        rid = row["id"]
+                        if rid not in seen_ids:
+                            seen_ids.add(rid)
+                            pool.append(dict(row))
+                            if len(pool) >= pool_limit:
+                                break
+
+                reranked = rerank_hybrid(pool, q_tokens)
+                results.extend(reranked[: max(0, top - len(results))])
         else:
             sql = "SELECT *, 0.0 AS bm25_score FROM problems WHERE 1=1"
             params = []
@@ -429,7 +446,7 @@ def compare_two_problems(id_a: str, id_b: str, db_path: Path = DEFAULT_DB) -> Di
 
 
 def main() -> None:
-    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.7.0"
+    ver = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
     parser = argparse.ArgumentParser(description=f"Offline BM25 + Knowledge-Graph RAG Query CLI (0thernes Mega-Atlas V{ver})")
     parser.add_argument("query", nargs="?", default=None, help="Free-text search query (staged FTS5 BM25)")
     parser.add_argument("--problem", dest="problem_id", default=None, help="Exact Problem ID (e.g., NT-001, CS-001, GR-001)")

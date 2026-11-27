@@ -25,28 +25,28 @@
     "titan_index": 8.66
   },
   {
+    "id": "NT-001",
+    "css_score": 83.63,
+    "titan_index": 9.45
+  },
+  {
     "id": "GR-001",
     "css_score": 83.4,
     "titan_index": 10.0
   },
   {
     "id": "ANL-001",
-    "css_score": 82.98,
-    "titan_index": 9.31
+    "css_score": 83.21,
+    "titan_index": 9.32
+  },
+  {
+    "id": "GEOM-003",
+    "css_score": 82.88,
+    "titan_index": 7.51
   },
   {
     "id": "ANL-002",
     "css_score": 82.83,
     "titan_index": 8.56
-  },
-  {
-    "id": "GEOM-003",
-    "css_score": 82.07,
-    "titan_index": 7.45
-  },
-  {
-    "id": "NT-001",
-    "css_score": 81.97,
-    "titan_index": 9.34
   }
 ]

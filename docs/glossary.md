@@ -2,8 +2,8 @@
 
 - **0thernes CSS (Composite Severity Score):** Deterministic `0–100` ranking metric combining Difficulty (`40%`), Centrality (`30%`, split 50/50 between Impact and `min(100, 25*ln(1+degree))`), 300-year-saturated Antiquity (`20%`), and Inverse 2050 Tractability (`10%`). Exact linear bounds & monotonicity are proved in `lean/MegaAtlasProofs/Scoring.lean`.
 - **Abstraction Layer (`L0`–`L6`):** Seven-level vertical hierarchy from `L0: Formal & Axiomatic` up to `L6: Normative, Economic & Semantic`.
-- **Apex Multi-Pillar Keystone:** A problem directly linked in the knowledge graph to `>= 3` distinct foreign Macro-Pillars (`68` problems).
-- **AQS (Atlas Quality Score):** Immutable `0–100` objective computed by `autoresearch/evaluate.py` (`25%` schema health + `25%` 25-query Gold RAG MRR@5 + `20%` provenance/FAIR + `15%` graph coupling + `15%` Lean/agentic interop). Currently `97.99`.
+- **Apex Multi-Pillar Keystone:** A problem directly linked in the knowledge graph to `>= 3` distinct foreign Macro-Pillars (`69` problems).
+- **AQS (Atlas Quality Score):** Immutable `0–100` objective computed by `autoresearch/evaluate.py` (`25%` schema health + `25%` 25-query Gold RAG MRR@5 + `20%` provenance/FAIR + `15%` graph coupling + `15%` Lean/agentic interop). Currently `98.35`.
 - **Biconnected Graph:** An undirected graph with `1` connected component, `0` articulation points (cut vertices), and `0` bridge edges — removing any single problem never disconnects the atlas.
 - **Bridge Margin Ratio:** `cross_pillar_links / max(1, graph_degree) ∈ [0, 1]`, measuring the fraction of a problem's neighbors lying in foreign Macro-Pillars.
 - **Composite Titan Index:** `0.90–10.00` complementary metric emphasizing civilizational impact and cross-disciplinary leverage (`35%` Difficulty + `35%` Impact + `20%` Interdisciplinarity + `10%` log-Degree).

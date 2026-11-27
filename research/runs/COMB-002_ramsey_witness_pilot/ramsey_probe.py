@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Track B Reproducible Frontier Probe #3 — COMB-001 (Ramsey Lower-Bound Witnesses).
+"""Track B Reproducible Frontier Probe #3 — COMB-002 (Ramsey Lower-Bound Witnesses).
 
 Constructs and exhaustively certifies 7 explicit circulant & Paley graph witnesses
 proving exact finite Ramsey lower bounds via deterministic bitmask clique search:
@@ -20,7 +20,7 @@ full all-vertex search as a cross-check.
 
 HONEST VERIFICATION BOUNDARY:
   Certifies finite constructive lower bounds ONLY. Explicitly makes ZERO claim
-  to determine exact R(5,5), R(6,6), or asymptotic R(k,k) bounds (COMB-001
+  to determine exact R(5,5), R(6,6), or asymptotic R(k,k) bounds (COMB-002
   remains OPEN).
 """
 
@@ -177,10 +177,10 @@ def run_probe() -> dict[str, Any]:
         })
 
     payload: dict[str, Any] = {
-        "problem_id": "COMB-001",
-        "problem_name": "Diagonal & Off-Diagonal Ramsey Numbers R(k,k) (incl. R(5,5) & R(6,6))",
+        "problem_id": "COMB-002",
+        "problem_name": "Exact Ramsey Numbers (R(5, 5) and Diagonal Asymptotic Growth Rate)",
         "track": "Track B — Reproducible Finite Constructive Witness Certification",
-        "epistemic_status": "OPEN — Finite constructive lower-bound witnesses only; proves ZERO upper bound or exact value for R(5,5)/R(6,6)/COMB-001.",
+        "epistemic_status": "OPEN — Finite constructive lower-bound witnesses only; proves ZERO upper bound or exact value for R(5,5)/R(6,6)/COMB-002.",
         "witnesses_certified_count": len(records),
         "witnesses": records,
     }
@@ -193,7 +193,7 @@ def main() -> None:
     res = run_probe()
     RESULTS_PATH.write_text(json.dumps(res, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     bounds = ", ".join(w["lower_bound_proved"] for w in res["witnesses"])
-    print(f"PASS [Track B COMB-001]: Certified {res['witnesses_certified_count']}/7 exact Ramsey witnesses ({bounds}) | COMB-001 remains OPEN.")
+    print(f"PASS [Track B COMB-002]: Certified {res['witnesses_certified_count']}/7 exact Ramsey witnesses ({bounds}) | COMB-002 remains OPEN.")
 
 
 if __name__ == "__main__":

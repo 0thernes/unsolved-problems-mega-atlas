@@ -22,6 +22,7 @@ paper/build/
 outputs/MegaAtlas_Unsolved_Problems_V2.sqlite
 outputs/MegaAtlas_Unsolved_Problems_V2.json
 outputs/MegaAtlas_Unsolved_Problems_V2.jsonl
+outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls
 outputs/MegaAtlas_Comprehensive_Report_V2.pdf
 outputs/MegaAtlas_Print_Report_V2.html
 

@@ -1,8 +1,8 @@
 {
-  "epistemic_status": "OPEN \u2014 Finite constructive lower-bound witnesses only; proves ZERO upper bound or exact value for R(5,5)/R(6,6)/COMB-001.",
-  "problem_id": "COMB-001",
-  "problem_name": "Diagonal & Off-Diagonal Ramsey Numbers R(k,k) (incl. R(5,5) & R(6,6))",
-  "sha256_canonical_json": "fcaa51d28f1e82fc2c7dbc3ff46c383417cd98b36f2fa35cf37613ba440e2ca9",
+  "epistemic_status": "OPEN \u2014 Finite constructive lower-bound witnesses only; proves ZERO upper bound or exact value for R(5,5)/R(6,6)/COMB-002.",
+  "problem_id": "COMB-002",
+  "problem_name": "Exact Ramsey Numbers (R(5, 5) and Diagonal Asymptotic Growth Rate)",
+  "sha256_canonical_json": "ff7b24cb6a8bc0090d5594372b5f1cb99683f3bc6da952dd61fd1ace507262b6",
   "track": "Track B \u2014 Reproducible Finite Constructive Witness Certification",
   "witnesses": [
     {

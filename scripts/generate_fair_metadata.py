@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Deterministic FAIR Scholarly Metadata Generator (`v2.8.0`):
+Deterministic FAIR Scholarly Metadata Generator (`v2.9.0`):
   1. `croissant.json`         — MLCommons Croissant 1.0 JSON-LD dataset specification
   2. `ro-crate-metadata.json` — W3C / ResearchObject RO-Crate 1.1 JSON-LD descriptor
   3. `data/MANIFEST.sha256`   — Canonical SHA-256 manifest of frozen tracked data & paper artifacts
@@ -27,7 +27,7 @@ REPO_URL = "https://github.com/0thernes/unsolved-problems-mega-atlas"
 PAGES_URL = "https://0thernes.github.io/unsolved-problems-mega-atlas/"
 RAW_BASE = "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/"
 ORCID_URL = "https://orcid.org/0009-0006-8168-9648"
-VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.8.0"
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
 
 
 def _lean_theorem_count() -> int:
@@ -115,15 +115,16 @@ def build_croissant(df_cols: list[str], total_problems: int, total_edges: int) -
         "name": "Unsolved Problems Mega-Atlas",
         "alternateName": f"Unsolved Problems Mega-Atlas V{VERSION}",
         "description": (
-            f"Exhaustive, cryptographically audited cross-disciplinary dataset of {total_problems:,} strictly deduplicated "
-            "unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, "
-            f"and 7 Abstraction Layers wired into 1 biconnected {total_edges:,}-edge knowledge graph (0 articulation points, 0 dangling links), "
-            "with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 "
-            f"AI proof-claim audit, Hybrid RAG (100% MRR@5), 11-tool MCP server, 3 Track B probes, Karpathy-style AutoResearch harness, and {lean_n} Pure Lean 4.35.0 "
-            "formal invariant theorems verified across 6 independent kernels."
+            f"Deduplicated cross-disciplinary dataset of {total_problems:,} unsolved, open, and hard problems "
+            "across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers, "
+            f"wired into a {total_edges:,}-edge knowledge graph that Python/NetworkX audits as biconnected (0 articulation points, 0 dangling links), "
+            "with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 26, 2026 "
+            f"AI proof-claim audit & automated daily sync across 16 global registries + all 25 Left to Solve fronts (lefttosolve.com/programs), Hybrid RAG (100% MRR@5 on 25 benchmark queries), 12-tool MCP server, 3 finite Track B probes (LOG-002, NT-005, COMB-002), "
+            f"AutoResearch harness, and {lean_n} audited zero-Mathlib Lean 4.35.0 software-model invariant theorems "
+            f"(kernel-checked by Lean; 9 Palomar comparator targets accepted by six kernel checks across five distinct implementations). None of the {total_problems:,} problems is solved by this work."
         ),
         "version": VERSION,
-        "datePublished": "2026-11-25",
+        "datePublished": "2026-11-26",
         "url": PAGES_URL,
         "sameAs": REPO_URL,
         "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -213,9 +214,9 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("outputs/MegaAtlas_Unsolved_Problems_V2.tsv", "text/tab-separated-values", "Master tabular TSV dataset"),
         ("outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz", "application/gzip", "Deterministic gzipped streaming JSONL dataset"),
         ("outputs/MegaAtlas_Unsolved_Problems_V2.json.gz", "application/gzip", "Deterministic gzipped complete JSON dataset & knowledge graph"),
-        ("outputs/MegaAtlas_Unsolved_Problems_V2.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "15-sheet live-formula Excel workbook"),
-        ("outputs/MegaAtlas_Interactive_Dashboard_V2.html", "text/html", "WCAG 2.2 AA interactive web atlas (<4 MB)"),
-        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "10-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
+        ("outputs/MegaAtlas_Unsolved_Problems_V2.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "16-sheet live-formula Excel workbook (incl. LeftToSolve_25_Programs)"),
+        ("outputs/MegaAtlas_Interactive_Dashboard_V2.html", "text/html", "WCAG 2.2 AA interactive web atlas (<4 MB, auto-hydrates daily registry JSON)"),
+        ("dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "application/pdf", "11-page AMS-LaTeX white paper (Tectonic, 0 overfull hboxes)"),
         ("dist/arxiv_submission.tar.gz", "application/gzip", "Deterministic clean-room arXiv source tarball"),
         ("blueprint/index.html", "text/html", "Interactive Lean 4.35.0 Proof Blueprint SVG DAG"),
         ("docs/WHITE_PAPER.md", "text/markdown", "Build White Paper & Archival Dossier (0TH-BUILD-007)"),
@@ -228,12 +229,16 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
         ("CHECKSUMS.sha256.tsr", "application/timestamp-reply", "DigiCert RFC 3161 Trusted Timestamp token for CHECKSUMS.sha256"),
         ("CHECKSUMS.sha256.ots", "application/octet-stream", "Multi-calendar Bitcoin OpenTimestamps proof for CHECKSUMS.sha256"),
         ("croissant.json", "application/ld+json", "MLCommons Croissant 1.0 metadata"),
-        ("lean/MegaAtlasProofs.lean", "text/plain", f"Zero-Mathlib Lean 4.35.0 formal invariant suite ({lean_n} audited theorems, 6 kernels)"),
+        ("lean/MegaAtlasProofs.lean", "text/plain", f"Zero-Mathlib Lean 4.35.0 software-model invariant suite ({lean_n} audited theorems; 9 comparator targets accepted by 6 kernel checks across 5 implementations)"),
         ("results/lean_axioms.txt", "text/plain", f"Verbatim Lean 4.35.0 #print axioms transcript ({lean_n} theorems)"),
+        ("results/registry_delta.json", "application/json", "External open-problem registry delta audit snapshot"),
+        ("research/runs/LOG-002_antihydra_pilot/RESULTS.json", "application/json", "Track B finite exact probe: LOG-002 Antihydra recurrence"),
+        ("research/runs/NT-005_collatz_parity_pilot/RESULTS.json", "application/json", "Track B finite exact probe: NT-005 Collatz sweep & Terras bijection"),
+        ("research/runs/COMB-002_ramsey_witness_pilot/RESULTS.json", "application/json", "Track B finite exact probe: COMB-002 constructive Ramsey lower-bound witnesses"),
         ("autoresearch/program.md", "text/markdown", "Karpathy-style autonomous research instruction manual"),
         ("autoresearch/evaluate.py", "text/x-python", "Immutable AutoResearch evaluation oracle"),
         ("autoresearch/results.tsv", "text/tab-separated-values", "Empirical AutoResearch experiment audit trail"),
-        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (11 tools)"),
+        ("mcp_server/server.py", "text/x-python", "Zero-dependency dual-framed MCP stdio JSON-RPC 2.0 server (12 tools)"),
         ("rag/query.py", "text/x-python", "Offline Hybrid BM25 + graph-authority RAG CLI (auto-builds SQLite FTS5)"),
     ]
     graph = [
@@ -251,8 +256,9 @@ def build_ro_crate(total_problems: int, total_edges: int) -> dict:
             "datePublished": "2026-11-26",
             "description": (
                 f"Unified cross-disciplinary open-problem atlas ({total_problems:,} problems, 8 Macro-Pillars, 28 Superdomains, "
-                f"8 Substrates, 7 Abstraction Layers, {total_edges:,} biconnected graph edges, {lean_n} Pure Lean 4.35.0 formal invariants "
-                "across 6 kernels, 10-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 11-tool MCP server, 3 Track B probes, and Karpathy-style AutoResearch loop)."
+                f"8 Substrates, 7 Abstraction Layers, {total_edges:,} edges audited biconnected in Python/NetworkX, {lean_n} audited Lean 4.35.0 software-model theorems "
+                "(9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations), 11-page AMS-LaTeX white paper, SQLite FTS5 Hybrid RAG, 12-tool MCP server, daily 16-registry & 25-front Left to Solve sync, 3 finite Track B probes, and AutoResearch harness). "
+                f"0/{total_problems:,} solved by this work."
             ),
             "url": PAGES_URL,
             "identifier": REPO_URL,
@@ -308,12 +314,14 @@ def write_data_manifest() -> None:
         "../outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
         "../outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
         "../outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
-        "../outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls",
         "../outputs/MegaAtlas_Interactive_Dashboard_V2.html",
         "../dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
         "../dist/arxiv_submission.tar.gz",
         "../results/lean_axioms.txt",
+        "../results/registry_delta.json",
         "../research/runs/LOG-002_antihydra_pilot/RESULTS.json",
+        "../research/runs/NT-005_collatz_parity_pilot/RESULTS.json",
+        "../research/runs/COMB-002_ramsey_witness_pilot/RESULTS.json",
     ]
     lines = []
     for rel in rels:

@@ -52,7 +52,9 @@ def main() -> None:
     ensure_sqlite_db()
     # Warmup
     d0 = load_v2_master()
-    assert len(d0["df"]) == 1900
+    n_rows = len(d0["df"])
+    n_edges = int(d0["summary_stats"]["total_graph_edges"])
+    assert n_rows == 2000
     for q, _ in GOLD_RAG_BENCHMARK[:3]:
         search_atlas(query=q, top=5, hops=0)
 
@@ -61,7 +63,7 @@ def main() -> None:
     for _ in range(10):
         t0 = time.perf_counter()
         d = load_v2_master()
-        assert len(d["df"]) == 1900 and d["summary_stats"]["total_graph_edges"] == 5808
+        assert len(d["df"]) == n_rows and d["summary_stats"]["total_graph_edges"] == n_edges
         load_times.append(time.perf_counter() - t0)
 
     # 2. 25-query Hybrid RAG benchmark (10 runs, ms per query)
@@ -120,7 +122,7 @@ def main() -> None:
     md = f"""# Reproducible Benchmarks — Unsolved Problems Mega-Atlas (`v{ver}`)
 
 Every benchmark executes **10 warmed runs** with explicit output-correctness assertions
-(1,900 unique rows, 5,808 graph edges, 25/25 top-1 RAG accuracy, and 0 differential
+({n_rows:,} unique rows, {n_edges:,} graph edges, 25/25 top-1 RAG accuracy, and 0 differential
 scoring mismatches against `reference/scoring_oracle.py`). No untimed or unverified
 numbers are reported.
 
@@ -134,17 +136,17 @@ numbers are reported.
 
 | Workload (10 warmed runs, verified output) | Median | IQR | Min | Max | Performance Target | Status |
 |---|---:|---:|---:|---:|---|---|
-| Full `load_v2_master()` (1,900 rows + NetworkX PageRank/Betweenness/Modularity) | `{l_med:.4f} s` | `{l_iqr:.4f} s` | `{l_min:.4f} s` | `{l_max:.4f} s` | `< 4.5 s` | {l_stat} |
+| Full `load_v2_master()` ({n_rows:,} rows + NetworkX PageRank/Betweenness/Modularity) | `{l_med:.4f} s` | `{l_iqr:.4f} s` | `{l_min:.4f} s` | `{l_max:.4f} s` | `< 4.5 s` | {l_stat} |
 | Offline Hybrid FTS5+Graph RAG Latency (per query across 25-query Gold Set) | `{r_med:.4f} ms` | `{r_iqr:.4f} ms` | `{r_min:.4f} ms` | `{r_max:.4f} ms` | `< 30.0 ms` | {r_stat} |
-| 1,900-Record Differential CSS Audit vs. 50-digit Decimal Oracle | `{d_med:.4f} ms` | `{d_iqr:.4f} ms` | `{d_min:.4f} ms` | `{d_max:.4f} ms` | `< 250.0 ms` | {d_stat} |
+| {n_rows:,}-Record Differential CSS Audit vs. 50-digit Decimal Oracle | `{d_med:.4f} ms` | `{d_iqr:.4f} ms` | `{d_min:.4f} ms` | `{d_max:.4f} ms` | `< 250.0 ms` | {d_stat} |
 
 ## Memory & Artifact Size Budget
 
 - All git-tracked artifacts are strictly `< 5.0 MB` (Build Standard A24).
-- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to **`{html_mb:.2f} MB`** (`< 4.0 MB` budget in `v{ver}`) via external `charts/*.png` assets and columnar `COLS`/`ROWS` JSON encoding (~5.4× smaller first-paint payload on GitHub Pages).
+- Interactive HTML Dashboard shrunk from `20.64 MB` (`v2.3.0`) to **`{html_mb:.2f} MB`** (`< 4.0 MB` budget in `v{ver}`, even at {n_rows:,} rows + 25 Left to Solve fronts) via external `charts/*.png` assets, columnar `COLS`/`ROWS` JSON, and enum dictionary encoding.
 """
     (ROOT / "docs" / "benchmarks.md").write_text(md, encoding="utf-8", newline="\n")
-    print(f"BENCHMARK PASS: load={l_med:.4f}s (IQR {l_iqr:.4f}s) | rag={r_med:.4f}ms/q (IQR {r_iqr:.4f}ms) | diff1900={d_med:.4f}ms")
+    print(f"BENCHMARK PASS: load={l_med:.4f}s (IQR {l_iqr:.4f}s) | rag={r_med:.4f}ms/q (IQR {r_iqr:.4f}ms) | diff{n_rows}={d_med:.4f}ms")
 
 
 if __name__ == "__main__":

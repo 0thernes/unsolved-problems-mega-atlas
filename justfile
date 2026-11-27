@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-# Canonical command runner for Unsolved Problems Mega-Atlas (V2.8.0)
+# Canonical command runner for Unsolved Problems Mega-Atlas (V2.9.0)
 # Usage: `just` to list recipes, `just reproduce` to rebuild & verify everything.
 
 set windows-shell := ["pwsh", "-NoLogo", "-Command"]
@@ -20,7 +20,7 @@ setup:
 build:
     {{python}} research/runs/LOG-002_antihydra_pilot/antihydra_probe.py
     {{python}} research/runs/NT-005_collatz_parity_pilot/collatz_probe.py
-    {{python}} research/runs/COMB-001_ramsey_witness_pilot/ramsey_probe.py
+    {{python}} research/runs/COMB-002_ramsey_witness_pilot/ramsey_probe.py
     {{python}} src/v2_charts.py
     {{python}} src/v2_export_all.py --skip-pdf
     {{python}} scripts/generate_fair_metadata.py
@@ -39,11 +39,11 @@ test:
 
 # Run static lint checks (ruff)
 lint:
-    {{python}} -m ruff check src rag mcp_server reference scripts examples tests
+    {{python}} -m ruff check src rag mcp_server reference scripts examples tests research
 
 # Run static type checking (mypy)
 typecheck:
-    {{python}} -m mypy src rag mcp_server reference scripts examples --ignore-missing-imports
+    {{python}} -m mypy src rag mcp_server reference scripts examples research --ignore-missing-imports
 
 # Run mutation testing audit (assert 100% kill rate across planted mutants)
 mutate:
@@ -83,9 +83,9 @@ deploy:
 stamp:
     {{python}} scripts/stamp_timestamps.py --verify
 
-# Poll public external open-problem registries (advisory delta report only; zero auto-retirement)
+# Poll all 16 public external open-problem registries & 25 Left to Solve fronts (advisory telemetry only; zero auto-retirement)
 sync-registries:
-    {{python}} scripts/sync_external_registries.py --live --write-report
+    {{python}} scripts/sync_external_registries.py --live --write-daily --write-report
 
 # Run community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 rubric-diff:
@@ -93,7 +93,7 @@ rubric-diff:
 
 # Print rollback instructions for static GitHub Pages / GitHub Releases
 rollback:
-    @echo "Rollback procedure: checkout prior release tag (e.g. git checkout v2.6.0) or revert commit on main; GitHub Pages redeploys automatically via .github/workflows/pages.yml. See docs/operations.md."
+    @echo "Rollback procedure: checkout prior release tag (e.g. git checkout v2.8.0) or revert commit on main; GitHub Pages redeploys automatically via .github/workflows/pages.yml. See docs/operations.md."
 
 # Remove untracked build caches while preserving tracked repository files
 clean:

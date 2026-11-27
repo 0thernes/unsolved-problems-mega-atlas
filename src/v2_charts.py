@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.8.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
+"""V2.9.0 Mega-Atlas: Generate 15 Publication-Grade Analytical Charts (PNG + Vector SVG), 5 Vector PDF Paper Figures, and 1280x640 Social Preview Card."""
 
 import os
 import textwrap
@@ -198,8 +198,8 @@ def chart_02_strategic_quadrant(data):
 
     id_to_idx = {pid: i for i, pid in enumerate(df["id"])}
     callouts = [
-        ("CS-001", "P vs. NP", (-0.15, -0.68)),
-        ("NEURO-001", "Hard Problem of\nConsciousness", (-0.85, -0.82)),
+        ("CS-001", "P vs. NP", (-0.98, 0.44)),
+        ("NEURO-001", "Hard Problem of\nConsciousness", (-0.98, -0.58)),
         ("GR-001", "Quantum Gravity", (0.25, -0.58)),
         ("NT-001", "Riemann Hyp.\n(Nov 2026 Claim)", (-1.05, 0.28)),
         ("ANL-001", "Navier–Stokes 3D\n(Sept 2026 Claim)", (0.35, -0.52)),
@@ -639,7 +639,7 @@ def chart_10_correlations_and_benchmarks(data):
 
 
 def chart_11_nov2026_status_and_registries(data):
-    """Nov 25, 2026 Research Status & Global Registry Scale Comparison."""
+    """Nov 26, 2026 Research Status & Global Registry Scale Comparison."""
     df = data["df"]
     n_tot = len(df)
     ver = data["summary_stats"]["atlas_version"]
@@ -656,13 +656,14 @@ def chart_11_nov2026_status_and_registries(data):
     ax1.set_xlim(0, max_x * 1.24)
     ax1.set_xlabel("Number of Problems", fontweight="bold")
     ax1.set_ylabel("")
-    ax1.set_title("A. Nov 25, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
+    ax1.set_title("A. Nov 26, 2026 Verification & Research Status Breakdown", fontsize=12.2, fontweight="bold", pad=12)
     ax1.grid(axis="x", linestyle="--", alpha=0.6)
     ax1.set_axisbelow(True)
 
     # Right: Global Open-Problem Trackers & Nov 2026 Scale Comparison
     regs = [
         (f"This V{ver} Mega-Atlas\n(ALL 28 Superdomains)", n_tot, "#0284C7"),
+        ("Left to Solve (Lean 4 Open;\n59,396 Total / 25 Fronts)", 1939, "#0EA5E9"),
         ("Erdős Problems DB\n(Total Tracked; ~630 Open)", 1221, "#1D4ED8"),
         ("Wikipedia Unsolved\nLists (20+ Fields Est.)", 1200, "#0D9488"),
         ("ProofAtlas.ai Full\n(Eligible; 243 Open Top-500)", 1100, "#7C3AED"),
@@ -687,7 +688,7 @@ def chart_11_nov2026_status_and_registries(data):
 
     handles = [mpatches.Patch(color=PILLAR_COLORS[p], label=p) for p in MACRO_PILLARS]
     fig.legend(handles=handles, loc="lower center", ncol=4, bbox_to_anchor=(0.30, -0.09), frameon=True, facecolor="#F8FAFC", fontsize=8.0)
-    fig.suptitle("November 25, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
+    fig.suptitle("November 26, 2026 Verification Landscape: Traditional Open Frontiers vs. Unverified AI Proof Claims & Global Trackers", fontsize=14.2, fontweight="bold", y=1.02)
     plt.tight_layout()
     save_fig(fig, "11_nov2026_status_and_registries")
 
@@ -867,7 +868,7 @@ def chart_14_gradients_margins_adjacents(data):
     ax.set_title("D. Cross-Pillar Adjacency Reach (Distinct Neighboring Pillars ∈ [0, 7])", fontsize=11.6, fontweight="bold", loc="left")
     ax.grid(axis="y", linestyle="--", alpha=0.55)
 
-    fig.suptitle("Gradients, Margins, Boundaries & Cross-Pillar Adjacencies Across All 1,900 Open Problems", fontsize=14.6, fontweight="bold", y=1.01)
+    fig.suptitle(f"Gradients, Margins, Boundaries & Cross-Pillar Adjacencies Across All {len(df):,} Open Problems", fontsize=14.6, fontweight="bold", y=1.01)
     plt.tight_layout()
     save_fig(fig, "14_gradients_margins_and_adjacents")
 
@@ -905,7 +906,7 @@ def chart_15_spectrum_and_autoresearch(data):
         xs = np.arange(len(rdf))
         ax2.plot(xs, rdf["aqs_score"], marker="o", linewidth=2.4, markersize=8, color="#1D4ED8", label="Atlas Quality Score (AQS, 0–100)")
         ax2.plot(xs, rdf["rag_mrr5"], marker="s", linewidth=2.0, linestyle="--", markersize=7, color="#059669", label="25-Query Gold RAG MRR@5 (%)")
-        offsets = {0: (0, 10), 1: (0, -28), 2: (-18, 12), 3: (24, -26), 4: (0, -28)}
+        offsets = {0: (0, 10), 1: (0, -28), 2: (-18, 12), 3: (24, -26), 4: (-16, 12), 5: (-12, -28)}
         for idx, row in rdf.iterrows():
             st = str(row["status"])
             c = "#DC2626" if st == "discard" else ("#059669" if st == "keep" else "#64748B")
@@ -972,8 +973,8 @@ def generate_social_preview(data):
     cards = [
         (f"{s['total_problems']:,}", "OPEN & HARD PROBLEMS", "#38BDF8"),
         (f"{s['total_graph_edges']:,}", "BICONNECTED EDGES (0 APS)", "#34D399"),
-        ("6 / 6 KERNELS", f"{lean_n} LEAN 4.35.0 THEOREMS", "#A78BFA"),
-        ("100% MRR@5", "HYBRID RAG + 10-TOOL MCP", "#FBBF24"),
+        (f"{lean_n} THEOREMS", "LEAN 4.35.0 MODEL SUITE", "#A78BFA"),
+        ("100% MRR@5", "HYBRID RAG + 12-TOOL MCP", "#FBBF24"),
     ]
     for i, (val, lbl, col) in enumerate(cards):
         x0 = 56 + i * 296
@@ -985,7 +986,7 @@ def generate_social_preview(data):
     # Pillar distribution bar across bottom
     bar_x = 56
     bar_w = 1168
-    ax.text(56, 272, "8 MACRO-PILLAR COVERAGE DISTRIBUTION (N = 1,900)", fontsize=10.5, fontweight="bold", color="#94A3B8")
+    ax.text(56, 272, f"8 MACRO-PILLAR COVERAGE DISTRIBUTION (N = {s['total_problems']:,})", fontsize=10.5, fontweight="bold", color="#94A3B8")
     cur_x = bar_x
     for r in df_p.itertuples():
         seg_w = bar_w * (r.Problem_Count / s["total_problems"])

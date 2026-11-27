@@ -86,4 +86,4 @@ lake env leanexport PalomarChallenge -- \
 # Sandboxed (bubblewrap) 6-kernel Palomar Comparator verification against exported Challenge
 lake comparator --config comparator.json --challenge-from-export=/tmp/PalomarChallenge.export --paranoid
 
-echo "PASS: All 103 audited theorems and 9 Palomar targets verified across all 6 independent Lean 4.35.0 kernels!"
+echo "PASS: All 103 audited theorems kernel-checked by Lean (per-theorem axioms in [propext, Quot.sound]), live negative kernel rejection passed, 3 headline exports verified by con-leche/con-ron/nanoda_bin, and 9 Palomar comparator targets accepted by six kernel checks (five distinct implementations)!"

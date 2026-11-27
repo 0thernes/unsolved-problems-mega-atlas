@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.8.0)."""
+"""Comprehensive pytest verification suite for the Unsolved Problems Mega-Atlas (V2.9.0)."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def master_data():
 def test_problem_count_uniqueness_and_zero_dangling_links(master_data):
     df = master_data["df"]
     s = master_data["summary_stats"]
-    assert len(df) == 1900
+    assert len(df) == 2000
     assert df.shape[1] == 48
     assert df["id"].is_unique
     assert s["raw_authored_before_dedup"] >= len(df)
@@ -159,7 +159,7 @@ def test_every_record_has_valid_verification_flag(master_data):
     assert set(df["verification_flag"].unique()).issubset(valid)
 
 
-# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 10-TOOL MCP SERVER ====================
+# ==================== 5. CROSS-FORMAT, RAG & DUAL-FRAMED 11-TOOL MCP SERVER ====================
 
 
 def test_exported_files_parity(master_data):
@@ -174,13 +174,14 @@ def test_exported_files_parity(master_data):
     assert len(csv_df) == n and csv_df.shape[1] == 48
     assert len(tsv_df) == n and tsv_df.shape[1] == 48
     assert len(payload["problems"]) == n
-    assert len(payload["author_frontier_contributions"]) == 17
+    assert len(payload["author_frontier_contributions"]) == 20
+    assert len(payload["lefttosolve_programs_baseline"]) == 25
     assert len(jsonl_lines) == n
     assert payload["metadata"]["orcid"] == EXPECTED_ORCID
     assert payload["metadata"]["license_code"] == "Apache-2.0"
 
     wb = openpyxl.load_workbook(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.xlsx", read_only=True)
-    assert len(wb.sheetnames) == 15
+    assert len(wb.sheetnames) == 16
     wb.close()
 
     conn = sqlite3.connect(str(DEFAULT_DB))
@@ -188,7 +189,8 @@ def test_exported_files_parity(master_data):
         assert conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0] == n
         assert conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0] == master_data["G"].number_of_edges()
         assert conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0] == 8
-        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 17
+        assert conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0] == 20
+        assert conn.execute("SELECT COUNT(*) FROM lefttosolve_programs").fetchone()[0] == 25
     finally:
         conn.close()
 
@@ -210,7 +212,7 @@ def test_offline_rag_hybrid_bm25_pagerank_and_graph_hops():
     assert len(exact["results"][0]["graph_neighbors"]) >= 1
 
 
-def test_mcp_stdio_server_ndjson_all_11_tools():
+def test_mcp_stdio_server_ndjson_all_12_tools():
     reqs = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}},
         {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
@@ -225,6 +227,8 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
         {"jsonrpc": "2.0", "id": 11, "method": "tools/call", "params": {"name": "list_author_frontier_contributions", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 12, "method": "tools/call", "params": {"name": "get_atlas_provenance", "arguments": {}}},
         {"jsonrpc": "2.0", "id": 13, "method": "tools/call", "params": {"name": "simulate_rubric_override", "arguments": {"css_weights": [0.40, 0.45, 0.05, 0.10], "problem_overrides": {"AI-001": {"tractability_2050": 5}}, "top_movers": 3}}},
+        {"jsonrpc": "2.0", "id": 14, "method": "tools/call", "params": {"name": "get_live_registry_tracker", "arguments": {}}},
+        {"jsonrpc": "2.0", "id": 15, "method": "tools/call", "params": {"name": "get_live_registry_tracker", "arguments": {"program_filter": "Green", "formalized_only": True}}},
     ]
     stdin_payload = "\n".join(json.dumps(r) for r in reqs) + "\n"
     proc = subprocess.run(
@@ -246,7 +250,7 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
         "search_problems", "get_problem", "compare_problems", "list_nov2026_ai_claims",
         "get_top_ranked", "get_pillar_summary", "get_substrate_layer_summary",
         "get_margin_and_gradient_extremes", "list_author_frontier_contributions", "get_atlas_provenance",
-        "simulate_rubric_override",
+        "simulate_rubric_override", "get_live_registry_tracker",
     }
     p_nt001 = json.loads(resps[3]["result"]["content"][0]["text"])
     assert p_nt001["id"] == "NT-001"
@@ -261,15 +265,21 @@ def test_mcp_stdio_server_ndjson_all_11_tools():
     assert len(margins["apex_multi_pillar_keystones"]) == 5
     contribs = json.loads(resps[10]["result"]["content"][0]["text"])
     assert contribs["overarching_atlas_problems_retired"] == 0
-    assert contribs["scoped_preprints_count"] == 17
+    assert contribs["scoped_preprints_count"] == 20
     prov = json.loads(resps[11]["result"]["content"][0]["text"])
     assert prov["orcid"] == EXPECTED_ORCID
     assert prov["dual_license"]["code"] == "Apache-2.0"
     assert prov["lean_verification"]["audited_theorems"] == 103
     sim = json.loads(resps[12]["result"]["content"][0]["text"])
-    assert sim["problems_evaluated"] == 1900
+    assert sim["problems_evaluated"] == 2000
     assert 0.5 < sim["rank_correlation"]["spearman_rho"] < 1.0
     assert len(sim["biggest_risers"]) == 3
+    tracker_all = json.loads(resps[13]["result"]["content"][0]["text"])
+    assert tracker_all["lefttosolve_programs_matched"] == 25
+    assert tracker_all["registries_polled_count"] == 16
+    tracker_green = json.loads(resps[14]["result"]["content"][0]["text"])
+    assert tracker_green["lefttosolve_programs_matched"] == 1
+    assert "Green" in tracker_green["lefttosolve_programs"][0]["program"]
 
 
 def test_mcp_stdio_server_content_length_framing():
@@ -320,6 +330,14 @@ def test_track_b_antihydra_pilot_artifact_reproducible():
     assert data["seed_sweep_a0_2_to_100_max2000"]["halted_count"] == 66
     assert data["seed_sweep_a0_2_to_100_max2000"]["surviving_count"] == 33
 
+    sys.path.insert(0, str(ROOT / "research" / "runs" / "LOG-002_antihydra_pilot"))
+    import antihydra_probe as ap
+
+    live = ap.run_antihydra(a0=8, b0=0, max_steps=5000)
+    assert live["halted"] is False
+    assert live["final_b"] == 2599
+    assert live["even_steps"] + live["odd_steps"] == 5000
+
 
 def test_alias_redirection_eliminates_all_duplicate_secondaries(master_data):
     id_set = set(master_data["df"]["id"])
@@ -328,12 +346,12 @@ def test_alias_redirection_eliminates_all_duplicate_secondaries(master_data):
         assert canonical_id in id_set, f"Canonical merge target {canonical_id} missing!"
 
 
-def test_substrate_layer_and_margin_matrices_partition_all_1900(master_data):
-    assert int(master_data["df_substrates"]["Problem_Count"].sum()) == 1900
+def test_substrate_layer_and_margin_matrices_partition_all_2000(master_data):
+    assert int(master_data["df_substrates"]["Problem_Count"].sum()) == 2000
     ct_sl = master_data["ct_substrate_layer"].drop(index="Total", columns="Total", errors="ignore")
-    assert int(ct_sl.values.sum()) == 1900
+    assert int(ct_sl.values.sum()) == 2000
     ct_mp = master_data["ct_margin_pillar"].drop(index="Total", columns="Total", errors="ignore")
-    assert int(ct_mp.values.sum()) == 1900
+    assert int(ct_mp.values.sum()) == 2000
 
 
 def test_all_15_charts_png_and_svg_present_and_nonempty():
@@ -403,6 +421,9 @@ def test_governance_and_orcid_files():
         "CODE_OF_CONDUCT.md", "repo.yaml", "justfile",
         "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf", "dist/arxiv_submission.tar.gz",
         "blueprint/index.html", "results/lean_axioms.txt",
+        "results/daily_registries.json", "results/lefttosolve_programs.json",
+        "results/daily_registry_history.jsonl", "docs/DAILY_REGISTRY_TRACKER.md",
+        ".github/workflows/daily-registry-sync.yml",
         "docs/METHODOLOGY.md", "docs/AI_DISCLOSURE.md", "docs/ACADEMIC_REVIEW.md",
         "docs/WHITE_PAPER.md", "docs/DATASHEET.md", "docs/FORENSIC_AUDIT_V2.3.md",
         "docs/PRESERVATION.md", "docs/statement-fidelity.md", "docs/literature-search-log.md",

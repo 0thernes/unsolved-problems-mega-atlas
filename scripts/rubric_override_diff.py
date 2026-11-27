@@ -103,6 +103,10 @@ def evaluate_rubric_override(
             if isinstance(v, bool) or not isinstance(v, int) or not (1 <= v <= 10):
                 raise ValueError(f"Override {pid}.{k} must be an integer in 1..10 (got {v!r})")
 
+    if isinstance(top_movers, bool) or not isinstance(top_movers, int) or top_movers < 1:
+        raise ValueError(f"top_movers must be a positive integer (got {top_movers!r})")
+    top_movers = min(top_movers, 50)
+
     base_rows: list[dict[str, Any]] = []
     alt_rows: list[dict[str, Any]] = []
     quad_migrations: dict[str, int] = {}
@@ -118,6 +122,7 @@ def evaluate_rubric_override(
         age = int(rec["age_years_2026"])
 
         base_css = float(rec["css_score"])
+        base_titan = float(rec["titan_index"])
         alt_css = compute_weighted_css(d, imp, deg, age, t, weights)
         alt_titan = compute_titan_index(d, imp, inter, deg)
         base_q = str(rec["strategic_quadrant"]).split(":", 1)[0]
@@ -126,11 +131,11 @@ def evaluate_rubric_override(
             key = f"{base_q}->{alt_q}"
             quad_migrations[key] = quad_migrations.get(key, 0) + 1
 
-        base_rows.append({"id": pid, "name": rec["name"], "css": base_css})
-        alt_rows.append({"id": pid, "name": rec["name"], "css": alt_css, "titan": alt_titan})
+        base_rows.append({"id": pid, "name": rec["name"], "css": base_css, "titan": base_titan, "deg": deg})
+        alt_rows.append({"id": pid, "name": rec["name"], "css": alt_css, "titan": alt_titan, "deg": deg})
 
-    base_sorted = sorted(base_rows, key=lambda r: (-r["css"], r["id"]))
-    alt_sorted = sorted(alt_rows, key=lambda r: (-r["css"], r["id"]))
+    base_sorted = sorted(base_rows, key=lambda r: (-r["css"], -r["titan"], -r["deg"], r["id"]))
+    alt_sorted = sorted(alt_rows, key=lambda r: (-r["css"], -r["titan"], -r["deg"], r["id"]))
     base_rank = {r["id"]: idx + 1 for idx, r in enumerate(base_sorted)}
     alt_rank = {r["id"]: idx + 1 for idx, r in enumerate(alt_sorted)}
 
@@ -138,10 +143,10 @@ def evaluate_rubric_override(
     b_scores = [r["css"] for r in base_rows]
     a_scores = [r["css"] for r in alt_rows]
 
-    rho_res = spearmanr(b_scores, a_scores)
-    tau_res = kendalltau(b_scores, a_scores)
-    spearman_rho = round(float(rho_res.statistic), 6)
-    kendall_tau = round(float(tau_res.statistic), 6)
+    rho_raw = float(spearmanr(b_scores, a_scores).statistic)
+    tau_raw = float(kendalltau(b_scores, a_scores).statistic)
+    spearman_rho = round(rho_raw, 6) if math.isfinite(rho_raw) else 0.0
+    kendall_tau = round(tau_raw, 6) if math.isfinite(tau_raw) else 0.0
 
     top25_base = {r["id"] for r in base_sorted[:25]}
     top25_alt = {r["id"] for r in alt_sorted[:25]}
@@ -209,6 +214,8 @@ def main() -> None:
         label = str(spec.get("label", args.override.stem))
         if "css_weights" in spec:
             raw_w = spec["css_weights"]
+            if not isinstance(raw_w, list) or len(raw_w) != 4:
+                raise ValueError("css_weights in override JSON must be a 4-element list summing to 1.0")
             weights = (float(raw_w[0]), float(raw_w[1]), float(raw_w[2]), float(raw_w[3]))
         overrides = spec.get("problem_overrides", {})
 

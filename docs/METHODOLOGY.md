@@ -1,7 +1,7 @@
 # Quantitative Methodology, Scoring Formulas & Known Limitations
 
-**Release:** `v2.8.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
-**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, finite graph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in Pure Lean 4.35.0 (`lean/`, **103** audited theorems, 0 `sorry` in `lean/`, per-theorem axioms within `[propext, Quot.sound]`; kernel-checked by Lean, with the 9 Palomar comparator targets also accepted by six kernel checks, five distinct implementations, via `scripts/verify_lean_six_kernels.sh`). These are invariants of the scoring software, not of the 1,900-row data or its graph, which are checked in Python.
+**Release:** `v2.9.0` · **Reference Year:** `2026` (frozen in `src/v2_loader.py`)  
+**Formal Verification:** Exact discrete counterparts of all scoring, quadrant, era, taxonomy, generic list-multigraph, AutoResearch ratchet, gradient/margin, NonVacuity, and AdversarialTests formulas are machine-checked in zero-Mathlib Lean 4.35.0 (`lean/`, **103** audited declarations of `117` in `lean/`, 0 `sorry`, per-theorem axioms within `[propext, Quot.sound]`; kernel-checked by Lean, with the `9` Palomar comparator targets also accepted by `6` kernel checks across `5` distinct implementations via `scripts/verify_lean_six_kernels.sh`). These are invariants of the scoring software model, not of the 2,000-row data or its graph, which are checked in Python.
 
 ---
 
@@ -11,14 +11,14 @@ Every entry is assigned to an exact multi-layer hierarchy enforced by `src/v2_sc
 - **8 Macro-Pillars** (surjective partition proven in `MegaAtlasProofs.Taxonomy.pillarOf_surjective`),
 - **28 Superdomains** (`5 + 3 + 3 + 3 + 3 + 4 + 4 + 3 = 28`, proven in `pillar_partition_sum_28`),
 - **8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`)**,
-- **1,752 fine-grained Subdomains**,
-- **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m11`.
+- **1,852 fine-grained Subdomains**,
+- **88 Canonical Hub Anchors (`HUB:*`)** enabling deterministic cross-module linkage across `m01`–`m12`.
 
 ## 2. Deduplication & Knowledge-Graph Construction
 
-1. **Strict Deduplication (`src/v2_loader.py`):** 1,912 raw authored entries are scanned in canonical priority order (`m01`–`m11`). Collisions by exact `id`, normalized title (`_norm_name`), or `EXPLICIT_DUPLICATE_ALIASES` preserve the primary record and redirect every incoming link via `dedup_alias_map` so zero edges are lost (`12` overlaps cleanly merged → **`1,900` unique problems**, `0` unresolved raw links). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
-2. **Biconnected Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Resulting graph: **`1,900` nodes, `5,808` edges, `1` connected component, `0` articulation points, `0` bridges (`nx.is_biconnected(G) == True`), `14` greedy modularity communities**.
-3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links (`2,076`, `35.7%`), and cross-pillar bridge links (`1,084`, `18.7%`; `cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
+1. **Strict Deduplication (`src/v2_loader.py`):** 2,012 raw authored entries are scanned in canonical priority order (`m01`–`m12`). Collisions by exact `id`, normalized title (`_norm_name`), or `EXPLICIT_DUPLICATE_ALIASES` preserve the primary record and redirect every incoming link via `dedup_alias_map` so zero edges are lost (`12` overlaps cleanly merged → **`2,000` unique problems**, `0` unresolved raw links). Cardinality bound `|dedup| ≤ |raw|` is proved in `MegaAtlasProofs.GraphInvariants.dedupBy_length_le`.
+2. **Biconnected Undirected Knowledge Graph (`NetworkX`):** Every `HUB:*` alias and direct problem ID is resolved into undirected simple edges (no self-loops). Resulting graph: **`2,000` nodes, `6,108` edges, `1` connected component, `0` articulation points, `0` bridges (`nx.is_biconnected(G) == True`), `10` greedy modularity communities**.
+3. **Centrality Metrics:** Degree `deg(v)`, PageRank (`alpha = 0.85`), approximate betweenness centrality (`k = 280`, `seed = 42` for deterministic reproducibility), cross-superdomain links (`2,212`, `36.2%`), and cross-pillar bridge links (`1,153`, `18.9%`; `cross_pillar ≤ cross_superdomain ≤ |E|` formally verified in `edge_hierarchy`).
 
 ## 3. Dual Ranking Formulas (`0thernes CSS` & `Titan Index`)
 
@@ -63,12 +63,12 @@ Titan = 0.35 * difficulty_score
 Every record carries a deterministic `verification_flag`:
 - `ai-claim-under-audit-nov2026` (`12`): Targeted by unverified Fall/Nov 2026 AI proof claims; explicitly unretired.
 - `disputed-human-claim` (`11`): Contested human proof claims lacking community consensus (e.g., abc/IUT).
-- `primary-registry-indexed` (`925`): Problem provenance explicitly anchored to a named open-problem registry or canonical institutional canon (Clay CMI, ProofAtlas, Erdős DB, Hilbert, Smale, Landau, Kourovka, Kirby, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.).
-- `ai-assisted-editorial-synthesis` (`952`): Curated frontier research problem synthesized from domain literature under human direction; awaiting external specialist audit.
+- `primary-registry-indexed` (`1,035`): Problem provenance explicitly anchored to a named open-problem registry or canonical institutional canon (Left to Solve / `formal-conjectures`, Clay CMI, ProofAtlas, Erdős DB, OEIS, Ben Green's 100, Open Quantum Problems, Hilbert, Smale, Landau, Kourovka, Kirby, SEP/PhilPapers, NAE, DARPA, DOE, IPCC, WHO, CERN, LIGO, IRDS, etc.).
+- `ai-assisted-editorial-synthesis` (`942`): Curated frontier research problem synthesized from domain literature under human direction; awaiting external specialist audit.
 
 ## 5. Known Limitations & Biases (Disclosed Honestly)
 
 1. **Rubric Subjectivity:** Integer 1–10 input ratings (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`) are editorial estimates, not objective physical constants.
-2. **Graph Construction Bias:** Hub density reflects curated cross-references (`HUB:*`), so well-known keystone problems (Turbulence, P vs. NP, Quantum Gravity, Climate ECS) naturally accumulate higher PageRank/degree than niche specialist conjectures.
+2. **Graph Construction Bias:** Hub density reflects curated cross-references (`HUB:*`), so well-known keystone problems (P vs. NP, Riemann Hypothesis, Turbulence, Exact Ramsey Numbers, Langlands) naturally accumulate higher PageRank/degree than niche specialist conjectures.
 3. **Antiquity Effect in CSS:** Because Philosophy & Metaphysics problems frequently date to 300 BCE–1750 CE with high difficulty and low empirical tractability, they naturally rank near the top of `CSS` while modern physics/CS/math problems dominate `Titan Index` and `PageRank`. Publishing **both** `CSS` and `Titan Index` exposes this structural contrast transparently.
-4. **Completeness Horizon:** No finite list captures every open question in existence—this atlas is a `1,900`-problem unified cross-disciplinary baseline designed for reproducible versioning and community extension. See [`LIMITATIONS.md`](../LIMITATIONS.md).
+4. **Completeness Horizon:** No finite list captures every open question in existence—this atlas is a `2,000`-problem unified cross-disciplinary baseline designed for reproducible versioning and community extension. See [`LIMITATIONS.md`](../LIMITATIONS.md).

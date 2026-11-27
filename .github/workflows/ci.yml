@@ -45,11 +45,11 @@ jobs:
       - name: Verify full 11-format exporter runs cleanly (--skip-pdf)
         run: |
           python src/v2_export_all.py --skip-pdf
-      - name: Run static lint (ruff), typecheck (mypy) & 6-mutant semantic mutation audit (Linux)
+      - name: Run static lint (ruff), typecheck (mypy) & 10-mutant semantic mutation audit (Linux)
         if: runner.os == 'Linux'
         run: |
-          ruff check src rag mcp_server reference scripts examples tests
-          mypy src rag mcp_server reference scripts examples --ignore-missing-imports
+          ruff check src rag mcp_server reference scripts examples tests research
+          mypy src rag mcp_server reference scripts examples research --ignore-missing-imports
           python scripts/run_mutation_audit.py
 
   lean4-six-kernels:

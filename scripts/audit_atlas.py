@@ -3,7 +3,7 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Cryptographic, Structural & Epistemic Integrity Auditor for the
-Unsolved Problems Mega-Atlas (V2.8.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
 
 Checks:
   1. Source dataset schema (48 typed fields), strict deduplication (1,900 unique problems),
@@ -51,6 +51,7 @@ IGNORED_DERIVED_OUTPUTS = {
     "MegaAtlas_Unsolved_Problems_V2.sqlite",
     "MegaAtlas_Unsolved_Problems_V2.json",
     "MegaAtlas_Unsolved_Problems_V2.jsonl",
+    "MegaAtlas_Unsolved_Problems_V2_Legacy.xls",
     "MegaAtlas_Comprehensive_Report_V2.pdf",
     "MegaAtlas_Print_Report_V2.html",
 }
@@ -81,6 +82,7 @@ def collect_checksum_targets() -> list[Path]:
         "dist/arxiv_submission.tar.gz",
         "blueprint/index.html",
         "results/lean_axioms.txt",
+        "results/registry_delta.json",
         "docs/WHITE_PAPER.md",
         "docs/DATASHEET.md",
         "docs/FORENSIC_AUDIT_V2.3.md",
@@ -91,11 +93,22 @@ def collect_checksum_targets() -> list[Path]:
         "croissant.json",
         "ro-crate-metadata.json",
         "autoresearch/evaluate.py",
+        "paper/main.tex",
+        "paper/refs.bib",
+        "palomar/PalomarChallenge.lean",
+        "scripts/verify_lean_six_kernels.sh",
         "research/runs/LOG-002_antihydra_pilot/RESULTS.json",
+        "research/runs/NT-005_collatz_parity_pilot/RESULTS.json",
+        "research/runs/COMB-002_ramsey_witness_pilot/RESULTS.json",
     ]:
         p = ROOT / rel
         if p.exists():
             targets.append(p)
+    lean_dir = ROOT / "lean"
+    if lean_dir.exists():
+        for lf in sorted(lean_dir.rglob("*.lean")):
+            if ".lake" not in lf.parts:
+                targets.append(lf)
     return sorted(set(targets), key=lambda p: p.relative_to(ROOT).as_posix())
 
 
@@ -105,12 +118,14 @@ DATA_MANIFEST_TARGETS = [
     "outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
     "outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
     "outputs/MegaAtlas_Unsolved_Problems_V2.xlsx",
-    "outputs/MegaAtlas_Unsolved_Problems_V2_Legacy.xls",
     "outputs/MegaAtlas_Interactive_Dashboard_V2.html",
     "dist/Donahue_2026_unsolved_problems_mega_atlas.pdf",
     "dist/arxiv_submission.tar.gz",
     "results/lean_axioms.txt",
+    "results/registry_delta.json",
     "research/runs/LOG-002_antihydra_pilot/RESULTS.json",
+    "research/runs/NT-005_collatz_parity_pilot/RESULTS.json",
+    "research/runs/COMB-002_ramsey_witness_pilot/RESULTS.json",
 ]
 
 
@@ -144,9 +159,11 @@ def audit_lean(errors: list[str]) -> None:
         if ".lake" in lf.parts:
             continue
         code = strip_lean_comments(lf.read_text(encoding="utf-8"))
-        for forbidden in ("sorry", "admit", "native_decide"):
+        for forbidden in ("sorry", "admit", "native_decide", "unsafe", "implemented_by", "opaque"):
             if re.search(rf"\b{forbidden}\b", code):
                 errors.append(f"Forbidden token '{forbidden}' in {lf.relative_to(ROOT)}")
+        if "@[extern" in code:
+            errors.append(f"Forbidden attribute '@[extern' in {lf.relative_to(ROOT)}")
         for line in code.splitlines():
             if re.match(r"^(?:(?:private|protected|noncomputable|scoped|local|unsafe)\s+)*axiom\b", line.strip()):
                 errors.append(f"Custom axiom declaration in {lf.relative_to(ROOT)}: {line.strip()}")
@@ -161,6 +178,14 @@ def audit_lean(errors: list[str]) -> None:
     if ax_res.returncode != 0:
         errors.append(f"Lean VerifyAxioms.lean failed (exit {ax_res.returncode}): {ax_res.stderr[:400]}")
         return
+    actual_ax_lines = [ln.strip() for ln in ax_res.stdout.splitlines() if ln.strip()]
+    if len(actual_ax_lines) != 103:
+        errors.append(f"Expected 103 axiom lines from VerifyAxioms.lean, got {len(actual_ax_lines)}")
+    frozen_ax = ROOT / "results" / "lean_axioms.txt"
+    if frozen_ax.exists():
+        expected_ax_lines = [ln.strip() for ln in frozen_ax.read_text(encoding="utf-8").splitlines() if ln.strip()]
+        if actual_ax_lines != expected_ax_lines:
+            errors.append("Live VerifyAxioms.lean output drifted from results/lean_axioms.txt")
     for line in (ax_res.stdout + "\n" + ax_res.stderr).splitlines():
         if "depends on axioms:" in line:
             bracket = line.split("[", 1)[1].rsplit("]", 1)[0]
@@ -171,7 +196,7 @@ def audit_lean(errors: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.8.0).")
+    parser = argparse.ArgumentParser(description="Audit the Unsolved Problems Mega-Atlas (v2.9.0).")
     parser.add_argument("--sync-checksums", action="store_true", help="Regenerate CHECKSUMS.sha256 before auditing")
     parser.add_argument("--check-lean", action="store_true", help="Run Pure Lean 4.35.0 build & axiom audit")
     args = parser.parse_args()
@@ -187,8 +212,8 @@ def main() -> None:
     G = data["G"]
     s = data["summary_stats"]
 
-    if len(df) != 1900:
-        errors.append(f"Expected 1900 problems, got {len(df)}")
+    if len(df) != 2000:
+        errors.append(f"Expected 2000 problems, got {len(df)}")
     if not df["id"].is_unique:
         errors.append("Duplicate problem IDs in loaded dataset")
     if df["macro_pillar"].nunique() != len(MACRO_PILLARS):
@@ -240,8 +265,8 @@ def main() -> None:
         errors.append("JSON.gz problem count mismatch")
 
     wb = openpyxl.load_workbook(ROOT / "outputs" / "MegaAtlas_Unsolved_Problems_V2.xlsx", read_only=True)
-    if len(wb.sheetnames) != 15:
-        errors.append(f"XLSX sheet count mismatch: {len(wb.sheetnames)} vs 15")
+    if len(wb.sheetnames) != 16:
+        errors.append(f"XLSX sheet count mismatch: {len(wb.sheetnames)} vs 16")
     wb.close()
 
     ensure_sqlite_db(DEFAULT_DB)
@@ -250,11 +275,14 @@ def main() -> None:
         sql_cnt = conn.execute("SELECT COUNT(*) FROM problems").fetchone()[0]
         sub_cnt = conn.execute("SELECT COUNT(*) FROM substrate_summary").fetchone()[0]
         auth_cnt = conn.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0]
+        lts_cnt = conn.execute("SELECT COUNT(*) FROM lefttosolve_programs").fetchone()[0]
         fts_cnt = conn.execute("SELECT COUNT(*) FROM problems_fts WHERE problems_fts MATCH '\"Riemann\"'").fetchone()[0]
         if sql_cnt != len(df):
             errors.append(f"SQLite row mismatch: {sql_cnt} vs {len(df)}")
         if sub_cnt != 8:
             errors.append(f"SQLite substrate_summary row mismatch: {sub_cnt} vs 8")
+        if lts_cnt != len(data["df_lefttosolve_programs"]):
+            errors.append(f"SQLite lefttosolve_programs row mismatch: {lts_cnt} vs {len(data['df_lefttosolve_programs'])}")
         expected_auth = len(data["df_author_contributions"])
         if auth_cnt != expected_auth:
             errors.append(f"SQLite author_frontier_contributions row mismatch: {auth_cnt} vs {expected_auth}")
@@ -346,7 +374,7 @@ def main() -> None:
 
     print(
         f"PASS: Verified {len(df):,} unique problems (8 pillars x 28 superdomains, 1 biconnected component, "
-        f"{G.number_of_edges():,} edges), JSON Schema Draft 2020-12 on all records, CSV/JSON.gz/JSONL.gz/SQLite+FTS5/15-sheet XLSX parity, "
+        f"{G.number_of_edges():,} edges), JSON Schema Draft 2020-12 on all records, CSV/JSON.gz/JSONL.gz/SQLite+FTS5/16-sheet XLSX parity, "
         f"ORCID {EXPECTED_ORCID}, and {chk_count} byte-exact SHA-256 checksums"
         + (" + Pure Lean 4.35.0 build/axiom audit!" if args.check_lean else "!")
     )

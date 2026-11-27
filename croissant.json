@@ -42,14 +42,14 @@
   "@type": "sc:Dataset",
   "conformsTo": "http://mlcommons.org/croissant/1.0",
   "name": "Unsolved Problems Mega-Atlas",
-  "alternateName": "Unsolved Problems Mega-Atlas V2.8.0",
-  "description": "Exhaustive, cryptographically audited cross-disciplinary dataset of 1,900 strictly deduplicated unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 25, 2026 AI proof-claim audit, Hybrid RAG (100% MRR@5), 11-tool MCP server, 3 Track B probes, Karpathy-style AutoResearch harness, and 103 Pure Lean 4.35.0 formal invariant theorems verified across 6 independent kernels.",
-  "version": "2.8.0",
-  "datePublished": "2026-11-25",
+  "alternateName": "Unsolved Problems Mega-Atlas V2.9.0",
+  "description": "Deduplicated cross-disciplinary dataset of 2,000 unsolved, open, and hard problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers, wired into a 6,108-edge knowledge graph that Python/NetworkX audits as biconnected (0 articulation points, 0 dangling links), with 0thernes CSS & Titan Index rankings, gradients & margins, per-record epistemic verification flags, Nov 26, 2026 AI proof-claim audit & automated daily sync across 16 global registries + all 25 Left to Solve fronts (lefttosolve.com/programs), Hybrid RAG (100% MRR@5 on 25 benchmark queries), 12-tool MCP server, 3 finite Track B probes (LOG-002, NT-005, COMB-002), AutoResearch harness, and 103 audited zero-Mathlib Lean 4.35.0 software-model invariant theorems (kernel-checked by Lean; 9 Palomar comparator targets accepted by six kernel checks across five distinct implementations). None of the 2,000 problems is solved by this work.",
+  "version": "2.9.0",
+  "datePublished": "2026-11-26",
   "url": "https://0thernes.github.io/unsolved-problems-mega-atlas/",
   "sameAs": "https://github.com/0thernes/unsolved-problems-mega-atlas",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.8.0). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
+  "citeAs": "Donahue, Alexander Stephen (2026). Unsolved Problems Mega-Atlas (V2.9.0). Independent Researcher, Spokane, WA, USA. ORCID: 0009-0006-8168-9648. https://github.com/0thernes/unsolved-problems-mega-atlas",
   "creator": {
     "@type": "sc:Person",
     "name": "Alexander Stephen Donahue",
@@ -78,41 +78,41 @@
       "@type": "cr:FileObject",
       "@id": "mega-atlas-csv",
       "name": "MegaAtlas_Unsolved_Problems_V2.csv",
-      "description": "Master tabular CSV (1,900 rows x 48 columns, UTF-8).",
+      "description": "Master tabular CSV (2,000 rows x 48 columns, UTF-8).",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.csv",
       "encodingFormat": "text/csv",
-      "sha256": "5e3044e5f4932e5a85b8c65e3205184d454e08ce60a368dbb81bf179b72e6033",
-      "contentSize": "3741256 B"
+      "sha256": "3ebd23cc8ec5622cb827f150e2eb3819ed000378e73af991dbb8caa525338ceb",
+      "contentSize": "3909740 B"
     },
     {
       "@type": "cr:FileObject",
       "@id": "mega-atlas-tsv",
       "name": "MegaAtlas_Unsolved_Problems_V2.tsv",
-      "description": "Tab-separated master table (1,900 rows x 48 columns, UTF-8).",
+      "description": "Tab-separated master table (2,000 rows x 48 columns, UTF-8).",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.tsv",
       "encodingFormat": "text/tab-separated-values",
-      "sha256": "89ae8d17b3fe520c064e3881588ade437197aeac3d1fb530531207b8b0ff977a",
-      "contentSize": "3709841 B"
+      "sha256": "a34f980c8710dcdd08b83e6b65deb71ab6236e50c6d08f8cc2641865f607f692",
+      "contentSize": "3876787 B"
     },
     {
       "@type": "cr:FileObject",
       "@id": "mega-atlas-jsonl-gz",
       "name": "MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
-      "description": "Deterministic gzipped streaming NDJSON (1,900 records) for LLM/RAG/HuggingFace ingestion.",
+      "description": "Deterministic gzipped streaming NDJSON (2,000 records) for LLM/RAG/HuggingFace ingestion.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.jsonl.gz",
       "encodingFormat": "application/gzip",
-      "sha256": "01db671fc49756cb439940c1024ca21e7fb474e6cc3b38c0be8be569e9f283d5",
-      "contentSize": "1270437 B"
+      "sha256": "e093182e317a9eb1fe6664f67725d453c517ae6074e99d069f7a6858140af496",
+      "contentSize": "1315527 B"
     },
     {
       "@type": "cr:FileObject",
       "@id": "mega-atlas-json-gz",
       "name": "MegaAtlas_Unsolved_Problems_V2.json.gz",
-      "description": "Deterministic gzipped complete JSON payload including problems, 5,808 graph edges, Nov 25, 2026 AI audit, registries, benchmarks & matrices.",
+      "description": "Deterministic gzipped complete JSON payload including problems, 6,108 graph edges, Nov 25, 2026 AI audit, registries, benchmarks & matrices.",
       "contentUrl": "https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/outputs/MegaAtlas_Unsolved_Problems_V2.json.gz",
       "encodingFormat": "application/gzip",
-      "sha256": "5ab04682e24580ec54197f1d8caea275b46e65ccf8b27c983ec0bcc239520786",
-      "contentSize": "1347408 B"
+      "sha256": "d6f3c0abdab34077e71868cfa98c8c5574cb3db4b8c4704e7c3a11ff52129e30",
+      "contentSize": "1397608 B"
     }
   ],
   "recordSet": [
@@ -120,7 +120,7 @@
       "@type": "cr:RecordSet",
       "@id": "problems",
       "name": "problems",
-      "description": "All 1,900 strictly deduplicated unsolved, open, and hard problems.",
+      "description": "All 2,000 strictly deduplicated unsolved, open, and hard problems.",
       "key": {
         "@id": "problems/id"
       },

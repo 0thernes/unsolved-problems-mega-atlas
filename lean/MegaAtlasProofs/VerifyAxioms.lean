@@ -2,13 +2,15 @@
 -- Copyright (c) 2026 Alexander Stephen Donahue
 /-
   MegaAtlasProofs/VerifyAxioms.lean
-  Axiom-allowlist audit across ALL 103 formal theorems in MegaAtlasProofs
-  (72 core module theorems + 12 concrete NonVacuity & boundary witnesses +
-   10 constructive AdversarialTests refutations + 9 headline PalomarSolution
-   contract theorems).
-  Every theorem must depend strictly on standard constructive kernel axioms
-  within [propext, Quot.sound] (or empty) — zero sorryAx, zero Lean.ofReduceBool,
-  zero Classical.choice, zero custom axioms.
+  Per-theorem `#print axioms` audit covering 103 of the 117 theorem declarations in `lean/`
+  (72 public core module theorems + 12 concrete NonVacuity & boundary witnesses +
+   10 constructive AdversarialTests refutations + 9 headline PalomarSolution contract
+   theorems; excludes 5 private `sumNat_*` helper lemmas in `GraphInvariants.lean` and
+   the 9 `Solution.*` aliases re-exported directly by `PalomarSolution.lean`).
+  Each audited theorem must depend strictly on standard constructive kernel axioms
+  within [propext, Quot.sound] (or empty) in its per-theorem `#print axioms` output
+  — zero sorryAx, zero `_native`/Lean.ofReduceBool, zero custom axioms. Note: the
+  whole-environment `lake check --paranoid` step over Lean core also lists `Classical.choice`.
 -/
 
 import MegaAtlasProofs.Scoring

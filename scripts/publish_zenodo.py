@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
-Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (`v2.8.0`).
+Turnkey Zenodo Metadata Validator & Optional API Deposit Publisher (`v2.9.0`).
 
   - `--dry-run` (default, zero network/auth required): Validates `.zenodo.json` against
     Zenodo's REST deposit metadata schema, verifies ORCID `0009-0006-8168-9648`, checks

@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this dataset, knowledge graph, Lean 4.35.0 formal invariant suite, RAG/MCP server, or white paper, please cite it as below."
-title: "Unsolved Problems Mega-Atlas (V2.8.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Six-Kernel Lean 4.35.0 Invariants, and Deterministic Research Infrastructure"
-version: "2.8.0"
+message: "If you use this dataset, knowledge graph, Lean 4.35.0 software-model invariant suite, RAG/MCP server, or white paper, please cite it as below."
+title: "Unsolved Problems Mega-Atlas (V2.9.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Deterministic Research Infrastructure"
+version: "2.9.0"
 date-released: "2026-11-26"
 type: dataset
 license:
@@ -27,18 +27,23 @@ keywords:
   - "AutoResearch"
   - "FAIR metadata"
 abstract: >-
-  A deduplicated cross-disciplinary dataset of 1,900 unsolved, open and hard
+  A deduplicated cross-disciplinary dataset of 2,000 unsolved, open and hard
   problems across 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates and
-  7 Abstraction Layers, linked in a 5,808-edge knowledge graph that a Python
-  (NetworkX) audit finds biconnected (0 articulation points, 0 bridges, 0 dangling
-  links). It includes 103 audited Lean 4.35.0 theorems without Mathlib about the
-  atlas scoring software (integer bounds of the scoring formulas, monotonicity of CSS, Titan and leverage,
-  quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking
-  lemma, a dedup bound and the AutoResearch keep/discard rule), kernel-checked by
-  Lean, with the 9 Palomar comparator targets also accepted by six kernel checks
-  (five distinct implementations); no Lean statement refers to the atlas data or its
-  graph. Also included: a 10-page AMS-LaTeX white paper, offline SQLite FTS5 hybrid
-  search (100.0% MRR@5 on 25 benchmark queries), an 11-tool stdio MCP server, a
-  registry delta checker, 3 finite Track B probes, a rubric sensitivity diff tool
-  and an AutoResearch evaluation harness (AQS = 97.99). None of the 1,900 problems
-  is claimed solved.
+  7 Abstraction Layers (including 100 strictly non-duplicate open conjectures across
+  all 25 fronts of Left to Solve, lefttosolve.com/programs), linked in a 6,108-edge
+  knowledge graph that a Python (NetworkX) audit finds biconnected (0 articulation
+  points, 0 bridges, 0 dangling links). It includes 103 audited Lean 4.35.0 theorems
+  (of 117 declarations in lean/) without Mathlib about the atlas scoring software
+  model (integer bounds of the scoring formulas, monotonicity of CSS, Titan and
+  leverage, quadrant and era maps, taxonomy list sizes, a generic list-multigraph
+  handshaking lemma, a dedup bound, the AutoResearch keep/discard rule, NonVacuity
+  witnesses and AdversarialTests refutations), kernel-checked by Lean, with the 9
+  Palomar comparator targets also accepted by six kernel checks across five distinct
+  implementations; no Lean statement refers to the atlas data or its graph. Also
+  included: an 11-page AMS-LaTeX white paper (15/15 title-verified citations),
+  automated daily sync of 16 public open-problem trackers & 25 Left to Solve fronts,
+  offline SQLite FTS5 hybrid search (100.0% MRR@5 on 25 benchmark queries), a
+  12-tool stdio MCP server, 3 finite Track B probes (LOG-002, NT-005, COMB-002),
+  a rubric sensitivity diff tool, 10/10 mutation testing, structurally verified
+  DigiCert RFC 3161 and Bitcoin OTS v1 timestamps, and an AutoResearch evaluation
+  harness (AQS = 98.35). Zero (0/2,000) problems are claimed solved.

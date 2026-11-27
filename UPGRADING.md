@@ -2,6 +2,23 @@
 
 This document describes breaking and non-breaking changes when upgrading between major and minor releases of the **Unsolved Problems Mega-Atlas**.
 
+## Upgrading from `v2.8.0` to `v2.9.0`
+
+### 1. Track B Ramsey Pilot Directory & ID Correction (`COMB-001` → `COMB-002`)
+- Renamed `research/runs/COMB-001_ramsey_witness_pilot/` to **`research/runs/COMB-002_ramsey_witness_pilot/`** (`problem_id: "COMB-002"`): in the Mega-Atlas catalog, `COMB-001` is Hadwiger's Conjecture while `COMB-002` is Exact Ramsey Numbers. Any scripts referencing the old directory path should update to `COMB-002_ramsey_witness_pilot/`.
+
+### 2. Left to Solve (`lefttosolve.com/programs`) 25-Front Integration (`1,900 → 2,000` Problems), 12th MCP Tool & Automated Daily Sync
+- Added `src/v2_data/m12_lefttosolve_programs.py` (`LTS-001`..`LTS-100`, `+100` primary-registry-indexed problems spanning all `25` live fronts on `https://lefttosolve.com/programs`), raising the biconnected graph to `2,000` nodes / `6,108` edges and immutable AutoResearch `AQS` from `97.99` to **`98.35`**.
+- Added 12th MCP tool `get_live_registry_tracker`, 16th XLSX sheet `LeftToSolve_25_Programs`, SQLite `lefttosolve_programs` table, and automated daily sync via `.github/workflows/daily-registry-sync.yml` (`06:00 UTC`) + daily GitHub Pages hydration (`06:15 UTC`).
+- Moved Legacy BIFF `.xls` (`4.95 MB`) from git-tracked `outputs/` to gitignored `build/` + GitHub Releases so all git-tracked files stay strictly `< 5 MB` (Build Standard A24), and shrunk the 2,000-row interactive HTML dashboard to `3.11 MB` via enum dictionary encoding.
+
+### 3. Cycle-3 Authoritative Companion Archive Parity (`17` → `20` Rows; `0 / 2,000` Solved)
+- Synchronized `OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS` (`src/v2_loader.py`), `paper/main.tex` Table 4, `RANKING.md`, JSON/SQLite/XLSX/HTML exports, and MCP tool `list_author_frontier_contributions` verbatim against `0thernes-research-archive` Cycle-3 `RESULTS.md` (`94` audited results across `28` entries; `R85` = this repo), adding `0TH-2026-017`, `0TH-2026-018`, `0TH-2026-019`, `0TH-BUILD-016`, and `0TH-BUILD-017`, reclassifying `R13` (`0TH-2026-014`) to Section E, and excluding `0TH-BUILD-006` (zero Lean at pin). Cached SQLite databases automatically rebuild cleanly on upgrade.
+
+### 4. Source-Level Statement-Audit Resolution & Runtime/Provenance Hardening
+- Resolved every `2026-11-26` statement-audit erratum at source across the paper, blueprint, social card, and active docs (with fresh DigiCert `.tsr` and Bitcoin OTS v1 `.ots` timestamps), and replaced withdrawn RH/GRH text with primary `Lean FRO` and `M. Rubinstein` citations (`175,187` files, `~17M` lines).
+- Fixed `rag/query.py` exact-ID shortcut to enforce `pillar`/`superdomain`/`flag` filters, hardened `mcp_server/server.py` with `1 MiB` NDJSON line caps, truncated-frame rejection, JSON-object validation, and filter type checks, aligned `scripts/rubric_override_diff.py` tie-breaking to canonical `(-css, -titan, -deg, id)`, upgraded `scripts/stamp_timestamps.py --verify` to full ASN.1 + OTS v1 binary parsing, upgraded `scripts/check_citations.py` to Crossref/Zenodo title-token verification, and expanded `scripts/run_mutation_audit.py` to `10/10` mutants.
+
 ## Upgrading from `v2.7.0` to `v2.8.0`
 
 ### 1. Live 43-Entry Companion Archive Sync (`16` → `17` Rows; `0 / 1,900` Parents Retired)

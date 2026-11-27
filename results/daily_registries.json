@@ -1,0 +1,531 @@
+{
+  "schema_version": "2.0.0",
+  "atlas_version": "2.9.0",
+  "checked_utc": "2026-11-27T05:06:00Z",
+  "checked_date_utc": "2026-11-27",
+  "mode": "live",
+  "update_cadence": "Daily at 06:00 UTC via .github/workflows/daily-registry-sync.yml",
+  "policy": "Advisory daily telemetry ONLY — ZERO automatic problem retirement. Community & primary-registry consensus required.",
+  "committed_registries_indexed": 16,
+  "committed_ai_audit_entries": 6,
+  "unretired_nov2026_ai_claim_targets": 12,
+  "live_targets_polled": 16,
+  "lefttosolve_program_count": 25,
+  "registries": [
+    {
+      "key": "lefttosolve_stats",
+      "name": "Left to Solve Live Catalog Stats API",
+      "url": "https://lefttosolve.com/api/stats",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "total": 59396,
+        "catalog": {
+          "open": 1939,
+          "known": 1818,
+          "warmup": 168,
+          "unformalized": 55471
+        },
+        "solved_here_total": 1270,
+        "solved_today": 1270,
+        "claims_today": 6737,
+        "live_agents": 134,
+        "live_problems": 127,
+        "desk_online": true
+      },
+      "extracted_signals": [
+        "total=59,396",
+        "lean_open=1,939",
+        "unformalized=55,471",
+        "solved_here=1,270",
+        "live_agents=134"
+      ],
+      "editorial_action": "LIVE_SYNCED: Left to Solve catalog counters updated."
+    },
+    {
+      "key": "lefttosolve_programs",
+      "name": "Left to Solve — All 25 Mathematical Programs",
+      "url": "https://lefttosolve.com/programs",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "program_count": 25,
+      "extracted_signals": [
+        "25 programs",
+        "targets=59,396",
+        "open=57,410",
+        "solved_here=1,067"
+      ],
+      "editorial_action": "LIVE_SYNCED: Parsed 25 Left to Solve programs."
+    },
+    {
+      "key": "deepmind_formal_conjectures",
+      "name": "Google DeepMind formal-conjectures (GitHub)",
+      "url": "https://api.github.com/repos/google-deepmind/formal-conjectures/commits/main",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "head_sha": "ea8e3e198ded",
+        "commit_date_utc": "2026-11-26T15:20:47Z",
+        "commit_subject": "feat(Arxiv): Primes of the form F_n + L_{n+1} (#8156)"
+      },
+      "extracted_signals": [
+        "sha=ea8e3e198ded",
+        "date=2026-11-26T15:20:47Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Upstream commit SHA recorded."
+    },
+    {
+      "key": "teorth_erdosproblems_gh",
+      "name": "Terence Tao / Thomas Bloom erdosproblems (GitHub)",
+      "url": "https://api.github.com/repos/teorth/erdosproblems/commits/main",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "head_sha": "3d9fd1caec27",
+        "commit_date_utc": "2026-11-24T14:42:43Z",
+        "commit_subject": "chore: regenerate derived fields and README [skip ci]"
+      },
+      "extracted_signals": [
+        "sha=3d9fd1caec27",
+        "date=2026-11-24T14:42:43Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Upstream commit SHA recorded."
+    },
+    {
+      "key": "clay_millennium",
+      "name": "Clay Mathematics Institute Millennium Prize Problems",
+      "url": "https://www.claymath.org/millennium-problems/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "The Millennium Prize Problems - Clay Mathematics Institute",
+      "text_bytes": 7480,
+      "extracted_signals": [
+        "Millennium Prize Problems",
+        "Poincaré Conjecture",
+        "Poincaré conjecture"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "erdos_problems",
+      "name": "Erdős Problems Database (Thomas F. Bloom)",
+      "url": "https://www.erdosproblems.com/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Erdős Problems",
+      "text_bytes": 1985,
+      "extracted_signals": [
+        "1221 problems",
+        "Erdős Problems",
+        "Erdős problems"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "proofatlas",
+      "name": "ProofAtlas Open Problems Dataset",
+      "url": "https://proofatlas.ai/open-problems/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Top 500 Open Math Problems: LLM-assessed Importance — ProofAtlas",
+      "text_bytes": 403798,
+      "extracted_signals": [
+        "500 open problems",
+        "Top 500",
+        "ProofAtlas"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "open_problem_garden",
+      "name": "Open Problem Garden",
+      "url": "https://www.openproblemgarden.org/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Home | Open Problem Garden",
+      "text_bytes": 1419,
+      "extracted_signals": [
+        "Open Problem Garden"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "wikipedia_unsolved_math",
+      "name": "Wikipedia: List of Unsolved Problems in Mathematics",
+      "url": "https://en.wikipedia.org/api/rest_v1/page/summary/List_of_unsolved_problems_in_mathematics",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "revision": "1386859731",
+        "timestamp": "2026-11-21T01:55:17Z",
+        "title": "List of unsolved problems in mathematics"
+      },
+      "extracted_signals": [
+        "rev=1386859731",
+        "updated=2026-11-21T01:55:17Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Wikipedia revision tracked."
+    },
+    {
+      "key": "wikipedia_unsolved_physics",
+      "name": "Wikipedia: List of Unsolved Problems in Physics",
+      "url": "https://en.wikipedia.org/api/rest_v1/page/summary/List_of_unsolved_problems_in_physics",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "revision": "1387943544",
+        "timestamp": "2026-11-26T03:04:46Z",
+        "title": "List of unsolved problems in physics"
+      },
+      "extracted_signals": [
+        "rev=1387943544",
+        "updated=2026-11-26T03:04:46Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Wikipedia revision tracked."
+    },
+    {
+      "key": "wikipedia_unsolved_cs",
+      "name": "Wikipedia: List of Unsolved Problems in Computer Science",
+      "url": "https://en.wikipedia.org/api/rest_v1/page/summary/List_of_unsolved_problems_in_computer_science",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "revision": "1388116134",
+        "timestamp": "2026-11-26T17:47:23Z",
+        "title": "List of unsolved problems in computer science"
+      },
+      "extracted_signals": [
+        "rev=1388116134",
+        "updated=2026-11-26T17:47:23Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Wikipedia revision tracked."
+    },
+    {
+      "key": "bbchallenge",
+      "name": "The Busy Beaver Challenge (BB(6) / Antihydra)",
+      "url": "https://bbchallenge.org/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "bbchallenge",
+      "text_bytes": 2273,
+      "extracted_signals": [
+        "BB(5) = 47,176,870",
+        "bbchallenge",
+        "busy beaver"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "kourovka_notebook",
+      "name": "Kourovka Notebook (arXiv:1401.0300)",
+      "url": "https://arxiv.org/abs/1401.0300",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "[1401.0300] Unsolved Problems in Group Theory. The Kourovka Notebook",
+      "text_bytes": 6390,
+      "extracted_signals": [
+        "[v1]",
+        "[v2]",
+        "[v3]",
+        "[v4]",
+        "[v5]",
+        "[v6]",
+        "[v7]",
+        "[v8]",
+        "[v9]",
+        "[v10]"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "open_quantum_problems",
+      "name": "IQOQI Vienna Open Quantum Problems",
+      "url": "https://oqp.iqoqi.oeaw.ac.at/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Open Quantum Problems – IQOQI Vienna",
+      "text_bytes": 1750,
+      "extracted_signals": [
+        "Open Quantum Problems"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "leanfro_rh_statement",
+      "name": "Lean FRO & Mathlib Initiative RH Verification Statement",
+      "url": "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "page_title": "Lean verification of the Riemann Hypothesis | Lean community blog",
+      "text_bytes": 2773,
+      "extracted_signals": [
+        "Riemann Hypothesis",
+        "Mathlib",
+        "Lean FRO"
+      ],
+      "potential_retirement_keywords": [],
+      "editorial_action": "NO_RETIREMENT_DETECTED: committed baseline remains consistent."
+    },
+    {
+      "key": "0thernes_research_archive",
+      "name": "0thernes Master Research Archive (GitHub)",
+      "url": "https://api.github.com/repos/0thernes/0thernes-research-archive/commits/main",
+      "http_status": 200,
+      "fetch_status": "live_checked",
+      "metrics": {
+        "head_sha": "ed2093ed5b15",
+        "commit_date_utc": "2026-11-27T04:58:28Z",
+        "commit_subject": "chore(archive): upgrade 0TH-BUILD-003 (ultrametrica) to v1.6.0 (77f03245) & re-seal RFC 31"
+      },
+      "extracted_signals": [
+        "sha=ed2093ed5b15",
+        "date=2026-11-27T04:58:28Z"
+      ],
+      "editorial_action": "LIVE_SYNCED: Upstream commit SHA recorded."
+    }
+  ],
+  "lefttosolve_programs": [
+    {
+      "program": "MathOverflow (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 35783,
+      "open": 35783,
+      "solved_here": 0,
+      "live_agents": 1,
+      "url": "https://lefttosolve.com/programs/MathOverflow%20(not%20formalized)"
+    },
+    {
+      "program": "OEIS conjectures (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 18441,
+      "open": 18441,
+      "solved_here": 0,
+      "live_agents": 8,
+      "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized)"
+    },
+    {
+      "program": "Erdős Problems",
+      "formalized_in_lean": true,
+      "targets": 2068,
+      "open": 837,
+      "solved_here": 699,
+      "live_agents": 65,
+      "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems"
+    },
+    {
+      "program": "Wikipedia",
+      "formalized_in_lean": true,
+      "targets": 615,
+      "open": 336,
+      "solved_here": 128,
+      "live_agents": 7,
+      "url": "https://lefttosolve.com/programs/Wikipedia"
+    },
+    {
+      "program": "OEIS",
+      "formalized_in_lean": true,
+      "targets": 461,
+      "open": 394,
+      "solved_here": 59,
+      "live_agents": 12,
+      "url": "https://lefttosolve.com/programs/OEIS"
+    },
+    {
+      "program": "Mathematics Stack Exchange (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 395,
+      "open": 395,
+      "solved_here": 0,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20(not%20formalized)"
+    },
+    {
+      "program": "Wikipedia list (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 366,
+      "open": 366,
+      "solved_here": 0,
+      "live_agents": 3,
+      "url": "https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized)"
+    },
+    {
+      "program": "Open Problem Garden",
+      "formalized_in_lean": false,
+      "targets": 316,
+      "open": 316,
+      "solved_here": 0,
+      "live_agents": 1,
+      "url": "https://lefttosolve.com/programs/Open%20Problem%20Garden"
+    },
+    {
+      "program": "Green's 100 Open Problems",
+      "formalized_in_lean": true,
+      "targets": 285,
+      "open": 128,
+      "solved_here": 72,
+      "live_agents": 4,
+      "url": "https://lefttosolve.com/programs/Green&#x27;s%20100%20Open%20Problems"
+    },
+    {
+      "program": "Papers",
+      "formalized_in_lean": true,
+      "targets": 180,
+      "open": 93,
+      "solved_here": 27,
+      "live_agents": 6,
+      "url": "https://lefttosolve.com/programs/Papers"
+    },
+    {
+      "program": "Erdős Problems (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 116,
+      "open": 116,
+      "solved_here": 0,
+      "live_agents": 2,
+      "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20(not%20formalized)"
+    },
+    {
+      "program": "arXiv papers",
+      "formalized_in_lean": true,
+      "targets": 105,
+      "open": 43,
+      "solved_here": 28,
+      "live_agents": 5,
+      "url": "https://lefttosolve.com/programs/arXiv%20papers"
+    },
+    {
+      "program": "Wikipedia (not formalized)",
+      "formalized_in_lean": false,
+      "targets": 44,
+      "open": 44,
+      "solved_here": 0,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Wikipedia%20(not%20formalized)"
+    },
+    {
+      "program": "Open Quantum Problems",
+      "formalized_in_lean": true,
+      "targets": 32,
+      "open": 28,
+      "solved_here": 4,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Open%20Quantum%20Problems"
+    },
+    {
+      "program": "Optimization Constants",
+      "formalized_in_lean": true,
+      "targets": 31,
+      "open": 11,
+      "solved_here": 4,
+      "live_agents": 1,
+      "url": "https://lefttosolve.com/programs/Optimization%20Constants"
+    },
+    {
+      "program": "Written on the Wall II",
+      "formalized_in_lean": true,
+      "targets": 31,
+      "open": 11,
+      "solved_here": 20,
+      "live_agents": 2,
+      "url": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II"
+    },
+    {
+      "program": "Other",
+      "formalized_in_lean": true,
+      "targets": 29,
+      "open": 17,
+      "solved_here": 6,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Other"
+    },
+    {
+      "program": "Books",
+      "formalized_in_lean": true,
+      "targets": 26,
+      "open": 11,
+      "solved_here": 6,
+      "live_agents": 2,
+      "url": "https://lefttosolve.com/programs/Books"
+    },
+    {
+      "program": "MathOverflow",
+      "formalized_in_lean": true,
+      "targets": 21,
+      "open": 9,
+      "solved_here": 10,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/MathOverflow"
+    },
+    {
+      "program": "Millennium Prize",
+      "formalized_in_lean": true,
+      "targets": 21,
+      "open": 12,
+      "solved_here": 2,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Millennium%20Prize"
+    },
+    {
+      "program": "Kourovka Notebook",
+      "formalized_in_lean": true,
+      "targets": 9,
+      "open": 5,
+      "solved_here": 0,
+      "live_agents": 1,
+      "url": "https://lefttosolve.com/programs/Kourovka%20Notebook"
+    },
+    {
+      "program": "Hilbert's Problems",
+      "formalized_in_lean": true,
+      "targets": 8,
+      "open": 2,
+      "solved_here": 1,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Hilbert&#x27;s%20Problems"
+    },
+    {
+      "program": "Open problems in information theory (gokhanmergen)",
+      "formalized_in_lean": true,
+      "targets": 7,
+      "open": 7,
+      "solved_here": 0,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20(gokhanmergen)"
+    },
+    {
+      "program": "Conjectures of Luc Gillibert",
+      "formalized_in_lean": true,
+      "targets": 3,
+      "open": 3,
+      "solved_here": 0,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert"
+    },
+    {
+      "program": "Litt's Problems",
+      "formalized_in_lean": true,
+      "targets": 3,
+      "open": 2,
+      "solved_here": 1,
+      "live_agents": 0,
+      "url": "https://lefttosolve.com/programs/Litt&#x27;s%20Problems"
+    }
+  ],
+  "daily_deltas": [
+    "PROGRAM_DELTA [Erdős Problems]: targets 2068->2068, open 837->837, solved_here 660->699",
+    "PROGRAM_DELTA [Wikipedia]: targets 615->615, open 336->336, solved_here 124->128",
+    "PROGRAM_DELTA [Green's 100 Open Problems]: targets 285->285, open 128->128, solved_here 71->72",
+    "PROGRAM_DELTA [Papers]: targets 180->180, open 93->93, solved_here 25->27",
+    "PROGRAM_DELTA [arXiv papers]: targets 105->105, open 43->43, solved_here 26->28",
+    "PROGRAM_DELTA [Optimization Constants]: targets 31->31, open 11->11, solved_here 3->4",
+    "PROGRAM_DELTA [Written on the Wall II]: targets 31->31, open 11->11, solved_here 19->20",
+    "PROGRAM_DELTA [Books]: targets 26->26, open 11->11, solved_here 5->6"
+  ]
+}

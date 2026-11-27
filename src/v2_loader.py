@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""V2.5.0 Mega-Atlas Master Loader: merges all 11 parallel modules, strictly deduplicates with alias redirection, resolves HUB:* links, computes biconnected NetworkX analytics & multi-layer matrices."""
+"""V2.9.0 Mega-Atlas Master Loader: merges all 12 parallel modules (incl. Left to Solve programs), strictly deduplicates with alias redirection, resolves HUB:* links, computes biconnected NetworkX analytics & multi-layer matrices."""
 
 import os
 import re
@@ -25,6 +25,7 @@ MODULE_NAMES = [
     "v2_data.m09_phil_econ_hum",
     "v2_data.m10_deep_proofatlas_specialist",
     "v2_data.m11_substrates_margins_adjacents",
+    "v2_data.m12_lefttosolve_programs",
 ]
 
 # Forensically audited true cross-field duplicates merged cleanly (secondary_id -> canonical_id)
@@ -65,7 +66,7 @@ def _read_atlas_version() -> str:
             v = f.read().strip()
             if v:
                 return v
-    return "2.8.0"
+    return "2.9.0"
 
 
 ATLAS_VERSION = _read_atlas_version()
@@ -75,11 +76,14 @@ AUTHOR_ORCID = "0009-0006-8168-9648"
 AFFILIATION = "Independent Researcher, Spokane, WA, USA"
 
 EXTERNAL_REGISTRIES_NOV2026 = [
+    {"Registry": "Left to Solve (lefttosolve.com/programs)", "Scope": "25 Live Mathematical Fronts (google-deepmind/formal-conjectures + OEIS + MathOverflow + Erdős + Green + OQP + WOWII)", "Total_Tracked": "59,396 targets (1,939 Lean 4 open + 55,471 unformalized)", "Open_Count_Nov2026": "57,410 open (1,939 Lean-formalized open; 1,198 solved-here)", "Verification_Standard": "Automated Lean 4 proof checker over google-deepmind/formal-conjectures (Apache-2.0) + live agent board", "Nov2026_Highlight": "Daily-polled live benchmark aggregating 25 mathematical fronts with exact Lean 4 target statements; 100 deduplicated problems integrated in m12_lefttosolve_programs.py."},
+    {"Registry": "OEIS Conjectures Catalog (oeis.org)", "Scope": "Integer Sequences, Number Theory & Combinatorics", "Total_Tracked": "~18,902 open conjectures (18,441 unformalized + 461 Lean 4)", "Open_Count_Nov2026": "~18,835 open (59 solved in Left to Solve Lean front)", "Verification_Standard": "OEIS editorial curation + computational testing + Lean 4 formalizations", "Nov2026_Highlight": "Massive computationally testable reservoir of supercongruences, prime-gap conjectures, and divisibility sequences."},
+    {"Registry": "Ben Green's 100 & Open Quantum Problems (IQOQI)", "Scope": "Additive Combinatorics & Quantum Information Theory", "Total_Tracked": "285 Green Lean targets + 32 OQP Lean targets", "Open_Count_Nov2026": "128 Green open (71 solved-here) + 28 OQP open (4 solved-here)", "Verification_Standard": "Specialist curated lists formalized in google-deepmind/formal-conjectures", "Nov2026_Highlight": "Bridges additive combinatorics (sumsets, approximate groups, Rado equations) and quantum foundations (MUBs, AME states, SIC-POVMs)."},
     {"Registry": "ProofAtlas (proofatlas.ai)", "Scope": "Pure & Applied Mathematics (LLM-ranked + tracked)", "Total_Tracked": "1,100+ eligible (Top-500 edition)", "Open_Count_Nov2026": "243 open in Top-500 (hundreds more in full 1,100+)", "Verification_Standard": "Community + Lean formalization tracking", "Nov2026_Highlight": "Actively tracks AI-targeted conjectures (e.g. #243 APSP subcubic, 3SUM, ETH)."},
     {"Registry": "Erdős Problems DB (erdosproblems.com)", "Scope": "Combinatorics, Number Theory, Discrete Geometry", "Total_Tracked": "~1,221 problems", "Open_Count_Nov2026": "~630+ open (~550+ solved/closed)", "Verification_Standard": "Thomas Bloom curation + Lean 4 formal checks", "Nov2026_Highlight": "Rapid 2025–2026 wave of AI-assisted literature recovery & Lean-checked closures."},
-    {"Registry": "Clay Millennium Prize Problems", "Scope": "7 Crown-Jewel Math & Math-Physics Problems ($1M each)", "Total_Tracked": "7 problems", "Open_Count_Nov2026": "6 officially unresolved (only 3D Poincaré retired)", "Verification_Standard": "2-year post-publication refereeing + CMI Scientific Advisory Board", "Nov2026_Highlight": "Navier-Stokes (Sept 8, OpenAI) disputed; RH/GRH Lean archive (Nov 20–21, Alpöge/Claude) passed Lean FRO multi-kernel check without human paper yet; CMI has NOT retired either."},
+    {"Registry": "Clay Millennium Prize Problems", "Scope": "7 Crown-Jewel Math & Math-Physics Problems ($1M each)", "Total_Tracked": "7 problems", "Open_Count_Nov2026": "6 officially unresolved (only 3D Poincaré retired)", "Verification_Standard": "2-year post-publication refereeing + CMI Scientific Advisory Board", "Nov2026_Highlight": "Navier-Stokes (Sept 8, OpenAI) disputed; RH/GRH Lean archive (Nov 20–21, Alpöge/Claude) certified by Lean FRO & Mathlib Initiative without a complete human paper yet; CMI has NOT retired either."},
     {"Registry": "OpenAI Bulk Math Release (openai/math)", "Scope": "17 Mathematical Fields (AI-generated bulk dump)", "Total_Tracked": "722 manuscripts across 372 result families (~4,000 posed)", "Open_Count_Nov2026": "Verification largely pending; several retracted within 24h", "Verification_Standard": "Unrefereed GitHub dump + partial Lean artifacts", "Nov2026_Highlight": "Oct 6, 2026 'Mathocalypse' sparked 28 Fields Medalists' misalignment warning & refereeing crisis."},
-    {"Registry": "Nov 20–25, 2026 RH/GRH Lean & Human Claims", "Scope": "Riemann Hypothesis & Generalized Riemann Hypothesis", "Total_Tracked": "2 landmark conjectures (RH, GRH)", "Open_Count_Nov2026": "Multi-kernel Lean certified (Nov 21); NO human paper yet; CMI OPEN", "Verification_Standard": "Alpöge/Claude ~17M-line Lean archive certified by Lean FRO & Mathlib (lean4lean/con-leche/con-ron); Masullo 940-pp human draft under active gap critique", "Nov2026_Highlight": "Historic divide: machine-checked formal truth vs. human comprehension, exposition, and Clay 2-year refereeing."},
+    {"Registry": "Nov 20–25, 2026 RH/GRH Lean & Human Claims", "Scope": "Riemann Hypothesis & Generalized Riemann Hypothesis", "Total_Tracked": "2 landmark conjectures (RH, GRH)", "Open_Count_Nov2026": "Lean FRO / Mathlib certified (Nov 21); NO complete human paper yet; CMI OPEN", "Verification_Standard": "Alpöge/Claude 175,187-file (~17M-line) Lean archive certified by Lean FRO & Mathlib Initiative (leanprover-community.github.io/blog/posts/riemann-hypothesis/) & M. Rubinstein nanoda check (math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/), plus Nov 25 ~76k-line compact rewrite; Masullo 940-pp human draft under active gap critique", "Nov2026_Highlight": "Historic divide: machine-checked formal truth vs. human comprehension, exposition, and Clay 2-year refereeing."},
     {"Registry": "Kourovka Notebook (Group Theory)", "Scope": "Finite, Infinite & Combinatorial Group Theory", "Total_Tracked": ">1,000 problems (20+ editions since 1965)", "Open_Count_Nov2026": "~600+ open", "Verification_Standard": "Peer-reviewed journal publication", "Nov2026_Highlight": "Gold-standard specialist catalog feeding Algebra & Topology frontiers."},
     {"Registry": "Kirby's List (Low-Dim Topology)", "Scope": "3- & 4-Manifolds, Knots, Links & Gauge Theory", "Total_Tracked": "~360+ major problems (with sub-parts >1,000)", "Open_Count_Nov2026": "~200+ open (SPC4, Slice-Ribbon, Unknotting)", "Verification_Standard": "Peer-reviewed topology literature", "Nov2026_Highlight": "Smooth 4D Poincaré & Slice-Ribbon remain crown-jewel unsolved holdouts."},
     {"Registry": "Hilbert's 23 Problems (1900) & Smale's 18 (1998)", "Scope": "Foundations, Number Theory, Geometry, Physics, Complexity", "Total_Tracked": "41 canonical century-defining problems", "Open_Count_Nov2026": "~16–18 fully or partially open", "Verification_Standard": "Consensus mathematical proof", "Nov2026_Highlight": "Hilbert 6th classical hard-sphere solved (Deng-Hani-Ma 2025); Hilbert 8th, 12th, 16th & Smale 9th/16th remain open."},
@@ -87,7 +91,37 @@ EXTERNAL_REGISTRIES_NOV2026 = [
     {"Registry": "Wikipedia Lists of Unsolved Problems (20+ Fields)", "Scope": "Math, Physics, CS, Chem, Bio, Neuro, Med, Econ, Phil, Ling, Astro, Geo, Stats", "Total_Tracked": "~1,200+ distinct entries across 20+ lists", "Open_Count_Nov2026": "~1,100+ open", "Verification_Standard": "Secondary academic consensus", "Nov2026_Highlight": "Broadest public cross-disciplinary map outside specialized trackers."},
     {"Registry": "NAE 14 Grand Challenges & DARPA/DOE Earthshots", "Scope": "Engineering, Energy, Fusion, Clean Water, Health, AI Safety", "Total_Tracked": "~100+ flagship technology targets", "Open_Count_Nov2026": "~90+ active engineering frontiers", "Verification_Standard": "Commercial prototypes, LCOE/cost targets, safety benchmarks", "Nov2026_Highlight": "Dominates Quadrant 1 (Near-Term Civilizational Levers)."},
     {"Registry": "PhilPapers Survey & Metaphysics/Ethics Canon", "Scope": "Philosophy of Mind, Metaphysics, Epistemology, Logic, Ethics", "Total_Tracked": "~100+ enduring philosophical problems", "Open_Count_Nov2026": "~100% actively contested (up to 2,526 yrs old)", "Verification_Standard": "Reflective philosophical consensus & formal impossibility theorems", "Nov2026_Highlight": "AI alignment & digital sentience turned ancient ethics/mind puzzles into urgent engineering bottlenecks."},
-    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "1,900 strictly deduplicated biconnected problems", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks", "Verification_Standard": "6-kernel Palomar Pure Lean 4.35.0 formal invariants (103 theorems + live negative rejection), JSON Schema, Hypothesis, differential oracle, mutation audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 Track B probes & Nov 26 2026 registry delta audit", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 11-tool MCP server, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
+    {"Registry": f"This V{ATLAS_VERSION} Unified Mega-Atlas (A. S. Donahue, 2026)", "Scope": "ALL 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers", "Total_Tracked": "2,000 strictly deduplicated biconnected problems (12 modules incl. Left to Solve)", "Open_Count_Nov2026": "100% active open/hard/unverified frontiers + 20 resolved benchmarks (0/2,000 solved by this work)", "Verification_Standard": "Lean 4.35.0 software-model invariant suite (103 audited theorems; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations + live negative rejection), Python NetworkX biconnectivity audit, JSON Schema, Hypothesis, 50-digit oracle, 10-mutant audit, SHA-256 + dual RFC 3161/OTS, AutoResearch, 3 finite Track B probes (LOG-002, NT-005, COMB-002) & automated daily 16-registry + 25-program sync", "Nov2026_Highlight": "Unified biconnected cross-disciplinary dataset combining math, physics, bio, mind, CS, AI, engineering, design, earth & humanities with 100% MRR@5 Hybrid RAG, 12-tool MCP server, daily auto-updated global registry tracker, rubric sensitivity simulator, AMS-LaTeX preprint & Build Standard v1.2.0 compliance."},
+]
+
+# Baseline snapshot of all 25 live fronts on https://lefttosolve.com/programs (2026-11-26 UTC;
+# refreshed automatically every day via .github/workflows/daily-registry-sync.yml into results/lefttosolve_programs.json)
+LEFT_TO_SOLVE_PROGRAMS_BASELINE = [
+    {"Program": "MathOverflow (not formalized)", "Formalized_In_Lean": "No", "Targets": 35783, "Open": 35783, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/MathOverflow%20(not%20formalized)"},
+    {"Program": "OEIS conjectures (not formalized)", "Formalized_In_Lean": "No", "Targets": 18441, "Open": 18441, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/OEIS%20conjectures%20(not%20formalized)"},
+    {"Program": "Erdős Problems", "Formalized_In_Lean": "Yes", "Targets": 2068, "Open": 837, "Solved_Here": 660, "URL": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems"},
+    {"Program": "Wikipedia", "Formalized_In_Lean": "Yes", "Targets": 615, "Open": 336, "Solved_Here": 124, "URL": "https://lefttosolve.com/programs/Wikipedia"},
+    {"Program": "OEIS", "Formalized_In_Lean": "Yes", "Targets": 461, "Open": 394, "Solved_Here": 59, "URL": "https://lefttosolve.com/programs/OEIS"},
+    {"Program": "Mathematics Stack Exchange (not formalized)", "Formalized_In_Lean": "No", "Targets": 395, "Open": 395, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20(not%20formalized)"},
+    {"Program": "Wikipedia list (not formalized)", "Formalized_In_Lean": "No", "Targets": 366, "Open": 366, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Wikipedia%20list%20(not%20formalized)"},
+    {"Program": "Open Problem Garden", "Formalized_In_Lean": "No", "Targets": 316, "Open": 316, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Open%20Problem%20Garden"},
+    {"Program": "Green's 100 Open Problems", "Formalized_In_Lean": "Yes", "Targets": 285, "Open": 128, "Solved_Here": 71, "URL": "https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems"},
+    {"Program": "Papers", "Formalized_In_Lean": "Yes", "Targets": 180, "Open": 93, "Solved_Here": 25, "URL": "https://lefttosolve.com/programs/Papers"},
+    {"Program": "Erdős Problems (not formalized)", "Formalized_In_Lean": "No", "Targets": 116, "Open": 116, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20(not%20formalized)"},
+    {"Program": "arXiv papers", "Formalized_In_Lean": "Yes", "Targets": 105, "Open": 43, "Solved_Here": 26, "URL": "https://lefttosolve.com/programs/arXiv%20papers"},
+    {"Program": "Wikipedia (not formalized)", "Formalized_In_Lean": "No", "Targets": 44, "Open": 44, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Wikipedia%20(not%20formalized)"},
+    {"Program": "Open Quantum Problems", "Formalized_In_Lean": "Yes", "Targets": 32, "Open": 28, "Solved_Here": 4, "URL": "https://lefttosolve.com/programs/Open%20Quantum%20Problems"},
+    {"Program": "Optimization Constants", "Formalized_In_Lean": "Yes", "Targets": 31, "Open": 11, "Solved_Here": 3, "URL": "https://lefttosolve.com/programs/Optimization%20Constants"},
+    {"Program": "Written on the Wall II", "Formalized_In_Lean": "Yes", "Targets": 31, "Open": 11, "Solved_Here": 19, "URL": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II"},
+    {"Program": "Other", "Formalized_In_Lean": "Yes", "Targets": 29, "Open": 17, "Solved_Here": 6, "URL": "https://lefttosolve.com/programs/Other"},
+    {"Program": "Books", "Formalized_In_Lean": "Yes", "Targets": 26, "Open": 11, "Solved_Here": 5, "URL": "https://lefttosolve.com/programs/Books"},
+    {"Program": "MathOverflow", "Formalized_In_Lean": "Yes", "Targets": 21, "Open": 9, "Solved_Here": 10, "URL": "https://lefttosolve.com/programs/MathOverflow"},
+    {"Program": "Millennium Prize", "Formalized_In_Lean": "Yes", "Targets": 21, "Open": 12, "Solved_Here": 2, "URL": "https://lefttosolve.com/programs/Millennium%20Prize"},
+    {"Program": "Kourovka Notebook", "Formalized_In_Lean": "Yes", "Targets": 9, "Open": 5, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Kourovka%20Notebook"},
+    {"Program": "Hilbert's Problems", "Formalized_In_Lean": "Yes", "Targets": 8, "Open": 2, "Solved_Here": 1, "URL": "https://lefttosolve.com/programs/Hilbert%27s%20Problems"},
+    {"Program": "Open problems in information theory (gokhanmergen)", "Formalized_In_Lean": "Yes", "Targets": 7, "Open": 7, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20(gokhanmergen)"},
+    {"Program": "Conjectures of Luc Gillibert", "Formalized_In_Lean": "Yes", "Targets": 3, "Open": 3, "Solved_Here": 0, "URL": "https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert"},
+    {"Program": "Litt's Problems", "Formalized_In_Lean": "Yes", "Targets": 3, "Open": 2, "Solved_Here": 1, "URL": "https://lefttosolve.com/programs/Litt%27s%20Problems"},
 ]
 
 AI_VERIFICATION_AUDIT_NOV2026 = [
@@ -95,11 +129,11 @@ AI_VERIFICATION_AUDIT_NOV2026 = [
         "Claim_ID": "AUDIT-01",
         "Problem": "Riemann Hypothesis & GRH (NT-001, NT-002)",
         "Date": "2026-11-20 to 2026-11-25",
-        "Claimant_System": "Levent Alpöge (Anthropic / Claude) + Independent Human Draft by Alessandro Masullo (Stanford)",
-        "Artifact_Type": "~17M-line Lean 4 formal archive (14 files) + 940-page human draft ('The Music of the Primes') released via AMS Pres. Ravi Vakil",
-        "Machine_Check_Status": "CERTIFIED (Nov 21, 2026) — Lean FRO & Mathlib Initiative confirmed clean build & replay across official kernel, lean4lean, con-leche & con-ron matching Mathlib's official RH statement (Andrew Sutherland et al.)",
-        "Human_Fidelity_Audit": "HUMAN EXPOSITION PENDING — Zero complete human-readable paper exists yet for Alpöge/Claude archive; rival Masullo 940-page draft is undergoing active community gap critiques",
-        "Official_Status_Nov2026": "OFFICIALLY UNRETIRED at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification' pending human exposition & 2-year refereeing",
+        "Claimant_System": "Levent Alpöge (Anthropic / Claude), Luke Sernau et al. (Nov 25 compact rewrite) + Independent Human Draft by Alessandro Masullo (Stanford)",
+        "Artifact_Type": "175,187-file (~17M-line) Lean 4 formal archive (plus Nov 25 lsernau/grh-lean rewrite: ~76k compact / 300k readable lines) + 940-page human draft ('The Music of the Primes') released via AMS Pres. Ravi Vakil",
+        "Machine_Check_Status": "CERTIFIED (Nov 21, 2026) — Joint Lean FRO & Mathlib Initiative statement (https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) certified Mathlib's RiemannHypothesis statement and proof across Lean, con-leche & con-ron; independently replayed with nanoda (1,484,729 decls) by M. Rubinstein (https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/)",
+        "Human_Fidelity_Audit": "HUMAN EXPOSITION PENDING — Working 265-page guide draft (M. Rubinstein, Nov 22) reduces to 13 classical hypotheses with no complete standalone human paper yet; rival Masullo 940-page draft is undergoing active community gap critiques",
+        "Official_Status_Nov2026": "OFFICIALLY UNRETIRED at Clay CMI — Marked 'AI Proof Claim (Fall/Nov 2026) — Under Verification' pending complete human exposition & 2-year refereeing",
     },
     {
         "Claim_ID": "AUDIT-02",
@@ -272,7 +306,7 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
         "Archive_ID": "0TH-2026-014",
         "Repo": "0thernes/monodromia (v1.0.0)",
         "Parent_Atlas_IDs": "CM-018, FLD-060, CM-016, QM-011",
-        "Scoped_Result": "A bounded case (RESULTS.md R13, section C: frozen bit strings of the 0110<->1001 dipole-conserving gate) and known results formalized (R33-R38, section E): integer identities for the Hatano-Nelson chain, a corner-perturbed Jordan block, powers of [[2,1],[1,1]], finite TL_3 bracket evaluations, a non-reciprocal 2x2 system and a PT-symmetric dimer.",
+        "Scoped_Result": "Known results formalized (RESULTS.md R13, R33-R38, section E): frozen bit strings of the 0110<->1001 dipole-conserving gate (R13, OEIS A164394; moved from bounded case to known result in Cycle 3), and integer identities for the Hatano-Nelson chain, a corner-perturbed Jordan block, powers of [[2,1],[1,1]], finite TL_3 bracket evaluations, a non-reciprocal 2x2 system and a PT-symmetric dimer.",
         "Kernel_Audit": "Lean kernel (R13, R33-R38); see RESULTS.md.",
         "Parent_Problem_Status": "STILL OPEN: general non-Hermitian topological classification (CM-018) and non-reciprocal phase transitions (FLD-060). Preprint not peer reviewed.",
     },
@@ -333,12 +367,36 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
         "Parent_Problem_Status": "STILL OPEN: post-Moore CMOS scaling (HW-001) and practical reversible computing (HW-002).",
     },
     {
-        "Archive_ID": "0TH-BUILD-001 / 008-011 / 013",
-        "Repo": "0thernes A-Life Omega suite (cellulogonic-mecha v1.6.0, cellular-engine-omega v5.3.0, autophage v1.4.0, noetic-organism-omega v2.1.0, asmodensius-native v1.1.0, alife-singularity-omega-package v3.4.0)",
-        "Parent_Atlas_IDs": "BIO-001, BIO-015, BIO-022, SUB-001",
-        "Scoped_Result": "Engineering invariant suites for six artificial-life software models (RESULTS.md R82, R86, R87, R88, R89, R91, section F). 0TH-BUILD-006 (black-hole-simulation-lab) has no ledger result: RESULTS.md finds no machine-checked result at its pinned commit.",
-        "Kernel_Audit": "Lean kernel (R82, R86-R89, R91); see RESULTS.md.",
-        "Parent_Problem_Status": "STILL OPEN: abiogenesis (BIO-001), morphogenesis (BIO-022) and basal cognition (SUB-001). The suites concern software models only.",
+        "Archive_ID": "0TH-2026-017",
+        "Repo": "0thernes/octonionica (v1.0.0)",
+        "Parent_Atlas_IDs": "ALG-012, GEOM-021, NT-039, QC-015",
+        "Scoped_Result": "Known results formalized (RESULTS.md R67-R73, section E): integer octonion composition law, Moufang identities and sedenion zero divisor; 7D cross-product & cleared-denominator S^6 Nijenhuis identity; integer Albert algebra cubic Cayley-Hamilton; evenness of 2E8, E8 Cartan determinant & Golay weight enumerator; Ramanujan tau mod-691 & non-vanishing for n<=20; Fibonacci anyon F/R coherence; Markov equation Vieta descent and mod-3/4 congruences.",
+        "Kernel_Audit": "Lean kernel (R67-R73); see RESULTS.md.",
+        "Parent_Problem_Status": "STILL OPEN: complex structure on S^6 (GEOM-021), Lehmer's tau non-vanishing conjecture (NT-039), Markov uniqueness & topological quantum computation. Preprint not peer reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-018",
+        "Repo": "0thernes/apollonian-sandpile-markov (v1.0.0)",
+        "Parent_Atlas_IDs": "NT-039, COMB-028, ALG-012",
+        "Scoped_Result": "New theorem (RESULTS.md R52, section B: even-Laplacian parity on the triangular lattice), bounded case (R59, section C: mod-8 residue locking in one octahedral circle packing), and known results formalized (R60, R74-R79, section E): square-lattice obstruction (R60; Levine-Pegden-Smart 2017), Jacobi reciprocity, Haag-Kertzer-Rickards-Stange square obstruction for three Apollonian packings, Abelian sandpile toppling laws, Zhang's mod-32 Markov theorem, five-step Markov quiver mutation and Hurwitz n=4 admissible coefficients.",
+        "Kernel_Audit": "Lean kernel (R52, R59, R60, R74-R79); see RESULTS.md.",
+        "Parent_Problem_Status": "STILL OPEN: Apollonian local-global conjecture, Markov uniqueness conjecture & Abelian sandpile scaling limits. Preprint not peer reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-2026-019",
+        "Repo": "0thernes/cayley-dickson-terrace-frontier (v1.0.0)",
+        "Parent_Atlas_IDs": "ALG-012",
+        "Scoped_Result": "New theorems (RESULTS.md R53-R56, section B): signature change of the Cayley-Dickson sign table and 2-blade nullities, doubling recurrence & closed forms for Euclidean 2-blade nullities, midpoint bin count 42*2^(n-4) across signatures (extending de Marrais's 42 assessors; Moreno's 4|nu credited), and coordinate right-multiplier families; plus finite certificates for sedenion/pathion/chingon subspaces (R61, section C) and sedenion box-kite structure (R80, section E).",
+        "Kernel_Audit": "Lean kernel (R53-R56, R61, R80); see RESULTS.md.",
+        "Parent_Problem_Status": "STILL OPEN: general zero-divisor geometry & classification of higher Cayley-Dickson algebras. Preprint not peer reviewed.",
+    },
+    {
+        "Archive_ID": "0TH-BUILD-001 / 008-011 / 013 / 016-017",
+        "Repo": "0thernes A-Life & Bare-Metal Suite (cellulogonic-mecha v1.6.0, cellular-engine-omega v5.3.0, autophage v1.4.0, noetic-organism-omega v2.1.0, asmodensius-native v1.1.0, alife-singularity-omega-package v3.4.0, ALife-Framework v3.0.0, beast-civilization v0.7.0)",
+        "Parent_Atlas_IDs": "BIO-001, BIO-015, BIO-022, SUB-001, AI-002",
+        "Scoped_Result": "Engineering invariant suites for eight artificial-life and bare-metal software models (RESULTS.md R82, R86-R89, R91, R93, R94, section F). 0TH-BUILD-006 (black-hole-simulation-lab) has no ledger result: RESULTS.md finds no machine-checked result at its pinned commit.",
+        "Kernel_Audit": "Lean kernel (R82, R86-R89, R91, R93, R94); see RESULTS.md.",
+        "Parent_Problem_Status": "STILL OPEN: abiogenesis (BIO-001), morphogenesis (BIO-022), basal cognition (SUB-001) and continual AGI (AI-002). The suites concern software models only.",
     },
     {
         "Archive_ID": "0TH-BUILD-015",
@@ -351,6 +409,8 @@ OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS = [
 ]
 
 PRIMARY_REGISTRY_TOKENS = (
+    "left to solve", "formal-conjectures", "oeis", "mathoverflow", "written on the wall",
+    "green's 100", "open quantum problems", "bbchallenge", "wolfram rule 30",
     "proofatlas", "clay", "millennium", "erdős", "erdos", "hilbert", "smale",
     "landau", "kourovka", "kirby", "open problem garden", "polymath", "philpapers",
     "sep)", "stanford encyclopedia", "nae ", "darpa", "doe ", "ipcc", "who ",
@@ -836,6 +896,7 @@ def load_v2_master() -> Dict[str, Any]:
         "total_benchmarks": len(RECENTLY_RESOLVED_BENCHMARKS),
         "total_contrasts": len(PAIRWISE_CONTRASTS),
         "total_external_registries": len(EXTERNAL_REGISTRIES_NOV2026),
+        "total_lefttosolve_programs": len(LEFT_TO_SOLVE_PROGRAMS_BASELINE),
         "total_author_frontier_preprints": len(OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS),
         "module_counts": module_counts,
     }
@@ -864,6 +925,7 @@ def load_v2_master() -> Dict[str, Any]:
         "df_benchmarks": pd.DataFrame(RECENTLY_RESOLVED_BENCHMARKS),
         "df_contrasts": df_contrasts,
         "df_registries": pd.DataFrame(EXTERNAL_REGISTRIES_NOV2026),
+        "df_lefttosolve_programs": pd.DataFrame(LEFT_TO_SOLVE_PROGRAMS_BASELINE),
         "df_ai_audit": pd.DataFrame(AI_VERIFICATION_AUDIT_NOV2026),
         "df_author_contributions": pd.DataFrame(OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS),
         "summary_stats": summary_stats,

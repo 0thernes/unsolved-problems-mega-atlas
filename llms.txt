@@ -1,14 +1,14 @@
-# Unsolved Problems Mega-Atlas (v2.8.0)
+# Unsolved Problems Mega-Atlas (v2.9.0)
 
-> Exhaustive, cryptographically audited cross-disciplinary open-problem research infrastructure: 1,900 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers wired into 1 biconnected 5,808-edge knowledge graph (0 articulation points, 0 bridges, 0 dangling links), paired with 103 Pure Lean 4.35.0 formal invariant theorems across 6 independent kernels (plus live negative kernel rejection), a 10-page AMS-LaTeX white paper, dual DigiCert RFC 3161 (`.tsr`) + 3-calendar Bitcoin OpenTimestamps (`.ots`) proofs, strict-CSP WCAG 2.2 AA web apps, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), an 11-tool stdio MCP server (incl. `simulate_rubric_override`), an automated external registry delta auditor, 3 reproducible Track B exact probes (`LOG-002`, `NT-005`, `COMB-001`), and an immutable Karpathy-style AutoResearch harness (AQS = 97.99).
+> Exhaustive, cryptographically audited cross-disciplinary open-problem research infrastructure: 2,000 strictly deduplicated unsolved, open, and hard problems spanning 8 Macro-Pillars, 28 Superdomains, 8 Physical/Formal Substrates, and 7 Abstraction Layers (including 100 strictly non-duplicate open conjectures across all 25 fronts of Left to Solve, `lefttosolve.com/programs`) wired into 1 biconnected 6,108-edge knowledge graph (audited in Python/NetworkX: 0 articulation points, 0 bridges, 0 dangling links), paired with 103 audited Lean 4.35.0 software-model invariant theorems (of 117 declarations in `lean/`; 9 Palomar targets checked by 6 kernel checks across 5 distinct implementations + live negative kernel rejection), an 11-page AMS-LaTeX white paper (15/15 title-verified citations, 0 retractions), structurally verified DigiCert RFC 3161 (`.tsr`) + 3-calendar Bitcoin OpenTimestamps v1 (`.ots`) proofs, automated daily syncing of 16 public trackers & 25 Left to Solve fronts (`.github/workflows/daily-registry-sync.yml`), strict-CSP WCAG 2.2 AA web apps, offline SQLite FTS5 Hybrid RAG (100.0% MRR@5), a 12-tool stdio MCP server (incl. `simulate_rubric_override` & `get_live_registry_tracker`), 3 reproducible Track B exact finite probes (`LOG-002`, `NT-005`, `COMB-002`), 10/10 mutation testing, and an immutable Karpathy-style AutoResearch harness (AQS = 98.35).
 
 - **Author:** Alexander Stephen Donahue (`Independent Researcher, Spokane, WA, USA`, ORCID `0009-0006-8168-9648`, `0_0@0thernes.art`)
 - **Dual License:** Data/Figures/White Paper `CC-BY-4.0` · Code/Lean/RAG/MCP `Apache-2.0`
-- **Honest Boundary:** Zero (`0/1,900`) overarching Atlas problems are retired; Lean verifies internal invariants only; rubric scores are falsifiable editorial estimates.
+- **Honest Boundary:** Zero (`0/2,000`) overarching Atlas problems are solved or retired; Lean verifies software-model invariants only (not the 2,000-row data or its graph); rubric scores are falsifiable editorial estimates.
 
 ## Core Documentation
 
-- [README](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/README.md): Overview, quick start, 5-second Lean verification, and release downloads
+- [README](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/README.md): Overview, quick start, Lean verification, and release downloads
 - [AGENTS.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/AGENTS.md): Canonical instructions, commands, and Build Standard v1.2.0 Hard Rules R1–R8
 - [CLAIMS.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/CLAIMS.md): Falsifiable Claims Ledger (`C1`–`C10`) with exact commands and refutation criteria
 - [VERIFICATION.md](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/VERIFICATION.md): Five-tier epistemic verification boundaries
@@ -19,12 +19,13 @@
 
 ## Formal Proofs, White Paper & Interactive Interfaces
 
-- [AMS-LaTeX White Paper PDF](https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/dist/Donahue_2026_unsolved_problems_mega_atlas.pdf): 10-page publication-grade Tectonic PDF (`0` overfull hboxes)
-- [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): WCAG 2.2 AA browser explorer for all 1,900 problems & 15 charts
-- [Interactive Lean 4.35.0 Proof Blueprint](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/): SVG dependency DAG & module inventory for all 103 audited theorems
+- [AMS-LaTeX White Paper PDF](https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/dist/Donahue_2026_unsolved_problems_mega_atlas.pdf): 11-page publication-grade Tectonic PDF (`0` overfull hboxes)
+- [Interactive Web Atlas](https://0thernes.github.io/unsolved-problems-mega-atlas/): WCAG 2.2 AA browser explorer for all 2,000 problems, 25 Left to Solve fronts & 15 charts
+- [Daily Registry Tracker](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/DAILY_REGISTRY_TRACKER.md): Auto-updated daily (`06:00 UTC`) status across 16 global open-problem trackers & 25 Left to Solve fronts
+- [Interactive Lean 4.35.0 Proof Blueprint](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/): SVG dependency DAG & module inventory for all 103 audited software-model theorems
 - [Verbatim Lean Axiom Audit](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/results/lean_axioms.txt): All 103 `#print axioms` lines (`⊆ [propext, Quot.sound]`)
 - [RFC 3161 Trusted Timestamp](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/CHECKSUMS.sha256.tsr): DigiCert RFC 3161 timestamp reply binding `CHECKSUMS.sha256`
-- [Bitcoin OpenTimestamps Proof](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/CHECKSUMS.sha256.ots): 3-calendar Bitcoin OpenTimestamps proof binding `CHECKSUMS.sha256`
+- [Bitcoin OpenTimestamps Proof](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/CHECKSUMS.sha256.ots): 3-calendar Bitcoin OpenTimestamps v1 proof binding `CHECKSUMS.sha256`
 - [FAIR Metadata (Croissant 1.0)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/croissant.json): MLCommons Croissant JSON-LD descriptor
 - [FAIR Metadata (RO-Crate 1.1)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/ro-crate-metadata.json): W3C RO-Crate JSON-LD descriptor
-- [Master Ranking (`RANKING.md`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Top 250 problems by 0thernes CSS + Nov 25, 2026 AI watchlist
+- [Master Ranking (`RANKING.md`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Top 250 problems by 0thernes CSS + Nov 26, 2026 AI watchlist & 20-row Cycle-3 companion ledger

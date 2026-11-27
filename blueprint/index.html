@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none';" />
 <meta name="referrer" content="no-referrer" />
-<title>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.8.0)</title>
+<title>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.9.0)</title>
 <style>
   :root { --bg:#0B1120; --card:#111827; --card2:#1E293B; --border:#334155; --text:#F1F5F9; --muted:#94A3B8; --accent:#38BDF8; --green:#34D399; --violet:#A78BFA; --rose:#FB7185; }
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -37,15 +37,15 @@
 <body>
 <a class="skip-link" href="#main">Skip to proof blueprint</a>
 <header>
-  <h1>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.8.0)</h1>
-  <div class="sub">Author: <b>Alexander Stephen Donahue</b> (Independent Researcher, Spokane, WA · ORCID <a href="https://orcid.org/0009-0006-8168-9648" target="_blank" rel="noopener noreferrer">0009-0006-8168-9648</a>) · Zero-Mathlib Pure Lean 4.35.0 · 103 Audited Theorems · 6 Independent Proof Kernels + Live Negative Kernel Rejection via <code>scripts/verify_lean_six_kernels.sh</code></div>
+  <h1>Lean 4.35.0 Formal Proof Blueprint — Unsolved Problems Mega-Atlas (V2.9.0)</h1>
+  <div class="sub">Author: <b>Alexander Stephen Donahue</b> (Independent Researcher, Spokane, WA · ORCID <a href="https://orcid.org/0009-0006-8168-9648" target="_blank" rel="noopener noreferrer">0009-0006-8168-9648</a>) · Zero-Mathlib Lean 4.35.0 Software-Model Suite · 103 Audited Theorems (of 117 decls in <code>lean/</code>) · 6 Kernel Checks Across 5 Distinct Implementations on 9 Palomar Targets + Live Negative Rejection via <code>scripts/verify_lean_six_kernels.sh</code></div>
   <div class="pills">
-    <span class="pill ok">103 Audited Theorems</span>
+    <span class="pill ok">103 Audited Model Theorems</span>
     <span class="pill ok">10 Adversarial Refutations</span>
     <span class="pill ok">0 sorry in lean/</span>
     <span class="pill ok">0 native_decide</span>
-    <span class="pill ok">Axioms ⊆ [propext, Quot.sound]</span>
-    <span class="pill">6 Kernels: lean · leanchecker --fresh/paranoid · lean4lean · nanoda · con-leche · con-ron</span>
+    <span class="pill ok">Per-Theorem Axioms ⊆ [propext, Quot.sound]</span>
+    <span class="pill">6 Checks / 5 Impl.: lean · leanchecker · lean4lean · nanoda · con-leche · con-ron</span>
     <a class="pill" href="../index.html">← Back to Interactive Atlas</a>
     <a class="pill" href="https://github.com/0thernes/unsolved-problems-mega-atlas/tree/main/lean" target="_blank" rel="noopener noreferrer">Browse lean/ on GitHub ↗</a>
   </div>
@@ -53,10 +53,10 @@
 
 <main id="main">
 <div class="warn-box">
-  <b>Honest Verification Boundary:</b> This blueprint tracks machine-checked formal invariants of the Mega-Atlas scoring formulas, taxonomic partition, finite graph handshaking, deduplication, AutoResearch keep/discard ratchet, substrate/gradient/margin geometry, concrete NonVacuity witnesses, and constructive AdversarialTests refutations ONLY. It does <b>NOT</b> prove any of the 1,900 cataloged open scientific or mathematical problems (<code>0 / 1,900</code> retired).
+  <b>Honest Verification Boundary:</b> This blueprint tracks machine-checked formal invariants of the Mega-Atlas <b>software model</b> ONLY: integer scoring formulas, taxonomic partition, finite graph handshaking, deduplication, AutoResearch keep/discard ratchet, substrate/gradient/margin geometry, concrete NonVacuity witnesses, and constructive AdversarialTests refutations. It does <b>NOT</b> check the 2,000-row dataset, the 6,108-edge graph, Python runtime floats, or any open mathematical/scientific problem (<code>0 / 2,000</code> solved by this work). The 6 kernel checks (5 distinct checker implementations, since <code>lean</code> and <code>leanchecker</code> share Lean's C++ kernel) cover the 9 exported Palomar comparator targets, while <code>VerifyAxioms.lean</code> audits per-theorem axioms for 103 of the 117 declarations in <code>lean/</code> (no <code>Classical.choice</code> reported on any of the 103).
 </div>
 
-<h2>1. Formal Dependency DAG (Module → Challenge Contract → 6-Kernel Palomar Certification)</h2>
+<h2>1. Formal Dependency DAG (Software-Model Modules → Palomar Contract → Multi-Kernel Certification)</h2>
 <div class="dag-wrap">
 <svg viewBox="0 0 1240 430" width="100%" role="img" aria-label="Lean 4.35.0 module dependency DAG">
   <defs>
@@ -111,16 +111,16 @@
 
     <rect x="760" y="248" width="220" height="58" rx="10" fill="#0F172A" stroke="#34D399" stroke-width="2"/>
     <text x="870" y="273" text-anchor="middle" font-weight="bold">PalomarSolution.lean</text>
-    <text x="870" y="292" text-anchor="middle" fill="#94A3B8" font-size="11">Exported Comparator Solution</text>
+    <text x="870" y="292" text-anchor="middle" fill="#94A3B8" font-size="11">9 Exported Comparator Targets</text>
 
     <rect x="1015" y="248" width="205" height="58" rx="10" fill="#0F172A" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,3"/>
     <text x="1117" y="273" text-anchor="middle" font-weight="bold">palomar/PalomarChallenge</text>
     <text x="1117" y="292" text-anchor="middle" fill="#FDE68A" font-size="10">sorry Contract (outside lean/)</text>
 
-    <!-- Layer 4: 6-Kernel Certification -->
-    <rect x="210" y="352" width="840" height="58" rx="10" fill="#064E3B" stroke="#34D399" stroke-width="2"/>
-    <text x="630" y="377" text-anchor="middle" font-weight="bold" fill="#ECFDF5">6-Kernel Certification: lake check --paranoid + lake comparator --paranoid + VerifyAxioms.lean (103 theorems)</text>
-    <text x="630" y="396" text-anchor="middle" fill="#A7F3D0" font-size="11">lean 4.35.0 · leanchecker-paranoid · lean4lean · nanoda_bin · con-leche --verified · con-ron --verified</text>
+    <!-- Layer 4: Multi-Kernel Certification -->
+    <rect x="170" y="352" width="900" height="58" rx="10" fill="#064E3B" stroke="#34D399" stroke-width="2"/>
+    <text x="620" y="377" text-anchor="middle" font-weight="bold" fill="#ECFDF5">Multi-Kernel Audit: 6 Checks (5 Distinct Implementations) on 9 Palomar Targets + VerifyAxioms (103/117 decls)</text>
+    <text x="620" y="396" text-anchor="middle" fill="#A7F3D0" font-size="11">lean 4.35.0 &amp; leanchecker (C++ kernel) · lean4lean (Lean) · nanoda_bin (Rust) · con-leche (OCaml) · con-ron (Rust)</text>
   </g>
   <!-- Arrows -->
   <g stroke="#38BDF8" stroke-width="1.6" fill="none" marker-end="url(#arr)">
@@ -142,7 +142,7 @@
 </svg>
 </div>
 
-<h2>2. Module-by-Module Formal Inventory (103 Machine-Checked Theorems)</h2>
+<h2>2. Module-by-Module Formal Inventory (103 Audited Model Theorems of 117 Declarations in <code>lean/</code>)</h2>
 <div class="grid">
   <div class="card">
     <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/Scoring.lean" target="_blank" rel="noopener noreferrer">M1 · Scoring.lean</a> <span class="tag">22 theorems</span></h3>
@@ -201,7 +201,7 @@
   </div>
   <div class="card">
     <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/MegaAtlasProofs/NonVacuity.lean" target="_blank" rel="noopener noreferrer">M7 · NonVacuity.lean</a> <span class="tag">12 theorems</span></h3>
-    <p>Concrete inhabitants &amp; negative boundary witnesses (including the exact <code>autoresearch/results.tsv</code> trace 8026→8193→9559→9799) proving ZERO theorems hold vacuously.</p>
+    <p>Concrete inhabitants &amp; negative boundary witnesses (including the exact <code>autoresearch/results.tsv</code> trace 8026→8193→9559→9799) proving ZERO model hypotheses are vacuously unsatisfiable.</p>
     <ul>
       <li><code>nonvac_scoring_valid_witness</code>, <code>boundary_age_299_not_saturated</code></li>
       <li><code>nonvac_all_four_quadrants</code>, <code>boundary_non_Q1_leverage_below_56</code>, <code>nonvac_all_six_eras</code></li>
@@ -220,12 +220,12 @@
     </ul>
   </div>
   <div class="card">
-    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/PalomarSolution.lean" target="_blank" rel="noopener noreferrer">Palomar Contract &amp; Audit</a> <span class="tag">9 theorems</span></h3>
+    <h3><a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/lean/PalomarSolution.lean" target="_blank" rel="noopener noreferrer">Palomar Contract &amp; Audit</a> <span class="tag">9 targets</span></h3>
     <p>Clean Palomar comparator specification (<code>Challenge.lean</code> / <code>Solution.lean</code> / <code>PalomarSolution.lean</code> vs. <code>palomar/PalomarChallenge.lean</code>).</p>
     <ul>
       <li><code>m1_scoring_invariants</code> .. <code>m8_adversarial_refutations</code></li>
       <li><code>prove_all_mega_atlas_invariants</code> (master conjunction)</li>
-      <li>Axiom transcript frozen in <a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/results/lean_axioms.txt" target="_blank" rel="noopener noreferrer">results/lean_axioms.txt</a></li>
+      <li>Axiom transcript frozen in <a href="https://github.com/0thernes/unsolved-problems-mega-atlas/blob/main/results/lean_axioms.txt" target="_blank" rel="noopener noreferrer">results/lean_axioms.txt</a> (103 of 117 decls in <code>lean/</code>; 14 helper/bridge decls omitted from <code>#print axioms</code>)</li>
     </ul>
   </div>
 </div>

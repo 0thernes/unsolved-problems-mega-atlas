@@ -7,9 +7,10 @@ public import MegaAtlasProofs
 /-!
 # Formal Challenge Specification (`M1`–`M8`)
 
-Clean exported theorem specification contract for independent 6-kernel verification
-(`lean`, `leanchecker --fresh`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`,
-`con-ron` via `scripts/verify_lean_six_kernels.sh`).
+Clean exported theorem specification contract for the atlas scoring software model,
+checked via `scripts/verify_lean_six_kernels.sh` (Lean `lake build`, `leanchecker --fresh`,
+`leanchecker-paranoid`, plus `lean4lean`, `nanoda_bin`, `con-leche`, and `con-ron` —
+six kernel checks across five distinct implementations).
 All proofs live in `Solution.lean` and `MegaAtlasProofs.*`.
 -/
 

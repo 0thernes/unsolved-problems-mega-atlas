@@ -496,8 +496,8 @@ def test_b07_regression_rag_auto_rebuilds_stale_sqlite_version(tmp_path):
         cnt = conn2.execute("SELECT COUNT(*) FROM problems").fetchone()[0]
         auth = conn2.execute("SELECT COUNT(*) FROM author_frontier_contributions").fetchone()[0]
         assert ver == (ROOT / "VERSION").read_text(encoding="utf-8").strip()
-        assert cnt == 1900
-        assert auth == 17
+        assert cnt == 2000
+        assert auth == 20
     finally:
         conn2.close()
 
@@ -747,26 +747,38 @@ def test_b07_regression_zero_broken_relative_markdown_links():
 
 
 def test_b07_regression_external_registry_delta_offline_and_gate_parser():
-    """Verify external registry delta sync works offline and detects anti-bot/JS gate pages honestly."""
+    """Verify external registry delta sync works offline across all 16 trackers + 25 Left to Solve fronts and detects gates honestly."""
     sys.path.insert(0, str(ROOT / "scripts"))
     import sync_external_registries as ser
 
     rep = ser.build_delta_report(live=False)
     assert rep["mode"] == "offline"
-    assert rep["committed_registries_indexed"] == 13
-    assert len(rep["registries"]) == 3
+    assert rep["committed_registries_indexed"] == 16
+    assert len(rep["registries"]) == 16
+    assert len(rep["lefttosolve_programs"]) == 25
 
-    gated = ser.parse_registry_html(ser.TARGETS[0], "<html><title>Just a moment...</title><body>Verify you are human</body></html>", 403)
+    t_by_key = {t["key"]: t for t in ser.TARGETS}
+    gated = ser.parse_registry_html(t_by_key["clay_millennium"], "<html><title>Just a moment...</title><body>Verify you are human</body></html>", 403)
     assert gated["fetch_status"] == "js_rendered_or_gated"
-    clean = ser.parse_registry_html(ser.TARGETS[1], "<html><title>Erdos Problems</title><body>" + ("x " * 100) + "1221 problems tracked.</body></html>", 200)
+    clean = ser.parse_registry_html(t_by_key["erdos_problems"], "<html><title>Erdos Problems</title><body>" + ("x " * 100) + "1221 problems tracked.</body></html>", 200)
     assert clean["fetch_status"] == "live_checked"
     assert any("1221 problems" in s for s in clean["extracted_signals"])
+
+    sample_lts_html = '<a href="/programs/Open%20Quantum%20Problems"><span>2 live</span> Open Quantum Problems 32 targets · 32 open · 0 solved here</a>'
+    parsed_progs = ser.parse_lefttosolve_programs_html(sample_lts_html)
+    assert len(parsed_progs) == 1
+    assert parsed_progs[0]["program"] == "Open Quantum Problems"
+    assert parsed_progs[0]["targets"] == 32 and parsed_progs[0]["live_agents"] == 2
+
     assert (ROOT / "docs" / "registry-delta-2026-11-26.md").exists()
     assert (ROOT / "results" / "registry_delta.json").exists()
+    assert (ROOT / "results" / "daily_registries.json").exists()
+    assert (ROOT / "results" / "lefttosolve_programs.json").exists()
+    assert (ROOT / "docs" / "DAILY_REGISTRY_TRACKER.md").exists()
 
 
 def test_b07_regression_track_b_collatz_pilot_reproducible():
-    """Verify Track B NT-005 Collatz parity probe RESULTS.json and exact Terras bijection."""
+    """Verify Track B NT-005 Collatz parity probe RESULTS.json and live Terras bijection."""
     res_path = ROOT / "research" / "runs" / "NT-005_collatz_parity_pilot" / "RESULTS.json"
     assert res_path.exists()
     data = json.loads(res_path.read_text(encoding="utf-8"))
@@ -781,20 +793,27 @@ def test_b07_regression_track_b_collatz_pilot_reproducible():
     assert len(data["terras_parity_bijection_k1_to_k12"]) == 12
     assert all(row["is_bijection"] for row in data["terras_parity_bijection_k1_to_k12"])
 
+    sys.path.insert(0, str(ROOT / "research" / "runs" / "NT-005_collatz_parity_pilot"))
+    import collatz_probe as cp
+
+    assert cp.collatz_stats(27)["steps"] == 111
+    assert cp.compressed_parity_vector(27, 8) == 0b11111011
+    assert all(row["is_bijection"] for row in cp.verify_terras_bijection(6))
+
 
 def test_b07_regression_track_b_ramsey_witnesses_reproducible():
-    """Verify Track B COMB-001 Ramsey constructive witness RESULTS.json & live re-check of P_17 and C_24."""
-    res_path = ROOT / "research" / "runs" / "COMB-001_ramsey_witness_pilot" / "RESULTS.json"
+    """Verify Track B COMB-002 Ramsey constructive witness RESULTS.json & live re-check of P_17 and C_24."""
+    res_path = ROOT / "research" / "runs" / "COMB-002_ramsey_witness_pilot" / "RESULTS.json"
     assert res_path.exists()
     data = json.loads(res_path.read_text(encoding="utf-8"))
-    assert data["problem_id"] == "COMB-001"
+    assert data["problem_id"] == "COMB-002"
     assert "OPEN" in data["epistemic_status"]
     assert data["witnesses_certified_count"] == 7
     bounds = {w["lower_bound_proved"] for w in data["witnesses"]}
     assert {"R(3,3) > 5", "R(4,4) > 17", "R(4,5) > 24", "R(5,5) > 37", "R(6,6) > 101"}.issubset(bounds)
     assert all(w["certified"] and w["cyclic_automorphism_verified"] for w in data["witnesses"])
 
-    sys.path.insert(0, str(ROOT / "research" / "runs" / "COMB-001_ramsey_witness_pilot"))
+    sys.path.insert(0, str(ROOT / "research" / "runs" / "COMB-002_ramsey_witness_pilot"))
     import ramsey_probe as rp
 
     c24 = rp.circulant_adj(24, (1, 2, 4, 8, 9))
@@ -821,7 +840,7 @@ def test_b07_regression_rubric_override_identity_and_sensitivity_diff():
         problem_overrides=sample["problem_overrides"],
         label=sample["label"],
     )
-    assert diff["problems_evaluated"] == 1900
+    assert diff["problems_evaluated"] == 2000
     assert diff["problem_overrides_applied"] == 3
     assert 0.5 < diff["rank_correlation"]["spearman_rho"] < 1.0
     assert diff["rank_correlation"]["max_abs_rank_shift"] > 100
@@ -847,3 +866,137 @@ def test_b07_regression_roadmap_no_duplicate_current_and_planned_version():
     assert f"**Current Release:** `v{ver}`" in rm
     planned = rm.split("## Planned Next Releases", 1)[1]
     assert f"`v{ver}`" not in planned, f"Current release v{ver} still listed under Planned Next Releases!"
+
+
+# ==================== 10. V2.9.0 HOSTILE-REFEREE REGRESSION GUARDS ====================
+
+
+def test_b07_regression_track_b_probe_ids_match_dataset_names(master_data):
+    """Guard H-802: every Track B probe problem_id must match the actual dataset record name (no COMB-001 Ramsey mis-ID)."""
+    assert not (ROOT / "research" / "runs" / "COMB-001_ramsey_witness_pilot").exists()
+    name_by_id = dict(zip(master_data["df"]["id"], master_data["df"]["name"]))
+    expected_keywords = {
+        "LOG-002": "Busy Beaver",
+        "NT-005": "Collatz",
+        "COMB-002": "Ramsey",
+    }
+    found_ids: set[str] = set()
+    for res_file in sorted((ROOT / "research" / "runs").glob("*/RESULTS.json")):
+        payload = json.loads(res_file.read_text(encoding="utf-8"))
+        pid = payload["problem_id"]
+        found_ids.add(pid)
+        assert pid in name_by_id, f"Track B probe {res_file} references nonexistent problem_id {pid}"
+        assert pid in expected_keywords, f"Unexpected Track B probe ID {pid}"
+        assert expected_keywords[pid].lower() in name_by_id[pid].lower(), (
+            f"Track B probe {res_file} claims {pid} but dataset maps {pid} -> {name_by_id[pid]!r}"
+        )
+    assert found_ids == set(expected_keywords.keys())
+
+
+def test_b07_regression_rag_exact_id_respects_filters():
+    """Guard H-811: exact problem-ID queries must still enforce pillar, superdomain, and verification_flag filters."""
+    wrong_pillar = search_atlas(query="NT-001", pillar="Life, Mind & Medicine", top=5, hops=0)
+    assert wrong_pillar["count"] == 0
+    right_pillar = search_atlas(query="NT-001", pillar="Pure Mathematics", top=5, hops=0)
+    assert right_pillar["count"] == 1 and right_pillar["results"][0]["id"] == "NT-001"
+    wrong_flag = search_atlas(query="NT-001", flag="disputed-human-claim", top=5, hops=0)
+    assert wrong_flag["count"] == 0
+
+
+def test_b06_mcp_rejects_non_object_json_bad_filter_and_oversized_ndjson():
+    """Guard H-812: MCP stdio server rejects non-object JSON (-32600), non-string filter args, and >1 MiB NDJSON lines."""
+    oversized = '{"jsonrpc":"2.0","id":9,"method":"ping","pad":"' + ("a" * (1_048_576 + 128)) + '"}'
+    payload = "\n".join([
+        "[1, 2, 3]",
+        json.dumps({"jsonrpc": "2.0", "id": 2, "method": "tools/call", "params": {"name": "search_problems", "arguments": {"query": "Riemann", "pillar": 123}}}),
+        oversized,
+        json.dumps({"jsonrpc": "2.0", "id": 3, "method": "ping", "params": {}}),
+    ]) + "\n"
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "mcp_server" / "server.py")],
+        input=payload,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=True,
+    )
+    resps = [json.loads(ln) for ln in proc.stdout.splitlines() if ln.strip()]
+    assert len(resps) == 4
+    assert resps[0]["error"]["code"] == -32600
+    assert resps[1]["result"]["isError"] is True and "string" in resps[1]["result"]["content"][0]["text"]
+    assert resps[2]["error"]["code"] == -32700
+    assert resps[3]["id"] == 3 and resps[3]["result"] == {}
+
+
+def test_b07_regression_rubric_override_tiebreak_matches_golden_top10():
+    """Guard H-810: rubric_override_diff.py baseline tie-break must match tests/golden/top10_css_titan.json verbatim."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import rubric_override_diff as rod
+
+    golden_ids = [r["id"] for r in json.loads((ROOT / "tests" / "golden" / "top10_css_titan.json").read_text(encoding="utf-8"))]
+    ident = rod.evaluate_rubric_override(css_weights=(0.40, 0.30, 0.20, 0.10), problem_overrides={})
+    actual_ids = [r["id"] for r in ident["top_alt_ranked_10"]]
+    assert actual_ids == golden_ids
+    with pytest.raises(ValueError, match="top_movers"):
+        rod.evaluate_rubric_override(top_movers=0)
+    with pytest.raises(ValueError, match="top_movers"):
+        rod.evaluate_rubric_override(top_movers=True)  # type: ignore[arg-type]
+
+
+def test_b07_regression_no_withdrawn_rh_claim_or_false_14files_in_active_docs():
+    """Guard H-801/H-805: active docs must cite primary RH/GRH verification sources (175,187 files) and never repeat the withdrawn claim."""
+    checked = ["README.md", "docs/faq.md", "docs/literature-search-log.md", "paper/main.tex", "src/v2_loader.py"]
+    for rel in checked:
+        txt = (ROOT / rel).read_text(encoding="utf-8")
+        assert "no primary source found" not in txt.lower(), f"Withdrawn RH erratum text leaked in {rel}"
+        assert "(14 files)" not in txt, f"False '(14 files)' RH archive size still in {rel}"
+    bib = (ROOT / "paper" / "refs.bib").read_text(encoding="utf-8")
+    assert "leanprover-community.github.io/blog/posts/riemann-hypothesis/" in bib
+    assert "math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/" in bib
+
+
+def test_b07_regression_no_overstated_lean_kernel_or_comb001_ramsey_in_active_docs():
+    """Guard H-802/H-803/H-809: active docs and paper must not overstate kernel independence, COMB-001 Ramsey, or stale 10-tool MCP."""
+    active = [
+        "README.md", "CLAIMS.md", "VERIFICATION.md", "EVIDENCE.md", "LIMITATIONS.md",
+        "ARCHITECTURE.md", "AGENTS.md", "llms.txt", "paper/main.tex", "blueprint/index.html",
+        "docs/WHITE_PAPER.md", "docs/architecture.md", "docs/faq.md", "lean/README.md", "mcp_server/README.md",
+    ]
+    forbidden = [
+        re.compile(r"six independent proof kernels|6 independent proof kernels", re.I),
+        re.compile(r"COMB-001_ramsey|COMB-001.*Ramsey", re.I),
+        re.compile(r"\b10-tool\s+MCP", re.I),
+    ]
+    hits = []
+    for rel in active:
+        txt = (ROOT / rel).read_text(encoding="utf-8")
+        for rx in forbidden:
+            if rx.search(txt):
+                hits.append((rel, rx.pattern))
+    assert not hits, f"Overstated or stale text found in active docs: {hits}"
+
+
+def test_b07_regression_daily_sync_workflow_and_checksum_isolation():
+    """Verify daily 16-registry & 25-front Left to Solve sync workflow exists and daily telemetry stays outside frozen CHECKSUMS.sha256."""
+    wf = (ROOT / ".github" / "workflows" / "daily-registry-sync.yml").read_text(encoding="utf-8")
+    assert 'cron: "0 6 * * *"' in wf and "--live --write-daily" in wf
+    pages_wf = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+    assert 'cron: "15 6 * * *"' in pages_wf and "daily_registries.json" in pages_wf
+    chk = (ROOT / "CHECKSUMS.sha256").read_text(encoding="utf-8")
+    for volatile_rel in (
+        "results/daily_registries.json",
+        "results/lefttosolve_programs.json",
+        "results/daily_registry_history.jsonl",
+        "docs/DAILY_REGISTRY_TRACKER.md",
+    ):
+        assert volatile_rel not in chk, f"Volatile daily file {volatile_rel} must NOT be in release-frozen CHECKSUMS.sha256!"
+
+
+def test_b07_regression_lefttosolve_100_problems_and_25_programs(master_data):
+    """Verify all 100 Left to Solve problems (LTS-001..LTS-100) and all 25 program fronts are indexed cleanly."""
+    df = master_data["df"]
+    lts_df = df[df["id"].str.startswith("LTS-")]
+    assert len(lts_df) == 100
+    assert (lts_df["verification_flag"] == "primary-registry-indexed").all()
+    assert len(master_data["df_lefttosolve_programs"]) == 25

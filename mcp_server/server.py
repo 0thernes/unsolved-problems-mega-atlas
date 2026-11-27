@@ -3,13 +3,13 @@
 # Copyright (c) 2026 Alexander Stephen Donahue
 """
 Model Context Protocol (MCP) Stdio JSON-RPC 2.0 Server for the
-Unsolved Problems Mega-Atlas (V2.8.0, Alexander Stephen Donahue).
+Unsolved Problems Mega-Atlas (V2.9.0, Alexander Stephen Donahue).
 
 Zero external MCP SDK dependency — supports BOTH newline-delimited JSON-RPC stdio
 and `Content-Length:` framed LSP/MCP stdio over `outputs/MegaAtlas_Unsolved_Problems_V2.sqlite`
 (auto-built deterministically on first run or version upgrade).
 
-Exposes 11 grounded scientific research tools to Claude Code, Antigravity,
+Exposes 12 grounded scientific research tools to Claude Code, Antigravity,
 Cursor, Gemini CLI, and autonomous research agents:
   1. search_problems                  — Hybrid BM25 + bigram + PageRank RAG + 1-hop neighbors
   2. get_problem                      — Full problem dossier by exact Problem ID
@@ -19,9 +19,10 @@ Cursor, Gemini CLI, and autonomous research agents:
   6. get_pillar_summary               — 8-Macro-Pillar quantitative comparison scorecard
   7. get_substrate_layer_summary      — 8-Substrate × 7-Abstraction-Layer (`L0..L6`) comparative matrix
   8. get_margin_and_gradient_extremes — Extremes of Hardness-Tractability gradient, CSS-Titan margin & trans-pillar bridges
-  9. list_author_frontier_contributions — 17 companion archive rows mapped to atlas IDs (kinds per the archive ledger RESULTS.md; parent problems remain OPEN)
+  9. list_author_frontier_contributions — 20 companion archive rows covering all 27 other audited archive entries in RESULTS.md (parent problems remain OPEN)
  10. get_atlas_provenance             — ORCID, Lean 4.35.0 audit status and scope, epistemic boundaries & Apache-2.0/CC-BY-4.0 license
  11. simulate_rubric_override         — Community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard, movers & Quadrant shifts)
+ 12. get_live_registry_tracker        — Daily-synced 16 public open-problem trackers & all 25 Left to Solve mathematical fronts (`lefttosolve.com/programs`)
 """
 
 from __future__ import annotations
@@ -39,8 +40,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from query import DEFAULT_DB, compare_two_problems, ensure_sqlite_db, search_atlas  # noqa: E402
 from rubric_override_diff import DEFAULT_CSS_WEIGHTS, evaluate_rubric_override  # noqa: E402
 
-ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.8.0"
-MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on Content-Length JSON-RPC frames
+ATLAS_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip() if (ROOT / "VERSION").exists() else "2.9.0"
+MAX_FRAME_BYTES = 1_048_576  # 1 MiB ceiling on both Content-Length and NDJSON frames
 MAX_QUERY_CHARS = 4096
 
 
@@ -50,6 +51,16 @@ def _parse_clamped_int(val: Any, default: int, lo: int, hi: int, name: str) -> i
     if isinstance(val, bool) or not isinstance(val, int):
         raise ValueError(f"Argument '{name}' must be an integer (not bool/str)")
     return max(lo, min(hi, val))
+
+
+def _parse_opt_str(val: Any, name: str, max_len: int = 256) -> str | None:
+    if val is None:
+        return None
+    if not isinstance(val, str):
+        raise ValueError(f"Argument '{name}' must be a string")
+    if len(val) > max_len:
+        raise ValueError(f"Argument '{name}' exceeds {max_len} characters")
+    return val
 SERVER_INFO = {
     "name": "unsolved-problems-mega-atlas",
     "version": ATLAS_VERSION,
@@ -70,7 +81,7 @@ def _count_lean_axioms_audited() -> int:
 TOOLS: List[Dict[str, Any]] = [
     {
         "name": "search_problems",
-        "description": "Search all 1,900 unsolved, open, and hard problems using Hybrid BM25 + Title-Bigram + Knowledge-Graph PageRank Authority ranking, with optional pillar/superdomain/verification_flag filters and 1-hop graph expansion.",
+        "description": "Search all 2,000 unsolved, open, and hard problems using Hybrid BM25 + Title-Bigram + Knowledge-Graph PageRank Authority ranking, with optional pillar/superdomain/verification_flag filters and 1-hop graph expansion.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -155,7 +166,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "list_author_frontier_contributions",
-        "description": "List 17 author-curated companion rows from 0thernes-research-archive mapped to parent Mega-Atlas IDs. Each row names its results in the archive ledger RESULTS.md and their kind (only section A records answers to open questions from the literature), with conflict-of-interest, non-peer-reviewed status and parent-still-OPEN flags (0/1,900 atlas problems solved).",
+        "description": "List 20 author-curated companion rows from 0thernes-research-archive covering all 27 other audited archive entries in RESULTS.md (R1-R94, with R85 = this repo) mapped to parent Mega-Atlas IDs. Only section A records answers to open questions from the literature; all entries carry conflict-of-interest, non-peer-reviewed status and parent-still-OPEN flags (0/2,000 atlas problems solved by this work).",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
@@ -165,7 +176,7 @@ TOOLS: List[Dict[str, Any]] = [
     },
     {
         "name": "simulate_rubric_override",
-        "description": "Simulate alternative CSS weights [w_diff, w_cent, w_age, w_tract] (sum=1.0) and/or per-problem editorial rating overrides (1..10) across all 1,900 problems, returning Spearman rho, Kendall tau, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers (makes Claim C9 quantitatively falsifiable).",
+        "description": "Simulate alternative CSS weights [w_diff, w_cent, w_age, w_tract] (sum=1.0) and/or per-problem editorial rating overrides (1..10) across all 2,000 problems, returning Spearman rho, Kendall tau, Top-25 Jaccard overlap, Quadrant migrations, and top rank movers (makes Claim C9 quantitatively falsifiable).",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -182,6 +193,17 @@ TOOLS: List[Dict[str, Any]] = [
                 },
                 "label": {"type": "string", "default": "mcp-rubric-override"},
                 "top_movers": {"type": "integer", "minimum": 1, "maximum": 25, "default": 5},
+            },
+        },
+    },
+    {
+        "name": "get_live_registry_tracker",
+        "description": "Return the daily-synced tracker covering all 16 global open-problem registries and all 25 mathematical programs on Left to Solve (https://lefttosolve.com/programs, 59,396 total targets / 1,939 Lean-4 open), with optional program substring and Lean-formalized-only filters.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "program_filter": {"type": "string", "description": "Optional case-insensitive substring filter over Left to Solve program names"},
+                "formalized_only": {"type": "boolean", "default": False, "description": "If true, return only Lean-4 formalized Left to Solve programs"},
             },
         },
     },
@@ -212,9 +234,9 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         hops = _parse_clamped_int(args.get("hops"), 1, 0, 1, "hops")
         return search_atlas(
             query=q_raw,
-            pillar=args.get("pillar"),
-            superdomain=args.get("superdomain"),
-            flag=args.get("flag"),
+            pillar=_parse_opt_str(args.get("pillar"), "pillar"),
+            superdomain=_parse_opt_str(args.get("superdomain"), "superdomain"),
+            flag=_parse_opt_str(args.get("flag"), "flag"),
             top=top,
             hops=hops,
         )
@@ -256,12 +278,14 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         limit = _parse_clamped_int(args.get("limit"), 15, 1, 100, "limit")
         where = ["1=1"]
         params: List[Any] = []
-        if args.get("pillar"):
+        pillar_f = _parse_opt_str(args.get("pillar"), "pillar")
+        substrate_f = _parse_opt_str(args.get("substrate"), "substrate")
+        if pillar_f:
             where.append("macro_pillar = ?")
-            params.append(args["pillar"])
-        if args.get("substrate"):
+            params.append(pillar_f)
+        if substrate_f:
             where.append("substrate_class = ?")
-            params.append(args["substrate"])
+            params.append(substrate_f)
         params.append(limit)
         rows = _query_db(
             f"SELECT id, name, macro_pillar, superdomain, substrate_class, abstraction_layer, year_formulated, "
@@ -338,7 +362,13 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
                 "kernels": ["lean", "leanchecker-paranoid", "lean4lean", "nanoda_bin", "con-leche", "con-ron"],
                 "axiom_allowlist": ["propext", "Quot.sound"],
                 "axiom_scope": "Each of the 103 audited theorems depends on at most propext and Quot.sound (#print axioms). The whole-environment lake check --paranoid step also reports Classical.choice, which the per-theorem audit does not cover.",
-                "boundary": "Integer and list invariants of the atlas software model only: scoring bounds, monotonicity of CSS, Titan and leverage, quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking lemma, a dedup bound, the AutoResearch keep/discard rule, gradient/margin bounds, NonVacuity witnesses and AdversarialTests refutations. No Lean statement refers to the 1,900-row data, its 5,808-edge graph or biconnectivity (checked in Python). Several counted theorems are literal arithmetic identities or restate a hypothesis. Does NOT prove any of the 1,900 open problems.",
+                "boundary": (
+                    "Integer and list invariants of the atlas software model only: scoring bounds, monotonicity of CSS, Titan and leverage, "
+                    "quadrant and era maps, taxonomy list sizes, a generic list-multigraph handshaking lemma, a dedup bound, the AutoResearch keep/discard rule, "
+                    "gradient/margin bounds, NonVacuity witnesses and AdversarialTests refutations. "
+                    f"No Lean statement refers to the {int(meta.get('total_problems', 2000)):,}-row data, its {int(meta.get('total_graph_edges', 6111)):,}-edge graph or biconnectivity (checked in Python). "
+                    f"Several counted theorems are literal arithmetic identities or restate a hypothesis. Does NOT prove any of the {int(meta.get('total_problems', 2000)):,} open problems."
+                ),
             },
             "ai_disclosure": "Curated by independent researcher Alexander Stephen Donahue with disclosed AI assistance; quantitative rubric scores are falsifiable editorial estimates, not peer-reviewed measurements.",
             "summary_stats": meta,
@@ -362,6 +392,56 @@ def dispatch_tool(name: str, args: Dict[str, Any]) -> Dict[str, Any]:
             label=label,
             top_movers=top_movers,
         )
+    if name == "get_live_registry_tracker":
+        prog_filter = _parse_opt_str(args.get("program_filter"), "program_filter")
+        form_only = args.get("formalized_only", False)
+        if not isinstance(form_only, bool):
+            raise ValueError("Argument 'formalized_only' must be a boolean")
+        daily_path = ROOT / "results" / "daily_registries.json"
+        if daily_path.exists():
+            payload = json.loads(daily_path.read_text(encoding="utf-8"))
+            progs = list(payload.get("lefttosolve_programs", []))
+            regs = list(payload.get("registries", []))
+            checked_utc = payload.get("checked_utc")
+            deltas = payload.get("daily_deltas", [])
+            source_mode = payload.get("mode", "live")
+        else:
+            db_progs = _query_db("SELECT * FROM lefttosolve_programs")
+            progs = [
+                {
+                    "program": r["Program"],
+                    "formalized_in_lean": r["Formalized_In_Lean"] == "Yes",
+                    "targets": int(r["Targets"]),
+                    "open": int(r["Open"]),
+                    "solved_here": int(r["Solved_Here"]),
+                    "live_agents": 0,
+                    "url": r["URL"],
+                }
+                for r in db_progs
+            ]
+            regs = _query_db("SELECT * FROM registries_nov2026")
+            checked_utc = "baseline-snapshot"
+            deltas = ["Loaded committed baseline snapshot (run scripts/sync_external_registries.py --live --write-daily for live counts)."]
+            source_mode = "sqlite_baseline"
+        if prog_filter:
+            pf = prog_filter.lower()
+            progs = [p for p in progs if pf in str(p.get("program", "")).lower()]
+        if form_only:
+            progs = [p for p in progs if p.get("formalized_in_lean")]
+        return {
+            "source_url": "https://lefttosolve.com/programs",
+            "update_cadence": "Daily at 06:00 UTC via .github/workflows/daily-registry-sync.yml",
+            "policy": "Advisory daily telemetry ONLY — zero automatic problem retirement.",
+            "checked_utc": checked_utc,
+            "mode": source_mode,
+            "daily_deltas": deltas,
+            "registries_polled_count": len(regs),
+            "lefttosolve_programs_matched": len(progs),
+            "lefttosolve_targets_sum": sum(int(p.get("targets", 0)) for p in progs),
+            "lefttosolve_open_sum": sum(int(p.get("open", 0)) for p in progs),
+            "lefttosolve_programs": progs,
+            "registries": regs,
+        }
     raise ValueError(f"Unknown tool: {name}")
 
 
@@ -432,9 +512,17 @@ def serve_stdio() -> None:
     """Serve BOTH newline-delimited JSON-RPC 2.0 and `Content-Length:` framed MCP stdio."""
     buf = sys.stdin.buffer
     while True:
-        line = buf.readline()
+        line = buf.readline(MAX_FRAME_BYTES + 1)
         if not line:
             break
+        if len(line) > MAX_FRAME_BYTES and not line.endswith(b"\n"):
+            # Drain remainder of oversized line cleanly and emit JSON-RPC parse error
+            while True:
+                chunk = buf.readline(MAX_FRAME_BYTES)
+                if not chunk or chunk.endswith(b"\n"):
+                    break
+            _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Line exceeds {MAX_FRAME_BYTES} byte cap"}}, False)
+            continue
         stripped = line.strip()
         if not stripped:
             continue
@@ -447,19 +535,25 @@ def serve_stdio() -> None:
                 _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Invalid Content-Length: {exc}"}}, framed)
                 continue
             while True:
-                h = buf.readline()
+                h = buf.readline(MAX_FRAME_BYTES)
                 if not h or h in (b"\r\n", b"\n"):
                     break
             if length <= 0 or length > MAX_FRAME_BYTES:
                 _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Content-Length out of bounds (1..{MAX_FRAME_BYTES}): {length}"}}, framed)
                 continue
             raw_body = buf.read(length)
+            if len(raw_body) < length:
+                _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Truncated Content-Length frame ({len(raw_body)}/{length} bytes)"}}, framed)
+                break
         else:
             raw_body = stripped
         try:
             req = json.loads(raw_body.decode("utf-8"))
         except Exception as exc:
             _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32700, "message": f"Parse error: {exc}"}}, framed)
+            continue
+        if not isinstance(req, dict):
+            _emit({"jsonrpc": "2.0", "id": None, "error": {"code": -32600, "message": "Invalid Request: JSON-RPC payload must be a JSON object"}}, framed)
             continue
         resp = handle_request(req)
         if resp is not None:

@@ -4,6 +4,9 @@ name: Deploy Interactive Web Atlas & Lean Proof Blueprint to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Republish daily 15 min after daily-registry-sync.yml (06:00 UTC) so live JSON hydrates GitHub Pages
+    - cron: "15 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,13 +24,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Assemble static site (Interactive Atlas + 30 Charts + Lean Blueprint + FAIR/LLMs metadata)
+      - name: Assemble static site (Interactive Atlas + 30 Charts + Live Daily JSON + Lean Blueprint + FAIR/LLMs metadata)
         run: |
           mkdir -p _site/charts _site/blueprint
           cp outputs/MegaAtlas_Interactive_Dashboard_V2.html _site/index.html
           cp outputs/charts/* _site/charts/
           cp blueprint/index.html _site/blueprint/index.html
           cp llms.txt llms-full.txt croissant.json ro-crate-metadata.json _site/
+          if [ -f results/daily_registries.json ]; then cp results/daily_registries.json _site/; fi
+          if [ -f results/lefttosolve_programs.json ]; then cp results/lefttosolve_programs.json _site/; fi
+          if [ -f results/daily_registry_history.jsonl ]; then cp results/daily_registry_history.jsonl _site/; fi
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,6 +1,6 @@
-# Track B Pilot #3 — `COMB-001`: Constructive Ramsey Lower-Bound Witness Certification
+# Track B Pilot #3 — `COMB-002`: Constructive Ramsey Lower-Bound Witness Certification
 
-- **Atlas Problem ID:** `COMB-001` (*Diagonal & Off-Diagonal Ramsey Numbers `R(k,k)`*)
+- **Atlas Problem ID:** `COMB-002` (*Exact Ramsey Numbers `R(5, 5)` and Diagonal Asymptotic Growth Rate*)
 - **Epistemic Status:** **OPEN** — Certifies exact finite lower-bound graph witnesses only; makes **zero** claim on `R(5,5) ∈ [43, 46]`, `R(6,6) ∈ [102, 160]`, or general `R(k,k)`.
 - **Script:** [`ramsey_probe.py`](ramsey_probe.py) · **Deterministic Artifact:** [`RESULTS.json`](RESULTS.json)
 
@@ -21,5 +21,5 @@ Every graph's symmetry and cyclic automorphism `i ↦ (i + 1) mod n` are explici
 ## Reproduction
 
 ```bash
-python research/runs/COMB-001_ramsey_witness_pilot/ramsey_probe.py
+python research/runs/COMB-002_ramsey_witness_pilot/ramsey_probe.py
 ```

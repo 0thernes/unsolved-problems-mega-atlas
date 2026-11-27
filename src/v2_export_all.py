@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
-"""V2.8.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 15-Sheet XLSX, Legacy XLS, MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
+"""V2.9.0 Mega-Atlas Unified Exporter (Alexander Stephen Donahue): CSV, TSV, JSON(.gz), JSONL(.gz), SQLite+FTS5, 16-Sheet XLSX, Legacy XLS (build/), MD, TXT, RANKING.md, Accessible Interactive HTML (<4 MB) & Directory PDF Monograph (build/)."""
 
 import argparse
 import datetime
@@ -150,6 +150,7 @@ def export_csv_tsv_json(data):
             "summary_stats": data["summary_stats"],
         },
         "external_registries_nov2026": data["df_registries"].to_dict(orient="records"),
+        "lefttosolve_programs_baseline": data["df_lefttosolve_programs"].to_dict(orient="records"),
         "ai_verification_audit_nov2026": data["df_ai_audit"].to_dict(orient="records"),
         "author_frontier_contributions": data["df_author_contributions"].to_dict(orient="records"),
         "macro_pillar_comparison": data["df_pillars"].to_dict(orient="records"),
@@ -190,6 +191,7 @@ def export_csv_tsv_json(data):
         ).to_sql("edges", conn, index=False, if_exists="replace")
         data["df_ai_audit"].to_sql("ai_audit_nov2026", conn, index=False, if_exists="replace")
         data["df_registries"].to_sql("registries_nov2026", conn, index=False, if_exists="replace")
+        data["df_lefttosolve_programs"].to_sql("lefttosolve_programs", conn, index=False, if_exists="replace")
         data["df_author_contributions"].to_sql("author_frontier_contributions", conn, index=False, if_exists="replace")
         data["df_benchmarks"].to_sql("benchmarks", conn, index=False, if_exists="replace")
         data["df_contrasts"].to_sql("contrasts", conn, index=False, if_exists="replace")
@@ -272,7 +274,7 @@ def export_master_ranking_md(data):
         "    + 0.10 * (100 - tractability_2050 * 10)",
         "```",
         "",
-        f"- **Formally Verified Formula Invariants:** Exact bounds, monotonicity, weight normalization, and 300-year antiquity saturation are machine-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, {lean_n} audited theorems, zero `sorry` in `lean/`, 6 independent kernels via `scripts/verify_lean_six_kernels.sh`, axioms strictly within `[propext, Quot.sound]`).",
+        f"- **Formally Verified Software-Model Invariants:** Discrete bounds, monotonicity, weight normalization, and 300-year antiquity saturation of the scoring software model are kernel-checked in pure **Lean 4.35.0** (`lean/MegaAtlasProofs/Scoring.lean`, {lean_n} audited theorems of 117 declarations in `lean/`, zero `sorry` in `lean/`, per-theorem `#print axioms` strictly within `[propext, Quot.sound]`; the 9 Palomar comparator targets are also accepted by six kernel checks across five distinct implementations via `scripts/verify_lean_six_kernels.sh`). No Lean statement refers to the {s['total_problems']:,}-row data or its graph (checked in Python).",
         "- **Epistemic Honesty Clause:** Input scores (`difficulty`, `impact`, `tractability_2050`, `interdisciplinarity`) are **curated AI-assisted editorial estimates**, not peer-reviewed consensus measurements. Treat this ranking as a **falsifiable argument**: disagree with a score? Edit the source entry in `src/v2_data/`, rebuild, and argue from the diff. See [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md), [`CLAIMS.md`](CLAIMS.md), and [`VERIFICATION.md`](VERIFICATION.md).",
         "",
         "## Top 250 Problems Overall (Ranked by 0thernes CSS)",
@@ -323,9 +325,9 @@ def export_master_ranking_md(data):
 
     lines.extend([
         "",
-        "## Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)",
+        f"## Author-Curated Companion Archive Entries (0 / {s['total_problems']:,} Atlas Problems Solved by This Work)",
         "",
-        f"> **Conflict-of-Interest & Scope Disclosure:** The {len(data['df_author_contributions'])} companion archive entries below are independent preprints and formal builds by Alexander Stephen Donahue (ORCID `0009-0006-8168-9648`, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving discrete structural invariants. Every overarching Mega-Atlas parent problem remains **OPEN** (`0 / 1,900` retired).",
+        f"> **Conflict-of-Interest & Scope Disclosure:** The {len(data['df_author_contributions'])} companion rows below cross-map all 27 other audited entries in [`0thernes-research-archive/RESULTS.md`](https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md) (94 audited results across 28 entries including R85 for this repository; Alexander Stephen Donahue, ORCID `0009-0006-8168-9648`, self-published, not externally peer-reviewed). Only section A of `RESULTS.md` records answers to open questions stated by other authors (R1 for `0TH-2026-006`; R44 and R45 for `0TH-2026-009`). Every overarching Mega-Atlas parent problem remains **OPEN** (`0 / {s['total_problems']:,}` solved by this work).",
         "",
         "| Archive ID | Repository | Parent Atlas IDs | Scoped Machine-Checked Result | Parent Status |",
         "|---|---|---|---|---|",
@@ -422,7 +424,7 @@ def export_excel_files(data):
     ws_d.row_dimensions[1].height = 36
 
     ws_d.merge_cells("A2:I2")
-    ws_d["A2"] = f"Author: {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · 0thernes CSS + Titan Index · 6-Kernel Lean 4.35.0 Formal Invariants · AI-Assisted Disclosure"
+    ws_d["A2"] = f"Author: {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · 0thernes CSS + Titan Index · Lean 4.35.0 Software-Model Invariants · AI-Assisted Disclosure"
     ws_d["A2"].font = Font(name="Calibri", size=10, italic=True, color="334155")
     ws_d["A2"].fill = PatternFill("solid", fgColor="E2E8F0")
     ws_d["A2"].alignment = Alignment(horizontal="center", vertical="center")
@@ -515,11 +517,13 @@ def export_excel_files(data):
                            (L_CSS, "EFF6FF", "FDE047", "DC2626")]:
         ws_m.conditional_formatting.add(f"{cl}2:{cl}{n_rows}", ColorScaleRule(start_type="min", start_color=lc, mid_type="percentile", mid_value=50, mid_color=mc, end_type="max", end_color=hc))
 
-    # Sheets 3–15
+    # Sheets 3–16
     write_sheet(wb, "Nov2026_AI_Claims_Audit", data["df_ai_audit"], header_hex="B91C1C",
                 wrap_names=["Problem", "Claimant_System", "Artifact_Type", "Machine_Check_Status", "Human_Fidelity_Audit", "Official_Status_Nov2026"])
     write_sheet(wb, "Global_Registries_2026", data["df_registries"], header_hex="1D4ED8",
                 wrap_names=["Registry", "Scope", "Open_Count_Nov2026", "Verification_Standard", "Nov2026_Highlight"])
+    write_sheet(wb, "LeftToSolve_25_Programs", data["df_lefttosolve_programs"], header_hex="0284C7",
+                wrap_names=["Program", "URL"])
     ws_sd = write_sheet(wb, "Superdomain_Scorecard", data["df_superdomains"], header_hex="1E3A8A", wrap_names=["Superdomain", "Flagship_Titan_Name"])
     bar_sd = BarChart()
     bar_sd.type = "bar"
@@ -575,9 +579,9 @@ def export_excel_files(data):
             zi.external_attr = 0o644 << 16
             zout.writestr(zi, data_bytes)
     os.replace(p_xlsx_tmp, p_xlsx)
-    print(f"  Saved 15-sheet XLSX: {p_xlsx} ({os.path.getsize(p_xlsx)/1048576:.2f} MB)")
+    print(f"  Saved 16-sheet XLSX: {p_xlsx} ({os.path.getsize(p_xlsx)/1048576:.2f} MB)")
 
-    # Legacy BIFF .xls (Excel 97–2003, supports up to 65,536 rows cleanly!)
+    # Legacy BIFF .xls (Excel 97–2003) saved in gitignored build/ & attached to GitHub Releases (A24 <5 MB git hygiene)
     book = xlwt.Workbook(encoding="utf-8")
     hs = xlwt.easyxf("font: bold on, color white; pattern: pattern solid, fore_colour dark_blue; align: wrap on, vert centre")
     cs = xlwt.easyxf("align: wrap on, vert top")
@@ -601,14 +605,15 @@ def export_excel_files(data):
     add_xls("Master_Catalog", df)
     add_xls("Nov2026_AI_Audit", data["df_ai_audit"])
     add_xls("Global_Registries", data["df_registries"])
+    add_xls("LeftToSolve_25_Progs", data["df_lefttosolve_programs"])
     add_xls("Superdomain_Scorecard", data["df_superdomains"])
     add_xls("Macro_Pillar_Comp", data["df_pillars"])
     add_xls("Keystone_Top100", data["df_keystones"].head(100))
     add_xls("Pairwise_Contrasts", data["df_contrasts"])
     add_xls("Resolved_Benchmarks", data["df_benchmarks"])
-    p_xls = os.path.join(OUT_DIR, "MegaAtlas_Unsolved_Problems_V2_Legacy.xls")
+    p_xls = os.path.join(BUILD_DIR, "MegaAtlas_Unsolved_Problems_V2_Legacy.xls")
     book.save(p_xls)
-    print(f"  Saved 8-sheet Legacy BIFF XLS: {p_xls}")
+    print(f"  Saved 9-sheet Legacy BIFF XLS (build/): {p_xls} ({os.path.getsize(p_xls)/1048576:.2f} MB)")
 
 
 # ==================== 3. MARKDOWN & PLAIN TEXT ====================
@@ -621,14 +626,16 @@ def export_md_and_txt(data):
     md = []
     md.append(f"# V{s['atlas_version']} Mega-Atlas: Exhaustive Deep-Dive Comparison & Contrast of Humanity's {s['total_problems']:,} Unsolved, Open & Hard Problems (November 2026)\n")
     md.append(f"> **Author / Curator:** {s['author']} ({s['affiliation']}, ORCID [`{s['orcid']}`](https://orcid.org/{s['orcid']})) · **Version:** `v{s['atlas_version']}` · **Dual License:** Data CC BY 4.0 / Code Apache-2.0\n")
-    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × {s['total_subdomains']:,} subdomains**, wired into **1 biconnected {s['total_graph_edges']:,}-edge** cross-disciplinary graph (**0 articulation points**, **{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Formal Invariants:** {lean_n} audited theorems across 6 independent kernels (0 `sorry` in `lean/`, `[propext, Quot.sound]`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; all 12 Fall/Nov 2026 AI proof claims remain officially unretired pending independent verification.\n")
+    md.append(f"> **Scale & Verification:** **{s['total_problems']:,}** deduplicated problems spanning **8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Abstraction Layers × {s['total_subdomains']:,} subdomains**, wired into **1 biconnected {s['total_graph_edges']:,}-edge** cross-disciplinary graph audited in Python/NetworkX (**0 articulation points**, **{s['cross_superdomain_edge_pct']}%** cross-superdomain, **{s['cross_pillar_edge_pct']}%** cross-pillar) · **Mean 0thernes CSS:** `{s['mean_css_score']}/100` · **Pure Lean 4.35.0 Software-Model Suite:** {lean_n} audited theorems (0 `sorry` in `lean/`, per-theorem `#print axioms` `⊆ [propext, Quot.sound]`; 9 Palomar targets accepted by 6 kernel checks across 5 distinct implementations) · **Daily Automated Registry Sync:** 16 public trackers + all 25 Left to Solve (`lefttosolve.com/programs`) fronts synced daily via GitHub Actions (`docs/DAILY_REGISTRY_TRACKER.md`) · **AI-Assisted Disclosure:** Quantitative scores are transparent editorial estimates, not peer-reviewed measurements; 0/{s['total_problems']:,} Atlas problems are solved by this work; all 12 Fall/Nov 2026 AI proof claims remain officially unretired at CMI pending complete human exposition and peer review.\n")
 
-    md.append("## 1. November 25, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
-    md.append("No fixed finite count of open human problems exists—active mathematical registries alone track well over 1,100–2,000+ open questions (`ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:\n")
+    md.append("## 1. November 25–26, 2026 Special Report: Why 'Open vs. Solved' Is Uniquely Volatile Right Now\n")
+    md.append("No fixed finite count of open human problems exists—active mathematical registries alone track tens of thousands of open questions (`Left to Solve`: 59,396 total targets across 25 live mathematical fronts, 1,939 Lean-4 formalized open; `ProofAtlas.ai`: 1,100+ eligible / 243 open in Top-500; `erdosproblems.com`: ~1,221 tracked / ~630+ open; `Kourovka Notebook`: >1,000 group theory problems; `Kirby List`: 360+ low-dimensional topology problems). In Fall–November 2026, rapid frontier AI proof announcements triggered an unprecedented verification bottleneck:\n")
     md.append(df_to_md(data["df_ai_audit"]) + "\n")
-    md.append("### Global Open-Problem Registries & Scale Comparison (November 2026)\n")
+    md.append(f"### Global Open-Problem Registries & Scale Comparison ({len(data['df_registries'])} Major Trackers — Synced Daily)\n")
     md.append(df_to_md(data["df_registries"]) + "\n")
-    md.append("### Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)\n")
+    md.append(f"### Left to Solve — All {len(data['df_lefttosolve_programs'])} Live Mathematical Programs (`https://lefttosolve.com/programs`)\n")
+    md.append(df_to_md(data["df_lefttosolve_programs"]) + "\n")
+    md.append(f"### Author-Curated Scoped Frontier Preprints (0 / {s['total_problems']:,} Overarching Atlas Parents Retired)\n")
     md.append("> *COI & Scope Notice:* Independent preprints by Alexander Stephen Donahue (not externally peer-reviewed); every parent Atlas problem remains **OPEN**.\n")
     md.append(df_to_md(data["df_author_contributions"]) + "\n")
     md.append("![Nov 2026 Status & Registries](charts/11_nov2026_status_and_registries.png)\n")
@@ -715,7 +722,7 @@ def export_md_and_txt(data):
     bar = "=" * 116
     txt.extend([bar, f"  V{s['atlas_version']} MEGA-ATLAS OF HUMANITY'S {s['total_problems']:,} UNSOLVED, OPEN & HARD PROBLEMS (NOV 2026)",
                 f"  Author: {s['author']} ({s['affiliation']} | ORCID: {s['orcid']}) | Dual License: CC BY 4.0 (Data) / Apache-2.0 (Code)",
-                f"  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | {s['total_graph_edges']:,} Edges (0 Art. Pts) | {lean_n} Pure Lean 4.35.0 Theorems (6 Kernels)", bar, ""])
+                f"  8 Pillars | 28 Superdomains | 8 Substrates | 7 Layers | {s['total_graph_edges']:,} Edges (0 Art. Pts, Python) | {lean_n} Audited Lean 4.35.0 Model Theorems", bar, ""])
     txt.append("[1] EXECUTIVE SUMMARY METRICS\n" + "-" * 116)
     for k, v in s.items():
         if k != "module_counts":
@@ -771,19 +778,45 @@ def export_md_and_txt(data):
     print(f"  Saved Plain Text Mega-Reference: {p_txt} ({len(txt):,} lines)")
 
 
-# ==================== 4. INTERACTIVE HTML (<4 MB, WCAG 2.2 AA ACCESSIBLE, COLUMNAR JSON) ====================
+# ==================== 4. INTERACTIVE HTML (<4 MB, WCAG 2.2 AA ACCESSIBLE, DICT-COLUMNAR JSON + LIVE DAILY SYNC) ====================
 def export_interactive_html(data):
     df = data["df"]
     s = data["summary_stats"]
     lean_n = _lean_theorem_count()
     cols = list(df.columns)
-    rows = [[None if pd.isna(v) else (v.item() if hasattr(v, "item") else v) for v in row] for row in df.itertuples(index=False)]
+    dict_cols = [
+        "macro_pillar", "superdomain", "problem_type", "epistemic_class",
+        "status_2026", "primary_bottleneck", "scale_regime", "verification_type",
+        "era", "verification_flag", "strategic_quadrant", "substrate_class",
+        "abstraction_layer", "margin_role", "ai_verification_nov2026",
+    ]
+    dict_col_idxs = {cols.index(c): c for c in dict_cols if c in cols}
+    enum_tables = {}
+    enum_lookup = {}
+    for ci, cname in dict_col_idxs.items():
+        uniq_vals = list(dict.fromkeys(
+            None if pd.isna(v) else (v.item() if hasattr(v, "item") else v)
+            for v in df[cname]
+        ))
+        enum_tables[str(ci)] = uniq_vals
+        enum_lookup[ci] = {v: idx for idx, v in enumerate(uniq_vals)}
+
+    rows = []
+    for row in df.itertuples(index=False):
+        r_enc = []
+        for ci, v in enumerate(row):
+            val = None if pd.isna(v) else (v.item() if hasattr(v, "item") else v)
+            r_enc.append(enum_lookup[ci][val] if ci in enum_lookup else val)
+        rows.append(r_enc)
+
     cols_json = json.dumps(cols, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    enum_json = json.dumps(enum_tables, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     rows_json = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     contrasts_json = json.dumps(data["df_contrasts"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     bench_json = json.dumps(data["df_benchmarks"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     audit_json = json.dumps(data["df_ai_audit"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     regs_json = json.dumps(data["df_registries"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    lts_json = json.dumps(data["df_lefttosolve_programs"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     contribs_json = json.dumps(data["df_author_contributions"].to_dict(orient="records"), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     pal_json = json.dumps(PILLAR_HEX, separators=(",", ":"))
 
@@ -814,7 +847,7 @@ def export_interactive_html(data):
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none';" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none';" />
 <meta name="referrer" content="no-referrer" />
 <title>V{s['atlas_version']} Mega-Atlas: {s['total_problems']:,} Unsolved, Open &amp; Hard Problems · Alexander S. Donahue (Nov 2026)</title>
 <style>
@@ -917,7 +950,7 @@ def export_interactive_html(data):
   <div class="hdr-top">
     <div>
       <h1>V{s['atlas_version']} Mega-Atlas: Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems (Nov 2026)</h1>
-      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Graph Edges · 0thernes CSS + Titan Index · {lean_n} Pure Lean 4.35.0 Theorems (6 Kernels / Palomar) · Hybrid RAG (100% MRR@5) + 10-Tool MCP Server + Karpathy AutoResearch · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements.</i></div>
+      <div class="sub">Curated by <b>{s['author']}</b> ({s['affiliation']} · ORCID <a href="https://orcid.org/{s['orcid']}" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">{s['orcid']}</a>) · 8 Macro-Pillars × 28 Superdomains × 8 Substrates × 7 Layers × {s['total_graph_edges']:,} Biconnected Edges (Python/NetworkX) · 0thernes CSS + Titan Index · {lean_n} Audited Lean 4.35.0 Software-Model Theorems · Hybrid RAG (100% MRR@5) + 12-Tool MCP Server + AutoResearch · <b>Daily 16-Registry &amp; 25-Front Left-to-Solve Sync</b> · <i>AI-Assisted Editorial Disclosure: scores are falsifiable estimates, not peer-reviewed measurements; 0/{s['total_problems']:,} solved by this work.</i></div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <a class="theme-btn" href="blueprint/index.html" style="text-decoration:none;">Lean Blueprint ↗</a>
@@ -933,14 +966,14 @@ def export_interactive_html(data):
     <div class="kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
     <div class="kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
     <div class="kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-    <div class="kpi"><div class="v">{lean_n} / 6K</div><div class="l">Lean 4.35 Thms / Kernels</div></div>
+    <div class="kpi"><div class="v">{lean_n}</div><div class="l">Lean 4.35 Model Thms</div></div>
     <div class="kpi"><div class="v">500 BCE–2026</div><div class="l">Span (Med Age {s['median_age_years']}y)</div></div>
   </div>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Mega-Atlas Sections">
   <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-explorer" onclick="showTab('explorer', this)">1. Master Catalog ({s['total_problems']:,})</button>
-  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-nov2026" onclick="showTab('nov2026', this)">2. Nov 2026 AI Audit, Registries &amp; Scoped Preprints</button>
+  <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-nov2026" onclick="showTab('nov2026', this)">2. Live Daily Registries, Left to Solve (25) &amp; AI Audit</button>
   <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-comparator" onclick="showTab('comparator', this)">3. Live Side-by-Side Comparator</button>
   <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-charts" onclick="showTab('charts', this)">4. Visual Analytics Gallery (15 Charts)</button>
   <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-matrices" onclick="showTab('matrices', this)">5. Substrates, Layers, Margins &amp; Contrast Matrices (13)</button>
@@ -1001,20 +1034,28 @@ def export_interactive_html(data):
     </div>
   </section>
 
-  <!-- TAB 2: NOV 2026 AI AUDIT & REGISTRIES -->
+  <!-- TAB 2: NOV 2026 AI AUDIT, LIVE DAILY REGISTRIES & LEFT TO SOLVE -->
   <section id="tab-nov2026" class="panel" role="tabpanel">
-    <div class="alert-box">
-      <b>Why "Right Now" (November 25, 2026) Is Historically Unprecedented:</b> Active registries like <b>ProofAtlas.ai</b> (1,100+ eligible; 243 open in Top-500) and <b>Erdős Problems DB</b> (~1,221 tracked; ~630 open) coexist with dramatic Fall–November 2026 AI proof claims—including OpenAI's Sept 8 <b>3D Navier–Stokes</b> claim, OpenAI's Oct 6 bulk release (<b>722 manuscripts across 372 topics</b>), and the Nov 20–21 <b>Levent Alpöge / Claude ~17M-line Lean Riemann Hypothesis &amp; GRH archive</b> (multi-kernel certified by Lean FRO &amp; Mathlib Initiative on Nov 21, with no complete human-readable paper yet) alongside Stanford's <b>Alessandro Masullo</b> human draft. Machine kernel compilation checks logical deduction, NOT human exposition or community consensus—so all six Clay Millennium Problems remain officially unretired.
+    <div id="dailySyncBanner" class="alert-box" style="background:rgba(56,189,248,0.12);border-color:#38BDF8;border-left-color:#38BDF8;">
+      <b>Daily Automated Registry Sync (06:00 UTC):</b> Tracking <b>16 live public open-problem trackers</b> and all <b>25 mathematical fronts on <a href="https://lefttosolve.com/programs" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;">lefttosolve.com/programs</a></b> (59,396 total targets; 1,939 Lean-4 formalized open; backed by <code>google-deepmind/formal-conjectures</code>). Showing embedded <code>v{s['atlas_version']}</code> baseline snapshot (auto-hydrates live from <code>./daily_registries.json</code> when served on GitHub Pages; advisory telemetry only — zero automatic problem retirement).
     </div>
-    <h2 style="margin-bottom:10px;">A. Live November 25, 2026 AI Proof-Claim Verification Audit</h2>
+    <div class="alert-box">
+      <b>Why "Right Now" (November 26, 2026) Is Historically Unprecedented:</b> Active registries like <b>Left to Solve</b> (59,396 targets across 25 fronts; 1,939 Lean-4 open), <b>ProofAtlas.ai</b> (1,100+ eligible; 243 open in Top-500), and <b>Erdős Problems DB</b> (~1,221 tracked; ~630 open) coexist with dramatic Fall–November 2026 AI proof claims—including OpenAI's Sept 8 <b>3D Navier–Stokes</b> claim, OpenAI's Oct 6 bulk release (<b>722 manuscripts across 372 topics</b>), and the Nov 20–21 <b>Levent Alpöge / Claude ~17M-line Lean Riemann Hypothesis &amp; GRH archive</b> (175,187 files, multi-kernel certified by Lean FRO &amp; Mathlib Initiative on Nov 21, independently verified by M. Rubinstein) alongside Stanford's <b>Alessandro Masullo</b> human draft. Machine kernel compilation checks logical deduction, NOT human exposition or community consensus—so all six Clay Millennium Problems remain officially unretired.
+    </div>
+    <h2 style="margin-bottom:10px;">A. Live November 2026 AI Proof-Claim Verification Audit</h2>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Audit ID</th><th>Targeted Problem(s)</th><th>Date</th><th>Claimant / System</th><th>Artifact Type</th><th>Machine Check Status</th><th>Human Fidelity &amp; Peer Review</th><th>Official Nov 2026 Verdict</th></tr></thead><tbody id="auditTbody"></tbody></table>
     </div>
-    <h2 style="margin-bottom:10px;">B. Global Open-Problem Registries &amp; Scale Comparison ({len(data["df_registries"])} Major Trackers)</h2>
+    <h2 style="margin-bottom:10px;">B. Global Open-Problem Registries &amp; Scale Comparison ({len(data["df_registries"])} Major Trackers — Synced Daily)</h2>
     <div class="table-wrap" style="margin-bottom:28px;">
       <table class="data-table"><thead><tr><th>Registry / Tracker</th><th>Scope</th><th>Total Tracked</th><th>Open Count (Nov 2026)</th><th>Verification Standard</th><th>November 2026 Context</th></tr></thead><tbody id="regsTbody"></tbody></table>
     </div>
-    <h2 style="margin-bottom:8px;">C. Author-Curated Scoped Frontier Preprints (0 / 1,900 Overarching Atlas Parents Retired)</h2>
+    <h2 style="margin-bottom:8px;">C. Left to Solve — All {len(data["df_lefttosolve_programs"])} Live Mathematical Programs (<a href="https://lefttosolve.com/programs" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">lefttosolve.com/programs</a>)</h2>
+    <p id="ltsMeta" style="color:var(--muted);font-size:0.84rem;margin-bottom:10px;">100 strictly non-duplicate open conjectures spanning these 25 fronts are natively indexed in Tab 1 (<code>LTS-001</code>..<code>LTS-100</code>). Counts refresh daily at <code>06:00 UTC</code> via <code>.github/workflows/daily-registry-sync.yml</code>.</p>
+    <div class="table-wrap" style="margin-bottom:28px;">
+      <table class="data-table"><thead><tr><th>#</th><th>Program / Front</th><th>Lean 4 Formalized</th><th>Targets</th><th>Open</th><th>Solved Here</th><th>Live Agents</th></tr></thead><tbody id="ltsTbody"></tbody></table>
+    </div>
+    <h2 style="margin-bottom:8px;">D. Author-Curated Scoped Frontier Preprints (0 / {s['total_problems']:,} Overarching Atlas Parents Retired)</h2>
     <p style="color:var(--muted);font-size:0.84rem;margin-bottom:10px;"><i>Conflict-of-Interest &amp; Scope Disclosure:</i> Independent preprints by Alexander Stephen Donahue (ORCID 0009-0006-8168-9648; self-published, not externally peer-reviewed) resolving narrowly scoped published sub-conjectures or proving structural invariants. All overarching Mega-Atlas parent problems explicitly remain <b>OPEN</b>.</p>
     <div class="table-wrap">
       <table class="data-table"><thead><tr><th>Archive ID</th><th>Repository</th><th>Parent Atlas IDs</th><th>Scoped Machine-Checked Result</th><th>Kernel Verification</th><th>Overarching Parent Status</th></tr></thead><tbody id="contribsTbody"></tbody></table>
@@ -1068,12 +1109,21 @@ def export_interactive_html(data):
 
 <script>
 const COLS = {cols_json};
+const ENUM_TABLES = {enum_json};
 const ROWS = {rows_json};
-const PROBLEMS = ROWS.map(r => {{ const o = {{}}; for (let i = 0; i < COLS.length; i++) o[COLS[i]] = r[i]; return o; }});
+const PROBLEMS = ROWS.map(r => {{
+  const o = {{}};
+  for (let i = 0; i < COLS.length; i++) {{
+    const tbl = ENUM_TABLES[i];
+    o[COLS[i]] = tbl ? tbl[r[i]] : r[i];
+  }}
+  return o;
+}});
 const CONTRASTS = {contrasts_json};
 const BENCHMARKS = {bench_json};
 const AI_AUDIT = {audit_json};
 const REGISTRIES = {regs_json};
+const LTS_PROGRAMS = {lts_json};
 const AUTHOR_CONTRIBS = {contribs_json};
 const PILLAR_COLORS = {pal_json};
 const ID_MAP = Object.fromEntries(PROBLEMS.map(p => [p.id, p]));
@@ -1135,9 +1185,21 @@ function populateUI() {{
     <tr><td><b>${{esc(r.Registry)}}</b></td><td>${{esc(r.Scope)}}</td><td><b>${{esc(r.Total_Tracked)}}</b></td><td>${{esc(r.Open_Count_Nov2026)}}</td><td>${{esc(r.Verification_Standard)}}</td><td>${{esc(r.Nov2026_Highlight)}}</td></tr>
   `).join('');
 
+  renderLtsPrograms(LTS_PROGRAMS.map(p => ({{
+    program: p.Program,
+    formalized_in_lean: p.Formalized_In_Lean === 'Yes',
+    targets: Number(p.Targets),
+    open: Number(p.Open),
+    solved_here: Number(p.Solved_Here),
+    live_agents: 0,
+    url: p.URL
+  }})));
+
   document.getElementById('contribsTbody').innerHTML = AUTHOR_CONTRIBS.map(c => `
     <tr><td class="mono"><b>${{esc(c.Archive_ID)}}</b></td><td class="mono">${{esc(c.Repo)}}</td><td class="mono">${{esc(c.Parent_Atlas_IDs)}}</td><td>${{esc(c.Scoped_Result)}}</td><td>${{esc(c.Kernel_Audit)}}</td><td><span class="badge">${{esc(c.Parent_Problem_Status)}}</span></td></tr>
   `).join('');
+
+  hydrateDailyRegistries();
 
   document.getElementById('contrastsGrid').innerHTML = CONTRASTS.map(c => `
     <div class="contrast-card">
@@ -1246,7 +1308,7 @@ function openDetail(pid) {{
   if (!p) return;
   const links = (p.related_problem_ids || '').split(',').filter(Boolean).map(rid => {{
     const rp = ID_MAP[rid];
-    return `<span class="chip" onclick="openDetail('${{rid}}')">${{rid}}: ${{rp ? esc(rp.name.slice(0,30)) : ''}}</span>`;
+    return `<span class="chip" onclick="openDetail('${{esc(rid)}}')">${{esc(rid)}}: ${{rp ? esc(rp.name.slice(0,30)) : ''}}</span>`;
   }}).join(' ');
   document.getElementById('detailContent').innerHTML = `
     <button class="modal-close" onclick="closeModal()">✕ Close</button>
@@ -1310,6 +1372,37 @@ function renderCompare() {{
     <div class="field-box"><strong>Contrast Axis</strong><i>${{esc(p.contrast_axis)}}</i></div>
   </div>`;
   document.getElementById('compGrid').innerHTML = mk(a) + mk(b);
+}}
+
+function renderLtsPrograms(progs) {{
+  const tb = document.getElementById('ltsTbody');
+  if (!tb || !Array.isArray(progs)) return;
+  let totT = 0, totO = 0, totS = 0, totA = 0;
+  const rowsHtml = progs.map((p, idx) => {{
+    const t = Number(p.targets || 0), o = Number(p.open || 0), s = Number(p.solved_here || 0), a = Number(p.live_agents || 0);
+    totT += t; totO += o; totS += s; totA += a;
+    const fl = p.formalized_in_lean ? '<span class="badge" style="border-color:#34D399;color:#34D399;">Yes (Lean 4)</span>' : '<span class="badge">Unformalized</span>';
+    return `<tr><td class="num">${{idx + 1}}</td><td><a href="${{esc(p.url)}}" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:700;">${{esc(p.program)}}</a></td><td>${{fl}}</td><td class="num">${{t.toLocaleString()}}</td><td class="num">${{o.toLocaleString()}}</td><td class="num">${{s.toLocaleString()}}</td><td class="num">${{a}}</td></tr>`;
+  }}).join('');
+  tb.innerHTML = rowsHtml + `<tr style="font-weight:800;background:var(--surface2);"><td>—</td><td>Total (${{progs.length}} Live Programs)</td><td>—</td><td class="num">${{totT.toLocaleString()}}</td><td class="num">${{totO.toLocaleString()}}</td><td class="num">${{totS.toLocaleString()}}</td><td class="num">${{totA}}</td></tr>`;
+}}
+
+function hydrateDailyRegistries() {{
+  if (typeof fetch !== 'function' || location.protocol === 'file:') return;
+  fetch('./daily_registries.json', {{ cache: 'no-cache' }})
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {{
+      if (!d || !Array.isArray(d.lefttosolve_programs)) return;
+      renderLtsPrograms(d.lefttosolve_programs);
+      const okCnt = (d.registries || []).filter(x => x.fetch_status === 'live_checked').length;
+      const totCnt = (d.registries || []).length;
+      const banner = document.getElementById('dailySyncBanner');
+      if (banner) {{
+        const deltaTxt = Array.isArray(d.daily_deltas) && d.daily_deltas.length ? esc(d.daily_deltas[0]) : 'Synced cleanly.';
+        banner.innerHTML = `<b>Live Daily Registry Sync Active:</b> Last updated <code>${{esc(d.checked_utc)}}</code> · <b>${{okCnt}}/${{totCnt}}</b> global registries verified live HTTP 200 · <b>${{d.lefttosolve_programs.length}}</b> Left to Solve fronts hydrated dynamically · <i>Latest diff:</i> ${{deltaTxt}} · <a href="./daily_registries.json" target="_blank" rel="noopener noreferrer" style="color:var(--accent);">JSON Feed ↗</a>`;
+      }}
+    }})
+    .catch(() => {{}});
 }}
 
 populateUI();
@@ -1428,9 +1521,9 @@ def export_pdf_monograph(data):
 
 <div class="cover">
   <div>
-    <div class="cover-kicker">Independent Research Monograph · Version {s['atlas_version']} · November 25, 2026</div>
+    <div class="cover-kicker">Independent Research Monograph · Version {s['atlas_version']} · November 26, 2026</div>
     <h1>Humanity's {s['total_problems']:,} Unsolved, Open &amp; Hard Problems Across All Fields of Knowledge</h1>
-    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, 6-Kernel Pure Lean 4.35.0 Formal Invariant Suite ({lean_n} Audited Theorems, 0 sorry in lean/), November 25, 2026 AI Proof-Claim Verification Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 10-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
+    <div class="cover-sub"><b>Author / Curator:</b> {s['author']} ({s['affiliation']} · ORCID {s['orcid']}) · A Unified Quantitative Taxonomy, Multi-Layer Substrate/Spectrum/Gradient/Margin Atlas, 0thernes Composite Severity Score (CSS) &amp; Titan Index, Pure Lean 4.35.0 Software-Model Invariant Suite ({lean_n} Audited Theorems, 0 sorry in lean/), November 26, 2026 AI Proof-Claim &amp; Daily 16-Registry / 25-Front Left-to-Solve Audit, SQLite FTS5 Hybrid RAG (100% MRR@5) &amp; 12-Tool MCP Server, Karpathy-Style AutoResearch Harness, FAIR Metadata (Croissant/RO-Crate/Zenodo), and Complete Master Directory Spanning All 8 Macro-Pillars &amp; 28 Superdomains.</div>
     <div class="cover-grid">
       <div class="cover-kpi"><div class="v">{s['total_problems']:,}</div><div class="l">Open / Hard Problems</div></div>
       <div class="cover-kpi"><div class="v">8 × 28 × 7</div><div class="l">Pillars × SD × Layers</div></div>
@@ -1438,7 +1531,7 @@ def export_pdf_monograph(data):
       <div class="cover-kpi"><div class="v">{s['cross_pillar_edge_pct']}%</div><div class="l">Cross-Pillar Bridges</div></div>
       <div class="cover-kpi"><div class="v">{s['ai_claims_nov2026_count']}</div><div class="l">Nov 2026 AI Claims</div></div>
       <div class="cover-kpi"><div class="v">{s['mean_css_score']}</div><div class="l">Mean 0thernes CSS</div></div>
-      <div class="cover-kpi"><div class="v">{lean_n} / 6K</div><div class="l">Lean 4.35 Thms / Kernels</div></div>
+      <div class="cover-kpi"><div class="v">{lean_n}</div><div class="l">Lean 4.35 Model Thms</div></div>
       <div class="cover-kpi"><div class="v">500 BCE–2026</div><div class="l">Historical Span</div></div>
     </div>
     <div class="cover-pillars">
@@ -1446,18 +1539,20 @@ def export_pdf_monograph(data):
     </div>
   </div>
   <div class="cover-foot">
-    <b>Release:</b> v{s['atlas_version']} (November 25, 2026) · <b>Author:</b> {s['author']} (ORCID {s['orcid']}, {s['affiliation']}) · <b>Dual License:</b> CC BY 4.0 (Data/Monograph) / Apache-2.0 (Code/Lean/RAG) · <b>AI-Assisted Disclosure:</b> Curated by independent researcher with disclosed AI assistance; quantitative scores are falsifiable editorial estimates, not peer-reviewed measurements; Lean 4 proofs verify scoring/graph/taxonomy invariants only.
+    <b>Release:</b> v{s['atlas_version']} (November 26, 2026) · <b>Author:</b> {s['author']} (ORCID {s['orcid']}, {s['affiliation']}) · <b>Dual License:</b> CC BY 4.0 (Data/Monograph) / Apache-2.0 (Code/Lean/RAG) · <b>AI-Assisted Disclosure:</b> Curated by independent researcher with disclosed AI assistance; quantitative scores are falsifiable editorial estimates, not peer-reviewed measurements; Lean 4 proofs verify software-model invariants only; 0/{s['total_problems']:,} problems solved by this work.
   </div>
 </div>
 
-<h2 class="sec">Section 1 · November 25, 2026 Special Report: AI Proof Claims, Verification Crisis &amp; Global Registries</h2>
+<h2 class="sec">Section 1 · November 26, 2026 Special Report: AI Proof Claims, Left to Solve (25 Fronts) &amp; Global Registries</h2>
 <div class="callout">
-  <b>Live November 25, 2026 Verification Advisory:</b> No single fixed count of open mathematical or scientific problems exists—active registries track thousands (<b>ProofAtlas.ai</b>: 1,100+ eligible / 243 open in Top-500; <b>Erdős Problems DB</b>: ~1,221 tracked / ~630+ open; <b>Kourovka</b>: &gt;1,000; <b>Kirby</b>: 360+). Rapid Fall–November 2026 AI claims (OpenAI Sept 8 Navier–Stokes, OpenAI Oct 6 722-manuscript dump, Nov 20–21 Alpöge/Claude Lean RH &amp; GRH archive + Masullo human draft) remain <b>unretired / officially open</b> pending human-readable exposition and peer refereeing.
+  <b>Live November 26, 2026 Verification Advisory:</b> No single fixed count of open mathematical or scientific problems exists—active registries track tens of thousands (<b>Left to Solve</b>: 59,396 targets across 25 live fronts / 1,939 Lean-4 open; <b>ProofAtlas.ai</b>: 1,100+ eligible / 243 open in Top-500; <b>Erdős Problems DB</b>: ~1,221 tracked / ~630+ open; <b>Kourovka</b>: &gt;1,000; <b>Kirby</b>: 360+). Rapid Fall–November 2026 AI claims (OpenAI Sept 8 Navier–Stokes, OpenAI Oct 6 722-manuscript dump, Nov 20–21 Alpöge/Claude Lean RH &amp; GRH archive + Masullo human draft) remain <b>unretired / officially open</b> pending human-readable exposition and peer refereeing.
 </div>
-<h3 class="subsec">1.1 November 25, 2026 AI Proof-Claim Verification Audit Ledger</h3>
+<h3 class="subsec">1.1 November 26, 2026 AI Proof-Claim Verification Audit Ledger</h3>
 {df_to_html_table(data["df_ai_audit"])}
-<h3 class="subsec">1.2 Global Open-Problem Registries &amp; Trackers Comparison ({len(data["df_registries"])} Benchmarks)</h3>
+<h3 class="subsec">1.2 Global Open-Problem Registries &amp; Trackers Comparison ({len(data["df_registries"])} Benchmarks — Synced Daily)</h3>
 {df_to_html_table(data["df_registries"])}
+<h3 class="subsec">1.3 Left to Solve — All {len(data["df_lefttosolve_programs"])} Live Mathematical Programs (lefttosolve.com/programs)</h3>
+{df_to_html_table(data["df_lefttosolve_programs"])}
 
 <div class="page-break"></div>
 <h2 class="sec">Section 2 · 8-Macro-Pillar &amp; 28-Superdomain Quantitative Scorecards</h2>

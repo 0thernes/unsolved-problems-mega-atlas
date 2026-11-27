@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Alexander Stephen Donahue
 """Quickstart Demo (Build Standard A43):
-Demonstrates loading the 1,900-problem Mega-Atlas, running offline Hybrid RAG search,
+Demonstrates loading the 2,000-problem Mega-Atlas, running offline Hybrid RAG search,
 comparing two flagship open problems side-by-side, and verifying differential parity
 against the 50-digit Decimal reference oracle — zero API keys, zero network calls.
 """

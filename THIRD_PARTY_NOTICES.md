@@ -18,7 +18,7 @@ All licenses are compatible with this repository's dual **Apache-2.0 (code) / CC
 | **Matplotlib** | `>=3.8` | PSF-based | 15 PNG/SVG charts, 5 vector PDF paper figures, social card |
 | **Seaborn** | `>=0.13` | BSD-3-Clause | Statistical distribution & heatmap visualization |
 | **openpyxl** | `>=3.1` | MIT | 15-sheet XLSX workbook export |
-| **xlwt** | `>=1.3` | BSD-3-Clause | 8-sheet legacy BIFF `.xls` export |
+| **xlwt** | `>=1.3` | BSD-3-Clause | 9-sheet legacy BIFF `.xls` export (release artifact in `build/`) |
 | **jsonschema** | `>=4.20` | MIT | Draft 2020-12 JSON Schema validation on all 1,900 records |
 | **pytest** | `>=8.0` | MIT | Automated test suite |
 | **Hypothesis** | `>=6.100` | MPL-2.0 | Property-based testing (`1,000+` examples/property) |
