@@ -23,8 +23,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install package & dev verification dependencies
@@ -57,7 +57,7 @@ jobs:
     name: Zero-Mathlib Lean 4.35.0 Six-Kernel & Palomar Comparator Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install bubblewrap and Elan (Lean 4.35.0)
         run: |
           sudo apt-get update && sudo apt-get install -y bubblewrap
@@ -71,8 +71,8 @@ jobs:
     name: AMS-LaTeX White Paper, Checksums, Secret Audit & SLSA Provenance
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Verify committed SHA-256 manifests, <5 MB tracked hygiene & secret scan
@@ -97,7 +97,7 @@ jobs:
           python scripts/check_citations.py
       - name: Attest frozen white paper PDF, arXiv tarball, Lean axiom report & CHECKSUMS provenance on main push
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: |
             dist/Donahue_2026_unsolved_problems_mega_atlas.pdf

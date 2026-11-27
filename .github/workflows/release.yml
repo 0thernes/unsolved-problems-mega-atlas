@@ -16,8 +16,8 @@ jobs:
     name: Build Full Release Bundle & SHA256SUMS
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install dependencies & build full release bundle
@@ -44,11 +44,11 @@ jobs:
           cp croissant.json ro-crate-metadata.json CHECKSUMS.sha256 CHECKSUMS.sha256.tsr CHECKSUMS.sha256.ots data/MANIFEST.sha256 release_assets/
           (cd release_assets && sha256sum * > SHA256SUMS)
       - name: Attest release bundle provenance
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: "release_assets/*"
       - name: Upload release bundle artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mega-atlas-release-bundle
           path: release_assets/

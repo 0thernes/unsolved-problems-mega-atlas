@@ -87,6 +87,19 @@ stamp:
 sync-registries:
     {{python}} scripts/sync_external_registries.py --live --write-daily --write-report
 
+# Mirror every Left to Solve program list into data/external/lefttosolve/ + verify offline
+sync-lefttosolve:
+    {{python}} scripts/sync_lefttosolve.py --live
+    {{python}} scripts/sync_lefttosolve.py --offline
+
+# Verify the committed Left to Solve mirror offline without network access
+lefttosolve-check:
+    {{python}} scripts/sync_lefttosolve.py --offline
+
+# Mine the offline Left to Solve mirror for sovereign 0thernes frontier targets
+sovereign-radar:
+    {{python}} scripts/mine_sovereign_targets.py rank --kind open --limit 25
+
 # Run community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 rubric-diff:
     {{python}} scripts/rubric_override_diff.py --override examples/rubric_override_sample.json

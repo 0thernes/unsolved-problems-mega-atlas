@@ -208,3 +208,16 @@ def test_expanded_external_registry_program_parser():
     assert len(parsed) == 1
     assert parsed[0]["program"] == "Millennium Prize"
     assert (parsed[0]["targets"], parsed[0]["open"], parsed[0]["solved_here"]) == (21, 14, 7)
+
+
+def test_mcp_query_lefttosolve_rejects_oversized_filter_strings():
+    sys.path.insert(0, str(ROOT / "mcp_server"))
+    import server as mcp
+
+    huge = "x" * (mcp.MAX_QUERY_CHARS + 1)
+    with pytest.raises(ValueError, match="exceeds"):
+        mcp.dispatch_tool("query_lefttosolve_programs", {"action": "search", "program": huge})
+    with pytest.raises(ValueError, match="exceeds"):
+        mcp.dispatch_tool("query_lefttosolve_programs", {"action": "search", "field": huge})
+    with pytest.raises(ValueError, match="exceeds"):
+        mcp.dispatch_tool("query_lefttosolve_programs", {"action": "crosswalk", "atlas_id": huge})
