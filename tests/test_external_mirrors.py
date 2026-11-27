@@ -61,11 +61,20 @@ def test_crosswalk_carries_kind_solved_and_advisory_policy():
     assert cw["status"] == "ok"
     assert cw["atlas_problems"] == 1900
     assert cw["matched_atlas_problems"] == len(cw["matches"])
+    assert cw["matched_atlas_problems"] >= 150
+    assert cw.get("curated_override_problems", 0) >= 150
     assert "Advisory only" in cw["policy"]
     assert isinstance(cw["external_solved_signals"], list)
+    matched_ids = {m["atlas_id"] for m in cw["matches"]}
+    assert {"CS-001", "NT-003", "NT-005", "NT-006", "ANL-001", "QC-037", "COMB-050", "XNT-027"}.issubset(matched_ids)
+    # Explicit false-positive exclusions must not leak back in
+    assert "GEO-039" not in matched_ids
+    assert "GR-018" not in matched_ids
     for m in cw["matches"]:
         for c in m["lefttosolve"]:
             assert "kind" in c and "solved" in c and isinstance(c["solved"], bool)
+            assert c.get("relation") in {"primary", "variant", "related"}
+            assert c.get("via") in {"normalized-title", "curated-override"}
 
 
 def test_tampered_manifest_is_rejected(tmp_path, monkeypatch):

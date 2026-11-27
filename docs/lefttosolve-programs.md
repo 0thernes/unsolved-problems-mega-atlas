@@ -10,7 +10,8 @@ Problem statements live on Left to Solve and in [google-deepmind/formal-conjectu
 - **Flagged `solved` on Left to Solve (969 total):** known: 814, warmup: 155 (Left to Solve's own Lean checker flag; mostly `known`/`warmup` theorems, not re-verified here)
 - **Upstream formal-conjectures commit:** `9097e2f90e66d2f6244209cb1c07f7120d17ec53`
 - **Change since previous snapshot:** +0 added, −0 removed, 26 newly solved, 0 kind changes
-- **Candidate Atlas crosswalk:** 34 Mega-Atlas problems share an exact normalised title with a Left to Solve problem (`data/external/lefttosolve/atlas_crosswalk.json`; automatic, not curated; 0 candidate link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)
+- **Atlas crosswalk:** 190 Mega-Atlas problems linked to Left to Solve targets (186 via reviewed `crosswalk_overrides.json` + exact normalized base-title matches; `data/external/lefttosolve/atlas_crosswalk.json`; 16 non-`related` link(s) carry a Left to Solve `solved` flag; zero Atlas statuses changed)
+- **Companion Mathematics Atlas:** [0thernes/unsolved-mathematics](https://github.com/0thernes/unsolved-mathematics) (`v0.8.0`, 120 curated seven-section mathematical dossiers, 8-domain 6-kernel Lean 4.35.0 core, and daily mirror of all 25 Left to Solve programs)
 
 | Program | Total | `open` | Lean-stated | Unformalized | Solved (by kind) | Mean difficulty | Top fields |
 |---|---:|---:|---:|---:|---|---:|---|
