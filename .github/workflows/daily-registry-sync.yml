@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+name: Daily External Registry Sync (Left to Solve programs, Clay, Erdős, ProofAtlas)
+
+on:
+  schedule:
+    - cron: "23 7 * * *"   # every day at 07:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: daily-registry-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Crawl, verify and commit the daily registry mirrors
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package & test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Mirror all Left to Solve program lists (fails closed on an incomplete crawl)
+        run: python scripts/sync_lefttosolve.py --live
+      - name: Poll Clay, Erdős and ProofAtlas registries (advisory delta, never retires problems)
+        run: python scripts/sync_external_registries.py --live --write-report
+      - name: Verify the refreshed mirror before committing
+        run: |
+          python scripts/sync_lefttosolve.py --offline
+          pytest tests/test_external_mirrors.py -v
+          python -c "import subprocess, pathlib; files = subprocess.check_output(['git','ls-files','--others','--cached','--exclude-standard','data/external']).decode().splitlines(); big = [f for f in files if pathlib.Path(f).stat().st_size >= 5*1024*1024]; assert not big, big; print(f'PASS: {len(files)} mirror files < 5 MB')"
+      - name: Commit and push to main if anything changed
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/external results/lefttosolve_delta.json results/registry_delta.json docs/lefttosolve-programs.md docs/registry-delta-2026-11-26.md
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes."
+          else
+            git commit -m "chore(sync): daily external registry mirror $(date -u +%Y-%m-%d)"
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Redeploy GitHub Pages with the fresh mirror
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main

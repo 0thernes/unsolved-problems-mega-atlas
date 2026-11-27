@@ -28,6 +28,8 @@ jobs:
           cp outputs/charts/* _site/charts/
           cp blueprint/index.html _site/blueprint/index.html
           cp llms.txt llms-full.txt croissant.json ro-crate-metadata.json _site/
+          mkdir -p _site/external
+          cp -r data/external/lefttosolve _site/external/lefttosolve
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

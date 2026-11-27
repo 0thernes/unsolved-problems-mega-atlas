@@ -87,6 +87,11 @@ stamp:
 sync-registries:
     {{python}} scripts/sync_external_registries.py --live --write-report
 
+# Mirror every Left to Solve program list (also runs daily in .github/workflows/daily-registry-sync.yml)
+sync-lefttosolve:
+    {{python}} scripts/sync_lefttosolve.py --live
+    {{python}} scripts/sync_lefttosolve.py --offline
+
 # Run community rubric sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 rubric-diff:
     {{python}} scripts/rubric_override_diff.py --override examples/rubric_override_sample.json

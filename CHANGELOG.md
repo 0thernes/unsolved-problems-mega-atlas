@@ -4,6 +4,12 @@ All notable changes to the **Unsolved Problems Mega-Atlas** are documented in th
 
 ## [Unreleased] — 2026-11-26
 
+### Added — Daily mirror of every Left to Solve program list
+- `scripts/sync_lefttosolve.py`: polite, zero-dependency crawler for the public Left to Solve API (`/api/problems`, `/api/stats`; `robots.txt`-compliant). Groups all problems by program, cross-checks each program against the API's per-source total and fails closed on any mismatch. Stores metadata only (id, title, kind, fields, difficulty, prize, solved, link) in `data/external/lefttosolve/programs/*.jsonl` (split below 4 MB), with `snapshot.json`, an append-only `CHANGES.jsonl`, a candidate title crosswalk to Atlas problems (`atlas_crosswalk.json`), `MANIFEST.sha256`, `results/lefttosolve_delta.json` and `docs/lefttosolve-programs.md`. `--offline` re-verifies the committed mirror.
+- `.github/workflows/daily-registry-sync.yml`: daily (07:23 UTC) run of the Left to Solve mirror and the existing Clay/Erdős/ProofAtlas delta auditor; verifies, commits to `main` and redeploys Pages. `pages.yml` now publishes the mirror under `/external/lefttosolve/`.
+- `tests/test_external_mirrors.py` (offline verification, metadata-only schema, tampered-manifest rejection, delta logic, fail-closed on non-JSON responses); `just sync-lefttosolve`.
+- The mirror is a sidecar: the frozen 1,900-problem dataset, its exports and checksums are unchanged.
+
 ### Corrected — Claims aligned with the 2026-11-26 statement audit
 - Scoped the Lean claims in `README.md`, `CITATION.cff`, `lean/formalization.yaml`, `docs/faq.md`, `docs/METHODOLOGY.md`, `docs/AI_DISCLOSURE.md` and the MCP tool text: the 103 audited theorems concern the scoring software model, not the 1,900-row data or its graph; all are kernel-checked by Lean, and the 9 comparator targets are also accepted by six kernel checks (five distinct implementations); the axiom statement is per theorem.
 - Rewrote the 17 companion rows in `src/v2_loader.py` (`OTHERNES_VERIFIED_FRONTIER_CONTRIBUTIONS`) to cite result numbers and kinds from the archive ledger `RESULTS.md`; only R1, R44 and R45 are recorded as answers to open questions from the literature. Removed unsupported "resolved", "refuted" and count claims, and corrected the Kaplansky unit-conjecture status with credit to Gardam, Tabei and Passman.

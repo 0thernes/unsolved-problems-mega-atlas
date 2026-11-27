@@ -28,3 +28,4 @@
 - [FAIR Metadata (Croissant 1.0)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/croissant.json): MLCommons Croissant JSON-LD descriptor
 - [FAIR Metadata (RO-Crate 1.1)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/ro-crate-metadata.json): W3C RO-Crate JSON-LD descriptor
 - [Master Ranking (`RANKING.md`)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/RANKING.md): Top 250 problems by 0thernes CSS + Nov 25, 2026 AI watchlist
+- [Left to Solve Program Mirror (daily)](https://raw.githubusercontent.com/0thernes/unsolved-problems-mega-atlas/main/docs/lefttosolve-programs.md): Daily metadata mirror of every lefttosolve.com program list (per-program counts, kinds, solved flags, candidate Atlas crosswalk); data in `data/external/lefttosolve/`

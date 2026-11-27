@@ -115,8 +115,17 @@ just mutate        # 6-mutant semantic mutation testing
 just bench         # 10-iteration warmed benchmark harness -> docs/benchmarks.md
 just audit           # Python biconnectivity audit, Zenodo dry-run & AutoResearch gates
 just sync-registries # Live advisory delta check against Clay CMI, erdosproblems.com & ProofAtlas
+just sync-lefttosolve # Mirror all Left to Solve program lists (lefttosolve.com/programs) + verify
 just rubric-diff     # Sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 ```
+
+### 5. Daily External Registry Mirrors
+
+`.github/workflows/daily-registry-sync.yml` runs every day at 07:23 UTC (and on demand). It mirrors every program list on [Left to Solve](https://lefttosolve.com/programs) (Erdős problems, OEIS conjectures, Wikipedia's lists, Millennium Prize, Hilbert, Kourovka Notebook, Green's 100, MathOverflow, Open Problem Garden and the rest) through the site's public JSON API, polls the Clay, erdosproblems.com and ProofAtlas registries, verifies the result, commits it to `main` and redeploys GitHub Pages. The crawl fails closed: if any program count disagrees with the API's own total, nothing is written.
+
+- Summary table: [`docs/lefttosolve-programs.md`](docs/lefttosolve-programs.md); data: `data/external/lefttosolve/` (one JSONL file per program, `snapshot.json`, append-only `CHANGES.jsonl`, `MANIFEST.sha256`); latest delta: `results/lefttosolve_delta.json`.
+- The mirror keeps metadata and links only (no statement excerpts) and is a sidecar: it never edits the frozen 1,900-problem dataset or retires an Atlas problem. `atlas_crosswalk.json` lists Atlas problems whose normalised title exactly matches a Left to Solve title; these are automatic candidates, not curated identifications.
+- "Solved" and "Lean-stated" flags are Left to Solve's own and are not re-verified here.
 
 ---
 

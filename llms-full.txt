@@ -12,7 +12,7 @@
 
 [![CI](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml/badge.svg)](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/ci.yml)
 [![Pages](https://github.com/0thernes/unsolved-problems-mega-atlas/actions/workflows/pages.yml/badge.svg)](https://0thernes.github.io/unsolved-problems-mega-atlas/)
-[![Lean 4.35.0](https://img.shields.io/badge/Lean-4.35.0%20%7C%20103%20Thms%20%7C%206%20Kernels-2ea44f)](lean/README.md)
+[![Lean 4.35.0](https://img.shields.io/badge/Lean-4.35.0%20%7C%20103%20audited%20theorems-2ea44f)](lean/README.md)
 [![Data License: CC BY 4.0](https://img.shields.io/badge/Data-CC%20BY%204.0-blue)](LICENSE)
 [![Code License: Apache-2.0](https://img.shields.io/badge/Code-Apache--2.0-blue)](LICENSE-CODE)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--8168--9648-A6CE39)](https://orcid.org/0009-0006-8168-9648)
@@ -24,28 +24,28 @@
 > **Dual License:** Dataset, Charts, White Paper & Prose [`CC-BY-4.0`](LICENSE) · Code, Lean 4.35.0 Proofs, Tests & Tools [`Apache-2.0`](LICENSE-CODE)
 > **Supported locales:** English (`en-US`, UTF-8)
 
-An open-source, cryptographically audited, multi-format cross-disciplinary research infrastructure cataloging **`1,900` strictly deduplicated unsolved, open, and hard problems** spanning **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,752 subdomains**, wired into **1 biconnected `5,808`-edge knowledge graph** (`0` articulation points, `0` bridges, `0` dangling links, `35.7%` cross-superdomain, `18.7%` cross-pillar), paired with:
+An open dataset and software suite that catalogues **`1,900` deduplicated unsolved, open and hard problems** across **8 Macro-Pillars × 28 Superdomains × 8 Physical/Formal Substrates × 7 Abstraction Layers (`L0–L6`) × 1,752 subdomains**, linked in a **`5,808`-edge knowledge graph** that the Python audit (NetworkX) finds biconnected (`0` articulation points, `0` bridges, `0` dangling links, `35.7%` cross-superdomain, `18.7%` cross-pillar). It comes with:
 
-- **103 Zero-Mathlib Pure Lean 4.35.0 Formal Invariant & Adversarial-Refutation Theorems** (`72` core module invariants + `12` concrete NonVacuity & boundary witnesses + `10` constructive `AdversarialTests` false-variant refutations + `9` Palomar contract specifications) verified across **6 independent proof kernels** (`lean`, `leanchecker --fresh` / `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) plus live negative kernel rejection, with constructive axioms strictly within `[propext, Quot.sound]`.
-- **10-Page Publication-Grade AMS-LaTeX White Paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf), `0` overfull hboxes, `12/12` live-verified citations with `0` Crossref retractions) + deterministic clean-room [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz) + **Dual Cryptographic Timestamping**: DigiCert RFC 3161 ([`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr)) + 3-Calendar Bitcoin OpenTimestamps ([`CHECKSUMS.sha256.ots`](CHECKSUMS.sha256.ots)).
+- **103 audited Lean 4.35.0 theorems without Mathlib** about the atlas software model: `72` in the core modules, `12` NonVacuity witnesses, `10` `AdversarialTests` refutations of weakened variants and `9` Palomar contract theorems (`5` private helper lemmas in `GraphInvariants` are not in the audit list). They are kernel-checked by Lean (`lake build`, `leanchecker --fresh`, `leanchecker-paranoid`); the `9` comparator targets in `lean/comparator.json` were also accepted by six kernel checks in Ubuntu CI (Lean default and paranoid modes, `lean4lean`, `nanoda`, `con-leche`, `con-ron`; five distinct implementations), and a deliberately false theorem is rejected. Each audited theorem depends on at most `propext` and `Quot.sound` (`#print axioms`); this per-theorem result does not cover the whole-environment `lake check --paranoid` output, which also lists `Classical.choice`. Several counted theorems are literal arithmetic identities or restate a hypothesis.
+- **10-page AMS-LaTeX white paper** ([`dist/Donahue_2026_unsolved_problems_mega_atlas.pdf`](dist/Donahue_2026_unsolved_problems_mega_atlas.pdf); `0` overfull hboxes; `scripts/check_citations.py` reports `12/12` citations reachable and `0` Crossref retractions), a deterministic source tarball [`dist/arxiv_submission.tar.gz`](dist/arxiv_submission.tar.gz), and timestamps of `CHECKSUMS.sha256` from DigiCert RFC 3161 ([`CHECKSUMS.sha256.tsr`](CHECKSUMS.sha256.tsr)) and OpenTimestamps ([`CHECKSUMS.sha256.ots`](CHECKSUMS.sha256.ots)).
 - **Live Interactive Web Atlas & Lean Proof Blueprint:** [https://0thernes.github.io/unsolved-problems-mega-atlas/](https://0thernes.github.io/unsolved-problems-mega-atlas/) and [Lean 4.35.0 Proof Blueprint DAG](https://0thernes.github.io/unsolved-problems-mega-atlas/blueprint/) (strict CSP, WCAG 2.2 AA accessible, `< 4 MB`).
-- **Offline SQLite FTS5 Hybrid RAG (`100.0% MRR@5`, `25/25` top-1)** + **Zero-Dependency Dual-Framed 11-Tool MCP Server** (`mcp_server/server.py`, `1 MiB` frame cap, incl. interactive `simulate_rubric_override`) + **Automated External Registry Delta Auditor** (`scripts/sync_external_registries.py`) + **Immutable Karpathy-Style AutoResearch Harness** (`AQS = 97.99`) + **3 Exact Track B Frontier Probes** (`LOG-002` Antihydra, `NT-005` Collatz, `COMB-001` Ramsey witnesses).
-- **Deep Verification Ladder:** 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic & golden snapshots, and **100% (`6/6`) mutation-kill coverage**.
+- **Offline SQLite FTS5 hybrid search** (`100.0%` MRR@5, `25/25` top-1 on the benchmark queries) and an **11-tool MCP server** with no external SDK (`mcp_server/server.py`, `1 MiB` frame cap, including `simulate_rubric_override`), a **registry delta checker** (`scripts/sync_external_registries.py`), a fixed AutoResearch evaluation harness modelled on Karpathy's `autoresearch` (`AQS = 97.99`), and **3 finite Track B probes** (`LOG-002` Antihydra, `NT-005` Collatz, `COMB-001` Ramsey witnesses) whose parent problems stay open.
+- **Python test ladder:** 50-digit `Decimal`/`Fraction` reference oracle (`reference/scoring_oracle.py`), 1,000-example Hypothesis property suite, 2,000-case differential tests, metamorphic and golden snapshots, and a mutation audit that kills all `6` planted mutants.
 
 ---
 
 ## Honest Verification Boundary (Read First)
 
-1. **Zero (`0 / 1,900`) overarching Mega-Atlas open problems are claimed solved or retired.** Our 103 Lean 4.35.0 theorems verify the atlas's *internal* scoring, quadrant/era, taxonomy, finite graph handshaking, deduplication, AutoResearch ratchet, gradient/margin invariants, non-vacuity, and false-variant refutations **only**.
-2. **Author-Curated Companion Archive Entries (`0thernes-research-archive`):** Seventeen companion rows (`11` Tier-I preprints + `6` Tier-II formal build groups across `43` public archive entries / `76` audited public `0thernes` repositories) resolve narrowly scoped published sub-conjectures, formalize complexity barriers, or certify discrete model invariants (cataloged transparently in `paper/main.tex` Section 6, `RANKING.md`, and MCP tool `list_author_frontier_contributions`); all are self-published (not externally peer-reviewed) and explicitly keep every overarching Mega-Atlas parent problem **OPEN**.
-3. **November 26, 2026 AI Proof Claims & Registry Delta Auditor:** All `12` Fall/Nov 2026 AI proof-claim targets (`NT-001` Riemann Hypothesis, `NT-002` GRH, `ANL-001` 3D Navier–Stokes, etc.) remain explicitly flagged `ai-claim-under-audit-nov2026` and **officially unretired** pending human-readable exposition and Clay/community consensus (auditable live via `just sync-registries` / [`docs/registry-delta-2026-11-26.md`](docs/registry-delta-2026-11-26.md)).
-4. **Editorial Rubric Disclosure & Sensitivity Simulator:** Quantitative ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are disclosed AI-assisted editorial estimates — not peer-reviewed consensus measurements. Test any custom weights or per-problem overrides in one command via `just rubric-diff` (`scripts/rubric_override_diff.py`) or MCP tool `simulate_rubric_override`!
+1. **Zero (`0 / 1,900`) Mega-Atlas open problems are claimed solved or retired.** The 103 Lean 4.35.0 theorems concern the atlas *software model* only: bounds of the CSS, Titan, leverage and AQS formulas for in-range inputs, monotonicity of CSS, Titan and leverage, quadrant and era maps, sizes of the taxonomy lists, a generic handshaking lemma for list multigraphs, a dedup bound, the AutoResearch keep/discard rule, gradient and margin bounds, non-vacuity witnesses and refutations of weakened variants. No Lean statement refers to the 1,900-row data, its 5,808-edge graph or biconnectivity; those properties, and the agreement between the Lean and Python formulas, are checked by Python tests.
+2. **Author's companion archive entries (`0thernes-research-archive`):** The authoritative list of the author's results is the archive ledger [`RESULTS.md`](https://github.com/0thernes/0thernes-research-archive/blob/main/RESULTS.md). Its section A, open questions stated by other authors and answered, holds three results: R1 (Banić–Elezović Conjecture 7.7, `0TH-2026-006`) and R44, R45 (questions of Muller–Saniga and of Jonah, `0TH-2026-009`). The other results are new theorems, bounded cases, known results formalized, or invariant suites for software models. The `17` companion rows in `src/v2_loader.py` and MCP tool `list_author_frontier_contributions` map a selection of entries to atlas IDs and cite their ledger numbers; `paper/main.tex` Section 6 and `RANKING.md` still carry older wording, corrected in [`ERRATA.md`](ERRATA.md). All entries are self-published, not peer reviewed, and every Mega-Atlas parent problem stays **OPEN**.
+3. **Fall/November 2026 AI proof claims:** All `12` targets (`NT-001` Riemann Hypothesis, `NT-002` GRH, `ANL-001` 3D Navier–Stokes, etc.) stay flagged `ai-claim-under-audit-nov2026` and unretired (checked with `just sync-registries`; see [`docs/registry-delta-2026-11-26.md`](docs/registry-delta-2026-11-26.md)). On 21 November 2026 the Lean FRO and the Mathlib Initiative certified the statement and proof of the Riemann Hypothesis in Levent Alpöge's Lean library (<https://leanprover-community.github.io/blog/posts/riemann-hypothesis/>); M. Rubinstein reports independent Lean verification checks of the RH/GRH proofs (<https://www.math.uwaterloo.ca/~mrubinst/alpoge_claude_grh/>). `NT-001` and `NT-002` stay unretired pending a human-readable paper and community review; see [`ERRATA.md`](ERRATA.md) section A.
+4. **Editorial Rubric Disclosure & Sensitivity Simulator:** Quantitative ratings (`difficulty_score`, `tractability_2050`, `civilizational_impact`, `interdisciplinarity_index`) are disclosed AI-assisted editorial estimates — not peer-reviewed consensus measurements. Custom weights or per-problem overrides can be tested with `just rubric-diff` (`scripts/rubric_override_diff.py`) or MCP tool `simulate_rubric_override`.
 
 ---
 
-## 5-Second Lean 4.35.0 Formal Verification
+## Reproducing the Lean 4.35.0 Audit
 
-Reproduce the full 103-theorem constructive axiom audit locally in under 10 seconds:
+Reproduce the axiom audit of the 103 theorems locally:
 
 ```bash
 cd lean
@@ -69,7 +69,7 @@ Verbatim Palomar headline theorem audit from [`results/lean_axioms.txt`](results
 ```
 <!-- LEAN_AXIOMS_END -->
 
-On Linux with `bubblewrap`, replay all **6 independent proof kernels** (`lean`, `leanchecker-paranoid`, `lean4lean`, `nanoda_bin`, `con-leche`, `con-ron`) using the exact single-source CI verification script:
+On Linux with `bubblewrap`, run the kernel checks used in CI (Lean default and paranoid modes, `lean4lean`, `nanoda`, `con-leche`, `con-ron`; five distinct implementations) with the same script CI uses. `nanoda`, `con-leche` and `con-ron` check an export of three headline theorems and their dependency closure; the Palomar comparator checks the 9 targets in `lean/comparator.json`:
 
 ```bash
 bash scripts/verify_lean_six_kernels.sh   # or: just lean-kernels
@@ -119,14 +119,23 @@ Connect Claude Code, Antigravity, Cursor, or Gemini CLI directly (zero external 
 ### 4. Full Deterministic Rebuild & Verification (`justfile`)
 
 ```bash
-just reproduce     # Rebuild exports + pytest + 103-thm Lean audit + AMS-LaTeX paper + SHA-256
-just lean-kernels  # Full 6-kernel bubblewrap replay on Linux (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
-just mutate        # 6-mutant semantic mutation testing (100% kill rate)
+just reproduce     # Rebuild exports + pytest + 103-theorem Lean axiom audit + AMS-LaTeX paper + SHA-256
+just lean-kernels  # Kernel checks under bubblewrap on Linux (lean, leanchecker-paranoid, lean4lean, nanoda, con-leche, con-ron)
+just mutate        # 6-mutant semantic mutation testing
 just bench         # 10-iteration warmed benchmark harness -> docs/benchmarks.md
-just audit           # Forensic biconnectivity, Zenodo dry-run & immutable AutoResearch gates
+just audit           # Python biconnectivity audit, Zenodo dry-run & AutoResearch gates
 just sync-registries # Live advisory delta check against Clay CMI, erdosproblems.com & ProofAtlas
+just sync-lefttosolve # Mirror all Left to Solve program lists (lefttosolve.com/programs) + verify
 just rubric-diff     # Sensitivity diff (Spearman rho, Kendall tau, Top-25 Jaccard & rank movers)
 ```
+
+### 5. Daily External Registry Mirrors
+
+`.github/workflows/daily-registry-sync.yml` runs every day at 07:23 UTC (and on demand). It mirrors every program list on [Left to Solve](https://lefttosolve.com/programs) (Erdős problems, OEIS conjectures, Wikipedia's lists, Millennium Prize, Hilbert, Kourovka Notebook, Green's 100, MathOverflow, Open Problem Garden and the rest) through the site's public JSON API, polls the Clay, erdosproblems.com and ProofAtlas registries, verifies the result, commits it to `main` and redeploys GitHub Pages. The crawl fails closed: if any program count disagrees with the API's own total, nothing is written.
+
+- Summary table: [`docs/lefttosolve-programs.md`](docs/lefttosolve-programs.md); data: `data/external/lefttosolve/` (one JSONL file per program, `snapshot.json`, append-only `CHANGES.jsonl`, `MANIFEST.sha256`); latest delta: `results/lefttosolve_delta.json`.
+- The mirror keeps metadata and links only (no statement excerpts) and is a sidecar: it never edits the frozen 1,900-problem dataset or retires an Atlas problem. `atlas_crosswalk.json` lists Atlas problems whose normalised title exactly matches a Left to Solve title; these are automatic candidates, not curated identifications.
+- "Solved" and "Lean-stated" flags are Left to Solve's own and are not re-verified here.
 
 ---
 
@@ -140,8 +149,8 @@ just rubric-diff     # Sensitivity diff (Spearman rho, Kendall tau, Top-25 Jacca
 | **Interactive Lean 4.35.0 Blueprint** | [`blueprint/index.html`](blueprint/index.html) | `14 KB` | SVG DAG linking all 103 audited theorems |
 | **Tabular & Compressed JSON Exports** | `outputs/*.csv`, `*.tsv`, `*.json.gz`, `*.jsonl.gz`, `*.xlsx` (15 sheets), `*.xls` | `< 5 MB` each | 100% JSON Schema Draft 2020-12 valid; full uncompressed `.sqlite`/`.json`/168p PDF on [GitHub Releases](https://github.com/0thernes/unsolved-problems-mega-atlas/releases) |
 | **15 Analytical Figures (PNG + SVG)** | `outputs/charts/01..15.{png,svg}` + `paper/figures/*.pdf` | `35` vector/raster files | Colorblind-safe 8-pillar palette |
-| **FAIR Metadata, Checksums & RFC 3161 TSA** | `croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`, `CHECKSUMS.sha256`, `CHECKSUMS.sha256.tsr`, `data/MANIFEST.sha256` | Tracked | Cryptographically synced + DigiCert RFC 3161 timestamped |
-| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`docs/literature-search-log.md`](docs/literature-search-log.md), [`HARDENING_LOG.md`](HARDENING_LOG.md) | Tracked | Full multi-cycle, 10-pass red-team audit |
+| **FAIR Metadata, Checksums & RFC 3161 TSA** | `croissant.json`, `ro-crate-metadata.json`, `.zenodo.json`, `CHECKSUMS.sha256`, `CHECKSUMS.sha256.tsr`, `data/MANIFEST.sha256` | Tracked | SHA-256 manifests; `CHECKSUMS.sha256` is timestamped (DigiCert RFC 3161, OpenTimestamps) |
+| **Falsifiable Claims & Hardening Logs** | [`CLAIMS.md`](CLAIMS.md), [`VERIFICATION.md`](VERIFICATION.md), [`docs/statement-fidelity.md`](docs/statement-fidelity.md), [`docs/literature-search-log.md`](docs/literature-search-log.md), [`HARDENING_LOG.md`](HARDENING_LOG.md), [`ERRATA.md`](ERRATA.md) | Tracked | Internal review logs (not external review); corrections from the [2026-11-26 statement audit](https://github.com/0thernes/0thernes-research-archive/blob/main/docs/reviews/2026-11-26-statement-audit.md) are in `ERRATA.md` |
 
 ---
 
@@ -150,7 +159,7 @@ just rubric-diff     # Sensitivity diff (Spearman rho, Kendall tau, Top-25 Jacca
 See [`LIMITATIONS.md`](LIMITATIONS.md) for the complete analysis and Literal-vs-Metaphor table. Key boundaries:
 - Quantitative rubric inputs (`difficulty`, `tractability_2050`, `impact`, `interdisciplinarity`) are solo AI-assisted editorial estimates, not peer-reviewed measurements.
 - Pure Mathematics has denser historical registries than applied engineering/humanities (`952` of `1,900` records are flagged `ai-assisted-editorial-synthesis`).
-- Lean 4.35.0 certifies discrete structural invariants over bounded inputs; IEEE-754 `log1p` terms are verified differentially against the 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`).
+- Lean 4.35.0 checks integer and list invariants of the scoring software over bounded inputs, not the atlas data; IEEE-754 `log1p` terms are checked differentially against the 50-digit `Decimal` reference oracle (`reference/scoring_oracle.py`).
 - Neither this dataset nor the companion white paper has undergone external journal peer review.
 
 ---
@@ -664,4 +673,5 @@ bash scripts/verify_lean_six_kernels.sh
 | 2026-11-26 | Windows 11 `x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15 | Fresh git clone of `v2.5.0` (`7097e55`) from portable `git bundle --all` into `<isolated-temp-dir>` (reusing read-only `.venv` packages) | **PASS** — Pre-build `CHECKSUMS.sha256` `59/59` byte-exact; `pytest` `53/53` PASS; `quickstart_demo.py` PASS; `v2_export_all.py --skip-pdf` deterministic rebuild PASS; fresh Lean 4.35.0 build + `audit_atlas.py --check-lean` (`103` thms) PASS; `forensic_audit.py` (`0` dangling/APs/bridges/misses) PASS; `run_mutation_audit.py` (`6/6` = `100%`) PASS; `check_readme_axioms.py` PASS; `evaluate.py` (`AQS=97.99`, `100% MRR@5`) PASS; `build_paper.py` (`11` pages, `0` overfull, clean-room arXiv tarball) PASS; `ruff`, `mypy`, and `Audit-Repo.ps1` (`100.0%` / `73/73` / `30/30` Core) ALL PASSED. |
 | 2026-11-26 | Windows 11 `x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15 | Fresh git clone of `v2.6.0` (`f786115`) from portable `git bundle --all` into `<isolated-temp-dir>` (reusing read-only `.venv` packages) | **PASS** — Pre-build `CHECKSUMS.sha256` `59/59` & `data/MANIFEST.sha256` `11/11` byte-exact + DigiCert RFC 3161 `.tsr` (`Nov 26 03:13:05 2026 GMT`) verified; `pytest` `63/63` PASS (auto-built SQLite FTS5 + live negative Lean 4.35.0 kernel rejection); `quickstart_demo.py` PASS; `v2_export_all.py --skip-pdf` deterministic rebuild PASS (`3.80 MB` HTML); fresh Lean 4.35.0 `17/17` jobs + `audit_atlas.py --check-lean` (`103` thms) PASS; `forensic_audit.py` (`0` dangling/APs/bridges/misses) PASS; `run_mutation_audit.py` (`6/6` = `100%`) PASS; `check_readme_axioms.py` PASS; `evaluate.py` (`AQS=97.99`, `100% MRR@5`) PASS; `build_paper.py` (`10` pages, `0.681 MB`, `0` overfull, clean-room arXiv tarball) PASS; `ruff` (`0`), `mypy` (`0` across 31 files), and `Audit-Repo.ps1` (`100.0%` / `73/73` / `30/30` Core) ALL PASSED. |
 | 2026-11-26 | Windows 11 `x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15 | Fresh git clone of `v2.7.0` (`e910e96`) from portable `git bundle --all` into `<isolated-temp-dir>` (reusing read-only `.venv` packages) | **PASS** — Pre-build `CHECKSUMS.sha256` `59/59` & `data/MANIFEST.sha256` `11/11` byte-exact + dual cryptographic timestamps (`CHECKSUMS.sha256.tsr` DigiCert RFC 3161 `Nov 26 10:40:02 2026 GMT` + `CHECKSUMS.sha256.ots` 3-calendar Bitcoin OpenTimestamps) verified; `pytest` `69/69` PASS (auto-built SQLite FTS5 + live negative Lean 4.35.0 kernel rejection + MCP DoS/RAG auto-rebuild/CSP/LF/link regressions); `quickstart_demo.py` PASS; `v2_export_all.py --skip-pdf` deterministic rebuild PASS (`3.80 MB` HTML); fresh Lean 4.35.0 `17/17` jobs + `audit_atlas.py --check-lean` (`103` thms) PASS; `forensic_audit.py` (`0` dangling/APs/bridges/misses) PASS; `run_mutation_audit.py` (`6/6` = `100%`) PASS; `check_readme_axioms.py` PASS; `evaluate.py` (`AQS=97.99`, `100% MRR@5`) PASS; `build_paper.py` (`10` pages, `0.683 MB`, `0` overfull, clean-room `0.500 MB` arXiv tarball) PASS; `ruff` (`0`) and `mypy` (`0`) ALL PASSED. |
+| 2026-11-26 | Windows 11 `x86_64`, Python 3.12.10, Lean 4.35.0, Tectonic 0.15 | Fresh git clone of `v2.8.0` (`42461d4`) from portable `git bundle --all` into `<isolated-temp-dir>` (reusing read-only `.venv` packages) | **PASS** — Pre-build `CHECKSUMS.sha256` `59/59` byte-exact + dual cryptographic timestamps (`CHECKSUMS.sha256.tsr` DigiCert RFC 3161 `Nov 26 13:42:45 2026 GMT` + `CHECKSUMS.sha256.ots` 3-calendar Bitcoin OpenTimestamps) verified; `pytest` `75/75` PASS (incl. 3 Track B probes, external registry delta sync, rubric sensitivity diff, 11-tool MCP & live negative Lean kernel rejection); `quickstart_demo.py`, `sync_external_registries.py --offline`, `rubric_override_diff.py` (`rho=0.8886`), `audit_atlas.py --check-lean` (`103` thms), `forensic_audit.py` (`0` dangling/APs/bridges/misses), `check_readme_axioms.py`, `evaluate.py` (`AQS=97.99`, `100% MRR@5`), `build_paper.py` (`10` pages, `0.684 MB`, `0` overfull, clean-room `0.501 MB` arXiv tarball), and `Audit-Repo.ps1` (`100.0%` / `73/73` / `30/30` Core) ALL PASSED. |
 

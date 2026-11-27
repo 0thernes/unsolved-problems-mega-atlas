@@ -1,0 +1,697 @@
+{
+  "schema_version": "1.0.0",
+  "source": "https://lefttosolve.com/programs",
+  "api": "https://lefttosolve.com/api/problems",
+  "retrieved_utc": "2026-11-27T03:36:03Z",
+  "kept_fields": [
+    "id",
+    "title",
+    "kind",
+    "fields",
+    "difficulty",
+    "prize",
+    "solved",
+    "url"
+  ],
+  "policy": "Metadata mirror only; no statement excerpts; never mutates the frozen Mega-Atlas dataset.",
+  "crosswalk_matches": 34,
+  "reported_total": 59396,
+  "fetched_total": 59396,
+  "upstream": {
+    "repo": "https://github.com/google-deepmind/formal-conjectures",
+    "commit": "9097e2f90e66d2f6244209cb1c07f7120d17ec53"
+  },
+  "catalog": {
+    "open": 1939,
+    "known": 1818,
+    "warmup": 168,
+    "unformalized": 55471
+  },
+  "reported_program_totals": {
+    "Books": 26,
+    "Conjectures of Luc Gillibert": 3,
+    "Erdős Problems": 2068,
+    "Erdős Problems (not formalized)": 116,
+    "Green's 100 Open Problems": 285,
+    "Hilbert's Problems": 8,
+    "Kourovka Notebook": 9,
+    "Litt's Problems": 3,
+    "MathOverflow": 21,
+    "MathOverflow (not formalized)": 35783,
+    "Mathematics Stack Exchange (not formalized)": 395,
+    "Millennium Prize": 21,
+    "OEIS": 461,
+    "OEIS conjectures (not formalized)": 18441,
+    "Open Problem Garden": 316,
+    "Open Quantum Problems": 32,
+    "Open problems in information theory (gokhanmergen)": 7,
+    "Optimization Constants": 31,
+    "Other": 29,
+    "Papers": 180,
+    "Wikipedia": 615,
+    "Wikipedia (not formalized)": 44,
+    "Wikipedia list (not formalized)": 366,
+    "Written on the Wall II": 31,
+    "arXiv papers": 105
+  },
+  "programs": [
+    {
+      "program": "MathOverflow (not formalized)",
+      "slug": "mathoverflow-not-formalized",
+      "url": "https://lefttosolve.com/programs/MathOverflow%20%28not%20formalized%29",
+      "total": 35783,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 35783
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 55.01,
+      "top_fields": [
+        "General Algebra",
+        "Algebraic Geometry",
+        "Number Theory",
+        "General Topology",
+        "Combinatorics"
+      ],
+      "files": [
+        "programs/mathoverflow-not-formalized.part-001.jsonl",
+        "programs/mathoverflow-not-formalized.part-002.jsonl",
+        "programs/mathoverflow-not-formalized.part-003.jsonl"
+      ]
+    },
+    {
+      "program": "OEIS conjectures (not formalized)",
+      "slug": "oeis-conjectures-not-formalized",
+      "url": "https://lefttosolve.com/programs/OEIS%20conjectures%20%28not%20formalized%29",
+      "total": 18441,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 18441
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 43.4,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "General Algebra",
+        "Geometry"
+      ],
+      "files": [
+        "programs/oeis-conjectures-not-formalized.part-001.jsonl",
+        "programs/oeis-conjectures-not-formalized.part-002.jsonl"
+      ]
+    },
+    {
+      "program": "Erdős Problems",
+      "slug": "erdos-problems",
+      "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems",
+      "total": 2068,
+      "by_kind": {
+        "open": 837,
+        "known": 1187,
+        "warmup": 44,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 2068,
+      "solved": 605,
+      "with_prize": 211,
+      "mean_difficulty": 43.09,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Convex & Discrete Geometry",
+        "Complex Analysis",
+        "Geometry"
+      ],
+      "files": [
+        "programs/erdos-problems.jsonl"
+      ]
+    },
+    {
+      "program": "Wikipedia",
+      "slug": "wikipedia",
+      "url": "https://lefttosolve.com/programs/Wikipedia",
+      "total": 615,
+      "by_kind": {
+        "open": 336,
+        "known": 242,
+        "warmup": 37,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 615,
+      "solved": 113,
+      "with_prize": 0,
+      "mean_difficulty": 47.63,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Algebraic Geometry",
+        "Special Functions",
+        "Field Theory"
+      ],
+      "files": [
+        "programs/wikipedia.jsonl"
+      ]
+    },
+    {
+      "program": "OEIS",
+      "slug": "oeis",
+      "url": "https://lefttosolve.com/programs/OEIS",
+      "total": 461,
+      "by_kind": {
+        "open": 394,
+        "known": 21,
+        "warmup": 46,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 461,
+      "solved": 59,
+      "with_prize": 0,
+      "mean_difficulty": 47.4,
+      "top_fields": [
+        "Number Theory",
+        "Field Theory",
+        "Linear Algebra",
+        "Combinatorics",
+        "Computer Science"
+      ],
+      "files": [
+        "programs/oeis.jsonl"
+      ]
+    },
+    {
+      "program": "Mathematics Stack Exchange (not formalized)",
+      "slug": "mathematics-stack-exchange-not-formalized",
+      "url": "https://lefttosolve.com/programs/Mathematics%20Stack%20Exchange%20%28not%20formalized%29",
+      "total": 395,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 395
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 53.6,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Real Functions",
+        "General Algebra",
+        "General Topology"
+      ],
+      "files": [
+        "programs/mathematics-stack-exchange-not-formalized.jsonl"
+      ]
+    },
+    {
+      "program": "Wikipedia list (not formalized)",
+      "slug": "wikipedia-list-not-formalized",
+      "url": "https://lefttosolve.com/programs/Wikipedia%20list%20%28not%20formalized%29",
+      "total": 366,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 366
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 60.09,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Logic & Foundations",
+        "Geometry",
+        "Algebraic Geometry"
+      ],
+      "files": [
+        "programs/wikipedia-list-not-formalized.jsonl"
+      ]
+    },
+    {
+      "program": "Open Problem Garden",
+      "slug": "open-problem-garden",
+      "url": "https://lefttosolve.com/programs/Open%20Problem%20Garden",
+      "total": 316,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 316
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 74.01,
+      "top_fields": [
+        "Combinatorics",
+        "General Topology",
+        "Geometry",
+        "Number Theory",
+        "Computer Science"
+      ],
+      "files": [
+        "programs/open-problem-garden.jsonl"
+      ]
+    },
+    {
+      "program": "Green's 100 Open Problems",
+      "slug": "green-s-100-open-problems",
+      "url": "https://lefttosolve.com/programs/Green%27s%20100%20Open%20Problems",
+      "total": 285,
+      "by_kind": {
+        "open": 128,
+        "known": 156,
+        "warmup": 1,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 285,
+      "solved": 67,
+      "with_prize": 0,
+      "mean_difficulty": 44.8,
+      "top_fields": [
+        "Combinatorics",
+        "Number Theory",
+        "Convex & Discrete Geometry",
+        "Group Theory",
+        "Probability"
+      ],
+      "files": [
+        "programs/green-s-100-open-problems.jsonl"
+      ]
+    },
+    {
+      "program": "Papers",
+      "slug": "papers",
+      "url": "https://lefttosolve.com/programs/Papers",
+      "total": 180,
+      "by_kind": {
+        "open": 93,
+        "known": 78,
+        "warmup": 9,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 180,
+      "solved": 23,
+      "with_prize": 0,
+      "mean_difficulty": 47.06,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Algebraic Geometry",
+        "Field Theory",
+        "Quantum Theory"
+      ],
+      "files": [
+        "programs/papers.jsonl"
+      ]
+    },
+    {
+      "program": "Erdős Problems (not formalized)",
+      "slug": "erdos-problems-not-formalized",
+      "url": "https://lefttosolve.com/programs/Erd%C5%91s%20Problems%20%28not%20formalized%29",
+      "total": 116,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 116
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 4,
+      "mean_difficulty": 59.97,
+      "top_fields": [
+        "Combinatorics",
+        "Number Theory",
+        "Real Functions",
+        "Geometry",
+        "Probability"
+      ],
+      "files": [
+        "programs/erdos-problems-not-formalized.jsonl"
+      ]
+    },
+    {
+      "program": "arXiv papers",
+      "slug": "arxiv-papers",
+      "url": "https://lefttosolve.com/programs/arXiv%20papers",
+      "total": 105,
+      "by_kind": {
+        "open": 43,
+        "known": 55,
+        "warmup": 7,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 105,
+      "solved": 26,
+      "with_prize": 0,
+      "mean_difficulty": 45.03,
+      "top_fields": [
+        "Combinatorics",
+        "Linear Algebra",
+        "Number Theory",
+        "Algebraic Geometry",
+        "Associative Rings"
+      ],
+      "files": [
+        "programs/arxiv-papers.jsonl"
+      ]
+    },
+    {
+      "program": "Wikipedia (not formalized)",
+      "slug": "wikipedia-not-formalized",
+      "url": "https://lefttosolve.com/programs/Wikipedia%20%28not%20formalized%29",
+      "total": 44,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 44
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 83.84,
+      "top_fields": [
+        "Computational Complexity",
+        "Combinatorics",
+        "Number Theory",
+        "Computer Science",
+        "Differential Geometry"
+      ],
+      "files": [
+        "programs/wikipedia-not-formalized.jsonl"
+      ]
+    },
+    {
+      "program": "Open Quantum Problems",
+      "slug": "open-quantum-problems",
+      "url": "https://lefttosolve.com/programs/Open%20Quantum%20Problems",
+      "total": 32,
+      "by_kind": {
+        "open": 28,
+        "known": 0,
+        "warmup": 4,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 32,
+      "solved": 4,
+      "with_prize": 0,
+      "mean_difficulty": 51.72,
+      "top_fields": [
+        "Linear Algebra",
+        "Quantum Theory",
+        "Combinatorics",
+        "Information & Communication",
+        "Operator Theory"
+      ],
+      "files": [
+        "programs/open-quantum-problems.jsonl"
+      ]
+    },
+    {
+      "program": "Optimization Constants",
+      "slug": "optimization-constants",
+      "url": "https://lefttosolve.com/programs/Optimization%20Constants",
+      "total": 31,
+      "by_kind": {
+        "open": 11,
+        "known": 19,
+        "warmup": 1,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 31,
+      "solved": 3,
+      "with_prize": 0,
+      "mean_difficulty": 46.9,
+      "top_fields": [
+        "Number Theory",
+        "Combinatorics",
+        "Computer Science",
+        "Logic & Foundations",
+        "Real Functions"
+      ],
+      "files": [
+        "programs/optimization-constants.jsonl"
+      ]
+    },
+    {
+      "program": "Written on the Wall II",
+      "slug": "written-on-the-wall-ii",
+      "url": "https://lefttosolve.com/programs/Written%20on%20the%20Wall%20II",
+      "total": 31,
+      "by_kind": {
+        "open": 11,
+        "known": 13,
+        "warmup": 7,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 31,
+      "solved": 19,
+      "with_prize": 0,
+      "mean_difficulty": 39.71,
+      "top_fields": [
+        "Combinatorics"
+      ],
+      "files": [
+        "programs/written-on-the-wall-ii.jsonl"
+      ]
+    },
+    {
+      "program": "Other",
+      "slug": "other",
+      "url": "https://lefttosolve.com/programs/Other",
+      "total": 29,
+      "by_kind": {
+        "open": 17,
+        "known": 12,
+        "warmup": 0,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 29,
+      "solved": 6,
+      "with_prize": 0,
+      "mean_difficulty": 49.52,
+      "top_fields": [
+        "Combinatorics",
+        "Computer Science",
+        "Field Theory",
+        "K-Theory",
+        "Convex & Discrete Geometry"
+      ],
+      "files": [
+        "programs/other.jsonl"
+      ]
+    },
+    {
+      "program": "Books",
+      "slug": "books",
+      "url": "https://lefttosolve.com/programs/Books",
+      "total": 26,
+      "by_kind": {
+        "open": 11,
+        "known": 15,
+        "warmup": 0,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 26,
+      "solved": 5,
+      "with_prize": 0,
+      "mean_difficulty": 45.58,
+      "top_fields": [
+        "Number Theory",
+        "Dynamical Systems",
+        "Computer Science"
+      ],
+      "files": [
+        "programs/books.jsonl"
+      ]
+    },
+    {
+      "program": "MathOverflow",
+      "slug": "mathoverflow",
+      "url": "https://lefttosolve.com/programs/MathOverflow",
+      "total": 21,
+      "by_kind": {
+        "open": 9,
+        "known": 8,
+        "warmup": 4,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 21,
+      "solved": 9,
+      "with_prize": 0,
+      "mean_difficulty": 42.57,
+      "top_fields": [
+        "Number Theory",
+        "Geometry",
+        "Combinatorics",
+        "Commutative Algebra",
+        "Probability"
+      ],
+      "files": [
+        "programs/mathoverflow.jsonl"
+      ]
+    },
+    {
+      "program": "Millennium Prize",
+      "slug": "millennium-prize",
+      "url": "https://lefttosolve.com/programs/Millennium%20Prize",
+      "total": 21,
+      "by_kind": {
+        "open": 12,
+        "known": 2,
+        "warmup": 7,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 21,
+      "solved": 2,
+      "with_prize": 0,
+      "mean_difficulty": 80.1,
+      "top_fields": [
+        "General Topology",
+        "Manifolds",
+        "Computer Science",
+        "Number Theory",
+        "Algebraic Geometry"
+      ],
+      "files": [
+        "programs/millennium-prize.jsonl"
+      ]
+    },
+    {
+      "program": "Kourovka Notebook",
+      "slug": "kourovka-notebook",
+      "url": "https://lefttosolve.com/programs/Kourovka%20Notebook",
+      "total": 9,
+      "by_kind": {
+        "open": 5,
+        "known": 4,
+        "warmup": 0,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 9,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 50.56,
+      "top_fields": [
+        "Group Theory",
+        "Topological Groups"
+      ],
+      "files": [
+        "programs/kourovka-notebook.jsonl"
+      ]
+    },
+    {
+      "program": "Hilbert's Problems",
+      "slug": "hilbert-s-problems",
+      "url": "https://lefttosolve.com/programs/Hilbert%27s%20Problems",
+      "total": 8,
+      "by_kind": {
+        "open": 2,
+        "known": 5,
+        "warmup": 1,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 8,
+      "solved": 1,
+      "with_prize": 0,
+      "mean_difficulty": 59.25,
+      "top_fields": [
+        "Manifolds",
+        "Topological Groups",
+        "Global Analysis",
+        "Field Theory",
+        "Differential Geometry"
+      ],
+      "files": [
+        "programs/hilbert-s-problems.jsonl"
+      ]
+    },
+    {
+      "program": "Open problems in information theory (gokhanmergen)",
+      "slug": "open-problems-in-information-theory-gokhanmergen",
+      "url": "https://lefttosolve.com/programs/Open%20problems%20in%20information%20theory%20%28gokhanmergen%29",
+      "total": 7,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 7
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 87.29,
+      "top_fields": [
+        "Information & Communication",
+        "Combinatorics",
+        "Convex & Discrete Geometry",
+        "Probability"
+      ],
+      "files": [
+        "programs/open-problems-in-information-theory-gokhanmergen.jsonl"
+      ]
+    },
+    {
+      "program": "Conjectures of Luc Gillibert",
+      "slug": "conjectures-of-luc-gillibert",
+      "url": "https://lefttosolve.com/programs/Conjectures%20of%20Luc%20Gillibert",
+      "total": 3,
+      "by_kind": {
+        "open": 0,
+        "known": 0,
+        "warmup": 0,
+        "unformalized": 3
+      },
+      "formalized_in_lean": 0,
+      "solved": 0,
+      "with_prize": 0,
+      "mean_difficulty": 70.0,
+      "top_fields": [
+        "Combinatorics",
+        "Group Theory"
+      ],
+      "files": [
+        "programs/conjectures-of-luc-gillibert.jsonl"
+      ]
+    },
+    {
+      "program": "Litt's Problems",
+      "slug": "litt-s-problems",
+      "url": "https://lefttosolve.com/programs/Litt%27s%20Problems",
+      "total": 3,
+      "by_kind": {
+        "open": 2,
+        "known": 1,
+        "warmup": 0,
+        "unformalized": 0
+      },
+      "formalized_in_lean": 3,
+      "solved": 1,
+      "with_prize": 0,
+      "mean_difficulty": 42.0,
+      "top_fields": [
+        "Algebraic Geometry",
+        "Number Theory",
+        "Commutative Algebra",
+        "Field Theory"
+      ],
+      "files": [
+        "programs/litt-s-problems.jsonl"
+      ]
+    }
+  ]
+}
