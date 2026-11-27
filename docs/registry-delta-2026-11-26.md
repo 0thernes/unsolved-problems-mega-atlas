@@ -1,6 +1,6 @@
 # External Open-Problem Registry Delta Report (`v2.8.0`)
 
-- **Checked (UTC):** `2026-11-26T13:35:56Z`
+- **Checked (UTC):** `2026-11-27T03:42:17Z`
 - **Mode:** `live`
 - **Committed Registries Benchmarked:** `13`
 - **Unretired Fall/Nov 2026 AI Claim Targets:** `12` (all remain `ai-claim-under-audit-nov2026`)

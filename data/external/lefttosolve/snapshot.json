@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "source": "https://lefttosolve.com/programs",
   "api": "https://lefttosolve.com/api/problems",
-  "retrieved_utc": "2026-11-27T03:36:03Z",
+  "retrieved_utc": "2026-11-27T03:42:15Z",
   "kept_fields": [
     "id",
     "title",
@@ -121,7 +121,7 @@
         "unformalized": 0
       },
       "formalized_in_lean": 2068,
-      "solved": 605,
+      "solved": 624,
       "with_prize": 211,
       "mean_difficulty": 43.09,
       "top_fields": [
@@ -147,7 +147,7 @@
         "unformalized": 0
       },
       "formalized_in_lean": 615,
-      "solved": 113,
+      "solved": 116,
       "with_prize": 0,
       "mean_difficulty": 47.63,
       "top_fields": [
@@ -277,7 +277,7 @@
         "unformalized": 0
       },
       "formalized_in_lean": 285,
-      "solved": 67,
+      "solved": 70,
       "with_prize": 0,
       "mean_difficulty": 44.8,
       "top_fields": [
@@ -303,7 +303,7 @@
         "unformalized": 0
       },
       "formalized_in_lean": 180,
-      "solved": 23,
+      "solved": 24,
       "with_prize": 0,
       "mean_difficulty": 47.06,
       "top_fields": [
