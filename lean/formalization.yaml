@@ -21,15 +21,9 @@ project:
     Python. Several counted theorems are literal arithmetic identities or restate a
     hypothesis.
   authors:
-    - name: "Alexander Stephen Donahue"
-      orcid: "0009-0006-8168-9648"
-      email: "0_0@0thernes.art"
-      affiliation: "Independent Researcher, Spokane, WA, USA"
+    - "Alexander Stephen Donahue (ORCID 0009-0006-8168-9648, Independent Researcher, Spokane, WA, USA)"
   responsible_maintainers:
-    - name: "Alexander Stephen Donahue"
-      github: "0thernes"
-      orcid: "0009-0006-8168-9648"
-      email: "0_0@0thernes.art"
+    - "Alexander Stephen Donahue (@0thernes, ORCID 0009-0006-8168-9648, 0_0@0thernes.art)"
   license: "Apache-2.0"
 
 classification:
@@ -45,7 +39,7 @@ classification:
 sources:
   - title: "Unsolved Problems Mega-Atlas (V2.11.0): Multi-Layer Taxonomy, Biconnected Knowledge Graph, Lean 4.35.0 Software-Model Invariants, and Daily-Synced Research Infrastructure"
     authors:
-      - "Alexander Stephen Donahue"
+      - "Alexander Stephen Donahue (ORCID 0009-0006-8168-9648, Independent Researcher, Spokane, WA, USA)"
     id: "https://github.com/0thernes/unsolved-problems-mega-atlas"
     type: "original-proof"
     relationship: "other"
